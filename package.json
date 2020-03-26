@@ -1,0 +1,88 @@
+{
+  "scripts": {
+    "preinstall": "node ./package-preinstall.js",
+    "postinstall": "node ./package-postinstall.js",
+    
+    "start": "olsk-express",
+
+    "test": "olsk-spec",
+
+    "build": "rollup -c rollup-config.js",
+    "build-watch": "rollup -w -c rollup-config.js"
+  },
+  "dependencies": {
+    "// OLDSKOOL": null,
+    "OLSKExpress": "olsk/OLSKExpress",
+
+    "// REMOTE STORAGE": null,
+    "remotestoragejs": "latest",
+    "OLSKRemoteStorage": "olsk/OLSKRemoteStorage",
+    "OLSKStorageWidget": "olsk/OSWPackage",
+
+    "// UNIQUE IDS": null,
+    "ulid": "latest",
+
+    "// FRONTEND NORMALIZE CSS": null,
+    "normalize.css": "latest",
+    "OLSKLayout": "olsk/OLSKLayout",
+
+    "// FRONTEND APP LAYOUT": null,
+    "OLSKLayout": "olsk/OLSKLayout",
+    "OLSKViewportContent": "olsk/OLSKViewportContent",
+    "OLSKToolbar": "olsk/OLSKToolbar",
+    "OLSKToolbarElementGroup": "olsk/OLSKToolbarElementGroup",
+    "OLSKDetailPlaceholder": "olsk/OLSKDetailPlaceholder",
+    "OLSKUIAssets": "olsk/OLSKUIAssets",
+
+    "// FRONTEND APP TOOLBAR": null,
+    "OLSKAppToolbar": "olsk/OLSKAppToolbar",
+
+    "// FRONTEND TEXT": null,
+    "marked": "latest",
+    "OLSKString": "olsk/OLSKString",
+
+    "// FRONTEND SERVICE WORKER": null,
+    "OLSKServiceWorker": "olsk/OLSKServiceWorker",
+
+    "// FRONTEND THROTTLE": null,
+    "OLSKThrottle": "olsk/OLSKThrottle",
+
+    "// FRONTEND ROUTING": null,
+    "OLSKRouting": "olsk/OLSKRouting",
+
+    "// FRONTEND LANGUAGE SWITCHER": null,
+    "OLSKLanguageSwitcher": "olsk/OLSKLanguageSwitcher",
+
+    "// FRONTEND ROOT LINK": null,
+    "OLSKRootLink": "olsk/OLSKRootLink",
+    "ROCORootLink": "rationalcreative/ROCORootLink",
+
+    "// I sacrifice myself for the commas of others": null
+  },
+  "devDependencies": {
+    "// TESTS": null,
+    "mocha": "latest",
+    "supervisor": "latest",
+
+    "// UI TESTS": null,
+    "zombie": "latest",
+
+    "// MOCHA PREPROCESS": null,
+    "OLSKTesting": "olsk/OLSKTesting",
+
+    "// SVELTE": null,
+    "svelte": "latest",
+    "OLSKRollupScaffold": "olsk/OLSKRollupScaffold",
+
+    "// LIVERELOAD": null,
+    "livereload": "latest",
+
+    "// PRODUCTION BUILD": null,
+    "OLSKDisk": "olsk/OLSKDisk",
+
+    "// SPEC": null,
+    "OLSKSpec": "olsk/OLSKSpec",
+
+    "// I sacrifice myself for the commas of others": null    
+  }
+}
