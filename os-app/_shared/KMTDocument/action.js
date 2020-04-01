@@ -4,7 +4,7 @@ const uniqueID = typeof require === 'undefined' && navigator.appName === 'Zombie
 
 export const KMTDocumentActionCreate = async function(storageClient, inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
-		return Promise.reject(new Error('EMTErrorInputNotValid'));
+		return Promise.reject(new Error('KMTErrorInputNotValid'));
 	}
 
 	let creationDate = new Date();
@@ -22,7 +22,7 @@ export const KMTDocumentActionRead = async function(storageClient, inputData) {
 
 export const KMTDocumentActionUpdate = async function(storageClient, inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
-		return Promise.reject(new Error('EMTErrorInputNotValid'));
+		return Promise.reject(new Error('KMTErrorInputNotValid'));
 	}
 
 	return await KMTDocumentMetal.KMTDocumentMetalWrite(storageClient, Object.assign(inputData, {

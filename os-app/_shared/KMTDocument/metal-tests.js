@@ -16,21 +16,21 @@ const kTesting = {
 describe('KMTDocumentMetalWrite', function testKMTDocumentMetalWrite() {
 
 	it('rejects if not object', async function() {
-		await rejects(mainModule.KMTDocumentMetalWrite(EMTTestingStorageClient, null), /EMTErrorInputNotValid/);
+		await rejects(mainModule.KMTDocumentMetalWrite(KMTTestingStorageClient, null), /KMTErrorInputNotValid/);
 	});
 
-	it('returns object with EMTErrors if not valid', async function() {
-		deepEqual((await mainModule.KMTDocumentMetalWrite(EMTTestingStorageClient, Object.assign(kTesting.StubDocumentObjectValid(), {
+	it('returns object with KMTErrors if not valid', async function() {
+		deepEqual((await mainModule.KMTDocumentMetalWrite(KMTTestingStorageClient, Object.assign(kTesting.StubDocumentObjectValid(), {
 			KMTDocumentID: null,
-		}))).EMTErrors, {
+		}))).KMTErrors, {
 			KMTDocumentID: [
-				'EMTErrorNotString',
+				'KMTErrorNotString',
 			],
 		});
 	});
 
 	it('returns KMTDocument', async function() {
-		let item = await mainModule.KMTDocumentMetalWrite(EMTTestingStorageClient, kTesting.StubDocumentObjectValid());
+		let item = await mainModule.KMTDocumentMetalWrite(KMTTestingStorageClient, kTesting.StubDocumentObjectValid());
 
 		deepEqual(item, Object.assign(kTesting.StubDocumentObjectValid(), {
 			'@context': item['@context'],
@@ -42,17 +42,17 @@ describe('KMTDocumentMetalWrite', function testKMTDocumentMetalWrite() {
 describe('KMTDocumentMetalRead', function testKMTDocumentMetalRead() {
 
 	it('rejects if not string', async function() {
-		await rejects(mainModule.KMTDocumentMetalRead(EMTTestingStorageClient, 1), /EMTErrorInputNotValid/);
+		await rejects(mainModule.KMTDocumentMetalRead(KMTTestingStorageClient, 1), /KMTErrorInputNotValid/);
 	});
 
 	it('returns null if not found', async function() {
-		deepEqual(await mainModule.KMTDocumentMetalRead(EMTTestingStorageClient, 'alfa'), null);
+		deepEqual(await mainModule.KMTDocumentMetalRead(KMTTestingStorageClient, 'alfa'), null);
 	});
 
 	it('returns KMTDocument', async function() {
-		let item = await mainModule.KMTDocumentMetalWrite(EMTTestingStorageClient, kTesting.StubDocumentObjectValid());
+		let item = await mainModule.KMTDocumentMetalWrite(KMTTestingStorageClient, kTesting.StubDocumentObjectValid());
 
-		deepEqual(await mainModule.KMTDocumentMetalRead(EMTTestingStorageClient, item.KMTDocumentID), item);
+		deepEqual(await mainModule.KMTDocumentMetalRead(KMTTestingStorageClient, item.KMTDocumentID), item);
 	});
 
 });
@@ -60,13 +60,13 @@ describe('KMTDocumentMetalRead', function testKMTDocumentMetalRead() {
 describe('KMTDocumentMetalList', function testKMTDocumentMetalList() {
 
 	it('returns empty array if none', async function() {
-		deepEqual(await mainModule.KMTDocumentMetalList(EMTTestingStorageClient), {});
+		deepEqual(await mainModule.KMTDocumentMetalList(KMTTestingStorageClient), {});
 	});
 
 	it('returns existing KMTDocuments', async function() {
-		let item = await mainModule.KMTDocumentMetalWrite(EMTTestingStorageClient, kTesting.StubDocumentObjectValid());
-		deepEqual(Object.values(await mainModule.KMTDocumentMetalList(EMTTestingStorageClient)), [item]);
-		deepEqual(Object.keys(await mainModule.KMTDocumentMetalList(EMTTestingStorageClient)), [item.KMTDocumentID]);
+		let item = await mainModule.KMTDocumentMetalWrite(KMTTestingStorageClient, kTesting.StubDocumentObjectValid());
+		deepEqual(Object.values(await mainModule.KMTDocumentMetalList(KMTTestingStorageClient)), [item]);
+		deepEqual(Object.keys(await mainModule.KMTDocumentMetalList(KMTTestingStorageClient)), [item.KMTDocumentID]);
 	});
 
 });
@@ -74,18 +74,18 @@ describe('KMTDocumentMetalList', function testKMTDocumentMetalList() {
 describe('KMTDocumentMetalDelete', function testKMTDocumentMetalDelete() {
 
 	it('rejects if not string', async function() {
-		await rejects(mainModule.KMTDocumentMetalDelete(EMTTestingStorageClient, 1), /EMTErrorInputNotValid/);
+		await rejects(mainModule.KMTDocumentMetalDelete(KMTTestingStorageClient, 1), /KMTErrorInputNotValid/);
 	});
 
 	it('returns statusCode', async function() {
-		deepEqual(await mainModule.KMTDocumentMetalDelete(EMTTestingStorageClient, (await mainModule.KMTDocumentMetalWrite(EMTTestingStorageClient, kTesting.StubDocumentObjectValid())).KMTDocumentID), {
+		deepEqual(await mainModule.KMTDocumentMetalDelete(KMTTestingStorageClient, (await mainModule.KMTDocumentMetalWrite(KMTTestingStorageClient, kTesting.StubDocumentObjectValid())).KMTDocumentID), {
 			statusCode: 200,
 		});
 	});
 
 	it('deletes KMTDocument', async function() {
-		await mainModule.KMTDocumentMetalDelete(EMTTestingStorageClient, (await mainModule.KMTDocumentMetalWrite(EMTTestingStorageClient, kTesting.StubDocumentObjectValid())).KMTDocumentID);
-		deepEqual(await mainModule.KMTDocumentMetalList(EMTTestingStorageClient), {});
+		await mainModule.KMTDocumentMetalDelete(KMTTestingStorageClient, (await mainModule.KMTDocumentMetalWrite(KMTTestingStorageClient, kTesting.StubDocumentObjectValid())).KMTDocumentID);
+		deepEqual(await mainModule.KMTDocumentMetalList(KMTTestingStorageClient), {});
 	});
 
 });

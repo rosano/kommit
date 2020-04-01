@@ -1,35 +1,35 @@
 export const KMTDocumentModelErrorsFor = function(inputData, options = {}) {
 	if (typeof inputData !== 'object' || inputData === null) {
-		throw new Error('EMTErrorInputNotValid');
+		throw new Error('KMTErrorInputNotValid');
 	}
 
 	var errors = {};
 
 	if (typeof inputData.KMTDocumentID !== 'string') {
 		errors.KMTDocumentID = [
-			'EMTErrorNotString',
+			'KMTErrorNotString',
 		];
 	} else if (inputData.KMTDocumentID.trim() === '') {
 		errors.KMTDocumentID = [
-			'EMTErrorNotFilled',
+			'KMTErrorNotFilled',
 		];
 	}
 
 	if (typeof inputData.KMTDocumentName !== 'string') {
 		errors.KMTDocumentName = [
-			'EMTErrorNotString',
+			'KMTErrorNotString',
 		];
 	}
 
 	if (!(inputData.KMTDocumentCreationDate instanceof Date) || Number.isNaN(inputData.KMTDocumentCreationDate.getTime())) {
 		errors.KMTDocumentCreationDate = [
-			'EMTErrorNotDate',
+			'KMTErrorNotDate',
 		];
 	}
 
 	if (!(inputData.KMTDocumentModificationDate instanceof Date) || Number.isNaN(inputData.KMTDocumentModificationDate.getTime())) {
 		errors.KMTDocumentModificationDate = [
-			'EMTErrorNotDate',
+			'KMTErrorNotDate',
 		];
 	}
 

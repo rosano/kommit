@@ -18,7 +18,7 @@ describe('KMTDocumentModelErrorsFor', function testKMTDocumentModelErrorsFor() {
 	it('throws error if not object', function() {
 		throws(function() {
 			mainModule.KMTDocumentModelErrorsFor(null);
-		}, /EMTErrorInputNotValid/);
+		}, /KMTErrorInputNotValid/);
 	});
 
 	it('returns object if KMTDocumentID not string', function() {
@@ -26,7 +26,7 @@ describe('KMTDocumentModelErrorsFor', function testKMTDocumentModelErrorsFor() {
 			KMTDocumentID: null,
 		})), {
 			KMTDocumentID: [
-				'EMTErrorNotString',
+				'KMTErrorNotString',
 			],
 		});
 	});
@@ -36,7 +36,7 @@ describe('KMTDocumentModelErrorsFor', function testKMTDocumentModelErrorsFor() {
 			KMTDocumentID: ' ',
 		})), {
 			KMTDocumentID: [
-				'EMTErrorNotFilled',
+				'KMTErrorNotFilled',
 			],
 		});
 	});
@@ -46,7 +46,7 @@ describe('KMTDocumentModelErrorsFor', function testKMTDocumentModelErrorsFor() {
 			KMTDocumentName: null,
 		})), {
 			KMTDocumentName: [
-				'EMTErrorNotString',
+				'KMTErrorNotString',
 			],
 		});
 	});
@@ -56,7 +56,7 @@ describe('KMTDocumentModelErrorsFor', function testKMTDocumentModelErrorsFor() {
 			KMTDocumentCreationDate: new Date('alfa'),
 		})), {
 			KMTDocumentCreationDate: [
-				'EMTErrorNotDate',
+				'KMTErrorNotDate',
 			],
 		});
 	});
@@ -66,7 +66,7 @@ describe('KMTDocumentModelErrorsFor', function testKMTDocumentModelErrorsFor() {
 			KMTDocumentModificationDate: new Date('alfa'),
 		})), {
 			KMTDocumentModificationDate: [
-				'EMTErrorNotDate',
+				'KMTErrorNotDate',
 			],
 		});
 	});
