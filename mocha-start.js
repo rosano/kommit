@@ -33,7 +33,7 @@ const KMTDocumentStorage = require('./os-app/_shared/KMTDocument/storage.js');
 		await uSerial([
 			'kmt_documents',
 		].map(async function (e) {
-			return await Promise.all(Object.keys(await global.KMTTestingStorageClient.emojitimer[e].KMTStorageList()).map(global.KMTTestingStorageClient.emojitimer[e].KMTStorageDelete));
+			return await Promise.all(Object.keys(await global.KMTTestingStorageClient.kommit[e].KMTStorageList()).map(global.KMTTestingStorageClient.kommit[e].KMTStorageDelete));
 		}));
 	});
 })();

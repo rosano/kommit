@@ -12,7 +12,7 @@ export const KMTDocumentMetalWrite = async function(storageClient, inputData) {
 		});
 	}
 
-	return await storageClient.emojitimer.emt_documents.EMTStorageWrite(inputData.KMTDocumentID, inputData);
+	return await storageClient.kommit.kmt_documents.EMTStorageWrite(inputData.KMTDocumentID, inputData);
 };
 
 export const KMTDocumentMetalRead = async function(storageClient, inputData) {
@@ -20,11 +20,11 @@ export const KMTDocumentMetalRead = async function(storageClient, inputData) {
 		return Promise.reject(new Error('EMTErrorInputNotValid'));
 	}
 
-	return KMTDocumentModelPostJSONParse(await storageClient.emojitimer.emt_documents.EMTStorageRead(inputData));
+	return KMTDocumentModelPostJSONParse(await storageClient.kommit.kmt_documents.EMTStorageRead(inputData));
 };
 
 export const KMTDocumentMetalList = async function(storageClient) {
-	let outputData = await storageClient.emojitimer.emt_documents.EMTStorageList();
+	let outputData = await storageClient.kommit.kmt_documents.EMTStorageList();
 
 	for (let key in outputData) {
 		KMTDocumentModelPostJSONParse(outputData[key]);
@@ -38,5 +38,5 @@ export const KMTDocumentMetalDelete = async function(storageClient, inputData) {
 		return Promise.reject(new Error('EMTErrorInputNotValid'));
 	}
 
-	return await storageClient.emojitimer.emt_documents.EMTStorageDelete(inputData);
+	return await storageClient.kommit.kmt_documents.EMTStorageDelete(inputData);
 };
