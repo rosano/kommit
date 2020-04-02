@@ -1,5 +1,5 @@
 const KOMStorageModule = require('./os-app/_shared/KOMStorageModule/main.js');
-const KOMDocumentStorage = require('./os-app/_shared/KOMDocument/storage.js');
+const KOMDeckStorage = require('./os-app/_shared/KOMDeck/storage.js');
 
 (function KOMMochaStorage() {
 	if (process.env.OLSK_TESTING_BEHAVIOUR === 'true') {
@@ -16,7 +16,7 @@ const KOMDocumentStorage = require('./os-app/_shared/KOMDocument/storage.js');
 		global.KOMTestingStorageClient = require('./os-app/_shared/KOMStorageClient/main.js').KOMStorageClient({
 			modules: [
 				KOMStorageModule.KOMStorageModule([
-					KOMDocumentStorage.KOMDocumentStorage,
+					KOMDeckStorage.KOMDeckStorage,
 				].map(function (e) {
 					return {
 						KOMCollectionStorageGenerator: e,

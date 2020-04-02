@@ -1,21 +1,21 @@
-import * as KOMDocumentModel from './model.js';
+import * as KOMDeckModel from './model.js';
 import * as OLSKRemoteStorage from 'OLSKRemoteStorage';
 
 const kType = 'kom_document';
 const kCollection = 'kom_documents';
 
-export const KOMDocumentStoragePath = function(inputData) {
+export const KOMDeckStoragePath = function(inputData) {
 	return `${ kCollection }/${ inputData || '' }`;
 };
 
-export const KOMDocumentStorage = function (privateClient, publicClient, changeDelegate) {
+export const KOMDeckStorage = function (privateClient, publicClient, changeDelegate) {
 	return {
 		KOMStorageCollection: kCollection,
 		KOMStorageType: kType,
-		KOMStorageModelErrors: Object.entries(KOMDocumentModel.KOMDocumentModelErrorsFor({}, {
+		KOMStorageModelErrors: Object.entries(KOMDeckModel.KOMDeckModelErrorsFor({}, {
 			KOMOptionValidateIfNotPresent: true,
 		})).map(function (e) {
-			if (Object.keys(KOMDocumentModel.KOMDocumentModelErrorsFor({})).indexOf(e[0]) === -1) {
+			if (Object.keys(KOMDeckModel.KOMDeckModelErrorsFor({})).indexOf(e[0]) === -1) {
 				e[1].push('__RSOptional');
 			}
 
@@ -27,14 +27,14 @@ export const KOMDocumentStorage = function (privateClient, publicClient, changeD
 		}, {}),
 		KOMStorageExports: {
 			KOMStorageCache () {
-				return privateClient.cache(KOMDocumentStoragePath());
+				return privateClient.cache(KOMDeckStoragePath());
 			},
 			KOMStorageList: function () {
-				return privateClient.getAll(KOMDocumentStoragePath(), false);
+				return privateClient.getAll(KOMDeckStoragePath(), false);
 			},
 			KOMStorageWrite: async function (param1, param2) {
-				await privateClient.storeObject(kType, `${ kCollection }/${ param1 }`, KOMDocumentModel.KOMDocumentModelPreJSONSchemaValidate(param2));
-				return KOMDocumentModel.KOMDocumentModelPostJSONParse(param2);
+				await privateClient.storeObject(kType, `${ kCollection }/${ param1 }`, KOMDeckModel.KOMDeckModelPreJSONSchemaValidate(param2));
+				return KOMDeckModel.KOMDeckModelPostJSONParse(param2);
 			},
 			KOMStorageRead: function (inputData) {
 				return privateClient.getObject(`${ kCollection }/${ inputData }`);
