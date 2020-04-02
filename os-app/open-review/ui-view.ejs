@@ -1,0 +1,30 @@
+<%
+locals.OLSKPageTitle = OLSKLocalized('KOMReviewTitle');
+locals.OLSKPageAssets = [
+	'/_shared/__external/normalize.css/normalize.css',
+	'/_shared/__external/OLSKLayout/ui-style.css',
+	'/_shared/__external/OLSKStorageWidget/__compiled/OLSKStorageWidget.js',
+	'/_shared/__external/OLSKStorageWidget/__compiled/OLSKStorageWidget.css',
+	'/_shared/common/ui-style.css',
+	'__compiled/ui-style.css',
+];
+locals.OLSKPagePublicRouteKeys = [
+	OLSKSharedActiveRouteConstant,
+	'KOMServiceWorkerRoute',
+];
+locals.OLSKPagePublicConstants = {
+	OLSKSharedActiveRouteConstant,
+	OLSKSharedPageLanguagesAvailable,
+	OLSKSharedPageCurrentLanguage,
+};
+locals.OLSKPageMetaTags = {
+	'mobile-web-app-capable': 'yes',
+	'apple-mobile-web-app-capable': 'yes',
+};
+%>
+
+<%- include('../_shared/common/layout-header.ejs') %>
+
+<script src="/<%= OLSKSharedPageControllerSlug %>/__compiled/ui-behaviour.js"></script>
+
+<%- include('../_shared/common/layout-footer.ejs') %>
