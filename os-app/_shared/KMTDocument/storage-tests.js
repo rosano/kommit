@@ -2,18 +2,18 @@ const { throws, deepEqual } = require('assert');
 
 const mainModule = require('./storage.js');
 
-describe('KMTDocumentStoragePath', function testKMTDocumentStoragePath() {
+describe('KOMDocumentStoragePath', function testKOMDocumentStoragePath() {
 
 	it('returns string', function() {
-		deepEqual(mainModule.KMTDocumentStoragePath('alfa'), 'kom_documents/alfa');
+		deepEqual(mainModule.KOMDocumentStoragePath('alfa'), 'kom_documents/alfa');
 	});
 
 	it('returns string if blank', function() {
-		deepEqual(mainModule.KMTDocumentStoragePath(''), 'kom_documents/');
+		deepEqual(mainModule.KOMDocumentStoragePath(''), 'kom_documents/');
 	});
 
 	it('returns string if undefined', function() {
-		deepEqual(mainModule.KMTDocumentStoragePath(), 'kom_documents/');
+		deepEqual(mainModule.KOMDocumentStoragePath(), 'kom_documents/');
 	});
 
 });

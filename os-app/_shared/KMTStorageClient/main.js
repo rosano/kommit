@@ -1,7 +1,7 @@
 import * as RemoteStoragePackage from 'remotestoragejs';
 const RemoteStorage = RemoteStoragePackage.default || RemoteStoragePackage;
 
-export const KMTStorageClient = function (inputData) {
+export const KOMStorageClient = function (inputData) {
 	let remoteStorage = new RemoteStorage(inputData);
 
 	let outputData = {};

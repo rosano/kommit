@@ -1,21 +1,21 @@
-import * as KMTDocumentModel from './model.js';
+import * as KOMDocumentModel from './model.js';
 import * as OLSKRemoteStorage from 'OLSKRemoteStorage';
 
 const kType = 'kom_document';
 const kCollection = 'kom_documents';
 
-export const KMTDocumentStoragePath = function(inputData) {
+export const KOMDocumentStoragePath = function(inputData) {
 	return `${ kCollection }/${ inputData || '' }`;
 };
 
-export const KMTDocumentStorage = function (privateClient, publicClient, changeDelegate) {
+export const KOMDocumentStorage = function (privateClient, publicClient, changeDelegate) {
 	return {
-		KMTStorageCollection: kCollection,
-		KMTStorageType: kType,
-		KMTStorageModelErrors: Object.entries(KMTDocumentModel.KMTDocumentModelErrorsFor({}, {
-			KMTOptionValidateIfNotPresent: true,
+		KOMStorageCollection: kCollection,
+		KOMStorageType: kType,
+		KOMStorageModelErrors: Object.entries(KOMDocumentModel.KOMDocumentModelErrorsFor({}, {
+			KOMOptionValidateIfNotPresent: true,
 		})).map(function (e) {
-			if (Object.keys(KMTDocumentModel.KMTDocumentModelErrorsFor({})).indexOf(e[0]) === -1) {
+			if (Object.keys(KOMDocumentModel.KOMDocumentModelErrorsFor({})).indexOf(e[0]) === -1) {
 				e[1].push('__RSOptional');
 			}
 
@@ -25,21 +25,21 @@ export const KMTDocumentStorage = function (privateClient, publicClient, changeD
 
 			return coll;
 		}, {}),
-		KMTStorageExports: {
-			KMTStorageCache () {
-				return privateClient.cache(KMTDocumentStoragePath());
+		KOMStorageExports: {
+			KOMStorageCache () {
+				return privateClient.cache(KOMDocumentStoragePath());
 			},
-			KMTStorageList: function () {
-				return privateClient.getAll(KMTDocumentStoragePath(), false);
+			KOMStorageList: function () {
+				return privateClient.getAll(KOMDocumentStoragePath(), false);
 			},
-			KMTStorageWrite: async function (param1, param2) {
-				await privateClient.storeObject(kType, `${ kCollection }/${ param1 }`, KMTDocumentModel.KMTDocumentModelPreJSONSchemaValidate(param2));
-				return KMTDocumentModel.KMTDocumentModelPostJSONParse(param2);
+			KOMStorageWrite: async function (param1, param2) {
+				await privateClient.storeObject(kType, `${ kCollection }/${ param1 }`, KOMDocumentModel.KOMDocumentModelPreJSONSchemaValidate(param2));
+				return KOMDocumentModel.KOMDocumentModelPostJSONParse(param2);
 			},
-			KMTStorageRead: function (inputData) {
+			KOMStorageRead: function (inputData) {
 				return privateClient.getObject(`${ kCollection }/${ inputData }`);
 			},
-			KMTStorageDelete: function (inputData) {
+			KOMStorageDelete: function (inputData) {
 				return privateClient.remove(`${ kCollection }/${ inputData }`);
 			},
 		},

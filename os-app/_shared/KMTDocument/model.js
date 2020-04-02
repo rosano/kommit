@@ -1,64 +1,64 @@
-export const KMTDocumentModelErrorsFor = function(inputData, options = {}) {
+export const KOMDocumentModelErrorsFor = function(inputData, options = {}) {
 	if (typeof inputData !== 'object' || inputData === null) {
-		throw new Error('KMTErrorInputNotValid');
+		throw new Error('KOMErrorInputNotValid');
 	}
 
 	var errors = {};
 
-	if (typeof inputData.KMTDocumentID !== 'string') {
-		errors.KMTDocumentID = [
-			'KMTErrorNotString',
+	if (typeof inputData.KOMDocumentID !== 'string') {
+		errors.KOMDocumentID = [
+			'KOMErrorNotString',
 		];
-	} else if (inputData.KMTDocumentID.trim() === '') {
-		errors.KMTDocumentID = [
-			'KMTErrorNotFilled',
-		];
-	}
-
-	if (typeof inputData.KMTDocumentName !== 'string') {
-		errors.KMTDocumentName = [
-			'KMTErrorNotString',
+	} else if (inputData.KOMDocumentID.trim() === '') {
+		errors.KOMDocumentID = [
+			'KOMErrorNotFilled',
 		];
 	}
 
-	if (!(inputData.KMTDocumentCreationDate instanceof Date) || Number.isNaN(inputData.KMTDocumentCreationDate.getTime())) {
-		errors.KMTDocumentCreationDate = [
-			'KMTErrorNotDate',
+	if (typeof inputData.KOMDocumentName !== 'string') {
+		errors.KOMDocumentName = [
+			'KOMErrorNotString',
 		];
 	}
 
-	if (!(inputData.KMTDocumentModificationDate instanceof Date) || Number.isNaN(inputData.KMTDocumentModificationDate.getTime())) {
-		errors.KMTDocumentModificationDate = [
-			'KMTErrorNotDate',
+	if (!(inputData.KOMDocumentCreationDate instanceof Date) || Number.isNaN(inputData.KOMDocumentCreationDate.getTime())) {
+		errors.KOMDocumentCreationDate = [
+			'KOMErrorNotDate',
+		];
+	}
+
+	if (!(inputData.KOMDocumentModificationDate instanceof Date) || Number.isNaN(inputData.KOMDocumentModificationDate.getTime())) {
+		errors.KOMDocumentModificationDate = [
+			'KOMErrorNotDate',
 		];
 	}
 
 	return Object.entries(errors).length ? errors : null;
 };
 
-export const KMTDocumentModelPreJSONSchemaValidate = function(inputData) {
-	if (inputData.KMTDocumentCreationDate) {
-		inputData.KMTDocumentCreationDate = inputData.KMTDocumentCreationDate.toISOString();
+export const KOMDocumentModelPreJSONSchemaValidate = function(inputData) {
+	if (inputData.KOMDocumentCreationDate) {
+		inputData.KOMDocumentCreationDate = inputData.KOMDocumentCreationDate.toISOString();
 	}
 
-	if (inputData.KMTDocumentModificationDate) {
-		inputData.KMTDocumentModificationDate = inputData.KMTDocumentModificationDate.toISOString();
+	if (inputData.KOMDocumentModificationDate) {
+		inputData.KOMDocumentModificationDate = inputData.KOMDocumentModificationDate.toISOString();
 	}
 
 	return inputData;
 };
 
-export const KMTDocumentModelPostJSONParse = function(inputData) {
+export const KOMDocumentModelPostJSONParse = function(inputData) {
 	if (!inputData) {
 		return inputData;
 	}
 
-	if (inputData.KMTDocumentCreationDate) {
-		inputData.KMTDocumentCreationDate = new Date(inputData.KMTDocumentCreationDate);
+	if (inputData.KOMDocumentCreationDate) {
+		inputData.KOMDocumentCreationDate = new Date(inputData.KOMDocumentCreationDate);
 	}
 
-	if (inputData.KMTDocumentModificationDate) {
-		inputData.KMTDocumentModificationDate = new Date(inputData.KMTDocumentModificationDate);
+	if (inputData.KOMDocumentModificationDate) {
+		inputData.KOMDocumentModificationDate = new Date(inputData.KOMDocumentModificationDate);
 	}
 
 	return inputData;

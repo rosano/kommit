@@ -5,125 +5,125 @@ const mainModule = require('./model.js');
 const kTesting = {
 	StubDocumentObjectValid: function() {
 		return {
-			KMTDocumentID: 'alfa',
-			KMTDocumentName: '',
-			KMTDocumentCreationDate: new Date('2019-02-23T13:56:36Z'),
-			KMTDocumentModificationDate: new Date('2019-02-23T13:56:36Z'),
+			KOMDocumentID: 'alfa',
+			KOMDocumentName: '',
+			KOMDocumentCreationDate: new Date('2019-02-23T13:56:36Z'),
+			KOMDocumentModificationDate: new Date('2019-02-23T13:56:36Z'),
 		};
 	},
 };
 
-describe('KMTDocumentModelErrorsFor', function testKMTDocumentModelErrorsFor() {
+describe('KOMDocumentModelErrorsFor', function testKOMDocumentModelErrorsFor() {
 
 	it('throws error if not object', function() {
 		throws(function() {
-			mainModule.KMTDocumentModelErrorsFor(null);
-		}, /KMTErrorInputNotValid/);
+			mainModule.KOMDocumentModelErrorsFor(null);
+		}, /KOMErrorInputNotValid/);
 	});
 
-	it('returns object if KMTDocumentID not string', function() {
-		deepEqual(mainModule.KMTDocumentModelErrorsFor(Object.assign(kTesting.StubDocumentObjectValid(), {
-			KMTDocumentID: null,
+	it('returns object if KOMDocumentID not string', function() {
+		deepEqual(mainModule.KOMDocumentModelErrorsFor(Object.assign(kTesting.StubDocumentObjectValid(), {
+			KOMDocumentID: null,
 		})), {
-			KMTDocumentID: [
-				'KMTErrorNotString',
+			KOMDocumentID: [
+				'KOMErrorNotString',
 			],
 		});
 	});
 
-	it('returns object if KMTDocumentID not filled', function() {
-		deepEqual(mainModule.KMTDocumentModelErrorsFor(Object.assign(kTesting.StubDocumentObjectValid(), {
-			KMTDocumentID: ' ',
+	it('returns object if KOMDocumentID not filled', function() {
+		deepEqual(mainModule.KOMDocumentModelErrorsFor(Object.assign(kTesting.StubDocumentObjectValid(), {
+			KOMDocumentID: ' ',
 		})), {
-			KMTDocumentID: [
-				'KMTErrorNotFilled',
+			KOMDocumentID: [
+				'KOMErrorNotFilled',
 			],
 		});
 	});
 
-	it('returns object if KMTDocumentName not string', function() {
-		deepEqual(mainModule.KMTDocumentModelErrorsFor(Object.assign(kTesting.StubDocumentObjectValid(), {
-			KMTDocumentName: null,
+	it('returns object if KOMDocumentName not string', function() {
+		deepEqual(mainModule.KOMDocumentModelErrorsFor(Object.assign(kTesting.StubDocumentObjectValid(), {
+			KOMDocumentName: null,
 		})), {
-			KMTDocumentName: [
-				'KMTErrorNotString',
+			KOMDocumentName: [
+				'KOMErrorNotString',
 			],
 		});
 	});
 
-	it('returns object if KMTDocumentCreationDate not date', function() {
-		deepEqual(mainModule.KMTDocumentModelErrorsFor(Object.assign(kTesting.StubDocumentObjectValid(), {
-			KMTDocumentCreationDate: new Date('alfa'),
+	it('returns object if KOMDocumentCreationDate not date', function() {
+		deepEqual(mainModule.KOMDocumentModelErrorsFor(Object.assign(kTesting.StubDocumentObjectValid(), {
+			KOMDocumentCreationDate: new Date('alfa'),
 		})), {
-			KMTDocumentCreationDate: [
-				'KMTErrorNotDate',
+			KOMDocumentCreationDate: [
+				'KOMErrorNotDate',
 			],
 		});
 	});
 
-	it('returns object if KMTDocumentModificationDate not date', function() {
-		deepEqual(mainModule.KMTDocumentModelErrorsFor(Object.assign(kTesting.StubDocumentObjectValid(), {
-			KMTDocumentModificationDate: new Date('alfa'),
+	it('returns object if KOMDocumentModificationDate not date', function() {
+		deepEqual(mainModule.KOMDocumentModelErrorsFor(Object.assign(kTesting.StubDocumentObjectValid(), {
+			KOMDocumentModificationDate: new Date('alfa'),
 		})), {
-			KMTDocumentModificationDate: [
-				'KMTErrorNotDate',
+			KOMDocumentModificationDate: [
+				'KOMErrorNotDate',
 			],
 		});
 	});
 
 	it('returns null', function() {
-		deepEqual(mainModule.KMTDocumentModelErrorsFor(kTesting.StubDocumentObjectValid()), null);
+		deepEqual(mainModule.KOMDocumentModelErrorsFor(kTesting.StubDocumentObjectValid()), null);
 	});
 
 });
 
-describe('KMTDocumentModelPreJSONSchemaValidate', function testKMTDocumentModelPreJSONSchemaValidate() {
+describe('KOMDocumentModelPreJSONSchemaValidate', function testKOMDocumentModelPreJSONSchemaValidate() {
 
 	it('returns input', function() {
-		deepEqual(mainModule.KMTDocumentModelPreJSONSchemaValidate({}), {});
+		deepEqual(mainModule.KOMDocumentModelPreJSONSchemaValidate({}), {});
 	});
 
-	it('returns input with KMTDocumentCreationDate as string', function() {
-		deepEqual(mainModule.KMTDocumentModelPreJSONSchemaValidate({
-			KMTDocumentCreationDate: new Date('2018-12-09T19:07:01.902Z'),
+	it('returns input with KOMDocumentCreationDate as string', function() {
+		deepEqual(mainModule.KOMDocumentModelPreJSONSchemaValidate({
+			KOMDocumentCreationDate: new Date('2018-12-09T19:07:01.902Z'),
 		}), {
-			KMTDocumentCreationDate: '2018-12-09T19:07:01.902Z',
+			KOMDocumentCreationDate: '2018-12-09T19:07:01.902Z',
 		});
 	});
 
-	it('returns input with KMTDocumentModificationDate as string', function() {
-		deepEqual(mainModule.KMTDocumentModelPreJSONSchemaValidate({
-			KMTDocumentModificationDate: new Date('2018-12-09T19:07:01.902Z'),
+	it('returns input with KOMDocumentModificationDate as string', function() {
+		deepEqual(mainModule.KOMDocumentModelPreJSONSchemaValidate({
+			KOMDocumentModificationDate: new Date('2018-12-09T19:07:01.902Z'),
 		}), {
-			KMTDocumentModificationDate: '2018-12-09T19:07:01.902Z',
+			KOMDocumentModificationDate: '2018-12-09T19:07:01.902Z',
 		});
 	});
 
 });
 
-describe('KMTDocumentModelPostJSONParse', function testKMTDocumentModelPostJSONParse() {
+describe('KOMDocumentModelPostJSONParse', function testKOMDocumentModelPostJSONParse() {
 
 	it('returns input null', function() {
-		deepEqual(mainModule.KMTDocumentModelPostJSONParse(null), null);
+		deepEqual(mainModule.KOMDocumentModelPostJSONParse(null), null);
 	});
 
 	it('returns input object', function() {
-		deepEqual(mainModule.KMTDocumentModelPostJSONParse({}), {});
+		deepEqual(mainModule.KOMDocumentModelPostJSONParse({}), {});
 	});
 
-	it('returns input with KMTDocumentCreationDate as date', function() {
-		deepEqual(mainModule.KMTDocumentModelPostJSONParse({
-			KMTDocumentCreationDate: '2018-12-09T19:07:01.902Z',
+	it('returns input with KOMDocumentCreationDate as date', function() {
+		deepEqual(mainModule.KOMDocumentModelPostJSONParse({
+			KOMDocumentCreationDate: '2018-12-09T19:07:01.902Z',
 		}), {
-			KMTDocumentCreationDate: new Date('2018-12-09T19:07:01.902Z'),
+			KOMDocumentCreationDate: new Date('2018-12-09T19:07:01.902Z'),
 		});
 	});
 
-	it('returns input with KMTDocumentModificationDate as date', function() {
-		deepEqual(mainModule.KMTDocumentModelPostJSONParse({
-			KMTDocumentModificationDate: '2018-12-09T19:07:01.902Z',
+	it('returns input with KOMDocumentModificationDate as date', function() {
+		deepEqual(mainModule.KOMDocumentModelPostJSONParse({
+			KOMDocumentModificationDate: '2018-12-09T19:07:01.902Z',
 		}), {
-			KMTDocumentModificationDate: new Date('2018-12-09T19:07:01.902Z'),
+			KOMDocumentModificationDate: new Date('2018-12-09T19:07:01.902Z'),
 		});
 	});
 

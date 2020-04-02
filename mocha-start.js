@@ -1,7 +1,7 @@
-const KMTStorageModule = require('./os-app/_shared/KMTStorageModule/main.js');
-const KMTDocumentStorage = require('./os-app/_shared/KMTDocument/storage.js');
+const KOMStorageModule = require('./os-app/_shared/KOMStorageModule/main.js');
+const KOMDocumentStorage = require('./os-app/_shared/KOMDocument/storage.js');
 
-(function KMTMochaStorage() {
+(function KOMMochaStorage() {
 	if (process.env.OLSK_TESTING_BEHAVIOUR === 'true') {
 		return;
 	}
@@ -13,14 +13,14 @@ const KMTDocumentStorage = require('./os-app/_shared/KMTDocument/storage.js');
 	};
 
 	before(function(done) {
-		global.KMTTestingStorageClient = require('./os-app/_shared/KMTStorageClient/main.js').KMTStorageClient({
+		global.KOMTestingStorageClient = require('./os-app/_shared/KOMStorageClient/main.js').KOMStorageClient({
 			modules: [
-				KMTStorageModule.KMTStorageModule([
-					KMTDocumentStorage.KMTDocumentStorage,
+				KOMStorageModule.KOMStorageModule([
+					KOMDocumentStorage.KOMDocumentStorage,
 				].map(function (e) {
 					return {
-						KMTCollectionStorageGenerator: e,
-						KMTCollectionChangeDelegate: null,
+						KOMCollectionStorageGenerator: e,
+						KOMCollectionChangeDelegate: null,
 					};
 				}))
 			],
@@ -33,7 +33,7 @@ const KMTDocumentStorage = require('./os-app/_shared/KMTDocument/storage.js');
 		await uSerial([
 			'kom_documents',
 		].map(async function (e) {
-			return await Promise.all(Object.keys(await global.KMTTestingStorageClient.kommit[e].KMTStorageList()).map(global.KMTTestingStorageClient.kommit[e].KMTStorageDelete));
+			return await Promise.all(Object.keys(await global.KOMTestingStorageClient.kommit[e].KOMStorageList()).map(global.KOMTestingStorageClient.kommit[e].KOMStorageDelete));
 		}));
 	});
 })();

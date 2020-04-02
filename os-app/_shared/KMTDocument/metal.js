@@ -1,42 +1,42 @@
-import { KMTDocumentModelErrorsFor, KMTDocumentModelPostJSONParse } from './model.js';
+import { KOMDocumentModelErrorsFor, KOMDocumentModelPostJSONParse } from './model.js';
 
-export const KMTDocumentMetalWrite = async function(storageClient, inputData) {
+export const KOMDocumentMetalWrite = async function(storageClient, inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
-		return Promise.reject(new Error('KMTErrorInputNotValid'));
+		return Promise.reject(new Error('KOMErrorInputNotValid'));
 	}
 
-	let errors = KMTDocumentModelErrorsFor(inputData);
+	let errors = KOMDocumentModelErrorsFor(inputData);
 	if (errors) {
 		return Promise.resolve({
-			KMTErrors: errors,
+			KOMErrors: errors,
 		});
 	}
 
-	return await storageClient.kommit.kom_documents.KMTStorageWrite(inputData.KMTDocumentID, inputData);
+	return await storageClient.kommit.kom_documents.KOMStorageWrite(inputData.KOMDocumentID, inputData);
 };
 
-export const KMTDocumentMetalRead = async function(storageClient, inputData) {
+export const KOMDocumentMetalRead = async function(storageClient, inputData) {
 	if (typeof inputData !== 'string') {
-		return Promise.reject(new Error('KMTErrorInputNotValid'));
+		return Promise.reject(new Error('KOMErrorInputNotValid'));
 	}
 
-	return KMTDocumentModelPostJSONParse(await storageClient.kommit.kom_documents.KMTStorageRead(inputData));
+	return KOMDocumentModelPostJSONParse(await storageClient.kommit.kom_documents.KOMStorageRead(inputData));
 };
 
-export const KMTDocumentMetalList = async function(storageClient) {
-	let outputData = await storageClient.kommit.kom_documents.KMTStorageList();
+export const KOMDocumentMetalList = async function(storageClient) {
+	let outputData = await storageClient.kommit.kom_documents.KOMStorageList();
 
 	for (let key in outputData) {
-		KMTDocumentModelPostJSONParse(outputData[key]);
+		KOMDocumentModelPostJSONParse(outputData[key]);
 	}
 	
 	return outputData;
 };
 
-export const KMTDocumentMetalDelete = async function(storageClient, inputData) {
+export const KOMDocumentMetalDelete = async function(storageClient, inputData) {
 	if (typeof inputData !== 'string') {
-		return Promise.reject(new Error('KMTErrorInputNotValid'));
+		return Promise.reject(new Error('KOMErrorInputNotValid'));
 	}
 
-	return await storageClient.kommit.kom_documents.KMTStorageDelete(inputData);
+	return await storageClient.kommit.kom_documents.KOMStorageDelete(inputData);
 };

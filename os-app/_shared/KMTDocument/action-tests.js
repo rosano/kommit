@@ -5,7 +5,7 @@ const mainModule = require('./action.js');
 const kTesting = {
 	StubDocumentObject: function() {
 		return {
-			KMTDocumentName: 'alfa',
+			KOMDocumentName: 'alfa',
 		};
 	},
 	uSerial: function (inputData) {
@@ -19,143 +19,143 @@ const kTesting = {
 	},
 };
 
-describe('KMTDocumentActionCreate', function testKMTDocumentActionCreate() {
+describe('KOMDocumentActionCreate', function testKOMDocumentActionCreate() {
 
 	it('rejects if not object', async function() {
-		await rejects(mainModule.KMTDocumentActionCreate(KMTTestingStorageClient, null), /KMTErrorInputNotValid/);
+		await rejects(mainModule.KOMDocumentActionCreate(KOMTestingStorageClient, null), /KOMErrorInputNotValid/);
 	});
 
-	it('returns object with KMTErrors if not valid', async function() {
-		deepEqual((await mainModule.KMTDocumentActionCreate(KMTTestingStorageClient, Object.assign(kTesting.StubDocumentObject(), {
-			KMTDocumentName: null,
-		}))).KMTErrors, {
-			KMTDocumentName: [
-				'KMTErrorNotString',
+	it('returns object with KOMErrors if not valid', async function() {
+		deepEqual((await mainModule.KOMDocumentActionCreate(KOMTestingStorageClient, Object.assign(kTesting.StubDocumentObject(), {
+			KOMDocumentName: null,
+		}))).KOMErrors, {
+			KOMDocumentName: [
+				'KOMErrorNotString',
 			],
 		});
 	});
 
-	it('returns KMTDocument', async function() {
-		let item = await mainModule.KMTDocumentActionCreate(KMTTestingStorageClient, kTesting.StubDocumentObject());
+	it('returns KOMDocument', async function() {
+		let item = await mainModule.KOMDocumentActionCreate(KOMTestingStorageClient, kTesting.StubDocumentObject());
 
 		deepEqual(item, Object.assign(kTesting.StubDocumentObject(), {
-			KMTDocumentID: item.KMTDocumentID,
-			KMTDocumentCreationDate: item.KMTDocumentCreationDate,
-			KMTDocumentModificationDate: item.KMTDocumentModificationDate,
+			KOMDocumentID: item.KOMDocumentID,
+			KOMDocumentCreationDate: item.KOMDocumentCreationDate,
+			KOMDocumentModificationDate: item.KOMDocumentModificationDate,
 			'@context': item['@context'],
 		}));
 	});
 
-	it('sets KMTDocumentID to unique value', async function() {
+	it('sets KOMDocumentID to unique value', async function() {
 		let items = await kTesting.uSerial(Array.from(Array(10)).map(async function (e) {
-			return (await mainModule.KMTDocumentActionCreate(KMTTestingStorageClient, kTesting.StubDocumentObject())).KMTDocumentID;
+			return (await mainModule.KOMDocumentActionCreate(KOMTestingStorageClient, kTesting.StubDocumentObject())).KOMDocumentID;
 		}));
 		deepEqual([...(new Set(items))], items);
 	});
 
-	it('sets KMTDocumentCreationDate to now', async function() {
-		deepEqual(new Date() - (await mainModule.KMTDocumentActionCreate(KMTTestingStorageClient, kTesting.StubDocumentObject())).KMTDocumentCreationDate < 100, true);
+	it('sets KOMDocumentCreationDate to now', async function() {
+		deepEqual(new Date() - (await mainModule.KOMDocumentActionCreate(KOMTestingStorageClient, kTesting.StubDocumentObject())).KOMDocumentCreationDate < 100, true);
 	});
 
-	it('sets KMTDocumentModificationDate to now', async function() {
-		deepEqual(new Date() - (await mainModule.KMTDocumentActionCreate(KMTTestingStorageClient, kTesting.StubDocumentObject())).KMTDocumentModificationDate < 100, true);
+	it('sets KOMDocumentModificationDate to now', async function() {
+		deepEqual(new Date() - (await mainModule.KOMDocumentActionCreate(KOMTestingStorageClient, kTesting.StubDocumentObject())).KOMDocumentModificationDate < 100, true);
 	});
 
 });
 
-describe('KMTDocumentActionRead', function testKMTDocumentActionRead() {
+describe('KOMDocumentActionRead', function testKOMDocumentActionRead() {
 
 	it('rejects if not string', async function() {
-		await rejects(mainModule.KMTDocumentActionRead(KMTTestingStorageClient, null), /KMTErrorInputNotValid/);
+		await rejects(mainModule.KOMDocumentActionRead(KOMTestingStorageClient, null), /KOMErrorInputNotValid/);
 	});
 
 	it('returns null if not found', async function() {
-		deepEqual(await mainModule.KMTDocumentActionRead(KMTTestingStorageClient, 'alfa'), null);
+		deepEqual(await mainModule.KOMDocumentActionRead(KOMTestingStorageClient, 'alfa'), null);
 	});
 
-	it('returns KMTDocument', async function() {
-		let item = await mainModule.KMTDocumentActionCreate(KMTTestingStorageClient, kTesting.StubDocumentObject());
+	it('returns KOMDocument', async function() {
+		let item = await mainModule.KOMDocumentActionCreate(KOMTestingStorageClient, kTesting.StubDocumentObject());
 
-		deepEqual(item, await mainModule.KMTDocumentActionRead(KMTTestingStorageClient, item.KMTDocumentID));
+		deepEqual(item, await mainModule.KOMDocumentActionRead(KOMTestingStorageClient, item.KOMDocumentID));
 	});
 
 });
 
-describe('KMTDocumentActionUpdate', function testKMTDocumentActionUpdate() {
+describe('KOMDocumentActionUpdate', function testKOMDocumentActionUpdate() {
 
 	it('rejects if not object', async function() {
-		await rejects(mainModule.KMTDocumentActionUpdate(KMTTestingStorageClient, null), /KMTErrorInputNotValid/);
+		await rejects(mainModule.KOMDocumentActionUpdate(KOMTestingStorageClient, null), /KOMErrorInputNotValid/);
 	});
 
-	it('returns object with KMTErrors if not valid', async function() {
-		deepEqual((await mainModule.KMTDocumentActionUpdate(KMTTestingStorageClient, Object.assign(await mainModule.KMTDocumentActionCreate(KMTTestingStorageClient, kTesting.StubDocumentObject()), {
-			KMTDocumentID: null,
-		}))).KMTErrors, {
-			KMTDocumentID: [
-				'KMTErrorNotString',
+	it('returns object with KOMErrors if not valid', async function() {
+		deepEqual((await mainModule.KOMDocumentActionUpdate(KOMTestingStorageClient, Object.assign(await mainModule.KOMDocumentActionCreate(KOMTestingStorageClient, kTesting.StubDocumentObject()), {
+			KOMDocumentID: null,
+		}))).KOMErrors, {
+			KOMDocumentID: [
+				'KOMErrorNotString',
 			],
 		});
 	});
 
-	it('returns KMTDocument', async function() {
-		let itemCreated = await mainModule.KMTDocumentActionCreate(KMTTestingStorageClient, kTesting.StubDocumentObject());
+	it('returns KOMDocument', async function() {
+		let itemCreated = await mainModule.KOMDocumentActionCreate(KOMTestingStorageClient, kTesting.StubDocumentObject());
 
-		let item = await mainModule.KMTDocumentActionUpdate(KMTTestingStorageClient, itemCreated);
+		let item = await mainModule.KOMDocumentActionUpdate(KOMTestingStorageClient, itemCreated);
 
 		deepEqual(item, Object.assign(itemCreated, {
-			KMTDocumentModificationDate: item.KMTDocumentModificationDate,
+			KOMDocumentModificationDate: item.KOMDocumentModificationDate,
 		}));
 	});
 
-	it('sets KMTDocumentModificationDate to now', async function() {
-		deepEqual(new Date() - (await mainModule.KMTDocumentActionUpdate(KMTTestingStorageClient, await mainModule.KMTDocumentActionCreate(KMTTestingStorageClient, kTesting.StubDocumentObject()))).KMTDocumentModificationDate < 100, true);
+	it('sets KOMDocumentModificationDate to now', async function() {
+		deepEqual(new Date() - (await mainModule.KOMDocumentActionUpdate(KOMTestingStorageClient, await mainModule.KOMDocumentActionCreate(KOMTestingStorageClient, kTesting.StubDocumentObject()))).KOMDocumentModificationDate < 100, true);
 	});
 
 	it('writes inputData if not found', async function() {
-		let item = await mainModule.KMTDocumentActionUpdate(KMTTestingStorageClient, Object.assign(kTesting.StubDocumentObject(), {
-			KMTDocumentID: 'alfa',
-			KMTDocumentCreationDate: new Date(),
+		let item = await mainModule.KOMDocumentActionUpdate(KOMTestingStorageClient, Object.assign(kTesting.StubDocumentObject(), {
+			KOMDocumentID: 'alfa',
+			KOMDocumentCreationDate: new Date(),
 		}));
 		deepEqual(item, Object.assign(kTesting.StubDocumentObject(), {
-			KMTDocumentID: item.KMTDocumentID,
-			KMTDocumentCreationDate: item.KMTDocumentCreationDate,
-			KMTDocumentModificationDate: item.KMTDocumentModificationDate,
+			KOMDocumentID: item.KOMDocumentID,
+			KOMDocumentCreationDate: item.KOMDocumentCreationDate,
+			KOMDocumentModificationDate: item.KOMDocumentModificationDate,
 			'@context': item['@context'],
 		}));
 	});
 
 });
 
-describe('KMTDocumentActionDelete', function testKMTDocumentActionDelete() {
+describe('KOMDocumentActionDelete', function testKOMDocumentActionDelete() {
 
 	it('rejects if not string', async function() {
-		await rejects(mainModule.KMTDocumentActionDelete(KMTTestingStorageClient, null), /KMTErrorInputNotValid/);
+		await rejects(mainModule.KOMDocumentActionDelete(KOMTestingStorageClient, null), /KOMErrorInputNotValid/);
 	});
 
 	it('returns statusCode', async function() {
-		deepEqual(await mainModule.KMTDocumentActionDelete(KMTTestingStorageClient, (await mainModule.KMTDocumentActionCreate(KMTTestingStorageClient, kTesting.StubDocumentObject())).KMTDocumentID), {
+		deepEqual(await mainModule.KOMDocumentActionDelete(KOMTestingStorageClient, (await mainModule.KOMDocumentActionCreate(KOMTestingStorageClient, kTesting.StubDocumentObject())).KOMDocumentID), {
 			statusCode: 200,
 		});
 	});
 
-	it('deletes KMTDocument', async function() {
+	it('deletes KOMDocument', async function() {
 		let itemID;
-		await mainModule.KMTDocumentActionDelete(KMTTestingStorageClient, itemID = (await mainModule.KMTDocumentActionCreate(KMTTestingStorageClient, kTesting.StubDocumentObject())).KMTDocumentID);
-		deepEqual(await mainModule.KMTDocumentActionRead(KMTTestingStorageClient, itemID), null);
+		await mainModule.KOMDocumentActionDelete(KOMTestingStorageClient, itemID = (await mainModule.KOMDocumentActionCreate(KOMTestingStorageClient, kTesting.StubDocumentObject())).KOMDocumentID);
+		deepEqual(await mainModule.KOMDocumentActionRead(KOMTestingStorageClient, itemID), null);
 	});
 
 });
 
-describe('KMTDocumentActionList', function testKMTDocumentActionList() {
+describe('KOMDocumentActionList', function testKOMDocumentActionList() {
 
 	it('returns array', async function() {
-		deepEqual(await mainModule.KMTDocumentActionList(KMTTestingStorageClient), []);
+		deepEqual(await mainModule.KOMDocumentActionList(KOMTestingStorageClient), []);
 	});
 
-	it('returns array with existing KMTDocuments', async function() {
-		let item = await mainModule.KMTDocumentActionCreate(KMTTestingStorageClient, kTesting.StubDocumentObject());
+	it('returns array with existing KOMDocuments', async function() {
+		let item = await mainModule.KOMDocumentActionCreate(KOMTestingStorageClient, kTesting.StubDocumentObject());
 
-		deepEqual(await mainModule.KMTDocumentActionList(KMTTestingStorageClient), [item]);
+		deepEqual(await mainModule.KOMDocumentActionList(KOMTestingStorageClient), [item]);
 	});
 
 });
