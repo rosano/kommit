@@ -1,8 +1,8 @@
 import * as KOMDeckModel from './model.js';
 import * as OLSKRemoteStorage from 'OLSKRemoteStorage';
 
-const kType = 'kom_document';
-const kCollection = 'kom_documents';
+const kType = 'kom_deck';
+const kCollection = 'kom_decks';
 
 export const KOMDeckStoragePath = function(inputData) {
 	return `${ kCollection }/${ inputData || '' }`;

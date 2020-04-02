@@ -12,7 +12,7 @@ export const KOMDeckMetalWrite = async function(storageClient, inputData) {
 		});
 	}
 
-	return await storageClient.kommit.kom_documents.KOMStorageWrite(inputData.KOMDeckID, inputData);
+	return await storageClient.kommit.kom_decks.KOMStorageWrite(inputData.KOMDeckID, inputData);
 };
 
 export const KOMDeckMetalRead = async function(storageClient, inputData) {
@@ -20,11 +20,11 @@ export const KOMDeckMetalRead = async function(storageClient, inputData) {
 		return Promise.reject(new Error('KOMErrorInputNotValid'));
 	}
 
-	return KOMDeckModelPostJSONParse(await storageClient.kommit.kom_documents.KOMStorageRead(inputData));
+	return KOMDeckModelPostJSONParse(await storageClient.kommit.kom_decks.KOMStorageRead(inputData));
 };
 
 export const KOMDeckMetalList = async function(storageClient) {
-	let outputData = await storageClient.kommit.kom_documents.KOMStorageList();
+	let outputData = await storageClient.kommit.kom_decks.KOMStorageList();
 
 	for (let key in outputData) {
 		KOMDeckModelPostJSONParse(outputData[key]);
@@ -38,5 +38,5 @@ export const KOMDeckMetalDelete = async function(storageClient, inputData) {
 		return Promise.reject(new Error('KOMErrorInputNotValid'));
 	}
 
-	return await storageClient.kommit.kom_documents.KOMStorageDelete(inputData);
+	return await storageClient.kommit.kom_decks.KOMStorageDelete(inputData);
 };

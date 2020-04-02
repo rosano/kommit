@@ -31,7 +31,7 @@ const KOMDeckStorage = require('./os-app/_shared/KOMDeck/storage.js');
 
 	beforeEach(async function() {
 		await uSerial([
-			'kom_documents',
+			'kom_decks',
 		].map(async function (e) {
 			return await Promise.all(Object.keys(await global.KOMTestingStorageClient.kommit[e].KOMStorageList()).map(global.KOMTestingStorageClient.kommit[e].KOMStorageDelete));
 		}));
