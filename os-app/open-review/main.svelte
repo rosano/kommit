@@ -39,6 +39,10 @@ const mod = {
 
 	// MESSAGE
 
+	KOMReviewMasterDispatchCreate () {
+		mod.ControlDeckCreate();
+	},
+
 	OLSKAppToolbarDispatchStorage () {
 		mod._ValueStorageWidgetHidden = !mod._ValueStorageWidgetHidden;
 	},
@@ -229,13 +233,16 @@ import { onMount } from 'svelte';
 onMount(mod.LifecycleModuleWillMount);
 
 import OLSKViewportContent from 'OLSKViewportContent';
+import KOMReviewMaster from './submodules/KOMReviewMaster/main.svelte';
 import OLSKAppToolbar from 'OLSKAppToolbar';
 import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svelte';
 </script>
 
 <div class="KOMReview OLSKViewport" class:OLSKIsLoading={ mod._ValueIsLoading }>
 
-<OLSKViewportContent></OLSKViewportContent>
+<OLSKViewportContent>
+	<KOMReviewMaster KOMReviewMasterListItems={ mod._ValueDecksAll } KOMReviewMasterDispatchCreate={ mod.KOMReviewMasterDispatchCreate } KOMReviewMasterDispatchSelect={ mod.KOMReviewMasterDispatchSelect }  />
+</OLSKViewportContent>
 
 <footer class="KOMReviewViewportFooter OLSKMobileViewFooter">
 	<div id="KOMReviewStorageWidget" class:KOMReviewStorageWidgetHidden={ mod._ValueStorageWidgetHidden }></div>

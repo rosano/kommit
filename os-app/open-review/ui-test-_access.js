@@ -16,6 +16,14 @@ describe('KOMReview_Access', function () {
 		return browser.OLSKVisit(kDefaultRoute);
 	});
 
+	it('shows KOMReviewMaster', function () {
+		browser.assert.elements('.KOMReviewMaster', 1);
+	});
+
+	it('hides KOMReviewMasterListItem', function () {
+		browser.assert.elements('.KOMReviewMasterListItem', 0);
+	});
+
 	it('shows KOMReviewViewportFooter', function () {
 		browser.assert.elements(KOMReviewViewportFooter, 1);
 	});
@@ -26,6 +34,18 @@ describe('KOMReview_Access', function () {
 
 	it('shows OLSKAppToolbar', function () {
 		browser.assert.elements('.OLSKAppToolbar', 1);
+	});
+
+	context('create', function () {
+		
+		before(function () {
+			return browser.pressButton('.KOMReviewMasterCreateButton');
+		});
+
+		it('shows KOMReviewMasterListItem', function () {
+			browser.assert.elements('.KOMReviewMasterListItem', 1);
+		});
+	
 	});
 
 });
