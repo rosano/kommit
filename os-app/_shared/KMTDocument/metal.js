@@ -12,7 +12,7 @@ export const KMTDocumentMetalWrite = async function(storageClient, inputData) {
 		});
 	}
 
-	return await storageClient.kommit.kmt_documents.KMTStorageWrite(inputData.KMTDocumentID, inputData);
+	return await storageClient.kommit.kom_documents.KMTStorageWrite(inputData.KMTDocumentID, inputData);
 };
 
 export const KMTDocumentMetalRead = async function(storageClient, inputData) {
@@ -20,11 +20,11 @@ export const KMTDocumentMetalRead = async function(storageClient, inputData) {
 		return Promise.reject(new Error('KMTErrorInputNotValid'));
 	}
 
-	return KMTDocumentModelPostJSONParse(await storageClient.kommit.kmt_documents.KMTStorageRead(inputData));
+	return KMTDocumentModelPostJSONParse(await storageClient.kommit.kom_documents.KMTStorageRead(inputData));
 };
 
 export const KMTDocumentMetalList = async function(storageClient) {
-	let outputData = await storageClient.kommit.kmt_documents.KMTStorageList();
+	let outputData = await storageClient.kommit.kom_documents.KMTStorageList();
 
 	for (let key in outputData) {
 		KMTDocumentModelPostJSONParse(outputData[key]);
@@ -38,5 +38,5 @@ export const KMTDocumentMetalDelete = async function(storageClient, inputData) {
 		return Promise.reject(new Error('KMTErrorInputNotValid'));
 	}
 
-	return await storageClient.kommit.kmt_documents.KMTStorageDelete(inputData);
+	return await storageClient.kommit.kom_documents.KMTStorageDelete(inputData);
 };

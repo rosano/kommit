@@ -1,8 +1,8 @@
 import * as KMTDocumentModel from './model.js';
 import * as OLSKRemoteStorage from 'OLSKRemoteStorage';
 
-const kType = 'kmt_document';
-const kCollection = 'kmt_documents';
+const kType = 'kom_document';
+const kCollection = 'kom_documents';
 
 export const KMTDocumentStoragePath = function(inputData) {
 	return `${ kCollection }/${ inputData || '' }`;
