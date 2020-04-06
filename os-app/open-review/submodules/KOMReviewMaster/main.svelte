@@ -31,6 +31,6 @@ const mod = {
 	<button class="KOMReviewMasterListItem" on:click={ () => KOMReviewMasterDispatchSelect(e) } >{ e.KOMDeckName }</button>
 {/each}
 
-<button class="KOMReviewMasterCreateButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceCreateButtonDidClick } accesskey="n">{ OLSKLocalized('KOMReviewMasterCreateButtonText') }</button>
+<button class="KOMReviewMasterCreateButton" on:click={ mod.InterfaceCreateButtonDidClick } accesskey="n">{ OLSKLocalized('KOMReviewMasterCreateButtonText') }</button>
 
 </div>

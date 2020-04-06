@@ -10,11 +10,6 @@ describe('KOMReviewMaster_Misc', function () {
 			return browser.OLSKVisit(kDefaultRoute);
 		});
 		
-		it('sets class', function () {
-			browser.assert.hasClass(KOMReviewMasterCreateButton, 'OLSKLayoutButtonNoStyle');
-			browser.assert.hasClass(KOMReviewMasterCreateButton, 'OLSKLayoutElementTappable');
-		});
-		
 		it('sets accesskey', function () {
 			browser.assert.attribute(KOMReviewMasterCreateButton, 'accesskey', 'n');
 		});
