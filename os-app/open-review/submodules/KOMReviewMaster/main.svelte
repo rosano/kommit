@@ -13,11 +13,13 @@ const mod = {
 	// INTERFACE
 
 	InterfaceCreateButtonDidClick() {
-		if (!window.prompt(OLSKLocalized('KOMReviewMasterCreateButtonPromptText'))) {
+		let outputData = window.prompt(OLSKLocalized('KOMReviewMasterCreateButtonPromptText'));
+		
+		if (!outputData) {
 			return;
 		}
 
-		KOMReviewMasterDispatchCreate();
+		KOMReviewMasterDispatchCreate(outputData);
 	},
 
 };

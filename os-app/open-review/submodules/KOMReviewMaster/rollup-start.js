@@ -4,8 +4,9 @@ const KOMReviewMaster = new RollupStart({
 	target: document.body,
 	props: Object.assign({
 		KOMReviewMasterListItems: [],
-		KOMReviewMasterDispatchCreate () {
+		KOMReviewMasterDispatchCreate (inputData) {
 			window.TestKOMReviewMasterDispatchCreate.innerHTML = parseInt(window.TestKOMReviewMasterDispatchCreate.innerHTML) + 1;
+			window.TestKOMReviewMasterDispatchCreateData.innerHTML = inputData;
 		},
 		KOMReviewMasterDispatchSelect (inputData) {
 			window.TestKOMReviewMasterDispatchSelect.innerHTML = parseInt(window.TestKOMReviewMasterDispatchSelect.innerHTML) + 1;

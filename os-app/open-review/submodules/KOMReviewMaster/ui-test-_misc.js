@@ -34,6 +34,7 @@ describe('KOMReviewMaster_Misc', function () {
 			
 			before(function () {
 				browser.assert.text('#TestKOMReviewMasterDispatchCreate', '0');
+				browser.assert.text('#TestKOMReviewMasterDispatchCreateData', 'undefined');
 			});
 			
 			before(function () {
@@ -48,6 +49,7 @@ describe('KOMReviewMaster_Misc', function () {
 
 			it('sends KOMReviewMasterDispatchCreate', function () {
 				browser.assert.text('#TestKOMReviewMasterDispatchCreate', '1');
+				browser.assert.text('#TestKOMReviewMasterDispatchCreateData', 'alfa');
 			});
 		
 		});
