@@ -13,7 +13,9 @@ const mod = {
 	// INTERFACE
 
 	InterfaceCreateButtonDidClick() {
-		window.prompt(OLSKLocalized('KOMReviewMasterCreateButtonPromptText'));
+		if (!window.prompt(OLSKLocalized('KOMReviewMasterCreateButtonPromptText'))) {
+			return;
+		}
 
 		KOMReviewMasterDispatchCreate();
 	},

@@ -39,7 +39,13 @@ describe('KOMReview_Access', function () {
 	context('create', function () {
 		
 		before(function () {
-			return browser.pressButton('.KOMReviewMasterCreateButton');
+			return browser.OLSKPrompt(function () {
+				return browser.pressButton('.KOMReviewMasterCreateButton');
+			}, function (dialog) {
+				dialog.response = 'alfa';
+				
+				return dialog;
+			});
 		});
 
 		it('shows KOMReviewMasterListItem', function () {

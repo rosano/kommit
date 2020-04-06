@@ -20,13 +20,30 @@ describe('KOMReviewMaster_Misc', function () {
 		});
 
 		context('click', function () {
+
+			before(function() {
+
+				return browser.OLSKPrompt(function () {
+					browser.pressButton(KOMReviewMasterCreateButton);
+					browser.pressButton('.KVCWriteDetailToolbarDiscardButton');
+				}, function (dialog) {
+					return dialog;
+				});
+			
+			});
 			
 			before(function () {
 				browser.assert.text('#TestKOMReviewMasterDispatchCreate', '0');
 			});
 			
 			before(function () {
-				return browser.pressButton(KOMReviewMasterCreateButton);
+				return browser.OLSKPrompt(function () {
+					return browser.pressButton(KOMReviewMasterCreateButton);
+				}, function (dialog) {
+					dialog.response = 'alfa';
+
+					return dialog;
+				});
 			});
 
 			it('sends KOMReviewMasterDispatchCreate', function () {
