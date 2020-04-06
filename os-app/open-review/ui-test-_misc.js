@@ -2,7 +2,25 @@ import { deepEqual } from 'assert';
 
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-describe('KOMReview_Misc', function () {
+describe('KOMReview_Misc', function () {	
+
+	context('create', function () {
+		
+		before(function () {
+			return browser.OLSKPrompt(function () {
+				return browser.pressButton('.KOMReviewMasterCreateButton');
+			}, function (dialog) {
+				dialog.response = 'alfa';
+				
+				return dialog;
+			});
+		});
+
+		it('sets KOMDeckName', function () {
+			browser.assert.text('.KOMReviewMasterListItem', 'alfa');
+		});
+	
+	});
 
 	describe('KOMReviewStorageWidget', function test_KOMReviewStorageWidget () {
 		

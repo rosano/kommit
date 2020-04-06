@@ -39,8 +39,8 @@ const mod = {
 
 	// MESSAGE
 
-	KOMReviewMasterDispatchCreate () {
-		mod.ControlDeckCreate();
+	KOMReviewMasterDispatchCreate (inputData) {
+		mod.ControlDeckCreate(inputData);
 	},
 
 	OLSKAppToolbarDispatchStorage () {
@@ -53,9 +53,9 @@ const mod = {
 		await KOMDeckAction.KOMDeckActionUpdate(mod._ValueStorageClient, inputData);
 	},
 
-	async ControlDeckCreate() {
+	async ControlDeckCreate(inputData) {
 		const item = await KOMDeckAction.KOMDeckActionCreate(mod._ValueStorageClient, {
-			KOMDeckName: '',
+			KOMDeckName: inputData,
 			KOMDeckModificationDate: new Date(),
 		});
 
