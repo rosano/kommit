@@ -8,6 +8,17 @@ const OLSKLocalized = function(translationConstant) {
 	return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, JSON.parse(`{"OLSK_I18N_SEARCH_REPLACE":"OLSK_I18N_SEARCH_REPLACE"}`)[window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage')]);
 };
 
+const mod = {
+
+	// INTERFACE
+
+	InterfaceCreateButtonDidClick() {
+		window.prompt(OLSKLocalized('KOMReviewMasterCreateButtonPromptText'));
+
+		KOMReviewMasterDispatchCreate();
+	},
+
+};
 </script>
 
 <div class="KOMReviewMaster OLSKViewportMaster">
@@ -16,6 +27,6 @@ const OLSKLocalized = function(translationConstant) {
 	<button class="KOMReviewMasterListItem" on:click={ () => KOMReviewMasterDispatchSelect(e) } >{ e.KOMDeckName }</button>
 {/each}
 
-<button class="KOMReviewMasterCreateButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ KOMReviewMasterDispatchCreate } accesskey="n">{ OLSKLocalized('KOMReviewMasterCreateButtonText') }</button>
+<button class="KOMReviewMasterCreateButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceCreateButtonDidClick } accesskey="n">{ OLSKLocalized('KOMReviewMasterCreateButtonText') }</button>
 
 </div>

@@ -20,6 +20,16 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			browser.assert.text(KOMReviewMasterCreateButton, uLocalized('KOMReviewMasterCreateButtonText'));
 		});
 
+		context('KOMReviewMasterCreateButton', function() {
+
+			it('localizes prompt', function() {
+				deepEqual(browser.OLSKPromptSync(function () {
+					return browser.pressButton(KOMReviewMasterCreateButton);
+				}).question, uLocalized('KOMReviewMasterCreateButtonPromptText'));
+			});
+		
+		});
+
 	});
 
 });
