@@ -36,17 +36,17 @@ export const KOMDeckStorage = function (privateClient, publicClient, changeDeleg
 			KOMStorageCache () {
 				return privateClient.cache(KOMDeckStorageFolderPath());
 			},
-			KOMStorageList: function () {
+			KOMStorageList () {
 				return privateClient.getAll(KOMDeckStorageFolderPath(), false);
 			},
-			KOMStorageWrite: async function (param1, param2) {
+			async KOMStorageWrite (param1, param2) {
 				await privateClient.storeObject(kType, KOMDeckStorageFilePath(param1), KOMDeckModel.KOMDeckModelPreJSONSchemaValidate(param2));
 				return KOMDeckModel.KOMDeckModelPostJSONParse(param2);
 			},
-			KOMStorageRead: function (inputData) {
+			KOMStorageRead (inputData) {
 				return privateClient.getObject(KOMDeckStorageFilePath(inputData));
 			},
-			KOMStorageDelete: function (inputData) {
+			KOMStorageDelete (inputData) {
 				return privateClient.remove(KOMDeckStorageFilePath(inputData));
 			},
 		},
