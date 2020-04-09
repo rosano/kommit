@@ -3,7 +3,7 @@ import * as OLSKRemoteStorage from 'OLSKRemoteStorage';
 export const KOMStorageModule = function (inputData) {
 	return {
 		name: 'kommit',
-		builder: function(privateClient, publicClient) {
+		builder (privateClient, publicClient) {
 			return {
 				exports: inputData.reduce(function (coll, item) {
 					let storage = item.KOMCollectionStorageGenerator(privateClient, publicClient, item.KOMCollectionChangeDelegate);
