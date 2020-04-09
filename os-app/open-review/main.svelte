@@ -43,6 +43,10 @@ const mod = {
 		mod.ControlDeckCreate(inputData);
 	},
 
+	KOMReviewMasterDispatchSelect (inputData) {
+		mod.ControlDeckSelect(inputData);
+	},
+
 	OLSKAppToolbarDispatchStorage () {
 		mod._ValueStorageWidgetHidden = !mod._ValueStorageWidgetHidden;
 	},
@@ -234,6 +238,7 @@ onMount(mod.LifecycleModuleWillMount);
 
 import OLSKViewportContent from 'OLSKViewportContent';
 import KOMReviewMaster from './submodules/KOMReviewMaster/main.svelte';
+import KOMReviewDetail from './submodules/KOMReviewDetail/main.svelte';
 import OLSKAppToolbar from 'OLSKAppToolbar';
 import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svelte';
 </script>
@@ -241,7 +246,13 @@ import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svel
 <div class="KOMReview OLSKViewport" class:OLSKIsLoading={ mod._ValueIsLoading }>
 
 <OLSKViewportContent>
-	<KOMReviewMaster KOMReviewMasterListItems={ mod._ValueDecksAll } KOMReviewMasterDispatchCreate={ mod.KOMReviewMasterDispatchCreate } KOMReviewMasterDispatchSelect={ mod.KOMReviewMasterDispatchSelect }  />
+	{#if !mod._ValueDeckSelected }
+		<KOMReviewMaster KOMReviewMasterListItems={ mod._ValueDecksAll } KOMReviewMasterDispatchCreate={ mod.KOMReviewMasterDispatchCreate } KOMReviewMasterDispatchSelect={ mod.KOMReviewMasterDispatchSelect } />
+	{/if}
+
+	{#if mod._ValueDeckSelected }
+		<KOMReviewDetail KOMReviewDetailItem={ mod._ValueDeckSelected } KOMReviewDetailDispatchBack={ mod.KOMReviewDetailDispatchBack } KOMReviewDetailDispatchDiscard={ mod.KOMReviewDetailDispatchDiscard } KOMReviewDetailDispatchUpdate={ mod.KOMReviewDetailDispatchUpdate } />
+	{/if}
 </OLSKViewportContent>
 
 <footer class="KOMReviewViewportFooter OLSKMobileViewFooter">

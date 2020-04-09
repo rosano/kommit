@@ -24,6 +24,10 @@ describe('KOMReview_Access', function () {
 		browser.assert.elements('.KOMReviewMasterListItem', 0);
 	});
 
+	it('hides KOMReviewDetail', function () {
+		browser.assert.elements('.KOMReviewDetail', 0);
+	});
+
 	it('shows KOMReviewViewportFooter', function () {
 		browser.assert.elements(KOMReviewViewportFooter, 1);
 	});
@@ -50,6 +54,22 @@ describe('KOMReview_Access', function () {
 
 		it('shows KOMReviewMasterListItem', function () {
 			browser.assert.elements('.KOMReviewMasterListItem', 1);
+		});
+	
+	});
+
+	context('select', function () {
+		
+		before(function () {
+			return browser.pressButton('.KOMReviewMasterListItem');
+		});
+
+		it('hides KOMReviewMaster', function () {
+			browser.assert.elements(KOMReviewMaster, 0);
+		});
+
+		it('shows KOMReviewDetail', function () {
+			browser.assert.elements('.KOMReviewDetail', 1);
 		});
 	
 	});
