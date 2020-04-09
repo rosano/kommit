@@ -6,7 +6,7 @@ const kTesting = {
 	StubDocumentObjectValid: function() {
 		return {
 			KOMCardID: 'alfa',
-			KOMCardName: '',
+			KOMCardQuestion: '',
 			KOMCardCreationDate: new Date('2019-02-23T13:56:36Z'),
 			KOMCardModificationDate: new Date('2019-02-23T13:56:36Z'),
 		};
@@ -41,11 +41,11 @@ describe('KOMCardModelErrorsFor', function testKOMCardModelErrorsFor() {
 		});
 	});
 
-	it('returns object if KOMCardName not string', function() {
+	it('returns object if KOMCardQuestion not string', function() {
 		deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubDocumentObjectValid(), {
-			KOMCardName: null,
+			KOMCardQuestion: null,
 		})), {
-			KOMCardName: [
+			KOMCardQuestion: [
 				'KOMErrorNotString',
 			],
 		});

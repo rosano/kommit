@@ -15,8 +15,8 @@ export const KOMCardModelErrorsFor = function(inputData, options = {}) {
 		];
 	}
 
-	if (typeof inputData.KOMCardName !== 'string') {
-		errors.KOMCardName = [
+	if (typeof inputData.KOMCardQuestion !== 'string') {
+		errors.KOMCardQuestion = [
 			'KOMErrorNotString',
 		];
 	}

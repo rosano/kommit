@@ -6,7 +6,7 @@ const kTesting = {
 	StubDocumentObjectValid: function() {
 		return {
 			KOMCardID: 'alfa',
-			KOMCardName: 'bravo',
+			KOMCardQuestion: 'bravo',
 			KOMCardCreationDate: new Date('2019-02-23T13:56:36Z'),
 			KOMCardModificationDate: new Date('2019-02-23T13:56:36Z'),
 		};

@@ -5,7 +5,7 @@ const mainModule = require('./action.js');
 const kTesting = {
 	StubDocumentObject: function() {
 		return {
-			KOMCardName: 'alfa',
+			KOMCardQuestion: 'alfa',
 		};
 	},
 	uSerial: function (inputData) {
@@ -27,9 +27,9 @@ describe('KOMCardActionCreate', function testKOMCardActionCreate() {
 
 	it('returns object with KOMErrors if not valid', async function() {
 		deepEqual((await mainModule.KOMCardActionCreate(KOMTestingStorageClient, Object.assign(kTesting.StubDocumentObject(), {
-			KOMCardName: null,
+			KOMCardQuestion: null,
 		}))).KOMErrors, {
-			KOMCardName: [
+			KOMCardQuestion: [
 				'KOMErrorNotString',
 			],
 		});
