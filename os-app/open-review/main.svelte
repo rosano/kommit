@@ -12,7 +12,8 @@ import { KOMStorageModule } from '../_shared/KOMStorageModule/main.js';
 import { KOMDeckStorage } from '../_shared/KOMDeck/storage.js';
 import { KOMCardStorage } from '../_shared/KOMCard/storage.js';
 import * as RemoteStoragePackage from 'remotestoragejs';
-		const RemoteStorage = RemoteStoragePackage.default || RemoteStoragePackage;
+const RemoteStorage = RemoteStoragePackage.default || RemoteStoragePackage;
+
 const mod = {
 
 	// VALUE
