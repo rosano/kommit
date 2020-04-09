@@ -108,8 +108,6 @@ const mod = {
 
 		await mod.SetupStorageNotifications();
 
-		await mod.SetupDataCache();
-
 		await mod.SetupValueDecksAll();
 
 		mod._ValueIsLoading = false;
@@ -239,10 +237,6 @@ const mod = {
 				res();
 			});
 		})
-	},
-
-	async SetupDataCache() {
-		await mod._ValueStorageClient.kommit.kom_decks.KOMStorageCache();
 	},
 
 	async SetupValueDecksAll() {

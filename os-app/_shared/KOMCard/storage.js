@@ -33,9 +33,6 @@ export const KOMCardStorage = function (privateClient, publicClient, changeDeleg
 			return coll;
 		}, {}),
 		KOMStorageExports: {
-			KOMStorageCache () {
-				return privateClient.cache(KOMCardStorageFolderPath());
-			},
 			KOMStorageList () {
 				return privateClient.getAll(KOMCardStorageFolderPath(), false);
 			},

@@ -4,6 +4,8 @@ export const KOMStorageModule = function (inputData) {
 	return {
 		name: 'kommit',
 		builder (privateClient, publicClient) {
+			privateClient.cache('kommit/');
+
 			return {
 				exports: inputData.reduce(function (coll, item) {
 					let storage = item.KOMCollectionStorageGenerator(privateClient, publicClient, item.KOMCollectionChangeDelegate);
