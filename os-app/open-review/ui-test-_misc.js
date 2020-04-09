@@ -22,6 +22,32 @@ describe('KOMReview_Misc', function () {
 	
 	});
 
+	context('rename', function () {
+		
+		before(function () {
+			return browser.pressButton('.KOMReviewMasterListItem');
+		});
+
+		before(function () {
+			return browser.OLSKPrompt(function () {
+				return browser.pressButton('.KOMReviewDetailToolbarRenameButton');
+			}, function (dialog) {
+				dialog.response = 'bravo';
+				
+				return dialog;
+			});
+		});
+
+		before(function () {
+			return browser.pressButton('.KOMReviewDetailToolbarBackButton');
+		});
+
+		it('sets KOMDeckName', function () {
+			browser.assert.text('.KOMReviewMasterListItem', 'bravo');
+		});
+	
+	});
+
 	describe('KOMReviewStorageWidget', function test_KOMReviewStorageWidget () {
 		
 		it('classes KOMReviewStorageWidgetHidden', function () {
