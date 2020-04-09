@@ -158,35 +158,35 @@ const mod = {
 	},
 
 	SetupStorageWidget () {
-		(new window.OLSKStorageWidget(mod._ValueStorageClient.remoteStorage)).attach('KOMReviewStorageWidget').backend(document.querySelector('.OLSKAppToolbarStorageButton'));
+		(new window.OLSKStorageWidget(mod._ValueStorageClient)).attach('KOMReviewStorageWidget').backend(document.querySelector('.OLSKAppToolbarStorageButton'));
 	},
 
 	SetupStorageStatus () {
-		OLSKRemoteStorage.OLSKRemoteStorageStatus(mod._ValueStorageClient.remoteStorage, function (inputData) {
+		OLSKRemoteStorage.OLSKRemoteStorageStatus(mod._ValueStorageClient, function (inputData) {
 			mod._ValueFooterStorageStatus = inputData;
 		}, OLSKLocalized)
 	},
 
 	async SetupStorageNotifications () {
-		mod._ValueStorageClient.remoteStorage.on('not-connected', () => {
+		mod._ValueStorageClient.on('not-connected', () => {
 			if (!OLSK_TESTING_BEHAVIOUR()) {
 				console.debug('not-connected', arguments);
 			}
 		});
 
-		mod._ValueStorageClient.remoteStorage.on('disconnected', () => {
+		mod._ValueStorageClient.on('disconnected', () => {
 			if (!OLSK_TESTING_BEHAVIOUR()) {
 				console.debug('disconnected', arguments);
 			}
 		});
 
-		mod._ValueStorageClient.remoteStorage.on('connected', () => {
+		mod._ValueStorageClient.on('connected', () => {
 			if (!OLSK_TESTING_BEHAVIOUR()) {
 				console.debug('connected', arguments);
 			}
 		});
 
-		mod._ValueStorageClient.remoteStorage.on('sync-done', () => {
+		mod._ValueStorageClient.on('sync-done', () => {
 			if (!OLSK_TESTING_BEHAVIOUR()) {
 				console.debug('sync-done', arguments);
 			}
@@ -194,7 +194,7 @@ const mod = {
 
 		let isOffline;
 
-		mod._ValueStorageClient.remoteStorage.on('network-offline', () => {
+		mod._ValueStorageClient.on('network-offline', () => {
 			if (!OLSK_TESTING_BEHAVIOUR()) {
 				console.debug('network-offline', arguments);
 			}
@@ -202,7 +202,7 @@ const mod = {
 			isOffline = true;
 		});
 
-		mod._ValueStorageClient.remoteStorage.on('network-online', () => {
+		mod._ValueStorageClient.on('network-online', () => {
 			if (!OLSK_TESTING_BEHAVIOUR()) {
 				console.debug('network-online', arguments);
 			}
@@ -210,7 +210,7 @@ const mod = {
 			isOffline = false;
 		});
 
-		mod._ValueStorageClient.remoteStorage.on('error', (error) => {
+		mod._ValueStorageClient.on('error', (error) => {
 			if (isOffline && inputData.message === 'Sync failed: Network request failed.') {
 				return;
 			};
@@ -221,7 +221,7 @@ const mod = {
 		});
 
 		return new Promise(function (res, rej) {
-			mod._ValueStorageClient.remoteStorage.on('ready', () => {
+			mod._ValueStorageClient.on('ready', () => {
 				if (!OLSK_TESTING_BEHAVIOUR()) {
 					console.debug('ready', arguments);
 				}
@@ -232,7 +232,7 @@ const mod = {
 	},
 
 	async SetupDataCache() {
-		await mod._ValueStorageClient.remoteStorage.kommit.kom_decks.KOMStorageCache();
+		await mod._ValueStorageClient.kommit.kom_decks.KOMStorageCache();
 	},
 
 	async SetupValueDecksAll() {
