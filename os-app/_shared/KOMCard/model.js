@@ -39,6 +39,14 @@ export const KOMCardModelErrorsFor = function(inputData, options = {}) {
 		];
 	}
 
+	if (inputData.KOMCardHint !== undefined || options.KOMOptionValidateIfNotPresent) {
+		if (typeof inputData.KOMCardHint !== 'string') {
+			errors.KOMCardHint = [
+				'KOMErrorNotString',
+			];
+		}
+	}
+
 	return Object.entries(errors).length ? errors : null;
 };
 

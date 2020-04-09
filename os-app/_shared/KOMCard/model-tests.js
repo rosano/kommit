@@ -86,6 +86,26 @@ describe('KOMCardModelErrorsFor', function testKOMCardModelErrorsFor() {
 		deepEqual(mainModule.KOMCardModelErrorsFor(kTesting.StubDocumentObjectValid()), null);
 	});
 
+	context('KOMCardHint', function() {
+
+		it('returns object if not string', function() {
+			deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubDocumentObjectValid(), {
+				KOMCardHint: null,
+			})), {
+				KOMCardHint: [
+					'KOMErrorNotString',
+				],
+			});
+		});
+
+		it('returns null', function() {
+			deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubDocumentObjectValid(), {
+				KOMCardHint: 'alfa',
+			})), null);
+		});
+
+	});
+
 });
 
 describe('KOMCardModelPreJSONSchemaValidate', function testKOMCardModelPreJSONSchemaValidate() {
