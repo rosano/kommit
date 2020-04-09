@@ -22,8 +22,22 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			browser.assert.text(KOMReviewDetailToolbarBackButton, uLocalized('KOMReviewDetailToolbarBackButtonText'));
 		});
 
+		it('localizes KOMReviewDetailToolbarRenameButton', function () {
+			browser.assert.text(KOMReviewDetailToolbarRenameButton, uLocalized('KOMReviewDetailToolbarRenameButtonText'));
+		});
+
 		it('localizes KOMReviewDetailToolbarDiscardButton', function () {
 			browser.assert.text(KOMReviewDetailToolbarDiscardButton, uLocalized('KOMReviewDetailToolbarDiscardButtonText'));
+		});
+
+		context('on rename', function () {
+		
+			it('localizes KOMReviewDetailToolbarRenameButtonPrompt', function() {
+				deepEqual(browser.OLSKPromptSync(function () {
+					return browser.pressButton(KOMReviewDetailToolbarRenameButton);
+				}).question, uLocalized('KOMReviewDetailToolbarRenameButtonPromptText'));
+			});
+		
 		});
 
 		context('on discard', function () {

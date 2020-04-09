@@ -2,11 +2,33 @@
 export let KOMReviewDetailItem;
 export let KOMReviewDetailDispatchBack;
 export let KOMReviewDetailDispatchDiscard;
-export let KOMReviewDetailDispatchUpdate;
+export let KOMReviewDetailDispatchRename;
 
 import OLSKInternational from 'OLSKInternational';
 const OLSKLocalized = function(translationConstant) {
 	return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, JSON.parse(`{"OLSK_I18N_SEARCH_REPLACE":"OLSK_I18N_SEARCH_REPLACE"}`)[window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage')]);
+};
+
+const mod = {
+
+	// INTERFACE
+
+	InterfaceRenameButtonDidClick() {
+		mod.ControlRename();
+	},
+
+	// CONTROL
+
+	ControlRename() {
+		let outputData = window.prompt(OLSKLocalized('KOMReviewDetailToolbarRenameButtonPromptText'), KOMReviewDetailItem.KOMDeckName);
+		
+		if (!outputData) {
+			return;
+		}
+
+		KOMReviewDetailDispatchRename(outputData);
+	},
+
 };
 
 import OLSKToolbar from 'OLSKToolbar';
@@ -22,6 +44,8 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 		</OLSKToolbarElementGroup>
 
 		<OLSKToolbarElementGroup>
+			<button class="KOMReviewDetailToolbarRenameButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceRenameButtonDidClick }>{ OLSKLocalized('KOMReviewDetailToolbarRenameButtonText') }</button>
+
 			<button class="KOMReviewDetailToolbarDiscardButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ () => window.confirm(OLSKLocalized('KOMReviewDetailDiscardPromptText')) && KOMReviewDetailDispatchDiscard(KOMReviewDetailItem) }>{ OLSKLocalized('KOMReviewDetailToolbarDiscardButtonText') }</button>
 		</OLSKToolbarElementGroup>
 	</OLSKToolbar>

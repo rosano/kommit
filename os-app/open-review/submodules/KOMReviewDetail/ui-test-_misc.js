@@ -59,6 +59,38 @@ describe('KOMReviewDetail_Misc', function () {
 	
 	});
 
+	describe('KOMReviewDetailToolbarRenameButton', function () {
+		
+		it('sets class', function () {
+			browser.assert.hasClass(KOMReviewDetailToolbarRenameButton, 'OLSKLayoutButtonNoStyle');
+			browser.assert.hasClass(KOMReviewDetailToolbarRenameButton, 'OLSKLayoutElementTappable');
+		});
+
+		context('click', function () {
+			
+			before(function () {
+				browser.assert.text('#TestKOMReviewDetailDispatchRename', '0');
+				browser.assert.text('#TestKOMReviewDetailDispatchRenameData', 'undefined');
+			});
+			
+			it('sets KOMReviewDetailToolbarRenameButtonPrompt response', function() {
+				deepEqual(browser.OLSKPromptSync(function () {
+					return browser.pressButton(KOMReviewDetailToolbarRenameButton);
+				}).response, 'alfa');
+			});
+
+			it('sends KOMReviewDetailDispatchRename', function () {
+				browser.assert.text('#TestKOMReviewDetailDispatchRename', '1');
+			});
+
+			it('sends KOMReviewDetailDispatchRenameData', function () {
+				browser.assert.text('#TestKOMReviewDetailDispatchRenameData', JSON.stringify(uItem().KOMDeckName));
+			});
+		
+		});
+	
+	});
+
 	describe('KOMReviewDetailToolbarDiscardButton', function () {
 		
 		it('sets class', function () {

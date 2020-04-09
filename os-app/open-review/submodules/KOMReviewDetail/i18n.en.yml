@@ -1,4 +1,5 @@
 KOMReviewDetailToolbarBackButtonText: Back
+KOMReviewDetailToolbarRenameButtonText: Rename
+KOMReviewDetailToolbarRenameButtonPromptText: Name
 KOMReviewDetailToolbarDiscardButtonText: Discard
 KOMReviewDetailDiscardPromptText: Are you sure?
-KOMReviewDetailFormNameFieldPlaceholderText: Name
