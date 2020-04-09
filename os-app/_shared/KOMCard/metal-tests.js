@@ -7,6 +7,7 @@ const kTesting = {
 		return {
 			KOMCardID: 'alfa',
 			KOMCardQuestion: 'bravo',
+			KOMCardAnswer: 'charlie',
 			KOMCardCreationDate: new Date('2019-02-23T13:56:36Z'),
 			KOMCardModificationDate: new Date('2019-02-23T13:56:36Z'),
 		};

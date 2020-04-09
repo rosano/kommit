@@ -6,6 +6,7 @@ const kTesting = {
 	StubDocumentObject: function() {
 		return {
 			KOMCardQuestion: 'alfa',
+			KOMCardAnswer: 'bravo',
 		};
 	},
 	uSerial: function (inputData) {

@@ -21,6 +21,12 @@ export const KOMCardModelErrorsFor = function(inputData, options = {}) {
 		];
 	}
 
+	if (typeof inputData.KOMCardAnswer !== 'string') {
+		errors.KOMCardAnswer = [
+			'KOMErrorNotString',
+		];
+	}
+
 	if (!(inputData.KOMCardCreationDate instanceof Date) || Number.isNaN(inputData.KOMCardCreationDate.getTime())) {
 		errors.KOMCardCreationDate = [
 			'KOMErrorNotDate',
