@@ -90,4 +90,28 @@ describe('KOMReview_Access', function () {
 	
 	});
 
+	context('discard', function () {
+		
+		before(function () {
+			return browser.pressButton('.KOMReviewMasterListItem');
+		});
+
+		before(function () {
+			return browser.pressButton('.KOMReviewDetailToolbarDiscardButton');
+		});
+
+		it('shows KOMReviewMaster', function () {
+			browser.assert.elements('.KOMReviewMaster', 1);
+		});
+
+		it('hides KOMReviewDetail', function () {
+			browser.assert.elements('.KOMReviewDetail', 0);
+		});
+
+		it('hides KOMReviewMasterListItem', function () {
+			browser.assert.elements('.KOMReviewMasterListItem', 0);
+		});
+	
+	});
+
 });
