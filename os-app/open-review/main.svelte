@@ -47,6 +47,10 @@ const mod = {
 		mod.ControlDeckSelect(inputData);
 	},
 
+	KOMReviewDetailDispatchBack () {
+		mod.ControlDeckSelect(null);
+	},
+
 	OLSKAppToolbarDispatchStorage () {
 		mod._ValueStorageWidgetHidden = !mod._ValueStorageWidgetHidden;
 	},
