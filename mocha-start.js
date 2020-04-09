@@ -1,5 +1,6 @@
 const KOMStorageModule = require('./os-app/_shared/KOMStorageModule/main.js');
 const KOMDeckStorage = require('./os-app/_shared/KOMDeck/storage.js');
+const KOMCardStorage = require('./os-app/_shared/KOMCard/storage.js');
 
 (function KOMMochaStorage() {
 	if (process.env.OLSK_TESTING_BEHAVIOUR === 'true') {
@@ -17,6 +18,7 @@ const KOMDeckStorage = require('./os-app/_shared/KOMDeck/storage.js');
 			modules: [
 				KOMStorageModule.KOMStorageModule([
 					KOMDeckStorage.KOMDeckStorage,
+					KOMCardStorage.KOMCardStorage,
 				].map(function (e) {
 					return {
 						KOMCollectionStorageGenerator: e,
@@ -32,6 +34,7 @@ const KOMDeckStorage = require('./os-app/_shared/KOMDeck/storage.js');
 	beforeEach(async function() {
 		await uSerial([
 			'kom_decks',
+			'kom_cards',
 		].map(async function (e) {
 			return await Promise.all(Object.keys(await global.KOMTestingStorageClient.kommit[e].KOMStorageList()).map(global.KOMTestingStorageClient.kommit[e].KOMStorageDelete));
 		}));
