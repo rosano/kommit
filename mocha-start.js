@@ -1,6 +1,9 @@
+const RemoteStorage = require('remotestoragejs');
+
 const KOMStorageModule = require('./os-app/_shared/KOMStorageModule/main.js');
 const KOMDeckStorage = require('./os-app/_shared/KOMDeck/storage.js');
 const KOMCardStorage = require('./os-app/_shared/KOMCard/storage.js');
+
 
 (function KOMMochaStorage() {
 	if (process.env.OLSK_TESTING_BEHAVIOUR === 'true') {
@@ -14,18 +17,22 @@ const KOMCardStorage = require('./os-app/_shared/KOMCard/storage.js');
 	};
 
 	before(function(done) {
-		global.KOMTestingStorageClient = require('./os-app/_shared/KOMStorageClient/main.js').KOMStorageClient({
-			modules: [
-				KOMStorageModule.KOMStorageModule([
-					KOMDeckStorage.KOMDeckStorage,
-					KOMCardStorage.KOMCardStorage,
-				].map(function (e) {
-					return {
-						KOMCollectionStorageGenerator: e,
-						KOMCollectionChangeDelegate: null,
-					};
-				}))
-			],
+		const modules = [
+			KOMStorageModule.KOMStorageModule([
+				KOMDeckStorage.KOMDeckStorage,
+				KOMCardStorage.KOMCardStorage,
+			].map(function (e) {
+				return {
+					KOMCollectionStorageGenerator: e,
+					KOMCollectionChangeDelegate: null,
+				};
+			}))
+		];
+
+		global.KOMTestingStorageClient = new RemoteStorage({ modules });
+
+		modules.forEach(function (e) {
+			global.KOMTestingStorageClient.access.claim(e.name, 'rw');
 		});
 
 		done();
