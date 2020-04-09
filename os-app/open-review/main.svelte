@@ -10,6 +10,7 @@ import * as OLSKRemoteStorage from '../_shared/__external/OLSKRemoteStorage/main
 import * as KOMDeckAction from '../_shared/KOMDeck/action.js';
 import { KOMStorageModule } from '../_shared/KOMStorageModule/main.js';
 import { KOMDeckStorage } from '../_shared/KOMDeck/storage.js';
+import { KOMCardStorage } from '../_shared/KOMCard/storage.js';
 import * as RemoteStoragePackage from 'remotestoragejs';
 		const RemoteStorage = RemoteStoragePackage.default || RemoteStoragePackage;
 const mod = {
@@ -117,6 +118,7 @@ const mod = {
 		const modules = [
 			KOMStorageModule([
 				KOMDeckStorage,
+				KOMCardStorage,
 				].map(function (e) {
 					return {
 						KOMCollectionStorageGenerator: e,
