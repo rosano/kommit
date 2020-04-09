@@ -1,10 +1,12 @@
 import * as OLSKRemoteStorage from 'OLSKRemoteStorage';
 
+const kModuleName = 'kommit';
+
 export const KOMStorageModule = function (inputData) {
 	return {
-		name: 'kommit',
+		name: kModuleName,
 		builder (privateClient, publicClient) {
-			privateClient.cache('kommit/');
+			privateClient.cache(`${ kModuleName }/`);
 
 			return {
 				exports: inputData.reduce(function (coll, item) {
