@@ -4,8 +4,16 @@ import * as OLSKRemoteStorage from 'OLSKRemoteStorage';
 const kType = 'kom_deck';
 const kCollection = 'kom_decks';
 
-export const KOMDeckStoragePath = function(inputData) {
-	return `${ kCollection }/${ inputData || '' }`;
+export const KOMDeckStorageFolderPath = function() {
+	return `${ kCollection }/`;
+};
+
+export const KOMDeckStorageFilePath = function(inputData) {
+	if (!inputData) {
+		throw new Error('KOMErrorInputNotValid');
+	}
+
+	return `${ KOMDeckStorageFolderPath() }${ inputData }`;
 };
 
 export const KOMDeckStorage = function (privateClient, publicClient, changeDelegate) {
@@ -27,20 +35,20 @@ export const KOMDeckStorage = function (privateClient, publicClient, changeDeleg
 		}, {}),
 		KOMStorageExports: {
 			KOMStorageCache () {
-				return privateClient.cache(KOMDeckStoragePath());
+				return privateClient.cache(KOMDeckStorageFolderPath());
 			},
 			KOMStorageList: function () {
-				return privateClient.getAll(KOMDeckStoragePath(), false);
+				return privateClient.getAll(KOMDeckStorageFolderPath(), false);
 			},
 			KOMStorageWrite: async function (param1, param2) {
-				await privateClient.storeObject(kType, `${ kCollection }/${ param1 }`, KOMDeckModel.KOMDeckModelPreJSONSchemaValidate(param2));
+				await privateClient.storeObject(kType, KOMDeckStorageFilePath(param1), KOMDeckModel.KOMDeckModelPreJSONSchemaValidate(param2));
 				return KOMDeckModel.KOMDeckModelPostJSONParse(param2);
 			},
 			KOMStorageRead: function (inputData) {
-				return privateClient.getObject(`${ kCollection }/${ inputData }`);
+				return privateClient.getObject(KOMDeckStorageFilePath(inputData));
 			},
 			KOMStorageDelete: function (inputData) {
-				return privateClient.remove(`${ kCollection }/${ inputData }`);
+				return privateClient.remove(KOMDeckStorageFilePath(inputData));
 			},
 		},
 	};

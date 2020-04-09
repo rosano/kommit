@@ -2,18 +2,25 @@ const { throws, deepEqual } = require('assert');
 
 const mainModule = require('./storage.js');
 
-describe('KOMDeckStoragePath', function testKOMDeckStoragePath() {
+describe('KOMDeckStorageFolderPath', function testKOMDeckStorageFolderPath() {
 
 	it('returns string', function() {
-		deepEqual(mainModule.KOMDeckStoragePath('alfa'), 'kom_decks/alfa');
-	});
-
-	it('returns string if blank', function() {
-		deepEqual(mainModule.KOMDeckStoragePath(''), 'kom_decks/');
-	});
-
-	it('returns string if undefined', function() {
-		deepEqual(mainModule.KOMDeckStoragePath(), 'kom_decks/');
+		deepEqual(mainModule.KOMDeckStorageFolderPath(), 'kom_decks/');
 	});
 
 });
+
+describe('KOMDeckStorageFilePath', function testKOMDeckStorageFilePath() {
+
+	it('throws error if blank', function() {
+		throws(function() {
+			mainModule.KOMDeckStorageFilePath('');
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns string', function() {
+		deepEqual(mainModule.KOMDeckStorageFilePath('alfa'), 'kom_decks/alfa');
+	});
+
+});
+
