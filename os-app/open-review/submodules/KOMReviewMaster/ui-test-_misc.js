@@ -17,14 +17,9 @@ describe('KOMReviewMaster_Misc', function () {
 		context('click', function () {
 
 			before(function() {
-
-				return browser.OLSKPrompt(function () {
+				return browser.OLSKPromptSync(function () {
 					browser.pressButton(KOMReviewMasterCreateButton);
-					browser.pressButton('.KVCWriteDetailToolbarDiscardButton');
-				}, function (dialog) {
-					return dialog;
 				});
-			
 			});
 			
 			before(function () {
