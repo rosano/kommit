@@ -22,7 +22,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 
 		context('KOMReviewMasterCreateButton', function() {
 
-			it('localizes prompt', function() {
+			it('localizes KOMReviewMasterCreateButtonPrompt', function() {
 				deepEqual(browser.OLSKPromptSync(function () {
 					return browser.pressButton(KOMReviewMasterCreateButton);
 				}).question, uLocalized('KOMReviewMasterCreateButtonPromptText'));
