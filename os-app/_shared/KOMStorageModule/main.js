@@ -10,7 +10,7 @@ export const KOMStorageModule = function (inputData) {
 
 			return {
 				exports: inputData.reduce(function (coll, item) {
-					let storage = item.KOMCollectionStorageGenerator(privateClient, publicClient, item.KOMCollectionChangeDelegate);
+					let storage = item(privateClient, publicClient, item.KOMCollectionChangeDelegate);
 
 					privateClient.declareType(storage.KOMStorageType, OLSKRemoteStorage.OLSKRemoteStorageJSONSchema(storage.KOMStorageModelErrors));
 

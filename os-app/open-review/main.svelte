@@ -114,55 +114,50 @@ const mod = {
 	},
 
 	SetupStorageClient() {
-		const modules = [
-			KOMStorageModule([
-				KOMDeckStorage,
-				KOMCardStorage,
-				].map(function (e) {
-					return {
-						KOMCollectionStorageGenerator: e,
-						KOMCollectionChangeDelegate: e === KOMDeckStorage ? {
-							OLSKChangeDelegateCreate (inputData) {
-								// console.log('OLSKChangeDelegateCreate', inputData);
+		const storageModule = KOMStorageModule([
+			KOMDeckStorage,
+			KOMCardStorage,
+			].map(function (e) {
+				return Object.assign(e, e === KOMDeckStorage ? {
+					KOMCollectionChangeDelegate: {
+						OLSKChangeDelegateCreate (inputData) {
+							// console.log('OLSKChangeDelegateCreate', inputData);
 
-								mod.ValueDecksAll(mod._ValueDecksAll.filter(function (e) {
-									return e.KOMDeckID !== inputData.KOMDeckID; // @Hotfix Dropbox sending DelegateAdd
-								}).concat(inputData));
-							},
-							OLSKChangeDelegateUpdate (inputData) {
-								// console.log('OLSKChangeDelegateUpdate', inputData);
+							mod.ValueDecksAll(mod._ValueDecksAll.filter(function (e) {
+								return e.KOMDeckID !== inputData.KOMDeckID; // @Hotfix Dropbox sending DelegateAdd
+							}).concat(inputData));
+						},
+						OLSKChangeDelegateUpdate (inputData) {
+							// console.log('OLSKChangeDelegateUpdate', inputData);
 
-								if (mod._ValueDeckSelected && (mod._ValueDeckSelected.KOMDeckID === inputData.KOMDeckID)) {
-									mod.ControlDeckSelect(Object.assign(mod._ValueDeckSelected, inputData));
-								}
+							if (mod._ValueDeckSelected && (mod._ValueDeckSelected.KOMDeckID === inputData.KOMDeckID)) {
+								mod.ControlDeckSelect(Object.assign(mod._ValueDeckSelected, inputData));
+							}
 
-								mod.ValueDecksAll(mod._ValueDecksAll.map(function (e) {
-									return Object.assign(e, e.KOMDeckID === inputData.KOMDeckID ? inputData : {});
-								}), false);
-							},
-							OLSKChangeDelegateDelete (inputData) {
-								// console.log('OLSKChangeDelegateDelete', inputData);
+							mod.ValueDecksAll(mod._ValueDecksAll.map(function (e) {
+								return Object.assign(e, e.KOMDeckID === inputData.KOMDeckID ? inputData : {});
+							}), false);
+						},
+						OLSKChangeDelegateDelete (inputData) {
+							// console.log('OLSKChangeDelegateDelete', inputData);
 
-								if (mod._ValueDeckSelected && (mod._ValueDeckSelected.KOMDeckID === inputData.KOMDeckID)) {
-									mod.ControlDeckSelect(null);
-								}
+							if (mod._ValueDeckSelected && (mod._ValueDeckSelected.KOMDeckID === inputData.KOMDeckID)) {
+								mod.ControlDeckSelect(null);
+							}
 
-								mod.ValueDecksAll(mod._ValueDecksAll.filter(function (e) {
-									return e.KOMDeckID !== inputData.KOMDeckID;
-								}), false);
-							},
-						} : null,
-					}
-				})),
-		];
-		
-		mod._ValueStorageClient = new RemoteStorage({ modules });
-
-		modules.forEach(function (e) {
-			mod._ValueStorageClient.access.claim(e.name, 'rw');
-
-			mod._ValueStorageClient.caching.enable(`/${ e.name }/`);
+							mod.ValueDecksAll(mod._ValueDecksAll.filter(function (e) {
+								return e.KOMDeckID !== inputData.KOMDeckID;
+							}), false);
+						},
+					},
+				} : {});
 		});
+		
+		mod._ValueStorageClient = new RemoteStorage({ modules: [ storageModule ] });
+
+		mod._ValueStorageClient.access.claim(storageModule.name, 'rw');
+
+		mod._ValueStorageClient.caching.enable(`/${ storageModule.name }/`);
 	},
 
 	SetupStorageWidget () {

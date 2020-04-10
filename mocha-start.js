@@ -19,12 +19,7 @@ const KOMCardStorage = require('./os-app/_shared/KOMCard/storage.js');
 	const storageModule = KOMStorageModule.KOMStorageModule([
 		KOMDeckStorage.KOMDeckStorage,
 		KOMCardStorage.KOMCardStorage,
-	].map(function (e) {
-		return {
-			KOMCollectionStorageGenerator: e,
-			KOMCollectionChangeDelegate: null,
-		};
-	}));
+	]);
 
 	before(function() {
 		global.KOMTestingStorageClient = new RemoteStorage({ modules: [ storageModule ] });
