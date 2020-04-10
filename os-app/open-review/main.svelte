@@ -119,7 +119,7 @@ const mod = {
 			KOMCardStorage,
 			].map(function (e) {
 				return Object.assign(e, e === KOMDeckStorage ? {
-					KOMCollectionChangeDelegate: {
+					KOMStorageChangeDelegate: {
 						OLSKChangeDelegateCreate (inputData) {
 							// console.log('OLSKChangeDelegateCreate', inputData);
 
