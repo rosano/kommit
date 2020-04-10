@@ -3,7 +3,7 @@ const { rejects, deepEqual } = require('assert');
 const mainModule = require('./action.js').default;
 
 const kTesting = {
-	StubDocumentObject() {
+	StubDeckObject() {
 		return {
 			KOMDeckName: 'alfa',
 		};
@@ -26,7 +26,7 @@ describe('KOMDeckActionCreate', function testKOMDeckActionCreate() {
 	});
 
 	it('returns object with KOMErrors if not valid', async function() {
-		deepEqual((await mainModule.KOMDeckActionCreate(KOMTestingStorageClient, Object.assign(kTesting.StubDocumentObject(), {
+		deepEqual((await mainModule.KOMDeckActionCreate(KOMTestingStorageClient, Object.assign(kTesting.StubDeckObject(), {
 			KOMDeckName: null,
 		}))).KOMErrors, {
 			KOMDeckName: [
@@ -36,9 +36,9 @@ describe('KOMDeckActionCreate', function testKOMDeckActionCreate() {
 	});
 
 	it('returns KOMDeck', async function() {
-		let item = await mainModule.KOMDeckActionCreate(KOMTestingStorageClient, kTesting.StubDocumentObject());
+		let item = await mainModule.KOMDeckActionCreate(KOMTestingStorageClient, kTesting.StubDeckObject());
 
-		deepEqual(item, Object.assign(kTesting.StubDocumentObject(), {
+		deepEqual(item, Object.assign(kTesting.StubDeckObject(), {
 			KOMDeckID: item.KOMDeckID,
 			KOMDeckCreationDate: item.KOMDeckCreationDate,
 			KOMDeckModificationDate: item.KOMDeckModificationDate,
@@ -48,17 +48,17 @@ describe('KOMDeckActionCreate', function testKOMDeckActionCreate() {
 
 	it('sets KOMDeckID to unique value', async function() {
 		let items = await kTesting.uSerial(Array.from(Array(10)).map(async function (e) {
-			return (await mainModule.KOMDeckActionCreate(KOMTestingStorageClient, kTesting.StubDocumentObject())).KOMDeckID;
+			return (await mainModule.KOMDeckActionCreate(KOMTestingStorageClient, kTesting.StubDeckObject())).KOMDeckID;
 		}));
 		deepEqual([...(new Set(items))], items);
 	});
 
 	it('sets KOMDeckCreationDate to now', async function() {
-		deepEqual(new Date() - (await mainModule.KOMDeckActionCreate(KOMTestingStorageClient, kTesting.StubDocumentObject())).KOMDeckCreationDate < 100, true);
+		deepEqual(new Date() - (await mainModule.KOMDeckActionCreate(KOMTestingStorageClient, kTesting.StubDeckObject())).KOMDeckCreationDate < 100, true);
 	});
 
 	it('sets KOMDeckModificationDate to now', async function() {
-		deepEqual(new Date() - (await mainModule.KOMDeckActionCreate(KOMTestingStorageClient, kTesting.StubDocumentObject())).KOMDeckModificationDate < 100, true);
+		deepEqual(new Date() - (await mainModule.KOMDeckActionCreate(KOMTestingStorageClient, kTesting.StubDeckObject())).KOMDeckModificationDate < 100, true);
 	});
 
 });
@@ -74,7 +74,7 @@ describe('KOMDeckActionRead', function testKOMDeckActionRead() {
 	});
 
 	it('returns KOMDeck', async function() {
-		let item = await mainModule.KOMDeckActionCreate(KOMTestingStorageClient, kTesting.StubDocumentObject());
+		let item = await mainModule.KOMDeckActionCreate(KOMTestingStorageClient, kTesting.StubDeckObject());
 
 		deepEqual(item, await mainModule.KOMDeckActionRead(KOMTestingStorageClient, item.KOMDeckID));
 	});
@@ -88,7 +88,7 @@ describe('KOMDeckActionUpdate', function testKOMDeckActionUpdate() {
 	});
 
 	it('returns object with KOMErrors if not valid', async function() {
-		deepEqual((await mainModule.KOMDeckActionUpdate(KOMTestingStorageClient, Object.assign(await mainModule.KOMDeckActionCreate(KOMTestingStorageClient, kTesting.StubDocumentObject()), {
+		deepEqual((await mainModule.KOMDeckActionUpdate(KOMTestingStorageClient, Object.assign(await mainModule.KOMDeckActionCreate(KOMTestingStorageClient, kTesting.StubDeckObject()), {
 			KOMDeckID: null,
 		}))).KOMErrors, {
 			KOMDeckID: [
@@ -98,7 +98,7 @@ describe('KOMDeckActionUpdate', function testKOMDeckActionUpdate() {
 	});
 
 	it('returns KOMDeck', async function() {
-		let itemCreated = await mainModule.KOMDeckActionCreate(KOMTestingStorageClient, kTesting.StubDocumentObject());
+		let itemCreated = await mainModule.KOMDeckActionCreate(KOMTestingStorageClient, kTesting.StubDeckObject());
 
 		let item = await mainModule.KOMDeckActionUpdate(KOMTestingStorageClient, itemCreated);
 
@@ -108,15 +108,15 @@ describe('KOMDeckActionUpdate', function testKOMDeckActionUpdate() {
 	});
 
 	it('sets KOMDeckModificationDate to now', async function() {
-		deepEqual(new Date() - (await mainModule.KOMDeckActionUpdate(KOMTestingStorageClient, await mainModule.KOMDeckActionCreate(KOMTestingStorageClient, kTesting.StubDocumentObject()))).KOMDeckModificationDate < 100, true);
+		deepEqual(new Date() - (await mainModule.KOMDeckActionUpdate(KOMTestingStorageClient, await mainModule.KOMDeckActionCreate(KOMTestingStorageClient, kTesting.StubDeckObject()))).KOMDeckModificationDate < 100, true);
 	});
 
 	it('writes inputData if not found', async function() {
-		let item = await mainModule.KOMDeckActionUpdate(KOMTestingStorageClient, Object.assign(kTesting.StubDocumentObject(), {
+		let item = await mainModule.KOMDeckActionUpdate(KOMTestingStorageClient, Object.assign(kTesting.StubDeckObject(), {
 			KOMDeckID: 'alfa',
 			KOMDeckCreationDate: new Date(),
 		}));
-		deepEqual(item, Object.assign(kTesting.StubDocumentObject(), {
+		deepEqual(item, Object.assign(kTesting.StubDeckObject(), {
 			KOMDeckID: item.KOMDeckID,
 			KOMDeckCreationDate: item.KOMDeckCreationDate,
 			KOMDeckModificationDate: item.KOMDeckModificationDate,
@@ -133,14 +133,14 @@ describe('KOMDeckActionDelete', function testKOMDeckActionDelete() {
 	});
 
 	it('returns statusCode', async function() {
-		deepEqual(await mainModule.KOMDeckActionDelete(KOMTestingStorageClient, (await mainModule.KOMDeckActionCreate(KOMTestingStorageClient, kTesting.StubDocumentObject())).KOMDeckID), {
+		deepEqual(await mainModule.KOMDeckActionDelete(KOMTestingStorageClient, (await mainModule.KOMDeckActionCreate(KOMTestingStorageClient, kTesting.StubDeckObject())).KOMDeckID), {
 			statusCode: 200,
 		});
 	});
 
 	it('deletes KOMDeck', async function() {
 		let itemID;
-		await mainModule.KOMDeckActionDelete(KOMTestingStorageClient, itemID = (await mainModule.KOMDeckActionCreate(KOMTestingStorageClient, kTesting.StubDocumentObject())).KOMDeckID);
+		await mainModule.KOMDeckActionDelete(KOMTestingStorageClient, itemID = (await mainModule.KOMDeckActionCreate(KOMTestingStorageClient, kTesting.StubDeckObject())).KOMDeckID);
 		deepEqual(await mainModule.KOMDeckActionRead(KOMTestingStorageClient, itemID), null);
 	});
 
@@ -153,7 +153,7 @@ describe('KOMDeckActionList', function testKOMDeckActionList() {
 	});
 
 	it('returns array with existing KOMDecks', async function() {
-		let item = await mainModule.KOMDeckActionCreate(KOMTestingStorageClient, kTesting.StubDocumentObject());
+		let item = await mainModule.KOMDeckActionCreate(KOMTestingStorageClient, kTesting.StubDeckObject());
 
 		deepEqual(await mainModule.KOMDeckActionList(KOMTestingStorageClient), [item]);
 	});

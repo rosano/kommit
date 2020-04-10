@@ -3,7 +3,7 @@ const { throws, deepEqual } = require('assert');
 const mainModule = require('./model.js');
 
 const kTesting = {
-	StubDocumentObjectValid() {
+	StubCardObjectValid() {
 		return {
 			KOMCardID: 'alfa',
 			KOMCardQuestion: '',
@@ -23,7 +23,7 @@ describe('KOMCardModelErrorsFor', function testKOMCardModelErrorsFor() {
 	});
 
 	it('returns object if KOMCardID not string', function() {
-		deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubDocumentObjectValid(), {
+		deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubCardObjectValid(), {
 			KOMCardID: null,
 		})), {
 			KOMCardID: [
@@ -33,7 +33,7 @@ describe('KOMCardModelErrorsFor', function testKOMCardModelErrorsFor() {
 	});
 
 	it('returns object if KOMCardID not filled', function() {
-		deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubDocumentObjectValid(), {
+		deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubCardObjectValid(), {
 			KOMCardID: ' ',
 		})), {
 			KOMCardID: [
@@ -43,7 +43,7 @@ describe('KOMCardModelErrorsFor', function testKOMCardModelErrorsFor() {
 	});
 
 	it('returns object if KOMCardQuestion not string', function() {
-		deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubDocumentObjectValid(), {
+		deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubCardObjectValid(), {
 			KOMCardQuestion: null,
 		})), {
 			KOMCardQuestion: [
@@ -53,7 +53,7 @@ describe('KOMCardModelErrorsFor', function testKOMCardModelErrorsFor() {
 	});
 
 	it('returns object if KOMCardAnswer not string', function() {
-		deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubDocumentObjectValid(), {
+		deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubCardObjectValid(), {
 			KOMCardAnswer: null,
 		})), {
 			KOMCardAnswer: [
@@ -63,7 +63,7 @@ describe('KOMCardModelErrorsFor', function testKOMCardModelErrorsFor() {
 	});
 
 	it('returns object if KOMCardCreationDate not date', function() {
-		deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubDocumentObjectValid(), {
+		deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubCardObjectValid(), {
 			KOMCardCreationDate: new Date('alfa'),
 		})), {
 			KOMCardCreationDate: [
@@ -73,7 +73,7 @@ describe('KOMCardModelErrorsFor', function testKOMCardModelErrorsFor() {
 	});
 
 	it('returns object if KOMCardModificationDate not date', function() {
-		deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubDocumentObjectValid(), {
+		deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubCardObjectValid(), {
 			KOMCardModificationDate: new Date('alfa'),
 		})), {
 			KOMCardModificationDate: [
@@ -83,13 +83,13 @@ describe('KOMCardModelErrorsFor', function testKOMCardModelErrorsFor() {
 	});
 
 	it('returns null', function() {
-		deepEqual(mainModule.KOMCardModelErrorsFor(kTesting.StubDocumentObjectValid()), null);
+		deepEqual(mainModule.KOMCardModelErrorsFor(kTesting.StubCardObjectValid()), null);
 	});
 
 	context('KOMCardHint', function() {
 
 		it('returns object if not string', function() {
-			deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubDocumentObjectValid(), {
+			deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubCardObjectValid(), {
 				KOMCardHint: null,
 			})), {
 				KOMCardHint: [
@@ -99,7 +99,7 @@ describe('KOMCardModelErrorsFor', function testKOMCardModelErrorsFor() {
 		});
 
 		it('returns null', function() {
-			deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubDocumentObjectValid(), {
+			deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubCardObjectValid(), {
 				KOMCardHint: 'alfa',
 			})), null);
 		});

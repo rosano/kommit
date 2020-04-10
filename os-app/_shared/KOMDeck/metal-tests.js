@@ -3,7 +3,7 @@ const { rejects, deepEqual } = require('assert');
 const mainModule = require('./metal.js').default;
 
 const kTesting = {
-	StubDocumentObjectValid() {
+	StubDeckObjectValid() {
 		return {
 			KOMDeckID: 'alfa',
 			KOMDeckName: 'bravo',
@@ -20,7 +20,7 @@ describe('KOMDeckMetalWrite', function testKOMDeckMetalWrite() {
 	});
 
 	it('returns object with KOMErrors if not valid', async function() {
-		deepEqual((await mainModule.KOMDeckMetalWrite(KOMTestingStorageClient, Object.assign(kTesting.StubDocumentObjectValid(), {
+		deepEqual((await mainModule.KOMDeckMetalWrite(KOMTestingStorageClient, Object.assign(kTesting.StubDeckObjectValid(), {
 			KOMDeckID: null,
 		}))).KOMErrors, {
 			KOMDeckID: [
@@ -30,9 +30,9 @@ describe('KOMDeckMetalWrite', function testKOMDeckMetalWrite() {
 	});
 
 	it('returns KOMDeck', async function() {
-		let item = await mainModule.KOMDeckMetalWrite(KOMTestingStorageClient, kTesting.StubDocumentObjectValid());
+		let item = await mainModule.KOMDeckMetalWrite(KOMTestingStorageClient, kTesting.StubDeckObjectValid());
 
-		deepEqual(item, Object.assign(kTesting.StubDocumentObjectValid(), {
+		deepEqual(item, Object.assign(kTesting.StubDeckObjectValid(), {
 			'@context': item['@context'],
 		}));
 	});
@@ -50,7 +50,7 @@ describe('KOMDeckMetalRead', function testKOMDeckMetalRead() {
 	});
 
 	it('returns KOMDeck', async function() {
-		let item = await mainModule.KOMDeckMetalWrite(KOMTestingStorageClient, kTesting.StubDocumentObjectValid());
+		let item = await mainModule.KOMDeckMetalWrite(KOMTestingStorageClient, kTesting.StubDeckObjectValid());
 
 		deepEqual(await mainModule.KOMDeckMetalRead(KOMTestingStorageClient, item.KOMDeckID), item);
 	});
@@ -64,7 +64,7 @@ describe('KOMDeckMetalList', function testKOMDeckMetalList() {
 	});
 
 	it('returns existing KOMDecks', async function() {
-		let item = await mainModule.KOMDeckMetalWrite(KOMTestingStorageClient, kTesting.StubDocumentObjectValid());
+		let item = await mainModule.KOMDeckMetalWrite(KOMTestingStorageClient, kTesting.StubDeckObjectValid());
 		deepEqual(Object.values(await mainModule.KOMDeckMetalList(KOMTestingStorageClient)), [item]);
 		deepEqual(Object.keys(await mainModule.KOMDeckMetalList(KOMTestingStorageClient)), [item.KOMDeckID]);
 	});
@@ -78,13 +78,13 @@ describe('KOMDeckMetalDelete', function testKOMDeckMetalDelete() {
 	});
 
 	it('returns statusCode', async function() {
-		deepEqual(await mainModule.KOMDeckMetalDelete(KOMTestingStorageClient, (await mainModule.KOMDeckMetalWrite(KOMTestingStorageClient, kTesting.StubDocumentObjectValid())).KOMDeckID), {
+		deepEqual(await mainModule.KOMDeckMetalDelete(KOMTestingStorageClient, (await mainModule.KOMDeckMetalWrite(KOMTestingStorageClient, kTesting.StubDeckObjectValid())).KOMDeckID), {
 			statusCode: 200,
 		});
 	});
 
 	it('deletes KOMDeck', async function() {
-		await mainModule.KOMDeckMetalDelete(KOMTestingStorageClient, (await mainModule.KOMDeckMetalWrite(KOMTestingStorageClient, kTesting.StubDocumentObjectValid())).KOMDeckID);
+		await mainModule.KOMDeckMetalDelete(KOMTestingStorageClient, (await mainModule.KOMDeckMetalWrite(KOMTestingStorageClient, kTesting.StubDeckObjectValid())).KOMDeckID);
 		deepEqual(await mainModule.KOMDeckMetalList(KOMTestingStorageClient), {});
 	});
 

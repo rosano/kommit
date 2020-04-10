@@ -3,7 +3,7 @@ const { throws, deepEqual } = require('assert');
 const mainModule = require('./model.js');
 
 const kTesting = {
-	StubDocumentObjectValid() {
+	StubDeckObjectValid() {
 		return {
 			KOMDeckID: 'alfa',
 			KOMDeckName: '',
@@ -22,7 +22,7 @@ describe('KOMDeckModelErrorsFor', function testKOMDeckModelErrorsFor() {
 	});
 
 	it('returns object if KOMDeckID not string', function() {
-		deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDocumentObjectValid(), {
+		deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
 			KOMDeckID: null,
 		})), {
 			KOMDeckID: [
@@ -32,7 +32,7 @@ describe('KOMDeckModelErrorsFor', function testKOMDeckModelErrorsFor() {
 	});
 
 	it('returns object if KOMDeckID not filled', function() {
-		deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDocumentObjectValid(), {
+		deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
 			KOMDeckID: ' ',
 		})), {
 			KOMDeckID: [
@@ -42,7 +42,7 @@ describe('KOMDeckModelErrorsFor', function testKOMDeckModelErrorsFor() {
 	});
 
 	it('returns object if KOMDeckName not string', function() {
-		deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDocumentObjectValid(), {
+		deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
 			KOMDeckName: null,
 		})), {
 			KOMDeckName: [
@@ -52,7 +52,7 @@ describe('KOMDeckModelErrorsFor', function testKOMDeckModelErrorsFor() {
 	});
 
 	it('returns object if KOMDeckCreationDate not date', function() {
-		deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDocumentObjectValid(), {
+		deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
 			KOMDeckCreationDate: new Date('alfa'),
 		})), {
 			KOMDeckCreationDate: [
@@ -62,7 +62,7 @@ describe('KOMDeckModelErrorsFor', function testKOMDeckModelErrorsFor() {
 	});
 
 	it('returns object if KOMDeckModificationDate not date', function() {
-		deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDocumentObjectValid(), {
+		deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
 			KOMDeckModificationDate: new Date('alfa'),
 		})), {
 			KOMDeckModificationDate: [
@@ -72,7 +72,7 @@ describe('KOMDeckModelErrorsFor', function testKOMDeckModelErrorsFor() {
 	});
 
 	it('returns null', function() {
-		deepEqual(mainModule.KOMDeckModelErrorsFor(kTesting.StubDocumentObjectValid()), null);
+		deepEqual(mainModule.KOMDeckModelErrorsFor(kTesting.StubDeckObjectValid()), null);
 	});
 
 });
