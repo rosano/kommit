@@ -83,7 +83,7 @@ const mod = {
 
 		mod.ValueDecksAll(mod._ValueDecksAll.map(function (e) {
 			return Object.assign(e, e.KOMDeckID === inputData.KOMDeckID ? inputData : {});
-		}), false);
+		}));
 	},
 
 	OLSKChangeDelegateDeleteDeck (inputData) {
@@ -93,7 +93,7 @@ const mod = {
 
 		mod.ValueDecksAll(mod._ValueDecksAll.filter(function (e) {
 			return e.KOMDeckID !== inputData.KOMDeckID;
-		}), false);
+		}));
 	},
 
 	// CONTROL
