@@ -16,34 +16,25 @@ const KOMCardStorage = require('./os-app/_shared/KOMCard/storage.js');
 		}, Promise.resolve([]));
 	};
 
-	before(function(done) {
-		const modules = [
-			KOMStorageModule.KOMStorageModule([
-				KOMDeckStorage.KOMDeckStorage,
-				KOMCardStorage.KOMCardStorage,
-			].map(function (e) {
-				return {
-					KOMCollectionStorageGenerator: e,
-					KOMCollectionChangeDelegate: null,
-				};
-			}))
-		];
+	const storageModule = KOMStorageModule.KOMStorageModule([
+		KOMDeckStorage.KOMDeckStorage,
+		KOMCardStorage.KOMCardStorage,
+	].map(function (e) {
+		return {
+			KOMCollectionStorageGenerator: e,
+			KOMCollectionChangeDelegate: null,
+		};
+	}));
 
-		global.KOMTestingStorageClient = new RemoteStorage({ modules });
+	before(function() {
+		global.KOMTestingStorageClient = new RemoteStorage({ modules: [ storageModule ] });
 
-		modules.forEach(function (e) {
-			global.KOMTestingStorageClient.access.claim(e.name, 'rw');
-		});
-
-		done();
+		global.KOMTestingStorageClient.access.claim(storageModule.name, 'rw');
 	});
 
 	beforeEach(async function() {
-		await uSerial([
-			'kom_decks',
-			'kom_cards',
-		].map(async function (e) {
-			return await Promise.all(Object.keys(await global.KOMTestingStorageClient.kommit[e].KOMStorageList()).map(global.KOMTestingStorageClient.kommit[e].KOMStorageDelete));
+		await uSerial(Object.keys(global.KOMTestingStorageClient[storageModule.name]).map(async function (e) {
+			return await Promise.all(Object.keys(await global.KOMTestingStorageClient[storageModule.name][e].KOMStorageList()).map(global.KOMTestingStorageClient[storageModule.name][e].KOMStorageDelete));
 		}));
 	});
 })();
