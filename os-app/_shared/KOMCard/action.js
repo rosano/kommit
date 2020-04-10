@@ -1,4 +1,4 @@
-import * as KOMCardMetal from './metal.js';
+import KOMCardMetal from './metal.js';
 import { factory, detectPrng } from 'ulid';
 const uniqueID = typeof require === 'undefined' && navigator.appName === 'Zombie' ? factory(detectPrng(true)) : factory();
 
