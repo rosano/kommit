@@ -7,7 +7,7 @@ const OLSKLocalized = function(translationConstant) {
 import OLSKThrottle from 'OLSKThrottle';
 import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting'
 import * as OLSKRemoteStorage from '../_shared/__external/OLSKRemoteStorage/main.js'
-import * as KOMDeckAction from '../_shared/KOMDeck/action.js';
+import KOMDeckAction from '../_shared/KOMDeck/action.js';
 import { KOMStorageModule } from '../_shared/KOMStorageModule/main.js';
 import { KOMDeckStorage } from '../_shared/KOMDeck/storage.js';
 import { KOMCardStorage } from '../_shared/KOMCard/storage.js';
