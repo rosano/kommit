@@ -96,14 +96,18 @@ describe('KOMCardActionRead', function testKOMCardActionRead() {
 
 describe('KOMCardActionUpdate', function testKOMCardActionUpdate() {
 
-	it('rejects if not object', async function() {
-		await rejects(mainModule.KOMCardActionUpdate(KOMTestingStorageClient, null), /KOMErrorInputNotValid/);
+	it('rejects if param1 not object', async function() {
+		await rejects(mainModule.KOMCardActionUpdate(KOMTestingStorageClient, null, kTesting.StubDeckObjectValid()), /KOMErrorInputNotValid/);
 	});
 
-	it('returns object with KOMErrors if not valid', async function() {
+	it('rejects if param2 not valid', async function() {
+		await rejects(mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), {}), /KOMErrorInputNotValid/);
+	});
+
+	it('returns object with KOMErrors if param1 not valid', async function() {
 		deepEqual((await mainModule.KOMCardActionUpdate(KOMTestingStorageClient, Object.assign(await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObjectValid()), {
 			KOMCardID: null,
-		}))).KOMErrors, {
+		}), kTesting.StubDeckObjectValid())).KOMErrors, {
 			KOMCardID: [
 				'KOMErrorNotString',
 			],
@@ -113,7 +117,7 @@ describe('KOMCardActionUpdate', function testKOMCardActionUpdate() {
 	it('returns KOMCard', async function() {
 		let itemCreated = await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObjectValid());
 
-		let item = await mainModule.KOMCardActionUpdate(KOMTestingStorageClient, itemCreated);
+		let item = await mainModule.KOMCardActionUpdate(KOMTestingStorageClient, itemCreated, kTesting.StubDeckObjectValid());
 
 		deepEqual(item, Object.assign(itemCreated, {
 			KOMCardModificationDate: item.KOMCardModificationDate,
@@ -121,14 +125,14 @@ describe('KOMCardActionUpdate', function testKOMCardActionUpdate() {
 	});
 
 	it('sets KOMCardModificationDate to now', async function() {
-		deepEqual(new Date() - (await mainModule.KOMCardActionUpdate(KOMTestingStorageClient, await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObjectValid()))).KOMCardModificationDate < 100, true);
+		deepEqual(new Date() - (await mainModule.KOMCardActionUpdate(KOMTestingStorageClient, await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObjectValid()), kTesting.StubDeckObjectValid())).KOMCardModificationDate < 100, true);
 	});
 
 	it('writes inputData if not found', async function() {
 		let item = await mainModule.KOMCardActionUpdate(KOMTestingStorageClient, Object.assign(kTesting.StubCardObject(), {
 			KOMCardID: 'alfa',
 			KOMCardCreationDate: new Date(),
-		}));
+		}), kTesting.StubDeckObjectValid());
 		deepEqual(item, Object.assign(kTesting.StubCardObject(), {
 			KOMCardID: item.KOMCardID,
 			KOMCardCreationDate: item.KOMCardCreationDate,

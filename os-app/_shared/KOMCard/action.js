@@ -2,7 +2,7 @@ import { factory, detectPrng } from 'ulid';
 const uniqueID = typeof require === 'undefined' && navigator.appName === 'Zombie' ? factory(detectPrng(true)) : factory();
 
 import KOMCardMetal from './metal.js';
-import { KOMDeckModelErrorsFor, KOMDeckModelPostJSONParse } from '../KOMDeck/model.js';
+import { KOMDeckModelErrorsFor } from '../KOMDeck/model.js';
 
 const mod = {
 
@@ -28,12 +28,16 @@ const mod = {
 		return await KOMCardMetal.KOMCardMetalRead(storageClient, inputData);
 	},
 
-	 async KOMCardActionUpdate (storageClient, inputData) {
-		if (typeof inputData !== 'object' || inputData === null) {
+	 async KOMCardActionUpdate (storageClient, param1, param2) {
+		if (typeof param1 !== 'object' || param1 === null) {
 			return Promise.reject(new Error('KOMErrorInputNotValid'));
 		}
 
-		return await KOMCardMetal.KOMCardMetalWrite(storageClient, Object.assign(inputData, {
+		if (KOMDeckModelErrorsFor(param2)) {
+			return Promise.reject(new Error('KOMErrorInputNotValid'));
+		}
+
+		return await KOMCardMetal.KOMCardMetalWrite(storageClient, Object.assign(param1, {
 			KOMCardModificationDate: new Date(),
 		}));
 	},
