@@ -70,6 +70,32 @@ const mod = {
 		mod._ValueStorageWidgetHidden = !mod._ValueStorageWidgetHidden;
 	},
 
+	OLSKChangeDelegateCreateDeck (inputData) {
+		mod.ValueDecksAll(mod._ValueDecksAll.filter(function (e) {
+			return e.KOMDeckID !== inputData.KOMDeckID; // @Hotfix Dropbox sending DelegateAdd
+		}).concat(inputData));
+	},
+
+	OLSKChangeDelegateUpdateDeck (inputData) {
+		if (mod._ValueDeckSelected && (mod._ValueDeckSelected.KOMDeckID === inputData.KOMDeckID)) {
+			mod.ControlDeckSelect(Object.assign(mod._ValueDeckSelected, inputData));
+		}
+
+		mod.ValueDecksAll(mod._ValueDecksAll.map(function (e) {
+			return Object.assign(e, e.KOMDeckID === inputData.KOMDeckID ? inputData : {});
+		}), false);
+	},
+
+	OLSKChangeDelegateDeleteDeck (inputData) {
+		if (mod._ValueDeckSelected && (mod._ValueDeckSelected.KOMDeckID === inputData.KOMDeckID)) {
+			mod.ControlDeckSelect(null);
+		}
+
+		mod.ValueDecksAll(mod._ValueDecksAll.filter(function (e) {
+			return e.KOMDeckID !== inputData.KOMDeckID;
+		}), false);
+	},
+
 	// CONTROL
 
 	async ControlDeckSave(inputData) {
@@ -115,43 +141,15 @@ const mod = {
 
 	SetupStorageClient() {
 		const storageModule = KOMStorageModule([
-			KOMDeckStorage,
+			Object.assign(KOMDeckStorage, {
+				KOMStorageChangeDelegate: {
+					OLSKChangeDelegateCreate: mod.OLSKChangeDelegateCreateDeck,
+					OLSKChangeDelegateUpdate: mod.OLSKChangeDelegateUpdateDeck,
+					OLSKChangeDelegateDelete: mod.OLSKChangeDelegateDeleteDeck,
+				},
+			}),
 			KOMCardStorage,
-			].map(function (e) {
-				return Object.assign(e, e === KOMDeckStorage ? {
-					KOMStorageChangeDelegate: {
-						OLSKChangeDelegateCreate (inputData) {
-							// console.log('OLSKChangeDelegateCreate', inputData);
-
-							mod.ValueDecksAll(mod._ValueDecksAll.filter(function (e) {
-								return e.KOMDeckID !== inputData.KOMDeckID; // @Hotfix Dropbox sending DelegateAdd
-							}).concat(inputData));
-						},
-						OLSKChangeDelegateUpdate (inputData) {
-							// console.log('OLSKChangeDelegateUpdate', inputData);
-
-							if (mod._ValueDeckSelected && (mod._ValueDeckSelected.KOMDeckID === inputData.KOMDeckID)) {
-								mod.ControlDeckSelect(Object.assign(mod._ValueDeckSelected, inputData));
-							}
-
-							mod.ValueDecksAll(mod._ValueDecksAll.map(function (e) {
-								return Object.assign(e, e.KOMDeckID === inputData.KOMDeckID ? inputData : {});
-							}), false);
-						},
-						OLSKChangeDelegateDelete (inputData) {
-							// console.log('OLSKChangeDelegateDelete', inputData);
-
-							if (mod._ValueDeckSelected && (mod._ValueDeckSelected.KOMDeckID === inputData.KOMDeckID)) {
-								mod.ControlDeckSelect(null);
-							}
-
-							mod.ValueDecksAll(mod._ValueDecksAll.filter(function (e) {
-								return e.KOMDeckID !== inputData.KOMDeckID;
-							}), false);
-						},
-					},
-				} : {});
-		});
+			]);
 		
 		mod._ValueStorageClient = new RemoteStorage({ modules: [ storageModule ] });
 
