@@ -3,7 +3,7 @@ const { throws, deepEqual } = require('assert');
 const mainModule = require('./model.js');
 
 const kTesting = {
-	StubDocumentObjectValid: function() {
+	StubDocumentObjectValid() {
 		return {
 			KOMCardID: 'alfa',
 			KOMCardQuestion: '',

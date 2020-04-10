@@ -3,18 +3,18 @@ const { rejects, deepEqual } = require('assert');
 const mainModule = require('./action.js').default;
 
 const kTesting = {
-	StubDocumentObject: function() {
+	StubDocumentObject() {
 		return {
 			KOMCardQuestion: 'alfa',
 			KOMCardAnswer: 'bravo',
 		};
 	},
-	uSerial: function (inputData) {
+	uSerial (inputData) {
 		return inputData.reduce(async function (coll, e) {
 			return e.then(Array.prototype.concat.bind(await coll));
 		}, Promise.resolve([]));
 	},
-	uSleep: function (inputData) {
+	uSleep (inputData) {
 		let endTime = new Date().getTime();
 		while (new Date().getTime() < endTime + inputData) {}
 	},

@@ -3,7 +3,7 @@ const { rejects, deepEqual } = require('assert');
 const mainModule = require('./metal.js').default;
 
 const kTesting = {
-	StubDocumentObjectValid: function() {
+	StubDocumentObjectValid() {
 		return {
 			KOMCardID: 'alfa',
 			KOMCardQuestion: 'bravo',
