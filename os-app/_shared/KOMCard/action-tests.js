@@ -3,10 +3,15 @@ const { rejects, deepEqual } = require('assert');
 const mainModule = require('./action.js').default;
 
 const kTesting = {
+	StubDeckObject() {
+		return {
+			KOMDeckName: 'alfa',
+		};
+	},
 	StubCardObject() {
 		return {
-			KOMCardQuestion: 'alfa',
-			KOMCardAnswer: 'bravo',
+			KOMCardQuestion: 'bravo',
+			KOMCardAnswer: 'charlie',
 		};
 	},
 	uSerial (inputData) {
@@ -22,14 +27,18 @@ const kTesting = {
 
 describe('KOMCardActionCreate', function testKOMCardActionCreate() {
 
-	it('rejects if not object', async function() {
-		await rejects(mainModule.KOMCardActionCreate(KOMTestingStorageClient, null), /KOMErrorInputNotValid/);
+	it('rejects if param1 not object', async function() {
+		await rejects(mainModule.KOMCardActionCreate(KOMTestingStorageClient, null, kTesting.StubDeckObject()), /KOMErrorInputNotValid/);
 	});
 
-	it('returns object with KOMErrors if not valid', async function() {
+	it('rejects if param2 not valid', async function() {
+		await rejects(mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), {}), /KOMErrorInputNotValid/);
+	});
+
+	it('returns object with KOMErrors if param1 not valid', async function() {
 		deepEqual((await mainModule.KOMCardActionCreate(KOMTestingStorageClient, Object.assign(kTesting.StubCardObject(), {
 			KOMCardQuestion: null,
-		}))).KOMErrors, {
+		}), kTesting.StubDeckObject())).KOMErrors, {
 			KOMCardQuestion: [
 				'KOMErrorNotString',
 			],
@@ -37,7 +46,7 @@ describe('KOMCardActionCreate', function testKOMCardActionCreate() {
 	});
 
 	it('returns KOMCard', async function() {
-		let item = await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject());
+		let item = await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObject());
 
 		deepEqual(item, Object.assign(kTesting.StubCardObject(), {
 			KOMCardID: item.KOMCardID,
@@ -49,17 +58,17 @@ describe('KOMCardActionCreate', function testKOMCardActionCreate() {
 
 	it('sets KOMCardID to unique value', async function() {
 		let items = await kTesting.uSerial(Array.from(Array(10)).map(async function (e) {
-			return (await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject())).KOMCardID;
+			return (await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObject())).KOMCardID;
 		}));
 		deepEqual([...(new Set(items))], items);
 	});
 
 	it('sets KOMCardCreationDate to now', async function() {
-		deepEqual(new Date() - (await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject())).KOMCardCreationDate < 100, true);
+		deepEqual(new Date() - (await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObject())).KOMCardCreationDate < 100, true);
 	});
 
 	it('sets KOMCardModificationDate to now', async function() {
-		deepEqual(new Date() - (await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject())).KOMCardModificationDate < 100, true);
+		deepEqual(new Date() - (await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObject())).KOMCardModificationDate < 100, true);
 	});
 
 });
@@ -75,7 +84,7 @@ describe('KOMCardActionRead', function testKOMCardActionRead() {
 	});
 
 	it('returns KOMCard', async function() {
-		let item = await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject());
+		let item = await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObject());
 
 		deepEqual(item, await mainModule.KOMCardActionRead(KOMTestingStorageClient, item.KOMCardID));
 	});
@@ -89,7 +98,7 @@ describe('KOMCardActionUpdate', function testKOMCardActionUpdate() {
 	});
 
 	it('returns object with KOMErrors if not valid', async function() {
-		deepEqual((await mainModule.KOMCardActionUpdate(KOMTestingStorageClient, Object.assign(await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject()), {
+		deepEqual((await mainModule.KOMCardActionUpdate(KOMTestingStorageClient, Object.assign(await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObject()), {
 			KOMCardID: null,
 		}))).KOMErrors, {
 			KOMCardID: [
@@ -99,7 +108,7 @@ describe('KOMCardActionUpdate', function testKOMCardActionUpdate() {
 	});
 
 	it('returns KOMCard', async function() {
-		let itemCreated = await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject());
+		let itemCreated = await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObject());
 
 		let item = await mainModule.KOMCardActionUpdate(KOMTestingStorageClient, itemCreated);
 
@@ -109,7 +118,7 @@ describe('KOMCardActionUpdate', function testKOMCardActionUpdate() {
 	});
 
 	it('sets KOMCardModificationDate to now', async function() {
-		deepEqual(new Date() - (await mainModule.KOMCardActionUpdate(KOMTestingStorageClient, await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject()))).KOMCardModificationDate < 100, true);
+		deepEqual(new Date() - (await mainModule.KOMCardActionUpdate(KOMTestingStorageClient, await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObject()))).KOMCardModificationDate < 100, true);
 	});
 
 	it('writes inputData if not found', async function() {
@@ -134,14 +143,14 @@ describe('KOMCardActionDelete', function testKOMCardActionDelete() {
 	});
 
 	it('returns statusCode', async function() {
-		deepEqual(await mainModule.KOMCardActionDelete(KOMTestingStorageClient, (await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject())).KOMCardID), {
+		deepEqual(await mainModule.KOMCardActionDelete(KOMTestingStorageClient, (await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObject())).KOMCardID), {
 			statusCode: 200,
 		});
 	});
 
 	it('deletes KOMCard', async function() {
 		let itemID;
-		await mainModule.KOMCardActionDelete(KOMTestingStorageClient, itemID = (await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject())).KOMCardID);
+		await mainModule.KOMCardActionDelete(KOMTestingStorageClient, itemID = (await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObject())).KOMCardID);
 		deepEqual(await mainModule.KOMCardActionRead(KOMTestingStorageClient, itemID), null);
 	});
 
@@ -154,7 +163,7 @@ describe('KOMCardActionList', function testKOMCardActionList() {
 	});
 
 	it('returns array with existing KOMCards', async function() {
-		let item = await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject());
+		let item = await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObject());
 
 		deepEqual(await mainModule.KOMCardActionList(KOMTestingStorageClient), [item]);
 	});
