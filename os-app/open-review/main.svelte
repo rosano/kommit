@@ -8,9 +8,9 @@ import OLSKThrottle from 'OLSKThrottle';
 import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting'
 import * as OLSKRemoteStorage from '../_shared/__external/OLSKRemoteStorage/main.js'
 import KOMDeckAction from '../_shared/KOMDeck/action.js';
-import { KOMStorageModule } from '../_shared/KOMStorageModule/main.js';
-import { KOMDeckStorage } from '../_shared/KOMDeck/storage.js';
-import { KOMCardStorage } from '../_shared/KOMCard/storage.js';
+import KOMStorageModule from '../_shared/KOMStorageModule/main.js';
+import KOMDeckStorage from '../_shared/KOMDeck/storage.js';
+import KOMCardStorage from '../_shared/KOMCard/storage.js';
 import * as RemoteStoragePackage from 'remotestoragejs';
 const RemoteStorage = RemoteStoragePackage.default || RemoteStoragePackage;
 
@@ -140,15 +140,15 @@ const mod = {
 	},
 
 	SetupStorageClient() {
-		const storageModule = KOMStorageModule([
-			Object.assign(KOMDeckStorage, {
+		const storageModule = KOMStorageModule.KOMStorageModuleInit([
+			Object.assign(KOMDeckStorage.KOMDeckStorageBuild, {
 				KOMStorageChangeDelegate: {
 					OLSKChangeDelegateCreate: mod.OLSKChangeDelegateCreateDeck,
 					OLSKChangeDelegateUpdate: mod.OLSKChangeDelegateUpdateDeck,
 					OLSKChangeDelegateDelete: mod.OLSKChangeDelegateDeleteDeck,
 				},
 			}),
-			KOMCardStorage,
+			KOMCardStorage.KOMCardStorageBuild,
 			]);
 		
 		mod._ValueStorageClient = new RemoteStorage({ modules: [ storageModule ] });

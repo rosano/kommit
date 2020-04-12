@@ -17,7 +17,7 @@ const mod = {
 		return `${ mod.KOMDeckStorageFolderPath() }${ inputData }`;
 	},
 
-	KOMDeckStorage (privateClient, publicClient, changeDelegate) {
+	KOMDeckStorageBuild (privateClient, publicClient, changeDelegate) {
 		return {
 			KOMStorageCollection: kCollection,
 			KOMStorageType: kType,

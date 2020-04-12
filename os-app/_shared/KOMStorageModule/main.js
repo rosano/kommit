@@ -2,23 +2,29 @@ import * as OLSKRemoteStorage from 'OLSKRemoteStorage';
 
 const kModuleName = 'kommit';
 
-export const KOMStorageModule = function (inputData) {
-	return {
-		name: kModuleName,
-		builder (privateClient, publicClient) {
-			privateClient.cache(`${ kModuleName }/`);
+const mod = {
 
-			return {
-				exports: inputData.reduce(function (coll, item) {
-					let storage = item(privateClient, publicClient, item.KOMStorageChangeDelegate);
+	KOMStorageModuleInit (inputData) {
+		return {
+			name: kModuleName,
+			builder (privateClient, publicClient) {
+				privateClient.cache(`${ kModuleName }/`);
 
-					privateClient.declareType(storage.KOMStorageType, OLSKRemoteStorage.OLSKRemoteStorageJSONSchema(storage.KOMStorageModelErrors));
+				return {
+					exports: inputData.reduce(function (coll, item) {
+						let storage = item(privateClient, publicClient, item.KOMStorageChangeDelegate);
 
-					coll[storage.KOMStorageCollection] = storage.KOMStorageExports;
+						privateClient.declareType(storage.KOMStorageType, OLSKRemoteStorage.OLSKRemoteStorageJSONSchema(storage.KOMStorageModelErrors));
 
-					return coll;
-				}, {}),
-			};
-		},
-	};
+						coll[storage.KOMStorageCollection] = storage.KOMStorageExports;
+
+						return coll;
+					}, {}),
+				};
+			},
+		};
+	},
+
 };
+
+export default mod;

@@ -1,8 +1,8 @@
 const RemoteStorage = require('remotestoragejs');
 
-const KOMStorageModule = require('./os-app/_shared/KOMStorageModule/main.js');
+const KOMStorageModule = require('./os-app/_shared/KOMStorageModule/main.js').default;
 const KOMDeckStorage = require('./os-app/_shared/KOMDeck/storage.js').default;
-const KOMCardStorage = require('./os-app/_shared/KOMCard/storage.js');
+const KOMCardStorage = require('./os-app/_shared/KOMCard/storage.js').default;
 
 (function KOMMochaStorage() {
 	if (process.env.OLSK_TESTING_BEHAVIOUR === 'true') {
@@ -15,9 +15,9 @@ const KOMCardStorage = require('./os-app/_shared/KOMCard/storage.js');
 		}, Promise.resolve([]));
 	};
 
-	const storageModule = KOMStorageModule.KOMStorageModule([
-		KOMDeckStorage.KOMDeckStorage,
-		KOMCardStorage.KOMCardStorage,
+	const storageModule = KOMStorageModule.KOMStorageModuleInit([
+		KOMDeckStorage.KOMDeckStorageBuild,
+		KOMCardStorage.KOMCardStorageBuild,
 	]);
 
 	before(function() {
