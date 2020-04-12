@@ -74,28 +74,28 @@ const mod = {
 		window.Launchlet.LCHSingletonCreate({
 			LCHOptionRecipes: [
 				{
-					LCHRecipeName: 'TestOLSKChangeDelegateCreateDeck',
+					LCHRecipeName: 'FakeOLSKChangeDelegateCreateDeck',
 					async LCHRecipeCallback () {
 						return mod.OLSKChangeDelegateCreateDeck(await KOMDeckAction.KOMDeckActionCreate(mod._ValueStorageClient, {
-							KOMDeckName: 'TestOLSKChangeDelegateCreateDeck',
+							KOMDeckName: 'FakeOLSKChangeDelegateCreateDeck',
 						}));
 					},
 				},
 				{
-					LCHRecipeName: 'TestOLSKChangeDelegateUpdateDeck',
+					LCHRecipeName: 'FakeOLSKChangeDelegateUpdateDeck',
 					async LCHRecipeCallback () {
 						return mod.OLSKChangeDelegateUpdateDeck(Object.assign(mod._ValueDecksAll.filter(function (e) {
-							return e.KOMDeckName === 'TestOLSKChangeDelegateCreateDeck';
+							return e.KOMDeckName === 'FakeOLSKChangeDelegateCreateDeck';
 						}).pop(), {
-							KOMDeckName: 'TestOLSKChangeDelegateUpdateDeck',
+							KOMDeckName: 'FakeOLSKChangeDelegateUpdateDeck',
 						}));
 					},
 				},
 				{
-					LCHRecipeName: 'TestOLSKChangeDelegateDeleteDeck',
+					LCHRecipeName: 'FakeOLSKChangeDelegateDeleteDeck',
 					async LCHRecipeCallback () {
 						return mod.OLSKChangeDelegateDeleteDeck(mod._ValueDecksAll.filter(function (e) {
-							return e.KOMDeckName === 'TestOLSKChangeDelegateCreateDeck';
+							return e.KOMDeckName === 'FakeOLSKChangeDelegateCreateDeck';
 						}).pop());
 					},
 				},

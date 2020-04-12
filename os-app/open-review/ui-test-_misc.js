@@ -95,7 +95,7 @@ describe('KOMReview_Misc', function () {
 		});
 
 		before(function () {
-			return browser.fill('.LCHLauncherFilterInput', 'TestOLSKChangeDelegateCreateDeck');
+			return browser.fill('.LCHLauncherFilterInput', 'FakeOLSKChangeDelegateCreateDeck');
 		});
 
 		before(function() {
@@ -103,7 +103,7 @@ describe('KOMReview_Misc', function () {
 		});
 
 		it('adds deck', function () {
-			browser.assert.text('.KOMReviewMasterListItem:nth-child(2)', 'TestOLSKChangeDelegateCreateDeck');
+			browser.assert.text('.KOMReviewMasterListItem:nth-child(2)', 'FakeOLSKChangeDelegateCreateDeck');
 		});
 
 	});
@@ -115,7 +115,7 @@ describe('KOMReview_Misc', function () {
 		});
 
 		before(function () {
-			return browser.fill('.LCHLauncherFilterInput', 'TestOLSKChangeDelegateUpdateDeck');
+			return browser.fill('.LCHLauncherFilterInput', 'FakeOLSKChangeDelegateUpdateDeck');
 		});
 
 		before(function() {
@@ -123,7 +123,7 @@ describe('KOMReview_Misc', function () {
 		});
 
 		it('adds deck', function () {
-			browser.assert.text('.KOMReviewMasterListItem:nth-child(2)', 'TestOLSKChangeDelegateUpdateDeck');
+			browser.assert.text('.KOMReviewMasterListItem:nth-child(2)', 'FakeOLSKChangeDelegateUpdateDeck');
 		});
 
 	});
@@ -135,7 +135,7 @@ describe('KOMReview_Misc', function () {
 		});
 
 		before(function () {
-			return browser.fill('.LCHLauncherFilterInput', 'TestOLSKChangeDelegateDeleteDeck');
+			return browser.fill('.LCHLauncherFilterInput', 'FakeOLSKChangeDelegateDeleteDeck');
 		});
 
 		before(function() {
