@@ -1,4 +1,4 @@
-import { KOMCardModelErrorsFor, KOMCardModelPostJSONParse } from './model.js';
+import KOMCardModel from './model.js';
 
 const mod = {
 
@@ -7,7 +7,7 @@ const mod = {
 			return Promise.reject(new Error('KOMErrorInputNotValid'));
 		}
 
-		let errors = KOMCardModelErrorsFor(inputData);
+		let errors = KOMCardModel.KOMCardModelErrorsFor(inputData);
 		if (errors) {
 			return Promise.resolve({
 				KOMErrors: errors,
@@ -22,14 +22,14 @@ const mod = {
 			return Promise.reject(new Error('KOMErrorInputNotValid'));
 		}
 
-		return KOMCardModelPostJSONParse(await storageClient.kommit.kom_cards.KOMStorageRead(inputData));
+		return KOMCardModel.KOMCardModelPostJSONParse(await storageClient.kommit.kom_cards.KOMStorageRead(inputData));
 	},
 
 	async KOMCardMetalList (storageClient) {
 		let outputData = await storageClient.kommit.kom_cards.KOMStorageList();
 
 		for (let key in outputData) {
-			KOMCardModelPostJSONParse(outputData[key]);
+			KOMCardModel.KOMCardModelPostJSONParse(outputData[key]);
 		}
 		
 		return outputData;

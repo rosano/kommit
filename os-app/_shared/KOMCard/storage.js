@@ -1,4 +1,4 @@
-import * as KOMCardModel from './model.js';
+import KOMCardModel from './model.js';
 
 const kType = 'kom_card';
 const kCollection = 'kom_cards';
