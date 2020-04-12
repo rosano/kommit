@@ -1,65 +1,79 @@
-export const KOMDeckModelErrorsFor = function(inputData, options = {}) {
-	if (typeof inputData !== 'object' || inputData === null) {
-		throw new Error('KOMErrorInputNotValid');
-	}
+const mod = {
 
-	var errors = {};
+	KOMDeckModelErrorsFor (inputData, options = {}) {
+		if (typeof inputData !== 'object' || inputData === null) {
+			throw new Error('KOMErrorInputNotValid');
+		}
 
-	if (typeof inputData.KOMDeckID !== 'string') {
-		errors.KOMDeckID = [
-			'KOMErrorNotString',
-		];
-	} else if (inputData.KOMDeckID.trim() === '') {
-		errors.KOMDeckID = [
-			'KOMErrorNotFilled',
-		];
-	}
+		var errors = {};
 
-	if (typeof inputData.KOMDeckName !== 'string') {
-		errors.KOMDeckName = [
-			'KOMErrorNotString',
-		];
-	}
+		if (typeof inputData.KOMDeckID !== 'string') {
+			errors.KOMDeckID = [
+				'KOMErrorNotString',
+			];
+		} else if (inputData.KOMDeckID.trim() === '') {
+			errors.KOMDeckID = [
+				'KOMErrorNotFilled',
+			];
+		}
 
-	if (!(inputData.KOMDeckCreationDate instanceof Date) || Number.isNaN(inputData.KOMDeckCreationDate.getTime())) {
-		errors.KOMDeckCreationDate = [
-			'KOMErrorNotDate',
-		];
-	}
+		if (typeof inputData.KOMDeckName !== 'string') {
+			errors.KOMDeckName = [
+				'KOMErrorNotString',
+			];
+		}
 
-	if (!(inputData.KOMDeckModificationDate instanceof Date) || Number.isNaN(inputData.KOMDeckModificationDate.getTime())) {
-		errors.KOMDeckModificationDate = [
-			'KOMErrorNotDate',
-		];
-	}
+		if (!(inputData.KOMDeckCreationDate instanceof Date) || Number.isNaN(inputData.KOMDeckCreationDate.getTime())) {
+			errors.KOMDeckCreationDate = [
+				'KOMErrorNotDate',
+			];
+		}
 
-	return Object.entries(errors).length ? errors : null;
-};
+		if (!(inputData.KOMDeckModificationDate instanceof Date) || Number.isNaN(inputData.KOMDeckModificationDate.getTime())) {
+			errors.KOMDeckModificationDate = [
+				'KOMErrorNotDate',
+			];
+		}
 
-export const KOMDeckModelPreJSONSchemaValidate = function(inputData) {
-	if (inputData.KOMDeckCreationDate) {
-		inputData.KOMDeckCreationDate = inputData.KOMDeckCreationDate.toISOString();
-	}
+		if (inputData.KOMDeckHint !== undefined || options.KOMOptionValidateIfNotPresent) {
+			if (typeof inputData.KOMDeckHint !== 'string') {
+				errors.KOMDeckHint = [
+					'KOMErrorNotString',
+				];
+			}
+		}
 
-	if (inputData.KOMDeckModificationDate) {
-		inputData.KOMDeckModificationDate = inputData.KOMDeckModificationDate.toISOString();
-	}
+		return Object.entries(errors).length ? errors : null;
+	},
 
-	return inputData;
-};
+	KOMDeckModelPreJSONSchemaValidate (inputData) {
+		if (inputData.KOMDeckCreationDate) {
+			inputData.KOMDeckCreationDate = inputData.KOMDeckCreationDate.toISOString();
+		}
 
-export const KOMDeckModelPostJSONParse = function(inputData) {
-	if (!inputData) {
+		if (inputData.KOMDeckModificationDate) {
+			inputData.KOMDeckModificationDate = inputData.KOMDeckModificationDate.toISOString();
+		}
+
 		return inputData;
-	}
+	},
 
-	if (inputData.KOMDeckCreationDate) {
-		inputData.KOMDeckCreationDate = new Date(inputData.KOMDeckCreationDate);
-	}
+	KOMDeckModelPostJSONParse (inputData) {
+		if (!inputData) {
+			return inputData;
+		}
 
-	if (inputData.KOMDeckModificationDate) {
-		inputData.KOMDeckModificationDate = new Date(inputData.KOMDeckModificationDate);
-	}
+		if (inputData.KOMDeckCreationDate) {
+			inputData.KOMDeckCreationDate = new Date(inputData.KOMDeckCreationDate);
+		}
 
-	return inputData;
+		if (inputData.KOMDeckModificationDate) {
+			inputData.KOMDeckModificationDate = new Date(inputData.KOMDeckModificationDate);
+		}
+
+		return inputData;
+	},
+
 };
+
+export default mod;

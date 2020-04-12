@@ -2,7 +2,7 @@ import { factory, detectPrng } from 'ulid';
 const uniqueID = typeof require === 'undefined' && navigator.appName === 'Zombie' ? factory(detectPrng(true)) : factory();
 
 import KOMCardMetal from './metal.js';
-import { KOMDeckModelErrorsFor } from '../KOMDeck/model.js';
+import KOMDeckModel from '../KOMDeck/model.js';
 
 const mod = {
 
@@ -11,7 +11,7 @@ const mod = {
 			return Promise.reject(new Error('KOMErrorInputNotValid'));
 		}
 
-		if (KOMDeckModelErrorsFor(param2)) {
+		if (KOMDeckModel.KOMDeckModelErrorsFor(param2)) {
 			return Promise.reject(new Error('KOMErrorInputNotValid'));
 		}
 
@@ -33,7 +33,7 @@ const mod = {
 			return Promise.reject(new Error('KOMErrorInputNotValid'));
 		}
 
-		if (KOMDeckModelErrorsFor(param2)) {
+		if (KOMDeckModel.KOMDeckModelErrorsFor(param2)) {
 			return Promise.reject(new Error('KOMErrorInputNotValid'));
 		}
 

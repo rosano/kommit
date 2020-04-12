@@ -1,4 +1,4 @@
-import * as KOMDeckModel from './model.js';
+import KOMDeckModel from './model.js';
 
 const kType = 'kom_deck';
 const kCollection = 'kom_decks';
