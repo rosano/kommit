@@ -88,4 +88,64 @@ describe('KOMReview_Misc', function () {
 
 	});
 
+	describe('OLSKChangeDelegateCreateDeck', function test_OLSKChangeDelegateCreateDeck () {
+
+		before(function () {
+			return browser.pressButton('.OLSKAppToolbarLauncherButton');
+		});
+
+		before(function () {
+			return browser.fill('.LCHLauncherFilterInput', 'TestOLSKChangeDelegateCreateDeck');
+		});
+
+		before(function() {
+			browser.click('.LCHLauncherResultListItem');
+		});
+
+		it('adds deck', function () {
+			browser.assert.text('.KOMReviewMasterListItem:nth-child(2)', 'TestOLSKChangeDelegateCreateDeck');
+		});
+
+	});
+
+	describe('OLSKChangeDelegateUpdateDeck', function test_OLSKChangeDelegateUpdateDeck () {
+
+		before(function () {
+			return browser.pressButton('.OLSKAppToolbarLauncherButton');
+		});
+
+		before(function () {
+			return browser.fill('.LCHLauncherFilterInput', 'TestOLSKChangeDelegateUpdateDeck');
+		});
+
+		before(function() {
+			browser.click('.LCHLauncherResultListItem');
+		});
+
+		it('adds deck', function () {
+			browser.assert.text('.KOMReviewMasterListItem:nth-child(2)', 'TestOLSKChangeDelegateUpdateDeck');
+		});
+
+	});
+
+	describe('OLSKChangeDelegateDeleteDeck', function test_OLSKChangeDelegateDeleteDeck () {
+
+		before(function () {
+			return browser.pressButton('.OLSKAppToolbarLauncherButton');
+		});
+
+		before(function () {
+			return browser.fill('.LCHLauncherFilterInput', 'TestOLSKChangeDelegateDeleteDeck');
+		});
+
+		before(function() {
+			browser.click('.LCHLauncherResultListItem');
+		});
+
+		it('adds deck', function () {
+			browser.assert.elements('.KOMReviewMasterListItem', 2);
+		});
+
+	});
+
 });

@@ -71,7 +71,36 @@ const mod = {
 	},
 
 	OLSKAppToolbarDispatchLauncher () {
-		window.Launchlet.LCHSingletonCreate();
+		window.Launchlet.LCHSingletonCreate({
+			LCHOptionRecipes: [
+				{
+					LCHRecipeName: 'TestOLSKChangeDelegateCreateDeck',
+					async LCHRecipeCallback () {
+						return mod.OLSKChangeDelegateCreateDeck(await KOMDeckAction.KOMDeckActionCreate(mod._ValueStorageClient, {
+							KOMDeckName: 'TestOLSKChangeDelegateCreateDeck',
+						}));
+					},
+				},
+				{
+					LCHRecipeName: 'TestOLSKChangeDelegateUpdateDeck',
+					async LCHRecipeCallback () {
+						return mod.OLSKChangeDelegateUpdateDeck(Object.assign(mod._ValueDecksAll.filter(function (e) {
+							return e.KOMDeckName === 'TestOLSKChangeDelegateCreateDeck';
+						}).pop(), {
+							KOMDeckName: 'TestOLSKChangeDelegateUpdateDeck',
+						}));
+					},
+				},
+				{
+					LCHRecipeName: 'TestOLSKChangeDelegateDeleteDeck',
+					async LCHRecipeCallback () {
+						return mod.OLSKChangeDelegateDeleteDeck(mod._ValueDecksAll.filter(function (e) {
+							return e.KOMDeckName === 'TestOLSKChangeDelegateCreateDeck';
+						}).pop());
+					},
+				},
+			],
+		});
 	},
 
 	OLSKChangeDelegateCreateDeck (inputData) {
