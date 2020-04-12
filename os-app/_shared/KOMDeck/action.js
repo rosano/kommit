@@ -4,7 +4,7 @@ const uniqueID = typeof require === 'undefined' && navigator.appName === 'Zombie
 
 const mod = {
 
-	 async KOMDeckActionCreate (storageClient, inputData) {
+	async KOMDeckActionCreate (storageClient, inputData) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			return Promise.reject(new Error('KOMErrorInputNotValid'));
 		}
@@ -18,11 +18,11 @@ const mod = {
 		}));
 	},
 
-	 async KOMDeckActionRead (storageClient, inputData) {
+	async KOMDeckActionRead (storageClient, inputData) {
 		return await KOMDeckMetal.KOMDeckMetalRead(storageClient, inputData);
 	},
 
-	 async KOMDeckActionUpdate (storageClient, inputData) {
+	async KOMDeckActionUpdate (storageClient, inputData) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			return Promise.reject(new Error('KOMErrorInputNotValid'));
 		}
@@ -32,11 +32,11 @@ const mod = {
 		}));
 	},
 
-	 async KOMDeckActionDelete (storageClient, inputData) {
+	async KOMDeckActionDelete (storageClient, inputData) {
 		return await KOMDeckMetal.KOMDeckMetalDelete(storageClient, inputData);
 	},
 
-	 async KOMDeckActionList (storageClient) {
+	async KOMDeckActionList (storageClient) {
 		return Object.values(await KOMDeckMetal.KOMDeckMetalList(storageClient));
 	},
 	
