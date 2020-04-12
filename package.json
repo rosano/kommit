@@ -52,6 +52,9 @@
 
     "// FRONTEND LANGUAGE SWITCHER": null,
     "OLSKLanguageSwitcher": "olsk/OLSKLanguageSwitcher",
+    
+    "// FRONTEND LAUNCHER": null,
+    "launchlet": "latest",
 
     "// FRONTEND ROOT LINK": null,
     "OLSKRootLink": "olsk/OLSKRootLink",

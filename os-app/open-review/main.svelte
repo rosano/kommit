@@ -70,6 +70,10 @@ const mod = {
 		mod._ValueStorageWidgetHidden = !mod._ValueStorageWidgetHidden;
 	},
 
+	OLSKAppToolbarDispatchLauncher () {
+		window.Launchlet.LCHSingletonCreate();
+	},
+
 	OLSKChangeDelegateCreateDeck (inputData) {
 		mod.ValueDecksAll(mod._ValueDecksAll.filter(function (e) {
 			return e.KOMDeckID !== inputData.KOMDeckID; // @Hotfix Dropbox sending DelegateAdd
@@ -274,6 +278,7 @@ import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svel
 	<OLSKAppToolbar
 		OLSKAppToolbarDonateURL={ window.OLSKPublicConstants('KOM_SHARED_DONATE_URL') }
 		OLSKAppToolbarLauncherVisible={ true }
+		OLSKAppToolbarDispatchLauncher={ mod.OLSKAppToolbarDispatchLauncher }
 		OLSKAppToolbarStorageStatus={ mod._ValueFooterStorageStatus }
 		OLSKAppToolbarDispatchStorage={ mod.OLSKAppToolbarDispatchStorage }
 		_OLSKAppToolbarDispatchExport={ mod._OLSKAppToolbarDispatchExport }

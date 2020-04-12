@@ -49,6 +49,7 @@
 		'OLSKRootLink',
 		'ROCORootLink',
 		'OLSKUIAssets',
+		'launchlet',
 
 		// pass tests
 		'OLSKDetailPlaceholder',
