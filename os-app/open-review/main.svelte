@@ -273,6 +273,7 @@ import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svel
 
 	<OLSKAppToolbar
 		OLSKAppToolbarDonateURL={ window.OLSKPublicConstants('KOM_SHARED_DONATE_URL') }
+		OLSKAppToolbarLauncherVisible={ true }
 		OLSKAppToolbarStorageStatus={ mod._ValueFooterStorageStatus }
 		OLSKAppToolbarDispatchStorage={ mod.OLSKAppToolbarDispatchStorage }
 		_OLSKAppToolbarDispatchExport={ mod._OLSKAppToolbarDispatchExport }
