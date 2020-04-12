@@ -4,7 +4,7 @@ const kModuleName = 'kommit';
 
 const mod = {
 
-	KOMStorageModuleInit (inputData) {
+	KOMStorageModule (inputData) {
 		return {
 			name: kModuleName,
 			builder (privateClient, publicClient) {
