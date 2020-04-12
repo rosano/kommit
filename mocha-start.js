@@ -1,7 +1,7 @@
 const RemoteStorage = require('remotestoragejs');
 
 const KOMStorageModule = require('./os-app/_shared/KOMStorageModule/main.js');
-const KOMDeckStorage = require('./os-app/_shared/KOMDeck/storage.js');
+const KOMDeckStorage = require('./os-app/_shared/KOMDeck/storage.js').default;
 const KOMCardStorage = require('./os-app/_shared/KOMCard/storage.js');
 
 (function KOMMochaStorage() {
