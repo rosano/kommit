@@ -14,7 +14,7 @@ const kTesting = {
 	},
 };
 
-describe('KOMCardMetalWrite', function testKOMCardMetalWrite() {
+describe('KOMCardMetalWrite', function test_KOMCardMetalWrite() {
 
 	it('rejects if not object', async function() {
 		await rejects(mainModule.KOMCardMetalWrite(KOMTestingStorageClient, null), /KOMErrorInputNotValid/);
@@ -40,7 +40,7 @@ describe('KOMCardMetalWrite', function testKOMCardMetalWrite() {
 
 });
 
-describe('KOMCardMetalRead', function testKOMCardMetalRead() {
+describe('KOMCardMetalRead', function test_KOMCardMetalRead() {
 
 	it('rejects if not string', async function() {
 		await rejects(mainModule.KOMCardMetalRead(KOMTestingStorageClient, 1), /KOMErrorInputNotValid/);
@@ -58,7 +58,7 @@ describe('KOMCardMetalRead', function testKOMCardMetalRead() {
 
 });
 
-describe('KOMCardMetalList', function testKOMCardMetalList() {
+describe('KOMCardMetalList', function test_KOMCardMetalList() {
 
 	it('returns empty array if none', async function() {
 		deepEqual(await mainModule.KOMCardMetalList(KOMTestingStorageClient), {});
@@ -72,7 +72,7 @@ describe('KOMCardMetalList', function testKOMCardMetalList() {
 
 });
 
-describe('KOMCardMetalDelete', function testKOMCardMetalDelete() {
+describe('KOMCardMetalDelete', function test_KOMCardMetalDelete() {
 
 	it('rejects if not string', async function() {
 		await rejects(mainModule.KOMCardMetalDelete(KOMTestingStorageClient, 1), /KOMErrorInputNotValid/);

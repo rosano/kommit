@@ -14,7 +14,7 @@ const kTesting = {
 	},
 };
 
-describe('KOMCardModelErrorsFor', function testKOMCardModelErrorsFor() {
+describe('KOMCardModelErrorsFor', function test_KOMCardModelErrorsFor() {
 
 	it('throws error if not object', function() {
 		throws(function() {
@@ -108,7 +108,7 @@ describe('KOMCardModelErrorsFor', function testKOMCardModelErrorsFor() {
 
 });
 
-describe('KOMCardModelPreJSONSchemaValidate', function testKOMCardModelPreJSONSchemaValidate() {
+describe('KOMCardModelPreJSONSchemaValidate', function test_KOMCardModelPreJSONSchemaValidate() {
 
 	it('returns input', function() {
 		deepEqual(mainModule.KOMCardModelPreJSONSchemaValidate({}), {});
@@ -132,7 +132,7 @@ describe('KOMCardModelPreJSONSchemaValidate', function testKOMCardModelPreJSONSc
 
 });
 
-describe('KOMCardModelPostJSONParse', function testKOMCardModelPostJSONParse() {
+describe('KOMCardModelPostJSONParse', function test_KOMCardModelPostJSONParse() {
 
 	it('returns input null', function() {
 		deepEqual(mainModule.KOMCardModelPostJSONParse(null), null);

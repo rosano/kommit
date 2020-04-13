@@ -13,7 +13,7 @@ const kTesting = {
 	},
 };
 
-describe('KOMDeckModelErrorsFor', function testKOMDeckModelErrorsFor() {
+describe('KOMDeckModelErrorsFor', function test_KOMDeckModelErrorsFor() {
 
 	it('throws error if not object', function() {
 		throws(function() {
@@ -77,7 +77,7 @@ describe('KOMDeckModelErrorsFor', function testKOMDeckModelErrorsFor() {
 
 });
 
-describe('KOMDeckModelPreJSONSchemaValidate', function testKOMDeckModelPreJSONSchemaValidate() {
+describe('KOMDeckModelPreJSONSchemaValidate', function test_KOMDeckModelPreJSONSchemaValidate() {
 
 	it('returns input', function() {
 		deepEqual(mainModule.KOMDeckModelPreJSONSchemaValidate({}), {});
@@ -101,7 +101,7 @@ describe('KOMDeckModelPreJSONSchemaValidate', function testKOMDeckModelPreJSONSc
 
 });
 
-describe('KOMDeckModelPostJSONParse', function testKOMDeckModelPostJSONParse() {
+describe('KOMDeckModelPostJSONParse', function test_KOMDeckModelPostJSONParse() {
 
 	it('returns input null', function() {
 		deepEqual(mainModule.KOMDeckModelPostJSONParse(null), null);

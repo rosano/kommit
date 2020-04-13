@@ -2,7 +2,7 @@ const { throws, deepEqual } = require('assert');
 
 const mainModule = require('./storage.js').default;
 
-describe('KOMDeckStorageFolderPath', function testKOMDeckStorageFolderPath() {
+describe('KOMDeckStorageFolderPath', function test_KOMDeckStorageFolderPath() {
 
 	it('returns string', function() {
 		deepEqual(mainModule.KOMDeckStorageFolderPath(), 'kom_decks/');
@@ -10,7 +10,7 @@ describe('KOMDeckStorageFolderPath', function testKOMDeckStorageFolderPath() {
 
 });
 
-describe('KOMDeckStorageObjectPath', function testKOMDeckStorageObjectPath() {
+describe('KOMDeckStorageObjectPath', function test_KOMDeckStorageObjectPath() {
 
 	it('throws error if blank', function() {
 		throws(function() {

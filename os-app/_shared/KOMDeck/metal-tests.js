@@ -13,7 +13,7 @@ const kTesting = {
 	},
 };
 
-describe('KOMDeckMetalWrite', function testKOMDeckMetalWrite() {
+describe('KOMDeckMetalWrite', function test_KOMDeckMetalWrite() {
 
 	it('rejects if not object', async function() {
 		await rejects(mainModule.KOMDeckMetalWrite(KOMTestingStorageClient, null), /KOMErrorInputNotValid/);
@@ -39,7 +39,7 @@ describe('KOMDeckMetalWrite', function testKOMDeckMetalWrite() {
 
 });
 
-describe('KOMDeckMetalRead', function testKOMDeckMetalRead() {
+describe('KOMDeckMetalRead', function test_KOMDeckMetalRead() {
 
 	it('rejects if not string', async function() {
 		await rejects(mainModule.KOMDeckMetalRead(KOMTestingStorageClient, 1), /KOMErrorInputNotValid/);
@@ -57,7 +57,7 @@ describe('KOMDeckMetalRead', function testKOMDeckMetalRead() {
 
 });
 
-describe('KOMDeckMetalList', function testKOMDeckMetalList() {
+describe('KOMDeckMetalList', function test_KOMDeckMetalList() {
 
 	it('returns empty array if none', async function() {
 		deepEqual(await mainModule.KOMDeckMetalList(KOMTestingStorageClient), {});
@@ -71,7 +71,7 @@ describe('KOMDeckMetalList', function testKOMDeckMetalList() {
 
 });
 
-describe('KOMDeckMetalDelete', function testKOMDeckMetalDelete() {
+describe('KOMDeckMetalDelete', function test_KOMDeckMetalDelete() {
 
 	it('rejects if not string', async function() {
 		await rejects(mainModule.KOMDeckMetalDelete(KOMTestingStorageClient, 1), /KOMErrorInputNotValid/);

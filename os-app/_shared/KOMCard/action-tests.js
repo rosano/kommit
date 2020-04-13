@@ -28,7 +28,7 @@ const kTesting = {
 	},
 };
 
-describe('KOMCardActionCreate', function testKOMCardActionCreate() {
+describe('KOMCardActionCreate', function test_KOMCardActionCreate() {
 
 	it('rejects if param1 not object', async function() {
 		await rejects(mainModule.KOMCardActionCreate(KOMTestingStorageClient, null, kTesting.StubDeckObjectValid()), /KOMErrorInputNotValid/);
@@ -76,7 +76,7 @@ describe('KOMCardActionCreate', function testKOMCardActionCreate() {
 
 });
 
-describe('KOMCardActionRead', function testKOMCardActionRead() {
+describe('KOMCardActionRead', function test_KOMCardActionRead() {
 
 	it('rejects if not string', async function() {
 		await rejects(mainModule.KOMCardActionRead(KOMTestingStorageClient, null), /KOMErrorInputNotValid/);
@@ -94,7 +94,7 @@ describe('KOMCardActionRead', function testKOMCardActionRead() {
 
 });
 
-describe('KOMCardActionUpdate', function testKOMCardActionUpdate() {
+describe('KOMCardActionUpdate', function test_KOMCardActionUpdate() {
 
 	it('rejects if param1 not object', async function() {
 		await rejects(mainModule.KOMCardActionUpdate(KOMTestingStorageClient, null, kTesting.StubDeckObjectValid()), /KOMErrorInputNotValid/);
@@ -143,7 +143,7 @@ describe('KOMCardActionUpdate', function testKOMCardActionUpdate() {
 
 });
 
-describe('KOMCardActionDelete', function testKOMCardActionDelete() {
+describe('KOMCardActionDelete', function test_KOMCardActionDelete() {
 
 	it('rejects if not string', async function() {
 		await rejects(mainModule.KOMCardActionDelete(KOMTestingStorageClient, null), /KOMErrorInputNotValid/);
@@ -163,7 +163,7 @@ describe('KOMCardActionDelete', function testKOMCardActionDelete() {
 
 });
 
-describe('KOMCardActionList', function testKOMCardActionList() {
+describe('KOMCardActionList', function test_KOMCardActionList() {
 
 	it('returns array', async function() {
 		deepEqual(await mainModule.KOMCardActionList(KOMTestingStorageClient), []);

@@ -19,7 +19,7 @@ const kTesting = {
 	},
 };
 
-describe('KOMDeckActionCreate', function testKOMDeckActionCreate() {
+describe('KOMDeckActionCreate', function test_KOMDeckActionCreate() {
 
 	it('rejects if not object', async function() {
 		await rejects(mainModule.KOMDeckActionCreate(KOMTestingStorageClient, null), /KOMErrorInputNotValid/);
@@ -63,7 +63,7 @@ describe('KOMDeckActionCreate', function testKOMDeckActionCreate() {
 
 });
 
-describe('KOMDeckActionRead', function testKOMDeckActionRead() {
+describe('KOMDeckActionRead', function test_KOMDeckActionRead() {
 
 	it('rejects if not string', async function() {
 		await rejects(mainModule.KOMDeckActionRead(KOMTestingStorageClient, null), /KOMErrorInputNotValid/);
@@ -81,7 +81,7 @@ describe('KOMDeckActionRead', function testKOMDeckActionRead() {
 
 });
 
-describe('KOMDeckActionUpdate', function testKOMDeckActionUpdate() {
+describe('KOMDeckActionUpdate', function test_KOMDeckActionUpdate() {
 
 	it('rejects if not object', async function() {
 		await rejects(mainModule.KOMDeckActionUpdate(KOMTestingStorageClient, null), /KOMErrorInputNotValid/);
@@ -126,7 +126,7 @@ describe('KOMDeckActionUpdate', function testKOMDeckActionUpdate() {
 
 });
 
-describe('KOMDeckActionDelete', function testKOMDeckActionDelete() {
+describe('KOMDeckActionDelete', function test_KOMDeckActionDelete() {
 
 	it('rejects if not string', async function() {
 		await rejects(mainModule.KOMDeckActionDelete(KOMTestingStorageClient, null), /KOMErrorInputNotValid/);
@@ -146,7 +146,7 @@ describe('KOMDeckActionDelete', function testKOMDeckActionDelete() {
 
 });
 
-describe('KOMDeckActionList', function testKOMDeckActionList() {
+describe('KOMDeckActionList', function test_KOMDeckActionList() {
 
 	it('returns array', async function() {
 		deepEqual(await mainModule.KOMDeckActionList(KOMTestingStorageClient), []);

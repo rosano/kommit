@@ -2,7 +2,7 @@ const { throws, deepEqual } = require('assert');
 
 const mainModule = require('./storage.js').default;
 
-describe('KOMCardStorageFolderPath', function testKOMCardStorageFolderPath() {
+describe('KOMCardStorageFolderPath', function test_KOMCardStorageFolderPath() {
 
 	it('returns string', function() {
 		deepEqual(mainModule.KOMCardStorageFolderPath(), 'kom_cards/');
@@ -10,7 +10,7 @@ describe('KOMCardStorageFolderPath', function testKOMCardStorageFolderPath() {
 
 });
 
-describe('KOMCardStorageFilePath', function testKOMCardStorageFilePath() {
+describe('KOMCardStorageFilePath', function test_KOMCardStorageFilePath() {
 
 	it('throws error if blank', function() {
 		throws(function() {
