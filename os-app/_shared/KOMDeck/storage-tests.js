@@ -10,16 +10,16 @@ describe('KOMDeckStorageFolderPath', function testKOMDeckStorageFolderPath() {
 
 });
 
-describe('KOMDeckStorageFilePath', function testKOMDeckStorageFilePath() {
+describe('KOMDeckStorageObjectPath', function testKOMDeckStorageObjectPath() {
 
 	it('throws error if blank', function() {
 		throws(function() {
-			mainModule.KOMDeckStorageFilePath('');
+			mainModule.KOMDeckStorageObjectPath('');
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns string', function() {
-		deepEqual(mainModule.KOMDeckStorageFilePath('alfa'), 'kom_decks/alfa/main');
+		deepEqual(mainModule.KOMDeckStorageObjectPath('alfa'), 'kom_decks/alfa/main');
 	});
 
 });

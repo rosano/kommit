@@ -9,7 +9,7 @@ const mod = {
 		return `${ kCollection }/`;
 	},
 
-	KOMDeckStorageFilePath (inputData) {
+	KOMDeckStorageObjectPath (inputData) {
 		if (!inputData) {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -37,7 +37,7 @@ const mod = {
 			KOMStorageExports: {
 				async KOMStorageList () {
 					return (await Promise.all(Object.keys(await privateClient.getAll(mod.KOMDeckStorageFolderPath(), false)).map(function (e) {
-						return privateClient.getObject(mod.KOMDeckStorageFilePath(e.slice(0, -1)), false);
+						return privateClient.getObject(mod.KOMDeckStorageObjectPath(e.slice(0, -1)), false);
 					}))).reduce(function (coll, item) {
 						coll[item.KOMDeckID] = item;
 
@@ -45,14 +45,14 @@ const mod = {
 					}, {});
 				},
 				async KOMStorageWrite (param1, param2) {
-					await privateClient.storeObject(kType, mod.KOMDeckStorageFilePath(param1), KOMDeckModel.KOMDeckModelPreJSONSchemaValidate(param2));
+					await privateClient.storeObject(kType, mod.KOMDeckStorageObjectPath(param1), KOMDeckModel.KOMDeckModelPreJSONSchemaValidate(param2));
 					return KOMDeckModel.KOMDeckModelPostJSONParse(param2);
 				},
 				KOMStorageRead (inputData) {
-					return privateClient.getObject(mod.KOMDeckStorageFilePath(inputData));
+					return privateClient.getObject(mod.KOMDeckStorageObjectPath(inputData));
 				},
 				KOMStorageDelete (inputData) {
-					return privateClient.remove(mod.KOMDeckStorageFilePath(inputData));
+					return privateClient.remove(mod.KOMDeckStorageObjectPath(inputData));
 				},
 			},
 		};
