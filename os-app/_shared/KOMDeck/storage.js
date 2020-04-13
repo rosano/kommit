@@ -44,6 +44,15 @@ const mod = {
 						return coll;
 					}, {});
 				},
+				async _KOMStorageListAll () {
+					return (await Promise.all(Object.keys(await privateClient.getAll(mod.KOMDeckStorageFolderPath(), false)).map(function (e) {
+						return privateClient.getObject(mod.KOMDeckStorageObjectPath(e.slice(0, -1)), false);
+					}))).reduce(function (coll, item) {
+						coll[item.KOMDeckID] = item;
+
+						return coll;
+					}, {});
+				},
 				async KOMStorageWrite (inputData) {
 					await privateClient.storeObject(kType, mod.KOMDeckStorageObjectPath(inputData.KOMDeckID), KOMDeckModel.KOMDeckModelPreJSONSchemaValidate(inputData));
 					return KOMDeckModel.KOMDeckModelPostJSONParse(inputData);

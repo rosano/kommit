@@ -38,6 +38,9 @@ const mod = {
 				KOMStorageList () {
 					return privateClient.getAll(mod.KOMCardStorageFolderPath(), false);
 				},
+				_KOMStorageListAll () {
+					return privateClient.getAll(mod.KOMCardStorageFolderPath(), false);
+				},
 				async KOMStorageWrite (inputData) {
 					await privateClient.storeObject(kType, mod.KOMCardStorageFilePath(inputData.KOMCardID), KOMCardModel.KOMCardModelPreJSONSchemaValidate(inputData));
 					return KOMCardModel.KOMCardModelPostJSONParse(inputData);
