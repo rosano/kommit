@@ -1,3 +1,4 @@
+import KOMDeckModel from '../KOMDeck/model.js';
 import KOMCardModel from './model.js';
 
 const kType = 'kom_card';
@@ -5,16 +6,20 @@ const kCollection = 'kom_cards';
 
 const mod = {
 
-	KOMCardStorageFolderPath () {
-		return `${ kCollection }/`;
-	},
-
-	KOMCardStorageFilePath (inputData) {
-		if (!inputData) {
+	KOMCardStorageFolderPath (inputData) {
+		if (KOMDeckModel.KOMDeckModelErrorsFor(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		return `${ mod.KOMCardStorageFolderPath() }${ inputData }`;
+		return `kom_decks/${ inputData.KOMDeckID }/${ kCollection }/`;
+	},
+
+	KOMCardStorageFilePath (param1, param2) {
+		if (KOMCardModel.KOMCardModelErrorsFor(param1)) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		return `${ mod.KOMCardStorageFolderPath(param2) }${ param1.KOMCardID }/main`;
 	},
 
 	KOMCardStorageBuild (privateClient, publicClient, changeDelegate) {
@@ -38,12 +43,19 @@ const mod = {
 				KOMStorageList () {
 					return privateClient.getAll(mod.KOMCardStorageFolderPath(), false);
 				},
-				_KOMStorageListAll () {
-					return privateClient.getAll(mod.KOMCardStorageFolderPath(), false);
+				async _KOMStorageListAll () {
+					return (await Promise.all(Object.keys(await privateClient.getAll('kom_decks/', false)).map(function (e) {
+						return privateClient.getObject(`kom_decks/${ e }main`, false);
+					}))).map(async function (e) {
+						let deck = KOMDeckModel.KOMDeckModelPostJSONParse(e);
+						return (await Promise.all(Object.keys(await privateClient.getAll(mod.KOMCardStorageFolderPath(deck), false)).map(function (e) {
+							return privateClient.getObject(mod.KOMCardStorageFilePath(e), false);
+						})));
+					});
 				},
-				async KOMStorageWrite (inputData) {
-					await privateClient.storeObject(kType, mod.KOMCardStorageFilePath(inputData.KOMCardID), KOMCardModel.KOMCardModelPreJSONSchemaValidate(inputData));
-					return KOMCardModel.KOMCardModelPostJSONParse(inputData);
+				async KOMStorageWrite (param1, param2) {
+					await privateClient.storeObject(kType, mod.KOMCardStorageFilePath(param2, param1), KOMCardModel.KOMCardModelPreJSONSchemaValidate(param1));
+					return KOMCardModel.KOMCardModelPostJSONParse(param1);
 				},
 				KOMStorageRead (inputData) {
 					return privateClient.getObject(mod.KOMCardStorageFilePath(inputData));
