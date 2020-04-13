@@ -4,7 +4,7 @@ const kModuleName = 'kommit';
 
 const mod = {
 
-	KOMStorageModule (inputData) {
+	KOM_DataModule (inputData) {
 		return {
 			name: kModuleName,
 			builder (privateClient, publicClient) {
@@ -12,7 +12,7 @@ const mod = {
 
 				return {
 					exports: inputData.reduce(function (coll, item) {
-						let storage = item(privateClient, publicClient, item.KOMStorageChangeDelegate);
+						let storage = item(privateClient, publicClient, item.KOM_DataChangeDelegate);
 
 						privateClient.declareType(storage.KOMStorageType, OLSKRemoteStorage.OLSKRemoteStorageJSONSchema(storage.KOMStorageModelErrors));
 
