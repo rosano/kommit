@@ -44,9 +44,9 @@ const mod = {
 						return coll;
 					}, {});
 				},
-				async KOMStorageWrite (param1, param2) {
-					await privateClient.storeObject(kType, mod.KOMDeckStorageObjectPath(param1), KOMDeckModel.KOMDeckModelPreJSONSchemaValidate(param2));
-					return KOMDeckModel.KOMDeckModelPostJSONParse(param2);
+				async KOMStorageWrite (inputData) {
+					await privateClient.storeObject(kType, mod.KOMDeckStorageObjectPath(inputData.KOMDeckID), KOMDeckModel.KOMDeckModelPreJSONSchemaValidate(inputData));
+					return KOMDeckModel.KOMDeckModelPostJSONParse(inputData);
 				},
 				KOMStorageRead (inputData) {
 					return privateClient.getObject(mod.KOMDeckStorageObjectPath(inputData));

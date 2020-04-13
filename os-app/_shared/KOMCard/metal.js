@@ -14,7 +14,7 @@ const mod = {
 			});
 		}
 
-		return await storageClient.kommit.kom_cards.KOMStorageWrite(inputData.KOMCardID, inputData);
+		return await storageClient.kommit.kom_cards.KOMStorageWrite(inputData);
 	},
 
 	async KOMCardMetalRead (storageClient, inputData) {

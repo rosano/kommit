@@ -14,7 +14,7 @@ const mod = {
 			});
 		}
 
-		return await storageClient.kommit.kom_decks.KOMStorageWrite(inputData.KOMDeckID, inputData);
+		return await storageClient.kommit.kom_decks.KOMStorageWrite(inputData);
 	},
 
 	async KOMDeckMetalRead (storageClient, inputData) {
