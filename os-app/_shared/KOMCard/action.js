@@ -21,11 +21,7 @@ const mod = {
 			KOMCardID: uniqueID(),
 			KOMCardCreationDate: creationDate,
 			KOMCardModificationDate: creationDate,
-		}));
-	},
-
-	async KOMCardActionRead (storageClient, inputData) {
-		return await KOMCardMetal.KOMCardMetalRead(storageClient, inputData);
+		}), param2);
 	},
 
 	async KOMCardActionUpdate (storageClient, param1, param2) {
@@ -39,15 +35,15 @@ const mod = {
 
 		return await KOMCardMetal.KOMCardMetalWrite(storageClient, Object.assign(param1, {
 			KOMCardModificationDate: new Date(),
-		}));
+		}), param2);
 	},
 
-	async KOMCardActionDelete (storageClient, inputData) {
-		return await KOMCardMetal.KOMCardMetalDelete(storageClient, inputData);
+	async KOMCardActionDelete (storageClient, param1, param2) {
+		return await KOMCardMetal.KOMCardMetalDelete(storageClient, param1, param2);
 	},
 
-	async KOMCardActionList (storageClient) {
-		return Object.values(await KOMCardMetal.KOMCardMetalList(storageClient));
+	async KOMCardActionList (storageClient, inputData) {
+		return Object.values(await KOMCardMetal.KOMCardMetalList(storageClient, inputData));
 	},
 	
 };

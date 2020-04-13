@@ -27,8 +27,8 @@ const KOMCardStorage = require('./os-app/_shared/KOMCard/storage.js').default;
 	});
 
 	beforeEach(async function() {
-		await uSerial(Object.keys(global.KOMTestingStorageClient[storageModule.name]).map(async function (e) {
-			return await Promise.all(Object.keys(await global.KOMTestingStorageClient[storageModule.name][e]._KOMStorageListAll()).map(global.KOMTestingStorageClient[storageModule.name][e].KOMStorageDelete));
+		await uSerial(Object.keys(global.KOMTestingStorageClient[storageModule.name]).map(function (e) {
+			return global.KOMTestingStorageClient[storageModule.name][e]._KOMStorageReset();
 		}));
 	});
 })();

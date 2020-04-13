@@ -36,7 +36,7 @@ describe('KOMCardStorageFolderPath', function test_KOMCardStorageFolderPath() {
 
 });
 
-describe('KOMCardStorageFilePath', function test_KOMCardStorageFilePath() {
+describe('KOMCardStorageObjectPath', function test_KOMCardStorageObjectPath() {
 
 	it('throws if param1 not valid', function () {
 		throws(function () {
@@ -51,7 +51,7 @@ describe('KOMCardStorageFilePath', function test_KOMCardStorageFilePath() {
 	});
 
 	it('returns string', function() {
-		deepEqual(mainModule.KOMCardStorageFilePath(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()), `${ mainModule.KOMCardStorageFolderPath(kTesting.StubDeckObjectValid()) }charlie/main`);
+		deepEqual(mainModule.KOMCardStorageObjectPath(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()), `${ mainModule.KOMCardStorageFolderPath(kTesting.StubDeckObjectValid()) }charlie/main`);
 	});
 
 });

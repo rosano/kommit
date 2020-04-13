@@ -14,12 +14,15 @@ const mod = {
 		return `kom_decks/${ inputData.KOMDeckID }/${ kCollection }/`;
 	},
 
-	KOMCardStorageFilePath (param1, param2) {
+	KOMCardStorageObjectPath (param1, param2) {
 		if (KOMCardModel.KOMCardModelErrorsFor(param1)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		return `${ mod.KOMCardStorageFolderPath(param2) }${ param1.KOMCardID }/main`;
+		return mod._KOMCardStorageObjectPath(param1.KOMCardID, param2);
+	},
+	_KOMCardStorageObjectPath (param1, param2) {
+		return `${ mod.KOMCardStorageFolderPath(param2) }${ param1 }/main`;
 	},
 
 	KOMCardStorageBuild (privateClient, publicClient, changeDelegate) {
@@ -40,28 +43,39 @@ const mod = {
 				return coll;
 			}, {}),
 			KOMStorageExports: {
-				KOMStorageList () {
-					return privateClient.getAll(mod.KOMCardStorageFolderPath(), false);
+				async KOMStorageList (inputData) {
+					return (await Promise.all(Object.keys(await privateClient.getAll(mod.KOMCardStorageFolderPath(inputData), false)).map(async function (e) {
+						return privateClient.getObject(mod._KOMCardStorageObjectPath(e.slice(0, -1), inputData), false);
+					}))).reduce(function (coll, item) {
+						if (item) {
+							coll[item.KOMCardID] = item;
+						}
+
+						return coll;
+					}, {});
 				},
-				async _KOMStorageListAll () {
-					return (await Promise.all(Object.keys(await privateClient.getAll('kom_decks/', false)).map(function (e) {
-						return privateClient.getObject(`kom_decks/${ e }main`, false);
-					}))).map(async function (e) {
-						let deck = KOMDeckModel.KOMDeckModelPostJSONParse(e);
+				async _KOMStorageReset () {
+					return Object.keys(await privateClient.getAll('kom_decks/', false)).map(async function (e) {
+						let deck =  {
+							KOMDeckID: e.slice(0, -1),
+							KOMDeckName: '',
+							KOMDeckCreationDate: new Date(),
+							KOMDeckModificationDate: new Date(),
+						};
 						return (await Promise.all(Object.keys(await privateClient.getAll(mod.KOMCardStorageFolderPath(deck), false)).map(function (e) {
-							return privateClient.getObject(mod.KOMCardStorageFilePath(e), false);
+							return privateClient.remove(mod._KOMCardStorageObjectPath(e.slice(0, -1), deck));
 						})));
 					});
 				},
 				async KOMStorageWrite (param1, param2) {
-					await privateClient.storeObject(kType, mod.KOMCardStorageFilePath(param2, param1), KOMCardModel.KOMCardModelPreJSONSchemaValidate(param1));
+					await privateClient.storeObject(kType, mod.KOMCardStorageObjectPath(param1, param2), KOMCardModel.KOMCardModelPreJSONSchemaValidate(param1));
 					return KOMCardModel.KOMCardModelPostJSONParse(param1);
 				},
-				KOMStorageRead (inputData) {
-					return privateClient.getObject(mod.KOMCardStorageFilePath(inputData));
+				KOMStorageRead (param1, param2) {
+					return privateClient.getObject(mod._KOMCardStorageObjectPath(param1, param2));
 				},
-				KOMStorageDelete (inputData) {
-					return privateClient.remove(mod.KOMCardStorageFilePath(inputData));
+				KOMStorageDelete (param1, param2) {
+					return privateClient.remove(mod._KOMCardStorageObjectPath(param1, param2));
 				},
 			},
 		};

@@ -44,14 +44,13 @@ const mod = {
 						return coll;
 					}, {});
 				},
-				async _KOMStorageListAll () {
-					return (await Promise.all(Object.keys(await privateClient.getAll(mod.KOMDeckStorageFolderPath(), false)).map(function (e) {
-						return privateClient.getObject(mod.KOMDeckStorageObjectPath(e.slice(0, -1)), false);
-					}))).reduce(function (coll, item) {
-						coll[item.KOMDeckID] = item;
-
-						return coll;
-					}, {});
+				async _KOMStorageReset () {
+					return Object.keys(await privateClient.getAll('kom_decks/', false)).map(async function (e) {
+						let deckPath = `${ mod.KOMDeckStorageFolderPath() }${ e }`;
+						return (await Promise.all(Object.keys(await privateClient.getAll(`${ mod.KOMDeckStorageFolderPath() }${ e }`, false)).map(function (e) {
+							return privateClient.remove(deckPath + e );
+						})));
+					});
 				},
 				async KOMStorageWrite (inputData) {
 					await privateClient.storeObject(kType, mod.KOMDeckStorageObjectPath(inputData.KOMDeckID), KOMDeckModel.KOMDeckModelPreJSONSchemaValidate(inputData));
