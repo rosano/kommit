@@ -14,7 +14,7 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		return `${ mod.KOMDeckStorageFolderPath() }${ inputData }`;
+		return `${ mod.KOMDeckStorageFolderPath() }${ inputData }/main`;
 	},
 
 	KOMDeckStorageBuild (privateClient, publicClient, changeDelegate) {
@@ -35,8 +35,14 @@ const mod = {
 				return coll;
 			}, {}),
 			KOMStorageExports: {
-				KOMStorageList () {
-					return privateClient.getAll(mod.KOMDeckStorageFolderPath(), false);
+				async KOMStorageList () {
+					return (await Promise.all(Object.keys(await privateClient.getAll(mod.KOMDeckStorageFolderPath(), false)).map(function (e) {
+						return privateClient.getObject(mod.KOMDeckStorageFilePath(e.slice(0, -1)), false);
+					}))).reduce(function (coll, item) {
+						coll[item.KOMDeckID] = item;
+
+						return coll;
+					}, {});
 				},
 				async KOMStorageWrite (param1, param2) {
 					await privateClient.storeObject(kType, mod.KOMDeckStorageFilePath(param1), KOMDeckModel.KOMDeckModelPreJSONSchemaValidate(param2));

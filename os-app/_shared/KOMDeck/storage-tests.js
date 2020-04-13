@@ -19,7 +19,7 @@ describe('KOMDeckStorageFilePath', function testKOMDeckStorageFilePath() {
 	});
 
 	it('returns string', function() {
-		deepEqual(mainModule.KOMDeckStorageFilePath('alfa'), 'kom_decks/alfa');
+		deepEqual(mainModule.KOMDeckStorageFilePath('alfa'), 'kom_decks/alfa/main');
 	});
 
 });
