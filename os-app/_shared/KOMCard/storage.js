@@ -31,10 +31,7 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		return mod._KOMCardStorageObjectPath(param1.KOMCardID, param2);
-	},
-	_KOMCardStorageObjectPath (param1, param2) {
-		return `${ mod.KOMCardStorageFolderPath(param2) }${ param1 }/main`;
+		return `${ mod.KOMCardStorageFolderPath(param2) }${ param1.KOMCardID }/main`;
 	},
 
 	KOMCardStorageBuild (privateClient, publicClient, changeDelegate) {
