@@ -19,10 +19,6 @@ const mod = {
 		}));
 	},
 
-	async KOMDeckActionRead (storageClient, inputData) {
-		return await KOMDeckMetal.KOMDeckMetalRead(storageClient, inputData);
-	},
-
 	async KOMDeckActionUpdate (storageClient, inputData) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			return Promise.reject(new Error('KOMErrorInputNotValid'));
