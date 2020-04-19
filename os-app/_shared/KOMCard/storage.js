@@ -45,10 +45,6 @@ const mod = {
 				return KOMCardModel.KOMCardModelPostJSONParse(param1);
 			},
 			
-			KOMStorageRead (param1, param2) {
-				return privateClient.getObject(mod._KOMCardStorageObjectPath(param1, param2));
-			},
-			
 			KOMStorageDelete (param1, param2) {
 				return privateClient.remove(mod._KOMCardStorageObjectPath(param1, param2));
 			},

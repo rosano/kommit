@@ -37,10 +37,6 @@ const mod = {
 				return KOMDeckModel.KOMDeckModelPostJSONParse(inputData);
 			},
 			
-			KOMStorageRead (inputData) {
-				return privateClient.getObject(mod.KOMDeckStorageObjectPath(inputData));
-			},
-			
 			KOMStorageDelete (inputData) {
 				return privateClient.remove(mod.KOMDeckStorageObjectPath(inputData));
 			},
