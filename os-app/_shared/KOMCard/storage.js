@@ -26,6 +26,54 @@ const mod = {
 	},
 
 	KOMCardStorageBuild (privateClient, publicClient, changeDelegate) {
+		const KOMStorageExports = {
+
+			async KOMStorageList (inputData) {
+				return (await Promise.all(Object.keys(await privateClient.getAll(mod.KOMCardStorageFolderPath(inputData), false)).map(async function (e) {
+					return privateClient.getObject(mod._KOMCardStorageObjectPath(e.slice(0, -1), inputData), false);
+				}))).reduce(function (coll, item) {
+					if (item) {
+						coll[item.KOMCardID] = item;
+					}
+
+					return coll;
+				}, {});
+			},
+			
+			async KOMStorageWrite (param1, param2) {
+				await privateClient.storeObject(kType, mod.KOMCardStorageObjectPath(param1, param2), KOMCardModel.KOMCardModelPreJSONSchemaValidate(param1));
+				return KOMCardModel.KOMCardModelPostJSONParse(param1);
+			},
+			
+			KOMStorageRead (param1, param2) {
+				return privateClient.getObject(mod._KOMCardStorageObjectPath(param1, param2));
+			},
+			
+			KOMStorageDelete (param1, param2) {
+				return privateClient.remove(mod._KOMCardStorageObjectPath(param1, param2));
+			},
+			
+			async _KOMStorageReset () {
+				return (await KOMStorageExports.__KOMStorageResetFakeDecks()).map(async function (deck) {
+					return Object.keys(await KOMStorageExports.KOMStorageList(deck)).map(function (e) {
+						return KOMStorageExports.KOMStorageDelete(e, deck);
+					});
+				});
+			},
+			async __KOMStorageResetFakeDecks () {
+				// fake objects because there may not be a deck_id/main file
+				return Object.keys(await privateClient.getAll('kom_decks/', false)).map(function (e) {
+					return {
+						KOMDeckID: e.slice(0, -1),
+						KOMDeckName: '',
+						KOMDeckCreationDate: new Date(),
+						KOMDeckModificationDate: new Date(),
+					};
+				});
+			},
+			
+		};
+
 		return {
 			KOMStorageCollection: kCollection,
 			KOMStorageType: kType,
@@ -42,42 +90,7 @@ const mod = {
 
 				return coll;
 			}, {}),
-			KOMStorageExports: {
-				async KOMStorageList (inputData) {
-					return (await Promise.all(Object.keys(await privateClient.getAll(mod.KOMCardStorageFolderPath(inputData), false)).map(async function (e) {
-						return privateClient.getObject(mod._KOMCardStorageObjectPath(e.slice(0, -1), inputData), false);
-					}))).reduce(function (coll, item) {
-						if (item) {
-							coll[item.KOMCardID] = item;
-						}
-
-						return coll;
-					}, {});
-				},
-				async _KOMStorageReset () {
-					return Object.keys(await privateClient.getAll('kom_decks/', false)).map(async function (e) {
-						let deck =  {
-							KOMDeckID: e.slice(0, -1),
-							KOMDeckName: '',
-							KOMDeckCreationDate: new Date(),
-							KOMDeckModificationDate: new Date(),
-						};
-						return (await Promise.all(Object.keys(await privateClient.getAll(mod.KOMCardStorageFolderPath(deck), false)).map(function (e) {
-							return privateClient.remove(mod._KOMCardStorageObjectPath(e.slice(0, -1), deck));
-						})));
-					});
-				},
-				async KOMStorageWrite (param1, param2) {
-					await privateClient.storeObject(kType, mod.KOMCardStorageObjectPath(param1, param2), KOMCardModel.KOMCardModelPreJSONSchemaValidate(param1));
-					return KOMCardModel.KOMCardModelPostJSONParse(param1);
-				},
-				KOMStorageRead (param1, param2) {
-					return privateClient.getObject(mod._KOMCardStorageObjectPath(param1, param2));
-				},
-				KOMStorageDelete (param1, param2) {
-					return privateClient.remove(mod._KOMCardStorageObjectPath(param1, param2));
-				},
-			},
+			KOMStorageExports,
 		};
 	},
 

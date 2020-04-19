@@ -18,6 +18,39 @@ const mod = {
 	},
 
 	KOMDeckStorageBuild (privateClient, publicClient, changeDelegate) {
+		const KOMStorageExports = {
+
+			async KOMStorageList () {
+				return (await Promise.all(Object.keys(await privateClient.getAll(mod.KOMDeckStorageFolderPath(), false)).map(function (e) {
+					return privateClient.getObject(mod.KOMDeckStorageObjectPath(e.slice(0, -1)), false);
+				}))).reduce(function (coll, item) {
+					if (item) {
+						coll[item.KOMDeckID] = item;
+					}
+
+					return coll;
+				}, {});
+			},
+
+			async KOMStorageWrite (inputData) {
+				await privateClient.storeObject(kType, mod.KOMDeckStorageObjectPath(inputData.KOMDeckID), KOMDeckModel.KOMDeckModelPreJSONSchemaValidate(inputData));
+				return KOMDeckModel.KOMDeckModelPostJSONParse(inputData);
+			},
+			
+			KOMStorageRead (inputData) {
+				return privateClient.getObject(mod.KOMDeckStorageObjectPath(inputData));
+			},
+			
+			KOMStorageDelete (inputData) {
+				return privateClient.remove(mod.KOMDeckStorageObjectPath(inputData));
+			},
+			
+			async _KOMStorageReset () {
+				return Object.keys(await KOMStorageExports.KOMStorageList()).map(KOMStorageExports.KOMStorageDelete);
+			},
+			
+		};
+
 		return {
 			KOMStorageCollection: kCollection,
 			KOMStorageType: kType,
@@ -34,35 +67,7 @@ const mod = {
 
 				return coll;
 			}, {}),
-			KOMStorageExports: {
-				async KOMStorageList () {
-					return (await Promise.all(Object.keys(await privateClient.getAll(mod.KOMDeckStorageFolderPath(), false)).map(function (e) {
-						return privateClient.getObject(mod.KOMDeckStorageObjectPath(e.slice(0, -1)), false);
-					}))).reduce(function (coll, item) {
-						coll[item.KOMDeckID] = item;
-
-						return coll;
-					}, {});
-				},
-				async _KOMStorageReset () {
-					return Object.keys(await privateClient.getAll('kom_decks/', false)).map(async function (e) {
-						let deckPath = `${ mod.KOMDeckStorageFolderPath() }${ e }`;
-						return (await Promise.all(Object.keys(await privateClient.getAll(`${ mod.KOMDeckStorageFolderPath() }${ e }`, false)).map(function (e) {
-							return privateClient.remove(deckPath + e );
-						})));
-					});
-				},
-				async KOMStorageWrite (inputData) {
-					await privateClient.storeObject(kType, mod.KOMDeckStorageObjectPath(inputData.KOMDeckID), KOMDeckModel.KOMDeckModelPreJSONSchemaValidate(inputData));
-					return KOMDeckModel.KOMDeckModelPostJSONParse(inputData);
-				},
-				KOMStorageRead (inputData) {
-					return privateClient.getObject(mod.KOMDeckStorageObjectPath(inputData));
-				},
-				KOMStorageDelete (inputData) {
-					return privateClient.remove(mod.KOMDeckStorageObjectPath(inputData));
-				},
-			},
+			KOMStorageExports,
 		};
 	},
 
