@@ -51,7 +51,7 @@ describe('KOMCardStorageObjectPath', function test_KOMCardStorageObjectPath() {
 	});
 
 	it('returns string', function() {
-		deepEqual(mainModule.KOMCardStorageObjectPath(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()), `${ mainModule.KOMCardStorageFolderPath(kTesting.StubDeckObjectValid()) }charlie/main`);
+		deepEqual(mainModule.KOMCardStorageObjectPath(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()), `${ mainModule.KOMCardStorageFolderPath(kTesting.StubDeckObjectValid()) }${ kTesting.StubCardObjectValid().KOMCardCreationDate.toJSON().split('T').shift() }/charlie/main`);
 	});
 
 });

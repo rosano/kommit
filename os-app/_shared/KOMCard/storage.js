@@ -31,7 +31,7 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		return `${ mod.KOMCardStorageFolderPath(param2) }${ param1.KOMCardID }/main`;
+		return `${ mod.KOMCardStorageFolderPath(param2) }${ param1.KOMCardCreationDate.toJSON().split('T').shift() }/${ param1.KOMCardID }/main`;
 	},
 
 	KOMCardStorageBuild (privateClient, publicClient, changeDelegate) {
@@ -40,7 +40,7 @@ const mod = {
 			async KOMStorageList (inputData) {
 				let storagePath = mod.KOMCardStorageFolderPath(inputData);
 
-				return (await Promise.all((await uList(privateClient, await uList(privateClient, storagePath))).map(function (e) {
+				return (await Promise.all((await uList(privateClient, await uList(privateClient, await uList(privateClient, storagePath)))).map(function (e) {
 					return privateClient.getObject(e, false);
 				}))).reduce(function (coll, item) {
 					if (item) {
