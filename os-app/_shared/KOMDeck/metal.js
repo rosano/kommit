@@ -28,10 +28,6 @@ const mod = {
 	},
 
 	async KOMDeckMetalDelete (storageClient, inputData) {
-		if (typeof inputData !== 'string') {
-			return Promise.reject(new Error('KOMErrorInputNotValid'));
-		}
-
 		return await storageClient.kommit.kom_decks.KOMStorageDelete(inputData);
 	},
 

@@ -55,18 +55,18 @@ describe('KOMDeckMetalList', function test_KOMDeckMetalList() {
 
 describe('KOMDeckMetalDelete', function test_KOMDeckMetalDelete() {
 
-	it('rejects if not string', async function() {
-		await rejects(mainModule.KOMDeckMetalDelete(KOMTestingStorageClient, 1), /KOMErrorInputNotValid/);
+	it('rejects if not valid', async function() {
+		await rejects(mainModule.KOMDeckMetalDelete(KOMTestingStorageClient, {}), /KOMErrorInputNotValid/);
 	});
 
 	it('returns statusCode', async function() {
-		deepEqual(await mainModule.KOMDeckMetalDelete(KOMTestingStorageClient, (await mainModule.KOMDeckMetalWrite(KOMTestingStorageClient, kTesting.StubDeckObjectValid())).KOMDeckID), {
+		deepEqual(await mainModule.KOMDeckMetalDelete(KOMTestingStorageClient, await mainModule.KOMDeckMetalWrite(KOMTestingStorageClient, kTesting.StubDeckObjectValid())), {
 			statusCode: 200,
 		});
 	});
 
 	it('deletes KOMDeck', async function() {
-		await mainModule.KOMDeckMetalDelete(KOMTestingStorageClient, (await mainModule.KOMDeckMetalWrite(KOMTestingStorageClient, kTesting.StubDeckObjectValid())).KOMDeckID);
+		await mainModule.KOMDeckMetalDelete(KOMTestingStorageClient, await mainModule.KOMDeckMetalWrite(KOMTestingStorageClient, kTesting.StubDeckObjectValid()));
 		deepEqual(await mainModule.KOMDeckMetalList(KOMTestingStorageClient), {});
 	});
 

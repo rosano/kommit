@@ -38,11 +38,11 @@ const mod = {
 			},
 			
 			KOMStorageDelete (inputData) {
-				return privateClient.remove(mod.KOMDeckStorageObjectPath(inputData));
+				return privateClient.remove(mod.KOMDeckStorageObjectPath(inputData.KOMDeckID));
 			},
 			
 			async _KOMStorageReset () {
-				return Object.keys(await KOMStorageExports.KOMStorageList()).map(KOMStorageExports.KOMStorageDelete);
+				return Object.values(await KOMStorageExports.KOMStorageList()).map(KOMStorageExports.KOMStorageDelete);
 			},
 			
 		};
