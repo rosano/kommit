@@ -10,7 +10,7 @@ const mod = {
 			return Promise.reject(new Error('KOMErrorInputNotValid'));
 		}
 
-		let creationDate = new Date();
+		const creationDate = new Date();
 
 		return await KOMDeckMetal.KOMDeckMetalWrite(storageClient, Object.assign(inputData, {
 			KOMDeckID: uniqueID(),

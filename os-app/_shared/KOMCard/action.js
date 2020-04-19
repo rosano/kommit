@@ -15,7 +15,7 @@ const mod = {
 			return Promise.reject(new Error('KOMErrorInputNotValid'));
 		}
 
-		let creationDate = new Date();
+		const creationDate = new Date();
 
 		return await KOMCardMetal.KOMCardMetalWrite(storageClient, Object.assign(param1, {
 			KOMCardID: uniqueID(),
