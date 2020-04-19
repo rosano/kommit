@@ -70,7 +70,7 @@ describe('KOMReview_Misc', function () {
 
 	describe('KOMReviewViewportFooter', function test_KOMReviewViewportFooter () {
 
-		it('sets class', function () {
+		it('classes OLSKMobileViewFooter', function () {
 			browser.assert.hasClass(KOMReviewViewportFooter, 'OLSKMobileViewFooter');
 		});
 

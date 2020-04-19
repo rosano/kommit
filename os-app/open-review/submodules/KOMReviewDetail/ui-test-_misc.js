@@ -28,7 +28,7 @@ describe('KOMReviewDetail_Misc', function () {
 			});
 		});
 		
-		it('sets class', function () {
+		it('classes OLSKToolbarJustify', function () {
 			browser.assert.hasClass('.OLSKToolbar', 'OLSKToolbarJustify');
 		});
 	
@@ -36,8 +36,11 @@ describe('KOMReviewDetail_Misc', function () {
 
 	describe('KOMReviewDetailToolbarBackButton', function () {
 		
-		it('sets class', function () {
+		it('classes OLSKLayoutButtonNoStyle', function () {
 			browser.assert.hasClass(KOMReviewDetailToolbarBackButton, 'OLSKLayoutButtonNoStyle');
+		});
+
+		it('classes OLSKLayoutElementTappable', function () {
 			browser.assert.hasClass(KOMReviewDetailToolbarBackButton, 'OLSKLayoutElementTappable');
 		});
 
@@ -61,8 +64,11 @@ describe('KOMReviewDetail_Misc', function () {
 
 	describe('KOMReviewDetailToolbarRenameButton', function () {
 		
-		it('sets class', function () {
+		it('classes OLSKLayoutButtonNoStyle', function () {
 			browser.assert.hasClass(KOMReviewDetailToolbarRenameButton, 'OLSKLayoutButtonNoStyle');
+		});
+
+		it('classes OLSKLayoutElementTappable', function () {
 			browser.assert.hasClass(KOMReviewDetailToolbarRenameButton, 'OLSKLayoutElementTappable');
 		});
 
@@ -93,8 +99,11 @@ describe('KOMReviewDetail_Misc', function () {
 
 	describe('KOMReviewDetailToolbarDiscardButton', function () {
 		
-		it('sets class', function () {
+		it('classes OLSKLayoutButtonNoStyle', function () {
 			browser.assert.hasClass(KOMReviewDetailToolbarDiscardButton, 'OLSKLayoutButtonNoStyle');
+		});
+
+		it('classes OLSKLayoutElementTappable', function () {
 			browser.assert.hasClass(KOMReviewDetailToolbarDiscardButton, 'OLSKLayoutElementTappable');
 		});
 
