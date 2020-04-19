@@ -1,6 +1,7 @@
 const { rejects, deepEqual } = require('assert');
 
 const mainModule = require('./action.js').default;
+const KOMCardAction = require('../KOMCard/action.js').default;
 
 const kTesting = {
 	StubDeckObject() {
@@ -123,6 +124,18 @@ describe('KOMDeckActionDelete', function test_KOMDeckActionDelete() {
 	it('deletes KOMDeck', async function() {
 		await mainModule.KOMDeckActionDelete(KOMTestingStorageClient, await mainModule.KOMDeckActionCreate(KOMTestingStorageClient, kTesting.StubDeckObject()));
 		deepEqual(await mainModule.KOMDeckActionList(KOMTestingStorageClient), []);
+	});
+
+	it('deletes KOMCards', async function() {
+		const item = await mainModule.KOMDeckActionCreate(KOMTestingStorageClient, kTesting.StubDeckObject());
+		
+		await KOMCardAction.KOMCardActionCreate(KOMTestingStorageClient, {
+			KOMCardQuestion: 'alfa',
+			KOMCardAnswer: 'bravo',
+		}, item);
+
+		await mainModule.KOMDeckActionDelete(KOMTestingStorageClient, item);
+		deepEqual(await KOMCardAction.KOMCardActionList(KOMTestingStorageClient, item), []);
 	});
 
 });

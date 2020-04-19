@@ -2,6 +2,7 @@ import { factory, detectPrng } from 'ulid';
 const uniqueID = typeof require === 'undefined' && navigator.appName === 'Zombie' ? factory(detectPrng(true)) : factory();
 
 import KOMDeckMetal from './metal.js';
+import KOMCardAction from '../KOMCard/action.js';
 
 const mod = {
 
@@ -30,6 +31,10 @@ const mod = {
 	},
 
 	async KOMDeckActionDelete (storageClient, inputData) {
+		await Promise.all((await KOMCardAction.KOMCardActionList(storageClient, inputData)).map(function (e) {
+			return KOMCardAction.KOMCardActionDelete(storageClient, e, inputData);
+		}));
+
 		return await KOMDeckMetal.KOMDeckMetalDelete(storageClient, inputData);
 	},
 
