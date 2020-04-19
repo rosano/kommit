@@ -4,6 +4,18 @@ import KOMCardModel from './model.js';
 const kType = 'kom_card';
 const kCollection = 'kom_cards';
 
+const uList = async function (privateClient, inputData) {
+	return uFlatten(await Promise.all(uFlatten([inputData]).map(async function (path) {
+		return await Object.keys(await privateClient.getAll(path, false)).map(function (e) {
+			return path + e;
+		});
+	})));
+};
+
+const uFlatten = function (inputData) {
+	return [].concat.apply([], inputData);
+};
+
 const mod = {
 
 	KOMCardStorageFolderPath (inputData) {
@@ -29,8 +41,10 @@ const mod = {
 		const KOMStorageExports = {
 
 			async KOMStorageList (inputData) {
-				return (await Promise.all(Object.keys(await privateClient.getAll(mod.KOMCardStorageFolderPath(inputData), false)).map(async function (e) {
-					return privateClient.getObject(mod._KOMCardStorageObjectPath(e.slice(0, -1), inputData), false);
+				let storagePath = mod.KOMCardStorageFolderPath(inputData);
+
+				return (await Promise.all((await uList(privateClient, await uList(privateClient, storagePath))).map(function (e) {
+					return privateClient.getObject(e, false);
 				}))).reduce(function (coll, item) {
 					if (item) {
 						coll[item.KOMCardID] = item;
