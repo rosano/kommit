@@ -68,22 +68,22 @@ describe('KOMCardMetalList', function test_KOMCardMetalList() {
 
 describe('KOMCardMetalDelete', function test_KOMCardMetalDelete() {
 
-	it('rejects if not string', async function() {
-		await rejects(mainModule.KOMCardMetalDelete(KOMTestingStorageClient, 1, kTesting.StubDeckObjectValid()), /KOMErrorInputNotValid/);
+	it('rejects if param1 not valid', async function() {
+		await rejects(mainModule.KOMCardMetalDelete(KOMTestingStorageClient, {}, kTesting.StubDeckObjectValid()), /KOMErrorInputNotValid/);
 	});
 
 	it('rejects if param2 not valid', async function() {
-		await rejects(mainModule.KOMCardMetalDelete(KOMTestingStorageClient, '', {}), /KOMErrorInputNotValid/);
+		await rejects(mainModule.KOMCardMetalDelete(KOMTestingStorageClient, kTesting.StubCardObjectValid(), {}), /KOMErrorInputNotValid/);
 	});
 
 	it('returns statusCode', async function() {
-		deepEqual(await mainModule.KOMCardMetalDelete(KOMTestingStorageClient, (await mainModule.KOMCardMetalWrite(KOMTestingStorageClient, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid())).KOMCardID, kTesting.StubDeckObjectValid()), {
+		deepEqual(await mainModule.KOMCardMetalDelete(KOMTestingStorageClient, await mainModule.KOMCardMetalWrite(KOMTestingStorageClient, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()), kTesting.StubDeckObjectValid()), {
 			statusCode: 200,
 		});
 	});
 
 	it('deletes KOMCard', async function() {
-		await mainModule.KOMCardMetalDelete(KOMTestingStorageClient, (await mainModule.KOMCardMetalWrite(KOMTestingStorageClient, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid())).KOMCardID, kTesting.StubDeckObjectValid());
+		await mainModule.KOMCardMetalDelete(KOMTestingStorageClient, await mainModule.KOMCardMetalWrite(KOMTestingStorageClient, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()), kTesting.StubDeckObjectValid());
 		deepEqual(await mainModule.KOMCardMetalList(KOMTestingStorageClient, kTesting.StubDeckObjectValid()), {});
 	});
 

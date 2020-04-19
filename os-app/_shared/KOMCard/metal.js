@@ -28,7 +28,7 @@ const mod = {
 	},
 
 	async KOMCardMetalDelete (storageClient, param1, param2) {
-		if (typeof param1 !== 'string') {
+		if (KOMCardModel.KOMCardModelErrorsFor(param1)) {
 			return Promise.reject(new Error('KOMErrorInputNotValid'));
 		}
 

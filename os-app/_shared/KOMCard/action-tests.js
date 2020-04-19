@@ -127,23 +127,22 @@ describe('KOMCardActionUpdate', function test_KOMCardActionUpdate() {
 
 describe('KOMCardActionDelete', function test_KOMCardActionDelete() {
 
-	it('rejects if param1 not string', async function() {
-		await rejects(mainModule.KOMCardActionDelete(KOMTestingStorageClient, null, kTesting.StubDeckObjectValid()), /KOMErrorInputNotValid/);
+	it('rejects if param1 not valid', async function() {
+		await rejects(mainModule.KOMCardActionDelete(KOMTestingStorageClient, {}, kTesting.StubDeckObjectValid()), /KOMErrorInputNotValid/);
 	});
 
 	it('rejects if param2 not valid', async function() {
-		await rejects(mainModule.KOMCardActionDelete(KOMTestingStorageClient, kTesting.StubCardObject().KOMCardID, {}), /KOMErrorInputNotValid/);
+		await rejects(mainModule.KOMCardActionDelete(KOMTestingStorageClient, kTesting.StubCardObject(), {}), /KOMErrorInputNotValid/);
 	});
 
 	it('returns statusCode', async function() {
-		deepEqual(await mainModule.KOMCardActionDelete(KOMTestingStorageClient, (await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObjectValid())).KOMCardID, kTesting.StubDeckObjectValid()), {
+		deepEqual(await mainModule.KOMCardActionDelete(KOMTestingStorageClient, (await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObjectValid())), kTesting.StubDeckObjectValid()), {
 			statusCode: 200,
 		});
 	});
 
 	it('deletes KOMCard', async function() {
-		let itemID;
-		await mainModule.KOMCardActionDelete(KOMTestingStorageClient, itemID = (await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObjectValid())).KOMCardID, kTesting.StubDeckObjectValid());
+		await mainModule.KOMCardActionDelete(KOMTestingStorageClient, (await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObjectValid())), kTesting.StubDeckObjectValid());
 		deepEqual(await mainModule.KOMCardActionList(KOMTestingStorageClient, kTesting.StubDeckObjectValid()), []);
 	});
 

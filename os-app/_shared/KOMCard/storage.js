@@ -46,12 +46,12 @@ const mod = {
 			},
 			
 			KOMStorageDelete (param1, param2) {
-				return privateClient.remove(mod._KOMCardStorageObjectPath(param1, param2));
+				return privateClient.remove(mod.KOMCardStorageObjectPath(param1, param2));
 			},
 			
 			async _KOMStorageReset () {
 				return (await KOMStorageExports.__KOMStorageResetFakeDecks()).map(async function (deck) {
-					return Object.keys(await KOMStorageExports.KOMStorageList(deck)).map(function (e) {
+					return Object.values(await KOMStorageExports.KOMStorageList(deck)).map(KOMCardModel.KOMCardModelPostJSONParse).map(function (e) {
 						return KOMStorageExports.KOMStorageDelete(e, deck);
 					});
 				});
