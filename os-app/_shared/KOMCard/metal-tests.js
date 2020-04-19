@@ -52,28 +52,6 @@ describe('KOMCardMetalWrite', function test_KOMCardMetalWrite() {
 
 });
 
-describe('KOMCardMetalRead', function test_KOMCardMetalRead() {
-
-	it('rejects if not string', async function() {
-		await rejects(mainModule.KOMCardMetalRead(KOMTestingStorageClient, 1), /KOMErrorInputNotValid/);
-	});
-
-	it('rejects if param2 not valid', async function() {
-		await rejects(mainModule.KOMCardMetalRead(KOMTestingStorageClient, '', {}), /KOMErrorInputNotValid/);
-	});
-
-	it('returns null if not found', async function() {
-		deepEqual(await mainModule.KOMCardMetalRead(KOMTestingStorageClient, 'bravo', kTesting.StubDeckObjectValid()), null);
-	});
-
-	it('returns KOMCard', async function() {
-		let item = await mainModule.KOMCardMetalWrite(KOMTestingStorageClient, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid());
-
-		deepEqual(await mainModule.KOMCardMetalRead(KOMTestingStorageClient, item.KOMCardID, kTesting.StubDeckObjectValid()), item);
-	});
-
-});
-
 describe('KOMCardMetalList', function test_KOMCardMetalList() {
 
 	it('returns empty array if none', async function() {

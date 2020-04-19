@@ -17,14 +17,6 @@ const mod = {
 		return await storageClient.kommit.kom_cards.KOMStorageWrite(param1, param2);
 	},
 
-	async KOMCardMetalRead (storageClient, param1, param2) {
-		if (typeof param1 !== 'string') {
-			return Promise.reject(new Error('KOMErrorInputNotValid'));
-		}
-
-		return KOMCardModel.KOMCardModelPostJSONParse(await storageClient.kommit.kom_cards.KOMStorageRead(param1, param2));
-	},
-
 	async KOMCardMetalList (storageClient, inputData) {
 		let outputData = await storageClient.kommit.kom_cards.KOMStorageList(inputData);
 

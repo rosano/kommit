@@ -39,24 +39,6 @@ describe('KOMDeckMetalWrite', function test_KOMDeckMetalWrite() {
 
 });
 
-describe('KOMDeckMetalRead', function test_KOMDeckMetalRead() {
-
-	it('rejects if not string', async function() {
-		await rejects(mainModule.KOMDeckMetalRead(KOMTestingStorageClient, 1), /KOMErrorInputNotValid/);
-	});
-
-	it('returns null if not found', async function() {
-		deepEqual(await mainModule.KOMDeckMetalRead(KOMTestingStorageClient, 'alfa'), null);
-	});
-
-	it('returns KOMDeck', async function() {
-		let item = await mainModule.KOMDeckMetalWrite(KOMTestingStorageClient, kTesting.StubDeckObjectValid());
-
-		deepEqual(await mainModule.KOMDeckMetalRead(KOMTestingStorageClient, item.KOMDeckID), item);
-	});
-
-});
-
 describe('KOMDeckMetalList', function test_KOMDeckMetalList() {
 
 	it('returns empty array if none', async function() {
