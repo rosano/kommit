@@ -15,7 +15,7 @@ describe('KOMReviewCardForm_Misc', function () {
 		});
 	});
 
-	describe('OLSKToolbar', function () {
+	describe('OLSKToolbar', function test_OLSKToolbar () {
 
 		it('classes OLSKToolbarJustify', function () {
 			browser.assert.hasClass('.OLSKToolbar', 'OLSKToolbarJustify');
@@ -23,7 +23,7 @@ describe('KOMReviewCardForm_Misc', function () {
 	
 	});
 
-	describe('KOMReviewCardFormToolbarCancelButton', function () {
+	describe('KOMReviewCardFormToolbarCancelButton', function test_KOMReviewCardFormToolbarCancelButton () {
 		
 		it('classes OLSKLayoutButtonNoStyle', function () {
 			browser.assert.hasClass(KOMReviewCardFormToolbarCancelButton, 'OLSKLayoutButtonNoStyle');
