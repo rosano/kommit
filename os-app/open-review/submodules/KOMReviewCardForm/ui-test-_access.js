@@ -15,7 +15,9 @@ Object.entries({
 describe('KOMReviewCardForm_Access', function () {
 
 	before(function() {
-		return browser.OLSKVisit(kDefaultRoute);
+		return browser.OLSKVisit(kDefaultRoute, {
+			KOMReviewCardFormItem: JSON.stringify({}),
+		});
 	});
 
 	it('shows KOMReviewCardForm', function () {

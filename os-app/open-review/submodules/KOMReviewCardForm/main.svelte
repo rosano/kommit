@@ -1,4 +1,5 @@
 <script>
+export let KOMReviewCardFormItem;
 export let KOMReviewCardFormDispatchCancel;
 export let KOMReviewCardFormDispatchSave;
 

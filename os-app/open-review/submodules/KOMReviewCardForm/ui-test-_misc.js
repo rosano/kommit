@@ -1,13 +1,18 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
+const uItem = function () {
+	return {
+		KOMCardQuestion: 'alfa',
+		KOMCardAnswer: 'bravo',
+	};
+};
+
 describe('KOMReviewCardForm_Misc', function () {
 
-	describe('KOMReviewCardForm', function () {
-
-		before(function() {
-			return browser.OLSKVisit(kDefaultRoute);
+	before(function() {
+		return browser.OLSKVisit(kDefaultRoute, {
+			KOMReviewCardFormItem: JSON.stringify(uItem()),
 		});
-
 	});
 
 	describe('OLSKToolbar', function () {

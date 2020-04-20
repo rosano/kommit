@@ -9,7 +9,9 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 	describe(`KOMReviewCardForm_Localize-${ languageCode }`, function () {
 
 		before(function() {
-			return browser.OLSKVisit(kDefaultRoute);
+			return browser.OLSKVisit(kDefaultRoute, {
+				KOMReviewCardFormItem: JSON.stringify({}),
+			});
 		});
 
 		it('localizes KOMReviewCardFormToolbarCancelButton', function () {
