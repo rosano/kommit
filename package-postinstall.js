@@ -52,8 +52,8 @@
 		'launchlet',
 
 		// pass tests
-		'OLSKDetailPlaceholder',
 		'OLSKInputWrapper',
+		'OLSKDetailPlaceholder',
 		'OLSKAppToolbar',
 		'OLSKReloadButton',
 		'OLSKLanguageSwitcher',
