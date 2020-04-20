@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="/_shared/__external/normalize.css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="/<%= OLSKSharedPageControllerSlug %>/__compiled/ui-style.css">
+
+	<script type="text/javascript">
+		window.OLSKPublicConstants = function (inputData) {
+			return <%- JSON.stringify({
+				OLSKSharedPageCurrentLanguage,
+			}) %>[inputData];
+		};
+	</script>
+</head>
+<body>
+
+<script src="/<%= OLSKSharedPageControllerSlug %>/__compiled/ui-behaviour.js"></script>
+
+<p>
+	<strong>TestKOMBrowseListDispatchCreate</strong>
+	<span id="TestKOMBrowseListDispatchCreate">0</span>
+	<span id="TestKOMBrowseListDispatchCreateData">undefined</span>
+</p>
+
+<p>
+	<strong>TestKOMBrowseListDispatchClick</strong>
+	<span id="TestKOMBrowseListDispatchClick">0</span>
+	<span id="TestKOMBrowseListDispatchClickData">undefined</span>
+</p>
+
+<p>
+	<strong>TestKOMBrowseListDispatchArrow</strong>
+	<span id="TestKOMBrowseListDispatchArrow">0</span>
+	<span id="TestKOMBrowseListDispatchArrowData">undefined</span>
+</p>
+
+<p>
+	<strong>TestKOMBrowseListDispatchFilter</strong>
+	<span id="TestKOMBrowseListDispatchFilter">0</span>
+	<span id="TestKOMBrowseListDispatchFilterData">undefined</span>
+</p>
+
+</body>
+</html>
