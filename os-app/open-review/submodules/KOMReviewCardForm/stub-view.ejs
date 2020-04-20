@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="/_shared/__external/normalize.css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="/<%= OLSKSharedPageControllerSlug %>/__compiled/ui-style.css">
+
+	<script type="text/javascript">
+		window.OLSKPublicConstants = function (inputData) {
+			return <%- JSON.stringify({
+				OLSKSharedPageCurrentLanguage,
+			}) %>[inputData];
+		};
+	</script>
+</head>
+<body>
+
+<script src="/<%= OLSKSharedPageControllerSlug %>/__compiled/ui-behaviour.js"></script>
+
+<p>
+	<strong>TestKOMReviewCardFormDispatchCancel</strong>
+	<span id="TestKOMReviewCardFormDispatchCancel">0</span>
+</p>
+
+<p>
+	<strong>TestKOMReviewCardFormDispatchSave</strong>
+	<span id="TestKOMReviewCardFormDispatchSave">0</span>
+</p>
+
+<p>
+	<strong>TestKOMReviewCardFormDispatchSaveData</strong>
+	<span id="TestKOMReviewCardFormDispatchSaveData">undefined</span>
+</p>
+
+</body>
+</html>
