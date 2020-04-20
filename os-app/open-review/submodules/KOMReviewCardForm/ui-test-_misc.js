@@ -53,25 +53,24 @@ describe('KOMReviewCardForm_Misc', function () {
 
 	describe('KOMReviewCardFormQuestionField', function test_KOMReviewCardFormQuestionField () {
 		
-		it('binds KOMCardQuestion', function () {
-			browser.assert.input(KOMReviewCardFormQuestionField, uItem().KOMCardQuestion);
-		});
-		
 		it('sets type', function () {
 			browser.assert.attribute(KOMReviewCardFormQuestionField, 'type', 'text');
+		});
+
+		it('binds KOMCardQuestion', function () {
+			browser.assert.input(KOMReviewCardFormQuestionField, uItem().KOMCardQuestion);
 		});
 	
 	});
 
 	describe('KOMReviewCardFormAnswerField', function test_KOMReviewCardFormAnswerField () {
 
+		it('sets type', function () {
+			browser.assert.attribute(KOMReviewCardFormAnswerField, 'type', 'text');
+		});
 
 		it('binds KOMCardAnswer', function () {
 			browser.assert.input(KOMReviewCardFormAnswerField, uItem().KOMCardAnswer);
-		});
-		
-		it('sets type', function () {
-			browser.assert.attribute(KOMReviewCardFormAnswerField, 'type', 'text');
 		});
 	
 	});
