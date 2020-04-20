@@ -8,6 +8,8 @@ Object.entries({
 	KOMReviewCardFormToolbarSaveButton: '.KOMReviewCardFormToolbarSaveButton',
 	
 	KOMReviewCardFormHeading: '.KOMReviewCardFormHeading',
+	KOMReviewCardFormQuestionField: '.KOMReviewCardFormQuestionField',
+	KOMReviewCardFormAnswerField: '.KOMReviewCardFormAnswerField',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
@@ -42,6 +44,14 @@ describe('KOMReviewCardForm_Access', function () {
 
 	it('shows KOMReviewCardFormHeading', function () {
 		browser.assert.elements(KOMReviewCardFormHeading, 1);
+	});
+
+	it('shows KOMReviewCardFormQuestionField', function () {
+		browser.assert.elements(KOMReviewCardFormQuestionField, 1);
+	});
+
+	it('shows KOMReviewCardFormAnswerField', function () {
+		browser.assert.elements(KOMReviewCardFormAnswerField, 1);
 	});
 
 });

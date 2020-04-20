@@ -51,7 +51,32 @@ describe('KOMReviewCardForm_Misc', function () {
 	
 	});
 
-	describe('KOMReviewCardFormToolbarSaveButton', function () {
+	describe('KOMReviewCardFormQuestionField', function test_KOMReviewCardFormQuestionField () {
+		
+		it('binds KOMCardQuestion', function () {
+			browser.assert.input(KOMReviewCardFormQuestionField, uItem().KOMCardQuestion);
+		});
+		
+		it('sets type', function () {
+			browser.assert.attribute(KOMReviewCardFormQuestionField, 'type', 'text');
+		});
+	
+	});
+
+	describe('KOMReviewCardFormAnswerField', function test_KOMReviewCardFormAnswerField () {
+
+
+		it('binds KOMCardAnswer', function () {
+			browser.assert.input(KOMReviewCardFormAnswerField, uItem().KOMCardAnswer);
+		});
+		
+		it('sets type', function () {
+			browser.assert.attribute(KOMReviewCardFormAnswerField, 'type', 'text');
+		});
+	
+	});
+
+	describe('KOMReviewCardFormToolbarSaveButton', function test_KOMReviewCardFormToolbarSaveButton () {
 		
 		it('classes OLSKLayoutButtonNoStyle', function () {
 			browser.assert.hasClass(KOMReviewCardFormToolbarSaveButton, 'OLSKLayoutButtonNoStyle');
@@ -69,6 +94,10 @@ describe('KOMReviewCardForm_Misc', function () {
 			});
 			
 			before(function () {
+				return browser.fill(KOMReviewCardFormQuestionField, 'charlie');
+			});
+			
+			before(function () {
 				return browser.pressButton(KOMReviewCardFormToolbarSaveButton);
 			});
 
@@ -77,7 +106,9 @@ describe('KOMReviewCardForm_Misc', function () {
 			});
 
 			it('sends KOMReviewCardFormDispatchSaveData', function () {
-				browser.assert.text('#TestKOMReviewCardFormDispatchSaveData', JSON.stringify({}));
+				browser.assert.text('#TestKOMReviewCardFormDispatchSaveData', JSON.stringify(Object.assign(uItem(), {
+					KOMCardQuestion: 'charlie',
+				})));
 			});
 		
 		});

@@ -10,10 +10,14 @@ const OLSKLocalized = function(translationConstant) {
 
 const mod = {
 
+	// VALUE
+
+	_ValueItem: Object.assign({}, KOMReviewCardFormItem),
+
 	// INTERFACE
 
 	InterfaceSaveButtonDidClick() {
-		KOMReviewCardFormDispatchSave({});
+		KOMReviewCardFormDispatchSave(mod._ValueItem);
 	},
 
 };
@@ -39,6 +43,14 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 <div>
 
 <h1 class="KOMReviewCardFormHeading">{ OLSKLocalized('KOMReviewCardFormHeadingText') }</h1>
+
+<p>
+	<input class="KOMReviewCardFormQuestionField" placeholder="{ OLSKLocalized('KOMReviewCardFormQuestionFieldText') }" type="text" bind:value={ mod._ValueItem.KOMCardQuestion } />
+</p>
+
+<p>
+	<input class="KOMReviewCardFormAnswerField" placeholder="{ OLSKLocalized('KOMReviewCardFormAnswerFieldText') }" type="text" bind:value={ mod._ValueItem.KOMCardAnswer } />
+</p>
 
 </div>
 

@@ -26,6 +26,14 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			browser.assert.text(KOMReviewCardFormHeading, uLocalized('KOMReviewCardFormHeadingText'));
 		});
 
+		it('localizes KOMReviewCardFormQuestionField', function () {
+			browser.assert.attribute(KOMReviewCardFormQuestionField, 'placeholder', uLocalized('KOMReviewCardFormQuestionFieldText'));
+		});
+
+		it('localizes KOMReviewCardFormAnswerField', function () {
+			browser.assert.attribute(KOMReviewCardFormAnswerField, 'placeholder', uLocalized('KOMReviewCardFormAnswerFieldText'));
+		});
+
 	});
 
 });
