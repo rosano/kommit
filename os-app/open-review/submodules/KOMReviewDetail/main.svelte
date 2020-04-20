@@ -1,8 +1,9 @@
 <script>
 export let KOMReviewDetailItem;
 export let KOMReviewDetailDispatchBack;
-export let KOMReviewDetailDispatchDiscard;
 export let KOMReviewDetailDispatchRename;
+export let KOMReviewDetailDispatchDiscard;
+export let KOMReviewDetailDispatchCreateCard;
 
 import OLSKInternational from 'OLSKInternational';
 const OLSKLocalized = function(translationConstant) {
@@ -54,6 +55,8 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 <div>
 
 <h1 class="KOMReviewDetailHeading">{ KOMReviewDetailItem.KOMDeckName }</h1>
+
+<button class="KOMReviewDetailCreateCardButton" on:click={ KOMReviewDetailDispatchCreateCard }>{ OLSKLocalized('KOMReviewDetailCreateCardButtonText') }</button>
 
 </div>
 

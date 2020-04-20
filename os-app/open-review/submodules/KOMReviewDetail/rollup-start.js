@@ -14,6 +14,9 @@ const KOMReviewDetail = new RollupStart({
 			window.TestKOMReviewDetailDispatchDiscard.innerHTML = parseInt(window.TestKOMReviewDetailDispatchDiscard.innerHTML) + 1;
 			window.TestKOMReviewDetailDispatchDiscardData.innerHTML = JSON.stringify(inputData);
 		},
+		KOMReviewDetailDispatchCreateCard (inputData) {
+			window.TestKOMReviewDetailDispatchCreateCard.innerHTML = parseInt(window.TestKOMReviewDetailDispatchCreateCard.innerHTML) + 1;
+		},
 	}, Object.fromEntries(Array.from((new window.URLSearchParams(window.location.search)).entries()).map(function (e) {
 		if (['KOMReviewDetailItem'].includes(e[0])) {
 			e[1] = JSON.parse(e[1]);

@@ -11,6 +11,7 @@ Object.entries({
 	KOMReviewDetailToolbarDiscardButton: '.KOMReviewDetailToolbarDiscardButton',
 	
 	KOMReviewDetailHeading: '.KOMReviewDetailHeading',
+	KOMReviewDetailCreateCardButton: '.KOMReviewDetailCreateCardButton',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
@@ -51,6 +52,10 @@ describe('KOMReviewDetail_Access', function () {
 
 	it('shows KOMReviewDetailHeading', function () {
 		browser.assert.elements(KOMReviewDetailHeading, 1);
+	});
+
+	it('shows KOMReviewDetailCreateCardButton', function () {
+		browser.assert.elements(KOMReviewDetailCreateCardButton, 1);
 	});
 
 });

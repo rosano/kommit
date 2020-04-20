@@ -129,13 +129,25 @@ describe('KOMReviewDetail_Misc', function () {
 		});
 	
 	});
-	
-	describe('KOMReviewDetailHeading', function() {
-		
-		it('binds KOMDeckName', function () {
-			browser.assert.text(KOMReviewDetailHeading, uItem().KOMDeckName);
-		});
 
+	describe('KOMReviewDetailCreateCardButton', function () {
+		
+		context('click', function () {
+			
+			before(function () {
+				browser.assert.text('#TestKOMReviewDetailDispatchCreateCard', '0');
+			});
+			
+			before(function () {
+				return browser.pressButton(KOMReviewDetailCreateCardButton);
+			});
+
+			it('sends KOMReviewDetailDispatchCreateCard', function () {
+				browser.assert.text('#TestKOMReviewDetailDispatchCreateCard', '1');
+			});
+		
+		});
+	
 	});
 
 });
