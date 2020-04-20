@@ -30,6 +30,8 @@ const mod = {
 		mod._ValueDeckSelected = inputData
 	},
 	
+	_ValueCardFormItem: undefined,
+	
 	_ValueStorageWidgetHidden: true,
 
 	_ValueFooterStorageStatus: '',
@@ -64,6 +66,14 @@ const mod = {
 		mod.ControlDeckSelect(null);
 		
 		mod.ControlDeckDiscard(inputData);
+	},
+
+	KOMReviewDetailDispatchCreateCard () {
+		mod._ValueCardFormItem = {};
+	},
+
+	KOMReviewCardFormDispatchCancel () {
+		mod._ValueCardFormItem = undefined;
 	},
 
 	OLSKAppToolbarDispatchStorage () {
@@ -285,6 +295,7 @@ onMount(mod.LifecycleModuleWillMount);
 import OLSKViewportContent from 'OLSKViewportContent';
 import KOMReviewMaster from './submodules/KOMReviewMaster/main.svelte';
 import KOMReviewDetail from './submodules/KOMReviewDetail/main.svelte';
+import KOMReviewCardForm from './submodules/KOMReviewCardForm/main.svelte';
 import OLSKAppToolbar from 'OLSKAppToolbar';
 import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svelte';
 </script>
@@ -296,8 +307,12 @@ import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svel
 		<KOMReviewMaster KOMReviewMasterListItems={ mod._ValueDecksAll } KOMReviewMasterDispatchCreate={ mod.KOMReviewMasterDispatchCreate } KOMReviewMasterDispatchSelect={ mod.KOMReviewMasterDispatchSelect } />
 	{/if}
 
-	{#if mod._ValueDeckSelected }
-		<KOMReviewDetail KOMReviewDetailItem={ mod._ValueDeckSelected } KOMReviewDetailDispatchBack={ mod.KOMReviewDetailDispatchBack } KOMReviewDetailDispatchRename={ mod.KOMReviewDetailDispatchRename } KOMReviewDetailDispatchDiscard={ mod.KOMReviewDetailDispatchDiscard } />
+	{#if mod._ValueDeckSelected && !mod._ValueCardFormItem }
+		<KOMReviewDetail KOMReviewDetailItem={ mod._ValueDeckSelected } KOMReviewDetailDispatchBack={ mod.KOMReviewDetailDispatchBack } KOMReviewDetailDispatchRename={ mod.KOMReviewDetailDispatchRename } KOMReviewDetailDispatchDiscard={ mod.KOMReviewDetailDispatchDiscard } KOMReviewDetailDispatchCreateCard={ mod.KOMReviewDetailDispatchCreateCard } />
+	{/if}
+
+	{#if mod._ValueDeckSelected && mod._ValueCardFormItem }
+		<KOMReviewCardForm KOMReviewCardFormItem={ mod._ValueCardFormItem } KOMReviewCardFormDispatchCancel={ mod.KOMReviewCardFormDispatchCancel } KOMReviewCardFormDispatchSave={ mod.KOMReviewCardFormDispatchSave } />
 	{/if}
 </OLSKViewportContent>
 

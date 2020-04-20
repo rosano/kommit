@@ -28,6 +28,10 @@ describe('KOMReview_Access', function () {
 		browser.assert.elements('.KOMReviewDetail', 0);
 	});
 
+	it('hides KOMReviewCardForm', function () {
+		browser.assert.elements('.KOMReviewCardForm', 0);
+	});
+
 	it('shows KOMReviewViewportFooter', function () {
 		browser.assert.elements(KOMReviewViewportFooter, 1);
 	});
@@ -75,6 +79,50 @@ describe('KOMReview_Access', function () {
 		it('shows KOMReviewDetail', function () {
 			browser.assert.elements('.KOMReviewDetail', 1);
 		});
+
+		it('hides KOMReviewCardForm', function () {
+			browser.assert.elements('.KOMReviewCardForm', 0);
+		});
+	
+	});
+
+	context('create card', function () {
+		
+		before(function () {
+			return browser.pressButton('.KOMReviewDetailCreateCardButton');
+		});
+
+		it('hides KOMReviewMaster', function () {
+			browser.assert.elements(KOMReviewMaster, 0);
+		});
+
+		it('hides KOMReviewDetail', function () {
+			browser.assert.elements('.KOMReviewDetail', 0);
+		});
+
+		it('shows KOMReviewCardForm', function () {
+			browser.assert.elements('.KOMReviewCardForm', 1);
+		});
+	
+	});
+
+	context('cancel card', function () {
+		
+		before(function () {
+			return browser.pressButton('.KOMReviewCardFormToolbarCancelButton');
+		});
+
+		it('hides KOMReviewMaster', function () {
+			browser.assert.elements(KOMReviewMaster, 0);
+		});
+
+		it('shows KOMReviewDetail', function () {
+			browser.assert.elements('.KOMReviewDetail', 1);
+		});
+
+		it('hides KOMReviewCardForm', function () {
+			browser.assert.elements('.KOMReviewCardForm', 0);
+		});
 	
 	});
 
@@ -90,7 +138,11 @@ describe('KOMReview_Access', function () {
 
 		it('hides KOMReviewDetail', function () {
 			browser.assert.elements('.KOMReviewDetail', 0);
-		});		
+		});
+
+		it('hides KOMReviewCardForm', function () {
+			browser.assert.elements('.KOMReviewCardForm', 0);
+		});
 	
 	});
 
@@ -110,6 +162,10 @@ describe('KOMReview_Access', function () {
 
 		it('hides KOMReviewDetail', function () {
 			browser.assert.elements('.KOMReviewDetail', 0);
+		});
+
+		it('hides KOMReviewCardForm', function () {
+			browser.assert.elements('.KOMReviewCardForm', 0);
 		});
 
 		it('hides KOMReviewMasterListItem', function () {
