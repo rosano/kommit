@@ -39,7 +39,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			it('localizes KOMReviewDetailDiscardPrompt', async function() {
 				deepEqual((await browser.OLSKConfirm(async function () {
 					browser.pressButton(KOMReviewDetailToolbarDiscardButton);
-				})).question, uLocalized('KOMReviewDetailDiscardPromptText'));
+				})).question, uLocalized('KOMReviewDetailToolbarDiscardPromptText'));
 			});
 		
 		});
