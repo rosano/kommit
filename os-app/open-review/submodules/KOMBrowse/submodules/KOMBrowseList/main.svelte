@@ -124,8 +124,8 @@ import KOMBrowseListItem from '../KOMBrowseListItem/main.svelte';
 		</OLSKInputWrapper>
 
 		<OLSKToolbarElementGroup>
-			<button class="KOMBrowseListCreateButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton" on:click={ mod.InterfaceCreateButtonDidClick } accesskey="n" title={ OLSKLocalized('KOMBrowseListCreateButtonText') }>
-				<div class="KOMBrowseListCreateButtonImage">{@html _OLSKSharedCreate }</div>
+			<button class="KOMBrowseListToolbarCreateButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton" on:click={ mod.InterfaceCreateButtonDidClick } accesskey="n" title={ OLSKLocalized('KOMBrowseListToolbarCreateButtonText') }>
+				<div class="KOMBrowseListToolbarCreateButtonImage">{@html _OLSKSharedCreate }</div>
 			</button>
 		</OLSKToolbarElementGroup>
 	</OLSKToolbar>

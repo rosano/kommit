@@ -21,7 +21,7 @@ describe('KOMBrowseList_Misc', function () {
 			});
 
 			before(function () {
-				browser.click(KOMBrowseListCreateButton);
+				browser.click(KOMBrowseListToolbarCreateButton);
 			});
 			
 			it.skip('classes KOMBrowseListFocused', function() {
@@ -210,26 +210,26 @@ describe('KOMBrowseList_Misc', function () {
 
 	});
 
-	describe('KOMBrowseListCreateButton', function test_KOMBrowseListCreateButton () {
+	describe('KOMBrowseListToolbarCreateButton', function test_KOMBrowseListToolbarCreateButton () {
 		
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute);
 		});
 
 		it('classes OLSKLayoutButtonNoStyle', function () {
-			browser.assert.hasClass(KOMBrowseListCreateButton, 'OLSKLayoutButtonNoStyle');
+			browser.assert.hasClass(KOMBrowseListToolbarCreateButton, 'OLSKLayoutButtonNoStyle');
 		});
 
 		it('classes OLSKLayoutElementTappable', function () {
-			browser.assert.hasClass(KOMBrowseListCreateButton, 'OLSKLayoutElementTappable');
+			browser.assert.hasClass(KOMBrowseListToolbarCreateButton, 'OLSKLayoutElementTappable');
 		});
 
 		it('classes OLSKToolbarButton', function () {
-			browser.assert.hasClass(KOMBrowseListCreateButton, 'OLSKToolbarButton');
+			browser.assert.hasClass(KOMBrowseListToolbarCreateButton, 'OLSKToolbarButton');
 		});
 		
 		it('sets accesskey', function () {
-			browser.assert.attribute(KOMBrowseListCreateButton, 'accesskey', 'n');
+			browser.assert.attribute(KOMBrowseListToolbarCreateButton, 'accesskey', 'n');
 		});
 
 		context('click', function () {
@@ -239,7 +239,7 @@ describe('KOMBrowseList_Misc', function () {
 			});
 			
 			before(function () {
-				return browser.pressButton(KOMBrowseListCreateButton);
+				return browser.pressButton(KOMBrowseListToolbarCreateButton);
 			});
 
 			it('sends KOMBrowseListDispatchCreate', function () {
@@ -250,10 +250,10 @@ describe('KOMBrowseList_Misc', function () {
 	
 	});
 
-	describe('KOMBrowseListCreateButtonImage', function test_KOMBrowseListCreateButtonImage () {
+	describe('KOMBrowseListToolbarCreateButtonImage', function test_KOMBrowseListToolbarCreateButtonImage () {
 
 		it('sets src', function () {
-			browser.assert.elements(`${ KOMBrowseListCreateButtonImage } #_OLSKSharedCreate`, 1);
+			browser.assert.elements(`${ KOMBrowseListToolbarCreateButtonImage } #_OLSKSharedCreate`, 1);
 		});
 	
 	});
