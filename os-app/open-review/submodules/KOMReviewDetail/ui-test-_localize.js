@@ -22,26 +22,16 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			browser.assert.text(KOMReviewDetailToolbarBackButton, uLocalized('KOMReviewDetailToolbarBackButtonText'));
 		});
 
-		it('localizes KOMReviewDetailToolbarRenameButton', function () {
-			browser.assert.text(KOMReviewDetailToolbarRenameButton, uLocalized('KOMReviewDetailToolbarRenameButtonText'));
-		});
-
 		it('localizes KOMReviewDetailToolbarDiscardButton', function () {
 			browser.assert.text(KOMReviewDetailToolbarDiscardButton, uLocalized('KOMReviewDetailToolbarDiscardButtonText'));
 		});
 
-		it('localizes KOMReviewDetailCreateCardButton', function () {
-			browser.assert.text(KOMReviewDetailCreateCardButton, uLocalized('KOMReviewDetailCreateCardButtonText'));
+		it('localizes KOMReviewDetailToolbarRenameButton', function () {
+			browser.assert.text(KOMReviewDetailToolbarRenameButton, uLocalized('KOMReviewDetailToolbarRenameButtonText'));
 		});
 
-		context('on rename', function () {
-		
-			it('localizes KOMReviewDetailToolbarRenameButtonPrompt', function() {
-				deepEqual(browser.OLSKPromptSync(function () {
-					return browser.pressButton(KOMReviewDetailToolbarRenameButton);
-				}).question, uLocalized('KOMReviewDetailToolbarRenameButtonPromptText'));
-			});
-		
+		it('localizes KOMReviewDetailCreateCardButton', function () {
+			browser.assert.text(KOMReviewDetailCreateCardButton, uLocalized('KOMReviewDetailCreateCardButtonText'));
 		});
 
 		context('on discard', function () {
@@ -50,6 +40,16 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 				deepEqual((await browser.OLSKConfirm(async function () {
 					browser.pressButton(KOMReviewDetailToolbarDiscardButton);
 				})).question, uLocalized('KOMReviewDetailDiscardPromptText'));
+			});
+		
+		});
+
+		context('on rename', function () {
+		
+			it('localizes KOMReviewDetailToolbarRenameButtonPrompt', function() {
+				deepEqual(browser.OLSKPromptSync(function () {
+					return browser.pressButton(KOMReviewDetailToolbarRenameButton);
+				}).question, uLocalized('KOMReviewDetailToolbarRenameButtonPromptText'));
 			});
 		
 		});

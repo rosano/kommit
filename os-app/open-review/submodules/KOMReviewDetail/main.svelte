@@ -1,8 +1,8 @@
 <script>
 export let KOMReviewDetailItem;
 export let KOMReviewDetailDispatchBack;
-export let KOMReviewDetailDispatchRename;
 export let KOMReviewDetailDispatchDiscard;
+export let KOMReviewDetailDispatchRename;
 export let KOMReviewDetailDispatchCreateCard;
 
 import OLSKInternational from 'OLSKInternational';
@@ -45,9 +45,8 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 		</OLSKToolbarElementGroup>
 
 		<OLSKToolbarElementGroup>
-			<button class="KOMReviewDetailToolbarRenameButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceRenameButtonDidClick }>{ OLSKLocalized('KOMReviewDetailToolbarRenameButtonText') }</button>
-
 			<button class="KOMReviewDetailToolbarDiscardButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ () => window.confirm(OLSKLocalized('KOMReviewDetailDiscardPromptText')) && KOMReviewDetailDispatchDiscard(KOMReviewDetailItem) }>{ OLSKLocalized('KOMReviewDetailToolbarDiscardButtonText') }</button>
+			<button class="KOMReviewDetailToolbarRenameButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceRenameButtonDidClick }>{ OLSKLocalized('KOMReviewDetailToolbarRenameButtonText') }</button>
 		</OLSKToolbarElementGroup>
 	</OLSKToolbar>
 </header>

@@ -62,6 +62,39 @@ describe('KOMReviewDetail_Misc', function () {
 	
 	});
 
+	describe('KOMReviewDetailToolbarDiscardButton', function () {
+		
+		it('classes OLSKLayoutButtonNoStyle', function () {
+			browser.assert.hasClass(KOMReviewDetailToolbarDiscardButton, 'OLSKLayoutButtonNoStyle');
+		});
+
+		it('classes OLSKLayoutElementTappable', function () {
+			browser.assert.hasClass(KOMReviewDetailToolbarDiscardButton, 'OLSKLayoutElementTappable');
+		});
+
+		context('click', function () {
+			
+			before(function () {
+				browser.assert.text('#TestKOMReviewDetailDispatchDiscard', '0');
+				browser.assert.text('#TestKOMReviewDetailDispatchDiscardData', 'undefined');
+			});
+			
+			before(function () {
+				return browser.pressButton(KOMReviewDetailToolbarDiscardButton);
+			});
+
+			it('sends KOMReviewDetailDispatchDiscard', function () {
+				browser.assert.text('#TestKOMReviewDetailDispatchDiscard', '1');
+			});
+
+			it('sends KOMReviewDetailDispatchDiscardData', function () {
+				browser.assert.text('#TestKOMReviewDetailDispatchDiscardData', JSON.stringify(uItem()));
+			});
+		
+		});
+	
+	});
+
 	describe('KOMReviewDetailToolbarRenameButton', function () {
 		
 		it('classes OLSKLayoutButtonNoStyle', function () {
@@ -91,39 +124,6 @@ describe('KOMReviewDetail_Misc', function () {
 
 			it('sends KOMReviewDetailDispatchRenameData', function () {
 				browser.assert.text('#TestKOMReviewDetailDispatchRenameData', JSON.stringify(uItem().KOMDeckName));
-			});
-		
-		});
-	
-	});
-
-	describe('KOMReviewDetailToolbarDiscardButton', function () {
-		
-		it('classes OLSKLayoutButtonNoStyle', function () {
-			browser.assert.hasClass(KOMReviewDetailToolbarDiscardButton, 'OLSKLayoutButtonNoStyle');
-		});
-
-		it('classes OLSKLayoutElementTappable', function () {
-			browser.assert.hasClass(KOMReviewDetailToolbarDiscardButton, 'OLSKLayoutElementTappable');
-		});
-
-		context('click', function () {
-			
-			before(function () {
-				browser.assert.text('#TestKOMReviewDetailDispatchDiscard', '0');
-				browser.assert.text('#TestKOMReviewDetailDispatchDiscardData', 'undefined');
-			});
-			
-			before(function () {
-				return browser.pressButton(KOMReviewDetailToolbarDiscardButton);
-			});
-
-			it('sends KOMReviewDetailDispatchDiscard', function () {
-				browser.assert.text('#TestKOMReviewDetailDispatchDiscard', '1');
-			});
-
-			it('sends KOMReviewDetailDispatchDiscardData', function () {
-				browser.assert.text('#TestKOMReviewDetailDispatchDiscardData', JSON.stringify(uItem()));
 			});
 		
 		});
