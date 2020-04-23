@@ -56,23 +56,23 @@ const mod = {
 		mod.ControlDeckSelect(null);
 	},
 
-	KOMReviewDetailDispatchRename (inputData) {
-		mod._ValueDeckSelected.KOMDeckName = inputData;
-		
-		mod.ControlDeckSave(mod._ValueDeckSelected);
-	},
-
 	KOMReviewDetailDispatchDiscard (inputData) {
 		mod.ControlDeckSelect(null);
 		
 		mod.ControlDeckDiscard(inputData);
 	},
 
-	KOMReviewDetailDispatchCreateCard () {
+	KOMReviewDetailDispatchRename (inputData) {
+		mod._ValueDeckSelected.KOMDeckName = inputData;
+		
+		mod.ControlDeckSave(mod._ValueDeckSelected);
+	},
+
+	KOMReviewDetailDispatchBrowse () {
 		mod._ValueCardFormItem = {};
 	},
 
-	KOMReviewCardFormDispatchCancel () {
+	KOMBrowseListDispatchClose () {
 		mod._ValueCardFormItem = undefined;
 	},
 
@@ -295,7 +295,7 @@ onMount(mod.LifecycleModuleWillMount);
 import OLSKViewportContent from 'OLSKViewportContent';
 import KOMReviewMaster from './submodules/KOMReviewMaster/main.svelte';
 import KOMReviewDetail from './submodules/KOMReviewDetail/main.svelte';
-import KOMReviewCardForm from './submodules/KOMReviewCardForm/main.svelte';
+import KOMBrowse from './submodules/KOMBrowse/main.svelte';
 import OLSKAppToolbar from 'OLSKAppToolbar';
 import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svelte';
 </script>
@@ -304,15 +304,28 @@ import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svel
 
 <OLSKViewportContent>
 	{#if !mod._ValueDeckSelected }
-		<KOMReviewMaster KOMReviewMasterListItems={ mod._ValueDecksAll } KOMReviewMasterDispatchCreate={ mod.KOMReviewMasterDispatchCreate } KOMReviewMasterDispatchSelect={ mod.KOMReviewMasterDispatchSelect } />
+		<KOMReviewMaster
+			KOMReviewMasterListItems={ mod._ValueDecksAll }
+			KOMReviewMasterDispatchCreate={ mod.KOMReviewMasterDispatchCreate }
+			KOMReviewMasterDispatchSelect={ mod.KOMReviewMasterDispatchSelect }
+			/>
 	{/if}
 
 	{#if mod._ValueDeckSelected && !mod._ValueCardFormItem }
-		<KOMReviewDetail KOMReviewDetailItem={ mod._ValueDeckSelected } KOMReviewDetailDispatchBack={ mod.KOMReviewDetailDispatchBack } KOMReviewDetailDispatchRename={ mod.KOMReviewDetailDispatchRename } KOMReviewDetailDispatchDiscard={ mod.KOMReviewDetailDispatchDiscard } KOMReviewDetailDispatchCreateCard={ mod.KOMReviewDetailDispatchCreateCard } />
+		<KOMReviewDetail
+			KOMReviewDetailItem={ mod._ValueDeckSelected }
+			KOMReviewDetailDispatchBack={ mod.KOMReviewDetailDispatchBack }
+			KOMReviewDetailDispatchDiscard={ mod.KOMReviewDetailDispatchDiscard }
+			KOMReviewDetailDispatchRename={ mod.KOMReviewDetailDispatchRename }
+			KOMReviewDetailDispatchBrowse={ mod.KOMReviewDetailDispatchBrowse }
+			/>
 	{/if}
 
 	{#if mod._ValueDeckSelected && mod._ValueCardFormItem }
-		<KOMReviewCardForm KOMReviewCardFormItem={ mod._ValueCardFormItem } KOMReviewCardFormDispatchCancel={ mod.KOMReviewCardFormDispatchCancel } KOMReviewCardFormDispatchSave={ mod.KOMReviewCardFormDispatchSave } />
+		<KOMBrowse
+			KOMBrowseItems={ [] }
+			KOMBrowseItemSelected={ mod._ValueCardFormItem }
+			KOMBrowseListDispatchClose={ mod.KOMBrowseListDispatchClose } />
 	{/if}
 </OLSKViewportContent>
 

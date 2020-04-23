@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="/_shared/__external/normalize.css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="/<%= OLSKSharedPageControllerSlug %>/__compiled/ui-style.css">
+
+	<script type="text/javascript">
+		window.OLSKPublicConstants = function (inputData) {
+			return <%- JSON.stringify({
+				OLSKSharedPageCurrentLanguage,
+			}) %>[inputData];
+		};
+	</script>
+</head>
+<body>
+
+<script src="/<%= OLSKSharedPageControllerSlug %>/__compiled/ui-behaviour.js"></script>
+
+<p>
+	<strong>TestKOMBrowseListDispatchClose</strong>
+	<span id="TestKOMBrowseListDispatchClose">0</span>
+</p>
+
+<p>
+	<strong>TestKOMBrowseListDispatchCreate</strong>
+	<span id="TestKOMBrowseListDispatchCreate">0</span>
+</p>
+
+<p>
+	<strong>TestKOMBrowseListDispatchClick</strong>
+	<span id="TestKOMBrowseListDispatchClick">0</span>
+</p>
+
+<p>
+	<strong>TestKOMBrowseListDispatchArrow</strong>
+	<span id="TestKOMBrowseListDispatchArrow">0</span>
+</p>
+
+<p>
+	<strong>TestKOMBrowseListDispatchFilter</strong>
+	<span id="TestKOMBrowseListDispatchFilter">0</span>
+</p>
+
+<p>
+	<strong>TestKOMBrowseInfoDispatchBack</strong>
+	<span id="TestKOMBrowseInfoDispatchBack">0</span>
+</p>
+
+<p>
+	<strong>TestKOMBrowseInfoDispatchDiscard</strong>
+	<span id="TestKOMBrowseInfoDispatchDiscard">0</span>
+</p>
+
+<p>
+	<strong>TestKOMBrowseInfoDispatchUpdate</strong>
+	<span id="TestKOMBrowseInfoDispatchUpdate">0</span>
+</p>
+
+</body>
+</html>

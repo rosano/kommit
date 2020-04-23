@@ -1,0 +1,47 @@
+.KOMBrowse {
+	--KOMBorderStyle: 1px solid #ddd;
+	
+	font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
+	font-size: 9pt;
+
+	background: var(--KOMCommonBackground);
+	color: var(--KOMCommonForeground);
+}
+
+.KOMBrowse :global(.OLSKToolbar) {
+	--OLSKToolbarBackground: var(--KOMCommonBackground);
+}
+
+.KOMBrowseTools {
+	border-top: var(--KOMBorderStyle);
+}
+
+@media screen and (max-width: 760px) {
+
+.KOMBrowseTools :last-child {
+	display: none;
+}
+
+}
+
+#KOMBrowseStorageWidget {
+	border-top: var(--KOMBorderStyle);
+	
+	background: var(--KOMCommonBackground);
+
+	/* AppContainerFlexbox:Child */
+	flex-shrink: 0;
+}
+
+.KOMBrowseStorageWidgetHidden {
+	display: none;
+}
+
+@media screen and (max-width: 760px) {
+
+.KOMBrowse :global(.OLSKAppToolbar) {
+	/* browser quirks */
+	z-index: 999;
+}
+
+}

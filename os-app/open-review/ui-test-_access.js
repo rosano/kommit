@@ -28,8 +28,8 @@ describe('KOMReview_Access', function () {
 		browser.assert.elements('.KOMReviewDetail', 0);
 	});
 
-	it('hides KOMReviewCardForm', function () {
-		browser.assert.elements('.KOMReviewCardForm', 0);
+	it('hides KOMBrowse', function () {
+		browser.assert.elements('.KOMBrowse', 0);
 	});
 
 	it('shows KOMReviewViewportFooter', function () {
@@ -80,8 +80,8 @@ describe('KOMReview_Access', function () {
 			browser.assert.elements('.KOMReviewDetail', 1);
 		});
 
-		it('hides KOMReviewCardForm', function () {
-			browser.assert.elements('.KOMReviewCardForm', 0);
+		it('hides KOMBrowse', function () {
+			browser.assert.elements('.KOMBrowse', 0);
 		});
 	
 	});
@@ -89,7 +89,7 @@ describe('KOMReview_Access', function () {
 	context('create card', function () {
 		
 		before(function () {
-			return browser.pressButton('.KOMReviewDetailCreateCardButton');
+			return browser.pressButton('.KOMReviewDetailToolbarBrowseButton');
 		});
 
 		it('hides KOMReviewMaster', function () {
@@ -100,8 +100,8 @@ describe('KOMReview_Access', function () {
 			browser.assert.elements('.KOMReviewDetail', 0);
 		});
 
-		it('shows KOMReviewCardForm', function () {
-			browser.assert.elements('.KOMReviewCardForm', 1);
+		it('shows KOMBrowse', function () {
+			browser.assert.elements('.KOMBrowse', 1);
 		});
 	
 	});
@@ -109,7 +109,7 @@ describe('KOMReview_Access', function () {
 	context('cancel card', function () {
 		
 		before(function () {
-			return browser.pressButton('.KOMReviewCardFormToolbarCancelButton');
+			return browser.pressButton('.KOMBrowseListToolbarCloseButton');
 		});
 
 		it('hides KOMReviewMaster', function () {
@@ -120,8 +120,8 @@ describe('KOMReview_Access', function () {
 			browser.assert.elements('.KOMReviewDetail', 1);
 		});
 
-		it('hides KOMReviewCardForm', function () {
-			browser.assert.elements('.KOMReviewCardForm', 0);
+		it('hides KOMBrowse', function () {
+			browser.assert.elements('.KOMBrowse', 0);
 		});
 	
 	});
@@ -140,8 +140,8 @@ describe('KOMReview_Access', function () {
 			browser.assert.elements('.KOMReviewDetail', 0);
 		});
 
-		it('hides KOMReviewCardForm', function () {
-			browser.assert.elements('.KOMReviewCardForm', 0);
+		it('hides KOMBrowse', function () {
+			browser.assert.elements('.KOMBrowse', 0);
 		});
 	
 	});
@@ -164,8 +164,8 @@ describe('KOMReview_Access', function () {
 			browser.assert.elements('.KOMReviewDetail', 0);
 		});
 
-		it('hides KOMReviewCardForm', function () {
-			browser.assert.elements('.KOMReviewCardForm', 0);
+		it('hides KOMBrowse', function () {
+			browser.assert.elements('.KOMBrowse', 0);
 		});
 
 		it('hides KOMReviewMasterListItem', function () {
