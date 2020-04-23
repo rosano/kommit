@@ -15,6 +15,10 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 				OLSKRoutingLanguage: languageCode,
 			});
 		});
+
+		it('localizes KOMBrowseListToolbarCloseButton', function () {
+			browser.assert.text(KOMBrowseListToolbarCloseButton, uLocalized('KOMBrowseListToolbarCloseButtonText'));
+		});
 	
 		it('localizes KOMBrowseListFilterField', function () {
 			browser.assert.attribute(KOMBrowseListFilterField, 'placeholder', uLocalized('KOMBrowseListFilterFieldText'));

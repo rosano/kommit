@@ -125,6 +125,42 @@ describe('KOMBrowseList_Misc', function () {
 	
 	});
 
+	describe('KOMBrowseListToolbarCloseButton', function test_KOMBrowseListToolbarCloseButton () {
+		
+		before(function() {
+			return browser.OLSKVisit(kDefaultRoute);
+		});
+
+		it('classes OLSKLayoutButtonNoStyle', function () {
+			browser.assert.hasClass(KOMBrowseListToolbarCloseButton, 'OLSKLayoutButtonNoStyle');
+		});
+
+		it('classes OLSKLayoutElementTappable', function () {
+			browser.assert.hasClass(KOMBrowseListToolbarCloseButton, 'OLSKLayoutElementTappable');
+		});
+
+		it('classes OLSKToolbarButton', function () {
+			browser.assert.hasClass(KOMBrowseListToolbarCloseButton, 'OLSKToolbarButton');
+		});
+
+		context('click', function () {
+			
+			before(function () {
+				browser.assert.text('#TestKOMBrowseListDispatchClose', '0');
+			});
+			
+			before(function () {
+				return browser.pressButton(KOMBrowseListToolbarCloseButton);
+			});
+
+			it('sends KOMBrowseListDispatchClose', function () {
+				browser.assert.text('#TestKOMBrowseListDispatchClose', '1');
+			});
+		
+		});
+	
+	});
+
 	describe('KOMBrowseListFilterField', function test_KOMBrowseListFilterField() {
 
 		before(function() {

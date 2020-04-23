@@ -5,6 +5,9 @@ const KOMBrowseList = new RollupStart({
 	props: Object.assign({
 		KOMBrowseListItems: [],
 		KOMBrowseListFilterText: '',
+		KOMBrowseListDispatchClose: (function _KOMBrowseListDispatchClose (inputData) {
+			window.TestKOMBrowseListDispatchClose.innerHTML = parseInt(window.TestKOMBrowseListDispatchCreate.innerHTML) + 1;
+		}),
 		KOMBrowseListDispatchCreate: (function _KOMBrowseListDispatchCreate (inputData) {
 			window.TestKOMBrowseListDispatchCreate.innerHTML = parseInt(window.TestKOMBrowseListDispatchCreate.innerHTML) + 1;
 			window.TestKOMBrowseListDispatchCreateData.innerHTML = inputData;

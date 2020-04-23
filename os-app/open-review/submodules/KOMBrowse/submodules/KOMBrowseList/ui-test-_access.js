@@ -6,6 +6,7 @@ Object.entries({
 	KOMBrowseList: '.KOMBrowseList',
 	
 	KOMBrowseListToolbar: '.KOMBrowseListToolbar',
+	KOMBrowseListToolbarCloseButton: '.KOMBrowseListToolbarCloseButton',
 	
 	KOMBrowseListFilterField: '.KOMBrowseListFilterField',
 	KOMBrowseListCreateButton: '.KOMBrowseListCreateButton',
@@ -28,6 +29,10 @@ describe('KOMBrowseList_Access', function () {
 
 	it('shows KOMBrowseListToolbar', function () {
 		browser.assert.elements(KOMBrowseListToolbar, 1);
+	});
+
+	it('shows KOMBrowseListToolbarCloseButton', function () {
+		browser.assert.elements(KOMBrowseListToolbarCloseButton, 1);
 	});
 
 	it('shows OLSKToolbar', function () {

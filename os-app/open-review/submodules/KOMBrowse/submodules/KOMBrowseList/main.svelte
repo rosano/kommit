@@ -2,6 +2,7 @@
 export let KOMBrowseListFilterText;
 export let KOMBrowseListItems;
 export let KOMBrowseListItemSelected = null;
+export let KOMBrowseListDispatchClose;
 export let KOMBrowseListDispatchCreate;
 export let KOMBrowseListDispatchClick;
 export let KOMBrowseListDispatchArrow;
@@ -114,6 +115,10 @@ import KOMBrowseListItem from '../KOMBrowseListItem/main.svelte';
 
 <header class="KOMBrowseListToolbar OLSKMobileViewHeader">
 	<OLSKToolbar>
+		<OLSKToolbarElementGroup>
+			<button class="KOMBrowseListToolbarCloseButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton" on:click={ KOMBrowseListDispatchClose }>{ OLSKLocalized('KOMBrowseListToolbarCloseButtonText') }</button>
+		</OLSKToolbarElementGroup>
+
 		<OLSKInputWrapper OLSKInputWrapperValue={ KOMBrowseListFilterText } OLSKInputWrapperDispatchClear={ mod.OLSKInputWrapperDispatchClear } >
 			<input class="KOMBrowseListFilterField" placeholder={ OLSKLocalized('KOMBrowseListFilterFieldText') } bind:value={ KOMBrowseListFilterText } on:input={ mod.InterfaceFilterFieldDidInput } />
 		</OLSKInputWrapper>
