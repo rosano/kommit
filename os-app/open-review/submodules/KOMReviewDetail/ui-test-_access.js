@@ -9,9 +9,9 @@ Object.entries({
 	KOMReviewDetailToolbarBackButton: '.KOMReviewDetailToolbarBackButton',
 	KOMReviewDetailToolbarDiscardButton: '.KOMReviewDetailToolbarDiscardButton',
 	KOMReviewDetailToolbarRenameButton: '.KOMReviewDetailToolbarRenameButton',
+	KOMReviewDetailToolbarBrowseButton: '.KOMReviewDetailToolbarBrowseButton',
 	
 	KOMReviewDetailHeading: '.KOMReviewDetailHeading',
-	KOMReviewDetailCreateCardButton: '.KOMReviewDetailCreateCardButton',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
@@ -50,12 +50,12 @@ describe('KOMReviewDetail_Access', function () {
 		browser.assert.elements(KOMReviewDetailToolbarRenameButton, 1);
 	});
 
-	it('shows KOMReviewDetailHeading', function () {
-		browser.assert.elements(KOMReviewDetailHeading, 1);
+	it('shows KOMReviewDetailToolbarBrowseButton', function () {
+		browser.assert.elements(KOMReviewDetailToolbarBrowseButton, 1);
 	});
 
-	it('shows KOMReviewDetailCreateCardButton', function () {
-		browser.assert.elements(KOMReviewDetailCreateCardButton, 1);
+	it('shows KOMReviewDetailHeading', function () {
+		browser.assert.elements(KOMReviewDetailHeading, 1);
 	});
 
 });

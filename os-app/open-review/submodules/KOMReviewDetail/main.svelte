@@ -3,7 +3,7 @@ export let KOMReviewDetailItem;
 export let KOMReviewDetailDispatchBack;
 export let KOMReviewDetailDispatchDiscard;
 export let KOMReviewDetailDispatchRename;
-export let KOMReviewDetailDispatchCreateCard;
+export let KOMReviewDetailDispatchBrowse;
 
 import OLSKInternational from 'OLSKInternational';
 const OLSKLocalized = function(translationConstant) {
@@ -46,7 +46,10 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 
 		<OLSKToolbarElementGroup>
 			<button class="KOMReviewDetailToolbarDiscardButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ () => window.confirm(OLSKLocalized('KOMReviewDetailDiscardPromptText')) && KOMReviewDetailDispatchDiscard(KOMReviewDetailItem) }>{ OLSKLocalized('KOMReviewDetailToolbarDiscardButtonText') }</button>
+			
 			<button class="KOMReviewDetailToolbarRenameButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceRenameButtonDidClick }>{ OLSKLocalized('KOMReviewDetailToolbarRenameButtonText') }</button>
+			
+			<button class="KOMReviewDetailToolbarBrowseButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ KOMReviewDetailDispatchBrowse }>{ OLSKLocalized('KOMReviewDetailToolbarBrowseButtonText') }</button>
 		</OLSKToolbarElementGroup>
 	</OLSKToolbar>
 </header>
@@ -54,8 +57,6 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 <div>
 
 <h1 class="KOMReviewDetailHeading">{ KOMReviewDetailItem.KOMDeckName }</h1>
-
-<button class="KOMReviewDetailCreateCardButton" on:click={ KOMReviewDetailDispatchCreateCard }>{ OLSKLocalized('KOMReviewDetailCreateCardButtonText') }</button>
 
 </div>
 

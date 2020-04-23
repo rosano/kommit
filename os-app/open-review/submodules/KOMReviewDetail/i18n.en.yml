@@ -1,6 +1,6 @@
 KOMReviewDetailToolbarBackButtonText: Back
-KOMReviewDetailToolbarRenameButtonText: Rename
-KOMReviewDetailToolbarRenameButtonPromptText: Name
 KOMReviewDetailToolbarDiscardButtonText: Discard
 KOMReviewDetailDiscardPromptText: Are you sure?
-KOMReviewDetailCreateCardButtonText: Create card
+KOMReviewDetailToolbarRenameButtonText: Rename
+KOMReviewDetailToolbarRenameButtonPromptText: Name
+KOMReviewDetailToolbarBrowseButtonText: Browse

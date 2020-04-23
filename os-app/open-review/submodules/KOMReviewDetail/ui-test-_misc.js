@@ -130,20 +130,20 @@ describe('KOMReviewDetail_Misc', function () {
 	
 	});
 
-	describe('KOMReviewDetailCreateCardButton', function () {
+	describe('KOMReviewDetailToolbarBrowseButton', function () {
 		
 		context('click', function () {
 			
 			before(function () {
-				browser.assert.text('#TestKOMReviewDetailDispatchCreateCard', '0');
+				browser.assert.text('#TestKOMReviewDetailDispatchBrowse', '0');
 			});
 			
 			before(function () {
-				return browser.pressButton(KOMReviewDetailCreateCardButton);
+				return browser.pressButton(KOMReviewDetailToolbarBrowseButton);
 			});
 
-			it('sends KOMReviewDetailDispatchCreateCard', function () {
-				browser.assert.text('#TestKOMReviewDetailDispatchCreateCard', '1');
+			it('sends KOMReviewDetailDispatchBrowse', function () {
+				browser.assert.text('#TestKOMReviewDetailDispatchBrowse', '1');
 			});
 		
 		});

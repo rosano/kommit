@@ -30,8 +30,8 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			browser.assert.text(KOMReviewDetailToolbarRenameButton, uLocalized('KOMReviewDetailToolbarRenameButtonText'));
 		});
 
-		it('localizes KOMReviewDetailCreateCardButton', function () {
-			browser.assert.text(KOMReviewDetailCreateCardButton, uLocalized('KOMReviewDetailCreateCardButtonText'));
+		it('localizes KOMReviewDetailToolbarBrowseButton', function () {
+			browser.assert.text(KOMReviewDetailToolbarBrowseButton, uLocalized('KOMReviewDetailToolbarBrowseButtonText'));
 		});
 
 		context('on discard', function () {
