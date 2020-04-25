@@ -36,9 +36,9 @@ const mod = {
 		mod._ValueDocumentsVisible = shouldSort ? items.sort(KOMBrowseLogic.KOMBrowseSort) : items;
 	},
 	
-	_ValueDocumentSelected: undefined,
-	ValueDocumentSelected (inputData) {
-		mod._ValueDocumentSelected = inputData;
+	_ValueCardSelected: undefined,
+	ValueCardSelected (inputData) {
+		mod._ValueCardSelected = inputData;
 
 		if (!inputData) {
 			mod.OLSKMobileViewInactive = false;	
@@ -67,11 +67,11 @@ const mod = {
 	},
 
 	KOMBrowseListDispatchClick (inputData) {
-		mod.ControlDocumentSelect(inputData);
+		mod.ControlCardSelect(inputData);
 	},
 
 	KOMBrowseListDispatchArrow (inputData) {
-		mod.ValueDocumentSelected(inputData);
+		mod.ValueCardSelected(inputData);
 	},
 
 	KOMBrowseListDispatchFilter (inputData) {
@@ -79,19 +79,19 @@ const mod = {
 	},
 
 	KOMBrowseInfoDispatchBack () {
-		mod.ControlDocumentSelect(null);
+		mod.ControlCardSelect(null);
 
 		mod.OLSKMobileViewInactive = false;
 	},
 
 	KOMBrowseInfoDispatchDiscard () {
-		mod.ControlCardDiscard(mod._ValueDocumentSelected, );
+		mod.ControlCardDiscard(mod._ValueCardSelected, mod._ValueDeckSelected);
 	},
 
 	KOMBrowseInfoDispatchUpdate () {
-		mod._ValueDocumentSelected = mod._ValueDocumentSelected; // #purge-svelte-force-update
+		mod._ValueCardSelected = mod._ValueCardSelected; // #purge-svelte-force-update
 
-		mod.ControlDocumentPersist(mod._ValueDocumentSelected);
+		mod.ControlDocumentPersist(mod._ValueCardSelected);
 	},
 
 	// INTERFACE	
@@ -166,8 +166,8 @@ const mod = {
 		
 	},
 	
-	ControlDocumentSelect(inputData) {
-		mod.ValueDocumentSelected(inputData);
+	ControlCardSelect(inputData) {
+		mod.ValueCardSelected(inputData);
 
 		if (!inputData) {
 			return !mod.DataIsMobile() && document.querySelector('.KOMBrowseListFilterField').focus();
@@ -188,14 +188,14 @@ const mod = {
 		mod.ValueDocumentsVisible(mod._ValueCardsAll);
 
 		if (!inputData) {
-			return mod.ControlDocumentSelect(null);
+			return mod.ControlCardSelect(null);
 		}
 
 		if (!mod._ValueDocumentsVisible.length) {
-			return mod.ControlDocumentSelect(null);
+			return mod.ControlCardSelect(null);
 		}
 
-		mod.ValueDocumentSelected(mod._ValueDocumentsVisible.filter(function (e) {
+		mod.ValueCardSelected(mod._ValueDocumentsVisible.filter(function (e) {
 			return e.KOMCardQuestion.toLowerCase() === inputData.toLowerCase();
 		}).concat(mod._ValueDocumentsVisible.filter(function (e) {
 			return e.KOMCardQuestion.toLowerCase().includes(inputData.toLowerCase());
@@ -238,22 +238,22 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 <OLSKViewportContent>
 	<KOMBrowseList
 		KOMBrowseListItems={ mod._ValueCardsAll }
-		KOMBrowseListItemSelected={ KOMBrowseItemSelected }
+		KOMBrowseListItemSelected={ mod._ValueCardSelected }
 		KOMBrowseListFilterText={ mod._ValueFilterText }
 		KOMBrowseListDispatchClose={ KOMBrowseListDispatchClose }
 		KOMBrowseListDispatchCreate={ mod.KOMBrowseListDispatchCreate }
 		KOMBrowseListDispatchClick={ KOMBrowseListDispatchClick }
 		KOMBrowseListDispatchArrow={ KOMBrowseListDispatchArrow }
 		KOMBrowseListDispatchFilter={ KOMBrowseListDispatchFilter }
-		OLSKMobileViewInactive={ !!KOMBrowseItemSelected }
+		OLSKMobileViewInactive={ !!mod._ValueCardSelected }
 		/>
 
 	<KOMBrowseInfo
-		KOMBrowseInfoItem={ KOMBrowseItemSelected }
+		KOMBrowseInfoItem={ mod._ValueCardSelected }
 		KOMBrowseInfoDispatchBack={ KOMBrowseInfoDispatchBack }
 		KOMBrowseInfoDispatchDiscard={ mod.KOMBrowseInfoDispatchDiscard }
 		KOMBrowseInfoDispatchUpdate={ KOMBrowseInfoDispatchUpdate }
-		OLSKMobileViewInactive={ !KOMBrowseItemSelected }
+		OLSKMobileViewInactive={ !mod._ValueCardSelected }
 		/>
 </OLSKViewportContent>
 

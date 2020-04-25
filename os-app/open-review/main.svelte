@@ -174,14 +174,6 @@ const mod = {
 	ControlDeckSelect(inputData) {
 		mod.ValueDeckSelected(inputData);
 	},
-	
-	ControlCardSelect(inputData) {
-		mod.ValueCardSelected(inputData);
-
-		// if (mod.DataIsMobile()) {
-		// 	mod.ControlFocusDetail();
-		// }
-	},
 
 	// SETUP
 
