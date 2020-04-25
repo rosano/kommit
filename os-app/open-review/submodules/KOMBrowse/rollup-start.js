@@ -6,12 +6,40 @@ import KOMDeckModel from '../../../_shared/KOMDeck/model.js';
 import * as RemoteStoragePackage from 'remotestoragejs';
 const RemoteStorage = RemoteStoragePackage.default || RemoteStoragePackage;
 
+const mod = {
+
+	_ValueStorageClient: undefined,
+
+	// SETUP
+
+	SetupEverything() {
+		mod.SetupStorageClient();
+	},
+
+	SetupStorageClient() {
+		const storageModule = KOM_Data.KOM_DataModule([
+			KOMCardStorage.KOMCardStorageBuild,
+			]);
+		
+		mod._ValueStorageClient = new RemoteStorage({ modules: [ storageModule ] });
+
+		mod._ValueStorageClient.access.claim(storageModule.name, 'rw');
+	},
+
+	// LIFECYCLE
+
+	LifecycleModuleDidLoad() {
+		mod.SetupEverything();
+	},
+
+};
+
+mod.LifecycleModuleDidLoad();
+
 const KOMBrowse = new RollupStart({
 	target: document.body,
 	props: Object.assign({
-		KOMBrowseStorageClient: new RemoteStorage({ modules: [ KOM_Data.KOM_DataModule([
-			KOMCardStorage.KOMCardStorageBuild,
-		]) ] }),
+		KOMBrowseStorageClient: mod._ValueStorageClient,
 		KOMBrowseListDispatchClose: (function _KOMBrowseListDispatchClose (inputData) {
 			window.TestKOMBrowseListDispatchClose.innerHTML = parseInt(window.TestKOMBrowseListDispatchClose.innerHTML) + 1;
 		}),
