@@ -91,6 +91,10 @@ const mod = {
 		mod.ControlCardCreate(mod._ValueDeckSelected);
 	},
 
+	KOMBrowseInfoDispatchDiscard (inputData) {
+		mod.ControlCardDiscard(inputData, mod._ValueDeckSelected);
+	},
+
 	OLSKAppToolbarDispatchStorage () {
 		mod._ValueStorageWidgetHidden = !mod._ValueStorageWidgetHidden;
 	},
@@ -189,6 +193,16 @@ const mod = {
 		mod.ValueCardsAll(mod._ValueCardsAll.concat(item));
 
 		mod.ControlCardSelect(item);
+	},
+
+	async ControlCardDiscard (param1, param2) {
+		mod.ValueCardsAll(mod._ValueCardsAll.filter(function (e) {
+			return e !== param1;
+		}))
+
+		await KOMCardAction.KOMCardActionDelete(mod._ValueStorageClient, param1, param2);
+
+		mod.ControlCardSelect(null);
 	},
 
 	ControlCardSelect(inputData) {
@@ -360,6 +374,7 @@ import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svel
 			KOMBrowseItemSelected={ mod._ValueCardSelected }
 			KOMBrowseListDispatchClose={ mod.KOMBrowseListDispatchClose }
 			KOMBrowseListDispatchCreate={ mod.KOMBrowseListDispatchCreate }
+			KOMBrowseInfoDispatchDiscard={ mod.KOMBrowseInfoDispatchDiscard }
 			/>
 	{/if}
 </OLSKViewportContent>

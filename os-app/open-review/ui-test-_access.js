@@ -48,7 +48,7 @@ describe('KOMReview_Access', function () {
 		browser.assert.elements('.OLSKAppToolbarLauncherButton', 1);
 	});
 
-	context('create', function () {
+	context('create', function test_create() {
 		
 		before(function () {
 			return browser.OLSKPrompt(function () {
@@ -66,7 +66,7 @@ describe('KOMReview_Access', function () {
 	
 	});
 
-	context('select', function () {
+	context('select', function test_select() {
 		
 		before(function () {
 			return browser.pressButton('.KOMReviewMasterListItem');
@@ -86,7 +86,7 @@ describe('KOMReview_Access', function () {
 	
 	});
 
-	context('browse', function () {
+	context('browse', function test_browse() {
 		
 		before(function () {
 			return browser.pressButton('.KOMReviewDetailToolbarBrowseButton');
@@ -110,9 +110,9 @@ describe('KOMReview_Access', function () {
 
 		it('hides KOMBrowseInfoForm', function () {
 			browser.assert.elements('.KOMBrowseInfoForm', 0);
-		});		
+		});
 
-		context('create', function () {
+		context('create_card', function test_create_card() {
 			
 			before(function () {
 				return browser.pressButton('.KOMBrowseListToolbarCreateButton');
@@ -127,10 +127,26 @@ describe('KOMReview_Access', function () {
 			});
 		
 		});
-	
+
+		context('discard_card', function test_discard_card () {
+
+			before(function () {
+				return browser.pressButton('.KOMBrowseInfoToolbarDiscardButton');
+			});
+
+			it('shows OLSKDetailPlaceholder', function () {
+				browser.assert.elements('.OLSKDetailPlaceholder', 1);
+			});
+
+			it('hides KOMBrowseInfoForm', function () {
+				browser.assert.elements('.KOMBrowseInfoForm', 0);
+			});
+		
+		});
+				
 	});
 
-	context('close', function () {
+	context('close', function test_close() {
 		
 		before(function () {
 			return browser.pressButton('.KOMBrowseListToolbarCloseButton');
@@ -150,7 +166,7 @@ describe('KOMReview_Access', function () {
 	
 	});
 
-	context('back', function () {
+	context('back', function test_back() {
 		
 		before(function () {
 			return browser.pressButton('.KOMReviewDetailToolbarBackButton');
@@ -170,7 +186,7 @@ describe('KOMReview_Access', function () {
 	
 	});
 
-	context('discard', function () {
+	context('discard', function test_discard() {
 		
 		before(function () {
 			return browser.pressButton('.KOMReviewMasterListItem');
