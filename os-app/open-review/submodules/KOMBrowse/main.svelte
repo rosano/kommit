@@ -1,4 +1,5 @@
 <script>
+export let KOMBrowseStorageClient;
 export let KOMBrowseItems;
 export let KOMBrowseItemSelected = null;
 export let KOMBrowseListDispatchClose;

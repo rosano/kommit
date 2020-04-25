@@ -370,6 +370,7 @@ import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svel
 
 	{#if mod._ValueDeckSelected && mod._ValueCardFormItem }
 		<KOMBrowse
+			KOMBrowseStorageClient={ mod._ValueStorageClient }
 			KOMBrowseItems={ mod._ValueCardsAll }
 			KOMBrowseItemSelected={ mod._ValueCardSelected }
 			KOMBrowseListDispatchClose={ mod.KOMBrowseListDispatchClose }

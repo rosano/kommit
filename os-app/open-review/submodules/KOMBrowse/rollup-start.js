@@ -1,8 +1,16 @@
 import RollupStart from './main.svelte';
 
+import KOM_Data from '../../../_shared/KOM_Data/main.js';
+import KOMCardStorage from '../../../_shared/KOMCard/storage.js';
+import * as RemoteStoragePackage from 'remotestoragejs';
+const RemoteStorage = RemoteStoragePackage.default || RemoteStoragePackage;
+
 const KOMBrowse = new RollupStart({
 	target: document.body,
 	props: Object.assign({
+		KOMBrowseStorageClient: new RemoteStorage({ modules: [ KOM_Data.KOM_DataModule([
+			KOMCardStorage.KOMCardStorageBuild,
+		]) ] }),
 		KOMBrowseItems: [],
 		KOMBrowseListDispatchClose: (function _KOMBrowseListDispatchClose (inputData) {
 			window.TestKOMBrowseListDispatchClose.innerHTML = parseInt(window.TestKOMBrowseListDispatchClose.innerHTML) + 1;
