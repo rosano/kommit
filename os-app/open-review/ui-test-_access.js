@@ -86,7 +86,7 @@ describe('KOMReview_Access', function () {
 	
 	});
 
-	context('create card', function () {
+	context('browse', function () {
 		
 		before(function () {
 			return browser.pressButton('.KOMReviewDetailToolbarBrowseButton');
@@ -103,10 +103,18 @@ describe('KOMReview_Access', function () {
 		it('shows KOMBrowse', function () {
 			browser.assert.elements('.KOMBrowse', 1);
 		});
+
+		it('shows OLSKDetailPlaceholder', function () {
+			browser.assert.elements('.OLSKDetailPlaceholder', 1);
+		});
+
+		it('hides KOMBrowseInfoForm', function () {
+			browser.assert.elements('.KOMBrowseInfoForm', 0);
+		});
 	
 	});
 
-	context('cancel card', function () {
+	context('close', function () {
 		
 		before(function () {
 			return browser.pressButton('.KOMBrowseListToolbarCloseButton');
