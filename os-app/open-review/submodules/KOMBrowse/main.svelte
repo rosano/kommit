@@ -1,6 +1,6 @@
 <script>
 export let KOMBrowseStorageClient;
-export let KOMBrowseItems;
+
 export let KOMBrowseItemSelected = null;
 export let KOMBrowseDeckSelected = null;
 export let KOMBrowseListDispatchClose;
@@ -216,7 +216,7 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 
 <OLSKViewportContent>
 	<KOMBrowseList
-		KOMBrowseListItems={ KOMBrowseItems }
+		KOMBrowseListItems={ mod._ValueDocumentsAll }
 		KOMBrowseListItemSelected={ KOMBrowseItemSelected }
 		KOMBrowseListFilterText={ mod._ValueFilterText }
 		KOMBrowseListDispatchClose={ KOMBrowseListDispatchClose }

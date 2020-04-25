@@ -33,7 +33,6 @@ describe('KOMBrowse_Misc', function () {
 		
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute, {
-				KOMBrowseItems: JSON.stringify([uItem(), uItem()]),
 				KOMBrowseItemSelected: JSON.stringify(uItem()),
 			});
 		});

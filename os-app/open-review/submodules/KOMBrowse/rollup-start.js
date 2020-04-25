@@ -12,7 +12,6 @@ const KOMBrowse = new RollupStart({
 		KOMBrowseStorageClient: new RemoteStorage({ modules: [ KOM_Data.KOM_DataModule([
 			KOMCardStorage.KOMCardStorageBuild,
 		]) ] }),
-		KOMBrowseItems: [],
 		KOMBrowseListDispatchClose: (function _KOMBrowseListDispatchClose (inputData) {
 			window.TestKOMBrowseListDispatchClose.innerHTML = parseInt(window.TestKOMBrowseListDispatchClose.innerHTML) + 1;
 		}),
@@ -32,7 +31,7 @@ const KOMBrowse = new RollupStart({
 			window.TestKOMBrowseInfoDispatchUpdate.innerHTML = parseInt(window.TestKOMBrowseInfoDispatchUpdate.innerHTML) + 1;
 		}),
 	}, Object.fromEntries(Array.from((new window.URLSearchParams(window.location.search)).entries()).map(function (e, index, coll) {
-		if (['KOMBrowseDeckSelected', 'KOMBrowseItems', 'KOMBrowseItemSelected'].includes(e[0])) {
+		if (['KOMBrowseDeckSelected', 'KOMBrowseItemSelected'].includes(e[0])) {
 			e[1] = JSON.parse(e[1]);
 		}
 
