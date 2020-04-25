@@ -30,7 +30,7 @@ describe('KOMBrowse_Misc', function () {
 		browser.assert.elements('.OLSKResultsListItemSelected', 0);
 	});
 
-	it.skip('focuses KOMBrowseListFilterField', function() {
+	it('focuses KOMBrowseListFilterField', function() {
 		browser.assert.hasFocus('.KOMBrowseListFilterField');
 	});
 

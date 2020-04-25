@@ -205,12 +205,19 @@ const mod = {
 
 	SetupEverything() {
 		mod.SetupValueCardsAll();
+		mod.SetupFocus();
 	},
 
 	async SetupValueCardsAll() {
 		mod.ValueCardsAll((await KOMCardAction.KOMCardActionList(KOMBrowseStorageClient, mod._ValueDeckSelected)).filter(function (e) {
 			return typeof e === 'object'; // #patch-remotestorage-true
 		}));
+	},
+
+	SetupFocus() {
+		setTimeout(function () {
+			document.querySelector('.KOMBrowseListFilterField').focus();
+		});
 	},
 
 	// LIFECYCLE
