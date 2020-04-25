@@ -23,9 +23,9 @@ const mod = {
 
 	// VALUE
 
-	_ValueDocumentsAll: [],
-	ValueDocumentsAll (inputData, shouldSort = true) {
-		mod.ValueDocumentsVisible(mod._ValueDocumentsAll = inputData, shouldSort);
+	_ValueCardsAll: [],
+	ValueCardsAll (inputData, shouldSort = true) {
+		mod.ValueDocumentsVisible(mod._ValueCardsAll = inputData, shouldSort);
 	},
 
 	_ValueDocumentsVisible: [],
@@ -185,7 +185,7 @@ const mod = {
 	ControlFilter(inputData) {
 		mod._ValueFilterText = inputData;
 
-		mod.ValueDocumentsVisible(mod._ValueDocumentsAll);
+		mod.ValueDocumentsVisible(mod._ValueCardsAll);
 
 		if (!inputData) {
 			return mod.ControlDocumentSelect(null);
@@ -202,7 +202,28 @@ const mod = {
 		})).shift());
 	},
 
+	// SETUP
+
+	SetupEverything() {
+		mod.SetupValueCardsAll();
+	},
+
+	async SetupValueCardsAll() {
+		mod.ValueCardsAll((await KOMCardAction.KOMCardActionList(KOMBrowseStorageClient, mod._ValueDeckSelected)).filter(function (e) {
+			return typeof e === 'object'; // #patch-remotestorage-true
+		}));
+	},
+
+	// LIFECYCLE
+
+	LifecycleModuleWillMount() {
+		mod.SetupEverything();
+	},
+
 };
+
+import { onMount } from 'svelte';
+onMount(mod.LifecycleModuleWillMount);
 
 import OLSKViewportContent from 'OLSKViewportContent';
 import KOMBrowseList from './submodules/KOMBrowseList/main.svelte';
@@ -216,7 +237,7 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 
 <OLSKViewportContent>
 	<KOMBrowseList
-		KOMBrowseListItems={ mod._ValueDocumentsAll }
+		KOMBrowseListItems={ mod._ValueCardsAll }
 		KOMBrowseListItemSelected={ KOMBrowseItemSelected }
 		KOMBrowseListFilterText={ mod._ValueFilterText }
 		KOMBrowseListDispatchClose={ KOMBrowseListDispatchClose }
