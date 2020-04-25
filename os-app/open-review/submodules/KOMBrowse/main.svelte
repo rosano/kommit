@@ -2,13 +2,12 @@
 export let KOMBrowseStorageClient;
 export let KOMBrowseItems;
 export let KOMBrowseItemSelected = null;
+export let KOMBrowseDeckSelected = null;
 export let KOMBrowseListDispatchClose;
-export let KOMBrowseListDispatchCreate;
 export let KOMBrowseListDispatchClick;
 export let KOMBrowseListDispatchArrow;
 export let KOMBrowseListDispatchFilter;
 export let KOMBrowseInfoDispatchBack;
-export let KOMBrowseInfoDispatchDiscard;
 export let KOMBrowseInfoDispatchUpdate;
 
 import OLSKInternational from 'OLSKInternational';
@@ -18,6 +17,7 @@ const OLSKLocalized = function(translationConstant) {
 
 import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting';
 import KOMBrowseLogic from './ui-logic.js';
+import KOMCardAction from '../../../_shared/KOMCard/action.js';
 
 const mod = {
 
@@ -45,6 +45,11 @@ const mod = {
 		}
 	},
 	
+	_ValueDeckSelected: KOMBrowseDeckSelected,
+	ValueDeckSelected (inputData) {
+		mod._ValueDeckSelected = inputData
+	},
+
 	_ValueFilterText: '',
 
 	OLSKMobileViewInactive: false,
@@ -56,6 +61,10 @@ const mod = {
 	},
 
 	// MESSAGE
+
+	KOMBrowseListDispatchCreate () {
+		mod.ControlCardCreate(mod._ValueDeckSelected);
+	},
 
 	KOMBrowseListDispatchClick (inputData) {
 		mod.ControlDocumentSelect(inputData);
@@ -76,7 +85,7 @@ const mod = {
 	},
 
 	KOMBrowseInfoDispatchDiscard () {
-		mod.ControlDocumentDiscard(mod._ValueDocumentSelected);
+		mod.ControlCardDiscard(mod._ValueDocumentSelected, );
 	},
 
 	KOMBrowseInfoDispatchUpdate () {
@@ -120,6 +129,27 @@ const mod = {
 
 	// CONTROL
 
+	async ControlCardCreate(inputData) {
+		const item = await KOMCardAction.KOMCardActionCreate(KOMBrowseStorageClient, {
+			KOMCardQuestion: '',
+			KOMCardAnswer: '',
+		}, inputData);
+
+		mod.ValueCardsAll(mod._ValueCardsAll.concat(item));
+
+		mod.ControlCardSelect(item);
+	},
+
+	async ControlCardDiscard (param1, param2) {
+		mod.ValueCardsAll(mod._ValueCardsAll.filter(function (e) {
+			return e !== param1;
+		}))
+
+		await KOMCardAction.KOMCardActionDelete(KOMBrowseStorageClient, param1, param2);
+
+		mod.ControlCardSelect(null);
+	},
+
 	ControlFocusDetail () {
 		setTimeout(function () {
 			document.querySelector('.KOMBrowseInfoFormQuestionField').focus();
@@ -150,16 +180,6 @@ const mod = {
 		}
 		
 		setTimeout(mod.ControlFocusDetail)
-	},
-	
-	async ControlDocumentDiscard (inputData) {
-		mod.ValueDocumentsAll(mod._ValueDocumentsAll.filter(function (e) {
-			return e !== inputData;
-		}))
-
-		await LCHDocumentAction.LCHDocumentActionDelete(mod._ValueStorageClient, inputData.LCHDocumentID);
-
-		mod.ControlDocumentSelect(null);
 	},
 	
 	ControlFilter(inputData) {
@@ -200,7 +220,7 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 		KOMBrowseListItemSelected={ KOMBrowseItemSelected }
 		KOMBrowseListFilterText={ mod._ValueFilterText }
 		KOMBrowseListDispatchClose={ KOMBrowseListDispatchClose }
-		KOMBrowseListDispatchCreate={ KOMBrowseListDispatchCreate }
+		KOMBrowseListDispatchCreate={ mod.KOMBrowseListDispatchCreate }
 		KOMBrowseListDispatchClick={ KOMBrowseListDispatchClick }
 		KOMBrowseListDispatchArrow={ KOMBrowseListDispatchArrow }
 		KOMBrowseListDispatchFilter={ KOMBrowseListDispatchFilter }
@@ -210,7 +230,7 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 	<KOMBrowseInfo
 		KOMBrowseInfoItem={ KOMBrowseItemSelected }
 		KOMBrowseInfoDispatchBack={ KOMBrowseInfoDispatchBack }
-		KOMBrowseInfoDispatchDiscard={ KOMBrowseInfoDispatchDiscard }
+		KOMBrowseInfoDispatchDiscard={ mod.KOMBrowseInfoDispatchDiscard }
 		KOMBrowseInfoDispatchUpdate={ KOMBrowseInfoDispatchUpdate }
 		OLSKMobileViewInactive={ !KOMBrowseItemSelected }
 		/>

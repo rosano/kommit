@@ -6,10 +6,23 @@ Object.entries({
 	return global[e.shift()]  = e.pop();
 });
 
+const kTesting = {
+	StubDeckObjectValid() {
+		return {
+			KOMDeckID: 'alfa',
+			KOMDeckName: '',
+			KOMDeckCreationDate: new Date('2019-02-23T13:56:36Z'),
+			KOMDeckModificationDate: new Date('2019-02-23T13:56:36Z'),
+		};
+	},
+};
+
 describe('KOMBrowse_Access', function () {
 
 	before(function() {
-		return browser.OLSKVisit(kDefaultRoute);
+		return browser.OLSKVisit(kDefaultRoute, {
+			KOMBrowseDeckSelected: JSON.stringify(kTesting.StubDeckObjectValid()),
+		});
 	});
 
 	it('shows KOMBrowse', function () {
@@ -36,32 +49,14 @@ describe('KOMBrowse_Access', function () {
 		browser.assert.elements('.KOMBrowseInfoForm', 0);
 	});
 
-	context('KOMBrowseItems', function() {
+	context('create', function test_create() {
 		
-		before(function() {
-			return browser.OLSKVisit(kDefaultRoute, {
-				KOMBrowseItems: JSON.stringify([{
-					KOMCardQuestion: 'alfa',
-					KOMCardAnswer: 'bravo',
-				}]),
-			});
+		before(function () {
+			return browser.pressButton('.KOMBrowseListToolbarCreateButton');
 		});
 
 		it('shows KOMBrowseListItem', function () {
 			browser.assert.elements('.KOMBrowseListItem', 1);
-		});
-
-	});
-
-	context('KOMBrowseItemSelected', function() {
-		
-		before(function() {
-			return browser.OLSKVisit(kDefaultRoute, {
-				KOMBrowseItemSelected: JSON.stringify({
-					KOMCardQuestion: 'alfa',
-					KOMCardAnswer: 'bravo',
-				}),
-			});
 		});
 
 		it('hides OLSKDetailPlaceholder', function () {
@@ -70,6 +65,26 @@ describe('KOMBrowse_Access', function () {
 
 		it('shows KOMBrowseInfoForm', function () {
 			browser.assert.elements('.KOMBrowseInfoForm', 1);
+		});
+	
+	});
+
+	context('discard', function test_discard () {
+
+		before(function () {
+			return browser.pressButton('.KOMBrowseInfoToolbarDiscardButton');
+		});
+
+		it('hides KOMBrowseListItem', function () {
+			browser.assert.elements('.KOMBrowseListItem', 0);
+		});
+
+		it('shows OLSKDetailPlaceholder', function () {
+			browser.assert.elements('.OLSKDetailPlaceholder', 1);
+		});
+
+		it('hides KOMBrowseInfoForm', function () {
+			browser.assert.elements('.KOMBrowseInfoForm', 0);
 		});
 	
 	});

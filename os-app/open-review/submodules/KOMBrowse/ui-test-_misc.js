@@ -68,22 +68,6 @@ describe('KOMBrowse_Misc', function () {
 		});
 
 	});
-	
-	context('create', function test_create () {
-
-		before(function () {
-			browser.assert.text('#TestKOMBrowseListDispatchCreate', '0');
-		});
-
-		before(function () {
-			return browser.pressButton('.KOMBrowseListToolbarCreateButton');
-		});
-
-		it('sends KOMBrowseListDispatchCreate', function () {
-			browser.assert.text('#TestKOMBrowseListDispatchCreate', '1');
-		});
-
-	});
 
 	context('back', function test_back () {
 

@@ -103,46 +103,6 @@ describe('KOMReview_Access', function () {
 		it('shows KOMBrowse', function () {
 			browser.assert.elements('.KOMBrowse', 1);
 		});
-
-		it('shows OLSKDetailPlaceholder', function () {
-			browser.assert.elements('.OLSKDetailPlaceholder', 1);
-		});
-
-		it('hides KOMBrowseInfoForm', function () {
-			browser.assert.elements('.KOMBrowseInfoForm', 0);
-		});
-
-		context('create_card', function test_create_card() {
-			
-			before(function () {
-				return browser.pressButton('.KOMBrowseListToolbarCreateButton');
-			});
-
-			it('hides OLSKDetailPlaceholder', function () {
-				browser.assert.elements('.OLSKDetailPlaceholder', 0);
-			});
-
-			it('shows KOMBrowseInfoForm', function () {
-				browser.assert.elements('.KOMBrowseInfoForm', 1);
-			});
-		
-		});
-
-		context('discard_card', function test_discard_card () {
-
-			before(function () {
-				return browser.pressButton('.KOMBrowseInfoToolbarDiscardButton');
-			});
-
-			it('shows OLSKDetailPlaceholder', function () {
-				browser.assert.elements('.OLSKDetailPlaceholder', 1);
-			});
-
-			it('hides KOMBrowseInfoForm', function () {
-				browser.assert.elements('.KOMBrowseInfoForm', 0);
-			});
-		
-		});
 				
 	});
 
