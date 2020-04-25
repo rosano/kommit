@@ -73,7 +73,7 @@ describe('KOMReview_Access', function () {
 		});
 
 		it('hides KOMReviewMaster', function () {
-			browser.assert.elements(KOMReviewMaster, 0);
+			browser.assert.elements('.KOMReviewMaster', 0);
 		});
 
 		it('shows KOMReviewDetail', function () {
@@ -93,7 +93,7 @@ describe('KOMReview_Access', function () {
 		});
 
 		it('hides KOMReviewMaster', function () {
-			browser.assert.elements(KOMReviewMaster, 0);
+			browser.assert.elements('.KOMReviewMaster', 0);
 		});
 
 		it('hides KOMReviewDetail', function () {
@@ -121,7 +121,7 @@ describe('KOMReview_Access', function () {
 		});
 
 		it('hides KOMReviewMaster', function () {
-			browser.assert.elements(KOMReviewMaster, 0);
+			browser.assert.elements('.KOMReviewMaster', 0);
 		});
 
 		it('shows KOMReviewDetail', function () {
