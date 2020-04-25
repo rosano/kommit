@@ -40,6 +40,7 @@ const KOMBrowseInfo = new RollupStart({
 		}),
 		KOMBrowseInfoDispatchDiscard: (function _KOMBrowseInfoDispatchDiscard (inputData) {
 			window.TestKOMBrowseInfoDispatchDiscard.innerHTML = parseInt(window.TestKOMBrowseInfoDispatchDiscard.innerHTML) + 1;
+			window.TestKOMBrowseInfoDispatchDiscardData.innerHTML = JSON.stringify(inputData);
 		}),
 		KOMBrowseInfoDispatchUpdate: (function _KOMBrowseInfoDispatchUpdate () {
 			window.TestKOMBrowseInfoDispatchUpdate.innerHTML = parseInt(window.TestKOMBrowseInfoDispatchUpdate.innerHTML) + 1;

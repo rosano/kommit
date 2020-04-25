@@ -123,6 +123,7 @@ describe('KOMBrowseInfo_Misc', function () {
 			
 			before(function () {
 				browser.assert.text('#TestKOMBrowseInfoDispatchDiscard', '0');
+				browser.assert.text('#TestKOMBrowseInfoDispatchDiscardData', 'undefined');
 			});
 			
 			before(function () {
@@ -131,6 +132,10 @@ describe('KOMBrowseInfo_Misc', function () {
 
 			it('sends KOMBrowseInfoDispatchDiscard', function () {
 				browser.assert.text('#TestKOMBrowseInfoDispatchDiscard', '1');
+			});
+
+			it('sends KOMBrowseInfoDispatchDiscardData', function () {
+				browser.assert.text('#TestKOMBrowseInfoDispatchDiscardData', JSON.stringify({}));
 			});
 
 		});
