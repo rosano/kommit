@@ -7,12 +7,13 @@ const OLSKLocalized = function(translationConstant) {
 import OLSKThrottle from 'OLSKThrottle';
 import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting'
 import * as OLSKRemoteStorage from '../_shared/__external/OLSKRemoteStorage/main.js'
-import KOMDeckAction from '../_shared/KOMDeck/action.js';
 import KOM_Data from '../_shared/KOM_Data/main.js';
 import KOMDeckStorage from '../_shared/KOMDeck/storage.js';
 import KOMCardStorage from '../_shared/KOMCard/storage.js';
 import * as RemoteStoragePackage from 'remotestoragejs';
 const RemoteStorage = RemoteStoragePackage.default || RemoteStoragePackage;
+import KOMDeckAction from '../_shared/KOMDeck/action.js';
+import KOMCardAction from '../_shared/KOMCard/action.js';
 
 const mod = {
 
@@ -29,7 +30,17 @@ const mod = {
 	ValueDeckSelected (inputData) {
 		mod._ValueDeckSelected = inputData
 	},
+
+	_ValueCardsAll: [],
+	ValueCardsAll (inputData) {
+		mod._ValueCardsAll = inputData;
+	},
 	
+	_ValueCardSelected: null,
+	ValueCardSelected (inputData) {
+		mod._ValueCardSelected = inputData
+	},
+
 	_ValueCardFormItem: undefined,
 	
 	_ValueStorageWidgetHidden: true,
@@ -74,6 +85,10 @@ const mod = {
 
 	KOMBrowseListDispatchClose () {
 		mod._ValueCardFormItem = undefined;
+	},
+
+	KOMBrowseListDispatchCreate () {
+		mod.ControlCardCreate(mod._ValueDeckSelected);
 	},
 
 	OLSKAppToolbarDispatchStorage () {
@@ -141,29 +156,47 @@ const mod = {
 
 	// CONTROL
 
-	async ControlDeckSave(inputData) {
-		await KOMDeckAction.KOMDeckActionUpdate(mod._ValueStorageClient, inputData);
-	},
-
 	async ControlDeckCreate(inputData) {
 		const item = await KOMDeckAction.KOMDeckActionCreate(mod._ValueStorageClient, {
 			KOMDeckName: inputData,
-			KOMDeckModificationDate: new Date(),
 		});
 
 		mod.ValueDecksAll(mod._ValueDecksAll.concat(item));
 	},
 	
-	ControlDeckSelect(inputData) {
-		mod.ValueDeckSelected(inputData);
+	async ControlDeckSave(inputData) {
+		await KOMDeckAction.KOMDeckActionUpdate(mod._ValueStorageClient, inputData);
 	},
-	
+
 	async ControlDeckDiscard (inputData) {
 		mod.ValueDecksAll(mod._ValueDecksAll.filter(function (e) {
 			return e !== inputData;
 		}))
 
 		await KOMDeckAction.KOMDeckActionDelete(mod._ValueStorageClient, inputData.KOMDeckID);
+	},
+
+	ControlDeckSelect(inputData) {
+		mod.ValueDeckSelected(inputData);
+	},
+	
+	async ControlCardCreate(inputData) {
+		const item = await KOMCardAction.KOMCardActionCreate(mod._ValueStorageClient, {
+			KOMCardQuestion: '',
+			KOMCardAnswer: '',
+		}, inputData);
+
+		mod.ValueCardsAll(mod._ValueCardsAll.concat(item));
+
+		mod.ControlCardSelect(item);
+	},
+
+	ControlCardSelect(inputData) {
+		mod.ValueCardSelected(inputData);
+
+		// if (mod.DataIsMobile()) {
+		// 	mod.ControlFocusDetail();
+		// }
 	},
 
 	// SETUP
@@ -323,9 +356,11 @@ import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svel
 
 	{#if mod._ValueDeckSelected && mod._ValueCardFormItem }
 		<KOMBrowse
-			KOMBrowseItems={ [] }
-			KOMBrowseItemSelected={ null }
-			KOMBrowseListDispatchClose={ mod.KOMBrowseListDispatchClose } />
+			KOMBrowseItems={ mod._ValueCardsAll }
+			KOMBrowseItemSelected={ mod._ValueCardSelected }
+			KOMBrowseListDispatchClose={ mod.KOMBrowseListDispatchClose }
+			KOMBrowseListDispatchCreate={ mod.KOMBrowseListDispatchCreate }
+			/>
 	{/if}
 </OLSKViewportContent>
 

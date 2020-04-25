@@ -56,10 +56,6 @@ const mod = {
 
 	// MESSAGE
 
-	KOMBrowseListDispatchCreate () {
-		mod.ControlDocumentCreate();
-	},
-
 	KOMBrowseListDispatchClick (inputData) {
 		mod.ControlDocumentSelect(inputData);
 	},
@@ -136,18 +132,7 @@ const mod = {
 	},
 
 	async ControlDocumentCreate(inputData) {
-		// const item = await LCHDocumentAction.LCHDocumentActionCreate(mod._ValueStorageClient, inputData || {
-		// 	KOMCardQuestion: '',
-		// 	KOMCardAnswer: '',
-		// });
-
-		// mod.ValueDocumentsAll(mod._ValueDocumentsAll.concat(item));
-
-		// mod.ControlDocumentSelect(item);
-
-		// if (mod.DataIsMobile()) {
-		// 	mod.ControlFocusDetail();
-		// }
+		
 	},
 	
 	ControlDocumentSelect(inputData) {

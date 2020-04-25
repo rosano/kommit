@@ -110,6 +110,22 @@ describe('KOMReview_Access', function () {
 
 		it('hides KOMBrowseInfoForm', function () {
 			browser.assert.elements('.KOMBrowseInfoForm', 0);
+		});		
+
+		context('create', function () {
+			
+			before(function () {
+				return browser.pressButton('.KOMBrowseListToolbarCreateButton');
+			});
+
+			it('hides OLSKDetailPlaceholder', function () {
+				browser.assert.elements('.OLSKDetailPlaceholder', 0);
+			});
+
+			it('shows KOMBrowseInfoForm', function () {
+				browser.assert.elements('.KOMBrowseInfoForm', 1);
+			});
+		
 		});
 	
 	});
