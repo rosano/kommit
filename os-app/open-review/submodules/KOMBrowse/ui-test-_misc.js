@@ -2,18 +2,23 @@ import { deepEqual } from 'assert';
 
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-const uItem = function () {
-	return {
-		KOMCardID: 'alfa',
-		KOMCardQuestion: 'bravo',
-		KOMCardAnswer: 'charlie',
-	};
+const kTesting = {
+	StubDeckObjectValid() {
+		return {
+			KOMDeckID: 'alfa',
+			KOMDeckName: '',
+			KOMDeckCreationDate: new Date('2019-02-23T13:56:36Z'),
+			KOMDeckModificationDate: new Date('2019-02-23T13:56:36Z'),
+		};
+	},
 };
 
 describe('KOMBrowse_Misc', function () {
 
 	before(function() {
-		return browser.OLSKVisit(kDefaultRoute);
+		return browser.OLSKVisit(kDefaultRoute, {
+			KOMBrowseDeckSelected: JSON.stringify(kTesting.StubDeckObjectValid()),
+		});
 	});
 	
 	it('classes OLSKMobileViewInactive', function () {
@@ -29,12 +34,10 @@ describe('KOMBrowse_Misc', function () {
 		browser.assert.hasFocus('.KOMBrowseListFilterField');
 	});
 
-	context('KOMBrowseItemSelected', function() {
+	context('select', function test_select() {
 		
-		before(function() {
-			return browser.OLSKVisit(kDefaultRoute, {
-				KOMBrowseItemSelected: JSON.stringify(uItem()),
-			});
+		before(function () {
+			return browser.pressButton('.KOMBrowseListToolbarCreateButton');
 		});
 
 		it('classes OLSKMobileViewInactive', function() {
