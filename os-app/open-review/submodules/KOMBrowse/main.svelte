@@ -4,7 +4,6 @@ export let KOMBrowseStorageClient;
 export let KOMBrowseItemSelected = null;
 export let KOMBrowseDeckSelected = null;
 export let KOMBrowseListDispatchClose;
-export let KOMBrowseListDispatchClick;
 export let KOMBrowseListDispatchArrow;
 export let KOMBrowseListDispatchFilter;
 export let KOMBrowseInfoDispatchBack;
@@ -242,7 +241,7 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 		KOMBrowseListFilterText={ mod._ValueFilterText }
 		KOMBrowseListDispatchClose={ KOMBrowseListDispatchClose }
 		KOMBrowseListDispatchCreate={ mod.KOMBrowseListDispatchCreate }
-		KOMBrowseListDispatchClick={ KOMBrowseListDispatchClick }
+		KOMBrowseListDispatchClick={ mod.KOMBrowseListDispatchClick }
 		KOMBrowseListDispatchArrow={ KOMBrowseListDispatchArrow }
 		KOMBrowseListDispatchFilter={ KOMBrowseListDispatchFilter }
 		OLSKMobileViewInactive={ !!mod._ValueCardSelected }

@@ -257,22 +257,6 @@ describe('KOMBrowse_Misc', function () {
 
 	});
 
-	context('click', function test_click () {
-		
-		before(function () {
-			browser.assert.text('#TestKOMBrowseListDispatchClick', '0');
-		});
-
-		before(function () {
-			return browser.click('.KOMBrowseListItem');
-		});
-
-		it('sends KOMBrowseListDispatchClick', function () {
-			browser.assert.text('#TestKOMBrowseListDispatchClick', '1');
-		});
-
-	});
-
 	context('filter', function test_filter () {
 
 		before(function () {
