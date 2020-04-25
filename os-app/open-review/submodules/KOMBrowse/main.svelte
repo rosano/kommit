@@ -110,7 +110,7 @@ const mod = {
 				}
 			},
 			Tab () {
-				if (document.activeElement === document.querySelector('.KOMBrowseListFilterField') && KOMBrowseItemSelected) {
+				if (document.activeElement === document.querySelector('.KOMBrowseListFilterField') && mod._ValueCardSelected) {
 					mod.ControlFocusDetail();
 
 					return event.preventDefault();
