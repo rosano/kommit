@@ -133,12 +133,6 @@ const mod = {
 
 	_ValueFooterStorageStatus: '',
 
-	// DATA
-
-	DataIsMobile () {
-		return window.innerWidth <= 760;
-	},
-
 	// CONTROL
 
 	async ControlDeckCreate(inputData) {
