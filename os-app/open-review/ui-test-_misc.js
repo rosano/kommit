@@ -48,6 +48,38 @@ describe('KOMReview_Misc', function () {
 	
 	});
 
+	context('KOMBrowse', function test_KOMBrowse() {
+		
+		before(function () {
+			return browser.pressButton('.KOMReviewMasterListItem');
+		});
+
+		before(function () {
+			return browser.pressButton('.KOMReviewDetailToolbarBrowseButton');
+		});
+
+		before(function () {
+			return browser.pressButton('.KOMBrowseListToolbarCreateButton');
+		});
+
+		before(function () {
+			browser.fill('.KOMBrowseInfoFormQuestionField', 'alfa');
+		});
+
+		it('sets KOMBrowseDeckSelected', function () {
+			browser.assert.elements('.KOMBrowseListItem', 1);
+		});
+
+		after(function () {
+			return browser.pressButton('.KOMBrowseListToolbarCloseButton');
+		});
+
+		after(function () {
+			return browser.pressButton('.KOMReviewDetailToolbarBackButton');
+		});
+				
+	});
+
 	describe('KOMReviewStorageWidget', function test_KOMReviewStorageWidget () {
 		
 		it('classes KOMReviewStorageWidgetHidden', function () {

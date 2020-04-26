@@ -10,6 +10,7 @@ const OLSKLocalized = function(translationConstant) {
 };
 
 import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting';
+import OLSKThrottle from 'OLSKThrottle';
 import KOMBrowseLogic from './ui-logic.js';
 import KOMCardAction from '../../../_shared/KOMCard/action.js';
 
@@ -44,7 +45,7 @@ const mod = {
 	KOMBrowseInfoDispatchUpdate () {
 		mod._ValueCardSelected = mod._ValueCardSelected; // #purge-svelte-force-update
 
-		mod.ControlDocumentPersist(mod._ValueCardSelected);
+		mod.ControlCardUpdate(mod._ValueCardSelected, mod._ValueDeckSelected);
 	},
 
 	// VALUE
@@ -77,6 +78,8 @@ const mod = {
 	},
 
 	_ValueFilterText: '',
+
+	_ValueCardUpdateThrottleMap: {},
 
 	OLSKMobileViewInactive: false,
 
@@ -132,6 +135,15 @@ const mod = {
 		mod.ControlCardSelect(item);
 	},
 
+	ControlCardUpdate(param1, param2) {
+		OLSKThrottle.OLSKThrottleMappedTimeout(mod._ValueCardUpdateThrottleMap, param1.KOMCardID, {
+			OLSKThrottleDuration: 500,
+			OLSKThrottleCallback () {
+				return KOMCardAction.KOMCardActionUpdate(KOMBrowseStorageClient, param1, param2);
+			},
+		});
+	},
+
 	async ControlCardDiscard (param1, param2) {
 		mod.ValueCardsAll(mod._ValueCardsAll.filter(function (e) {
 			return e !== param1;
@@ -148,16 +160,6 @@ const mod = {
 		});
 	},
 
-	ControlDocumentPersist(inputData) {
-	},
-
-	async _ControlDocumentSave(inputData) {
-	},
-
-	async ControlDocumentCreate(inputData) {
-		
-	},
-	
 	ControlCardSelect(inputData) {
 		mod.ValueCardSelected(inputData);
 
