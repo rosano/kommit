@@ -78,8 +78,6 @@ const mod = {
 	},
 
 	KOMBrowseInfoDispatchBack () {
-		mod.ControlCardSelect(null);
-
 		mod.OLSKMobileViewInactive = false;
 	},
 
@@ -243,23 +241,23 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 
 <OLSKViewportContent>
 	<KOMBrowseList
-		KOMBrowseListItems={ mod._ValueCardsAll }
+		KOMBrowseListItems={ mod._ValueDocumentsVisible }
 		KOMBrowseListItemSelected={ mod._ValueCardSelected }
 		KOMBrowseListFilterText={ mod._ValueFilterText }
 		KOMBrowseListDispatchClose={ KOMBrowseListDispatchClose }
 		KOMBrowseListDispatchCreate={ mod.KOMBrowseListDispatchCreate }
 		KOMBrowseListDispatchClick={ mod.KOMBrowseListDispatchClick }
-		KOMBrowseListDispatchArrow={ KOMBrowseListDispatchArrow }
-		KOMBrowseListDispatchFilter={ KOMBrowseListDispatchFilter }
-		OLSKMobileViewInactive={ !!mod._ValueCardSelected }
+		KOMBrowseListDispatchArrow={ mod.KOMBrowseListDispatchArrow }
+		KOMBrowseListDispatchFilter={ mod.KOMBrowseListDispatchFilter }
+		OLSKMobileViewInactive={ !!mod.OLSKMobileViewInactive }
 		/>
 
 	<KOMBrowseInfo
 		KOMBrowseInfoItem={ mod._ValueCardSelected }
-		KOMBrowseInfoDispatchBack={ KOMBrowseInfoDispatchBack }
+		KOMBrowseInfoDispatchBack={ mod.KOMBrowseInfoDispatchBack }
 		KOMBrowseInfoDispatchDiscard={ mod.KOMBrowseInfoDispatchDiscard }
-		KOMBrowseInfoDispatchUpdate={ KOMBrowseInfoDispatchUpdate }
-		OLSKMobileViewInactive={ !mod._ValueCardSelected }
+		KOMBrowseInfoDispatchUpdate={ mod.KOMBrowseInfoDispatchUpdate }
+		OLSKMobileViewInactive={ !mod.OLSKMobileViewInactive }
 		/>
 </OLSKViewportContent>
 
