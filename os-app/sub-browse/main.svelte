@@ -52,15 +52,15 @@ const mod = {
 
 	_ValueCardsAll: [],
 	ValueCardsAll (inputData, shouldSort = true) {
-		mod.ValueDocumentsVisible(mod._ValueCardsAll = inputData, shouldSort);
+		mod.ValueCardsVisible(mod._ValueCardsAll = inputData, shouldSort);
 	},
 
-	_ValueDocumentsVisible: [],
-	ValueDocumentsVisible (inputData, shouldSort = true) {
+	_ValueCardsVisible: [],
+	ValueCardsVisible (inputData, shouldSort = true) {
 		const items = !mod._ValueFilterText ? inputData : inputData.filter(function (e) {
 			return e.KOMCardQuestion.toLowerCase().match(mod._ValueFilterText.toLowerCase());
 		});
-		mod._ValueDocumentsVisible = shouldSort ? items.sort(KOMBrowseLogic.KOMBrowseSort) : items;
+		mod._ValueCardsVisible = shouldSort ? items.sort(KOMBrowseLogic.KOMBrowseSort) : items;
 	},
 	
 	_ValueCardSelected: undefined,
@@ -179,19 +179,19 @@ const mod = {
 	ControlFilter(inputData) {
 		mod._ValueFilterText = inputData;
 
-		mod.ValueDocumentsVisible(mod._ValueCardsAll);
+		mod.ValueCardsVisible(mod._ValueCardsAll);
 
 		if (!inputData) {
 			return mod.ControlCardSelect(null);
 		}
 
-		if (!mod._ValueDocumentsVisible.length) {
+		if (!mod._ValueCardsVisible.length) {
 			return mod.ControlCardSelect(null);
 		}
 
-		mod.ValueCardSelected(mod._ValueDocumentsVisible.filter(function (e) {
+		mod.ValueCardSelected(mod._ValueCardsVisible.filter(function (e) {
 			return e.KOMCardQuestion.toLowerCase() === inputData.toLowerCase();
-		}).concat(mod._ValueDocumentsVisible.filter(function (e) {
+		}).concat(mod._ValueCardsVisible.filter(function (e) {
 			return e.KOMCardQuestion.toLowerCase().includes(inputData.toLowerCase());
 		})).shift());
 	},
@@ -238,7 +238,7 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 
 <OLSKViewportContent>
 	<KOMBrowseList
-		KOMBrowseListItems={ mod._ValueDocumentsVisible }
+		KOMBrowseListItems={ mod._ValueCardsVisible }
 		KOMBrowseListItemSelected={ mod._ValueCardSelected }
 		KOMBrowseListFilterText={ mod._ValueFilterText }
 		KOMBrowseListDispatchClose={ KOMBrowseListDispatchClose }
