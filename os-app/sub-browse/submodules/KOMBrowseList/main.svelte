@@ -106,7 +106,7 @@ afterUpdate(mod.LifecycleComponentDidUpdate);
 import OLSKToolbar from 'OLSKToolbar';
 import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 import OLSKInputWrapper from 'OLSKInputWrapper';
-import _OLSKSharedCreate from '../../../../../_shared/__external/OLSKUIAssets/_OLSKSharedCreate.svg';
+import _OLSKSharedCreate from '../../../_shared/__external/OLSKUIAssets/_OLSKSharedCreate.svg';
 import OLSKResults from 'OLSKResults';
 import KOMBrowseListItem from '../KOMBrowseListItem/main.svelte';
 </script>

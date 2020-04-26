@@ -1,8 +1,8 @@
 import RollupStart from './main.svelte';
 
-import KOM_Data from '../../../_shared/KOM_Data/main.js';
-import KOMCardStorage from '../../../_shared/KOMCard/storage.js';
-import KOMDeckModel from '../../../_shared/KOMDeck/model.js';
+import KOM_Data from '../_shared/KOM_Data/main.js';
+import KOMCardStorage from '../_shared/KOMCard/storage.js';
+import KOMDeckModel from '../_shared/KOMDeck/model.js';
 import * as RemoteStoragePackage from 'remotestoragejs';
 const RemoteStorage = RemoteStoragePackage.default || RemoteStoragePackage;
 

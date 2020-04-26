@@ -15,8 +15,8 @@ import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting';
 import OLSKToolbar from 'OLSKToolbar';
 import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 import OLSKDetailPlaceholder from 'OLSKDetailPlaceholder';
-import _OLSKSharedBack from '../../../../../_shared/__external/OLSKUIAssets/_OLSKSharedBack.svg';
-import _OLSKSharedDiscard from '../../../../../_shared/__external/OLSKUIAssets/_OLSKSharedDiscard.svg';
+import _OLSKSharedBack from '../../../_shared/__external/OLSKUIAssets/_OLSKSharedBack.svg';
+import _OLSKSharedDiscard from '../../../_shared/__external/OLSKUIAssets/_OLSKSharedDiscard.svg';
 </script>
 
 <div class="KOMBrowseInfo OLSKViewportDetail" class:OLSKMobileViewInactive={ OLSKMobileViewInactive } aria-hidden={ OLSKMobileViewInactive ? true : null }>

@@ -12,7 +12,7 @@ const OLSKLocalized = function(translationConstant) {
 import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting';
 import OLSKThrottle from 'OLSKThrottle';
 import KOMBrowseLogic from './ui-logic.js';
-import KOMCardAction from '../../../_shared/KOMCard/action.js';
+import KOMCardAction from '../_shared/KOMCard/action.js';
 
 const mod = {
 
