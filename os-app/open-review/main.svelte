@@ -16,32 +16,6 @@ import KOMDeckAction from '../_shared/KOMDeck/action.js';
 
 const mod = {
 
-	// VALUE
-
-	_ValueIsLoading: true,
-
-	_ValueDecksAll: [],
-	ValueDecksAll (inputData) {
-		mod._ValueDecksAll = inputData;
-	},
-	
-	_ValueDeckSelected: undefined,
-	ValueDeckSelected (inputData) {
-		mod._ValueDeckSelected = inputData
-	},
-
-	_ValueBrowseVisible: false,
-	
-	_ValueStorageWidgetHidden: true,
-
-	_ValueFooterStorageStatus: '',
-
-	// DATA
-
-	DataIsMobile () {
-		return window.innerWidth <= 760;
-	},
-
 	// MESSAGE
 
 	KOMReviewMasterDispatchCreate (inputData) {
@@ -137,6 +111,32 @@ const mod = {
 		mod.ValueDecksAll(mod._ValueDecksAll.filter(function (e) {
 			return e.KOMDeckID !== inputData.KOMDeckID;
 		}));
+	},
+
+	// VALUE
+
+	_ValueIsLoading: true,
+
+	_ValueDecksAll: [],
+	ValueDecksAll (inputData) {
+		mod._ValueDecksAll = inputData;
+	},
+	
+	_ValueDeckSelected: undefined,
+	ValueDeckSelected (inputData) {
+		mod._ValueDeckSelected = inputData
+	},
+
+	_ValueBrowseVisible: false,
+	
+	_ValueStorageWidgetHidden: true,
+
+	_ValueFooterStorageStatus: '',
+
+	// DATA
+
+	DataIsMobile () {
+		return window.innerWidth <= 760;
 	},
 
 	// CONTROL

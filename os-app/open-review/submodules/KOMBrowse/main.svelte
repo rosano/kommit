@@ -15,6 +15,38 @@ import KOMCardAction from '../../../_shared/KOMCard/action.js';
 
 const mod = {
 
+	// MESSAGE
+
+	KOMBrowseListDispatchCreate () {
+		mod.ControlCardCreate(mod._ValueDeckSelected);
+	},
+
+	KOMBrowseListDispatchClick (inputData) {
+		mod.ControlCardSelect(inputData);
+	},
+
+	KOMBrowseListDispatchArrow (inputData) {
+		mod.ValueCardSelected(inputData);
+	},
+
+	KOMBrowseListDispatchFilter (inputData) {
+		mod.ControlFilter(inputData);
+	},
+
+	KOMBrowseInfoDispatchBack () {
+		mod.OLSKMobileViewInactive = false;
+	},
+
+	KOMBrowseInfoDispatchDiscard () {
+		mod.ControlCardDiscard(mod._ValueCardSelected, mod._ValueDeckSelected);
+	},
+
+	KOMBrowseInfoDispatchUpdate () {
+		mod._ValueCardSelected = mod._ValueCardSelected; // #purge-svelte-force-update
+
+		mod.ControlDocumentPersist(mod._ValueCardSelected);
+	},
+
 	// VALUE
 
 	_ValueCardsAll: [],
@@ -52,38 +84,6 @@ const mod = {
 
 	DataIsMobile () {
 		return window.innerWidth <= 760;
-	},
-
-	// MESSAGE
-
-	KOMBrowseListDispatchCreate () {
-		mod.ControlCardCreate(mod._ValueDeckSelected);
-	},
-
-	KOMBrowseListDispatchClick (inputData) {
-		mod.ControlCardSelect(inputData);
-	},
-
-	KOMBrowseListDispatchArrow (inputData) {
-		mod.ValueCardSelected(inputData);
-	},
-
-	KOMBrowseListDispatchFilter (inputData) {
-		mod.ControlFilter(inputData);
-	},
-
-	KOMBrowseInfoDispatchBack () {
-		mod.OLSKMobileViewInactive = false;
-	},
-
-	KOMBrowseInfoDispatchDiscard () {
-		mod.ControlCardDiscard(mod._ValueCardSelected, mod._ValueDeckSelected);
-	},
-
-	KOMBrowseInfoDispatchUpdate () {
-		mod._ValueCardSelected = mod._ValueCardSelected; // #purge-svelte-force-update
-
-		mod.ControlDocumentPersist(mod._ValueCardSelected);
 	},
 
 	// INTERFACE	
