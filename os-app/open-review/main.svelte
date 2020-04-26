@@ -30,7 +30,7 @@ const mod = {
 		mod._ValueDeckSelected = inputData
 	},
 
-	_ValueCardFormItem: undefined,
+	_ValueBrowseVisible: false,
 	
 	_ValueStorageWidgetHidden: true,
 
@@ -69,11 +69,11 @@ const mod = {
 	},
 
 	KOMReviewDetailDispatchBrowse () {
-		mod._ValueCardFormItem = {};
+		mod._ValueBrowseVisible = true;
 	},
 
 	KOMBrowseListDispatchClose () {
-		mod._ValueCardFormItem = undefined;
+		mod._ValueBrowseVisible = false;
 	},
 
 	OLSKAppToolbarDispatchStorage () {
@@ -310,7 +310,7 @@ import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svel
 			/>
 	{/if}
 
-	{#if mod._ValueDeckSelected && !mod._ValueCardFormItem }
+	{#if mod._ValueDeckSelected && !mod._ValueBrowseVisible }
 		<KOMReviewDetail
 			KOMReviewDetailItem={ mod._ValueDeckSelected }
 			KOMReviewDetailDispatchBack={ mod.KOMReviewDetailDispatchBack }
@@ -320,7 +320,7 @@ import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svel
 			/>
 	{/if}
 
-	{#if mod._ValueDeckSelected && mod._ValueCardFormItem }
+	{#if mod._ValueDeckSelected && mod._ValueBrowseVisible }
 		<KOMBrowse
 			KOMBrowseStorageClient={ mod._ValueStorageClient }
 			KOMBrowseListDispatchClose={ mod.KOMBrowseListDispatchClose }
