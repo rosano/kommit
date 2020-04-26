@@ -30,16 +30,6 @@ const mod = {
 		mod._ValueDeckSelected = inputData
 	},
 
-	_ValueCardsAll: [],
-	ValueCardsAll (inputData) {
-		mod._ValueCardsAll = inputData;
-	},
-	
-	_ValueCardSelected: null,
-	ValueCardSelected (inputData) {
-		mod._ValueCardSelected = inputData
-	},
-
 	_ValueCardFormItem: undefined,
 	
 	_ValueStorageWidgetHidden: true,
@@ -333,7 +323,6 @@ import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svel
 	{#if mod._ValueDeckSelected && mod._ValueCardFormItem }
 		<KOMBrowse
 			KOMBrowseStorageClient={ mod._ValueStorageClient }
-			KOMBrowseItemSelected={ mod._ValueCardSelected }
 			KOMBrowseListDispatchClose={ mod.KOMBrowseListDispatchClose }
 			/>
 	{/if}
