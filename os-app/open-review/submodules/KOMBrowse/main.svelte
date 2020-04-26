@@ -4,10 +4,6 @@ export let KOMBrowseStorageClient;
 export let KOMBrowseItemSelected = null;
 export let KOMBrowseDeckSelected = null;
 export let KOMBrowseListDispatchClose;
-export let KOMBrowseListDispatchArrow;
-export let KOMBrowseListDispatchFilter;
-export let KOMBrowseInfoDispatchBack;
-export let KOMBrowseInfoDispatchUpdate;
 
 import OLSKInternational from 'OLSKInternational';
 const OLSKLocalized = function(translationConstant) {

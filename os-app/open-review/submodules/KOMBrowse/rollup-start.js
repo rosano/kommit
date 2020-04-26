@@ -43,18 +43,6 @@ const KOMBrowse = new RollupStart({
 		KOMBrowseListDispatchClose: (function _KOMBrowseListDispatchClose (inputData) {
 			window.TestKOMBrowseListDispatchClose.innerHTML = parseInt(window.TestKOMBrowseListDispatchClose.innerHTML) + 1;
 		}),
-		KOMBrowseListDispatchArrow: (function _KOMBrowseListDispatchArrow (inputData) {
-			window.TestKOMBrowseListDispatchArrow.innerHTML = parseInt(window.TestKOMBrowseListDispatchArrow.innerHTML) + 1;
-		}),
-		KOMBrowseListDispatchFilter: (function _KOMBrowseListDispatchFilter (inputData) {
-			window.TestKOMBrowseListDispatchFilter.innerHTML = parseInt(window.TestKOMBrowseListDispatchFilter.innerHTML) + 1;
-		}),
-		KOMBrowseInfoDispatchBack: (function _KOMBrowseInfoDispatchBack (inputData) {
-			window.TestKOMBrowseInfoDispatchBack.innerHTML = parseInt(window.TestKOMBrowseInfoDispatchBack.innerHTML) + 1;
-		}),
-		KOMBrowseInfoDispatchUpdate: (function _KOMBrowseInfoDispatchUpdate () {
-			window.TestKOMBrowseInfoDispatchUpdate.innerHTML = parseInt(window.TestKOMBrowseInfoDispatchUpdate.innerHTML) + 1;
-		}),
 	}, Object.fromEntries(Array.from((new window.URLSearchParams(window.location.search)).entries()).map(function (e, index, coll) {
 		if (['KOMBrowseDeckSelected', 'KOMBrowseItemSelected'].includes(e[0])) {
 			e[1] = JSON.parse(e[1]);

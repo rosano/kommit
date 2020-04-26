@@ -335,7 +335,6 @@ import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svel
 			KOMBrowseStorageClient={ mod._ValueStorageClient }
 			KOMBrowseItemSelected={ mod._ValueCardSelected }
 			KOMBrowseListDispatchClose={ mod.KOMBrowseListDispatchClose }
-			KOMBrowseInfoDispatchDiscard={ mod.KOMBrowseInfoDispatchDiscard }
 			/>
 	{/if}
 </OLSKViewportContent>
