@@ -49,6 +49,14 @@ const mod = {
 			}
 		}
 
+		if (inputData.KOMCardReviewInterval !== undefined || options.KOMOptionValidateIfNotPresent) {
+			if (typeof inputData.KOMCardReviewInterval !== 'number') {
+				errors.KOMCardReviewInterval = [
+					'KOMErrorNotNumber',
+				];
+			}
+		}
+
 		return Object.entries(errors).length ? errors : null;
 	},
 

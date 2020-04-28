@@ -106,6 +106,26 @@ describe('KOMCardModelErrorsFor', function test_KOMCardModelErrorsFor() {
 
 	});
 
+	context('KOMCardReviewInterval', function() {
+
+		it('returns object if not number', function() {
+			deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubCardObjectValid(), {
+				KOMCardReviewInterval: null,
+			})), {
+				KOMCardReviewInterval: [
+					'KOMErrorNotNumber',
+				],
+			});
+		});
+
+		it('returns null', function() {
+			deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubCardObjectValid(), {
+				KOMCardReviewInterval: 1,
+			})), null);
+		});
+
+	});
+
 });
 
 describe('KOMCardModelPreJSONSchemaValidate', function test_KOMCardModelPreJSONSchemaValidate() {
