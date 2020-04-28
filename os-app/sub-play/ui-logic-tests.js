@@ -4,10 +4,10 @@ const mainModule = require('./ui-logic.js');
 
 describe('KOMPlaySort', function test_KOMPlaySort() {
 	
-	const uItems = function () {
-		return ['alfa', 'bravo', 'charlie', 'delta'].map(function (e) {
+	const uItems = function (inputData = 4) {
+		return Array.from(new Array(inputData)).map(function (e, i) {
 			return {
-				KOMCardID: e,
+				KOMCardID: (i + 1).toString(),
 				KOMCardQuestion: '',
 				KOMCardAnswer: '',
 				KOMCardCreationDate: new Date(),
@@ -20,6 +20,14 @@ describe('KOMPlaySort', function test_KOMPlaySort() {
 		return inputData.map(function (e) {
 			return e.KOMCardID;
 		}).join('-');
+	};
+
+	const uNew = function (param1, param2) {
+		return param1.map(function (e, i) {
+			return Object.assign(e, {
+				KOMCardReviewDueDate: i >= param2 ? new Date() : undefined,
+			});
+		});
 	};
 
 	it('throws if not array', function () {
@@ -40,12 +48,43 @@ describe('KOMPlaySort', function test_KOMPlaySort() {
 	it('randomizes', function() {
 		const items = uItems();
 
-		const length = 10;
-		deepEqual(Array.from(new Array(length)).map(function (e) {
+		deepEqual(Array.from(new Array(10)).map(function (e) {
 			return uSlug(mainModule.KOMPlaySort(items));
 		}).filter(function (value, index, self) {
-			return self.indexOf(value) < index;
-		}).length < length, true);
+			return self.indexOf(value) === index;
+		}).length > 1, true);
+	});
+
+	context('new_card_spacing', function () {
+		
+		it('spaces single', function() {
+			deepEqual(mainModule.KOMPlaySort(uNew(uItems(10), 1)).map(function (e, i) {
+				if (!e.KOMCardReviewDueDate) {
+					return i;
+				}
+			}).join(''), '4');
+		});
+		
+		it('spaces multiple', function() {
+			deepEqual(mainModule.KOMPlaySort(uNew(uItems(10), 2)).map(function (e, i) {
+				if (!e.KOMCardReviewDueDate) {
+					return i;
+				}
+			}).join(''), '36');
+		});
+
+		it('randomizes new cards', function() {
+			const items = uNew(uItems(20), 4);
+
+			deepEqual(Array.from(new Array(10)).map(function (e) {
+				return uSlug(mainModule.KOMPlaySort(items).filter(function (e) {
+					return !e.KOMCardReviewDueDate;
+				}));
+			}).filter(function (value, index, self) {
+				return self.indexOf(value) === index;
+			}).length > 1, true);
+		});
+	
 	});
 
 });
