@@ -219,3 +219,36 @@ describe('KOMCardModelPostJSONParse', function test_KOMCardModelPostJSONParse() 
 	});
 
 });
+
+describe('KOMCardModelResponseAgain', function test_KOMCardModelResponseAgain() {
+
+	it('returns string', function () {
+		deepEqual(mainModule.KOMCardModelResponseAgain(), 'kKOMCardModelResponseAgain')
+	});
+
+});
+
+describe('KOMCardModelResponseHard', function test_KOMCardModelResponseHard() {
+
+	it('returns string', function () {
+		deepEqual(mainModule.KOMCardModelResponseHard(), 'kKOMCardModelResponseHard')
+	});
+
+});
+
+describe('KOMCardModelResponseGood', function test_KOMCardModelResponseGood() {
+
+	it('returns string', function () {
+		deepEqual(mainModule.KOMCardModelResponseGood(), 'kKOMCardModelResponseGood')
+	});
+
+});
+
+describe('KOMCardModelResponseEasy', function test_KOMCardModelResponseEasy() {
+
+	it('returns string', function () {
+		deepEqual(mainModule.KOMCardModelResponseEasy(), 'kKOMCardModelResponseEasy')
+	});
+
+});
+

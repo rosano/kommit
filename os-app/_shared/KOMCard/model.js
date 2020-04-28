@@ -104,6 +104,22 @@ const mod = {
 		return inputData;
 	},
 
+	KOMCardModelResponseAgain () {
+		return 'kKOMCardModelResponseAgain';
+	},
+
+	KOMCardModelResponseHard () {
+		return 'kKOMCardModelResponseHard';
+	},
+
+	KOMCardModelResponseGood () {
+		return 'kKOMCardModelResponseGood';
+	},
+
+	KOMCardModelResponseEasy () {
+		return 'kKOMCardModelResponseEasy';
+	},
+
 };
 
 export default mod;
