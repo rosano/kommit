@@ -106,6 +106,26 @@ describe('KOMCardModelErrorsFor', function test_KOMCardModelErrorsFor() {
 
 	});
 
+	context('KOMCardReviewDueDate', function() {
+
+		it('returns object if not date', function() {
+			deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubCardObjectValid(), {
+				KOMCardReviewDueDate: null,
+			})), {
+				KOMCardReviewDueDate: [
+					'KOMErrorNotDate',
+				],
+			});
+		});
+
+		it('returns null', function() {
+			deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubCardObjectValid(), {
+				KOMCardReviewInterval: 1,
+			})), null);
+		});
+
+	});
+
 	context('KOMCardReviewInterval', function() {
 
 		it('returns object if not number', function() {

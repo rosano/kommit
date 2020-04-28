@@ -49,6 +49,14 @@ const mod = {
 			}
 		}
 
+		if (inputData.KOMCardReviewDueDate !== undefined || options.KOMOptionValidateIfNotPresent) {
+			if (!(inputData.KOMCardReviewDueDate instanceof Date) || Number.isNaN(inputData.KOMCardReviewDueDate.getTime())) {
+				errors.KOMCardReviewDueDate = [
+					'KOMErrorNotDate',
+				];
+			}
+		}
+
 		if (inputData.KOMCardReviewInterval !== undefined || options.KOMOptionValidateIfNotPresent) {
 			if (typeof inputData.KOMCardReviewInterval !== 'number') {
 				errors.KOMCardReviewInterval = [
