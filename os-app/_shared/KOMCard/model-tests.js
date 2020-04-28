@@ -126,6 +126,26 @@ describe('KOMCardModelErrorsFor', function test_KOMCardModelErrorsFor() {
 
 	});
 
+	context('KOMCardReviewMultiplier', function() {
+
+		it('returns object if not number', function() {
+			deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubCardObjectValid(), {
+				KOMCardReviewMultiplier: null,
+			})), {
+				KOMCardReviewMultiplier: [
+					'KOMErrorNotNumber',
+				],
+			});
+		});
+
+		it('returns null', function() {
+			deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubCardObjectValid(), {
+				KOMCardReviewMultiplier: 1,
+			})), null);
+		});
+
+	});
+
 });
 
 describe('KOMCardModelPreJSONSchemaValidate', function test_KOMCardModelPreJSONSchemaValidate() {

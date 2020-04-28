@@ -57,6 +57,14 @@ const mod = {
 			}
 		}
 
+		if (inputData.KOMCardReviewMultiplier !== undefined || options.KOMOptionValidateIfNotPresent) {
+			if (typeof inputData.KOMCardReviewMultiplier !== 'number') {
+				errors.KOMCardReviewMultiplier = [
+					'KOMErrorNotNumber',
+				];
+			}
+		}
+
 		return Object.entries(errors).length ? errors : null;
 	},
 
