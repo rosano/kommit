@@ -120,6 +120,15 @@ const mod = {
 		return 'kKOMCardModelResponseEasy';
 	},
 
+	KOMCardModelResponses () {
+		return [
+			mod.KOMCardModelResponseAgain(),
+			mod.KOMCardModelResponseHard(),
+			mod.KOMCardModelResponseGood(),
+			mod.KOMCardModelResponseEasy(),
+		];
+	},
+
 };
 
 export default mod;

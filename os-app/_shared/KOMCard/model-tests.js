@@ -252,3 +252,16 @@ describe('KOMCardModelResponseEasy', function test_KOMCardModelResponseEasy() {
 
 });
 
+describe('KOMCardModelResponses', function test_KOMCardModelResponses() {
+
+	it('returns array', function () {
+		deepEqual(mainModule.KOMCardModelResponses(), [
+			mainModule.KOMCardModelResponseAgain(),
+			mainModule.KOMCardModelResponseHard(),
+			mainModule.KOMCardModelResponseGood(),
+			mainModule.KOMCardModelResponseEasy(),
+			])
+	});
+
+});
+
