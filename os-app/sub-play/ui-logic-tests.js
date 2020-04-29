@@ -191,6 +191,14 @@ describe('KOMPlayResponseTypes', function test_KOMPlayResponseTypes() {
 
 });
 
+describe('KOMPlayResponseStepToLearn', function test_KOMPlayResponseStepToLearn() {
+
+	it('returns number', function () {
+		deepEqual(mainModule.KOMPlayResponseStepToLearn(), 1000 * 60);
+	});
+
+});
+
 describe('KOMPlayResponseIsValid', function test_KOMPlayResponseIsValid() {
 	
 	it('throws if not object', function () {
@@ -245,13 +253,14 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 	context('new_and_Hard', function () {
 		
 		it('updates card', function() {
-			const item = kTesting.StubCardObjectValid();
-
-			mainModule.KOMPlayRespond(uState(item), Object.assign(kTesting.StubResponseObjectValid(), {
+			const card = kTesting.StubCardObjectValid();
+			const response = Object.assign(kTesting.StubResponseObjectValid(), {
 				KOMPlayResponseType: mainModule.KOMPlayResponseTypeHard(),
-			}));
+			});
 
-			deepEqual(item, Object.assign(kTesting.StubCardObjectValid(), {
+			mainModule.KOMPlayRespond(uState(card), response);
+
+			deepEqual(card, Object.assign(kTesting.StubCardObjectValid(), {
 				KOMCardReviewIsLearning: true,
 			}));
 		});

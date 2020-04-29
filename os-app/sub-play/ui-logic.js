@@ -1,5 +1,7 @@
 import KOMCardModel from '../_shared/KOMCard/model.js';
 
+const kStepToLearnSeconds = 60;
+
 const mod = {
 
 	KOMPlaySort (inputData) {
@@ -93,6 +95,10 @@ const mod = {
 		}
 
 		return true;
+	},
+
+	KOMPlayResponseStepToLearn () {
+		return 1000 * kStepToLearnSeconds;
 	},
 
 	KOMPlayRespond (param1, param2) {
