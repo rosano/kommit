@@ -120,7 +120,7 @@ describe('KOMCardModelErrorsFor', function test_KOMCardModelErrorsFor() {
 
 		it('returns null', function() {
 			deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubCardObjectValid(), {
-				KOMCardReviewInterval: 1,
+				KOMCardReviewDueDate: new Date(),
 			})), null);
 		});
 
