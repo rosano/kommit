@@ -126,6 +126,26 @@ describe('KOMCardModelErrorsFor', function test_KOMCardModelErrorsFor() {
 
 	});
 
+	context('KOMCardReviewIsLearning', function() {
+
+		it('returns object if not boolean', function() {
+			deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubCardObjectValid(), {
+				KOMCardReviewIsLearning: null,
+			})), {
+				KOMCardReviewIsLearning: [
+					'KOMErrorNotBoolean',
+				],
+			});
+		});
+
+		it('returns null', function() {
+			deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubCardObjectValid(), {
+				KOMCardReviewIsLearning: true,
+			})), null);
+		});
+
+	});
+
 	context('KOMCardReviewInterval', function() {
 
 		it('returns object if not number', function() {
