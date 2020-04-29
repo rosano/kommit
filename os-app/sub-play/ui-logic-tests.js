@@ -235,13 +235,13 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 	
 	it('throws if param1 not valid', function () {
 		throws(function () {
-			mainModule.KOMPlayRespond(kTesting.StubResponseObjectValid(), {});
+			mainModule.KOMPlayRespond({}, kTesting.StubResponseObjectValid());
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('throws if param2 not valid', function () {
 		throws(function () {
-			mainModule.KOMPlayRespond({}, uState());
+			mainModule.KOMPlayRespond(uState(), {});
 		}, /KOMErrorInputNotValid/);
 	});
 
