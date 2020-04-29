@@ -88,3 +88,36 @@ describe('KOMPlaySort', function test_KOMPlaySort() {
 	});
 
 });
+
+describe('KOMPlayStateErrors', function test_KOMPlayStateErrors() {
+	
+	const uValid = function () {
+		return {
+			KOMPlayStateCardsAll: [],
+			KOMPlayStateCardsAgain: [],
+		};
+	};
+
+	it('throws if not object', function () {
+		throws(function () {
+			mainModule.KOMPlayStateErrors(null);
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns false if KOMPlayStateCardsAll not array', function() {
+		deepEqual(mainModule.KOMPlayStateErrors(Object.assign(uValid(), {
+			KOMPlayStateCardsAll: null,
+		})), false);
+	});
+
+	it('returns false if KOMPlayStateCardsAgain not array', function() {
+		deepEqual(mainModule.KOMPlayStateErrors(Object.assign(uValid(), {
+			KOMPlayStateCardsAgain: null,
+		})), false);
+	});
+
+	it('returns true', function() {
+		deepEqual(mainModule.KOMPlayStateErrors(uValid()), true);
+	});
+
+});

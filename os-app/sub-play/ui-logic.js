@@ -30,8 +30,23 @@ const mod = {
 		}
 
 		return inputData;
-	}
+	},
 
+	KOMPlayStateErrors (inputData) {
+		if (typeof inputData !== 'object' || inputData === null) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		if (!Array.isArray(inputData.KOMPlayStateCardsAll)) {
+			return false;
+		}
+
+		if (!Array.isArray(inputData.KOMPlayStateCardsAgain)) {
+			return false;
+		}
+
+		return true;
+	},
 };
 
 Object.assign(exports, mod);
