@@ -1,13 +1,27 @@
 const { throws, deepEqual, notDeepEqual } = require('assert');
 
 const mainModule = require('./ui-logic.js');
-const KOMCardModel = require('../_shared/KOMCard/model.js');
 
 const kTesting = {
 	StubStateObjectValid () {
 		return {
 			KOMPlayStateCardsAll: [],
 			KOMPlayStateCardsAgain: [],
+		};
+	},
+	StubResponseObjectValid () {
+		return {
+			KOMPlayResponse: [],
+			KOMPlayStateCardsAgain: [],
+		};
+	},
+	StubCardObjectValid() {
+		return {
+			KOMCardID: 'alfa',
+			KOMCardQuestion: '',
+			KOMCardAnswer: '',
+			KOMCardCreationDate: new Date('2019-02-23T13:56:36Z'),
+			KOMCardModificationDate: new Date('2019-02-23T13:56:36Z'),
 		};
 	},
 };
@@ -99,28 +113,73 @@ describe('KOMPlaySort', function test_KOMPlaySort() {
 
 });
 
-describe('KOMPlayStateErrors', function test_KOMPlayStateErrors() {
+describe('KOMPlayStateIsValid', function test_KOMPlayStateIsValid() {
 	
 	it('throws if not object', function () {
 		throws(function () {
-			mainModule.KOMPlayStateErrors(null);
+			mainModule.KOMPlayStateIsValid(null);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns false if KOMPlayStateCardsAll not array', function() {
-		deepEqual(mainModule.KOMPlayStateErrors(Object.assign(kTesting.StubStateObjectValid(), {
+		deepEqual(mainModule.KOMPlayStateIsValid(Object.assign(kTesting.StubStateObjectValid(), {
 			KOMPlayStateCardsAll: null,
 		})), false);
 	});
 
 	it('returns false if KOMPlayStateCardsAgain not array', function() {
-		deepEqual(mainModule.KOMPlayStateErrors(Object.assign(kTesting.StubStateObjectValid(), {
+		deepEqual(mainModule.KOMPlayStateIsValid(Object.assign(kTesting.StubStateObjectValid(), {
 			KOMPlayStateCardsAgain: null,
 		})), false);
 	});
 
 	it('returns true', function() {
-		deepEqual(mainModule.KOMPlayStateErrors(kTesting.StubStateObjectValid()), true);
+		deepEqual(mainModule.KOMPlayStateIsValid(kTesting.StubStateObjectValid()), true);
+	});
+
+});
+
+describe('KOMPlayResponseTypeAgain', function test_KOMPlayResponseTypeAgain() {
+
+	it('returns string', function () {
+		deepEqual(mainModule.KOMPlayResponseTypeAgain(), 'kKOMPlayResponseTypeAgain')
+	});
+
+});
+
+describe('KOMPlayResponseTypeHard', function test_KOMPlayResponseTypeHard() {
+
+	it('returns string', function () {
+		deepEqual(mainModule.KOMPlayResponseTypeHard(), 'kKOMPlayResponseTypeHard')
+	});
+
+});
+
+describe('KOMPlayResponseTypeGood', function test_KOMPlayResponseTypeGood() {
+
+	it('returns string', function () {
+		deepEqual(mainModule.KOMPlayResponseTypeGood(), 'kKOMPlayResponseTypeGood')
+	});
+
+});
+
+describe('KOMPlayResponseTypeEasy', function test_KOMPlayResponseTypeEasy() {
+
+	it('returns string', function () {
+		deepEqual(mainModule.KOMPlayResponseTypeEasy(), 'kKOMPlayResponseTypeEasy')
+	});
+
+});
+
+describe('KOMPlayResponseTypes', function test_KOMPlayResponseTypes() {
+
+	it('returns array', function () {
+		deepEqual(mainModule.KOMPlayResponseTypes(), [
+			mainModule.KOMPlayResponseTypeAgain(),
+			mainModule.KOMPlayResponseTypeHard(),
+			mainModule.KOMPlayResponseTypeGood(),
+			mainModule.KOMPlayResponseTypeEasy(),
+			])
 	});
 
 });

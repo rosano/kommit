@@ -32,7 +32,7 @@ const mod = {
 		return inputData;
 	},
 
-	KOMPlayStateErrors (inputData) {
+	KOMPlayStateIsValid (inputData) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -47,6 +47,32 @@ const mod = {
 
 		return true;
 	},
+
+	KOMPlayResponseTypeAgain () {
+		return 'kKOMPlayResponseTypeAgain';
+	},
+
+	KOMPlayResponseTypeHard () {
+		return 'kKOMPlayResponseTypeHard';
+	},
+
+	KOMPlayResponseTypeGood () {
+		return 'kKOMPlayResponseTypeGood';
+	},
+
+	KOMPlayResponseTypeEasy () {
+		return 'kKOMPlayResponseTypeEasy';
+	},
+
+	KOMPlayResponseTypes () {
+		return [
+			mod.KOMPlayResponseTypeAgain(),
+			mod.KOMPlayResponseTypeHard(),
+			mod.KOMPlayResponseTypeGood(),
+			mod.KOMPlayResponseTypeEasy(),
+		];
+	},
+
 };
 
 Object.assign(exports, mod);

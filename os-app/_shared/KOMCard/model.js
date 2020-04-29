@@ -104,31 +104,6 @@ const mod = {
 		return inputData;
 	},
 
-	KOMCardModelResponseAgain () {
-		return 'kKOMCardModelResponseAgain';
-	},
-
-	KOMCardModelResponseHard () {
-		return 'kKOMCardModelResponseHard';
-	},
-
-	KOMCardModelResponseGood () {
-		return 'kKOMCardModelResponseGood';
-	},
-
-	KOMCardModelResponseEasy () {
-		return 'kKOMCardModelResponseEasy';
-	},
-
-	KOMCardModelResponses () {
-		return [
-			mod.KOMCardModelResponseAgain(),
-			mod.KOMCardModelResponseHard(),
-			mod.KOMCardModelResponseGood(),
-			mod.KOMCardModelResponseEasy(),
-		];
-	},
-
 };
 
 export default mod;
