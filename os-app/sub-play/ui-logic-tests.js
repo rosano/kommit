@@ -11,8 +11,7 @@ const kTesting = {
 	},
 	StubResponseObjectValid () {
 		return {
-			KOMPlayResponse: [],
-			KOMPlayStateCardsAgain: [],
+			KOMPlayResponseType: mainModule.KOMPlayResponseTypeAgain(),
 		};
 	},
 	StubCardObjectValid() {
@@ -180,6 +179,26 @@ describe('KOMPlayResponseTypes', function test_KOMPlayResponseTypes() {
 			mainModule.KOMPlayResponseTypeGood(),
 			mainModule.KOMPlayResponseTypeEasy(),
 			])
+	});
+
+});
+
+describe('KOMPlayResponseIsValid', function test_KOMPlayResponseIsValid() {
+	
+	it('throws if not object', function () {
+		throws(function () {
+			mainModule.KOMPlayResponseIsValid(null);
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns false if KOMPlayResponseType not valid', function() {
+		deepEqual(mainModule.KOMPlayResponseIsValid(Object.assign(kTesting.StubResponseObjectValid(), {
+			KOMPlayResponseType: null,
+		})), false);
+	});
+
+	it('returns true', function() {
+		deepEqual(mainModule.KOMPlayResponseIsValid(kTesting.StubResponseObjectValid()), true);
 	});
 
 });

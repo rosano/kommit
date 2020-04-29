@@ -1,3 +1,5 @@
+import KOMCardModel from '../_shared/KOMCard/model.js';
+
 const mod = {
 
 	KOMPlaySort (inputData) {
@@ -71,6 +73,18 @@ const mod = {
 			mod.KOMPlayResponseTypeGood(),
 			mod.KOMPlayResponseTypeEasy(),
 		];
+	},
+
+	KOMPlayResponseIsValid (inputData) {
+		if (typeof inputData !== 'object' || inputData === null) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		if (mod.KOMPlayResponseTypes().indexOf(inputData.KOMPlayResponseType) === -1) {
+			return false;
+		}
+
+		return true;
 	},
 
 };
