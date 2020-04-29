@@ -120,11 +120,11 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		const card = state.KOMPlayStateCardCurrent;
+		const card = state.KOMPlayStateCardsQueue.splice(state.KOMPlayStateCardsQueue.indexOf(state.KOMPlayStateCardCurrent), 1).pop();
 
 		if (!card.KOMCardReviewInterval && response.KOMPlayResponseType !== mod.KOMPlayResponseTypeEasy()) {
-			state.KOMPlayStateCardsWait.push(Object.assign(state.KOMPlayStateCardsQueue.splice(state.KOMPlayStateCardsQueue.indexOf(card), 1).pop(), {
-				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate + mod.KOMPlayResponseStepToLearn()),
+			state.KOMPlayStateCardsWait.push(Object.assign(card, {
+				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + mod.KOMPlayResponseStepToLearn()),
 			}, response.KOMPlayResponseType === mod.KOMPlayResponseTypeAgain() ? {} : {
 				KOMCardReviewIsLearning: true,
 			}))

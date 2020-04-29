@@ -277,7 +277,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 			mainModule.KOMPlayRespond(uState(card), response);
 
 			deepEqual(card, Object.assign(kTesting.StubCardObjectValid(), {
-				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate + mainModule.KOMPlayResponseStepToLearn()),
+				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + mainModule.KOMPlayResponseStepToLearn()),
 			}));
 		});
 		
@@ -307,7 +307,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		it('updates card', function() {
 			deepEqual(card, Object.assign(kTesting.StubCardObjectValid(), {
 				KOMCardReviewIsLearning: true,
-				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate + mainModule.KOMPlayResponseStepToLearn()),
+				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + mainModule.KOMPlayResponseStepToLearn()),
 			}));
 		});
 		
@@ -334,7 +334,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		it('updates card', function() {
 			deepEqual(card, Object.assign(kTesting.StubCardObjectValid(), {
 				KOMCardReviewIsLearning: true,
-				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate + mainModule.KOMPlayResponseStepToLearn()),
+				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + mainModule.KOMPlayResponseStepToLearn()),
 			}));
 		});
 		
