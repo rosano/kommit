@@ -234,4 +234,29 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		deepEqual(mainModule.KOMPlayRespond(kTesting.StubCardObjectValid(), kTesting.StubResponseObjectValid(), item) === item, true);
 	});
 
+	context('new_and_again', function () {
+		
+		it('updates card', function() {
+			const item = kTesting.StubCardObjectValid();
+
+			mainModule.KOMPlayRespond(item, Object.assign(kTesting.StubResponseObjectValid(), {
+				KOMPlayResponseType: mainModule.KOMPlayResponseTypeAgain(),
+			}), uState(item));
+
+			deepEqual(item, Object.assign(kTesting.StubCardObjectValid(), {
+				KOMCardReviewIsLearning: true,
+			}));
+		});
+		
+		it('updates state', function() {
+			const item = kTesting.StubCardObjectValid();
+			deepEqual(mainModule.KOMPlayRespond(item, Object.assign(kTesting.StubResponseObjectValid(), {
+				KOMPlayResponseType: mainModule.KOMPlayResponseTypeAgain(),
+			}), uState(item)), Object.assign(uState(), {
+				KOMPlayStateCardsAgain: [item],
+			}));
+		});
+	
+	});
+
 });

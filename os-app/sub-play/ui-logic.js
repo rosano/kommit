@@ -100,6 +100,12 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
+		if (!param1.KOMCardReviewInterval && param2.KOMPlayResponseType === mod.KOMPlayResponseTypeAgain()) {
+			param3.KOMPlayStateCardsAgain.push(Object.assign(param3.KOMPlayStateCardsAll.splice(param3.KOMPlayStateCardsAll.indexOf(param1), 1).pop(), {
+				KOMCardReviewIsLearning: true,
+			}));
+		}
+
 		return param3;
 	},
 
