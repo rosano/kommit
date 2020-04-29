@@ -5,14 +5,13 @@ const mainModule = require('./ui-logic.js');
 const kTesting = {
 	StubStateObjectValid () {
 		return {
-			KOMPlayStateCardCurrent: kTesting.StubCardObjectValid(),
 			KOMPlayStateCardsQueue: [],
 			KOMPlayStateCardsWait: [],
 		};
 	},
 	StubResponseObjectValid () {
 		return {
-			KOMPlayResponseType: mainModule.KOMPlayResponseTypeAgain(),
+			KOMPlayResponseType: mainModule.KOMPlayResponseTypeEasy(),
 			KOMPlayResponseDate: new Date(),
 		};
 	},
@@ -253,10 +252,11 @@ describe('KOMPlayResponseIsValid', function test_KOMPlayResponseIsValid() {
 
 describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
-	const uState = function (inputData = []) {
+	const uState = function (param1, param2 = []) {
 		return Object.assign(kTesting.StubStateObjectValid(), {
-			KOMPlayStateCardsQueue: [].concat(inputData),
-		})
+			KOMPlayStateCardsQueue: [].concat(param2),
+			KOMPlayStateCardCurrent: param1,
+		});
 	};
 	
 	it('throws if param1 not valid', function () {
@@ -276,23 +276,40 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		deepEqual(mainModule.KOMPlayRespond(state, kTesting.StubResponseObjectValid()) === state, true);
 	});
 
+	context('KOMPlayStateCardCurrent', function () {
+		
+		it('sets to null if no cards', function () {
+			deepEqual(mainModule.KOMPlayRespond(uState(kTesting.StubCardObjectValid()), kTesting.StubResponseObjectValid()), Object.assign(uState(), {
+				KOMPlayStateCardCurrent: null,
+			}));
+		});
+
+		it('sets to first in queue', function () {
+			const card = kTesting.StubCardObjectValid();
+			deepEqual(mainModule.KOMPlayRespond(uState(kTesting.StubCardObjectValid(), card), kTesting.StubResponseObjectValid()).KOMPlayStateCardCurrent === card, true);
+		});
+	
+	});
+
 	context('new_and_Again', function () {
+
+		const card = kTesting.StubCardObjectValid();
+		const state = uState(card);
+		const response = Object.assign(kTesting.StubResponseObjectValid(), {
+			KOMPlayResponseType: mainModule.KOMPlayResponseTypeAgain(),
+		});
+
+		before(function () {
+			mainModule.KOMPlayRespond(state, response);	
+		});
 		
 		it('updates card', function() {
-			const card = kTesting.StubCardObjectValid();
-			const response = Object.assign(kTesting.StubResponseObjectValid(), {
-				KOMPlayResponseType: mainModule.KOMPlayResponseTypeAgain(),
-			});
-
-			mainModule.KOMPlayRespond(uState(card), response);
-
 			deepEqual(card, Object.assign(kTesting.StubCardObjectValid(), {
 				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + mainModule.KOMPlayResponseStepToLearn()),
 			}));
 		});
 		
 		it('updates state', function() {
-			const card = kTesting.StubCardObjectValid();
 			deepEqual(mainModule.KOMPlayRespond(uState(card), Object.assign(kTesting.StubResponseObjectValid(), {
 				KOMPlayResponseType: mainModule.KOMPlayResponseTypeAgain(),
 			})), Object.assign(uState(), {
