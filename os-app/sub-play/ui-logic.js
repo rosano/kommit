@@ -87,6 +87,22 @@ const mod = {
 		return true;
 	},
 
+	KOMPlayRespond (param1, param2, param3) {
+		if (KOMCardModel.KOMCardModelErrorsFor(param1)) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		if (!mod.KOMPlayResponseIsValid(param2)) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		if (!mod.KOMPlayStateIsValid(param3)) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		return param3;
+	},
+
 };
 
 Object.assign(exports, mod);

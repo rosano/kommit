@@ -202,3 +202,36 @@ describe('KOMPlayResponseIsValid', function test_KOMPlayResponseIsValid() {
 	});
 
 });
+
+describe('KOMPlayRespond', function test_KOMPlayRespond() {
+
+	const uState = function (inputData = []) {
+		return Object.assign(kTesting.StubStateObjectValid(), {
+			KOMPlayStateCardsAll: [].concat(inputData),
+		})
+	};
+	
+	it('throws if param1 not valid', function () {
+		throws(function () {
+			mainModule.KOMPlayRespond({}, kTesting.StubResponseObjectValid(), uState());
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('throws if param2 not valid', function () {
+		throws(function () {
+			mainModule.KOMPlayRespond(kTesting.StubCardObjectValid(), {}, uState());
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('throws if param3 not valid', function () {
+		throws(function () {
+			mainModule.KOMPlayRespond(kTesting.StubCardObjectValid(), kTesting.StubResponseObjectValid(), {});
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns param3', function() {
+		const item = uState();
+		deepEqual(mainModule.KOMPlayRespond(kTesting.StubCardObjectValid(), kTesting.StubResponseObjectValid(), item) === item, true);
+	});
+
+});
