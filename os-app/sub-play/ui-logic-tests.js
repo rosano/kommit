@@ -5,6 +5,7 @@ const mainModule = require('./ui-logic.js');
 const kTesting = {
 	StubStateObjectValid () {
 		return {
+			KOMPlayStateCardCurrent: kTesting.StubCardObjectValid(),
 			KOMPlayStateCardsAll: [],
 			KOMPlayStateCardsAgain: [],
 		};
@@ -118,6 +119,12 @@ describe('KOMPlayStateIsValid', function test_KOMPlayStateIsValid() {
 		throws(function () {
 			mainModule.KOMPlayStateIsValid(null);
 		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns false if KOMPlayStateCardCurrent not valid', function() {
+		deepEqual(mainModule.KOMPlayStateIsValid(Object.assign(kTesting.StubStateObjectValid(), {
+			KOMPlayStateCardCurrent: {},
+		})), false);
 	});
 
 	it('returns false if KOMPlayStateCardsAll not array', function() {

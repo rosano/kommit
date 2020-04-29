@@ -39,6 +39,10 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
+		if (KOMCardModel.KOMCardModelErrorsFor(inputData.KOMPlayStateCardCurrent)) {
+			return false;
+		}
+
 		if (!Array.isArray(inputData.KOMPlayStateCardsAll)) {
 			return false;
 		}
