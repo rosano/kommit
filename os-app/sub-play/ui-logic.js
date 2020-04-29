@@ -1,6 +1,8 @@
 import KOMCardModel from '../_shared/KOMCard/model.js';
 
-const kStepToLearnSeconds = 60;
+const kIntervalAgainSeconds = 50;
+const kIntervalLearn1Minutes = 1;
+const kIntervalLearn2Minutes = 10;
 const kIntervalDefaultDays = 1;
 const kIntervalEasyDays = 4;
 
@@ -99,15 +101,23 @@ const mod = {
 		return true;
 	},
 
-	KOMPlayResponseStepToLearn () {
-		return 1000 * kStepToLearnSeconds;
+	KOMPlayResponseIntervalAgain () {
+		return 1000 * kIntervalAgainSeconds;
 	},
 
-	KOMPlayResponseIntervalDefault () {
+	KOMPlayResponseIntervalLearn1 () {
+		return 1000 * 60 * kIntervalLearn1Minutes;
+	},
+
+	KOMPlayResponseIntervalLearn2 () {
+		return 1000 * 60 * kIntervalLearn2Minutes;
+	},
+
+	KOMPlayResponseIntervalGraduateDefault () {
 		return kIntervalDefaultDays;
 	},
 
-	KOMPlayResponseIntervalEasy () {
+	KOMPlayResponseIntervalGraduateEasy () {
 		return kIntervalEasyDays;
 	},
 
@@ -122,22 +132,34 @@ const mod = {
 
 		const card = state.KOMPlayStateCardCurrent;
 
-		if (!card.KOMCardReviewInterval && response.KOMPlayResponseType !== mod.KOMPlayResponseTypeEasy()) {
-			state.KOMPlayStateCardsWait.push(Object.assign(card, {
-				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + mod.KOMPlayResponseStepToLearn()),
-			}, response.KOMPlayResponseType === mod.KOMPlayResponseTypeAgain() ? {} : {
-				KOMCardReviewIsLearning: true,
-			}))
-		}
-
-		if (!card.KOMCardReviewInterval && response.KOMPlayResponseType === mod.KOMPlayResponseTypeEasy()) {
+		if (response.KOMPlayResponseType === mod.KOMPlayResponseTypeEasy() && !card.KOMCardReviewInterval) {
 			Object.assign(card, {
-				KOMCardReviewInterval: mod.KOMPlayResponseIntervalEasy(),
-				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * mod.KOMPlayResponseIntervalEasy()),
+				KOMCardReviewInterval: mod.KOMPlayResponseIntervalGraduateEasy(),
+				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * mod.KOMPlayResponseIntervalGraduateEasy()),
 			});
 		}
 
-		state.KOMPlayStateCardCurrent = state.KOMPlayStateCardsQueue.shift() || null;
+		if (response.KOMPlayResponseType !== mod.KOMPlayResponseTypeEasy() && !card.KOMCardReviewInterval) {
+			Object.assign(card, {
+				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + mod.KOMPlayResponseIntervalLearn1()),
+			}, response.KOMPlayResponseType === mod.KOMPlayResponseTypeAgain() ? {} : {
+				KOMCardReviewIsLearning: true,
+			});
+		}
+
+		if (response.KOMPlayResponseType === mod.KOMPlayResponseTypeAgain()) {
+			Object.assign(card, {
+				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + mod.KOMPlayResponseIntervalAgain()),
+			}, response.KOMPlayResponseType === mod.KOMPlayResponseTypeAgain() ? {} : {
+				KOMCardReviewIsLearning: true,
+			});
+		}
+
+		if (!card.KOMCardReviewInterval || card.KOMCardReviewIsLearning) {
+			state.KOMPlayStateCardsWait.push(card);
+		}
+
+		state.KOMPlayStateCardCurrent = state.KOMPlayStateCardsQueue.shift();
 
 		return state;
 	},

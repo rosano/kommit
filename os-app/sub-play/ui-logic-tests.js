@@ -200,26 +200,42 @@ describe('KOMPlayResponseTypes', function test_KOMPlayResponseTypes() {
 
 });
 
-describe('KOMPlayResponseStepToLearn', function test_KOMPlayResponseStepToLearn() {
+describe('KOMPlayResponseIntervalAgain', function test_KOMPlayResponseIntervalAgain() {
 
 	it('returns number', function () {
-		deepEqual(mainModule.KOMPlayResponseStepToLearn(), 1000 * 60);
+		deepEqual(mainModule.KOMPlayResponseIntervalAgain(), 1000 * 50);
 	});
 
 });
 
-describe('KOMPlayResponseIntervalDefault', function test_KOMPlayResponseIntervalDefault() {
+describe('KOMPlayResponseIntervalLearn1', function test_KOMPlayResponseIntervalLearn1() {
 
 	it('returns number', function () {
-		deepEqual(mainModule.KOMPlayResponseIntervalDefault(), 1);
+		deepEqual(mainModule.KOMPlayResponseIntervalLearn1(), 1000 * 60);
 	});
 
 });
 
-describe('KOMPlayResponseIntervalEasy', function test_KOMPlayResponseIntervalEasy() {
+describe('KOMPlayResponseIntervalLearn2', function test_KOMPlayResponseIntervalLearn2() {
 
 	it('returns number', function () {
-		deepEqual(mainModule.KOMPlayResponseIntervalEasy(), 4);
+		deepEqual(mainModule.KOMPlayResponseIntervalLearn2(), 1000 * 60 * 10);
+	});
+
+});
+
+describe('KOMPlayResponseIntervalGraduateDefault', function test_KOMPlayResponseIntervalGraduateDefault() {
+
+	it('returns number', function () {
+		deepEqual(mainModule.KOMPlayResponseIntervalGraduateDefault(), 1);
+	});
+
+});
+
+describe('KOMPlayResponseIntervalGraduateEasy', function test_KOMPlayResponseIntervalGraduateEasy() {
+
+	it('returns number', function () {
+		deepEqual(mainModule.KOMPlayResponseIntervalGraduateEasy(), 4);
 	});
 
 });
@@ -305,7 +321,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		
 		it('updates card', function() {
 			deepEqual(card, Object.assign(kTesting.StubCardObjectValid(), {
-				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + mainModule.KOMPlayResponseStepToLearn()),
+				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + mainModule.KOMPlayResponseIntervalAgain()),
 			}));
 		});
 		
@@ -334,7 +350,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		it('updates card', function() {
 			deepEqual(card, Object.assign(kTesting.StubCardObjectValid(), {
 				KOMCardReviewIsLearning: true,
-				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + mainModule.KOMPlayResponseStepToLearn()),
+				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + mainModule.KOMPlayResponseIntervalLearn1()),
 			}));
 		});
 		
@@ -361,7 +377,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		it('updates card', function() {
 			deepEqual(card, Object.assign(kTesting.StubCardObjectValid(), {
 				KOMCardReviewIsLearning: true,
-				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + mainModule.KOMPlayResponseStepToLearn()),
+				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + mainModule.KOMPlayResponseIntervalLearn1()),
 			}));
 		});
 		
@@ -387,8 +403,8 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		
 		it('updates card', function() {
 			deepEqual(card, Object.assign(kTesting.StubCardObjectValid(), {
-				KOMCardReviewInterval: mainModule.KOMPlayResponseIntervalEasy(),
-				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * mainModule.KOMPlayResponseIntervalEasy()),
+				KOMCardReviewInterval: mainModule.KOMPlayResponseIntervalGraduateEasy(),
+				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * mainModule.KOMPlayResponseIntervalGraduateEasy()),
 			}));
 		});
 		
