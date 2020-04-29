@@ -346,4 +346,29 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 	
 	});
 
+	context('new_and_Easy', function () {
+		
+		const card = kTesting.StubCardObjectValid();
+		const state = uState(card);
+		const response = Object.assign(kTesting.StubResponseObjectValid(), {
+			KOMPlayResponseType: mainModule.KOMPlayResponseTypeEasy(),
+		});
+
+		before(function () {
+			mainModule.KOMPlayRespond(state, response);
+		});
+		
+		it('updates card', function() {
+			deepEqual(card, Object.assign(kTesting.StubCardObjectValid(), {
+				KOMCardReviewInterval: mainModule.KOMPlayResponseIntervalEasy(),
+				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * mainModule.KOMPlayResponseIntervalEasy()),
+			}));
+		});
+		
+		it('updates state', function() {
+			deepEqual(state, uState());
+		});
+	
+	});
+
 });

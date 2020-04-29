@@ -130,6 +130,13 @@ const mod = {
 			}))
 		}
 
+		if (!card.KOMCardReviewInterval && response.KOMPlayResponseType === mod.KOMPlayResponseTypeEasy()) {
+			Object.assign(card, {
+				KOMCardReviewInterval: mod.KOMPlayResponseIntervalEasy(),
+				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * mod.KOMPlayResponseIntervalEasy()),
+			});
+		}
+
 		return state;
 	},
 
