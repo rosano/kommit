@@ -246,8 +246,8 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 	});
 
 	it('returns param2', function() {
-		const item = uState(kTesting.StubCardObjectValid());
-		deepEqual(mainModule.KOMPlayRespond(item, kTesting.StubResponseObjectValid()) === item, true);
+		const state = uState(kTesting.StubCardObjectValid());
+		deepEqual(mainModule.KOMPlayRespond(state, kTesting.StubResponseObjectValid()) === state, true);
 	});
 
 	context('new_and_Hard', function () {
@@ -267,11 +267,11 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		});
 		
 		it('updates state', function() {
-			const item = kTesting.StubCardObjectValid();
-			deepEqual(mainModule.KOMPlayRespond(uState(item), Object.assign(kTesting.StubResponseObjectValid(), {
+			const card = kTesting.StubCardObjectValid();
+			deepEqual(mainModule.KOMPlayRespond(uState(card), Object.assign(kTesting.StubResponseObjectValid(), {
 				KOMPlayResponseType: mainModule.KOMPlayResponseTypeHard(),
 			})), Object.assign(uState(), {
-				KOMPlayStateCardsWait: [item],
+				KOMPlayStateCardsWait: [card],
 			}));
 		});
 	

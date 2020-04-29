@@ -101,23 +101,25 @@ const mod = {
 		return 1000 * kStepToLearnSeconds;
 	},
 
-	KOMPlayRespond (param1, param2) {
-		if (!mod.KOMPlayStateIsValid(param1)) {
+	KOMPlayRespond (state, response) {
+		if (!mod.KOMPlayStateIsValid(state)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		if (!mod.KOMPlayResponseIsValid(param2)) {
+		if (!mod.KOMPlayResponseIsValid(response)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		if (!param1.KOMPlayStateCardCurrent.KOMCardReviewInterval && param2.KOMPlayResponseType === mod.KOMPlayResponseTypeHard()) {
-			param1.KOMPlayStateCardsWait.push(Object.assign(param1.KOMPlayStateCardsQueue.splice(param1.KOMPlayStateCardsQueue.indexOf(param1.KOMPlayStateCardCurrent), 1).pop(), {
-				KOMCardReviewIsLearning: true,
-				KOMCardReviewDueDate: new Date(param2.KOMPlayResponseDate + mod.KOMPlayResponseStepToLearn()),
+		const card = state.KOMPlayStateCardCurrent;
+
+		if (!card.KOMCardReviewInterval && response.KOMPlayResponseType === mod.KOMPlayResponseTypeHard()) {
+			state.KOMPlayStateCardsWait.push(Object.assign(state.KOMPlayStateCardsQueue.splice(state.KOMPlayStateCardsQueue.indexOf(card), 1).pop(), {
+				KOMCardReviewIsLearning:  true,
+				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate + mod.KOMPlayResponseStepToLearn()),
 			}))
 		}
 
-		return param1;
+		return state;
 	},
 
 };
