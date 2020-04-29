@@ -1,6 +1,16 @@
 const { throws, deepEqual, notDeepEqual } = require('assert');
 
 const mainModule = require('./ui-logic.js');
+const KOMCardModel = require('../_shared/KOMCard/model.js');
+
+const kTesting = {
+	StubStateObjectValid () {
+		return {
+			KOMPlayStateCardsAll: [],
+			KOMPlayStateCardsAgain: [],
+		};
+	},
+};
 
 describe('KOMPlaySort', function test_KOMPlaySort() {
 	
@@ -91,13 +101,6 @@ describe('KOMPlaySort', function test_KOMPlaySort() {
 
 describe('KOMPlayStateErrors', function test_KOMPlayStateErrors() {
 	
-	const uValid = function () {
-		return {
-			KOMPlayStateCardsAll: [],
-			KOMPlayStateCardsAgain: [],
-		};
-	};
-
 	it('throws if not object', function () {
 		throws(function () {
 			mainModule.KOMPlayStateErrors(null);
@@ -105,19 +108,19 @@ describe('KOMPlayStateErrors', function test_KOMPlayStateErrors() {
 	});
 
 	it('returns false if KOMPlayStateCardsAll not array', function() {
-		deepEqual(mainModule.KOMPlayStateErrors(Object.assign(uValid(), {
+		deepEqual(mainModule.KOMPlayStateErrors(Object.assign(kTesting.StubStateObjectValid(), {
 			KOMPlayStateCardsAll: null,
 		})), false);
 	});
 
 	it('returns false if KOMPlayStateCardsAgain not array', function() {
-		deepEqual(mainModule.KOMPlayStateErrors(Object.assign(uValid(), {
+		deepEqual(mainModule.KOMPlayStateErrors(Object.assign(kTesting.StubStateObjectValid(), {
 			KOMPlayStateCardsAgain: null,
 		})), false);
 	});
 
 	it('returns true', function() {
-		deepEqual(mainModule.KOMPlayStateErrors(uValid()), true);
+		deepEqual(mainModule.KOMPlayStateErrors(kTesting.StubStateObjectValid()), true);
 	});
 
 });
