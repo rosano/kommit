@@ -1,6 +1,8 @@
 import KOMCardModel from '../_shared/KOMCard/model.js';
 
 const kStepToLearnSeconds = 60;
+const kIntervalDefaultDays = 1;
+const kIntervalEasyDays = 4;
 
 const mod = {
 
@@ -99,6 +101,14 @@ const mod = {
 
 	KOMPlayResponseStepToLearn () {
 		return 1000 * kStepToLearnSeconds;
+	},
+
+	KOMPlayResponseIntervalDefault () {
+		return kIntervalDefaultDays;
+	},
+
+	KOMPlayResponseIntervalEasy () {
+		return kIntervalEasyDays;
 	},
 
 	KOMPlayRespond (state, response) {

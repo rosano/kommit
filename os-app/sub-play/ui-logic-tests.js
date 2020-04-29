@@ -199,6 +199,22 @@ describe('KOMPlayResponseStepToLearn', function test_KOMPlayResponseStepToLearn(
 
 });
 
+describe('KOMPlayResponseIntervalDefault', function test_KOMPlayResponseIntervalDefault() {
+
+	it('returns number', function () {
+		deepEqual(mainModule.KOMPlayResponseIntervalDefault(), 1);
+	});
+
+});
+
+describe('KOMPlayResponseIntervalEasy', function test_KOMPlayResponseIntervalEasy() {
+
+	it('returns number', function () {
+		deepEqual(mainModule.KOMPlayResponseIntervalEasy(), 4);
+	});
+
+});
+
 describe('KOMPlayResponseIsValid', function test_KOMPlayResponseIsValid() {
 	
 	it('throws if not object', function () {
