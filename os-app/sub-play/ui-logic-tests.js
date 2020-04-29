@@ -6,8 +6,8 @@ const kTesting = {
 	StubStateObjectValid () {
 		return {
 			KOMPlayStateCardCurrent: kTesting.StubCardObjectValid(),
-			KOMPlayStateCardsAll: [],
-			KOMPlayStateCardsAgain: [],
+			KOMPlayStateCardsQueue: [],
+			KOMPlayStateCardsWait: [],
 		};
 	},
 	StubResponseObjectValid () {
@@ -127,15 +127,15 @@ describe('KOMPlayStateIsValid', function test_KOMPlayStateIsValid() {
 		})), false);
 	});
 
-	it('returns false if KOMPlayStateCardsAll not array', function() {
+	it('returns false if KOMPlayStateCardsQueue not array', function() {
 		deepEqual(mainModule.KOMPlayStateIsValid(Object.assign(kTesting.StubStateObjectValid(), {
-			KOMPlayStateCardsAll: null,
+			KOMPlayStateCardsQueue: null,
 		})), false);
 	});
 
-	it('returns false if KOMPlayStateCardsAgain not array', function() {
+	it('returns false if KOMPlayStateCardsWait not array', function() {
 		deepEqual(mainModule.KOMPlayStateIsValid(Object.assign(kTesting.StubStateObjectValid(), {
-			KOMPlayStateCardsAgain: null,
+			KOMPlayStateCardsWait: null,
 		})), false);
 	});
 
@@ -214,7 +214,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 	const uState = function (inputData = []) {
 		return Object.assign(kTesting.StubStateObjectValid(), {
-			KOMPlayStateCardsAll: [].concat(inputData),
+			KOMPlayStateCardsQueue: [].concat(inputData),
 		})
 	};
 	
@@ -254,7 +254,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 			deepEqual(mainModule.KOMPlayRespond(uState(item), Object.assign(kTesting.StubResponseObjectValid(), {
 				KOMPlayResponseType: mainModule.KOMPlayResponseTypeHard(),
 			})), Object.assign(uState(), {
-				KOMPlayStateCardsAgain: [item],
+				KOMPlayStateCardsWait: [item],
 			}));
 		});
 	

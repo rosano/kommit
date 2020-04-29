@@ -43,11 +43,11 @@ const mod = {
 			return false;
 		}
 
-		if (!Array.isArray(inputData.KOMPlayStateCardsAll)) {
+		if (!Array.isArray(inputData.KOMPlayStateCardsQueue)) {
 			return false;
 		}
 
-		if (!Array.isArray(inputData.KOMPlayStateCardsAgain)) {
+		if (!Array.isArray(inputData.KOMPlayStateCardsWait)) {
 			return false;
 		}
 
@@ -101,9 +101,9 @@ const mod = {
 		}
 
 		if (!param1.KOMPlayStateCardCurrent.KOMCardReviewInterval && param2.KOMPlayResponseType === mod.KOMPlayResponseTypeHard()) {
-			param1.KOMPlayStateCardsAgain.push(Object.assign(param1.KOMPlayStateCardsAll.splice(param1.KOMPlayStateCardsAll.indexOf(param1.KOMPlayStateCardCurrent), 1).pop(), {
+			param1.KOMPlayStateCardsWait.push(Object.assign(param1.KOMPlayStateCardsQueue.splice(param1.KOMPlayStateCardsQueue.indexOf(param1.KOMPlayStateCardCurrent), 1).pop(), {
 				KOMCardReviewIsLearning: true,
-			}));
+			}))
 		}
 
 		return param1;
