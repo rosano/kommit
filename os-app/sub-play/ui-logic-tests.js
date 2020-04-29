@@ -262,6 +262,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 			deepEqual(card, Object.assign(kTesting.StubCardObjectValid(), {
 				KOMCardReviewIsLearning: true,
+				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate + mainModule.KOMPlayResponseStepToLearn()),
 			}));
 		});
 		

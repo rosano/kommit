@@ -113,6 +113,7 @@ const mod = {
 		if (!param1.KOMPlayStateCardCurrent.KOMCardReviewInterval && param2.KOMPlayResponseType === mod.KOMPlayResponseTypeHard()) {
 			param1.KOMPlayStateCardsWait.push(Object.assign(param1.KOMPlayStateCardsQueue.splice(param1.KOMPlayStateCardsQueue.indexOf(param1.KOMPlayStateCardCurrent), 1).pop(), {
 				KOMCardReviewIsLearning: true,
+				KOMCardReviewDueDate: new Date(param2.KOMPlayResponseDate + mod.KOMPlayResponseStepToLearn()),
 			}))
 		}
 
