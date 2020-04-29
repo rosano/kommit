@@ -122,12 +122,6 @@ describe('KOMPlayStateIsValid', function test_KOMPlayStateIsValid() {
 		}, /KOMErrorInputNotValid/);
 	});
 
-	it('returns false if KOMPlayStateCardCurrent not valid', function() {
-		deepEqual(mainModule.KOMPlayStateIsValid(Object.assign(kTesting.StubStateObjectValid(), {
-			KOMPlayStateCardCurrent: {},
-		})), false);
-	});
-
 	it('returns false if KOMPlayStateCardsQueue not array', function() {
 		deepEqual(mainModule.KOMPlayStateIsValid(Object.assign(kTesting.StubStateObjectValid(), {
 			KOMPlayStateCardsQueue: null,
@@ -142,6 +136,22 @@ describe('KOMPlayStateIsValid', function test_KOMPlayStateIsValid() {
 
 	it('returns true', function() {
 		deepEqual(mainModule.KOMPlayStateIsValid(kTesting.StubStateObjectValid()), true);
+	});
+
+	context('KOMPlayStateCardCurrent', function () {
+
+		it('returns false if not valid', function() {
+			deepEqual(mainModule.KOMPlayStateIsValid(Object.assign(kTesting.StubStateObjectValid(), {
+				KOMPlayStateCardCurrent: {},
+			})), false);
+		});
+
+		it('returns true', function() {
+			deepEqual(mainModule.KOMPlayStateIsValid(Object.assign(kTesting.StubStateObjectValid(), {
+				KOMPlayStateCardCurrent: null,
+			})), true);
+		});
+	
 	});
 
 });
