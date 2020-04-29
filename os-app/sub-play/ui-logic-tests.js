@@ -303,4 +303,31 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 	
 	});
 
+	context('new_and_Good', function () {
+		
+		const card = kTesting.StubCardObjectValid();
+		const state = uState(card);
+		const response = Object.assign(kTesting.StubResponseObjectValid(), {
+			KOMPlayResponseType: mainModule.KOMPlayResponseTypeGood(),
+		});
+
+		before(function () {
+			mainModule.KOMPlayRespond(state, response);
+		});
+		
+		it('updates card', function() {
+			deepEqual(card, Object.assign(kTesting.StubCardObjectValid(), {
+				KOMCardReviewIsLearning: true,
+				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate + mainModule.KOMPlayResponseStepToLearn()),
+			}));
+		});
+		
+		it('updates state', function() {
+			deepEqual(state, Object.assign(uState(), {
+				KOMPlayStateCardsWait: [card],
+			}));
+		});
+	
+	});
+
 });
