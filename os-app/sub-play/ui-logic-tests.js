@@ -13,6 +13,7 @@ const kTesting = {
 	StubResponseObjectValid () {
 		return {
 			KOMPlayResponseType: mainModule.KOMPlayResponseTypeAgain(),
+			KOMPlayResponseDate: new Date(),
 		};
 	},
 	StubCardObjectValid() {
@@ -201,6 +202,12 @@ describe('KOMPlayResponseIsValid', function test_KOMPlayResponseIsValid() {
 	it('returns false if KOMPlayResponseType not valid', function() {
 		deepEqual(mainModule.KOMPlayResponseIsValid(Object.assign(kTesting.StubResponseObjectValid(), {
 			KOMPlayResponseType: null,
+		})), false);
+	});
+
+	it('returns false if KOMPlayResponseType not date', function() {
+		deepEqual(mainModule.KOMPlayResponseIsValid(Object.assign(kTesting.StubResponseObjectValid(), {
+			KOMPlayResponseType: new Date('alfa'),
 		})), false);
 	});
 

@@ -88,6 +88,10 @@ const mod = {
 			return false;
 		}
 
+		if (!(inputData.KOMPlayResponseDate instanceof Date) || Number.isNaN(inputData.KOMPlayResponseDate.getTime())) {
+			return false
+		}
+
 		return true;
 	},
 
