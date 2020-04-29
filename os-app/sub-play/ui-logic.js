@@ -91,8 +91,8 @@ const mod = {
 		return true;
 	},
 
-	KOMPlayRespond (param1, param2, param3) {
-		if (KOMCardModel.KOMCardModelErrorsFor(param1)) {
+	KOMPlayRespond (param1, param2) {
+		if (!mod.KOMPlayStateIsValid(param1)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
@@ -100,17 +100,13 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		if (!mod.KOMPlayStateIsValid(param3)) {
-			throw new Error('KOMErrorInputNotValid');
-		}
-
-		if (!param1.KOMCardReviewInterval && param2.KOMPlayResponseType === mod.KOMPlayResponseTypeAgain()) {
-			param3.KOMPlayStateCardsAgain.push(Object.assign(param3.KOMPlayStateCardsAll.splice(param3.KOMPlayStateCardsAll.indexOf(param1), 1).pop(), {
+		if (!param1.KOMPlayStateCardCurrent.KOMCardReviewInterval && param2.KOMPlayResponseType === mod.KOMPlayResponseTypeAgain()) {
+			param1.KOMPlayStateCardsAgain.push(Object.assign(param1.KOMPlayStateCardsAll.splice(param1.KOMPlayStateCardsAll.indexOf(param1.KOMPlayStateCardCurrent), 1).pop(), {
 				KOMCardReviewIsLearning: true,
 			}));
 		}
 
-		return param3;
+		return param1;
 	},
 
 };

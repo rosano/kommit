@@ -220,25 +220,19 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 	
 	it('throws if param1 not valid', function () {
 		throws(function () {
-			mainModule.KOMPlayRespond({}, kTesting.StubResponseObjectValid(), uState());
+			mainModule.KOMPlayRespond(kTesting.StubResponseObjectValid(), {});
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('throws if param2 not valid', function () {
 		throws(function () {
-			mainModule.KOMPlayRespond(kTesting.StubCardObjectValid(), {}, uState());
+			mainModule.KOMPlayRespond({}, uState());
 		}, /KOMErrorInputNotValid/);
 	});
 
-	it('throws if param3 not valid', function () {
-		throws(function () {
-			mainModule.KOMPlayRespond(kTesting.StubCardObjectValid(), kTesting.StubResponseObjectValid(), {});
-		}, /KOMErrorInputNotValid/);
-	});
-
-	it('returns param3', function() {
-		const item = uState();
-		deepEqual(mainModule.KOMPlayRespond(kTesting.StubCardObjectValid(), kTesting.StubResponseObjectValid(), item) === item, true);
+	it('returns param2', function() {
+		const item = uState(kTesting.StubCardObjectValid());
+		deepEqual(mainModule.KOMPlayRespond(item, kTesting.StubResponseObjectValid()) === item, true);
 	});
 
 	context('new_and_again', function () {
@@ -246,9 +240,9 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		it('updates card', function() {
 			const item = kTesting.StubCardObjectValid();
 
-			mainModule.KOMPlayRespond(item, Object.assign(kTesting.StubResponseObjectValid(), {
+			mainModule.KOMPlayRespond(uState(item), Object.assign(kTesting.StubResponseObjectValid(), {
 				KOMPlayResponseType: mainModule.KOMPlayResponseTypeAgain(),
-			}), uState(item));
+			}));
 
 			deepEqual(item, Object.assign(kTesting.StubCardObjectValid(), {
 				KOMCardReviewIsLearning: true,
@@ -257,9 +251,9 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		
 		it('updates state', function() {
 			const item = kTesting.StubCardObjectValid();
-			deepEqual(mainModule.KOMPlayRespond(item, Object.assign(kTesting.StubResponseObjectValid(), {
+			deepEqual(mainModule.KOMPlayRespond(uState(item), Object.assign(kTesting.StubResponseObjectValid(), {
 				KOMPlayResponseType: mainModule.KOMPlayResponseTypeAgain(),
-			}), uState(item)), Object.assign(uState(), {
+			})), Object.assign(uState(), {
 				KOMPlayStateCardsAgain: [item],
 			}));
 		});
