@@ -112,10 +112,11 @@ const mod = {
 
 		const card = state.KOMPlayStateCardCurrent;
 
-		if (!card.KOMCardReviewInterval && response.KOMPlayResponseType === mod.KOMPlayResponseTypeHard()) {
+		if (!card.KOMCardReviewInterval && response.KOMPlayResponseType !== mod.KOMPlayResponseTypeEasy()) {
 			state.KOMPlayStateCardsWait.push(Object.assign(state.KOMPlayStateCardsQueue.splice(state.KOMPlayStateCardsQueue.indexOf(card), 1).pop(), {
-				KOMCardReviewIsLearning:  true,
 				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate + mod.KOMPlayResponseStepToLearn()),
+			}, response.KOMPlayResponseType === mod.KOMPlayResponseTypeAgain() ? {} : {
+				KOMCardReviewIsLearning: true,
 			}))
 		}
 
