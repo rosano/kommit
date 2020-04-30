@@ -132,25 +132,28 @@ const mod = {
 
 		const card = state.KOMPlayStateCardCurrent;
 
-		if (response.KOMPlayResponseType === mod.KOMPlayResponseTypeEasy() && KOMCardModel.KOMCardModelIsUnseen(card)) {
-			Object.assign(card, {
-				KOMCardReviewInterval: mod.KOMPlayResponseIntervalGraduateEasy(),
-				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * mod.KOMPlayResponseIntervalGraduateEasy()),
-			});
-		}
+		Object.assign(card, (function() {
+			if (response.KOMPlayResponseType === mod.KOMPlayResponseTypeEasy() && KOMCardModel.KOMCardModelIsUnseen(card)) {
+				return {
+					KOMCardReviewInterval: mod.KOMPlayResponseIntervalGraduateEasy(),
+					KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * mod.KOMPlayResponseIntervalGraduateEasy()),
+				};
+			}
 
-		if (response.KOMPlayResponseType !== mod.KOMPlayResponseTypeEasy() && KOMCardModel.KOMCardModelIsUnseen(card)) {
-			Object.assign(card, {
-				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + mod.KOMPlayResponseIntervalLearn1()),
+			const outputData = {
 				KOMCardReviewIsLearning: true,
-			});
-		}
+			};
 
-		if (response.KOMPlayResponseType === mod.KOMPlayResponseTypeAgain()) {
-			Object.assign(card, {
-				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + mod.KOMPlayResponseIntervalAgain()),
-			});
-		}
+			outputData.KOMCardReviewDueDate = new Date(response.KOMPlayResponseDate.valueOf() + (function() {
+				if (response.KOMPlayResponseType !== mod.KOMPlayResponseTypeAgain() && KOMCardModel.KOMCardModelIsUnseen(card)) {
+					return mod.KOMPlayResponseIntervalLearn1();
+				}
+
+				return mod.KOMPlayResponseIntervalAgain();
+			})());
+
+			return outputData;
+		})());
 
 		if (KOMCardModel.KOMCardModelIsLearning(card)) {
 			state.KOMPlayStateCardsWait.push(card);
