@@ -149,6 +149,10 @@ const mod = {
 					return mod.KOMPlayResponseIntervalLearn1();
 				}
 
+				if (response.KOMPlayResponseType !== mod.KOMPlayResponseTypeAgain() && KOMCardModel.KOMCardModelIsLearning(card)) {
+					return mod.KOMPlayResponseIntervalLearn2();
+				}
+
 				return mod.KOMPlayResponseIntervalAgain();
 			})());
 
