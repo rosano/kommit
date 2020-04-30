@@ -112,6 +112,18 @@ const mod = {
 		return inputData;
 	},
 
+	KOMCardModelIsUnseen (inputData) {
+		if (mod.KOMCardModelErrorsFor(inputData)) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		if (inputData.KOMCardReviewInterval) {
+			return false;
+		}
+
+		return true;
+	},
+
 };
 
 export default mod;

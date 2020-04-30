@@ -239,3 +239,23 @@ describe('KOMCardModelPostJSONParse', function test_KOMCardModelPostJSONParse() 
 	});
 
 });
+
+describe('KOMCardModelIsUnseen', function test_KOMCardModelIsUnseen() {
+
+	it('throws if not valid', function () {
+		throws(function () {
+			mainModule.KOMCardModelIsUnseen({});
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns false if KOMCardReviewInterval', function() {
+		deepEqual(mainModule.KOMCardModelIsUnseen(Object.assign(kTesting.StubCardObjectValid(), {
+			KOMCardReviewInterval: 1,
+		})), false);
+	});
+
+	it('returns true', function() {
+		deepEqual(mainModule.KOMCardModelIsUnseen(kTesting.StubCardObjectValid()), true);
+	});
+
+});
