@@ -132,6 +132,18 @@ const mod = {
 		return !!inputData.KOMCardReviewIsLearning;
 	},
 
+	KOMCardModelIsReviewing (inputData) {
+		if (mod.KOMCardModelErrorsFor(inputData)) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		if (inputData.KOMCardReviewIsLearning) {
+			return false;
+		}
+
+		return !!inputData.KOMCardReviewInterval;
+	},
+
 };
 
 export default mod;

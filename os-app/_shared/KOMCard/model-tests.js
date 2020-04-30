@@ -279,3 +279,29 @@ describe('KOMCardModelIsLearning', function test_KOMCardModelIsLearning() {
 	});
 
 });
+
+describe('KOMCardModelIsReviewing', function test_KOMCardModelIsReviewing() {
+
+	it('throws if not valid', function () {
+		throws(function () {
+			mainModule.KOMCardModelIsReviewing({});
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns false if KOMCardReviewIsLearning', function() {
+		deepEqual(mainModule.KOMCardModelIsReviewing(Object.assign(kTesting.StubCardObjectValid(), {
+			KOMCardReviewIsLearning: true,
+		})), false);
+	});
+
+	it('returns false if no KOMCardReviewInterval', function() {
+		deepEqual(mainModule.KOMCardModelIsReviewing(kTesting.StubCardObjectValid()), false);
+	});
+
+	it('returns true', function() {
+		deepEqual(mainModule.KOMCardModelIsReviewing(Object.assign(kTesting.StubCardObjectValid(), {
+			KOMCardReviewInterval: 1,
+		})), 1);
+	});
+
+});
