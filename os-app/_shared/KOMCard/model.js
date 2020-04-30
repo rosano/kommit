@@ -65,6 +65,14 @@ const mod = {
 			}
 		}
 
+		if (inputData.KOMCardReviewIsReadyToGraduate !== undefined || options.KOMOptionValidateIfNotPresent) {
+			if (typeof inputData.KOMCardReviewIsReadyToGraduate !== 'boolean') {
+				errors.KOMCardReviewIsReadyToGraduate = [
+					'KOMErrorNotBoolean',
+				];
+			}
+		}
+
 		if (inputData.KOMCardReviewInterval !== undefined || options.KOMOptionValidateIfNotPresent) {
 			if (typeof inputData.KOMCardReviewInterval !== 'number') {
 				errors.KOMCardReviewInterval = [
