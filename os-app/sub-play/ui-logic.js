@@ -142,6 +142,16 @@ const mod = {
 				};
 			}
 
+			if (response.KOMPlayResponseType !== mod.KOMPlayResponseTypeAgain() && card.KOMCardReviewIsReadyToGraduate) {
+				delete card.KOMCardReviewIsLearning;
+				delete card.KOMCardReviewIsReadyToGraduate;
+
+				return {
+					KOMCardReviewInterval: mod.KOMPlayResponseIntervalGraduateDefault(),
+					KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * mod.KOMPlayResponseIntervalGraduateDefault()),
+				};
+			}
+
 			const outputData = {
 				KOMCardReviewIsLearning: true,
 			};
@@ -157,6 +167,10 @@ const mod = {
 
 				return mod.KOMPlayResponseIntervalAgain();
 			})());
+
+			if (response.KOMPlayResponseType !== mod.KOMPlayResponseTypeAgain() && KOMCardModel.KOMCardModelIsLearning(card)) {
+				outputData.KOMCardReviewIsReadyToGraduate = true;
+			}
 
 			return outputData;
 		})());
