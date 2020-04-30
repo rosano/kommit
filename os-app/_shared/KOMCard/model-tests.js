@@ -259,3 +259,23 @@ describe('KOMCardModelIsUnseen', function test_KOMCardModelIsUnseen() {
 	});
 
 });
+
+describe('KOMCardModelIsLearning', function test_KOMCardModelIsLearning() {
+
+	it('throws if not valid', function () {
+		throws(function () {
+			mainModule.KOMCardModelIsLearning({});
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns true if KOMCardReviewIsLearning', function() {
+		deepEqual(mainModule.KOMCardModelIsLearning(Object.assign(kTesting.StubCardObjectValid(), {
+			KOMCardReviewIsLearning: true,
+		})), true);
+	});
+
+	it('returns false', function() {
+		deepEqual(mainModule.KOMCardModelIsLearning(kTesting.StubCardObjectValid()), false);
+	});
+
+});

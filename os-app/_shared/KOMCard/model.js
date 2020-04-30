@@ -124,6 +124,14 @@ const mod = {
 		return true;
 	},
 
+	KOMCardModelIsLearning (inputData) {
+		if (mod.KOMCardModelErrorsFor(inputData)) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		return !!inputData.KOMCardReviewIsLearning;
+	},
+
 };
 
 export default mod;
