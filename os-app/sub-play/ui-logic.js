@@ -132,14 +132,14 @@ const mod = {
 
 		const card = state.KOMPlayStateCardCurrent;
 
-		if (response.KOMPlayResponseType === mod.KOMPlayResponseTypeEasy() && !card.KOMCardReviewInterval) {
+		if (response.KOMPlayResponseType === mod.KOMPlayResponseTypeEasy() && KOMCardModel.KOMCardModelIsUnseen(card)) {
 			Object.assign(card, {
 				KOMCardReviewInterval: mod.KOMPlayResponseIntervalGraduateEasy(),
 				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * mod.KOMPlayResponseIntervalGraduateEasy()),
 			});
 		}
 
-		if (response.KOMPlayResponseType !== mod.KOMPlayResponseTypeEasy() && !card.KOMCardReviewInterval) {
+		if (response.KOMPlayResponseType !== mod.KOMPlayResponseTypeEasy() && KOMCardModel.KOMCardModelIsUnseen(card)) {
 			Object.assign(card, {
 				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + mod.KOMPlayResponseIntervalLearn1()),
 			}, response.KOMPlayResponseType === mod.KOMPlayResponseTypeAgain() ? {} : {
@@ -155,10 +155,9 @@ const mod = {
 			});
 		}
 
-		if (!card.KOMCardReviewInterval || card.KOMCardReviewIsLearning) {
+		if (KOMCardModel.KOMCardModelIsUnseen(card) || card.KOMCardReviewIsLearning) {
 			state.KOMPlayStateCardsWait.push(card);
 		}
-
 
 		state.KOMPlayStateCardsWait.filter(function (e) {
 			if (!state.KOMPlayStateCardsQueue.length) {
