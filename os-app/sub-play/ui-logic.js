@@ -142,7 +142,6 @@ const mod = {
 		if (response.KOMPlayResponseType !== mod.KOMPlayResponseTypeEasy() && KOMCardModel.KOMCardModelIsUnseen(card)) {
 			Object.assign(card, {
 				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + mod.KOMPlayResponseIntervalLearn1()),
-			}, response.KOMPlayResponseType === mod.KOMPlayResponseTypeAgain() ? {} : {
 				KOMCardReviewIsLearning: true,
 			});
 		}
@@ -150,12 +149,10 @@ const mod = {
 		if (response.KOMPlayResponseType === mod.KOMPlayResponseTypeAgain()) {
 			Object.assign(card, {
 				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + mod.KOMPlayResponseIntervalAgain()),
-			}, response.KOMPlayResponseType === mod.KOMPlayResponseTypeAgain() ? {} : {
-				KOMCardReviewIsLearning: true,
 			});
 		}
 
-		if (KOMCardModel.KOMCardModelIsUnseen(card) || card.KOMCardReviewIsLearning) {
+		if (KOMCardModel.KOMCardModelIsLearning(card)) {
 			state.KOMPlayStateCardsWait.push(card);
 		}
 
