@@ -159,6 +159,17 @@ const mod = {
 			state.KOMPlayStateCardsWait.push(card);
 		}
 
+
+		state.KOMPlayStateCardsWait.filter(function (e) {
+			if (!state.KOMPlayStateCardsQueue.length) {
+				return true;
+			}
+
+			return e.KOMCardReviewDueDate < new Date();
+		}).reverse().forEach(function (e) {
+			state.KOMPlayStateCardsQueue.unshift(state.KOMPlayStateCardsWait.splice(state.KOMPlayStateCardsWait.indexOf(e), 1).pop());
+		});
+
 		state.KOMPlayStateCardCurrent = state.KOMPlayStateCardsQueue.shift();
 
 		return state;

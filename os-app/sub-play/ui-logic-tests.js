@@ -307,10 +307,54 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 	
 	});
 
+	context('KOMPlayStateCardsWait', function () {
+
+		const uWait = function (inputData) {
+			return Object.assign(uState(kTesting.StubCardObjectValid(), [kTesting.StubCardObjectValid()]), {
+				KOMPlayStateCardsWait: [Object.assign(kTesting.StubCardObjectValid(), {
+					KOMCardReviewDueDate: new Date(Date.now() + inputData),
+				})],
+			});
+		};
+		
+		it('moves to queue if overdue', function () {
+			const state = uWait(-1000);
+			const queue = state.KOMPlayStateCardsQueue.slice();
+			const first = state.KOMPlayStateCardsWait.slice()[0];
+			deepEqual(mainModule.KOMPlayRespond(state, kTesting.StubResponseObjectValid()), Object.assign(uWait(-1000), {
+				KOMPlayStateCardCurrent: first,
+				KOMPlayStateCardsQueue: queue,
+				KOMPlayStateCardsWait: [],
+			}));
+		});
+		
+		it('moves to queue if no other cards', function () {
+			const state = Object.assign(uWait(1000), {
+				KOMPlayStateCardsQueue: [],
+			});
+			const wait = (state.KOMPlayStateCardsWait = state.KOMPlayStateCardsWait.concat(state.KOMPlayStateCardsWait.slice())).slice();
+			deepEqual(mainModule.KOMPlayRespond(state, kTesting.StubResponseObjectValid()), Object.assign(uWait(1000), {
+				KOMPlayStateCardCurrent: wait[0],
+				KOMPlayStateCardsQueue: wait.slice(1),
+				KOMPlayStateCardsWait: [],
+			}));
+		});
+		
+		it('does nothing', function () {
+			const state = uWait(1000);
+			const first = state.KOMPlayStateCardsQueue[0];
+			deepEqual(mainModule.KOMPlayRespond(state, kTesting.StubResponseObjectValid()), Object.assign(uWait(1000), {
+				KOMPlayStateCardCurrent: first,
+				KOMPlayStateCardsQueue: [],
+			}));
+		});
+
+	});
+
 	context('new_and_Again', function () {
 
 		const card = kTesting.StubCardObjectValid();
-		const state = uState(card);
+		const state = uState(card, [kTesting.StubCardObjectValid()]);
 		const response = Object.assign(kTesting.StubResponseObjectValid(), {
 			KOMPlayResponseType: mainModule.KOMPlayResponseTypeAgain(),
 		});
@@ -326,9 +370,8 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		});
 		
 		it('updates state', function() {
-			deepEqual(mainModule.KOMPlayRespond(uState(card), Object.assign(kTesting.StubResponseObjectValid(), {
-				KOMPlayResponseType: mainModule.KOMPlayResponseTypeAgain(),
-			})), Object.assign(uState(), {
+			deepEqual(state, Object.assign(uState(), {
+				KOMPlayStateCardCurrent: kTesting.StubCardObjectValid(),
 				KOMPlayStateCardsWait: [card],
 			}));
 		});
@@ -338,7 +381,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 	context('new_and_Hard', function () {
 		
 		const card = kTesting.StubCardObjectValid();
-		const state = uState(card);
+		const state = uState(card, [kTesting.StubCardObjectValid()]);
 		const response = Object.assign(kTesting.StubResponseObjectValid(), {
 			KOMPlayResponseType: mainModule.KOMPlayResponseTypeHard(),
 		});
@@ -356,6 +399,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		
 		it('updates state', function() {
 			deepEqual(state, Object.assign(uState(), {
+				KOMPlayStateCardCurrent: kTesting.StubCardObjectValid(),
 				KOMPlayStateCardsWait: [card],
 			}));
 		});
@@ -365,7 +409,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 	context('new_and_Good', function () {
 		
 		const card = kTesting.StubCardObjectValid();
-		const state = uState(card);
+		const state = uState(card, [kTesting.StubCardObjectValid()]);
 		const response = Object.assign(kTesting.StubResponseObjectValid(), {
 			KOMPlayResponseType: mainModule.KOMPlayResponseTypeGood(),
 		});
@@ -383,6 +427,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		
 		it('updates state', function() {
 			deepEqual(state, Object.assign(uState(), {
+				KOMPlayStateCardCurrent: kTesting.StubCardObjectValid(),
 				KOMPlayStateCardsWait: [card],
 			}));
 		});
