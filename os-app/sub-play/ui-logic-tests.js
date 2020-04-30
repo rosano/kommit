@@ -351,7 +351,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 	});
 
-	context('new_and_Again', function () {
+	context('new_and_Again', function test_new_and_Again () {
 
 		const card = kTesting.StubCardObjectValid();
 		const state = uState(card, [kTesting.StubCardObjectValid()]);
@@ -378,7 +378,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 	
 	});
 
-	context('new_and_Hard', function () {
+	context('new_and_Hard', function test_new_and_Hard () {
 		
 		const card = kTesting.StubCardObjectValid();
 		const state = uState(card, [kTesting.StubCardObjectValid()]);
@@ -406,7 +406,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 	
 	});
 
-	context('new_and_Good', function () {
+	context('new_and_Good', function test_new_and_Good () {
 		
 		const card = kTesting.StubCardObjectValid();
 		const state = uState(card, [kTesting.StubCardObjectValid()]);
@@ -434,7 +434,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 	
 	});
 
-	context('new_and_Easy', function () {
+	context('new_and_Easy', function test_new_and_Easy () {
 		
 		const card = kTesting.StubCardObjectValid();
 		const state = uState(card);
