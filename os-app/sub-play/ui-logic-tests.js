@@ -655,4 +655,49 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 	
 	});
 
+	context('graduate_Good', function test_graduate_Good () {
+		
+		const card = kTesting.StubCardObjectValid();
+		const state = uState(card, [kTesting.StubCardObjectValid()]);
+		const response = Object.assign(kTesting.StubResponseObjectValid(), {
+			KOMPlayResponseType: mainModule.KOMPlayResponseTypeGood(),
+		});
+
+		before(function () {
+			mainModule.KOMPlayRespond(state, response);
+		});
+		
+		before(function () {
+			state.KOMPlayStateCardsQueue.unshift(state.KOMPlayStateCardCurrent);
+			state.KOMPlayStateCardCurrent = state.KOMPlayStateCardsWait.pop();
+
+			mainModule.KOMPlayRespond(state, Object.assign(response, {
+				KOMPlayResponseDate: state.KOMPlayStateCardCurrent.KOMCardReviewDueDate,
+			}));	
+		});
+		
+		before(function () {
+			state.KOMPlayStateCardsQueue.unshift(state.KOMPlayStateCardCurrent);
+			state.KOMPlayStateCardCurrent = state.KOMPlayStateCardsWait.pop();
+
+			mainModule.KOMPlayRespond(state, Object.assign(response, {
+				KOMPlayResponseDate: state.KOMPlayStateCardCurrent.KOMCardReviewDueDate,
+			}));	
+		});
+		
+		it('updates card', function() {
+			deepEqual(card, Object.assign(kTesting.StubCardObjectValid(), {
+				KOMCardReviewInterval: mainModule.KOMPlayResponseIntervalGraduateDefault(),
+				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * mainModule.KOMPlayResponseIntervalGraduateDefault()),
+			}));
+		});
+		
+		it('updates state', function() {
+			deepEqual(state, Object.assign(uState(), {
+				KOMPlayStateCardCurrent: kTesting.StubCardObjectValid(),
+			}));
+		});
+	
+	});
+
 });
