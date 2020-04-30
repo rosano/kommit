@@ -571,4 +571,42 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 	
 	});
 
+	context('learning_and_Easy', function test_learning_and_Easy () {
+		
+		const card = kTesting.StubCardObjectValid();
+		const state = uState(card, [kTesting.StubCardObjectValid()]);
+		const response = Object.assign(kTesting.StubResponseObjectValid(), {
+			KOMPlayResponseType: mainModule.KOMPlayResponseTypeGood(),
+		});
+
+		before(function () {
+			mainModule.KOMPlayRespond(state, response);
+		});
+		
+		before(function () {
+			state.KOMPlayStateCardsQueue.unshift(state.KOMPlayStateCardCurrent);
+			state.KOMPlayStateCardCurrent = state.KOMPlayStateCardsWait.pop();
+
+			mainModule.KOMPlayRespond(state, Object.assign(response, {
+				KOMPlayResponseDate: state.KOMPlayStateCardCurrent.KOMCardReviewDueDate,
+				KOMPlayResponseType: mainModule.KOMPlayResponseTypeEasy(),
+			}));	
+		});
+		
+		it('updates card', function() {
+			deepEqual(card, Object.assign(kTesting.StubCardObjectValid(), {
+				KOMCardReviewInterval: mainModule.KOMPlayResponseIntervalGraduateEasy(),
+				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * mainModule.KOMPlayResponseIntervalGraduateEasy()),
+			}));
+		});
+		
+		it('updates state', function() {
+			deepEqual(state, Object.assign(uState(), {
+				KOMPlayStateCardCurrent: kTesting.StubCardObjectValid(),
+				KOMPlayStateCardsWait: [],
+			}));
+		});
+	
+	});
+
 });
