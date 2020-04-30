@@ -117,6 +117,10 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
+		if (inputData.KOMCardReviewIsLearning) {
+			return false;
+		}
+
 		if (inputData.KOMCardReviewInterval) {
 			return false;
 		}

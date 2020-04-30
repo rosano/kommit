@@ -248,6 +248,12 @@ describe('KOMCardModelIsUnseen', function test_KOMCardModelIsUnseen() {
 		}, /KOMErrorInputNotValid/);
 	});
 
+	it('returns false if KOMCardReviewIsLearning', function() {
+		deepEqual(mainModule.KOMCardModelIsUnseen(Object.assign(kTesting.StubCardObjectValid(), {
+			KOMCardReviewIsLearning: true,
+		})), false);
+	});
+
 	it('returns false if KOMCardReviewInterval', function() {
 		deepEqual(mainModule.KOMCardModelIsUnseen(Object.assign(kTesting.StubCardObjectValid(), {
 			KOMCardReviewInterval: 1,
