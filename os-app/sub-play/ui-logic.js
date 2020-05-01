@@ -149,6 +149,7 @@ const mod = {
 
 		if (KOMCardModel.KOMCardModelIsReviewing(card) && response.KOMPlayResponseType === mod.KOMPlayResponseTypeAgain()) {
 			delete card.KOMCardReviewInterval;
+			card.KOMCardReviewMultiplier += mod.KOMPlayResponseMultiplierSummandFail();
 		}
 
 		Object.assign(card, (function() {
