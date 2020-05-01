@@ -173,13 +173,6 @@ const mod = {
 		const card = state.KOMPlayStateCardCurrent;
 
 		Object.assign(card, (function update_card() {
-			// LAPSE
-			if (KOMCardModel.KOMCardModelIsReviewing(card) && response.KOMPlayResponseType === mod.KOMPlayResponseTypeAgain()) {
-				delete card.KOMCardReviewInterval;
-
-				card.KOMCardReviewMultiplier += mod.KOMPlayResponseMultiplierSummandFail();
-			}
-
 			// GRADUATE
 			if (!KOMCardModel.KOMCardModelIsReviewing(card) && (response.KOMPlayResponseType === mod.KOMPlayResponseTypeEasy() || card.KOMCardReviewIsReadyToGraduate)) {
 				delete card.KOMCardReviewIsLearning;
@@ -218,27 +211,30 @@ const mod = {
 				};
 			}
 
-			const outputData = {
-				KOMCardReviewIsLearning: true,
-			};
+			// LAPSE
+			if (KOMCardModel.KOMCardModelIsReviewing(card) && response.KOMPlayResponseType === mod.KOMPlayResponseTypeAgain()) {
+				delete card.KOMCardReviewInterval;
 
-			outputData.KOMCardReviewDueDate = new Date(response.KOMPlayResponseDate.valueOf() + (function() {
-				if (response.KOMPlayResponseType !== mod.KOMPlayResponseTypeAgain() && KOMCardModel.KOMCardModelIsUnseen(card)) {
-					return mod.KOMPlayResponseIntervalLearn1();
-				}
-
-				if (response.KOMPlayResponseType !== mod.KOMPlayResponseTypeAgain() && KOMCardModel.KOMCardModelIsLearning(card)) {
-					return mod.KOMPlayResponseIntervalLearn2();
-				}
-
-				return mod.KOMPlayResponseIntervalAgain();
-			})());
-
-			if (response.KOMPlayResponseType !== mod.KOMPlayResponseTypeAgain() && KOMCardModel.KOMCardModelIsLearning(card)) {
-				outputData.KOMCardReviewIsReadyToGraduate = true;
+				card.KOMCardReviewMultiplier += mod.KOMPlayResponseMultiplierSummandFail();
 			}
 
-			return outputData;
+			// LEARN
+			let interval = mod.KOMPlayResponseIntervalAgain();
+			
+			if (response.KOMPlayResponseType !== mod.KOMPlayResponseTypeAgain() && KOMCardModel.KOMCardModelIsUnseen(card)) {
+				interval = mod.KOMPlayResponseIntervalLearn1();
+			}
+
+			if (response.KOMPlayResponseType !== mod.KOMPlayResponseTypeAgain() && KOMCardModel.KOMCardModelIsLearning(card)) {
+				interval = mod.KOMPlayResponseIntervalLearn2();
+			}
+
+			return Object.assign({
+				KOMCardReviewIsLearning: true,
+				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + interval),
+			}, KOMCardModel.KOMCardModelIsLearning(card) && response.KOMPlayResponseType !== mod.KOMPlayResponseTypeAgain() ? {
+				KOMCardReviewIsReadyToGraduate: true,
+			} : {})
 		})());
 
 		(function update_state() {
