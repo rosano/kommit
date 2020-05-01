@@ -172,12 +172,12 @@ const mod = {
 
 		const card = state.KOMPlayStateCardCurrent;
 
-		if (KOMCardModel.KOMCardModelIsReviewing(card) && response.KOMPlayResponseType === mod.KOMPlayResponseTypeAgain()) {
-			delete card.KOMCardReviewInterval;
-			card.KOMCardReviewMultiplier += mod.KOMPlayResponseMultiplierSummandFail();
-		}
+		Object.assign(card, (function update_card() {
+			if (KOMCardModel.KOMCardModelIsReviewing(card) && response.KOMPlayResponseType === mod.KOMPlayResponseTypeAgain()) {
+				delete card.KOMCardReviewInterval;
+				card.KOMCardReviewMultiplier += mod.KOMPlayResponseMultiplierSummandFail();
+			}
 
-		Object.assign(card, (function() {
 			if (!KOMCardModel.KOMCardModelIsReviewing(card) && response.KOMPlayResponseType === mod.KOMPlayResponseTypeEasy()) {
 				delete card.KOMCardReviewIsLearning;
 
@@ -246,21 +246,23 @@ const mod = {
 			return outputData;
 		})());
 
-		if (KOMCardModel.KOMCardModelIsLearning(card)) {
-			state.KOMPlayStateCardsWait.push(card);
-		}
-
-		state.KOMPlayStateCardsWait.filter(function (e) {
-			if (!state.KOMPlayStateCardsQueue.length) {
-				return true;
+		(function update_state() {
+			if (KOMCardModel.KOMCardModelIsLearning(card)) {
+				state.KOMPlayStateCardsWait.push(card);
 			}
 
-			return e.KOMCardReviewDueDate < new Date();
-		}).reverse().forEach(function (e) {
-			state.KOMPlayStateCardsQueue.unshift(state.KOMPlayStateCardsWait.splice(state.KOMPlayStateCardsWait.indexOf(e), 1).pop());
-		});
+			state.KOMPlayStateCardsWait.filter(function (e) {
+				if (!state.KOMPlayStateCardsQueue.length) {
+					return true;
+				}
 
-		state.KOMPlayStateCardCurrent = state.KOMPlayStateCardsQueue.shift();
+				return e.KOMCardReviewDueDate < new Date();
+			}).reverse().forEach(function (e) {
+				state.KOMPlayStateCardsQueue.unshift(state.KOMPlayStateCardsWait.splice(state.KOMPlayStateCardsWait.indexOf(e), 1).pop());
+			});
+
+			state.KOMPlayStateCardCurrent = state.KOMPlayStateCardsQueue.shift();
+		})();
 
 		return state;
 	},
