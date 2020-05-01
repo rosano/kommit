@@ -256,6 +256,14 @@ describe('KOMPlayResponseMultiplierMin', function test_KOMPlayResponseMultiplier
 
 });
 
+describe('KOMPlayResponseMultiplierSummandFail', function test_KOMPlayResponseMultiplierSummandFail() {
+
+	it('returns number', function () {
+		deepEqual(mainModule.KOMPlayResponseMultiplierSummandFail(), -0.2);
+	});
+
+});
+
 describe('KOMPlayResponseIsValid', function test_KOMPlayResponseIsValid() {
 	
 	it('throws if not object', function () {
