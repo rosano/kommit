@@ -193,6 +193,7 @@ const mod = {
 				};
 			}
 
+			// REVIEW
 			if (KOMCardModel.KOMCardModelIsReviewing(card) && response.KOMPlayResponseType !== mod.KOMPlayResponseTypeAgain()) {
 				let multiplier = card.KOMCardReviewMultiplier;
 
