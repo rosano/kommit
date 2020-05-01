@@ -5,6 +5,7 @@ const kIntervalLearn1Minutes = 1;
 const kIntervalLearn2Minutes = 10;
 const kIntervalDefaultDays = 1;
 const kIntervalEasyDays = 4;
+const kMultiplierDefault = 2.5;
 
 const mod = {
 
@@ -119,6 +120,10 @@ const mod = {
 
 	KOMPlayResponseIntervalGraduateEasy () {
 		return kIntervalEasyDays;
+	},
+
+	KOMPlayResponseMultiplierDefault () {
+		return kMultiplierDefault;
 	},
 
 	KOMPlayRespond (state, response) {

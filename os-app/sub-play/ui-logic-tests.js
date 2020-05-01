@@ -240,6 +240,14 @@ describe('KOMPlayResponseIntervalGraduateEasy', function test_KOMPlayResponseInt
 
 });
 
+describe('KOMPlayResponseMultiplierDefault', function test_KOMPlayResponseMultiplierDefault() {
+
+	it('returns number', function () {
+		deepEqual(mainModule.KOMPlayResponseMultiplierDefault(), 2.5);
+	});
+
+});
+
 describe('KOMPlayResponseIsValid', function test_KOMPlayResponseIsValid() {
 	
 	it('throws if not object', function () {
