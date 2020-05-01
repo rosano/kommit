@@ -173,6 +173,11 @@ const mod = {
 		const card = state.KOMPlayStateCardCurrent;
 
 		Object.assign(card, (function update_card() {
+			// FAIL
+			if (response.KOMPlayResponseType === mod.KOMPlayResponseTypeAgain()) {
+				delete card.KOMCardReviewIsReadyToGraduate;
+			}
+			
 			// GRADUATE
 			if (!KOMCardModel.KOMCardModelIsReviewing(card) && (response.KOMPlayResponseType === mod.KOMPlayResponseTypeEasy() || card.KOMCardReviewIsReadyToGraduate)) {
 				delete card.KOMCardReviewIsLearning;
