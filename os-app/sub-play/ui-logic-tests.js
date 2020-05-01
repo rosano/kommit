@@ -248,6 +248,14 @@ describe('KOMPlayResponseMultiplierDefault', function test_KOMPlayResponseMultip
 
 });
 
+describe('KOMPlayResponseMultiplierMin', function test_KOMPlayResponseMultiplierMin() {
+
+	it('returns number', function () {
+		deepEqual(mainModule.KOMPlayResponseMultiplierMin(), 1.3);
+	});
+
+});
+
 describe('KOMPlayResponseIsValid', function test_KOMPlayResponseIsValid() {
 	
 	it('throws if not object', function () {
