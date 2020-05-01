@@ -256,6 +256,14 @@ describe('KOMPlayResponseMultiplierMin', function test_KOMPlayResponseMultiplier
 
 });
 
+describe('KOMPlayResponseMultiplierHard', function test_KOMPlayResponseMultiplierHard() {
+
+	it('returns number', function () {
+		deepEqual(mainModule.KOMPlayResponseMultiplierHard(), 1.2);
+	});
+
+});
+
 describe('KOMPlayResponseMultiplierSummandFail', function test_KOMPlayResponseMultiplierSummandFail() {
 
 	it('returns number', function () {

@@ -7,6 +7,7 @@ const kIntervalDefaultDays = 1;
 const kIntervalEasyDays = 4;
 const kMultiplierDefault = 2.5;
 const kMultiplierMin = 1.3;
+const kMultiplierHard = 1.2;
 const kMultiplierSummandFail = -0.2;
 const kMultiplierSummandHard = -0.15;
 const kMultiplierSummandEasy = 0.15;
@@ -132,6 +133,10 @@ const mod = {
 
 	KOMPlayResponseMultiplierMin () {
 		return kMultiplierMin;
+	},
+
+	KOMPlayResponseMultiplierHard () {
+		return kMultiplierHard;
 	},
 
 	KOMPlayResponseMultiplierSummandFail () {
