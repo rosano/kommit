@@ -700,4 +700,44 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 	
 	});
 
+	context('reviewing_and_Again', function test_reviewing_and_Again () {
+
+		const card = kTesting.StubCardObjectValid();
+		const state = uState(card, [kTesting.StubCardObjectValid()]);
+		const response = Object.assign(kTesting.StubResponseObjectValid(), {
+			KOMPlayResponseType: mainModule.KOMPlayResponseTypeEasy(),
+		});
+
+		before(function () {
+			mainModule.KOMPlayRespond(state, response);
+		});
+		
+		before(function () {
+			state.KOMPlayStateCardsQueue.unshift(state.KOMPlayStateCardCurrent);
+			state.KOMPlayStateCardCurrent = card;
+
+			mainModule.KOMPlayRespond(state, Object.assign(response, {
+				KOMPlayResponseDate: state.KOMPlayStateCardCurrent.KOMCardReviewDueDate,
+				KOMPlayResponseType: mainModule.KOMPlayResponseTypeAgain(),
+			}));	
+		});
+		
+		it('updates card', function() {
+			deepEqual(card, Object.assign(kTesting.StubCardObjectValid(), {
+				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + mainModule.KOMPlayResponseIntervalAgain()),
+				KOMCardReviewIsLearning: true,
+			}));
+		});
+		
+		it('updates state', function() {
+			deepEqual(state, Object.assign(uState(), {
+				KOMPlayStateCardCurrent: kTesting.StubCardObjectValid(),
+				KOMPlayStateCardsWait: [card],
+			}));
+		});
+	
+	});
+
+	
+
 });

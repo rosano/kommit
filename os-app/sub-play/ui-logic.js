@@ -132,10 +132,14 @@ const mod = {
 
 		const card = state.KOMPlayStateCardCurrent;
 
+		if (KOMCardModel.KOMCardModelIsReviewing(card) && response.KOMPlayResponseType === mod.KOMPlayResponseTypeAgain()) {
+			delete card.KOMCardReviewInterval;
+		}
+
 		Object.assign(card, (function() {
 			if (response.KOMPlayResponseType === mod.KOMPlayResponseTypeEasy()) {
 				delete card.KOMCardReviewIsLearning;
-				
+
 				return {
 					KOMCardReviewInterval: mod.KOMPlayResponseIntervalGraduateEasy(),
 					KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * mod.KOMPlayResponseIntervalGraduateEasy()),
