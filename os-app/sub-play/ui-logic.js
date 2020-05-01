@@ -147,6 +147,7 @@ const mod = {
 
 				return {
 					KOMCardReviewInterval: mod.KOMPlayResponseIntervalGraduateEasy(),
+					KOMCardReviewMultiplier: mod.KOMPlayResponseMultiplierDefault(),
 					KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * mod.KOMPlayResponseIntervalGraduateEasy()),
 				};
 			}
@@ -157,6 +158,7 @@ const mod = {
 
 				return {
 					KOMCardReviewInterval: mod.KOMPlayResponseIntervalGraduateDefault(),
+					KOMCardReviewMultiplier: mod.KOMPlayResponseMultiplierDefault(),
 					KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * mod.KOMPlayResponseIntervalGraduateDefault()),
 				};
 			}

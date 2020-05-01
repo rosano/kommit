@@ -458,6 +458,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		it('updates card', function() {
 			deepEqual(card, Object.assign(kTesting.StubCardObjectValid(), {
 				KOMCardReviewInterval: mainModule.KOMPlayResponseIntervalGraduateEasy(),
+				KOMCardReviewMultiplier: mainModule.KOMPlayResponseMultiplierDefault(),
 				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * mainModule.KOMPlayResponseIntervalGraduateEasy()),
 			}));
 		});
@@ -606,6 +607,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		it('updates card', function() {
 			deepEqual(card, Object.assign(kTesting.StubCardObjectValid(), {
 				KOMCardReviewInterval: mainModule.KOMPlayResponseIntervalGraduateEasy(),
+				KOMCardReviewMultiplier: mainModule.KOMPlayResponseMultiplierDefault(),
 				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * mainModule.KOMPlayResponseIntervalGraduateEasy()),
 			}));
 		});
@@ -651,6 +653,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		it('updates card', function() {
 			deepEqual(card, Object.assign(kTesting.StubCardObjectValid(), {
 				KOMCardReviewInterval: mainModule.KOMPlayResponseIntervalGraduateDefault(),
+				KOMCardReviewMultiplier: mainModule.KOMPlayResponseMultiplierDefault(),
 				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * mainModule.KOMPlayResponseIntervalGraduateDefault()),
 			}));
 		});
@@ -696,6 +699,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		it('updates card', function() {
 			deepEqual(card, Object.assign(kTesting.StubCardObjectValid(), {
 				KOMCardReviewInterval: mainModule.KOMPlayResponseIntervalGraduateDefault(),
+				KOMCardReviewMultiplier: mainModule.KOMPlayResponseMultiplierDefault(),
 				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * mainModule.KOMPlayResponseIntervalGraduateDefault()),
 			}));
 		});
@@ -745,7 +749,5 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		});
 	
 	});
-
-	
 
 });
