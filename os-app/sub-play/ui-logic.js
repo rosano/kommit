@@ -173,7 +173,7 @@ const mod = {
 		}
 
 		Object.assign(card, (function() {
-			if (response.KOMPlayResponseType === mod.KOMPlayResponseTypeEasy()) {
+			if (!KOMCardModel.KOMCardModelIsReviewing(card) && response.KOMPlayResponseType === mod.KOMPlayResponseTypeEasy()) {
 				delete card.KOMCardReviewIsLearning;
 
 				return {
@@ -195,8 +195,17 @@ const mod = {
 			}
 
 			if (KOMCardModel.KOMCardModelIsReviewing(card) && response.KOMPlayResponseType !== mod.KOMPlayResponseTypeAgain()) {
-				const multiplier = card.KOMCardReviewMultiplier + (response.KOMPlayResponseType === mod.KOMPlayResponseTypeHard() ? mod.KOMPlayResponseMultiplierSummandHard() : 0);
-				const interval = card.KOMCardReviewInterval * (response.KOMPlayResponseType === mod.KOMPlayResponseTypeHard() ? mod.KOMPlayResponseMultiplierHard() : multiplier);
+				let multiplier = card.KOMCardReviewMultiplier;
+
+				if (response.KOMPlayResponseType === mod.KOMPlayResponseTypeHard()) {
+					multiplier += mod.KOMPlayResponseMultiplierSummandHard();
+				}
+
+				if (response.KOMPlayResponseType === mod.KOMPlayResponseTypeEasy()) {
+					multiplier += mod.KOMPlayResponseMultiplierSummandEasy();
+				}
+
+				const interval = card.KOMCardReviewInterval * (response.KOMPlayResponseType === mod.KOMPlayResponseTypeHard() ? mod.KOMPlayResponseMultiplierHard() : card.KOMCardReviewMultiplier);
 				return {
 					KOMCardReviewInterval: interval,
 					KOMCardReviewMultiplier: multiplier,
