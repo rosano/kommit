@@ -173,29 +173,23 @@ const mod = {
 		const card = state.KOMPlayStateCardCurrent;
 
 		Object.assign(card, (function update_card() {
+			// LAPSE
 			if (KOMCardModel.KOMCardModelIsReviewing(card) && response.KOMPlayResponseType === mod.KOMPlayResponseTypeAgain()) {
 				delete card.KOMCardReviewInterval;
+
 				card.KOMCardReviewMultiplier += mod.KOMPlayResponseMultiplierSummandFail();
 			}
 
-			if (!KOMCardModel.KOMCardModelIsReviewing(card) && response.KOMPlayResponseType === mod.KOMPlayResponseTypeEasy()) {
-				delete card.KOMCardReviewIsLearning;
-
-				return {
-					KOMCardReviewInterval: mod.KOMPlayResponseIntervalGraduateEasy(),
-					KOMCardReviewMultiplier: mod.KOMPlayResponseMultiplierDefault(),
-					KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * mod.KOMPlayResponseIntervalGraduateEasy()),
-				};
-			}
-
-			if (response.KOMPlayResponseType !== mod.KOMPlayResponseTypeAgain() && card.KOMCardReviewIsReadyToGraduate) {
+			// GRADUATE
+			if (!KOMCardModel.KOMCardModelIsReviewing(card) && (response.KOMPlayResponseType === mod.KOMPlayResponseTypeEasy() || card.KOMCardReviewIsReadyToGraduate)) {
 				delete card.KOMCardReviewIsLearning;
 				delete card.KOMCardReviewIsReadyToGraduate;
 
+				const interval = response.KOMPlayResponseType === mod.KOMPlayResponseTypeEasy() ? mod.KOMPlayResponseIntervalGraduateEasy() : mod.KOMPlayResponseIntervalGraduateDefault();
 				return {
-					KOMCardReviewInterval: mod.KOMPlayResponseIntervalGraduateDefault(),
+					KOMCardReviewInterval: interval,
 					KOMCardReviewMultiplier: mod.KOMPlayResponseMultiplierDefault(),
-					KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * mod.KOMPlayResponseIntervalGraduateDefault()),
+					KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * interval),
 				};
 			}
 
