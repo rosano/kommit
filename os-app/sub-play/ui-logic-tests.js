@@ -272,6 +272,14 @@ describe('KOMPlayResponseMultiplierSummandHard', function test_KOMPlayResponseMu
 
 });
 
+describe('KOMPlayResponseMultiplierSummandEasy', function test_KOMPlayResponseMultiplierSummandEasy() {
+
+	it('returns number', function () {
+		deepEqual(mainModule.KOMPlayResponseMultiplierSummandEasy(), 0.15);
+	});
+
+});
+
 describe('KOMPlayResponseIsValid', function test_KOMPlayResponseIsValid() {
 	
 	it('throws if not object', function () {

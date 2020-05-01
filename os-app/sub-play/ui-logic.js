@@ -9,6 +9,7 @@ const kMultiplierDefault = 2.5;
 const kMultiplierMin = 1.3;
 const kMultiplierSummandFail = -0.2;
 const kMultiplierSummandHard = -0.15;
+const kMultiplierSummandEasy = 0.15;
 
 const mod = {
 
@@ -139,6 +140,10 @@ const mod = {
 
 	KOMPlayResponseMultiplierSummandHard () {
 		return kMultiplierSummandHard;
+	},
+
+	KOMPlayResponseMultiplierSummandEasy () {
+		return kMultiplierSummandEasy;
 	},
 
 	KOMPlayRespond (state, response) {
