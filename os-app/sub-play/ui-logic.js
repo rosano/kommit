@@ -189,6 +189,16 @@ const mod = {
 				};
 			}
 
+			if (KOMCardModel.KOMCardModelIsReviewing(card) && response.KOMPlayResponseType !== mod.KOMPlayResponseTypeAgain()) {
+				const multiplier = card.KOMCardReviewMultiplier + (response.KOMPlayResponseType === mod.KOMPlayResponseTypeHard() ? mod.KOMPlayResponseMultiplierSummandHard() : 0);
+				const interval = card.KOMCardReviewInterval * (response.KOMPlayResponseType === mod.KOMPlayResponseTypeHard() ? mod.KOMPlayResponseMultiplierHard() : multiplier);
+				return {
+					KOMCardReviewInterval: interval,
+					KOMCardReviewMultiplier: multiplier,
+					KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * interval),
+				};
+			}
+
 			const outputData = {
 				KOMCardReviewIsLearning: true,
 			};
