@@ -181,6 +181,22 @@ describe('KOMPlayStateIsValid', function test_KOMPlayStateIsValid() {
 	
 	});
 
+	context('KOMPlayStateShouldRandomize', function () {
+		
+		it('returns false if not boolean', function() {
+			deepEqual(mainModule.KOMPlayStateIsValid(Object.assign(kTesting.StubStateObjectValid(), {
+				KOMPlayStateShouldRandomize: null,
+			})), false);
+		});
+
+		it('returns true', function() {
+			deepEqual(mainModule.KOMPlayStateIsValid(Object.assign(kTesting.StubStateObjectValid(), {
+				KOMPlayStateShouldRandomize: true,
+			})), true);
+		});
+	
+	});
+
 });
 
 describe('KOMPlayResponseTypeAgain', function test_KOMPlayResponseTypeAgain() {

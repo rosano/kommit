@@ -76,6 +76,12 @@ const mod = {
 			return false;
 		}
 
+		if (inputData.KOMPlayStateShouldRandomize !== undefined) {
+			if (typeof inputData.KOMPlayStateShouldRandomize !== 'boolean') {
+				return false;
+			}
+		}
+
 		return true;
 	},
 
@@ -280,7 +286,7 @@ const mod = {
 				if (response.KOMPlayResponseType === mod.KOMPlayResponseTypeEasy()) {
 					multiplier += mod.KOMPlayResponseMultiplierSummandEasy();
 				}
-				
+
 				return {
 					KOMCardReviewInterval: interval,
 					KOMCardReviewMultiplier: multiplier,
