@@ -152,6 +152,29 @@ const mod = {
 		return kIntervalOverdueDivisorEasy;
 	},
 
+	KOMPlayResponseIntervalOverdueDays (card, response) {
+		if (KOMCardModel.KOMCardModelErrorsFor(card)) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		if (!mod.KOMPlayResponseIsValid(response)) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		if (!card.KOMCardReviewInterval) {
+			return 0;
+		}
+
+		const due = new Date(mod.KOMPlayDayGrouping(card.KOMCardReviewDueDate)).valueOf();
+		const date = new Date(mod.KOMPlayDayGrouping(response.KOMPlayResponseDate)).valueOf();
+
+		if (date <= due) {
+			return 0;
+		}
+
+		return (date - due) / 1000 / 60 / 60 / 24;
+	},
+
 	KOMPlayResponseMultiplierDefault () {
 		return kMultiplierDefault;
 	},

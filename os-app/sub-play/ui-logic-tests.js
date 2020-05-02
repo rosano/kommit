@@ -292,6 +292,44 @@ describe('KOMPlayResponseIntervalOverdueDivisorEasy', function test_KOMPlayRespo
 
 });
 
+describe('KOMPlayResponseIntervalOverdueDays', function test_KOMPlayResponseIntervalOverdueDays() {
+
+	it('throws if param1 not valid', function () {
+		throws(function () {
+			mainModule.KOMPlayResponseIntervalOverdueDays({}, kTesting.StubResponseObjectValid());
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('throws if param2 not valid', function () {
+		throws(function () {
+			mainModule.KOMPlayResponseIntervalOverdueDays(kTesting.StubCardObjectValid(), {});
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns 0 if no KOMCardReviewInterval', function() {
+		deepEqual(mainModule.KOMPlayResponseIntervalOverdueDays(kTesting.StubCardObjectValid(), kTesting.StubResponseObjectValid()), 0);
+	});
+
+	it('returns 0 if KOMCardReviewDueDate same day', function() {
+		deepEqual(mainModule.KOMPlayResponseIntervalOverdueDays(Object.assign(kTesting.StubCardObjectValid(), {
+			KOMCardReviewInterval: mainModule.KOMPlayResponseIntervalGraduateEasy(),
+			KOMCardReviewDueDate: new Date(`2020-05-02T12:00:00-${ offset }:00`),
+		}), Object.assign(kTesting.StubResponseObjectValid(), {
+			KOMPlayResponseDate: new Date(`2020-05-02T18:00:00-${ offset }:00`),
+		})), 0);
+	});
+
+	it('returns days if KOMCardReviewDueDate past', function() {
+		deepEqual(mainModule.KOMPlayResponseIntervalOverdueDays(Object.assign(kTesting.StubCardObjectValid(), {
+			KOMCardReviewInterval: mainModule.KOMPlayResponseIntervalGraduateEasy(),
+			KOMCardReviewDueDate: new Date(`2020-05-02T12:00:00-${ offset }:00`),
+		}), Object.assign(kTesting.StubResponseObjectValid(), {
+			KOMPlayResponseDate: new Date(`2020-05-12T18:00:00-${ offset }:00`),
+		})), 10);
+	});
+
+});
+
 describe('KOMPlayResponseMultiplierDefault', function test_KOMPlayResponseMultiplierDefault() {
 
 	it('returns number', function () {
