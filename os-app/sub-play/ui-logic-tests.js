@@ -240,6 +240,30 @@ describe('KOMPlayResponseIntervalGraduateEasy', function test_KOMPlayResponseInt
 
 });
 
+describe('KOMPlayResponseIntervalOverdueDivisorHard', function test_KOMPlayResponseIntervalOverdueDivisorHard() {
+
+	it('returns number', function () {
+		deepEqual(mainModule.KOMPlayResponseIntervalOverdueDivisorHard(), 4);
+	});
+
+});
+
+describe('KOMPlayResponseIntervalOverdueDivisorGood', function test_KOMPlayResponseIntervalOverdueDivisorGood() {
+
+	it('returns number', function () {
+		deepEqual(mainModule.KOMPlayResponseIntervalOverdueDivisorGood(), 2);
+	});
+
+});
+
+describe('KOMPlayResponseIntervalOverdueDivisorEasy', function test_KOMPlayResponseIntervalOverdueDivisorEasy() {
+
+	it('returns number', function () {
+		deepEqual(mainModule.KOMPlayResponseIntervalOverdueDivisorEasy(), 1);
+	});
+
+});
+
 describe('KOMPlayResponseMultiplierDefault', function test_KOMPlayResponseMultiplierDefault() {
 
 	it('returns number', function () {

@@ -5,6 +5,9 @@ const kIntervalLearn1Minutes = 1;
 const kIntervalLearn2Minutes = 10;
 const kIntervalDefaultDays = 1;
 const kIntervalEasyDays = 4;
+const kIntervalOverdueDivisorHard = 4;
+const kIntervalOverdueDivisorGood = 2;
+const kIntervalOverdueDivisorEasy = 1;
 const kMultiplierDefault = 2.5;
 const kMultiplierMin = 1.3;
 const kMultiplierHard = 1.2;
@@ -127,6 +130,18 @@ const mod = {
 
 	KOMPlayResponseIntervalGraduateEasy () {
 		return kIntervalEasyDays;
+	},
+
+	KOMPlayResponseIntervalOverdueDivisorHard () {
+		return kIntervalOverdueDivisorHard;
+	},
+
+	KOMPlayResponseIntervalOverdueDivisorGood () {
+		return kIntervalOverdueDivisorGood;
+	},
+
+	KOMPlayResponseIntervalOverdueDivisorEasy () {
+		return kIntervalOverdueDivisorEasy;
 	},
 
 	KOMPlayResponseMultiplierDefault () {
