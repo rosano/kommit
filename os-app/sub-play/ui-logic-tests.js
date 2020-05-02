@@ -26,6 +26,34 @@ const kTesting = {
 	},
 };
 
+const offset = (function(inputData) {
+	return inputData < 10 ? `0${ inputData }` : inputData;
+})((new Date()).getTimezoneOffset() / 60);
+
+describe('KOMPlayDayGrouping', function test_KOMPlayDayGrouping() {
+
+	it('throws if not valid', function () {
+		throws(function () {
+			mainModule.KOMPlayDayGrouping(new Date('alfa'));
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns day in current timezone', function() {
+		deepEqual(mainModule.KOMPlayDayGrouping(new Date(`2020-05-02T12:00:00-${ offset }:00`)), '2020-05-02');
+	});
+
+	it('previous day if before 4am', function() {
+		const date = new Date(`2020-05-02T03:59:00-${ offset }:00`);
+		deepEqual(mainModule.KOMPlayDayGrouping(date), '2020-05-01');
+	});
+
+	it('same day if 4am', function() {
+		const date = new Date(`2020-05-02T04:00:00-${ offset }:00`);
+		deepEqual(mainModule.KOMPlayDayGrouping(date), '2020-05-02');
+	});
+
+});
+
 describe('KOMPlaySort', function test_KOMPlaySort() {
 	
 	const uItems = function (inputData = 4) {
