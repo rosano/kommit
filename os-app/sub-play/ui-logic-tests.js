@@ -330,6 +330,62 @@ describe('KOMPlayResponseIntervalOverdueDays', function test_KOMPlayResponseInte
 
 });
 
+describe('KOMPlayResponseIntervalOverdueBonus', function test_KOMPlayResponseIntervalOverdueBonus() {
+
+	it('throws if param1 not valid', function () {
+		throws(function () {
+			mainModule.KOMPlayResponseIntervalOverdueBonus({}, kTesting.StubResponseObjectValid());
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('throws if param2 not valid', function () {
+		throws(function () {
+			mainModule.KOMPlayResponseIntervalOverdueBonus(kTesting.StubCardObjectValid(), {});
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns 0', function() {
+		deepEqual(mainModule.KOMPlayResponseIntervalOverdueBonus(Object.assign(kTesting.StubCardObjectValid(), {
+			KOMCardReviewInterval: mainModule.KOMPlayResponseIntervalGraduateEasy(),
+			KOMCardReviewDueDate: new Date(`2020-05-02T12:00:00-${ offset }:00`),
+		}), Object.assign(kTesting.StubResponseObjectValid(), {
+			KOMPlayResponseType: mainModule.KOMPlayResponseTypeAgain(),
+			KOMPlayResponseDate: new Date(`2020-05-12T18:00:00-${ offset }:00`),
+		})), 0);
+	});
+
+	it('adjusts if Hard', function() {
+		deepEqual(mainModule.KOMPlayResponseIntervalOverdueBonus(Object.assign(kTesting.StubCardObjectValid(), {
+			KOMCardReviewInterval: mainModule.KOMPlayResponseIntervalGraduateEasy(),
+			KOMCardReviewDueDate: new Date(`2020-05-02T12:00:00-${ offset }:00`),
+		}), Object.assign(kTesting.StubResponseObjectValid(), {
+			KOMPlayResponseType: mainModule.KOMPlayResponseTypeHard(),
+			KOMPlayResponseDate: new Date(`2020-05-12T18:00:00-${ offset }:00`),
+		})), 10 / mainModule.KOMPlayResponseIntervalOverdueDivisorHard());
+	});
+
+	it('adjusts if Good', function() {
+		deepEqual(mainModule.KOMPlayResponseIntervalOverdueBonus(Object.assign(kTesting.StubCardObjectValid(), {
+			KOMCardReviewInterval: mainModule.KOMPlayResponseIntervalGraduateEasy(),
+			KOMCardReviewDueDate: new Date(`2020-05-02T12:00:00-${ offset }:00`),
+		}), Object.assign(kTesting.StubResponseObjectValid(), {
+			KOMPlayResponseType: mainModule.KOMPlayResponseTypeGood(),
+			KOMPlayResponseDate: new Date(`2020-05-12T18:00:00-${ offset }:00`),
+		})), 10 / mainModule.KOMPlayResponseIntervalOverdueDivisorGood());
+	});
+
+	it('adjusts if Easy', function() {
+		deepEqual(mainModule.KOMPlayResponseIntervalOverdueBonus(Object.assign(kTesting.StubCardObjectValid(), {
+			KOMCardReviewInterval: mainModule.KOMPlayResponseIntervalGraduateEasy(),
+			KOMCardReviewDueDate: new Date(`2020-05-02T12:00:00-${ offset }:00`),
+		}), Object.assign(kTesting.StubResponseObjectValid(), {
+			KOMPlayResponseType: mainModule.KOMPlayResponseTypeEasy(),
+			KOMPlayResponseDate: new Date(`2020-05-12T18:00:00-${ offset }:00`),
+		})), 10 / mainModule.KOMPlayResponseIntervalOverdueDivisorEasy());
+	});
+
+});
+
 describe('KOMPlayResponseMultiplierDefault', function test_KOMPlayResponseMultiplierDefault() {
 
 	it('returns number', function () {

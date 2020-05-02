@@ -175,6 +175,32 @@ const mod = {
 		return (date - due) / 1000 / 60 / 60 / 24;
 	},
 
+	KOMPlayResponseIntervalOverdueBonus (card, response) {
+		if (KOMCardModel.KOMCardModelErrorsFor(card)) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		if (!mod.KOMPlayResponseIsValid(response)) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		const days = mod.KOMPlayResponseIntervalOverdueDays(card, response);
+
+		if (response.KOMPlayResponseType === mod.KOMPlayResponseTypeHard()) {
+			return days / mod.KOMPlayResponseIntervalOverdueDivisorHard();
+		}
+
+		if (response.KOMPlayResponseType === mod.KOMPlayResponseTypeGood()) {
+			return days / mod.KOMPlayResponseIntervalOverdueDivisorGood();
+		}
+
+		if (response.KOMPlayResponseType === mod.KOMPlayResponseTypeEasy()) {
+			return days / mod.KOMPlayResponseIntervalOverdueDivisorEasy();
+		}
+
+		return 0;
+	},
+
 	KOMPlayResponseMultiplierDefault () {
 		return kMultiplierDefault;
 	},
