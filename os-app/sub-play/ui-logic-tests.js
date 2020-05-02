@@ -1166,9 +1166,37 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		});
 		
 		it('updates card', function() {
-			const interval = (mainModule.KOMPlayResponseIntervalGraduateEasy() + 10 / mainModule.KOMPlayResponseIntervalOverdueDivisorGood()) * card.KOMCardReviewMultiplier;
+			const interval = (mainModule.KOMPlayResponseIntervalGraduateEasy() + 10 / mainModule.KOMPlayResponseIntervalOverdueDivisorGood()) * mainModule.KOMPlayResponseMultiplierDefault();
 			deepEqual(card, Object.assign(kTesting.StubCardObjectValid(), {
 				KOMCardReviewMultiplier: mainModule.KOMPlayResponseMultiplierDefault() + mainModule.KOMPlayResponseMultiplierSummandGood(),
+				KOMCardReviewInterval: interval,
+				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * interval),
+			}));
+		});
+		
+	});
+
+	context('overdue_and_Easy', function test_overdue_and_Easy () {
+
+		const date = new Date();
+		const card = Object.assign(kTesting.StubCardObjectValid(), {
+			KOMCardReviewInterval: mainModule.KOMPlayResponseIntervalGraduateEasy(),
+			KOMCardReviewMultiplier: mainModule.KOMPlayResponseMultiplierDefault(),
+			KOMCardReviewDueDate: date,
+		});
+		const response = Object.assign(kTesting.StubResponseObjectValid(), {
+			KOMPlayResponseType: mainModule.KOMPlayResponseTypeEasy(),
+			KOMPlayResponseDate: new Date(date.valueOf() + 1000 * 60 * 60 * 24 * 10),
+		});
+
+		before(function () {
+			mainModule.KOMPlayRespond(uState(card), response);	
+		});
+		
+		it('updates card', function() {
+			const interval = (mainModule.KOMPlayResponseIntervalGraduateEasy() + 10 / mainModule.KOMPlayResponseIntervalOverdueDivisorEasy()) * mainModule.KOMPlayResponseMultiplierDefault() * mainModule.KOMPlayResponseMultiplierMultiplicandEasy();
+			deepEqual(card, Object.assign(kTesting.StubCardObjectValid(), {
+				KOMCardReviewMultiplier: mainModule.KOMPlayResponseMultiplierDefault() + mainModule.KOMPlayResponseMultiplierSummandEasy(),
 				KOMCardReviewInterval: interval,
 				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * interval),
 			}));

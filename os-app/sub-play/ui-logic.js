@@ -265,6 +265,12 @@ const mod = {
 
 			// REVIEW
 			if (KOMCardModel.KOMCardModelIsReviewing(card) && response.KOMPlayResponseType !== mod.KOMPlayResponseTypeAgain()) {
+				let interval = (card.KOMCardReviewInterval + mod.KOMPlayResponseIntervalOverdueBonus(card, response)) * (response.KOMPlayResponseType === mod.KOMPlayResponseTypeHard() ? mod.KOMPlayResponseMultiplierHard() : card.KOMCardReviewMultiplier);
+
+				if (response.KOMPlayResponseType === mod.KOMPlayResponseTypeEasy()) {
+					interval *= mod.KOMPlayResponseMultiplierMultiplicandEasy();
+				}
+
 				let multiplier = card.KOMCardReviewMultiplier;
 
 				if (response.KOMPlayResponseType === mod.KOMPlayResponseTypeHard()) {
@@ -274,13 +280,7 @@ const mod = {
 				if (response.KOMPlayResponseType === mod.KOMPlayResponseTypeEasy()) {
 					multiplier += mod.KOMPlayResponseMultiplierSummandEasy();
 				}
-
-				let interval = (card.KOMCardReviewInterval + mod.KOMPlayResponseIntervalOverdueBonus(card, response)) * (response.KOMPlayResponseType === mod.KOMPlayResponseTypeHard() ? mod.KOMPlayResponseMultiplierHard() : card.KOMCardReviewMultiplier);
-
-				if (response.KOMPlayResponseType === mod.KOMPlayResponseTypeEasy()) {
-					interval *= mod.KOMPlayResponseMultiplierMultiplicandEasy();
-				}
-
+				
 				return {
 					KOMCardReviewInterval: interval,
 					KOMCardReviewMultiplier: multiplier,
