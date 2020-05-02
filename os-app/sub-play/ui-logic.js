@@ -293,7 +293,7 @@ const mod = {
 
 				return {
 					KOMCardReviewInterval: interval,
-					KOMCardReviewMultiplier: multiplier,
+					KOMCardReviewMultiplier: Math.max(mod.KOMPlayResponseMultiplierMin(), multiplier),
 					KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * interval),
 				};
 			}

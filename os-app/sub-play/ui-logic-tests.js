@@ -1309,4 +1309,32 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		
 	});
 
+	context('minimum_multiplier', function test_minimum_multiplier () {
+
+		const date = new Date();
+		const card = Object.assign(kTesting.StubCardObjectValid(), {
+			KOMCardReviewInterval: mainModule.KOMPlayResponseIntervalGraduateEasy(),
+			KOMCardReviewMultiplier: mainModule.KOMPlayResponseMultiplierMin(),
+			KOMCardReviewDueDate: date,
+		});
+		const response = Object.assign(kTesting.StubResponseObjectValid(), {
+			KOMPlayResponseType: mainModule.KOMPlayResponseTypeHard(),
+			KOMPlayResponseDate: new Date(date.valueOf() + 1000 * 60 * 60 * 24 * 10),
+		});
+
+		before(function () {
+			mainModule.KOMPlayRespond(uState(card), response);	
+		});
+		
+		it('updates card', function() {
+			const interval = (mainModule.KOMPlayResponseIntervalGraduateEasy() + 10 / mainModule.KOMPlayResponseIntervalOverdueDivisorHard()) * mainModule.KOMPlayResponseMultiplierHard();
+			deepEqual(card, Object.assign(kTesting.StubCardObjectValid(), {
+				KOMCardReviewMultiplier: mainModule.KOMPlayResponseMultiplierMin(),
+				KOMCardReviewInterval: interval,
+				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * interval),
+			}));
+		});
+		
+	});
+
 });
