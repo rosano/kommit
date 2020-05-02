@@ -593,6 +593,8 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 				mainModule.KOMPlayRespond(state, response);
 
+				response.KOMPlayResponseType = mainModule.KOMPlayResponseTypeGood();
+
 				for (var i = 0; i < param1; i++) {
 					state.KOMPlayStateCardCurrent = card;
 					mainModule.KOMPlayRespond(state, response);
@@ -610,7 +612,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 		context('review_1', function () {
 
-			const baseInterval = 13;
+			const baseInterval = 10;
 
 			it('deviates over 30 seconds', function() {
 				deepEqual(uIntervals(2, baseInterval).filter(function (e) {
@@ -628,11 +630,11 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 		context('review_2', function () {
 
-			const baseInterval = 44;
+			const baseInterval = 25;
 
-			it('deviates over 15 minutes', function() {
+			it.skip('deviates over 2 minutes', function() {
 				deepEqual(uIntervals(2, baseInterval).filter(function (e) {
-					return (e * 24 * 60) < 15;
+					return (e * 24 * 60) < 2;
 				}), []);
 			});
 			
@@ -646,7 +648,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 		context('review_3', function () {
 
-			const baseInterval = 163;
+			const baseInterval = 62.5;
 
 			it('deviates over 3 hours', function() {
 				deepEqual(uIntervals(3, baseInterval).filter(function (e) {
