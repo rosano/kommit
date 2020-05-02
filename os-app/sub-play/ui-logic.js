@@ -275,7 +275,7 @@ const mod = {
 					multiplier += mod.KOMPlayResponseMultiplierSummandEasy();
 				}
 
-				let interval = card.KOMCardReviewInterval * (response.KOMPlayResponseType === mod.KOMPlayResponseTypeHard() ? mod.KOMPlayResponseMultiplierHard() : card.KOMCardReviewMultiplier);
+				let interval = (card.KOMCardReviewInterval + mod.KOMPlayResponseIntervalOverdueBonus(card, response)) * (response.KOMPlayResponseType === mod.KOMPlayResponseTypeHard() ? mod.KOMPlayResponseMultiplierHard() : card.KOMCardReviewMultiplier);
 
 				if (response.KOMPlayResponseType === mod.KOMPlayResponseTypeEasy()) {
 					interval *= mod.KOMPlayResponseMultiplierMultiplicandEasy();

@@ -1120,4 +1120,32 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 	
 	});
 
+	context('overdue_and_Hard', function test_overdue_and_Hard () {
+
+		const date = new Date();
+		const card = Object.assign(kTesting.StubCardObjectValid(), {
+			KOMCardReviewInterval: mainModule.KOMPlayResponseIntervalGraduateEasy(),
+			KOMCardReviewMultiplier: mainModule.KOMPlayResponseMultiplierDefault(),
+			KOMCardReviewDueDate: date,
+		});
+		const response = Object.assign(kTesting.StubResponseObjectValid(), {
+			KOMPlayResponseType: mainModule.KOMPlayResponseTypeHard(),
+			KOMPlayResponseDate: new Date(date.valueOf() + 1000 * 60 * 60 * 24 * 10),
+		});
+
+		before(function () {
+			mainModule.KOMPlayRespond(uState(card), response);	
+		});
+		
+		it('updates card', function() {
+			const interval = (mainModule.KOMPlayResponseIntervalGraduateEasy() + 10 / mainModule.KOMPlayResponseIntervalOverdueDivisorHard()) * mainModule.KOMPlayResponseMultiplierHard();
+			deepEqual(card, Object.assign(kTesting.StubCardObjectValid(), {
+				KOMCardReviewMultiplier: mainModule.KOMPlayResponseMultiplierDefault() + mainModule.KOMPlayResponseMultiplierSummandHard(),
+				KOMCardReviewInterval: interval,
+				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * interval),
+			}));
+		});
+		
+	});
+
 });
