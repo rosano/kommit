@@ -273,6 +273,10 @@ const mod = {
 			if (KOMCardModel.KOMCardModelIsReviewing(card) && response.KOMPlayResponseType !== mod.KOMPlayResponseTypeAgain()) {
 				let interval = (card.KOMCardReviewInterval + mod.KOMPlayResponseIntervalOverdueBonus(card, response)) * (response.KOMPlayResponseType === mod.KOMPlayResponseTypeHard() ? mod.KOMPlayResponseMultiplierHard() : card.KOMCardReviewMultiplier);
 
+				if (state.KOMPlayStateShouldRandomize) {
+					interval *= 1 + (Math.min(0.25, Math.random()) / 100 + 0.005) * (Math.random() > 0.5 ? -1 : 1);
+				}
+
 				if (response.KOMPlayResponseType === mod.KOMPlayResponseTypeEasy()) {
 					interval *= mod.KOMPlayResponseMultiplierMultiplicandEasy();
 				}

@@ -577,6 +577,93 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 	});
 
+	context('KOMPlayStateShouldRandomize', function () {
+
+		const uIntervals = function (param1, param2 = 0) {
+			return Array.from(new Array(10)).map(function () {
+				const date = new Date();
+				const card = kTesting.StubCardObjectValid();
+				const state = Object.assign(uState(card), {
+					KOMPlayStateShouldRandomize: true,
+				});
+				const response = Object.assign(kTesting.StubResponseObjectValid(), {
+					KOMPlayResponseType: mainModule.KOMPlayResponseTypeEasy(),
+					KOMPlayResponseDate: date,
+				});
+
+				mainModule.KOMPlayRespond(state, response);
+
+				for (var i = 0; i < param1; i++) {
+					state.KOMPlayStateCardCurrent = card;
+					mainModule.KOMPlayRespond(state, response);
+				};
+
+				return Math.abs(card.KOMCardReviewInterval - param2);
+			});
+		};
+
+		it('randomizes KOMCardReviewInterval', function() {
+			deepEqual(uIntervals(1).filter(function (value, index, self) {
+				return self.indexOf(value) === index;
+			}).length > 1, true);
+		});
+
+		context('review_1', function () {
+
+			const baseInterval = 13;
+
+			it('deviates over 30 seconds', function() {
+				deepEqual(uIntervals(2, baseInterval).filter(function (e) {
+					return (e * 24 * 60 * 60) < 30;
+				}), []);
+			});
+
+			it('deviates under 3 hours', function() {
+				deepEqual(uIntervals(1, baseInterval).filter(function (e) {
+					return (e * 24) > 3;
+				}), []);
+			});
+		
+		});
+
+		context('review_2', function () {
+
+			const baseInterval = 44;
+
+			it('deviates over 15 minutes', function() {
+				deepEqual(uIntervals(2, baseInterval).filter(function (e) {
+					return (e * 24 * 60) < 15;
+				}), []);
+			});
+			
+			it('deviates under 2 days', function() {
+				deepEqual(uIntervals(2, baseInterval).filter(function (e) {
+					return e > 2;
+				}), []);
+			});
+		
+		});
+
+		context('review_3', function () {
+
+			const baseInterval = 163;
+
+			it('deviates over 3 hours', function() {
+				deepEqual(uIntervals(3, baseInterval).filter(function (e) {
+					return e * 24 < 3;
+				}), []);
+			});
+			
+			it('deviates under 4 days', function() {
+				deepEqual(uIntervals(3, baseInterval).filter(function (e) {
+					return e > 4;
+				}), []);
+			});
+		
+		});
+	
+	});
+
 	context('unseen_and_Again', function test_unseen_and_Again () {
 
 		const card = kTesting.StubCardObjectValid();
