@@ -36,6 +36,26 @@ describe('KOMCardStorageCollectionPath', function test_KOMCardStorageCollectionP
 
 });
 
+describe('KOMCardStorageFolderPath', function test_KOMCardStorageFolderPath() {
+
+	it('throws if param1 not valid', function () {
+		throws(function () {
+			mainModule.KOMCardStorageFolderPath({}, kTesting.StubDeckObjectValid());
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('throws if param2 not valid', function () {
+		throws(function () {
+			mainModule.KOMCardStorageFolderPath(kTesting.StubCardObjectValid(), {});
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns string', function() {
+		deepEqual(mainModule.KOMCardStorageFolderPath(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()), `${ mainModule.KOMCardStorageCollectionPath(kTesting.StubDeckObjectValid()) }${ kTesting.StubCardObjectValid().KOMCardCreationDate.toJSON().split('T').shift() }/charlie/`);
+	});
+
+});
+
 describe('KOMCardStorageObjectPath', function test_KOMCardStorageObjectPath() {
 
 	it('throws if param1 not valid', function () {
@@ -51,7 +71,7 @@ describe('KOMCardStorageObjectPath', function test_KOMCardStorageObjectPath() {
 	});
 
 	it('returns string', function() {
-		deepEqual(mainModule.KOMCardStorageObjectPath(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()), `${ mainModule.KOMCardStorageCollectionPath(kTesting.StubDeckObjectValid()) }${ kTesting.StubCardObjectValid().KOMCardCreationDate.toJSON().split('T').shift() }/charlie/main`);
+		deepEqual(mainModule.KOMCardStorageObjectPath(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()), mainModule.KOMCardStorageFolderPath(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()) + 'main');
 	});
 
 });

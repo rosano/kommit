@@ -18,12 +18,16 @@ const mod = {
 		return `kom_decks/${ inputData.KOMDeckID }/${ kCollection }/`;
 	},
 
-	KOMCardStorageObjectPath (param1, param2) {
+	KOMCardStorageFolderPath (param1, param2) {
 		if (KOMCardModel.KOMCardModelErrorsFor(param1)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		return `${ mod.KOMCardStorageCollectionPath(param2) }${ param1.KOMCardCreationDate.toJSON().split('T').shift() }/${ param1.KOMCardID }/main`;
+		return `${ mod.KOMCardStorageCollectionPath(param2) }${ param1.KOMCardCreationDate.toJSON().split('T').shift() }/${ param1.KOMCardID }/`;
+	},
+
+	KOMCardStorageObjectPath (param1, param2) {
+		return mod.KOMCardStorageFolderPath(param1, param2) + 'main';
 	},
 
 	KOMCardStorageBuild (privateClient, publicClient, changeDelegate) {
