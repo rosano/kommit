@@ -10,7 +10,7 @@ const uFlatten = function (inputData) {
 
 const mod = {
 
-	KOMCardStorageFolderPath (inputData) {
+	KOMCardStorageCollectionPath (inputData) {
 		if (KOMDeckModel.KOMDeckModelErrorsFor(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -23,7 +23,7 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		return `${ mod.KOMCardStorageFolderPath(param2) }${ param1.KOMCardCreationDate.toJSON().split('T').shift() }/${ param1.KOMCardID }/main`;
+		return `${ mod.KOMCardStorageCollectionPath(param2) }${ param1.KOMCardCreationDate.toJSON().split('T').shift() }/${ param1.KOMCardID }/main`;
 	},
 
 	KOMCardStorageBuild (privateClient, publicClient, changeDelegate) {
@@ -38,7 +38,7 @@ const mod = {
 		const KOMStorageExports = {
 
 			async KOMStorageList (inputData) {
-				let storagePath = mod.KOMCardStorageFolderPath(inputData);
+				let storagePath = mod.KOMCardStorageCollectionPath(inputData);
 
 				return (await Promise.all((await uList(await uList(await uList(storagePath)))).map(function (e) {
 					return privateClient.getObject(e, false);

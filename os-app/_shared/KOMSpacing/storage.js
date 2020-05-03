@@ -75,7 +75,7 @@ const mod = {
 			},
 			async __KOMStorageResetFakeCards (inputData) {
 				// fake objects because there may not be a deck_id/main file
-				return (await uList(await uList(KOMCardStorage.KOMCardStorageFolderPath(inputData)))).map(function (e) {
+				return (await uList(await uList(KOMCardStorage.KOMCardStorageCollectionPath(inputData)))).map(function (e) {
 					return {
 						KOMCardID: e.slice(0, -1).split('/').pop(),
 						KOMCardQuestion: '',
