@@ -156,6 +156,30 @@ const mod = {
 		return !!inputData.KOMCardReviewInterval;
 	},
 
+	KOMCardModelSpacingIdentifier (inputData) {
+		if (inputData.indexOf('-') === -1) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		return inputData.split('-').shift();
+	},
+
+	KOMCardModelSpacingLabel (inputData) {
+		if (inputData.indexOf('-') === -1) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		return inputData.split('-').pop();
+	},
+
+	KOMCardModelSpacingLabelForward () {
+		return 'forward';
+	},
+
+	KOMCardModelSpacingLabelBackward () {
+		return 'backward';
+	},
+
 	KOMCardModelSpacingErrorsFor (inputData, options = {}) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			throw new Error('KOMErrorInputNotValid');
@@ -167,9 +191,17 @@ const mod = {
 			errors.KOMCardSpacingID = [
 				'KOMErrorNotString',
 			];
-		} else if (inputData.KOMCardSpacingID.trim() === '') {
+		} else if (inputData.KOMCardSpacingID.indexOf('-') === -1) {
+			errors.KOMCardSpacingID = [
+				'KOMErrorNotSeparated',
+			];
+		} else if (!mod.KOMCardModelSpacingIdentifier(inputData.KOMCardSpacingID)) {
 			errors.KOMCardSpacingID = [
 				'KOMErrorNotFilled',
+			];
+		} else if ([mod.KOMCardModelSpacingLabelForward(), mod.KOMCardModelSpacingLabelBackward()].indexOf(mod.KOMCardModelSpacingLabel(inputData.KOMCardSpacingID)) === -1) {
+			errors.KOMCardSpacingID = [
+				'KOMErrorNotLabelled',
 			];
 		}
 

@@ -14,7 +14,7 @@ const kTesting = {
 	},
 	StubCardSpacingObjectValid() {
 		return {
-			KOMCardSpacingID: 'bravo',
+			KOMCardSpacingID: 'bravo-forward',
 		};
 	},
 };
@@ -337,6 +337,50 @@ describe('KOMCardModelIsReviewing', function test_KOMCardModelIsReviewing() {
 
 });
 
+describe('KOMCardModelSpacingIdentifier', function test_KOMCardModelSpacingIdentifier() {
+
+	it('throws error if not valid', function() {
+		throws(function() {
+			mainModule.KOMCardModelSpacingIdentifier('bravoforward');
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns string', function() {
+		deepEqual(mainModule.KOMCardModelSpacingIdentifier('bravo-forward'), 'bravo');
+	});
+
+});
+
+describe('KOMCardModelSpacingLabel', function test_KOMCardModelSpacingLabel() {
+
+	it('throws error if not valid', function() {
+		throws(function() {
+			mainModule.KOMCardModelSpacingLabel('bravoforward');
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns string', function() {
+		deepEqual(mainModule.KOMCardModelSpacingLabel('bravo-forward'), 'forward');
+	});
+
+});
+
+describe('KOMCardModelSpacingLabelForward', function test_KOMCardModelSpacingLabelForward() {
+
+	it('returns string', function() {
+		deepEqual(mainModule.KOMCardModelSpacingLabelForward(), 'forward');
+	});
+
+});
+
+describe('KOMCardModelSpacingLabelBackward', function test_KOMCardModelSpacingLabelBackward() {
+
+	it('returns string', function() {
+		deepEqual(mainModule.KOMCardModelSpacingLabelBackward(), 'backward');
+	});
+
+});
+
 describe('KOMCardModelSpacingErrorsFor', function test_KOMCardModelSpacingErrorsFor() {
 
 	it('throws error if not object', function() {
@@ -355,9 +399,19 @@ describe('KOMCardModelSpacingErrorsFor', function test_KOMCardModelSpacingErrors
 		});
 	});
 
+	it('returns object if KOMCardSpacingID not separated', function() {
+		deepEqual(mainModule.KOMCardModelSpacingErrorsFor(Object.assign(kTesting.StubCardSpacingObjectValid(), {
+			KOMCardSpacingID: 'alfaforward',
+		})), {
+			KOMCardSpacingID: [
+				'KOMErrorNotSeparated',
+			],
+		});
+	});
+
 	it('returns object if KOMCardSpacingID not filled', function() {
 		deepEqual(mainModule.KOMCardModelSpacingErrorsFor(Object.assign(kTesting.StubCardSpacingObjectValid(), {
-			KOMCardSpacingID: ' ',
+			KOMCardSpacingID: '-forward',
 		})), {
 			KOMCardSpacingID: [
 				'KOMErrorNotFilled',
@@ -365,8 +419,21 @@ describe('KOMCardModelSpacingErrorsFor', function test_KOMCardModelSpacingErrors
 		});
 	});
 
+	it('returns object if KOMCardSpacingID not labelled', function() {
+		deepEqual(mainModule.KOMCardModelSpacingErrorsFor(Object.assign(kTesting.StubCardSpacingObjectValid(), {
+			KOMCardSpacingID: 'alfa-bravo',
+		})), {
+			KOMCardSpacingID: [
+				'KOMErrorNotLabelled',
+			],
+		});
+	});
+
 	it('returns null', function() {
 		deepEqual(mainModule.KOMCardModelSpacingErrorsFor(kTesting.StubCardSpacingObjectValid()), null);
+		deepEqual(mainModule.KOMCardModelSpacingErrorsFor(Object.assign(kTesting.StubCardSpacingObjectValid(), {
+			KOMCardSpacingID: 'alfa-backward',
+		})), null);
 	});
 
 	context('KOMCardSpacingDueDate', function() {
