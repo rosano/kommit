@@ -60,7 +60,15 @@ const mod = {
 				return KOMCardModel.KOMCardModelPostJSONParse(param1);
 			},
 			
-			KOMStorageDelete (param1, param2) {
+			async KOMStorageDelete (param1, param2) {
+				await Promise.all((await uList(mod.KOMCardStorageFolderPath(param1, param2))).map(async function (e) {
+					if (e === mod.KOMCardStorageObjectPath(param1, param2)) {
+						return
+					}
+					
+					return await privateClient.remove(e);
+				}));
+				
 				return privateClient.remove(mod.KOMCardStorageObjectPath(param1, param2));
 			},
 			

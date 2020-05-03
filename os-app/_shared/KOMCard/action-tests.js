@@ -1,6 +1,7 @@
 const { rejects, deepEqual } = require('assert');
 
 const mainModule = require('./action.js').default;
+const KOMSpacingMetal = require('../KOMSpacing/metal.js').default;
 
 const kTesting = {
 	StubDeckObjectValid() {
@@ -136,14 +137,33 @@ describe('KOMCardActionDelete', function test_KOMCardActionDelete() {
 	});
 
 	it('returns statusCode', async function() {
-		deepEqual(await mainModule.KOMCardActionDelete(KOMTestingStorageClient, (await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObjectValid())), kTesting.StubDeckObjectValid()), {
+		deepEqual(await mainModule.KOMCardActionDelete(KOMTestingStorageClient, await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObjectValid()), kTesting.StubDeckObjectValid()), {
 			statusCode: 200,
 		});
 	});
 
 	it('deletes KOMCard', async function() {
-		await mainModule.KOMCardActionDelete(KOMTestingStorageClient, (await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObjectValid())), kTesting.StubDeckObjectValid());
+		await mainModule.KOMCardActionDelete(KOMTestingStorageClient, await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObjectValid()), kTesting.StubDeckObjectValid());
 		deepEqual(await mainModule.KOMCardActionList(KOMTestingStorageClient, kTesting.StubDeckObjectValid()), []);
+	});
+
+	it('deletes KOMSpacings', async function() {
+		const item = await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObjectValid());
+		
+		await KOMSpacingMetal.KOMSpacingMetalWrite(KOMTestingStorageClient, {
+			KOMSpacingID: `${ item.KOMCardID }-forward`,
+			KOMSpacingDueDate: new Date(),
+		}, item, kTesting.StubDeckObjectValid());
+
+		await mainModule.KOMCardActionDelete(KOMTestingStorageClient, item, kTesting.StubDeckObjectValid());
+		deepEqual(await KOMSpacingMetal.KOMSpacingMetalList(KOMTestingStorageClient, item, kTesting.StubDeckObjectValid()), {
+			forward: {
+				KOMSpacingID: `${ item.KOMCardID }-forward`,
+			},
+			backward: {
+				KOMSpacingID: `${ item.KOMCardID }-backward`,
+			},
+		});
 	});
 
 });
