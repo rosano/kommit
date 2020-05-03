@@ -161,45 +161,59 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		if (typeof inputData.KOMCardSpacingID !== 'string') {
-			return false;
-		}
+		var errors = {};
 
-		if (inputData.KOMCardSpacingID.trim() === '') {
-			return false;
+		if (typeof inputData.KOMCardSpacingID !== 'string') {
+			errors.KOMCardSpacingID = [
+				'KOMErrorNotString',
+			];
+		} else if (inputData.KOMCardSpacingID.trim() === '') {
+			errors.KOMCardSpacingID = [
+				'KOMErrorNotFilled',
+			];
 		}
 
 		if (inputData.KOMCardSpacingDueDate !== undefined || options.KOMOptionValidateIfNotPresent) {
 			if (!(inputData.KOMCardSpacingDueDate instanceof Date) || Number.isNaN(inputData.KOMCardSpacingDueDate.getTime())) {
-				return false;
+				errors.KOMCardSpacingDueDate = [
+					'KOMErrorNotDate',
+				];
 			}
 		}
 
 		if (inputData.KOMCardSpacingIsLearning !== undefined || options.KOMOptionValidateIfNotPresent) {
 			if (typeof inputData.KOMCardSpacingIsLearning !== 'boolean') {
-				return false;
+				errors.KOMCardSpacingIsLearning = [
+					'KOMErrorNotBoolean',
+				];
 			}
 		}
 
 		if (inputData.KOMCardSpacingIsReadyToGraduate !== undefined || options.KOMOptionValidateIfNotPresent) {
 			if (typeof inputData.KOMCardSpacingIsReadyToGraduate !== 'boolean') {
-				return false;
+				errors.KOMCardSpacingIsReadyToGraduate = [
+					'KOMErrorNotBoolean',
+				];
 			}
 		}
 
 		if (inputData.KOMCardSpacingInterval !== undefined || options.KOMOptionValidateIfNotPresent) {
 			if (typeof inputData.KOMCardSpacingInterval !== 'number') {
-				return false;
+				errors.KOMCardSpacingInterval = [
+					'KOMErrorNotNumber',
+				];
 			}
 		}
 
 		if (inputData.KOMCardSpacingMultiplier !== undefined || options.KOMOptionValidateIfNotPresent) {
 			if (typeof inputData.KOMCardSpacingMultiplier !== 'number') {
-				return false;
+				errors.KOMCardSpacingMultiplier = [
+					'KOMErrorNotNumber',
+				];
 			}
 		}
 
-		return true;
+		return Object.entries(errors).length ? errors : null;
 	},
 
 	KOMCardModelSpacingPreJSONSchemaValidate (inputData) {
