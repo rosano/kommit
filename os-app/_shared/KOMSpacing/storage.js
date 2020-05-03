@@ -32,8 +32,12 @@ const mod = {
 
 			async KOMStorageList (param1, param2) {
 				return {
-					forward: await privateClient.getObject(mod.KOMSpacingStoragePathForward(param1, param2)),
-					backward: await privateClient.getObject(mod.KOMSpacingStoragePathBackward(param1, param2)),
+					forward: await privateClient.getObject(mod.KOMSpacingStoragePathForward(param1, param2)) || {
+						KOMSpacingID: `${ param1.KOMCardID }-forward`
+					},
+					backward: await privateClient.getObject(mod.KOMSpacingStoragePathBackward(param1, param2)) || {
+						KOMSpacingID: `${ param1.KOMCardID }-backward`
+					},
 				};
 			},
 			
@@ -49,12 +53,11 @@ const mod = {
 			async _KOMStorageReset () {
 				return (await KOMStorageExports.__KOMStorageResetFakeDecks()).map(async function (deck) {
 					return (await KOMStorageExports.__KOMStorageResetFakeCards(deck)).map(async function (card) {
-						return Object.values(await KOMStorageExports.KOMStorageList(card, deck)).map(KOMSpacingModel.KOMSpacingModelPostJSONParse).map(function (e) {
-							if (!e) {
-								return;
-							}
-							
-							return KOMStorageExports.KOMStorageDelete(e, card, deck);
+						return [
+							mod.KOMSpacingStoragePathForward(card, deck),
+							mod.KOMSpacingStoragePathBackward(card, deck),
+						].map(async function (e) {
+							return await privateClient.getObject(e) && await privateClient.remove(e);
 						});
 					});
 				});
