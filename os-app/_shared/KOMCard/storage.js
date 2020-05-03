@@ -34,6 +34,14 @@ const mod = {
 		return `${ mod.KOMCardStorageFolderPath(param2) }${ param1.KOMCardCreationDate.toJSON().split('T').shift() }/${ param1.KOMCardID }/main`;
 	},
 
+	KOMCardStorageSpacingPathForward (param1, param2) {
+		return mod.KOMCardStorageObjectPath(param1, param2).replace('main', 'spacing-forward');
+	},
+
+	KOMCardStorageSpacingPathBackward (param1, param2) {
+		return mod.KOMCardStorageObjectPath(param1, param2).replace('main', 'spacing-backward');
+	},
+
 	KOMCardStorageBuild (privateClient, publicClient, changeDelegate) {
 		const KOMStorageExports = {
 
