@@ -156,6 +156,52 @@ const mod = {
 		return !!inputData.KOMCardReviewInterval;
 	},
 
+	KOMCardModelSpacingErrorsFor (inputData, options = {}) {
+		if (typeof inputData !== 'object' || inputData === null) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		if (typeof inputData.KOMCardSpacingID !== 'string') {
+			return false;
+		}
+
+		if (inputData.KOMCardSpacingID.trim() === '') {
+			return false;
+		}
+
+		if (inputData.KOMCardSpacingDueDate !== undefined || options.KOMOptionValidateIfNotPresent) {
+			if (!(inputData.KOMCardSpacingDueDate instanceof Date) || Number.isNaN(inputData.KOMCardSpacingDueDate.getTime())) {
+				return false;
+			}
+		}
+
+		if (inputData.KOMCardSpacingIsLearning !== undefined || options.KOMOptionValidateIfNotPresent) {
+			if (typeof inputData.KOMCardSpacingIsLearning !== 'boolean') {
+				return false;
+			}
+		}
+
+		if (inputData.KOMCardSpacingIsReadyToGraduate !== undefined || options.KOMOptionValidateIfNotPresent) {
+			if (typeof inputData.KOMCardSpacingIsReadyToGraduate !== 'boolean') {
+				return false;
+			}
+		}
+
+		if (inputData.KOMCardSpacingInterval !== undefined || options.KOMOptionValidateIfNotPresent) {
+			if (typeof inputData.KOMCardSpacingInterval !== 'number') {
+				return false;
+			}
+		}
+
+		if (inputData.KOMCardSpacingMultiplier !== undefined || options.KOMOptionValidateIfNotPresent) {
+			if (typeof inputData.KOMCardSpacingMultiplier !== 'number') {
+				return false;
+			}
+		}
+
+		return true;
+	},
+
 };
 
 export default mod;

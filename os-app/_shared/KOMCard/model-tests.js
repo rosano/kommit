@@ -12,6 +12,11 @@ const kTesting = {
 			KOMCardModificationDate: new Date('2019-02-23T13:56:36Z'),
 		};
 	},
+	StubCardSpacingObjectValid() {
+		return {
+			KOMCardSpacingID: 'bravo',
+		};
+	},
 };
 
 describe('KOMCardModelErrorsFor', function test_KOMCardModelErrorsFor() {
@@ -328,6 +333,112 @@ describe('KOMCardModelIsReviewing', function test_KOMCardModelIsReviewing() {
 		deepEqual(mainModule.KOMCardModelIsReviewing(Object.assign(kTesting.StubCardObjectValid(), {
 			KOMCardReviewInterval: 1,
 		})), 1);
+	});
+
+});
+
+describe('KOMCardModelSpacingErrorsFor', function test_KOMCardModelSpacingErrorsFor() {
+
+	it('throws error if not object', function() {
+		throws(function() {
+			mainModule.KOMCardModelSpacingErrorsFor(null);
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns false if KOMCardSpacingID not string', function() {
+		deepEqual(mainModule.KOMCardModelSpacingErrorsFor(Object.assign(kTesting.StubCardSpacingObjectValid(), {
+			KOMCardSpacingID: null,
+		})), false);
+	});
+
+	it('returns false if KOMCardSpacingID not filled', function() {
+		deepEqual(mainModule.KOMCardModelSpacingErrorsFor(Object.assign(kTesting.StubCardSpacingObjectValid(), {
+			KOMCardSpacingID: ' ',
+		})), false);
+	});
+
+	it('returns true', function() {
+		deepEqual(mainModule.KOMCardModelSpacingErrorsFor(kTesting.StubCardSpacingObjectValid()), true);
+	});
+
+	context('KOMCardSpacingDueDate', function() {
+
+		it('returns false if not date', function() {
+			deepEqual(mainModule.KOMCardModelSpacingErrorsFor(Object.assign(kTesting.StubCardSpacingObjectValid(), {
+				KOMCardSpacingDueDate: null,
+			})), false);
+		});
+
+		it('returns true', function() {
+			deepEqual(mainModule.KOMCardModelSpacingErrorsFor(Object.assign(kTesting.StubCardSpacingObjectValid(), {
+				KOMCardSpacingDueDate: new Date(),
+			})), true);
+		});
+
+	});
+
+	context('KOMCardSpacingIsLearning', function() {
+
+		it('returns false if not boolean', function() {
+			deepEqual(mainModule.KOMCardModelSpacingErrorsFor(Object.assign(kTesting.StubCardSpacingObjectValid(), {
+				KOMCardSpacingIsLearning: null,
+			})), false);
+		});
+
+		it('returns true', function() {
+			deepEqual(mainModule.KOMCardModelSpacingErrorsFor(Object.assign(kTesting.StubCardSpacingObjectValid(), {
+				KOMCardSpacingIsLearning: true,
+			})), true);
+		});
+
+	});
+
+	context('KOMCardSpacingIsReadyToGraduate', function() {
+
+		it('returns false if not boolean', function() {
+			deepEqual(mainModule.KOMCardModelSpacingErrorsFor(Object.assign(kTesting.StubCardSpacingObjectValid(), {
+				KOMCardSpacingIsReadyToGraduate: null,
+			})), false);
+		});
+
+		it('returns true', function() {
+			deepEqual(mainModule.KOMCardModelSpacingErrorsFor(Object.assign(kTesting.StubCardSpacingObjectValid(), {
+				KOMCardSpacingIsReadyToGraduate: true,
+			})), true);
+		});
+
+	});
+
+	context('KOMCardSpacingInterval', function() {
+
+		it('returns false if not number', function() {
+			deepEqual(mainModule.KOMCardModelSpacingErrorsFor(Object.assign(kTesting.StubCardSpacingObjectValid(), {
+				KOMCardSpacingInterval: null,
+			})), false);
+		});
+
+		it('returns true', function() {
+			deepEqual(mainModule.KOMCardModelSpacingErrorsFor(Object.assign(kTesting.StubCardSpacingObjectValid(), {
+				KOMCardSpacingInterval: 1,
+			})), true);
+		});
+
+	});
+
+	context('KOMCardSpacingMultiplier', function() {
+
+		it('returns false if not number', function() {
+			deepEqual(mainModule.KOMCardModelSpacingErrorsFor(Object.assign(kTesting.StubCardSpacingObjectValid(), {
+				KOMCardSpacingMultiplier: null,
+			})), false);
+		});
+
+		it('returns true', function() {
+			deepEqual(mainModule.KOMCardModelSpacingErrorsFor(Object.assign(kTesting.StubCardSpacingObjectValid(), {
+				KOMCardSpacingMultiplier: 1,
+			})), true);
+		});
+
 	});
 
 });
