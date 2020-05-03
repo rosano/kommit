@@ -202,6 +202,26 @@ const mod = {
 		return true;
 	},
 
+	KOMCardModelSpacingPreJSONSchemaValidate (inputData) {
+		if (inputData.KOMCardSpacingDueDate) {
+			inputData.KOMCardSpacingDueDate = inputData.KOMCardSpacingDueDate.toISOString();
+		}
+
+		return inputData;
+	},
+
+	KOMCardModelSpacingPostJSONParse (inputData) {
+		if (!inputData) {
+			return inputData;
+		}
+
+		if (inputData.KOMCardSpacingDueDate) {
+			inputData.KOMCardSpacingDueDate = new Date(inputData.KOMCardSpacingDueDate);
+		}
+
+		return inputData;
+	},
+
 };
 
 export default mod;

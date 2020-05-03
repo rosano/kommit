@@ -442,3 +442,39 @@ describe('KOMCardModelSpacingErrorsFor', function test_KOMCardModelSpacingErrors
 	});
 
 });
+
+describe('KOMCardModelSpacingPreJSONSchemaValidate', function test_KOMCardModelSpacingPreJSONSchemaValidate() {
+
+	it('returns input', function() {
+		deepEqual(mainModule.KOMCardModelSpacingPreJSONSchemaValidate({}), {});
+	});
+
+	it('returns input with KOMCardSpacingDueDate as string', function() {
+		deepEqual(mainModule.KOMCardModelSpacingPreJSONSchemaValidate({
+			KOMCardSpacingDueDate: new Date('2018-12-09T19:07:01.902Z'),
+		}), {
+			KOMCardSpacingDueDate: '2018-12-09T19:07:01.902Z',
+		});
+	});
+
+});
+
+describe('KOMCardModelSpacingPostJSONParse', function test_KOMCardModelSpacingPostJSONParse() {
+
+	it('returns input null', function() {
+		deepEqual(mainModule.KOMCardModelSpacingPostJSONParse(null), null);
+	});
+
+	it('returns input object', function() {
+		deepEqual(mainModule.KOMCardModelSpacingPostJSONParse({}), {});
+	});
+
+	it('returns input with KOMCardSpacingDueDate as date', function() {
+		deepEqual(mainModule.KOMCardModelSpacingPostJSONParse({
+			KOMCardSpacingDueDate: '2018-12-09T19:07:01.902Z',
+		}), {
+			KOMCardSpacingDueDate: new Date('2018-12-09T19:07:01.902Z'),
+		});
+	});
+
+});
