@@ -12,7 +12,7 @@ const kTesting = {
 	StubResponseObjectValid () {
 		return {
 			KOMPlayResponseType: mainModule.KOMPlayResponseTypeEasy(),
-			KOMPlayResponseDate: new Date(),
+			KOMPlayResponseDate: new Date('2019-02-24T12:00:00Z'),
 		};
 	},
 	StubCardObjectValid() {
@@ -538,7 +538,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		const uWait = function (inputData) {
 			return Object.assign(uState(kTesting.StubCardObjectValid(), [kTesting.StubCardObjectValid()]), {
 				KOMPlayStateCardsWait: [Object.assign(kTesting.StubCardObjectValid(), {
-					KOMCardReviewDueDate: new Date(Date.now() + inputData),
+					KOMCardReviewDueDate: new Date(kTesting.StubResponseObjectValid().KOMPlayResponseDate.valueOf() + inputData),
 				})],
 			});
 		};

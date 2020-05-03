@@ -334,7 +334,7 @@ const mod = {
 					return true;
 				}
 
-				return e.KOMCardReviewDueDate < new Date();
+				return e.KOMCardReviewDueDate < response.KOMPlayResponseDate;
 			}).reverse().forEach(function (e) {
 				state.KOMPlayStateCardsQueue.unshift(state.KOMPlayStateCardsWait.splice(state.KOMPlayStateCardsWait.indexOf(e), 1).pop());
 			});
