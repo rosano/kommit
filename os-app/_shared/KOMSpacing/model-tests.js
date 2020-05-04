@@ -12,6 +12,12 @@ const kTesting = {
 
 describe('KOMSpacingModelIdentifier', function test_KOMSpacingModelIdentifier() {
 
+	it('throws error if not string', function() {
+		throws(function() {
+			mainModule.KOMSpacingModelIdentifier(null);
+		}, /KOMErrorInputNotValid/);
+	});
+
 	it('throws error if not valid', function() {
 		throws(function() {
 			mainModule.KOMSpacingModelIdentifier('bravoforward');
@@ -25,6 +31,12 @@ describe('KOMSpacingModelIdentifier', function test_KOMSpacingModelIdentifier() 
 });
 
 describe('KOMSpacingModelLabel', function test_KOMSpacingModelLabel() {
+
+	it('throws error if not string', function() {
+		throws(function() {
+			mainModule.KOMSpacingModelLabel(null);
+		}, /KOMErrorInputNotValid/);
+	});
 
 	it('throws error if not valid', function() {
 		throws(function() {

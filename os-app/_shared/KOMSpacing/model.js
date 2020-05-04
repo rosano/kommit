@@ -1,6 +1,10 @@
 const mod = {
 
 	KOMSpacingModelIdentifier (inputData) {
+		if (typeof inputData !== 'string') {
+			throw new Error('KOMErrorInputNotValid');
+		}
+		
 		if (inputData.indexOf('-') === -1) {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -9,6 +13,10 @@ const mod = {
 	},
 
 	KOMSpacingModelLabel (inputData) {
+		if (typeof inputData !== 'string') {
+			throw new Error('KOMErrorInputNotValid');
+		}
+		
 		if (inputData.indexOf('-') === -1) {
 			throw new Error('KOMErrorInputNotValid');
 		}
