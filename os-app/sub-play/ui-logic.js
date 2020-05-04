@@ -32,21 +32,21 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		const cardsReview = mod._KOMPlaySortShuffle(inputData.filter(function (e) {
+		const outputData = mod._KOMPlaySortShuffle(inputData.filter(function (e) {
 			return e.KOMSpacingDueDate;
 		}));
 
-		const cardsNew = inputData.filter(function (e) {
+		const unseen = inputData.filter(function (e) {
 			return !e.KOMSpacingDueDate;
 		});
-		const spacing = Math.floor(cardsReview.length / (cardsNew.length + 1));
-		const cardsReviewLastIndex = cardsReview.length - 1;
+		const spacing = Math.floor(outputData.length / (unseen.length + 1));
+		const lastIndex = outputData.length - 1;
 		
-		mod._KOMPlaySortShuffle(cardsNew).map(function (e, i) {
-			return cardsReview.splice(cardsReviewLastIndex - spacing * (i + 1), 0, e);
+		mod._KOMPlaySortShuffle(unseen).map(function (e, i) {
+			return outputData.splice(lastIndex - spacing * (i + 1), 0, e);
 		});
 
-		return cardsReview;
+		return outputData;
 	},
 
 	//How to randomize (shuffle) a JavaScript array? - Stack Overflow https://stackoverflow.com/a/12646864

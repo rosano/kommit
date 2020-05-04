@@ -78,7 +78,7 @@ describe('KOMPlaySort', function test_KOMPlaySort() {
 	const uSlug = function (inputData) {
 		return inputData.map(function (e) {
 			return e.KOMSpacingID;
-		}).join('-');
+		}).join(',');
 	};
 
 	it('throws if not array', function () {
