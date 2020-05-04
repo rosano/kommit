@@ -100,6 +100,14 @@ const mod = {
 		return Object.entries(errors).length ? errors : null;
 	},
 
+	KOMSpacingModelIsBackward (inputData) {
+		if (mod.KOMSpacingModelErrorsFor(inputData)) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		return mod.KOMSpacingModelLabel(inputData.KOMSpacingID) === mod.KOMSpacingModelLabelBackward();
+	},
+
 	KOMSpacingModelPreJSONSchemaValidate (inputData) {
 		if (inputData.KOMSpacingDueDate) {
 			inputData.KOMSpacingDueDate = inputData.KOMSpacingDueDate.toISOString();
@@ -118,14 +126,6 @@ const mod = {
 		}
 
 		return inputData;
-	},
-
-	KOMSpacingModelIsForward (inputData) {
-		if (mod.KOMSpacingModelErrorsFor(inputData)) {
-			throw new Error('KOMErrorInputNotValid');
-		}
-
-		return mod.KOMSpacingModelLabel(inputData.KOMSpacingID) === mod.KOMSpacingModelLabelForward();
 	},
 
 };

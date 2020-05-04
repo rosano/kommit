@@ -42,12 +42,12 @@ const mod = {
 			},
 			
 			async KOMStorageWrite (param1, param2, param3) {
-				await privateClient.storeObject(kType, (KOMSpacingModel.KOMSpacingModelIsForward(param1) ? mod.KOMSpacingStoragePathForward : mod.KOMSpacingStoragePathBackward)(param2, param3), KOMSpacingModel.KOMSpacingModelPreJSONSchemaValidate(param1));
+				await privateClient.storeObject(kType, (KOMSpacingModel.KOMSpacingModelIsBackward(param1) ? mod.KOMSpacingStoragePathBackward : mod.KOMSpacingStoragePathForward)(param2, param3), KOMSpacingModel.KOMSpacingModelPreJSONSchemaValidate(param1));
 				return KOMSpacingModel.KOMSpacingModelPostJSONParse(param1);
 			},
 			
 			KOMStorageDelete (param1, param2, param3) {
-				return privateClient.remove((KOMSpacingModel.KOMSpacingModelIsForward(param1) ? mod.KOMSpacingStoragePathForward : mod.KOMSpacingStoragePathBackward)(param2, param3));
+				return privateClient.remove((KOMSpacingModel.KOMSpacingModelIsBackward(param1) ? mod.KOMSpacingStoragePathBackward : mod.KOMSpacingStoragePathForward)(param2, param3));
 			},
 			
 			async _KOMStorageReset () {

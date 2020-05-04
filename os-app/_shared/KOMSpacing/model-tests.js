@@ -223,22 +223,22 @@ describe('KOMSpacingModelErrorsFor', function test_KOMSpacingModelErrorsFor() {
 
 });
 
-describe('KOMSpacingModelIsForward', function() {
+describe('KOMSpacingModelIsBackward', function test_KOMSpacingModelIsBackward() {
 
 	it('throws if not valid', function () {
 		throws(function () {
-			mainModule.KOMSpacingModelIsForward({})
+			mainModule.KOMSpacingModelIsBackward({})
 		}, /KOMErrorInputNotValid/);
 	});
 
-	it('returns false if backward', function () {
-		deepEqual(mainModule.KOMSpacingModelIsForward(Object.assign(kTesting.StubSpacingObjectValid(), {
+	it('returns true if backward', function () {
+		deepEqual(mainModule.KOMSpacingModelIsBackward(Object.assign(kTesting.StubSpacingObjectValid(), {
 			KOMSpacingID: 'bravo-backward',
-		})), false);
+		})), true);
 	});
 
-	it('returns true', function () {
-		deepEqual(mainModule.KOMSpacingModelIsForward(kTesting.StubSpacingObjectValid()), true);
+	it('returns false', function () {
+		deepEqual(mainModule.KOMSpacingModelIsBackward(kTesting.StubSpacingObjectValid()), false);
 	});
 
 });
