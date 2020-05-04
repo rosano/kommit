@@ -33,11 +33,11 @@ const mod = {
 		}
 
 		const cardsReview = mod._KOMPlaySortShuffle(inputData.filter(function (e) {
-			return e.KOMCardReviewDueDate;
+			return e.KOMSpacingDueDate;
 		}));
 
 		const cardsNew = inputData.filter(function (e) {
-			return !e.KOMCardReviewDueDate;
+			return !e.KOMSpacingDueDate;
 		});
 		const spacing = Math.floor(cardsReview.length / (cardsNew.length + 1));
 		const cardsReviewLastIndex = cardsReview.length - 1;

@@ -24,6 +24,11 @@ const kTesting = {
 			KOMCardModificationDate: new Date('2019-02-23T13:56:36Z'),
 		};
 	},
+	StubSpacingObjectValid() {
+		return {
+			KOMSpacingID: 'bravo-forward',
+		};
+	},
 };
 
 const offset = (function(inputData) {
@@ -56,28 +61,28 @@ describe('KOMPlayDayGrouping', function test_KOMPlayDayGrouping() {
 
 describe('KOMPlaySort', function test_KOMPlaySort() {
 	
-	const uItems = function (inputData = 4) {
-		return Array.from(new Array(inputData)).map(function (e, i) {
-			return {
-				KOMCardID: (i + 1).toString(),
-				KOMCardQuestion: '',
-				KOMCardAnswer: '',
-				KOMCardCreationDate: new Date(),
-				KOMCardModificationDate: new Date(),
-			};
-		});
+	const uItems = function (param1 = 4, param2 = false) {
+		return Array.from(new Array(param1)).map(function (e, i) {
+			return Object.assign(kTesting.StubSpacingObjectValid(), {
+				KOMSpacingID: (i + 1).toString() + 'forward',
+			});
+		}).concat(param2 ? Array.from(new Array(param1)).map(function (e, i) {
+			return Object.assign(kTesting.StubSpacingObjectValid(), {
+				KOMSpacingID: (i + 1).toString() + 'backward',
+			});
+		}) : []);
 	};
 
 	const uSlug = function (inputData) {
 		return inputData.map(function (e) {
-			return e.KOMCardID;
+			return e.KOMSpacingID;
 		}).join('-');
 	};
 
 	const uNew = function (param1, param2) {
 		return param1.map(function (e, i) {
 			return Object.assign(e, {
-				KOMCardReviewDueDate: i >= param2 ? new Date() : undefined,
+				KOMSpacingDueDate: i >= param2 ? new Date() : undefined,
 			});
 		});
 	};
@@ -107,11 +112,11 @@ describe('KOMPlaySort', function test_KOMPlaySort() {
 		}).length > 1, true);
 	});
 
-	context('new_card_spacing', function () {
+	context('unseen', function () {
 		
 		it('spaces single', function() {
 			deepEqual(mainModule.KOMPlaySort(uNew(uItems(10), 1)).map(function (e, i) {
-				if (!e.KOMCardReviewDueDate) {
+				if (!e.KOMSpacingDueDate) {
 					return i;
 				}
 			}).join(''), '4');
@@ -119,7 +124,7 @@ describe('KOMPlaySort', function test_KOMPlaySort() {
 		
 		it('spaces multiple', function() {
 			deepEqual(mainModule.KOMPlaySort(uNew(uItems(10), 2)).map(function (e, i) {
-				if (!e.KOMCardReviewDueDate) {
+				if (!e.KOMSpacingDueDate) {
 					return i;
 				}
 			}).join(''), '36');
@@ -130,7 +135,7 @@ describe('KOMPlaySort', function test_KOMPlaySort() {
 
 			deepEqual(Array.from(new Array(10)).map(function (e) {
 				return uSlug(mainModule.KOMPlaySort(items).filter(function (e) {
-					return !e.KOMCardReviewDueDate;
+					return !e.KOMSpacingDueDate;
 				}));
 			}).filter(function (value, index, self) {
 				return self.indexOf(value) === index;
