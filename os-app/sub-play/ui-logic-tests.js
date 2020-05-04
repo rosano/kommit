@@ -6,23 +6,14 @@ const KOMSpacingModel = require('../_shared/KOMSpacing/model.js').default;
 const kTesting = {
 	StubStateObjectValid () {
 		return {
-			KOMPlayStateCardsQueue: [],
-			KOMPlayStateCardsWait: [],
+			KOMPlayStateQueue: [],
+			KOMPlayStateWait: [],
 		};
 	},
 	StubResponseObjectValid () {
 		return {
 			KOMPlayResponseType: mainModule.KOMPlayResponseTypeEasy(),
 			KOMPlayResponseDate: new Date('2019-02-24T12:00:00Z'),
-		};
-	},
-	StubCardObjectValid() {
-		return {
-			KOMCardID: 'alfa',
-			KOMCardQuestion: '',
-			KOMCardAnswer: '',
-			KOMCardCreationDate: new Date('2019-02-23T13:56:36Z'),
-			KOMCardModificationDate: new Date('2019-02-23T13:56:36Z'),
 		};
 	},
 	StubSpacingObjectValid() {
@@ -213,15 +204,15 @@ describe('KOMPlayStateIsValid', function test_KOMPlayStateIsValid() {
 		}, /KOMErrorInputNotValid/);
 	});
 
-	it('returns false if KOMPlayStateCardsQueue not array', function() {
+	it('returns false if KOMPlayStateQueue not array', function() {
 		deepEqual(mainModule.KOMPlayStateIsValid(Object.assign(kTesting.StubStateObjectValid(), {
-			KOMPlayStateCardsQueue: null,
+			KOMPlayStateQueue: null,
 		})), false);
 	});
 
-	it('returns false if KOMPlayStateCardsWait not array', function() {
+	it('returns false if KOMPlayStateWait not array', function() {
 		deepEqual(mainModule.KOMPlayStateIsValid(Object.assign(kTesting.StubStateObjectValid(), {
-			KOMPlayStateCardsWait: null,
+			KOMPlayStateWait: null,
 		})), false);
 	});
 
@@ -229,17 +220,17 @@ describe('KOMPlayStateIsValid', function test_KOMPlayStateIsValid() {
 		deepEqual(mainModule.KOMPlayStateIsValid(kTesting.StubStateObjectValid()), true);
 	});
 
-	context('KOMPlayStateCardCurrent', function () {
+	context('KOMPlayStateCurrent', function () {
 
 		it('returns false if not valid', function() {
 			deepEqual(mainModule.KOMPlayStateIsValid(Object.assign(kTesting.StubStateObjectValid(), {
-				KOMPlayStateCardCurrent: {},
+				KOMPlayStateCurrent: {},
 			})), false);
 		});
 
 		it('returns true', function() {
 			deepEqual(mainModule.KOMPlayStateIsValid(Object.assign(kTesting.StubStateObjectValid(), {
-				KOMPlayStateCardCurrent: null,
+				KOMPlayStateCurrent: null,
 			})), true);
 		});
 	
@@ -382,27 +373,27 @@ describe('KOMPlayResponseIntervalOverdueDays', function test_KOMPlayResponseInte
 
 	it('throws if param2 not valid', function () {
 		throws(function () {
-			mainModule.KOMPlayResponseIntervalOverdueDays(kTesting.StubCardObjectValid(), {});
+			mainModule.KOMPlayResponseIntervalOverdueDays(kTesting.StubSpacingObjectValid(), {});
 		}, /KOMErrorInputNotValid/);
 	});
 
-	it('returns 0 if no KOMCardReviewInterval', function() {
-		deepEqual(mainModule.KOMPlayResponseIntervalOverdueDays(kTesting.StubCardObjectValid(), kTesting.StubResponseObjectValid()), 0);
+	it('returns 0 if no KOMSpacingInterval', function() {
+		deepEqual(mainModule.KOMPlayResponseIntervalOverdueDays(kTesting.StubSpacingObjectValid(), kTesting.StubResponseObjectValid()), 0);
 	});
 
-	it('returns 0 if KOMCardReviewDueDate same day', function() {
-		deepEqual(mainModule.KOMPlayResponseIntervalOverdueDays(Object.assign(kTesting.StubCardObjectValid(), {
-			KOMCardReviewInterval: mainModule.KOMPlayResponseIntervalGraduateEasy(),
-			KOMCardReviewDueDate: new Date(`2020-05-02T12:00:00-${ offset }:00`),
+	it('returns 0 if KOMSpacingDueDate same day', function() {
+		deepEqual(mainModule.KOMPlayResponseIntervalOverdueDays(Object.assign(kTesting.StubSpacingObjectValid(), {
+			KOMSpacingInterval: mainModule.KOMPlayResponseIntervalGraduateEasy(),
+			KOMSpacingDueDate: new Date(`2020-05-02T12:00:00-${ offset }:00`),
 		}), Object.assign(kTesting.StubResponseObjectValid(), {
 			KOMPlayResponseDate: new Date(`2020-05-02T18:00:00-${ offset }:00`),
 		})), 0);
 	});
 
-	it('returns days if KOMCardReviewDueDate past', function() {
-		deepEqual(mainModule.KOMPlayResponseIntervalOverdueDays(Object.assign(kTesting.StubCardObjectValid(), {
-			KOMCardReviewInterval: mainModule.KOMPlayResponseIntervalGraduateEasy(),
-			KOMCardReviewDueDate: new Date(`2020-05-02T12:00:00-${ offset }:00`),
+	it('returns days if KOMSpacingDueDate past', function() {
+		deepEqual(mainModule.KOMPlayResponseIntervalOverdueDays(Object.assign(kTesting.StubSpacingObjectValid(), {
+			KOMSpacingInterval: mainModule.KOMPlayResponseIntervalGraduateEasy(),
+			KOMSpacingDueDate: new Date(`2020-05-02T12:00:00-${ offset }:00`),
 		}), Object.assign(kTesting.StubResponseObjectValid(), {
 			KOMPlayResponseDate: new Date(`2020-05-12T18:00:00-${ offset }:00`),
 		})), 10);
@@ -420,14 +411,14 @@ describe('KOMPlayResponseIntervalOverdueBonus', function test_KOMPlayResponseInt
 
 	it('throws if param2 not valid', function () {
 		throws(function () {
-			mainModule.KOMPlayResponseIntervalOverdueBonus(kTesting.StubCardObjectValid(), {});
+			mainModule.KOMPlayResponseIntervalOverdueBonus(kTesting.StubSpacingObjectValid(), {});
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns 0', function() {
-		deepEqual(mainModule.KOMPlayResponseIntervalOverdueBonus(Object.assign(kTesting.StubCardObjectValid(), {
-			KOMCardReviewInterval: mainModule.KOMPlayResponseIntervalGraduateEasy(),
-			KOMCardReviewDueDate: new Date(`2020-05-02T12:00:00-${ offset }:00`),
+		deepEqual(mainModule.KOMPlayResponseIntervalOverdueBonus(Object.assign(kTesting.StubSpacingObjectValid(), {
+			KOMSpacingInterval: mainModule.KOMPlayResponseIntervalGraduateEasy(),
+			KOMSpacingDueDate: new Date(`2020-05-02T12:00:00-${ offset }:00`),
 		}), Object.assign(kTesting.StubResponseObjectValid(), {
 			KOMPlayResponseType: mainModule.KOMPlayResponseTypeAgain(),
 			KOMPlayResponseDate: new Date(`2020-05-12T18:00:00-${ offset }:00`),
@@ -435,9 +426,9 @@ describe('KOMPlayResponseIntervalOverdueBonus', function test_KOMPlayResponseInt
 	});
 
 	it('adjusts if Hard', function() {
-		deepEqual(mainModule.KOMPlayResponseIntervalOverdueBonus(Object.assign(kTesting.StubCardObjectValid(), {
-			KOMCardReviewInterval: mainModule.KOMPlayResponseIntervalGraduateEasy(),
-			KOMCardReviewDueDate: new Date(`2020-05-02T12:00:00-${ offset }:00`),
+		deepEqual(mainModule.KOMPlayResponseIntervalOverdueBonus(Object.assign(kTesting.StubSpacingObjectValid(), {
+			KOMSpacingInterval: mainModule.KOMPlayResponseIntervalGraduateEasy(),
+			KOMSpacingDueDate: new Date(`2020-05-02T12:00:00-${ offset }:00`),
 		}), Object.assign(kTesting.StubResponseObjectValid(), {
 			KOMPlayResponseType: mainModule.KOMPlayResponseTypeHard(),
 			KOMPlayResponseDate: new Date(`2020-05-12T18:00:00-${ offset }:00`),
@@ -445,9 +436,9 @@ describe('KOMPlayResponseIntervalOverdueBonus', function test_KOMPlayResponseInt
 	});
 
 	it('adjusts if Good', function() {
-		deepEqual(mainModule.KOMPlayResponseIntervalOverdueBonus(Object.assign(kTesting.StubCardObjectValid(), {
-			KOMCardReviewInterval: mainModule.KOMPlayResponseIntervalGraduateEasy(),
-			KOMCardReviewDueDate: new Date(`2020-05-02T12:00:00-${ offset }:00`),
+		deepEqual(mainModule.KOMPlayResponseIntervalOverdueBonus(Object.assign(kTesting.StubSpacingObjectValid(), {
+			KOMSpacingInterval: mainModule.KOMPlayResponseIntervalGraduateEasy(),
+			KOMSpacingDueDate: new Date(`2020-05-02T12:00:00-${ offset }:00`),
 		}), Object.assign(kTesting.StubResponseObjectValid(), {
 			KOMPlayResponseType: mainModule.KOMPlayResponseTypeGood(),
 			KOMPlayResponseDate: new Date(`2020-05-12T18:00:00-${ offset }:00`),
@@ -455,9 +446,9 @@ describe('KOMPlayResponseIntervalOverdueBonus', function test_KOMPlayResponseInt
 	});
 
 	it('adjusts if Easy', function() {
-		deepEqual(mainModule.KOMPlayResponseIntervalOverdueBonus(Object.assign(kTesting.StubCardObjectValid(), {
-			KOMCardReviewInterval: mainModule.KOMPlayResponseIntervalGraduateEasy(),
-			KOMCardReviewDueDate: new Date(`2020-05-02T12:00:00-${ offset }:00`),
+		deepEqual(mainModule.KOMPlayResponseIntervalOverdueBonus(Object.assign(kTesting.StubSpacingObjectValid(), {
+			KOMSpacingInterval: mainModule.KOMPlayResponseIntervalGraduateEasy(),
+			KOMSpacingDueDate: new Date(`2020-05-02T12:00:00-${ offset }:00`),
 		}), Object.assign(kTesting.StubResponseObjectValid(), {
 			KOMPlayResponseType: mainModule.KOMPlayResponseTypeEasy(),
 			KOMPlayResponseDate: new Date(`2020-05-12T18:00:00-${ offset }:00`),
@@ -560,8 +551,8 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 	const uState = function (param1, param2 = []) {
 		return Object.assign(kTesting.StubStateObjectValid(), {
-			KOMPlayStateCardsQueue: [].concat(param2),
-			KOMPlayStateCardCurrent: param1,
+			KOMPlayStateQueue: [].concat(param2),
+			KOMPlayStateCurrent: param1,
 		});
 	};
 	
@@ -578,64 +569,64 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 	});
 
 	it('returns param2', function() {
-		const state = uState(kTesting.StubCardObjectValid());
-		deepEqual(mainModule.KOMPlayRespond(state, kTesting.StubResponseObjectValid()) === state, true);
+		const item = uState(kTesting.StubSpacingObjectValid());
+		deepEqual(mainModule.KOMPlayRespond(item, kTesting.StubResponseObjectValid()) === item, true);
 	});
 
-	context('KOMPlayStateCardCurrent', function () {
+	context('KOMPlayStateCurrent', function () {
 		
-		it('sets to null if no cards', function () {
-			deepEqual(mainModule.KOMPlayRespond(uState(kTesting.StubCardObjectValid()), kTesting.StubResponseObjectValid()), Object.assign(uState(), {
-				KOMPlayStateCardCurrent: null,
+		it('sets to null if queue empty', function () {
+			deepEqual(mainModule.KOMPlayRespond(uState(kTesting.StubSpacingObjectValid()), kTesting.StubResponseObjectValid()), Object.assign(uState(), {
+				KOMPlayStateCurrent: null,
 			}));
 		});
 
 		it('sets to first in queue', function () {
-			const card = kTesting.StubCardObjectValid();
-			deepEqual(mainModule.KOMPlayRespond(uState(kTesting.StubCardObjectValid(), card), kTesting.StubResponseObjectValid()).KOMPlayStateCardCurrent === card, true);
+			const item = kTesting.StubSpacingObjectValid();
+			deepEqual(mainModule.KOMPlayRespond(uState(kTesting.StubSpacingObjectValid(), item), kTesting.StubResponseObjectValid()).KOMPlayStateCurrent === item, true);
 		});
 	
 	});
 
-	context('KOMPlayStateCardsWait', function () {
+	context('KOMPlayStateWait', function () {
 
 		const uWait = function (inputData) {
-			return Object.assign(uState(kTesting.StubCardObjectValid(), [kTesting.StubCardObjectValid()]), {
-				KOMPlayStateCardsWait: [Object.assign(kTesting.StubCardObjectValid(), {
-					KOMCardReviewDueDate: new Date(kTesting.StubResponseObjectValid().KOMPlayResponseDate.valueOf() + inputData),
+			return Object.assign(uState(kTesting.StubSpacingObjectValid(), [kTesting.StubSpacingObjectValid()]), {
+				KOMPlayStateWait: [Object.assign(kTesting.StubSpacingObjectValid(), {
+					KOMSpacingDueDate: new Date(kTesting.StubResponseObjectValid().KOMPlayResponseDate.valueOf() + inputData),
 				})],
 			});
 		};
 		
 		it('moves to queue if overdue', function () {
 			const state = uWait(-1000);
-			const queue = state.KOMPlayStateCardsQueue.slice();
-			const first = state.KOMPlayStateCardsWait.slice()[0];
+			const queue = state.KOMPlayStateQueue.slice();
+			const first = state.KOMPlayStateWait.slice()[0];
 			deepEqual(mainModule.KOMPlayRespond(state, kTesting.StubResponseObjectValid()), Object.assign(uWait(-1000), {
-				KOMPlayStateCardCurrent: first,
-				KOMPlayStateCardsQueue: queue,
-				KOMPlayStateCardsWait: [],
+				KOMPlayStateCurrent: first,
+				KOMPlayStateQueue: queue,
+				KOMPlayStateWait: [],
 			}));
 		});
 		
-		it('moves to queue if no other cards', function () {
+		it('moves to queue if queue empty', function () {
 			const state = Object.assign(uWait(1000), {
-				KOMPlayStateCardsQueue: [],
+				KOMPlayStateQueue: [],
 			});
-			const wait = (state.KOMPlayStateCardsWait = state.KOMPlayStateCardsWait.concat(state.KOMPlayStateCardsWait.slice())).slice();
+			const wait = (state.KOMPlayStateWait = state.KOMPlayStateWait.concat(state.KOMPlayStateWait.slice())).slice();
 			deepEqual(mainModule.KOMPlayRespond(state, kTesting.StubResponseObjectValid()), Object.assign(uWait(1000), {
-				KOMPlayStateCardCurrent: wait[0],
-				KOMPlayStateCardsQueue: wait.slice(1),
-				KOMPlayStateCardsWait: [],
+				KOMPlayStateCurrent: wait[0],
+				KOMPlayStateQueue: wait.slice(1),
+				KOMPlayStateWait: [],
 			}));
 		});
 		
 		it('does nothing', function () {
 			const state = uWait(1000);
-			const first = state.KOMPlayStateCardsQueue[0];
+			const first = state.KOMPlayStateQueue[0];
 			deepEqual(mainModule.KOMPlayRespond(state, kTesting.StubResponseObjectValid()), Object.assign(uWait(1000), {
-				KOMPlayStateCardCurrent: first,
-				KOMPlayStateCardsQueue: [],
+				KOMPlayStateCurrent: first,
+				KOMPlayStateQueue: [],
 			}));
 		});
 
@@ -646,8 +637,8 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		const uIntervals = function (param1, param2 = 0) {
 			return Array.from(new Array(10)).map(function () {
 				const date = new Date();
-				const card = kTesting.StubCardObjectValid();
-				const state = Object.assign(uState(card), {
+				const spacing = kTesting.StubSpacingObjectValid();
+				const state = Object.assign(uState(spacing), {
 					KOMPlayStateShouldRandomize: true,
 				});
 				const response = Object.assign(kTesting.StubResponseObjectValid(), {
@@ -660,15 +651,15 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 				response.KOMPlayResponseType = mainModule.KOMPlayResponseTypeGood();
 
 				for (var i = 0; i < param1; i++) {
-					state.KOMPlayStateCardCurrent = card;
+					state.KOMPlayStateCurrent = spacing;
 					mainModule.KOMPlayRespond(state, response);
 				};
 
-				return Math.abs(card.KOMCardReviewInterval - param2);
+				return Math.abs(spacing.KOMSpacingInterval - param2);
 			});
 		};
 
-		it('randomizes KOMCardReviewInterval', function() {
+		it('randomizes KOMSpacingInterval', function() {
 			deepEqual(uIntervals(1).filter(function (value, index, self) {
 				return self.indexOf(value) === index;
 			}).length > 1, true);
@@ -732,8 +723,8 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 	context('unseen_and_Again', function test_unseen_and_Again () {
 
-		const card = kTesting.StubCardObjectValid();
-		const state = uState(card, [kTesting.StubCardObjectValid()]);
+		const spacing = kTesting.StubSpacingObjectValid();
+		const state = uState(spacing, [kTesting.StubSpacingObjectValid()]);
 		const response = Object.assign(kTesting.StubResponseObjectValid(), {
 			KOMPlayResponseType: mainModule.KOMPlayResponseTypeAgain(),
 		});
@@ -742,17 +733,17 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 			mainModule.KOMPlayRespond(state, response);	
 		});
 		
-		it('updates card', function() {
-			deepEqual(card, Object.assign(kTesting.StubCardObjectValid(), {
-				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + mainModule.KOMPlayResponseIntervalAgain()),
-				KOMCardReviewIsLearning: true,
+		it('updates spacing', function() {
+			deepEqual(spacing, Object.assign(kTesting.StubSpacingObjectValid(), {
+				KOMSpacingDueDate: new Date(response.KOMPlayResponseDate.valueOf() + mainModule.KOMPlayResponseIntervalAgain()),
+				KOMSpacingIsLearning: true,
 			}));
 		});
 		
 		it('updates state', function() {
 			deepEqual(state, Object.assign(uState(), {
-				KOMPlayStateCardCurrent: kTesting.StubCardObjectValid(),
-				KOMPlayStateCardsWait: [card],
+				KOMPlayStateCurrent: kTesting.StubSpacingObjectValid(),
+				KOMPlayStateWait: [spacing],
 			}));
 		});
 	
@@ -760,8 +751,8 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 	context('unseen_and_Hard', function test_unseen_and_Hard () {
 		
-		const card = kTesting.StubCardObjectValid();
-		const state = uState(card, [kTesting.StubCardObjectValid()]);
+		const spacing = kTesting.StubSpacingObjectValid();
+		const state = uState(spacing, [kTesting.StubSpacingObjectValid()]);
 		const response = Object.assign(kTesting.StubResponseObjectValid(), {
 			KOMPlayResponseType: mainModule.KOMPlayResponseTypeHard(),
 		});
@@ -770,17 +761,17 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 			mainModule.KOMPlayRespond(state, response);
 		});
 		
-		it('updates card', function() {
-			deepEqual(card, Object.assign(kTesting.StubCardObjectValid(), {
-				KOMCardReviewIsLearning: true,
-				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + mainModule.KOMPlayResponseIntervalLearn1()),
+		it('updates spacing', function() {
+			deepEqual(spacing, Object.assign(kTesting.StubSpacingObjectValid(), {
+				KOMSpacingIsLearning: true,
+				KOMSpacingDueDate: new Date(response.KOMPlayResponseDate.valueOf() + mainModule.KOMPlayResponseIntervalLearn1()),
 			}));
 		});
 		
 		it('updates state', function() {
 			deepEqual(state, Object.assign(uState(), {
-				KOMPlayStateCardCurrent: kTesting.StubCardObjectValid(),
-				KOMPlayStateCardsWait: [card],
+				KOMPlayStateCurrent: kTesting.StubSpacingObjectValid(),
+				KOMPlayStateWait: [spacing],
 			}));
 		});
 	
@@ -788,8 +779,8 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 	context('unseen_and_Good', function test_unseen_and_Good () {
 		
-		const card = kTesting.StubCardObjectValid();
-		const state = uState(card, [kTesting.StubCardObjectValid()]);
+		const spacing = kTesting.StubSpacingObjectValid();
+		const state = uState(spacing, [kTesting.StubSpacingObjectValid()]);
 		const response = Object.assign(kTesting.StubResponseObjectValid(), {
 			KOMPlayResponseType: mainModule.KOMPlayResponseTypeGood(),
 		});
@@ -798,17 +789,17 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 			mainModule.KOMPlayRespond(state, response);
 		});
 		
-		it('updates card', function() {
-			deepEqual(card, Object.assign(kTesting.StubCardObjectValid(), {
-				KOMCardReviewIsLearning: true,
-				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + mainModule.KOMPlayResponseIntervalLearn1()),
+		it('updates spacing', function() {
+			deepEqual(spacing, Object.assign(kTesting.StubSpacingObjectValid(), {
+				KOMSpacingIsLearning: true,
+				KOMSpacingDueDate: new Date(response.KOMPlayResponseDate.valueOf() + mainModule.KOMPlayResponseIntervalLearn1()),
 			}));
 		});
 		
 		it('updates state', function() {
 			deepEqual(state, Object.assign(uState(), {
-				KOMPlayStateCardCurrent: kTesting.StubCardObjectValid(),
-				KOMPlayStateCardsWait: [card],
+				KOMPlayStateCurrent: kTesting.StubSpacingObjectValid(),
+				KOMPlayStateWait: [spacing],
 			}));
 		});
 	
@@ -816,8 +807,8 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 	context('unseen_and_Easy', function test_unseen_and_Easy () {
 		
-		const card = kTesting.StubCardObjectValid();
-		const state = uState(card);
+		const spacing = kTesting.StubSpacingObjectValid();
+		const state = uState(spacing);
 		const response = Object.assign(kTesting.StubResponseObjectValid(), {
 			KOMPlayResponseType: mainModule.KOMPlayResponseTypeEasy(),
 		});
@@ -826,11 +817,11 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 			mainModule.KOMPlayRespond(state, response);
 		});
 		
-		it('updates card', function() {
-			deepEqual(card, Object.assign(kTesting.StubCardObjectValid(), {
-				KOMCardReviewInterval: mainModule.KOMPlayResponseIntervalGraduateEasy(),
-				KOMCardReviewMultiplier: mainModule.KOMPlayResponseMultiplierDefault(),
-				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * mainModule.KOMPlayResponseIntervalGraduateEasy()),
+		it('updates spacing', function() {
+			deepEqual(spacing, Object.assign(kTesting.StubSpacingObjectValid(), {
+				KOMSpacingInterval: mainModule.KOMPlayResponseIntervalGraduateEasy(),
+				KOMSpacingMultiplier: mainModule.KOMPlayResponseMultiplierDefault(),
+				KOMSpacingDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * mainModule.KOMPlayResponseIntervalGraduateEasy()),
 			}));
 		});
 		
@@ -842,8 +833,8 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 	context('learning_and_Again', function test_learning_and_Again () {
 
-		const card = kTesting.StubCardObjectValid();
-		const state = uState(card, [kTesting.StubCardObjectValid()]);
+		const spacing = kTesting.StubSpacingObjectValid();
+		const state = uState(spacing, [kTesting.StubSpacingObjectValid()]);
 		const response = Object.assign(kTesting.StubResponseObjectValid(), {
 			KOMPlayResponseType: mainModule.KOMPlayResponseTypeAgain(),
 		});
@@ -853,25 +844,25 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		});
 		
 		before(function () {
-			state.KOMPlayStateCardsQueue.unshift(state.KOMPlayStateCardCurrent);
-			state.KOMPlayStateCardCurrent = state.KOMPlayStateCardsWait.pop();
+			state.KOMPlayStateQueue.unshift(state.KOMPlayStateCurrent);
+			state.KOMPlayStateCurrent = state.KOMPlayStateWait.pop();
 
 			mainModule.KOMPlayRespond(state, Object.assign(response, {
-				KOMPlayResponseDate: state.KOMPlayStateCardCurrent.KOMCardReviewDueDate,
+				KOMPlayResponseDate: state.KOMPlayStateCurrent.KOMSpacingDueDate,
 			}));	
 		});
 		
-		it('updates card', function() {
-			deepEqual(card, Object.assign(kTesting.StubCardObjectValid(), {
-				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + mainModule.KOMPlayResponseIntervalAgain()),
-				KOMCardReviewIsLearning: true,
+		it('updates spacing', function() {
+			deepEqual(spacing, Object.assign(kTesting.StubSpacingObjectValid(), {
+				KOMSpacingDueDate: new Date(response.KOMPlayResponseDate.valueOf() + mainModule.KOMPlayResponseIntervalAgain()),
+				KOMSpacingIsLearning: true,
 			}));
 		});
 		
 		it('updates state', function() {
 			deepEqual(state, Object.assign(uState(), {
-				KOMPlayStateCardCurrent: kTesting.StubCardObjectValid(),
-				KOMPlayStateCardsWait: [card],
+				KOMPlayStateCurrent: kTesting.StubSpacingObjectValid(),
+				KOMPlayStateWait: [spacing],
 			}));
 		});
 	
@@ -879,8 +870,8 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 	context('learning_and_Hard', function test_learning_and_Hard () {
 		
-		const card = kTesting.StubCardObjectValid();
-		const state = uState(card, [kTesting.StubCardObjectValid()]);
+		const spacing = kTesting.StubSpacingObjectValid();
+		const state = uState(spacing, [kTesting.StubSpacingObjectValid()]);
 		const response = Object.assign(kTesting.StubResponseObjectValid(), {
 			KOMPlayResponseType: mainModule.KOMPlayResponseTypeHard(),
 		});
@@ -890,26 +881,26 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		});
 		
 		before(function () {
-			state.KOMPlayStateCardsQueue.unshift(state.KOMPlayStateCardCurrent);
-			state.KOMPlayStateCardCurrent = state.KOMPlayStateCardsWait.pop();
+			state.KOMPlayStateQueue.unshift(state.KOMPlayStateCurrent);
+			state.KOMPlayStateCurrent = state.KOMPlayStateWait.pop();
 
 			mainModule.KOMPlayRespond(state, Object.assign(response, {
-				KOMPlayResponseDate: state.KOMPlayStateCardCurrent.KOMCardReviewDueDate,
+				KOMPlayResponseDate: state.KOMPlayStateCurrent.KOMSpacingDueDate,
 			}));	
 		});
 		
-		it('updates card', function() {
-			deepEqual(card, Object.assign(kTesting.StubCardObjectValid(), {
-				KOMCardReviewIsLearning: true,
-				KOMCardReviewIsReadyToGraduate: true,
-				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + mainModule.KOMPlayResponseIntervalLearn2()),
+		it('updates spacing', function() {
+			deepEqual(spacing, Object.assign(kTesting.StubSpacingObjectValid(), {
+				KOMSpacingIsLearning: true,
+				KOMSpacingIsReadyToGraduate: true,
+				KOMSpacingDueDate: new Date(response.KOMPlayResponseDate.valueOf() + mainModule.KOMPlayResponseIntervalLearn2()),
 			}));
 		});
 		
 		it('updates state', function() {
 			deepEqual(state, Object.assign(uState(), {
-				KOMPlayStateCardCurrent: kTesting.StubCardObjectValid(),
-				KOMPlayStateCardsWait: [card],
+				KOMPlayStateCurrent: kTesting.StubSpacingObjectValid(),
+				KOMPlayStateWait: [spacing],
 			}));
 		});
 	
@@ -917,8 +908,8 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 	context('learning_and_Good', function test_learning_and_Good () {
 		
-		const card = kTesting.StubCardObjectValid();
-		const state = uState(card, [kTesting.StubCardObjectValid()]);
+		const spacing = kTesting.StubSpacingObjectValid();
+		const state = uState(spacing, [kTesting.StubSpacingObjectValid()]);
 		const response = Object.assign(kTesting.StubResponseObjectValid(), {
 			KOMPlayResponseType: mainModule.KOMPlayResponseTypeGood(),
 		});
@@ -928,26 +919,26 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		});
 		
 		before(function () {
-			state.KOMPlayStateCardsQueue.unshift(state.KOMPlayStateCardCurrent);
-			state.KOMPlayStateCardCurrent = state.KOMPlayStateCardsWait.pop();
+			state.KOMPlayStateQueue.unshift(state.KOMPlayStateCurrent);
+			state.KOMPlayStateCurrent = state.KOMPlayStateWait.pop();
 
 			mainModule.KOMPlayRespond(state, Object.assign(response, {
-				KOMPlayResponseDate: state.KOMPlayStateCardCurrent.KOMCardReviewDueDate,
+				KOMPlayResponseDate: state.KOMPlayStateCurrent.KOMSpacingDueDate,
 			}));	
 		});
 		
-		it('updates card', function() {
-			deepEqual(card, Object.assign(kTesting.StubCardObjectValid(), {
-				KOMCardReviewIsLearning: true,
-				KOMCardReviewIsReadyToGraduate: true,
-				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + mainModule.KOMPlayResponseIntervalLearn2()),
+		it('updates spacing', function() {
+			deepEqual(spacing, Object.assign(kTesting.StubSpacingObjectValid(), {
+				KOMSpacingIsLearning: true,
+				KOMSpacingIsReadyToGraduate: true,
+				KOMSpacingDueDate: new Date(response.KOMPlayResponseDate.valueOf() + mainModule.KOMPlayResponseIntervalLearn2()),
 			}));
 		});
 		
 		it('updates state', function() {
 			deepEqual(state, Object.assign(uState(), {
-				KOMPlayStateCardCurrent: kTesting.StubCardObjectValid(),
-				KOMPlayStateCardsWait: [card],
+				KOMPlayStateCurrent: kTesting.StubSpacingObjectValid(),
+				KOMPlayStateWait: [spacing],
 			}));
 		});
 	
@@ -955,8 +946,8 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 	context('learning_and_Easy', function test_learning_and_Easy () {
 		
-		const card = kTesting.StubCardObjectValid();
-		const state = uState(card, [kTesting.StubCardObjectValid()]);
+		const spacing = kTesting.StubSpacingObjectValid();
+		const state = uState(spacing, [kTesting.StubSpacingObjectValid()]);
 		const response = Object.assign(kTesting.StubResponseObjectValid(), {
 			KOMPlayResponseType: mainModule.KOMPlayResponseTypeGood(),
 		});
@@ -966,26 +957,26 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		});
 		
 		before(function () {
-			state.KOMPlayStateCardsQueue.unshift(state.KOMPlayStateCardCurrent);
-			state.KOMPlayStateCardCurrent = state.KOMPlayStateCardsWait.pop();
+			state.KOMPlayStateQueue.unshift(state.KOMPlayStateCurrent);
+			state.KOMPlayStateCurrent = state.KOMPlayStateWait.pop();
 
 			mainModule.KOMPlayRespond(state, Object.assign(response, {
-				KOMPlayResponseDate: state.KOMPlayStateCardCurrent.KOMCardReviewDueDate,
+				KOMPlayResponseDate: state.KOMPlayStateCurrent.KOMSpacingDueDate,
 				KOMPlayResponseType: mainModule.KOMPlayResponseTypeEasy(),
 			}));	
 		});
 		
-		it('updates card', function() {
-			deepEqual(card, Object.assign(kTesting.StubCardObjectValid(), {
-				KOMCardReviewInterval: mainModule.KOMPlayResponseIntervalGraduateEasy(),
-				KOMCardReviewMultiplier: mainModule.KOMPlayResponseMultiplierDefault(),
-				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * mainModule.KOMPlayResponseIntervalGraduateEasy()),
+		it('updates spacing', function() {
+			deepEqual(spacing, Object.assign(kTesting.StubSpacingObjectValid(), {
+				KOMSpacingInterval: mainModule.KOMPlayResponseIntervalGraduateEasy(),
+				KOMSpacingMultiplier: mainModule.KOMPlayResponseMultiplierDefault(),
+				KOMSpacingDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * mainModule.KOMPlayResponseIntervalGraduateEasy()),
 			}));
 		});
 		
 		it('updates state', function() {
 			deepEqual(state, Object.assign(uState(), {
-				KOMPlayStateCardCurrent: kTesting.StubCardObjectValid(),
+				KOMPlayStateCurrent: kTesting.StubSpacingObjectValid(),
 			}));
 		});
 	
@@ -993,8 +984,8 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 	context('graduate_Hard', function test_graduate_Hard () {
 		
-		const card = kTesting.StubCardObjectValid();
-		const state = uState(card, [kTesting.StubCardObjectValid()]);
+		const spacing = kTesting.StubSpacingObjectValid();
+		const state = uState(spacing, [kTesting.StubSpacingObjectValid()]);
 		const response = Object.assign(kTesting.StubResponseObjectValid(), {
 			KOMPlayResponseType: mainModule.KOMPlayResponseTypeHard(),
 		});
@@ -1004,34 +995,34 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		});
 		
 		before(function () {
-			state.KOMPlayStateCardsQueue.unshift(state.KOMPlayStateCardCurrent);
-			state.KOMPlayStateCardCurrent = state.KOMPlayStateCardsWait.pop();
+			state.KOMPlayStateQueue.unshift(state.KOMPlayStateCurrent);
+			state.KOMPlayStateCurrent = state.KOMPlayStateWait.pop();
 
 			mainModule.KOMPlayRespond(state, Object.assign(response, {
-				KOMPlayResponseDate: state.KOMPlayStateCardCurrent.KOMCardReviewDueDate,
+				KOMPlayResponseDate: state.KOMPlayStateCurrent.KOMSpacingDueDate,
 			}));	
 		});
 		
 		before(function () {
-			state.KOMPlayStateCardsQueue.unshift(state.KOMPlayStateCardCurrent);
-			state.KOMPlayStateCardCurrent = state.KOMPlayStateCardsWait.pop();
+			state.KOMPlayStateQueue.unshift(state.KOMPlayStateCurrent);
+			state.KOMPlayStateCurrent = state.KOMPlayStateWait.pop();
 
 			mainModule.KOMPlayRespond(state, Object.assign(response, {
-				KOMPlayResponseDate: state.KOMPlayStateCardCurrent.KOMCardReviewDueDate,
+				KOMPlayResponseDate: state.KOMPlayStateCurrent.KOMSpacingDueDate,
 			}));	
 		});
 		
-		it('updates card', function() {
-			deepEqual(card, Object.assign(kTesting.StubCardObjectValid(), {
-				KOMCardReviewInterval: mainModule.KOMPlayResponseIntervalGraduateDefault(),
-				KOMCardReviewMultiplier: mainModule.KOMPlayResponseMultiplierDefault(),
-				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * mainModule.KOMPlayResponseIntervalGraduateDefault()),
+		it('updates spacing', function() {
+			deepEqual(spacing, Object.assign(kTesting.StubSpacingObjectValid(), {
+				KOMSpacingInterval: mainModule.KOMPlayResponseIntervalGraduateDefault(),
+				KOMSpacingMultiplier: mainModule.KOMPlayResponseMultiplierDefault(),
+				KOMSpacingDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * mainModule.KOMPlayResponseIntervalGraduateDefault()),
 			}));
 		});
 		
 		it('updates state', function() {
 			deepEqual(state, Object.assign(uState(), {
-				KOMPlayStateCardCurrent: kTesting.StubCardObjectValid(),
+				KOMPlayStateCurrent: kTesting.StubSpacingObjectValid(),
 			}));
 		});
 	
@@ -1039,8 +1030,8 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 	context('graduate_Good', function test_graduate_Good () {
 		
-		const card = kTesting.StubCardObjectValid();
-		const state = uState(card, [kTesting.StubCardObjectValid()]);
+		const spacing = kTesting.StubSpacingObjectValid();
+		const state = uState(spacing, [kTesting.StubSpacingObjectValid()]);
 		const response = Object.assign(kTesting.StubResponseObjectValid(), {
 			KOMPlayResponseType: mainModule.KOMPlayResponseTypeGood(),
 		});
@@ -1050,34 +1041,34 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		});
 		
 		before(function () {
-			state.KOMPlayStateCardsQueue.unshift(state.KOMPlayStateCardCurrent);
-			state.KOMPlayStateCardCurrent = state.KOMPlayStateCardsWait.pop();
+			state.KOMPlayStateQueue.unshift(state.KOMPlayStateCurrent);
+			state.KOMPlayStateCurrent = state.KOMPlayStateWait.pop();
 
 			mainModule.KOMPlayRespond(state, Object.assign(response, {
-				KOMPlayResponseDate: state.KOMPlayStateCardCurrent.KOMCardReviewDueDate,
+				KOMPlayResponseDate: state.KOMPlayStateCurrent.KOMSpacingDueDate,
 			}));	
 		});
 		
 		before(function () {
-			state.KOMPlayStateCardsQueue.unshift(state.KOMPlayStateCardCurrent);
-			state.KOMPlayStateCardCurrent = state.KOMPlayStateCardsWait.pop();
+			state.KOMPlayStateQueue.unshift(state.KOMPlayStateCurrent);
+			state.KOMPlayStateCurrent = state.KOMPlayStateWait.pop();
 
 			mainModule.KOMPlayRespond(state, Object.assign(response, {
-				KOMPlayResponseDate: state.KOMPlayStateCardCurrent.KOMCardReviewDueDate,
+				KOMPlayResponseDate: state.KOMPlayStateCurrent.KOMSpacingDueDate,
 			}));	
 		});
 		
-		it('updates card', function() {
-			deepEqual(card, Object.assign(kTesting.StubCardObjectValid(), {
-				KOMCardReviewInterval: mainModule.KOMPlayResponseIntervalGraduateDefault(),
-				KOMCardReviewMultiplier: mainModule.KOMPlayResponseMultiplierDefault(),
-				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * mainModule.KOMPlayResponseIntervalGraduateDefault()),
+		it('updates spacing', function() {
+			deepEqual(spacing, Object.assign(kTesting.StubSpacingObjectValid(), {
+				KOMSpacingInterval: mainModule.KOMPlayResponseIntervalGraduateDefault(),
+				KOMSpacingMultiplier: mainModule.KOMPlayResponseMultiplierDefault(),
+				KOMSpacingDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * mainModule.KOMPlayResponseIntervalGraduateDefault()),
 			}));
 		});
 		
 		it('updates state', function() {
 			deepEqual(state, Object.assign(uState(), {
-				KOMPlayStateCardCurrent: kTesting.StubCardObjectValid(),
+				KOMPlayStateCurrent: kTesting.StubSpacingObjectValid(),
 			}));
 		});
 	
@@ -1085,8 +1076,8 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 	context('graduate_Fail', function test_graduate_Fail () {
 		
-		const card = kTesting.StubCardObjectValid();
-		const state = uState(card, [kTesting.StubCardObjectValid()]);
+		const spacing = kTesting.StubSpacingObjectValid();
+		const state = uState(spacing, [kTesting.StubSpacingObjectValid()]);
 		const response = Object.assign(kTesting.StubResponseObjectValid(), {
 			KOMPlayResponseType: mainModule.KOMPlayResponseTypeGood(),
 		});
@@ -1096,35 +1087,35 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		});
 		
 		before(function () {
-			state.KOMPlayStateCardsQueue.unshift(state.KOMPlayStateCardCurrent);
-			state.KOMPlayStateCardCurrent = state.KOMPlayStateCardsWait.pop();
+			state.KOMPlayStateQueue.unshift(state.KOMPlayStateCurrent);
+			state.KOMPlayStateCurrent = state.KOMPlayStateWait.pop();
 
 			mainModule.KOMPlayRespond(state, Object.assign(response, {
-				KOMPlayResponseDate: state.KOMPlayStateCardCurrent.KOMCardReviewDueDate,
+				KOMPlayResponseDate: state.KOMPlayStateCurrent.KOMSpacingDueDate,
 			}));	
 		});
 		
 		before(function () {
-			state.KOMPlayStateCardsQueue.unshift(state.KOMPlayStateCardCurrent);
-			state.KOMPlayStateCardCurrent = state.KOMPlayStateCardsWait.pop();
+			state.KOMPlayStateQueue.unshift(state.KOMPlayStateCurrent);
+			state.KOMPlayStateCurrent = state.KOMPlayStateWait.pop();
 
 			mainModule.KOMPlayRespond(state, Object.assign(response, {
-				KOMPlayResponseDate: state.KOMPlayStateCardCurrent.KOMCardReviewDueDate,
+				KOMPlayResponseDate: state.KOMPlayStateCurrent.KOMSpacingDueDate,
 				KOMPlayResponseType: mainModule.KOMPlayResponseTypeAgain(),
 			}));	
 		});
 		
-		it('updates card', function() {
-			deepEqual(card, Object.assign(kTesting.StubCardObjectValid(), {
-				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + mainModule.KOMPlayResponseIntervalAgain()),
-				KOMCardReviewIsLearning: true,
+		it('updates spacing', function() {
+			deepEqual(spacing, Object.assign(kTesting.StubSpacingObjectValid(), {
+				KOMSpacingDueDate: new Date(response.KOMPlayResponseDate.valueOf() + mainModule.KOMPlayResponseIntervalAgain()),
+				KOMSpacingIsLearning: true,
 			}));
 		});
 		
 		it('updates state', function() {
 			deepEqual(state, Object.assign(uState(), {
-				KOMPlayStateCardCurrent: kTesting.StubCardObjectValid(),
-				KOMPlayStateCardsWait: [card],
+				KOMPlayStateCurrent: kTesting.StubSpacingObjectValid(),
+				KOMPlayStateWait: [spacing],
 			}));
 		});
 	
@@ -1132,8 +1123,8 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 	context('reviewing_and_Again', function test_reviewing_and_Again () {
 
-		const card = kTesting.StubCardObjectValid();
-		const state = uState(card, [kTesting.StubCardObjectValid()]);
+		const spacing = kTesting.StubSpacingObjectValid();
+		const state = uState(spacing, [kTesting.StubSpacingObjectValid()]);
 		const response = Object.assign(kTesting.StubResponseObjectValid(), {
 			KOMPlayResponseType: mainModule.KOMPlayResponseTypeEasy(),
 		});
@@ -1143,27 +1134,27 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		});
 		
 		before(function () {
-			state.KOMPlayStateCardsQueue.unshift(state.KOMPlayStateCardCurrent);
-			state.KOMPlayStateCardCurrent = card;
+			state.KOMPlayStateQueue.unshift(state.KOMPlayStateCurrent);
+			state.KOMPlayStateCurrent = spacing;
 
 			mainModule.KOMPlayRespond(state, Object.assign(response, {
-				KOMPlayResponseDate: state.KOMPlayStateCardCurrent.KOMCardReviewDueDate,
+				KOMPlayResponseDate: state.KOMPlayStateCurrent.KOMSpacingDueDate,
 				KOMPlayResponseType: mainModule.KOMPlayResponseTypeAgain(),
 			}));	
 		});
 		
-		it('updates card', function() {
-			deepEqual(card, Object.assign(kTesting.StubCardObjectValid(), {
-				KOMCardReviewMultiplier: mainModule.KOMPlayResponseMultiplierDefault() + mainModule.KOMPlayResponseMultiplierSummandFail(),
-				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + mainModule.KOMPlayResponseIntervalAgain()),
-				KOMCardReviewIsLearning: true,
+		it('updates spacing', function() {
+			deepEqual(spacing, Object.assign(kTesting.StubSpacingObjectValid(), {
+				KOMSpacingMultiplier: mainModule.KOMPlayResponseMultiplierDefault() + mainModule.KOMPlayResponseMultiplierSummandFail(),
+				KOMSpacingDueDate: new Date(response.KOMPlayResponseDate.valueOf() + mainModule.KOMPlayResponseIntervalAgain()),
+				KOMSpacingIsLearning: true,
 			}));
 		});
 		
 		it('updates state', function() {
 			deepEqual(state, Object.assign(uState(), {
-				KOMPlayStateCardCurrent: kTesting.StubCardObjectValid(),
-				KOMPlayStateCardsWait: [card],
+				KOMPlayStateCurrent: kTesting.StubSpacingObjectValid(),
+				KOMPlayStateWait: [spacing],
 			}));
 		});
 	
@@ -1171,8 +1162,8 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 	context('reviewing_and_Hard', function test_reviewing_and_Hard () {
 
-		const card = kTesting.StubCardObjectValid();
-		const state = uState(card, [kTesting.StubCardObjectValid()]);
+		const spacing = kTesting.StubSpacingObjectValid();
+		const state = uState(spacing, [kTesting.StubSpacingObjectValid()]);
 		const response = Object.assign(kTesting.StubResponseObjectValid(), {
 			KOMPlayResponseType: mainModule.KOMPlayResponseTypeEasy(),
 		});
@@ -1182,28 +1173,28 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		});
 		
 		before(function () {
-			state.KOMPlayStateCardsQueue.unshift(state.KOMPlayStateCardCurrent);
-			state.KOMPlayStateCardCurrent = card;
+			state.KOMPlayStateQueue.unshift(state.KOMPlayStateCurrent);
+			state.KOMPlayStateCurrent = spacing;
 
 			mainModule.KOMPlayRespond(state, Object.assign(response, {
-				KOMPlayResponseDate: state.KOMPlayStateCardCurrent.KOMCardReviewDueDate,
+				KOMPlayResponseDate: state.KOMPlayStateCurrent.KOMSpacingDueDate,
 				KOMPlayResponseType: mainModule.KOMPlayResponseTypeHard(),
 			}));	
 		});
 		
-		it('updates card', function() {
+		it('updates spacing', function() {
 			const interval = mainModule.KOMPlayResponseIntervalGraduateEasy() * mainModule.KOMPlayResponseMultiplierHard();
-			deepEqual(card, Object.assign(kTesting.StubCardObjectValid(), {
-				KOMCardReviewMultiplier: mainModule.KOMPlayResponseMultiplierDefault() + mainModule.KOMPlayResponseMultiplierSummandHard(),
-				KOMCardReviewInterval: interval,
-				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * interval),
+			deepEqual(spacing, Object.assign(kTesting.StubSpacingObjectValid(), {
+				KOMSpacingMultiplier: mainModule.KOMPlayResponseMultiplierDefault() + mainModule.KOMPlayResponseMultiplierSummandHard(),
+				KOMSpacingInterval: interval,
+				KOMSpacingDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * interval),
 			}));
 		});
 		
 		it('updates state', function() {
 			deepEqual(state, Object.assign(uState(), {
-				KOMPlayStateCardCurrent: kTesting.StubCardObjectValid(),
-				KOMPlayStateCardsWait: [],
+				KOMPlayStateCurrent: kTesting.StubSpacingObjectValid(),
+				KOMPlayStateWait: [],
 			}));
 		});
 	
@@ -1211,8 +1202,8 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 	context('reviewing_and_Good', function test_reviewing_and_Good () {
 
-		const card = kTesting.StubCardObjectValid();
-		const state = uState(card, [kTesting.StubCardObjectValid()]);
+		const spacing = kTesting.StubSpacingObjectValid();
+		const state = uState(spacing, [kTesting.StubSpacingObjectValid()]);
 		const response = Object.assign(kTesting.StubResponseObjectValid(), {
 			KOMPlayResponseType: mainModule.KOMPlayResponseTypeEasy(),
 		});
@@ -1222,28 +1213,28 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		});
 		
 		before(function () {
-			state.KOMPlayStateCardsQueue.unshift(state.KOMPlayStateCardCurrent);
-			state.KOMPlayStateCardCurrent = card;
+			state.KOMPlayStateQueue.unshift(state.KOMPlayStateCurrent);
+			state.KOMPlayStateCurrent = spacing;
 
 			mainModule.KOMPlayRespond(state, Object.assign(response, {
-				KOMPlayResponseDate: state.KOMPlayStateCardCurrent.KOMCardReviewDueDate,
+				KOMPlayResponseDate: state.KOMPlayStateCurrent.KOMSpacingDueDate,
 				KOMPlayResponseType: mainModule.KOMPlayResponseTypeGood(),
 			}));	
 		});
 		
-		it('updates card', function() {
+		it('updates spacing', function() {
 			const interval = mainModule.KOMPlayResponseIntervalGraduateEasy() * mainModule.KOMPlayResponseMultiplierDefault();
-			deepEqual(card, Object.assign(kTesting.StubCardObjectValid(), {
-				KOMCardReviewMultiplier: mainModule.KOMPlayResponseMultiplierDefault() + mainModule.KOMPlayResponseMultiplierSummandGood(),
-				KOMCardReviewInterval: interval,
-				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * interval),
+			deepEqual(spacing, Object.assign(kTesting.StubSpacingObjectValid(), {
+				KOMSpacingMultiplier: mainModule.KOMPlayResponseMultiplierDefault() + mainModule.KOMPlayResponseMultiplierSummandGood(),
+				KOMSpacingInterval: interval,
+				KOMSpacingDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * interval),
 			}));
 		});
 		
 		it('updates state', function() {
 			deepEqual(state, Object.assign(uState(), {
-				KOMPlayStateCardCurrent: kTesting.StubCardObjectValid(),
-				KOMPlayStateCardsWait: [],
+				KOMPlayStateCurrent: kTesting.StubSpacingObjectValid(),
+				KOMPlayStateWait: [],
 			}));
 		});
 	
@@ -1251,8 +1242,8 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 	context('reviewing_and_Easy', function test_reviewing_and_Easy () {
 
-		const card = kTesting.StubCardObjectValid();
-		const state = uState(card, [kTesting.StubCardObjectValid()]);
+		const spacing = kTesting.StubSpacingObjectValid();
+		const state = uState(spacing, [kTesting.StubSpacingObjectValid()]);
 		const response = Object.assign(kTesting.StubResponseObjectValid(), {
 			KOMPlayResponseType: mainModule.KOMPlayResponseTypeEasy(),
 		});
@@ -1262,28 +1253,28 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		});
 		
 		before(function () {
-			state.KOMPlayStateCardsQueue.unshift(state.KOMPlayStateCardCurrent);
-			state.KOMPlayStateCardCurrent = card;
+			state.KOMPlayStateQueue.unshift(state.KOMPlayStateCurrent);
+			state.KOMPlayStateCurrent = spacing;
 
 			mainModule.KOMPlayRespond(state, Object.assign(response, {
-				KOMPlayResponseDate: state.KOMPlayStateCardCurrent.KOMCardReviewDueDate,
+				KOMPlayResponseDate: state.KOMPlayStateCurrent.KOMSpacingDueDate,
 				KOMPlayResponseType: mainModule.KOMPlayResponseTypeEasy(),
 			}));	
 		});
 		
-		it('updates card', function() {
+		it('updates spacing', function() {
 			const interval = mainModule.KOMPlayResponseIntervalGraduateEasy() * mainModule.KOMPlayResponseMultiplierDefault() * mainModule.KOMPlayResponseMultiplierMultiplicandEasy();
-			deepEqual(card, Object.assign(kTesting.StubCardObjectValid(), {
-				KOMCardReviewMultiplier: mainModule.KOMPlayResponseMultiplierDefault() + mainModule.KOMPlayResponseMultiplierSummandEasy(),
-				KOMCardReviewInterval: interval,
-				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * interval),
+			deepEqual(spacing, Object.assign(kTesting.StubSpacingObjectValid(), {
+				KOMSpacingMultiplier: mainModule.KOMPlayResponseMultiplierDefault() + mainModule.KOMPlayResponseMultiplierSummandEasy(),
+				KOMSpacingInterval: interval,
+				KOMSpacingDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * interval),
 			}));
 		});
 		
 		it('updates state', function() {
 			deepEqual(state, Object.assign(uState(), {
-				KOMPlayStateCardCurrent: kTesting.StubCardObjectValid(),
-				KOMPlayStateCardsWait: [],
+				KOMPlayStateCurrent: kTesting.StubSpacingObjectValid(),
+				KOMPlayStateWait: [],
 			}));
 		});
 	
@@ -1292,10 +1283,10 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 	context('overdue_and_Hard', function test_overdue_and_Hard () {
 
 		const date = new Date();
-		const card = Object.assign(kTesting.StubCardObjectValid(), {
-			KOMCardReviewInterval: mainModule.KOMPlayResponseIntervalGraduateEasy(),
-			KOMCardReviewMultiplier: mainModule.KOMPlayResponseMultiplierDefault(),
-			KOMCardReviewDueDate: date,
+		const spacing = Object.assign(kTesting.StubSpacingObjectValid(), {
+			KOMSpacingInterval: mainModule.KOMPlayResponseIntervalGraduateEasy(),
+			KOMSpacingMultiplier: mainModule.KOMPlayResponseMultiplierDefault(),
+			KOMSpacingDueDate: date,
 		});
 		const response = Object.assign(kTesting.StubResponseObjectValid(), {
 			KOMPlayResponseType: mainModule.KOMPlayResponseTypeHard(),
@@ -1303,15 +1294,15 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		});
 
 		before(function () {
-			mainModule.KOMPlayRespond(uState(card), response);	
+			mainModule.KOMPlayRespond(uState(spacing), response);	
 		});
 		
-		it('updates card', function() {
+		it('updates spacing', function() {
 			const interval = (mainModule.KOMPlayResponseIntervalGraduateEasy() + 10 / mainModule.KOMPlayResponseIntervalOverdueDivisorHard()) * mainModule.KOMPlayResponseMultiplierHard();
-			deepEqual(card, Object.assign(kTesting.StubCardObjectValid(), {
-				KOMCardReviewMultiplier: mainModule.KOMPlayResponseMultiplierDefault() + mainModule.KOMPlayResponseMultiplierSummandHard(),
-				KOMCardReviewInterval: interval,
-				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * interval),
+			deepEqual(spacing, Object.assign(kTesting.StubSpacingObjectValid(), {
+				KOMSpacingMultiplier: mainModule.KOMPlayResponseMultiplierDefault() + mainModule.KOMPlayResponseMultiplierSummandHard(),
+				KOMSpacingInterval: interval,
+				KOMSpacingDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * interval),
 			}));
 		});
 		
@@ -1320,10 +1311,10 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 	context('overdue_and_Good', function test_overdue_and_Good () {
 
 		const date = new Date();
-		const card = Object.assign(kTesting.StubCardObjectValid(), {
-			KOMCardReviewInterval: mainModule.KOMPlayResponseIntervalGraduateEasy(),
-			KOMCardReviewMultiplier: mainModule.KOMPlayResponseMultiplierDefault(),
-			KOMCardReviewDueDate: date,
+		const spacing = Object.assign(kTesting.StubSpacingObjectValid(), {
+			KOMSpacingInterval: mainModule.KOMPlayResponseIntervalGraduateEasy(),
+			KOMSpacingMultiplier: mainModule.KOMPlayResponseMultiplierDefault(),
+			KOMSpacingDueDate: date,
 		});
 		const response = Object.assign(kTesting.StubResponseObjectValid(), {
 			KOMPlayResponseType: mainModule.KOMPlayResponseTypeGood(),
@@ -1331,15 +1322,15 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		});
 
 		before(function () {
-			mainModule.KOMPlayRespond(uState(card), response);	
+			mainModule.KOMPlayRespond(uState(spacing), response);	
 		});
 		
-		it('updates card', function() {
+		it('updates spacing', function() {
 			const interval = (mainModule.KOMPlayResponseIntervalGraduateEasy() + 10 / mainModule.KOMPlayResponseIntervalOverdueDivisorGood()) * mainModule.KOMPlayResponseMultiplierDefault();
-			deepEqual(card, Object.assign(kTesting.StubCardObjectValid(), {
-				KOMCardReviewMultiplier: mainModule.KOMPlayResponseMultiplierDefault() + mainModule.KOMPlayResponseMultiplierSummandGood(),
-				KOMCardReviewInterval: interval,
-				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * interval),
+			deepEqual(spacing, Object.assign(kTesting.StubSpacingObjectValid(), {
+				KOMSpacingMultiplier: mainModule.KOMPlayResponseMultiplierDefault() + mainModule.KOMPlayResponseMultiplierSummandGood(),
+				KOMSpacingInterval: interval,
+				KOMSpacingDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * interval),
 			}));
 		});
 		
@@ -1348,10 +1339,10 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 	context('overdue_and_Easy', function test_overdue_and_Easy () {
 
 		const date = new Date();
-		const card = Object.assign(kTesting.StubCardObjectValid(), {
-			KOMCardReviewInterval: mainModule.KOMPlayResponseIntervalGraduateEasy(),
-			KOMCardReviewMultiplier: mainModule.KOMPlayResponseMultiplierDefault(),
-			KOMCardReviewDueDate: date,
+		const spacing = Object.assign(kTesting.StubSpacingObjectValid(), {
+			KOMSpacingInterval: mainModule.KOMPlayResponseIntervalGraduateEasy(),
+			KOMSpacingMultiplier: mainModule.KOMPlayResponseMultiplierDefault(),
+			KOMSpacingDueDate: date,
 		});
 		const response = Object.assign(kTesting.StubResponseObjectValid(), {
 			KOMPlayResponseType: mainModule.KOMPlayResponseTypeEasy(),
@@ -1359,15 +1350,15 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		});
 
 		before(function () {
-			mainModule.KOMPlayRespond(uState(card), response);	
+			mainModule.KOMPlayRespond(uState(spacing), response);	
 		});
 		
-		it('updates card', function() {
+		it('updates spacing', function() {
 			const interval = (mainModule.KOMPlayResponseIntervalGraduateEasy() + 10 / mainModule.KOMPlayResponseIntervalOverdueDivisorEasy()) * mainModule.KOMPlayResponseMultiplierDefault() * mainModule.KOMPlayResponseMultiplierMultiplicandEasy();
-			deepEqual(card, Object.assign(kTesting.StubCardObjectValid(), {
-				KOMCardReviewMultiplier: mainModule.KOMPlayResponseMultiplierDefault() + mainModule.KOMPlayResponseMultiplierSummandEasy(),
-				KOMCardReviewInterval: interval,
-				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * interval),
+			deepEqual(spacing, Object.assign(kTesting.StubSpacingObjectValid(), {
+				KOMSpacingMultiplier: mainModule.KOMPlayResponseMultiplierDefault() + mainModule.KOMPlayResponseMultiplierSummandEasy(),
+				KOMSpacingInterval: interval,
+				KOMSpacingDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * interval),
 			}));
 		});
 		
@@ -1376,10 +1367,10 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 	context('minimum_multiplier', function test_minimum_multiplier () {
 
 		const date = new Date();
-		const card = Object.assign(kTesting.StubCardObjectValid(), {
-			KOMCardReviewInterval: mainModule.KOMPlayResponseIntervalGraduateEasy(),
-			KOMCardReviewMultiplier: mainModule.KOMPlayResponseMultiplierMin(),
-			KOMCardReviewDueDate: date,
+		const spacing = Object.assign(kTesting.StubSpacingObjectValid(), {
+			KOMSpacingInterval: mainModule.KOMPlayResponseIntervalGraduateEasy(),
+			KOMSpacingMultiplier: mainModule.KOMPlayResponseMultiplierMin(),
+			KOMSpacingDueDate: date,
 		});
 		const response = Object.assign(kTesting.StubResponseObjectValid(), {
 			KOMPlayResponseType: mainModule.KOMPlayResponseTypeHard(),
@@ -1387,15 +1378,15 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		});
 
 		before(function () {
-			mainModule.KOMPlayRespond(uState(card), response);	
+			mainModule.KOMPlayRespond(uState(spacing), response);	
 		});
 		
-		it('updates card', function() {
+		it('updates spacing', function() {
 			const interval = (mainModule.KOMPlayResponseIntervalGraduateEasy() + 10 / mainModule.KOMPlayResponseIntervalOverdueDivisorHard()) * mainModule.KOMPlayResponseMultiplierHard();
-			deepEqual(card, Object.assign(kTesting.StubCardObjectValid(), {
-				KOMCardReviewMultiplier: mainModule.KOMPlayResponseMultiplierMin(),
-				KOMCardReviewInterval: interval,
-				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * interval),
+			deepEqual(spacing, Object.assign(kTesting.StubSpacingObjectValid(), {
+				KOMSpacingMultiplier: mainModule.KOMPlayResponseMultiplierMin(),
+				KOMSpacingInterval: interval,
+				KOMSpacingDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * interval),
 			}));
 		});
 		

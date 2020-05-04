@@ -1,4 +1,3 @@
-import KOMCardModel from '../_shared/KOMCard/model.js';
 import KOMSpacingModel from '../_shared/KOMSpacing/model.js';
 
 const kIntervalAgainSeconds = 50;
@@ -96,15 +95,15 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		if (!Array.isArray(inputData.KOMPlayStateCardsQueue)) {
+		if (!Array.isArray(inputData.KOMPlayStateQueue)) {
 			return false;
 		}
 
-		if (!Array.isArray(inputData.KOMPlayStateCardsWait)) {
+		if (!Array.isArray(inputData.KOMPlayStateWait)) {
 			return false;
 		}
 
-		if (inputData.KOMPlayStateCardCurrent && KOMCardModel.KOMCardModelErrorsFor(inputData.KOMPlayStateCardCurrent)) {
+		if (inputData.KOMPlayStateCurrent && KOMSpacingModel.KOMSpacingModelErrorsFor(inputData.KOMPlayStateCurrent)) {
 			return false;
 		}
 
@@ -190,8 +189,8 @@ const mod = {
 		return kIntervalOverdueDivisorEasy;
 	},
 
-	KOMPlayResponseIntervalOverdueDays (card, response) {
-		if (KOMCardModel.KOMCardModelErrorsFor(card)) {
+	KOMPlayResponseIntervalOverdueDays (spacing, response) {
+		if (KOMSpacingModel.KOMSpacingModelErrorsFor(spacing)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
@@ -199,11 +198,11 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		if (!card.KOMCardReviewInterval) {
+		if (!spacing.KOMSpacingInterval) {
 			return 0;
 		}
 
-		const due = new Date(mod.KOMPlayDayGrouping(card.KOMCardReviewDueDate)).valueOf();
+		const due = new Date(mod.KOMPlayDayGrouping(spacing.KOMSpacingDueDate)).valueOf();
 		const date = new Date(mod.KOMPlayDayGrouping(response.KOMPlayResponseDate)).valueOf();
 
 		if (date <= due) {
@@ -213,8 +212,8 @@ const mod = {
 		return (date - due) / 1000 / 60 / 60 / 24;
 	},
 
-	KOMPlayResponseIntervalOverdueBonus (card, response) {
-		if (KOMCardModel.KOMCardModelErrorsFor(card)) {
+	KOMPlayResponseIntervalOverdueBonus (spacing, response) {
+		if (KOMSpacingModel.KOMSpacingModelErrorsFor(spacing)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
@@ -222,7 +221,7 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		const days = mod.KOMPlayResponseIntervalOverdueDays(card, response);
+		const days = mod.KOMPlayResponseIntervalOverdueDays(spacing, response);
 
 		if (response.KOMPlayResponseType === mod.KOMPlayResponseTypeHard()) {
 			return days / mod.KOMPlayResponseIntervalOverdueDivisorHard();
@@ -280,30 +279,30 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		const card = state.KOMPlayStateCardCurrent;
+		const spacing = state.KOMPlayStateCurrent;
 
-		Object.assign(card, (function update_card() {
+		Object.assign(spacing, (function update_spacing() {
 			// FAIL
 			if (response.KOMPlayResponseType === mod.KOMPlayResponseTypeAgain()) {
-				delete card.KOMCardReviewIsReadyToGraduate;
+				delete spacing.KOMSpacingIsReadyToGraduate;
 			}
 			
 			// GRADUATE
-			if (!KOMCardModel.KOMCardModelIsReviewing(card) && (response.KOMPlayResponseType === mod.KOMPlayResponseTypeEasy() || card.KOMCardReviewIsReadyToGraduate)) {
-				delete card.KOMCardReviewIsLearning;
-				delete card.KOMCardReviewIsReadyToGraduate;
+			if (!KOMSpacingModel.KOMSpacingModelIsReviewing(spacing) && (response.KOMPlayResponseType === mod.KOMPlayResponseTypeEasy() || spacing.KOMSpacingIsReadyToGraduate)) {
+				delete spacing.KOMSpacingIsLearning;
+				delete spacing.KOMSpacingIsReadyToGraduate;
 
 				const interval = response.KOMPlayResponseType === mod.KOMPlayResponseTypeEasy() ? mod.KOMPlayResponseIntervalGraduateEasy() : mod.KOMPlayResponseIntervalGraduateDefault();
 				return {
-					KOMCardReviewInterval: interval,
-					KOMCardReviewMultiplier: mod.KOMPlayResponseMultiplierDefault(),
-					KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * interval),
+					KOMSpacingInterval: interval,
+					KOMSpacingMultiplier: mod.KOMPlayResponseMultiplierDefault(),
+					KOMSpacingDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * interval),
 				};
 			}
 
 			// REVIEW
-			if (KOMCardModel.KOMCardModelIsReviewing(card) && response.KOMPlayResponseType !== mod.KOMPlayResponseTypeAgain()) {
-				let interval = (card.KOMCardReviewInterval + mod.KOMPlayResponseIntervalOverdueBonus(card, response)) * (response.KOMPlayResponseType === mod.KOMPlayResponseTypeHard() ? mod.KOMPlayResponseMultiplierHard() : card.KOMCardReviewMultiplier);
+			if (KOMSpacingModel.KOMSpacingModelIsReviewing(spacing) && response.KOMPlayResponseType !== mod.KOMPlayResponseTypeAgain()) {
+				let interval = (spacing.KOMSpacingInterval + mod.KOMPlayResponseIntervalOverdueBonus(spacing, response)) * (response.KOMPlayResponseType === mod.KOMPlayResponseTypeHard() ? mod.KOMPlayResponseMultiplierHard() : spacing.KOMSpacingMultiplier);
 
 				if (state.KOMPlayStateShouldRandomize) {
 					interval *= 1 + (Math.min(0.25, Math.random()) / 100 + 0.005) * (Math.random() > 0.5 ? -1 : 1);
@@ -313,7 +312,7 @@ const mod = {
 					interval *= mod.KOMPlayResponseMultiplierMultiplicandEasy();
 				}
 
-				let multiplier = card.KOMCardReviewMultiplier;
+				let multiplier = spacing.KOMSpacingMultiplier;
 
 				if (response.KOMPlayResponseType === mod.KOMPlayResponseTypeHard()) {
 					multiplier += mod.KOMPlayResponseMultiplierSummandHard();
@@ -324,54 +323,54 @@ const mod = {
 				}
 
 				return {
-					KOMCardReviewInterval: interval,
-					KOMCardReviewMultiplier: Math.max(mod.KOMPlayResponseMultiplierMin(), multiplier),
-					KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * interval),
+					KOMSpacingInterval: interval,
+					KOMSpacingMultiplier: Math.max(mod.KOMPlayResponseMultiplierMin(), multiplier),
+					KOMSpacingDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * interval),
 				};
 			}
 
 			// LAPSE
-			if (KOMCardModel.KOMCardModelIsReviewing(card) && response.KOMPlayResponseType === mod.KOMPlayResponseTypeAgain()) {
-				delete card.KOMCardReviewInterval;
+			if (KOMSpacingModel.KOMSpacingModelIsReviewing(spacing) && response.KOMPlayResponseType === mod.KOMPlayResponseTypeAgain()) {
+				delete spacing.KOMSpacingInterval;
 
-				card.KOMCardReviewMultiplier += mod.KOMPlayResponseMultiplierSummandFail();
+				spacing.KOMSpacingMultiplier += mod.KOMPlayResponseMultiplierSummandFail();
 			}
 
 			// LEARN
 			let interval = mod.KOMPlayResponseIntervalAgain();
 			
-			if (response.KOMPlayResponseType !== mod.KOMPlayResponseTypeAgain() && KOMCardModel.KOMCardModelIsUnseen(card)) {
+			if (response.KOMPlayResponseType !== mod.KOMPlayResponseTypeAgain() && KOMSpacingModel.KOMSpacingModelIsUnseen(spacing)) {
 				interval = mod.KOMPlayResponseIntervalLearn1();
 			}
 
-			if (response.KOMPlayResponseType !== mod.KOMPlayResponseTypeAgain() && KOMCardModel.KOMCardModelIsLearning(card)) {
+			if (response.KOMPlayResponseType !== mod.KOMPlayResponseTypeAgain() && KOMSpacingModel.KOMSpacingModelIsLearning(spacing)) {
 				interval = mod.KOMPlayResponseIntervalLearn2();
 			}
 
 			return Object.assign({
-				KOMCardReviewIsLearning: true,
-				KOMCardReviewDueDate: new Date(response.KOMPlayResponseDate.valueOf() + interval),
-			}, KOMCardModel.KOMCardModelIsLearning(card) && response.KOMPlayResponseType !== mod.KOMPlayResponseTypeAgain() ? {
-				KOMCardReviewIsReadyToGraduate: true,
+				KOMSpacingIsLearning: true,
+				KOMSpacingDueDate: new Date(response.KOMPlayResponseDate.valueOf() + interval),
+			}, KOMSpacingModel.KOMSpacingModelIsLearning(spacing) && response.KOMPlayResponseType !== mod.KOMPlayResponseTypeAgain() ? {
+				KOMSpacingIsReadyToGraduate: true,
 			} : {})
 		})());
 
 		(function update_state() {
-			if (KOMCardModel.KOMCardModelIsLearning(card)) {
-				state.KOMPlayStateCardsWait.push(card);
+			if (KOMSpacingModel.KOMSpacingModelIsLearning(spacing)) {
+				state.KOMPlayStateWait.push(spacing);
 			}
 
-			state.KOMPlayStateCardsWait.filter(function (e) {
-				if (!state.KOMPlayStateCardsQueue.length) {
+			state.KOMPlayStateWait.filter(function (e) {
+				if (!state.KOMPlayStateQueue.length) {
 					return true;
 				}
 
-				return e.KOMCardReviewDueDate < response.KOMPlayResponseDate;
+				return e.KOMSpacingDueDate < response.KOMPlayResponseDate;
 			}).reverse().forEach(function (e) {
-				state.KOMPlayStateCardsQueue.unshift(state.KOMPlayStateCardsWait.splice(state.KOMPlayStateCardsWait.indexOf(e), 1).pop());
+				state.KOMPlayStateQueue.unshift(state.KOMPlayStateWait.splice(state.KOMPlayStateWait.indexOf(e), 1).pop());
 			});
 
-			state.KOMPlayStateCardCurrent = state.KOMPlayStateCardsQueue.shift();
+			state.KOMPlayStateCurrent = state.KOMPlayStateQueue.shift();
 		})();
 
 		return state;

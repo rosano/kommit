@@ -128,6 +128,42 @@ const mod = {
 		return inputData;
 	},
 
+	KOMSpacingModelIsUnseen (inputData) {
+		if (mod.KOMSpacingModelErrorsFor(inputData)) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		if (inputData.KOMSpacingIsLearning) {
+			return false;
+		}
+
+		if (inputData.KOMSpacingInterval) {
+			return false;
+		}
+
+		return true;
+	},
+
+	KOMSpacingModelIsLearning (inputData) {
+		if (mod.KOMSpacingModelErrorsFor(inputData)) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		return !!inputData.KOMSpacingIsLearning;
+	},
+
+	KOMSpacingModelIsReviewing (inputData) {
+		if (mod.KOMSpacingModelErrorsFor(inputData)) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		if (inputData.KOMSpacingIsLearning) {
+			return false;
+		}
+
+		return !!inputData.KOMSpacingInterval;
+	},
+
 };
 
 export default mod;

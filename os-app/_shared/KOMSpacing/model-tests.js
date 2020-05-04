@@ -278,3 +278,75 @@ describe('KOMSpacingModelPostJSONParse', function test_KOMSpacingModelPostJSONPa
 	});
 
 });
+
+describe('KOMSpacingModelIsUnseen', function test_KOMSpacingModelIsUnseen() {
+
+	it('throws if not valid', function () {
+		throws(function () {
+			mainModule.KOMSpacingModelIsUnseen({});
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns false if KOMSpacingIsLearning', function() {
+		deepEqual(mainModule.KOMSpacingModelIsUnseen(Object.assign(kTesting.StubSpacingObjectValid(), {
+			KOMSpacingIsLearning: true,
+		})), false);
+	});
+
+	it('returns false if KOMSpacingInterval', function() {
+		deepEqual(mainModule.KOMSpacingModelIsUnseen(Object.assign(kTesting.StubSpacingObjectValid(), {
+			KOMSpacingInterval: 1,
+		})), false);
+	});
+
+	it('returns true', function() {
+		deepEqual(mainModule.KOMSpacingModelIsUnseen(kTesting.StubSpacingObjectValid()), true);
+	});
+
+});
+
+describe('KOMSpacingModelIsLearning', function test_KOMSpacingModelIsLearning() {
+
+	it('throws if not valid', function () {
+		throws(function () {
+			mainModule.KOMSpacingModelIsLearning({});
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns true if KOMSpacingIsLearning', function() {
+		deepEqual(mainModule.KOMSpacingModelIsLearning(Object.assign(kTesting.StubSpacingObjectValid(), {
+			KOMSpacingIsLearning: true,
+		})), true);
+	});
+
+	it('returns false', function() {
+		deepEqual(mainModule.KOMSpacingModelIsLearning(kTesting.StubSpacingObjectValid()), false);
+	});
+
+});
+
+describe('KOMSpacingModelIsReviewing', function test_KOMSpacingModelIsReviewing() {
+
+	it('throws if not valid', function () {
+		throws(function () {
+			mainModule.KOMSpacingModelIsReviewing({});
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns false if KOMSpacingIsLearning', function() {
+		deepEqual(mainModule.KOMSpacingModelIsReviewing(Object.assign(kTesting.StubSpacingObjectValid(), {
+			KOMSpacingIsLearning: true,
+		})), false);
+	});
+
+	it('returns false if no KOMSpacingInterval', function() {
+		deepEqual(mainModule.KOMSpacingModelIsReviewing(kTesting.StubSpacingObjectValid()), false);
+	});
+
+	it('returns true', function() {
+		deepEqual(mainModule.KOMSpacingModelIsReviewing(Object.assign(kTesting.StubSpacingObjectValid(), {
+			KOMSpacingInterval: 1,
+		})), 1);
+	});
+
+});

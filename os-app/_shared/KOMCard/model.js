@@ -49,46 +49,6 @@ const mod = {
 			}
 		}
 
-		if (inputData.KOMCardReviewDueDate !== undefined || options.KOMOptionValidateIfNotPresent) {
-			if (!(inputData.KOMCardReviewDueDate instanceof Date) || Number.isNaN(inputData.KOMCardReviewDueDate.getTime())) {
-				errors.KOMCardReviewDueDate = [
-					'KOMErrorNotDate',
-				];
-			}
-		}
-
-		if (inputData.KOMCardReviewIsLearning !== undefined || options.KOMOptionValidateIfNotPresent) {
-			if (typeof inputData.KOMCardReviewIsLearning !== 'boolean') {
-				errors.KOMCardReviewIsLearning = [
-					'KOMErrorNotBoolean',
-				];
-			}
-		}
-
-		if (inputData.KOMCardReviewIsReadyToGraduate !== undefined || options.KOMOptionValidateIfNotPresent) {
-			if (typeof inputData.KOMCardReviewIsReadyToGraduate !== 'boolean') {
-				errors.KOMCardReviewIsReadyToGraduate = [
-					'KOMErrorNotBoolean',
-				];
-			}
-		}
-
-		if (inputData.KOMCardReviewInterval !== undefined || options.KOMOptionValidateIfNotPresent) {
-			if (typeof inputData.KOMCardReviewInterval !== 'number') {
-				errors.KOMCardReviewInterval = [
-					'KOMErrorNotNumber',
-				];
-			}
-		}
-
-		if (inputData.KOMCardReviewMultiplier !== undefined || options.KOMOptionValidateIfNotPresent) {
-			if (typeof inputData.KOMCardReviewMultiplier !== 'number') {
-				errors.KOMCardReviewMultiplier = [
-					'KOMErrorNotNumber',
-				];
-			}
-		}
-
 		return Object.entries(errors).length ? errors : null;
 	},
 
@@ -118,42 +78,6 @@ const mod = {
 		}
 
 		return inputData;
-	},
-
-	KOMCardModelIsUnseen (inputData) {
-		if (mod.KOMCardModelErrorsFor(inputData)) {
-			throw new Error('KOMErrorInputNotValid');
-		}
-
-		if (inputData.KOMCardReviewIsLearning) {
-			return false;
-		}
-
-		if (inputData.KOMCardReviewInterval) {
-			return false;
-		}
-
-		return true;
-	},
-
-	KOMCardModelIsLearning (inputData) {
-		if (mod.KOMCardModelErrorsFor(inputData)) {
-			throw new Error('KOMErrorInputNotValid');
-		}
-
-		return !!inputData.KOMCardReviewIsLearning;
-	},
-
-	KOMCardModelIsReviewing (inputData) {
-		if (mod.KOMCardModelErrorsFor(inputData)) {
-			throw new Error('KOMErrorInputNotValid');
-		}
-
-		if (inputData.KOMCardReviewIsLearning) {
-			return false;
-		}
-
-		return !!inputData.KOMCardReviewInterval;
 	},
 
 };
