@@ -1,6 +1,7 @@
 const { throws, deepEqual, notDeepEqual } = require('assert');
 
 const mainModule = require('./ui-logic.js');
+const KOMSpacingModel = require('../_shared/KOMSpacing/model.js').default;
 
 const kTesting = {
 	StubStateObjectValid () {
@@ -61,18 +62,18 @@ describe('KOMPlayDayGrouping', function test_KOMPlayDayGrouping() {
 
 describe('KOMPlaySort', function test_KOMPlaySort() {
 	
-	const uItems = function (param1 = 4, param2 = Infinity) {
+	const uItems = function (param1 = 4, param2 = Infinity, param3 = false) {
 		return Array.from(new Array(param1)).map(function (e, i) {
 			return Object.assign(kTesting.StubSpacingObjectValid(), {
 				KOMSpacingID: (i + 1).toString() + '-forward',
 				KOMSpacingDueDate: i >= param2 ? new Date() : undefined,
 			});
-		}).concat(Array.from(new Array(param1)).map(function (e, i) {
+		}).concat(param3 ? Array.from(new Array(param1)).map(function (e, i) {
 			return Object.assign(kTesting.StubSpacingObjectValid(), {
 				KOMSpacingID: (i + 1).toString() + '-backward',
 				KOMSpacingDueDate: i >= param2 ? new Date() : undefined,
 			});
-		}));
+		}) : []);
 	};
 
 	const uSlug = function (inputData) {
@@ -97,10 +98,8 @@ describe('KOMPlaySort', function test_KOMPlaySort() {
 	});
 
 	it('randomizes', function() {
-		const items = uItems();
-
 		deepEqual(Array.from(new Array(10)).map(function (e) {
-			return uSlug(mainModule.KOMPlaySort(items));
+			return uSlug(mainModule.KOMPlaySort(uItems()));
 		}).filter(function (value, index, self) {
 			return self.indexOf(value) === index;
 		}).length > 1, true);
@@ -109,26 +108,72 @@ describe('KOMPlaySort', function test_KOMPlaySort() {
 	context('unseen', function () {
 		
 		it('spaces single', function() {
-			deepEqual(mainModule.KOMPlaySort(uItems(5, 1)).map(function (e, i) {
+			deepEqual(mainModule.KOMPlaySort(uItems(10, 1)).map(function (e, i) {
+				if (!e.KOMSpacingDueDate) {
+					return i;
+				}
+			}).join(''), '4');
+		});
+		
+		it('spaces multiple', function() {
+			deepEqual(mainModule.KOMPlaySort(uItems(10, 2)).map(function (e, i) {
 				if (!e.KOMSpacingDueDate) {
 					return i;
 				}
 			}).join(''), '36');
 		});
-		
-		it('spaces multiple', function() {
-			deepEqual(mainModule.KOMPlaySort(uItems(5, 2)).map(function (e, i) {
+
+		it('randomizes', function() {
+			deepEqual(Array.from(new Array(10)).map(function (e) {
+				return uSlug(mainModule.KOMPlaySort(uItems(10, 4)).filter(function (e) {
+					return !e.KOMSpacingDueDate;
+				}));
+			}).filter(function (value, index, self) {
+				return self.indexOf(value) === index;
+			}).length > 1, true);
+		});
+	
+	});
+
+	context('siblings_unseen', function () {
+
+		it('spaces with others', function() {
+			deepEqual(mainModule.KOMPlaySort(uItems(5, 2, true)).map(function (e, i) {
 				if (!e.KOMSpacingDueDate) {
 					return i;
 				}
 			}).join(''), '1357');
 		});
 
-		it('randomizes new cards', function() {
+		it('sorts after forward', function() {
+			deepEqual(mainModule.KOMPlaySort(uItems(10, Infinity, true)).filter(function (e, i, coll) {
+				return coll.filter(function (item, index) {
+					if (KOMSpacingModel.KOMSpacingModelIdentifier(item.KOMSpacingID) !== KOMSpacingModel.KOMSpacingModelIdentifier(e.KOMSpacingID)) {
+						return false;
+					}
+
+					if (KOMSpacingModel.KOMSpacingModelLabel(item.KOMSpacingID) !== KOMSpacingModel.KOMSpacingModelLabelBackward()) {
+						return false
+					}
+
+					return index < i;
+				}).length;
+			}), []);
+		});
+
+		it('spaces apart from sibling', function() {
 			deepEqual(Array.from(new Array(10)).map(function (e) {
-				return uSlug(mainModule.KOMPlaySort(uItems(10, 4)).filter(function (e) {
-					return !e.KOMSpacingDueDate;
-				}));
+				return mainModule.KOMPlaySort(uItems(10, Infinity, true)).filter(function (e, i, coll) {
+					return i && KOMSpacingModel.KOMSpacingModelIsBackward(e) && KOMSpacingModel.KOMSpacingModelIdentifier(e.KOMSpacingID) === KOMSpacingModel.KOMSpacingModelIdentifier(coll[i - 1].KOMSpacingID)
+				});
+			}).filter(function (e) {
+				return e.length;
+			}), []);
+		});
+
+		it('randomizes', function() {
+			deepEqual(Array.from(new Array(10)).map(function (e) {
+				return uSlug(mainModule.KOMPlaySort(uItems(10, Infinity, true)).filter(KOMSpacingModel.KOMSpacingModelIsBackward));
 			}).filter(function (value, index, self) {
 				return self.indexOf(value) === index;
 			}).length > 1, true);

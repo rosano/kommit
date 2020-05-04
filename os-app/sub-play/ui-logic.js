@@ -1,4 +1,5 @@
 import KOMCardModel from '../_shared/KOMCard/model.js';
+import KOMSpacingModel from '../_shared/KOMSpacing/model.js';
 
 const kIntervalAgainSeconds = 50;
 const kIntervalLearn1Minutes = 1;
@@ -33,17 +34,36 @@ const mod = {
 		}
 
 		const outputData = mod._KOMPlaySortShuffle(inputData.filter(function (e) {
-			return e.KOMSpacingDueDate;
+			return !KOMSpacingModel.KOMSpacingModelIsBackward(e) && e.KOMSpacingDueDate;
+		})).concat(mod._KOMPlaySortShuffle(inputData.filter(function (e) {
+			return KOMSpacingModel.KOMSpacingModelIsBackward(e) && e.KOMSpacingDueDate;
+		}) ));
+
+		const unseen = mod._KOMPlaySortShuffle(inputData.filter(function (e) {
+			return !KOMSpacingModel.KOMSpacingModelIsBackward(e) && !e.KOMSpacingDueDate;
 		}));
 
-		const unseen = inputData.filter(function (e) {
-			return !e.KOMSpacingDueDate;
-		});
-		const spacing = Math.floor(outputData.length / (unseen.length + 1));
+		let siblingUnseen = mod._KOMPlaySortShuffle(inputData.filter(function (e) {
+			return KOMSpacingModel.KOMSpacingModelIsBackward(e) && !e.KOMSpacingDueDate && unseen.filter(function (item) {
+				return KOMSpacingModel.KOMSpacingModelIdentifier(item.KOMSpacingID) === KOMSpacingModel.KOMSpacingModelIdentifier(e.KOMSpacingID);
+			}).length;
+		}));
+
+		while (unseen.length && siblingUnseen.length && KOMSpacingModel.KOMSpacingModelIdentifier(unseen.slice(-1).pop().KOMSpacingID) === KOMSpacingModel.KOMSpacingModelIdentifier(siblingUnseen[0].KOMSpacingID)) {
+			siblingUnseen = mod._KOMPlaySortShuffle(siblingUnseen);
+		}
+
+		unseen.push(...siblingUnseen);
+
+		if (!outputData.length) {
+			return unseen;
+		}
+
 		const lastIndex = outputData.length - 1;
+		const slots = Math.floor(outputData.length / (unseen.length + 1));
 		
-		mod._KOMPlaySortShuffle(unseen).map(function (e, i) {
-			return outputData.splice(lastIndex - spacing * (i + 1), 0, e);
+		unseen.map(function (e, i) {
+			return outputData.splice(lastIndex - slots * (i + 1), 0, e);
 		});
 
 		return outputData;
