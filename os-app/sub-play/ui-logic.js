@@ -33,36 +33,48 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		const outputData = mod._KOMPlaySortShuffle(inputData.filter(function (e) {
-			return !KOMSpacingModel.KOMSpacingModelIsBackward(e) && e.KOMSpacingDueDate;
-		})).concat(mod._KOMPlaySortShuffle(inputData.filter(function (e) {
-			return KOMSpacingModel.KOMSpacingModelIsBackward(e) && e.KOMSpacingDueDate;
-		}) ));
+		const outputData = [];
 
-		const unseen = mod._KOMPlaySortShuffle(inputData.filter(function (e) {
+		const reviewForward = mod._KOMPlaySortShuffle(inputData.filter(function (e) {
+			return !KOMSpacingModel.KOMSpacingModelIsBackward(e) && e.KOMSpacingDueDate;
+		}));
+
+		outputData.push(...reviewForward);
+
+		let reviewBackward = mod._KOMPlaySortShuffle(inputData.filter(function (e) {
+			return KOMSpacingModel.KOMSpacingModelIsBackward(e) && e.KOMSpacingDueDate;
+		}));
+
+		while (reviewForward.length && reviewBackward.length && KOMSpacingModel.KOMSpacingModelIdentifier(reviewForward.slice(-1).pop().KOMSpacingID) === KOMSpacingModel.KOMSpacingModelIdentifier(reviewBackward[0].KOMSpacingID)) {
+			reviewBackward = mod._KOMPlaySortShuffle(reviewBackward);
+		}
+
+		outputData.push(...reviewBackward);
+
+		const unseenForward = mod._KOMPlaySortShuffle(inputData.filter(function (e) {
 			return !KOMSpacingModel.KOMSpacingModelIsBackward(e) && !e.KOMSpacingDueDate;
 		}));
 
-		let siblingUnseen = mod._KOMPlaySortShuffle(inputData.filter(function (e) {
-			return KOMSpacingModel.KOMSpacingModelIsBackward(e) && !e.KOMSpacingDueDate && unseen.filter(function (item) {
+		let unseenBackward = mod._KOMPlaySortShuffle(inputData.filter(function (e) {
+			return KOMSpacingModel.KOMSpacingModelIsBackward(e) && !e.KOMSpacingDueDate && unseenForward.filter(function (item) {
 				return KOMSpacingModel.KOMSpacingModelIdentifier(item.KOMSpacingID) === KOMSpacingModel.KOMSpacingModelIdentifier(e.KOMSpacingID);
 			}).length;
 		}));
 
-		while (unseen.length && siblingUnseen.length && KOMSpacingModel.KOMSpacingModelIdentifier(unseen.slice(-1).pop().KOMSpacingID) === KOMSpacingModel.KOMSpacingModelIdentifier(siblingUnseen[0].KOMSpacingID)) {
-			siblingUnseen = mod._KOMPlaySortShuffle(siblingUnseen);
+		while (unseenForward.length && unseenBackward.length && KOMSpacingModel.KOMSpacingModelIdentifier(unseenForward.slice(-1).pop().KOMSpacingID) === KOMSpacingModel.KOMSpacingModelIdentifier(unseenBackward[0].KOMSpacingID)) {
+			unseenBackward = mod._KOMPlaySortShuffle(unseenBackward);
 		}
 
-		unseen.push(...siblingUnseen);
+		unseenForward.push(...unseenBackward);
 
 		if (!outputData.length) {
-			return unseen;
-		}
+			return unseenForward;
+		};
 
 		const lastIndex = outputData.length - 1;
-		const slots = Math.floor(outputData.length / (unseen.length + 1));
-		
-		unseen.map(function (e, i) {
+		const slots = Math.floor(outputData.length / (unseenForward.length + 1));
+
+		unseenForward.map(function (e, i) {
 			return outputData.splice(lastIndex - slots * (i + 1), 0, e);
 		});
 

@@ -181,6 +181,28 @@ describe('KOMPlaySort', function test_KOMPlaySort() {
 	
 	});
 
+	context('siblings_review', function () {
+
+		it('spaces apart from sibling', function() {
+			deepEqual(Array.from(new Array(10)).map(function (e) {
+				return mainModule.KOMPlaySort(uItems(10, 0, true)).filter(function (e, i, coll) {
+					return i && KOMSpacingModel.KOMSpacingModelIsBackward(e) && KOMSpacingModel.KOMSpacingModelIdentifier(e.KOMSpacingID) === KOMSpacingModel.KOMSpacingModelIdentifier(coll[i - 1].KOMSpacingID)
+				});
+			}).filter(function (e) {
+				return e.length;
+			}), []);
+		});
+
+		it('randomizes', function() {
+			deepEqual(Array.from(new Array(10)).map(function (e) {
+				return uSlug(mainModule.KOMPlaySort(uItems(10, 0, true)).filter(KOMSpacingModel.KOMSpacingModelIsBackward));
+			}).filter(function (value, index, self) {
+				return self.indexOf(value) === index;
+			}).length > 1, true);
+		});
+		
+	});
+
 });
 
 describe('KOMPlayStateIsValid', function test_KOMPlayStateIsValid() {
