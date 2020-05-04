@@ -61,30 +61,24 @@ describe('KOMPlayDayGrouping', function test_KOMPlayDayGrouping() {
 
 describe('KOMPlaySort', function test_KOMPlaySort() {
 	
-	const uItems = function (param1 = 4, param2 = false) {
+	const uItems = function (param1 = 4, param2 = Infinity) {
 		return Array.from(new Array(param1)).map(function (e, i) {
 			return Object.assign(kTesting.StubSpacingObjectValid(), {
-				KOMSpacingID: (i + 1).toString() + 'forward',
+				KOMSpacingID: (i + 1).toString() + '-forward',
+				KOMSpacingDueDate: i >= param2 ? new Date() : undefined,
 			});
-		}).concat(param2 ? Array.from(new Array(param1)).map(function (e, i) {
+		}).concat(Array.from(new Array(param1)).map(function (e, i) {
 			return Object.assign(kTesting.StubSpacingObjectValid(), {
-				KOMSpacingID: (i + 1).toString() + 'backward',
+				KOMSpacingID: (i + 1).toString() + '-backward',
+				KOMSpacingDueDate: i >= param2 ? new Date() : undefined,
 			});
-		}) : []);
+		}));
 	};
 
 	const uSlug = function (inputData) {
 		return inputData.map(function (e) {
 			return e.KOMSpacingID;
 		}).join('-');
-	};
-
-	const uNew = function (param1, param2) {
-		return param1.map(function (e, i) {
-			return Object.assign(e, {
-				KOMSpacingDueDate: i >= param2 ? new Date() : undefined,
-			});
-		});
 	};
 
 	it('throws if not array', function () {
@@ -115,26 +109,24 @@ describe('KOMPlaySort', function test_KOMPlaySort() {
 	context('unseen', function () {
 		
 		it('spaces single', function() {
-			deepEqual(mainModule.KOMPlaySort(uNew(uItems(10), 1)).map(function (e, i) {
-				if (!e.KOMSpacingDueDate) {
-					return i;
-				}
-			}).join(''), '4');
-		});
-		
-		it('spaces multiple', function() {
-			deepEqual(mainModule.KOMPlaySort(uNew(uItems(10), 2)).map(function (e, i) {
+			deepEqual(mainModule.KOMPlaySort(uItems(5, 1)).map(function (e, i) {
 				if (!e.KOMSpacingDueDate) {
 					return i;
 				}
 			}).join(''), '36');
 		});
+		
+		it('spaces multiple', function() {
+			deepEqual(mainModule.KOMPlaySort(uItems(5, 2)).map(function (e, i) {
+				if (!e.KOMSpacingDueDate) {
+					return i;
+				}
+			}).join(''), '1357');
+		});
 
 		it('randomizes new cards', function() {
-			const items = uNew(uItems(20), 4);
-
 			deepEqual(Array.from(new Array(10)).map(function (e) {
-				return uSlug(mainModule.KOMPlaySort(items).filter(function (e) {
+				return uSlug(mainModule.KOMPlaySort(uItems(10, 4)).filter(function (e) {
 					return !e.KOMSpacingDueDate;
 				}));
 			}).filter(function (value, index, self) {
