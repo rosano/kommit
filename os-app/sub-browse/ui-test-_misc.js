@@ -21,6 +21,10 @@ describe('KOMBrowse_Misc', function () {
 		});
 	});
 	
+	it('classes OLSKViewport', function () {
+		browser.assert.hasClass(KOMBrowse, 'OLSKViewport');
+	});
+	
 	it('classes OLSKMobileViewInactive', function () {
 		browser.assert.hasNoClass('.KOMBrowseList', 'OLSKMobileViewInactive');
 		browser.assert.hasClass('.KOMBrowseInfo', 'OLSKMobileViewInactive');
