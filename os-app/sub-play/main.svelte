@@ -14,6 +14,14 @@ const mod = {
 
 	// VALUE
 
+	_ValueAnswerVisible: false,
+
+	// INTERFACE
+
+	InterfaceCardDidClick () {
+		mod._ValueAnswerVisible = true;
+	},
+
 	// CONTROL
 
 };
@@ -38,6 +46,24 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 		</OLSKToolbarElementGroup>
 	</OLSKToolbar>
 </header>
+
+<div class="KOMPlayCard" on:click={ mod.InterfaceCardDidClick }>
+
+	<div class="KOMPlayCardQuestion"></div>
+
+	{#if mod._ValueAnswerVisible}
+		<div class="KOMPlayCardAnswer"></div>
+		<div class="KOMPlayCardHint"></div>
+	{/if}
+	
+</div>
+
+{#if mod._ValueAnswerVisible}
+	<button class="KOMPlayResponseButtonAgain">{ OLSKLocalized('KOMPlayResponseButtonAgainText') }</button>
+	<button class="KOMPlayResponseButtonHard">{ OLSKLocalized('KOMPlayResponseButtonHardText') }</button>
+	<button class="KOMPlayResponseButtonGood">{ OLSKLocalized('KOMPlayResponseButtonGoodText') }</button>
+	<button class="KOMPlayResponseButtonEasy">{ OLSKLocalized('KOMPlayResponseButtonEasyText') }</button>
+{/if}
 	
 </OLSKViewportContent>
 

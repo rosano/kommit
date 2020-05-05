@@ -22,6 +22,30 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			browser.assert.text(KOMPlayToolbarDoneButton, uLocalized('KOMPlayToolbarDoneButtonText'));
 		});
 
+		context('flip', function () {
+
+			before(function () {
+				browser.click(KOMPlayCard);
+			});
+			
+			it('localizes KOMPlayResponseButtonAgain', function () {
+				browser.assert.text(KOMPlayResponseButtonAgain, uLocalized('KOMPlayResponseButtonAgainText'));
+			});
+
+			it('localizes KOMPlayResponseButtonHard', function () {
+				browser.assert.text(KOMPlayResponseButtonHard, uLocalized('KOMPlayResponseButtonHardText'));
+			});
+
+			it('localizes KOMPlayResponseButtonGood', function () {
+				browser.assert.text(KOMPlayResponseButtonGood, uLocalized('KOMPlayResponseButtonGoodText'));
+			});
+
+			it('localizes KOMPlayResponseButtonEasy', function () {
+				browser.assert.text(KOMPlayResponseButtonEasy, uLocalized('KOMPlayResponseButtonEasyText'));
+			});
+
+		});
+
 	});
 
 });
