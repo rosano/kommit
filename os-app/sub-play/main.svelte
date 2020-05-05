@@ -52,8 +52,8 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 	<div class="KOMPlayCardQuestion">{ KOMPlayCards[0].KOMCardQuestion }</div>
 
 	{#if mod._ValueAnswerVisible}
-		<div class="KOMPlayCardAnswer"></div>
-		<div class="KOMPlayCardHint"></div>
+		<div class="KOMPlayCardAnswer">{ KOMPlayCards[0].KOMCardAnswer }</div>
+		<div class="KOMPlayCardHint">{ KOMPlayCards[0].KOMCardHint }</div>
 	{/if}
 	
 </div>

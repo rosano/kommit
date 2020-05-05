@@ -6,6 +6,7 @@ const kTesting = {
 			KOMCardID: 'alfa',
 			KOMCardQuestion: 'bravo',
 			KOMCardAnswer: 'charlie',
+			KOMCardHint: 'delta',
 			KOMCardCreationDate: new Date('2019-02-23T13:56:36Z'),
 			KOMCardModificationDate: new Date('2019-02-23T13:56:36Z'),
 		};
@@ -89,6 +90,27 @@ describe('KOMPlay_Misc', function () {
 		it('sets text', function () {
 			browser.assert.text(KOMPlayCardQuestion, kTesting.StubCardObjectValid().KOMCardQuestion)
 		});
+
+	});
+
+	describe('KOMPlayCardAnswer', function () {
+
+		before(function () {
+			browser.click(KOMPlayCard);
+		});
+
+		it('sets text', function () {
+			browser.assert.text(KOMPlayCardAnswer, kTesting.StubCardObjectValid().KOMCardAnswer)
+		});
+
+	});
+
+	describe('KOMPlayCardHint', function () {
+
+		it('sets text', function () {
+			browser.assert.text(KOMPlayCardHint, kTesting.StubCardObjectValid().KOMCardHint)
+		});
+
 	});
 
 });

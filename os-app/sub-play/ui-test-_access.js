@@ -91,7 +91,7 @@ describe('KOMPlay_Access', function () {
 	context('flip', function () {
 
 		before(function () {
-			browser.click(KOMPlayCardQuestion);
+			browser.click(KOMPlayCard);
 		});
 		
 		it('shows KOMPlayCardAnswer', function () {
