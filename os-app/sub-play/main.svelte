@@ -1,4 +1,5 @@
 <script>
+export let KOMPlaySpacings;
 export let KOMPlayCards;
 export let KOMPlayDispatchBack;
 export let KOMPlayDispatchDone;
@@ -8,21 +9,71 @@ const OLSKLocalized = function(translationConstant) {
 	return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, JSON.parse(`{"OLSK_I18N_SEARCH_REPLACE":"OLSK_I18N_SEARCH_REPLACE"}`)[window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage')]);
 };
 
-import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting'
+import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting';
+import KOMPlayLogic from './ui-logic.js';
+import KOMSpacingModel from '../_shared/KOMSpacing/model.js';
 
 const mod = {
 
 	// VALUE
 
 	_ValueAnswerVisible: false,
+	_ValueState: {
+		KOMPlayStateCurrent: KOMPlaySpacings[0],
+		KOMPlayStateQueue: KOMPlaySpacings.slice(1),
+		KOMPlayStateWait: [],
+	},
+
+	// DATA
+
+	DataCardFor (inputData) {
+		return KOMPlayCards.filter(function (e) {
+			return KOMSpacingModel.KOMSpacingModelIdentifier(inputData.KOMSpacingID) === e.KOMCardID;
+		}).pop();
+	},
 
 	// INTERFACE
 
 	InterfaceCardDidClick () {
-		mod._ValueAnswerVisible = true;
+		mod.ControlFlip();
+	},
+
+	InterfaceResponseButtonDidClickAgain () {
+		mod.ControlRespond(KOMPlayLogic.KOMPlayResponseTypeAgain());
+	},
+
+	InterfaceResponseButtonDidClickHard () {
+		mod.ControlRespond(KOMPlayLogic.KOMPlayResponseTypeHard());
+	},
+
+	InterfaceResponseButtonDidClickGood () {
+		mod.ControlRespond(KOMPlayLogic.KOMPlayResponseTypeGood());
+	},
+
+	InterfaceResponseButtonDidClickEasy () {
+		mod.ControlRespond(KOMPlayLogic.KOMPlayResponseTypeEasy());
 	},
 
 	// CONTROL
+
+	ControlFlip () {
+		mod._ValueAnswerVisible = !mod._ValueAnswerVisible;
+
+		if (!mod._ValueAnswerVisible) {
+			mod.ControlRespond(KOMPlayLogic.KOMPlayResponseTypeGood());
+		}
+	},
+
+	ControlRespond (inputData) {
+		KOMPlayLogic.KOMPlayRespond(mod._ValueState, {
+			KOMPlayResponseType: inputData,
+			KOMPlayResponseDate: new Date(),
+		});
+
+		mod._ValueState = mod._ValueState; // #purge-svelte-force-update
+
+		mod._ValueAnswerVisible = false;
+	},
 
 };
 
@@ -47,22 +98,36 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 	</OLSKToolbar>
 </header>
 
-<div class="KOMPlayCard" on:click={ mod.InterfaceCardDidClick }>
+{#if mod._ValueState.KOMPlayStateCurrent }
+	<div class="KOMPlayCard" on:click={ mod.InterfaceCardDidClick }>
 
-	<div class="KOMPlayCardQuestion">{ KOMPlayCards[0].KOMCardQuestion }</div>
+		<div class="KOMPlayCardQuestion">{ mod.DataCardFor(mod._ValueState.KOMPlayStateCurrent).KOMCardQuestion }</div>
+
+		{#if mod._ValueAnswerVisible}
+			<div class="KOMPlayCardAnswer">{ mod.DataCardFor(mod._ValueState.KOMPlayStateCurrent).KOMCardAnswer }</div>
+			<div class="KOMPlayCardHint">{ mod.DataCardFor(mod._ValueState.KOMPlayStateCurrent).KOMCardHint }</div>
+		{/if}
+		
+	</div>
 
 	{#if mod._ValueAnswerVisible}
-		<div class="KOMPlayCardAnswer">{ KOMPlayCards[0].KOMCardAnswer }</div>
-		<div class="KOMPlayCardHint">{ KOMPlayCards[0].KOMCardHint }</div>
-	{/if}
-	
-</div>
+		<button class="KOMPlayResponseButtonAgain" on:click={ mod.InterfaceResponseButtonDidClickAgain }>{ OLSKLocalized('KOMPlayResponseButtonAgainText') }</button>
 
-{#if mod._ValueAnswerVisible}
-	<button class="KOMPlayResponseButtonAgain">{ OLSKLocalized('KOMPlayResponseButtonAgainText') }</button>
-	<button class="KOMPlayResponseButtonHard">{ OLSKLocalized('KOMPlayResponseButtonHardText') }</button>
-	<button class="KOMPlayResponseButtonGood">{ OLSKLocalized('KOMPlayResponseButtonGoodText') }</button>
-	<button class="KOMPlayResponseButtonEasy">{ OLSKLocalized('KOMPlayResponseButtonEasyText') }</button>
+		<button class="KOMPlayResponseButtonHard" on:click={ mod.InterfaceResponseButtonDidClickHard }>{ OLSKLocalized('KOMPlayResponseButtonHardText') }</button>
+
+		<button class="KOMPlayResponseButtonGood" on:click={ mod.InterfaceResponseButtonDidClickGood }>{ OLSKLocalized('KOMPlayResponseButtonGoodText') }</button>
+
+		<button class="KOMPlayResponseButtonEasy" on:click={ mod.InterfaceResponseButtonDidClickEasy }>{ OLSKLocalized('KOMPlayResponseButtonEasyText') }</button>
+	{/if}
+
+	{#if OLSK_TESTING_BEHAVIOUR}
+		<div id="TestKOMPlayStateQueueCount">{ mod._ValueState.KOMPlayStateQueue.length }</div>
+		<div id="TestKOMPlayStateWaitCount">{ mod._ValueState.KOMPlayStateWait.length }</div>
+	{/if}	
+{/if}
+
+{#if !mod._ValueState.KOMPlayStateCurrent}
+	<div class="KOMPlayConclusion">{ OLSKLocalized('KOMPlayConclusionText') }</div>
 {/if}
 	
 </OLSKViewportContent>

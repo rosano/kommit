@@ -1,14 +1,27 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
+const KOMPlayLogic = require('./ui-logic.js').default;
+
 const kTesting = {
-	StubCardObjectValid() {
-		return {
-			KOMCardID: 'alfa',
-			KOMCardQuestion: 'bravo',
-			KOMCardAnswer: 'charlie',
-			KOMCardCreationDate: new Date('2019-02-23T13:56:36Z'),
-			KOMCardModificationDate: new Date('2019-02-23T13:56:36Z'),
-		};
+	uCards () {
+		return KOMPlayLogic._KOMPlaySortShuffle(Array.from(new Array(1)).map(function (e, i) {
+			return {
+				KOMCardID: (i + 1).toString(),
+				KOMCardQuestion: (i + 1).toString(),
+				KOMCardAnswer: 'charlie',
+				KOMCardHint: 'delta',
+				KOMCardCreationDate: new Date('2019-02-23T13:56:36Z'),
+				KOMCardModificationDate: new Date('2019-02-23T13:56:36Z'),
+			};
+		}))
+	},
+	uSpacings () {
+		return KOMPlayLogic._KOMPlaySortShuffle(Array.from(new Array(1)).map(function (e, i) {
+			return {
+				KOMSpacingID: (i + 1).toString() + '-forward',
+				KOMSpacingDueDate: i === 1 ? new Date() : undefined,
+			};
+		}))
 	},
 };
 
@@ -23,7 +36,8 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute, {
 				OLSKRoutingLanguage: languageCode,
-				KOMPlayCards: JSON.stringify([kTesting.StubCardObjectValid()]),
+				KOMPlayCards: JSON.stringify(kTesting.uCards()),
+				KOMPlaySpacings: JSON.stringify(kTesting.uSpacings()),
 			});
 		});
 
@@ -38,7 +52,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 		context('flip', function () {
 
 			before(function () {
-				browser.click(KOMPlayCard);
+				return browser.click(KOMPlayCard);
 			});
 			
 			it('localizes KOMPlayResponseButtonAgain', function () {
@@ -57,6 +71,18 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 				browser.assert.text(KOMPlayResponseButtonEasy, uLocalized('KOMPlayResponseButtonEasyText'));
 			});
 
+		});
+
+		context('KOMPlayConclusion', function () {
+
+			before(function () {
+				return browser.click(KOMPlayResponseButtonEasy);
+			});
+
+			it('localizes KOMPlayConclusion', function () {
+				browser.assert.text(KOMPlayConclusion, uLocalized('KOMPlayConclusionText'));
+			});
+		
 		});
 
 	});

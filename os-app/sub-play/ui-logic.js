@@ -272,6 +272,7 @@ const mod = {
 
 	KOMPlayRespond (state, response) {
 		if (!mod.KOMPlayStateIsValid(state)) {
+			console.log(state);
 			throw new Error('KOMErrorInputNotValid');
 		}
 
@@ -378,4 +379,4 @@ const mod = {
 
 };
 
-Object.assign(exports, mod);
+export default mod;
