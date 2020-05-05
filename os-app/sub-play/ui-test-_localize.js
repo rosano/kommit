@@ -14,6 +14,14 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			});
 		});
 
+		it('localizes KOMPlayToolbarBackButton', function () {
+			browser.assert.text(KOMPlayToolbarBackButton, uLocalized('KOMPlayToolbarBackButtonText'));
+		});
+
+		it('localizes KOMPlayToolbarDoneButton', function () {
+			browser.assert.text(KOMPlayToolbarDoneButton, uLocalized('KOMPlayToolbarDoneButtonText'));
+		});
+
 	});
 
 });
