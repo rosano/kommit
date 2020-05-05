@@ -1,5 +1,5 @@
 <script>
-export let KOMPlayItem;
+export let KOMPlayCards;
 export let KOMPlayDispatchBack;
 export let KOMPlayDispatchDone;
 
@@ -49,7 +49,7 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 
 <div class="KOMPlayCard" on:click={ mod.InterfaceCardDidClick }>
 
-	<div class="KOMPlayCardQuestion"></div>
+	<div class="KOMPlayCardQuestion">{ KOMPlayCards[0].KOMCardQuestion }</div>
 
 	{#if mod._ValueAnswerVisible}
 		<div class="KOMPlayCardAnswer"></div>

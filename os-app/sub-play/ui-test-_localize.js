@@ -1,5 +1,17 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
+const kTesting = {
+	StubCardObjectValid() {
+		return {
+			KOMCardID: 'alfa',
+			KOMCardQuestion: 'bravo',
+			KOMCardAnswer: 'charlie',
+			KOMCardCreationDate: new Date('2019-02-23T13:56:36Z'),
+			KOMCardModificationDate: new Date('2019-02-23T13:56:36Z'),
+		};
+	},
+};
+
 kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 
 	const uLocalized = function (inputData) {
@@ -11,6 +23,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute, {
 				OLSKRoutingLanguage: languageCode,
+				KOMPlayCards: JSON.stringify([kTesting.StubCardObjectValid()]),
 			});
 		});
 

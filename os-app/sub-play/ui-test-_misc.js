@@ -1,9 +1,23 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
+const kTesting = {
+	StubCardObjectValid() {
+		return {
+			KOMCardID: 'alfa',
+			KOMCardQuestion: 'bravo',
+			KOMCardAnswer: 'charlie',
+			KOMCardCreationDate: new Date('2019-02-23T13:56:36Z'),
+			KOMCardModificationDate: new Date('2019-02-23T13:56:36Z'),
+		};
+	},
+};
+
 describe('KOMPlay_Misc', function () {	
 
 	before(function() {
-		return browser.OLSKVisit(kDefaultRoute);
+		return browser.OLSKVisit(kDefaultRoute, {
+			KOMPlayCards: JSON.stringify([kTesting.StubCardObjectValid()]),
+		});
 	});
 
 	describe('KOMPlay', function () {
@@ -68,6 +82,13 @@ describe('KOMPlay_Misc', function () {
 
 		});
 	
+	});
+
+	describe('KOMPlayCardQuestion', function () {
+
+		it('sets text', function () {
+			browser.assert.text(KOMPlayCardQuestion, kTesting.StubCardObjectValid().KOMCardQuestion)
+		});
 	});
 
 });

@@ -1,5 +1,17 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
+const kTesting = {
+	StubCardObjectValid() {
+		return {
+			KOMCardID: 'alfa',
+			KOMCardQuestion: 'bravo',
+			KOMCardAnswer: 'charlie',
+			KOMCardCreationDate: new Date('2019-02-23T13:56:36Z'),
+			KOMCardModificationDate: new Date('2019-02-23T13:56:36Z'),
+		};
+	},
+};
+
 Object.entries({
 	KOMPlay: '.KOMPlay',
 
@@ -23,7 +35,9 @@ Object.entries({
 describe('KOMPlay_Access', function () {
 
 	before(function() {
-		return browser.OLSKVisit(kDefaultRoute);
+		return browser.OLSKVisit(kDefaultRoute, {
+			KOMPlayCards: JSON.stringify([kTesting.StubCardObjectValid()]),
+		});
 	});
 
 	it('shows KOMPlay', function () {
