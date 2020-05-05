@@ -37,6 +37,8 @@ Object.entries({
 	KOMPlayCardAnswer: '.KOMPlayCardAnswer',
 	KOMPlayCardHint: '.KOMPlayCardHint',
 
+	KOMPlayFlipButton: '.KOMPlayFlipButton',
+
 	KOMPlayResponseButtonAgain: '.KOMPlayResponseButtonAgain',
 	KOMPlayResponseButtonHard: '.KOMPlayResponseButtonHard',
 	KOMPlayResponseButtonGood: '.KOMPlayResponseButtonGood',
@@ -88,6 +90,10 @@ describe('KOMPlay_Access', function () {
 		browser.assert.elements(KOMPlayCardHint, 0);
 	});
 
+	it('shows KOMPlayFlipButton', function () {
+		browser.assert.elements(KOMPlayFlipButton, 1);
+	});
+
 	it('hides KOMPlayResponseButtonAgain', function () {
 		browser.assert.elements(KOMPlayResponseButtonAgain, 0);
 	});
@@ -111,7 +117,7 @@ describe('KOMPlay_Access', function () {
 	context('flip', function () {
 
 		before(function () {
-			return browser.click(KOMPlayCard);
+			return browser.pressButton(KOMPlayFlipButton);
 		});
 		
 		it('shows KOMPlayCardAnswer', function () {
@@ -120,6 +126,10 @@ describe('KOMPlay_Access', function () {
 
 		it('shows KOMPlayCardHint', function () {
 			browser.assert.elements(KOMPlayCardHint, 1);
+		});
+
+		it('hides KOMPlayFlipButton', function () {
+			browser.assert.elements(KOMPlayFlipButton, 0);
 		});
 
 		it('shows KOMPlayResponseButtonAgain', function () {
@@ -143,7 +153,7 @@ describe('KOMPlay_Access', function () {
 	context('next', function () {
 
 		before(function () {
-			return browser.click(KOMPlayResponseButtonEasy);
+			return browser.pressButton(KOMPlayResponseButtonEasy);
 		});
 		
 		it('hides KOMPlayCardAnswer', function () {
@@ -152,6 +162,10 @@ describe('KOMPlay_Access', function () {
 
 		it('hides KOMPlayCardHint', function () {
 			browser.assert.elements(KOMPlayCardHint, 0);
+		});
+
+		it('shows KOMPlayFlipButton', function () {
+			browser.assert.elements(KOMPlayFlipButton, 1);
 		});
 
 		it('hides KOMPlayResponseButtonAgain', function () {
@@ -175,11 +189,11 @@ describe('KOMPlay_Access', function () {
 	context('KOMPlayConclusion', function () {
 
 		before(function () {
-			return browser.click(KOMPlayCard);
+			return browser.pressButton(KOMPlayFlipButton);
 		});
 		
 		before(function () {
-			return browser.click(KOMPlayResponseButtonEasy);
+			return browser.pressButton(KOMPlayResponseButtonEasy);
 		});
 
 		it('hides KOMPlayCard', function () {

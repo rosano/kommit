@@ -38,6 +38,10 @@ const mod = {
 		mod.ControlFlip();
 	},
 
+	InterfaceFlipButtonDidClick () {
+		mod.ControlFlip();
+	},
+
 	InterfaceResponseButtonDidClickAgain () {
 		mod.ControlRespond(KOMPlayLogic.KOMPlayResponseTypeAgain());
 	},
@@ -109,6 +113,10 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 		{/if}
 		
 	</div>
+	
+	{#if !mod._ValueAnswerVisible}
+		<button class="KOMPlayFlipButton" on:click={ mod.InterfaceFlipButtonDidClick }>{ OLSKLocalized('KOMPlayFlipButtonText') }</button>
+	{/if}
 
 	{#if mod._ValueAnswerVisible}
 		<button class="KOMPlayResponseButtonAgain" on:click={ mod.InterfaceResponseButtonDidClickAgain }>{ OLSKLocalized('KOMPlayResponseButtonAgainText') }</button>

@@ -49,6 +49,10 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			browser.assert.text(KOMPlayToolbarDoneButton, uLocalized('KOMPlayToolbarDoneButtonText'));
 		});
 
+		it('localizes KOMPlayFlipButton', function () {
+			browser.assert.text(KOMPlayFlipButton, uLocalized('KOMPlayFlipButtonText'));
+		});
+
 		context('flip', function () {
 
 			before(function () {
