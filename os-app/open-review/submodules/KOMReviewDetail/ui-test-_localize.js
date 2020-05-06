@@ -34,6 +34,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 				OLSKRoutingLanguage: languageCode,
 				KOMReviewDetailDeck: JSON.stringify({
 					KOMDeckName: 'alfa',
+					$KOMDeckSpacings: [],
 				}),
 			});
 		});
@@ -78,14 +79,14 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 		
 		});
 
-		context('KOMReviewDetailSpacings', function test_KOMReviewDetailSpacings () {
+		context('$KOMDeckSpacings', function test_$KOMDeckSpacings () {
 
 			before(function() {
 				return browser.OLSKVisit(kDefaultRoute, {
 					KOMReviewDetailDeck: JSON.stringify({
 						KOMDeckName: 'alfa',
+						$KOMDeckSpacings: kTesting.uSpacings(),
 					}),
-					KOMReviewDetailSpacings: JSON.stringify(kTesting.uSpacings()),
 				});
 			});
 

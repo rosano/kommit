@@ -26,6 +26,7 @@ describe('KOMReviewDetail_Misc', function () {
 	const uItem = function () {
 		return {
 			KOMDeckName: 'alfa',
+			$KOMDeckSpacings: [],
 		};
 	};
 
@@ -175,8 +176,8 @@ describe('KOMReviewDetail_Misc', function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMReviewDetailDeck: JSON.stringify({
 					KOMDeckName: 'alfa',
+					$KOMDeckSpacings: kTesting.uSpacings(),
 				}),
-				KOMReviewDetailSpacings: JSON.stringify(kTesting.uSpacings()),
 			});
 		});
 

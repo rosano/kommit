@@ -1,6 +1,5 @@
 <script>
 export let KOMReviewDetailDeck;
-export let KOMReviewDetailSpacings;
 export let KOMReviewDetailDispatchBack;
 export let KOMReviewDetailDispatchDiscard;
 export let KOMReviewDetailDispatchRename;
@@ -60,11 +59,11 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 
 <h1 class="KOMReviewDetailHeading">{ KOMReviewDetailDeck.KOMDeckName }</h1>
 
-{#if !KOMReviewDetailSpacings.length}
+{#if !KOMReviewDetailDeck.$KOMDeckSpacings.length}
 	<p class="KOMReviewDetailNoCards">{ OLSKLocalized('KOMReviewDetailNoCardsText') }</p>
 {/if}
 
-{#if KOMReviewDetailSpacings.length}
+{#if KOMReviewDetailDeck.$KOMDeckSpacings.length}
 	<button class="KOMReviewDetailPlayButton" on:click={ KOMReviewDetailDispatchPlay }>{ OLSKLocalized('KOMReviewDetailPlayButtonText') }</button>
 {/if}
 

@@ -9,9 +9,12 @@ import * as OLSKRemoteStorage from '../_shared/__external/OLSKRemoteStorage/main
 import KOM_Data from '../_shared/KOM_Data/main.js';
 import KOMDeckStorage from '../_shared/KOMDeck/storage.js';
 import KOMCardStorage from '../_shared/KOMCard/storage.js';
+import KOMSpacingStorage from '../_shared/KOMSpacing/storage.js';
 import * as RemoteStoragePackage from 'remotestoragejs';
 const RemoteStorage = RemoteStoragePackage.default || RemoteStoragePackage;
 import KOMDeckAction from '../_shared/KOMDeck/action.js';
+import KOMCardAction from '../_shared/KOMCard/action.js';
+import KOMSpacingMetal from '../_shared/KOMSpacing/metal.js';
 
 const mod = {
 
@@ -138,6 +141,7 @@ const mod = {
 		const item = await KOMDeckAction.KOMDeckActionCreate(mod._ValueStorageClient, {
 			KOMDeckName: inputData,
 			$KOMDeckCards: [],
+			$KOMDeckSpacings: [],
 		});
 
 		mod.ValueDecksAll(mod._ValueDecksAll.concat(item));
@@ -185,6 +189,7 @@ const mod = {
 				},
 			}),
 			KOMCardStorage.KOMCardStorageBuild,
+			KOMSpacingStorage.KOMSpacingStorageBuild,
 			]);
 		
 		mod._ValueStorageClient = new RemoteStorage({ modules: [ storageModule ] });
@@ -271,9 +276,17 @@ const mod = {
 	async SetupValueDecksAll() {
 		mod.ValueDecksAll(await Promise.all((await KOMDeckAction.KOMDeckActionList(mod._ValueStorageClient)).filter(function (e) {
 			return typeof e === 'object'; // #patch-remotestorage-true
-		}).map(async function (e) {
-			return Object.assign(e, {
-				$KOMDeckCards: await KOMCardAction.KOMCardActionList(mod._ValueStorageClient, e),
+		}).map(async function (deck) {
+			const cards = await KOMCardAction.KOMCardActionList(mod._ValueStorageClient, deck);
+			return Object.assign(deck, {
+				$KOMDeckCards: cards,
+				$KOMDeckSpacings: [].concat(...(await Promise.all(cards.map(async function (card) {
+					return Object.values(await KOMSpacingMetal.KOMSpacingMetalList(mod._ValueStorageClient, card, deck)).map(function (e) {
+						return Object.assign(e, {
+							$KOMSpacingCard: card,
+						})
+					})
+				})))),
 			})
 		})));
 	},
@@ -311,7 +324,6 @@ import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svel
 	{#if mod._ValueDeckSelected && !mod._ValueBrowseVisible }
 		<KOMReviewDetail
 			KOMReviewDetailDeck={ mod._ValueDeckSelected }
-			KOMReviewDetailSpacings={ [] }
 			KOMReviewDetailDispatchBack={ mod.KOMReviewDetailDispatchBack }
 			KOMReviewDetailDispatchDiscard={ mod.KOMReviewDetailDispatchDiscard }
 			KOMReviewDetailDispatchRename={ mod.KOMReviewDetailDispatchRename }

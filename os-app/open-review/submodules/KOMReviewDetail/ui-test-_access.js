@@ -41,6 +41,7 @@ describe('KOMReviewDetail_Access', function () {
 		return browser.OLSKVisit(kDefaultRoute, {
 			KOMReviewDetailDeck: JSON.stringify({
 				KOMDeckName: 'alfa',
+				$KOMDeckSpacings: [],
 			}),
 		});
 	});
@@ -85,14 +86,14 @@ describe('KOMReviewDetail_Access', function () {
 		browser.assert.elements(KOMReviewDetailPlayButton, 0);
 	});
 
-	context('KOMReviewDetailSpacings', function test_KOMReviewDetailSpacings () {
+	context('$KOMDeckSpacings', function test_$KOMDeckSpacings () {
 
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMReviewDetailDeck: JSON.stringify({
 					KOMDeckName: 'alfa',
+					$KOMDeckSpacings: kTesting.uSpacings(),
 				}),
-				KOMReviewDetailSpacings: JSON.stringify(kTesting.uSpacings()),
 			});
 		});
 
