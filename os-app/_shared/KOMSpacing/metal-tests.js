@@ -61,20 +61,27 @@ describe('KOMSpacingMetalWrite', function test_KOMSpacingMetalWrite() {
 
 	context('$KOMSpacingCard', function () {
 
-		const item = Object.assign(kTesting.StubSpacingObjectValid(), {
+		const memory = Object.assign(kTesting.StubSpacingObjectValid(), {
 			$KOMSpacingCard: kTesting.StubCardObjectValid(),
 		});
+		let storage;
 
 		before(async function () {
-			await mainModule.KOMSpacingMetalWrite(KOMTestingStorageClient, item, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid());
+			await mainModule.KOMSpacingMetalWrite(KOMTestingStorageClient, memory, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid());
 		});
 		
-		it('ignores property', async function () {
-			deepEqual((await mainModule.KOMSpacingMetalList(KOMTestingStorageClient, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid())).forward, kTesting.StubSpacingObjectValid());
+		before(async function () {
+			storage = (await mainModule.KOMSpacingMetalList(KOMTestingStorageClient, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid())).forward;
+		});
+		
+		it('ignores property', function () {
+			deepEqual(storage, Object.assign(kTesting.StubSpacingObjectValid(), {
+				'@context': memory['@context'],
+			}));
 		});
 
 		it('clones object', function () {
-			deepEqual(item.$KOMSpacingCard, kTesting.StubCardObjectValid());
+			deepEqual(memory.$KOMSpacingCard, kTesting.StubCardObjectValid());
 		});;
 	
 	});
