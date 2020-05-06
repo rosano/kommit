@@ -22,7 +22,7 @@ const kTesting = {
 	},
 	StubSpacingObjectValid() {
 		return {
-			KOMSpacingID: 'echo-forward',
+			KOMSpacingID: 'bravo-forward',
 		};
 	},
 };
@@ -57,6 +57,26 @@ describe('KOMSpacingMetalWrite', function test_KOMSpacingMetalWrite() {
 		deepEqual(item, Object.assign(kTesting.StubSpacingObjectValid(), {
 			'@context': item['@context'],
 		}));
+	});
+
+	context('$KOMSpacingCard', function () {
+
+		const item = Object.assign(kTesting.StubSpacingObjectValid(), {
+			$KOMSpacingCard: kTesting.StubCardObjectValid(),
+		});
+
+		before(async function () {
+			await mainModule.KOMSpacingMetalWrite(KOMTestingStorageClient, item, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid());
+		});
+		
+		it('ignores property', async function () {
+			deepEqual((await mainModule.KOMSpacingMetalList(KOMTestingStorageClient, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid())).forward, kTesting.StubSpacingObjectValid());
+		});
+
+		it('clones object', function () {
+			deepEqual(item.$KOMSpacingCard, kTesting.StubCardObjectValid());
+		});;
+	
 	});
 
 });
