@@ -14,7 +14,7 @@ describe('KOMReviewDetail_Misc', function () {
 
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute, {
-				KOMReviewDetailItem: JSON.stringify(uItem()),
+				KOMReviewDetailDeck: JSON.stringify(uItem()),
 			});
 		});
 
@@ -24,7 +24,7 @@ describe('KOMReviewDetail_Misc', function () {
 
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute, {
-				KOMReviewDetailItem: JSON.stringify(uItem()),
+				KOMReviewDetailDeck: JSON.stringify(uItem()),
 			});
 		});
 		

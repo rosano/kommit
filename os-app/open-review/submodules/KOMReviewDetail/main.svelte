@@ -1,5 +1,5 @@
 <script>
-export let KOMReviewDetailItem;
+export let KOMReviewDetailDeck;
 export let KOMReviewDetailDispatchBack;
 export let KOMReviewDetailDispatchDiscard;
 export let KOMReviewDetailDispatchRename;
@@ -21,7 +21,7 @@ const mod = {
 	// CONTROL
 
 	ControlRename() {
-		let outputData = window.prompt(OLSKLocalized('KOMReviewDetailToolbarRenameButtonPromptText'), KOMReviewDetailItem.KOMDeckName);
+		let outputData = window.prompt(OLSKLocalized('KOMReviewDetailToolbarRenameButtonPromptText'), KOMReviewDetailDeck.KOMDeckName);
 		
 		if (!outputData) {
 			return;
@@ -45,7 +45,7 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 		</OLSKToolbarElementGroup>
 
 		<OLSKToolbarElementGroup>
-			<button class="KOMReviewDetailToolbarDiscardButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ () => window.confirm(OLSKLocalized('KOMReviewDetailToolbarDiscardPromptText')) && KOMReviewDetailDispatchDiscard(KOMReviewDetailItem) }>{ OLSKLocalized('KOMReviewDetailToolbarDiscardButtonText') }</button>
+			<button class="KOMReviewDetailToolbarDiscardButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ () => window.confirm(OLSKLocalized('KOMReviewDetailToolbarDiscardPromptText')) && KOMReviewDetailDispatchDiscard(KOMReviewDetailDeck) }>{ OLSKLocalized('KOMReviewDetailToolbarDiscardButtonText') }</button>
 			
 			<button class="KOMReviewDetailToolbarRenameButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceRenameButtonDidClick }>{ OLSKLocalized('KOMReviewDetailToolbarRenameButtonText') }</button>
 			
@@ -56,7 +56,7 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 
 <div>
 
-<h1 class="KOMReviewDetailHeading">{ KOMReviewDetailItem.KOMDeckName }</h1>
+<h1 class="KOMReviewDetailHeading">{ KOMReviewDetailDeck.KOMDeckName }</h1>
 
 </div>
 

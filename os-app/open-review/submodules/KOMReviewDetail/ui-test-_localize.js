@@ -12,7 +12,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute, {
-				KOMReviewDetailItem: JSON.stringify({
+				KOMReviewDetailDeck: JSON.stringify({
 					KOMDeckName: 'alfa',
 				}),
 			});

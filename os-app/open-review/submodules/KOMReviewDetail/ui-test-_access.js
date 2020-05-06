@@ -20,7 +20,7 @@ describe('KOMReviewDetail_Access', function () {
 
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute, {
-			KOMReviewDetailItem: JSON.stringify({
+			KOMReviewDetailDeck: JSON.stringify({
 				KOMDeckName: 'alfa',
 			}),
 		});
