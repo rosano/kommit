@@ -1,3 +1,5 @@
+import KOMCardModel from '../KOMCard/model.js'
+
 const mod = {
 
 	KOMSpacingModelIdentifier (inputData) {
@@ -93,6 +95,14 @@ const mod = {
 			if (typeof inputData.KOMSpacingMultiplier !== 'number') {
 				errors.KOMSpacingMultiplier = [
 					'KOMErrorNotNumber',
+				];
+			}
+		}
+
+		if (inputData.$KOMSpacingCard !== undefined) {
+			if (KOMCardModel.KOMCardModelErrorsFor(inputData.$KOMSpacingCard)) {
+				errors.$KOMSpacingCard = [
+					'KOMErrorNotValid',
 				];
 			}
 		}

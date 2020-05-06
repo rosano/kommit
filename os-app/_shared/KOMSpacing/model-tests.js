@@ -8,6 +8,15 @@ const kTesting = {
 			KOMSpacingID: 'bravo-forward',
 		};
 	},
+	StubCardObjectValid() {
+		return {
+			KOMCardID: 'alfa',
+			KOMCardQuestion: '',
+			KOMCardAnswer: '',
+			KOMCardCreationDate: new Date('2019-02-23T13:56:36Z'),
+			KOMCardModificationDate: new Date('2019-02-23T13:56:36Z'),
+		};
+	},
 };
 
 describe('KOMSpacingModelIdentifier', function test_KOMSpacingModelIdentifier() {
@@ -216,6 +225,26 @@ describe('KOMSpacingModelErrorsFor', function test_KOMSpacingModelErrorsFor() {
 		it('returns null', function() {
 			deepEqual(mainModule.KOMSpacingModelErrorsFor(Object.assign(kTesting.StubSpacingObjectValid(), {
 				KOMSpacingMultiplier: 1,
+			})), null);
+		});
+
+	});
+
+	context('$KOMSpacingCard', function() {
+
+		it('returns object if not valid', function() {
+			deepEqual(mainModule.KOMSpacingModelErrorsFor(Object.assign(kTesting.StubSpacingObjectValid(), {
+				$KOMSpacingCard: {},
+			})), {
+				$KOMSpacingCard: [
+					'KOMErrorNotValid',
+				],
+			});
+		});
+
+		it('returns null', function() {
+			deepEqual(mainModule.KOMSpacingModelErrorsFor(Object.assign(kTesting.StubSpacingObjectValid(), {
+				$KOMSpacingCard: kTesting.StubCardObjectValid(),
 			})), null);
 		});
 
