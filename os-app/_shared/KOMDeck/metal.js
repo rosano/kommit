@@ -17,6 +17,7 @@ const mod = {
 		const cleanObject = Object.assign({}, inputData);
 
 		delete cleanObject.$KOMDeckCards;
+		delete cleanObject.$KOMDeckSpacings;
 
 		return Object.assign(inputData, await storageClient.kommit.kom_decks.KOMStorageWrite(cleanObject));
 	},
