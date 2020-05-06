@@ -52,7 +52,7 @@ const mod = {
 
 	_ValueCardsAll: [],
 	ValueCardsAll (inputData, shouldSort = true) {
-		mod.ValueCardsVisible(mod._ValueCardsAll = inputData, shouldSort);
+		mod.ValueCardsVisible(mod._ValueDeckSelected.$KOMDeckCards = inputData, shouldSort);
 	},
 
 	_ValueCardsVisible: [],
@@ -130,7 +130,7 @@ const mod = {
 			KOMCardAnswer: '',
 		}, inputData);
 
-		mod.ValueCardsAll(mod._ValueCardsAll.concat(item));
+		mod.ValueCardsAll(mod._ValueDeckSelected.$KOMDeckCards.concat(item));
 
 		mod.ControlCardSelect(item);
 	},
@@ -145,7 +145,7 @@ const mod = {
 	},
 
 	async ControlCardDiscard (param1, param2) {
-		mod.ValueCardsAll(mod._ValueCardsAll.filter(function (e) {
+		mod.ValueCardsAll(mod._ValueDeckSelected.$KOMDeckCards.filter(function (e) {
 			return e !== param1;
 		}))
 
@@ -179,7 +179,7 @@ const mod = {
 	ControlFilter(inputData) {
 		mod._ValueFilterText = inputData;
 
-		mod.ValueCardsVisible(mod._ValueCardsAll);
+		mod.ValueCardsVisible(mod._ValueDeckSelected.$KOMDeckCards);
 
 		if (!inputData) {
 			return mod.ControlCardSelect(null);
@@ -204,9 +204,7 @@ const mod = {
 	},
 
 	async SetupValueCardsAll() {
-		mod.ValueCardsAll((await KOMCardAction.KOMCardActionList(KOMBrowseStorageClient, mod._ValueDeckSelected)).filter(function (e) {
-			return typeof e === 'object'; // #patch-remotestorage-true
-		}));
+		mod.ValueCardsAll(mod._ValueDeckSelected.$KOMDeckCards);
 	},
 
 	SetupFocus() {

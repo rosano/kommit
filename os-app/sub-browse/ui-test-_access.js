@@ -13,6 +13,7 @@ const kTesting = {
 			KOMDeckName: '',
 			KOMDeckCreationDate: new Date('2019-02-23T13:56:36Z'),
 			KOMDeckModificationDate: new Date('2019-02-23T13:56:36Z'),
+			$KOMDeckCards: [],
 		};
 	},
 };

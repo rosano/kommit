@@ -137,6 +137,7 @@ const mod = {
 	async ControlDeckCreate(inputData) {
 		const item = await KOMDeckAction.KOMDeckActionCreate(mod._ValueStorageClient, {
 			KOMDeckName: inputData,
+			$KOMDeckCards: [],
 		});
 
 		mod.ValueDecksAll(mod._ValueDecksAll.concat(item));
@@ -268,9 +269,13 @@ const mod = {
 	},
 
 	async SetupValueDecksAll() {
-		mod.ValueDecksAll((await KOMDeckAction.KOMDeckActionList(mod._ValueStorageClient)).filter(function (e) {
+		mod.ValueDecksAll(await Promise.all((await KOMDeckAction.KOMDeckActionList(mod._ValueStorageClient)).filter(function (e) {
 			return typeof e === 'object'; // #patch-remotestorage-true
-		}));
+		}).map(async function (e) {
+			return Object.assign(e, {
+				$KOMDeckCards: await KOMCardAction.KOMCardActionList(mod._ValueStorageClient, e),
+			})
+		})));
 	},
 
 	// LIFECYCLE
