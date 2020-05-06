@@ -35,6 +35,14 @@ const mod = {
 			];
 		}
 
+		if (inputData.$KOMDeckCards !== undefined) {
+			if (!Array.isArray(inputData.$KOMDeckCards)) {
+				errors.$KOMDeckCards = [
+					'KOMErrorNotArray',
+				];
+			}
+		}
+
 		return Object.entries(errors).length ? errors : null;
 	},
 
