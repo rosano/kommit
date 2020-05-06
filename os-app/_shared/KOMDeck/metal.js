@@ -14,7 +14,11 @@ const mod = {
 			});
 		}
 
-		return await storageClient.kommit.kom_decks.KOMStorageWrite(inputData);
+		const cleanObject = Object.assign({}, inputData);
+
+		delete cleanObject.$KOMDeckCards;
+
+		return Object.assign(inputData, await storageClient.kommit.kom_decks.KOMStorageWrite(cleanObject));
 	},
 
 	async KOMDeckMetalList (storageClient) {

@@ -37,6 +37,33 @@ describe('KOMDeckMetalWrite', function test_KOMDeckMetalWrite() {
 		}));
 	});
 
+	context('$KOMDeckCards', function () {
+
+		const memory = Object.assign(kTesting.StubDeckObjectValid(), {
+			$KOMDeckCards: [],
+		});
+		let storage = [];
+
+		before(async function () {
+			await mainModule.KOMDeckMetalWrite(KOMTestingStorageClient, memory);
+		});
+		
+		before(async function () {
+			storage = Object.values(await mainModule.KOMDeckMetalList(KOMTestingStorageClient));
+		});
+		
+		it('ignores property', function () {
+			deepEqual(storage, [Object.assign(kTesting.StubDeckObjectValid(), {
+				'@context': memory['@context'],
+			})]);
+		});
+
+		it('clones object', function () {
+			deepEqual(memory.$KOMDeckCards, []);
+		});;
+	
+	});
+
 });
 
 describe('KOMDeckMetalList', function test_KOMDeckMetalList() {
