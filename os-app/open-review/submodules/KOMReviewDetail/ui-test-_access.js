@@ -11,6 +11,7 @@ Object.entries({
 	
 	KOMReviewDetailHeading: '.KOMReviewDetailHeading',
 	KOMReviewDetailNoCards: '.KOMReviewDetailNoCards',
+	KOMReviewDetailPlayButton: '.KOMReviewDetailPlayButton',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
@@ -80,6 +81,10 @@ describe('KOMReviewDetail_Access', function () {
 		browser.assert.elements(KOMReviewDetailNoCards, 1);
 	});
 
+	it('hides KOMReviewDetailPlayButton', function () {
+		browser.assert.elements(KOMReviewDetailPlayButton, 0);
+	});
+
 	context('KOMReviewDetailSpacings', function test_KOMReviewDetailSpacings () {
 
 		before(function() {
@@ -93,6 +98,10 @@ describe('KOMReviewDetail_Access', function () {
 
 		it('hides KOMReviewDetailNoCards', function () {
 			browser.assert.elements(KOMReviewDetailNoCards, 0);
+		});
+
+		it('shows KOMReviewDetailPlayButton', function () {
+			browser.assert.elements(KOMReviewDetailPlayButton, 1);
 		});
 
 	});

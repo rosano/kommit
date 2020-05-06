@@ -5,6 +5,7 @@ export let KOMReviewDetailDispatchBack;
 export let KOMReviewDetailDispatchDiscard;
 export let KOMReviewDetailDispatchRename;
 export let KOMReviewDetailDispatchBrowse;
+export let KOMReviewDetailDispatchPlay;
 
 import OLSKInternational from 'OLSKInternational';
 const OLSKLocalized = function(translationConstant) {
@@ -61,6 +62,10 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 
 {#if !KOMReviewDetailSpacings.length}
 	<p class="KOMReviewDetailNoCards">{ OLSKLocalized('KOMReviewDetailNoCardsText') }</p>
+{/if}
+
+{#if KOMReviewDetailSpacings.length}
+	<button class="KOMReviewDetailPlayButton" on:click={ KOMReviewDetailDispatchPlay }>{ OLSKLocalized('KOMReviewDetailPlayButtonText') }</button>
 {/if}
 
 </div>

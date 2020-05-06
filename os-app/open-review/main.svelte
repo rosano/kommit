@@ -306,6 +306,7 @@ import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svel
 	{#if mod._ValueDeckSelected && !mod._ValueBrowseVisible }
 		<KOMReviewDetail
 			KOMReviewDetailDeck={ mod._ValueDeckSelected }
+			KOMReviewDetailSpacings={ [] }
 			KOMReviewDetailDispatchBack={ mod.KOMReviewDetailDispatchBack }
 			KOMReviewDetailDispatchDiscard={ mod.KOMReviewDetailDispatchDiscard }
 			KOMReviewDetailDispatchRename={ mod.KOMReviewDetailDispatchRename }

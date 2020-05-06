@@ -21,6 +21,9 @@ const KOMReviewDetail = new RollupStart({
 		KOMReviewDetailDispatchBrowse (inputData) {
 			window.TestKOMReviewDetailDispatchBrowse.innerHTML = parseInt(window.TestKOMReviewDetailDispatchBrowse.innerHTML) + 1;
 		},
+		KOMReviewDetailDispatchPlay (inputData) {
+			window.TestKOMReviewDetailDispatchPlay.innerHTML = parseInt(window.TestKOMReviewDetailDispatchPlay.innerHTML) + 1;
+		},
 	}, Object.fromEntries(Array.from((new window.URLSearchParams(window.location.search)).entries()).map(function (e) {
 		if (['KOMReviewDetailDeck', 'KOMReviewDetailSpacings'].includes(e[0])) {
 			e[1] = JSON.parse(e[1]);

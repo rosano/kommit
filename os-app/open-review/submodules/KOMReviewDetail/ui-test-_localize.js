@@ -2,6 +2,25 @@ import { deepEqual } from 'assert';
 
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
+const kTesting = {
+	uSpacings () {
+		return Array.from(new Array(2)).map(function (e, i) {
+			return {
+				KOMSpacingID: (i + 1).toString() + '-forward',
+				KOMSpacingDueDate: i === 1 ? new Date() : undefined,
+				$KOMSpacingCard: {
+					KOMCardID: (i + 1).toString(),
+					KOMCardQuestion: (i + 1).toString(),
+					KOMCardAnswer: 'charlie',
+					KOMCardHint: 'delta',
+					KOMCardCreationDate: new Date('2019-02-23T13:56:36Z'),
+					KOMCardModificationDate: new Date('2019-02-23T13:56:36Z'),
+				},
+			};
+		});
+	},
+};
+
 kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 
 	const uLocalized = function (inputData) {
@@ -57,6 +76,23 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 				}).question, uLocalized('KOMReviewDetailToolbarRenameButtonPromptText'));
 			});
 		
+		});
+
+		context('KOMReviewDetailSpacings', function test_KOMReviewDetailSpacings () {
+
+			before(function() {
+				return browser.OLSKVisit(kDefaultRoute, {
+					KOMReviewDetailDeck: JSON.stringify({
+						KOMDeckName: 'alfa',
+					}),
+					KOMReviewDetailSpacings: JSON.stringify(kTesting.uSpacings()),
+				});
+			});
+
+			it('localizes KOMReviewDetailPlayButton', function () {
+				browser.assert.text(KOMReviewDetailPlayButton, uLocalized('KOMReviewDetailPlayButtonText'));
+			});
+
 		});
 
 	});
