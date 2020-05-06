@@ -1,5 +1,3 @@
-import { deepEqual } from 'assert';
-
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 Object.entries({
@@ -12,6 +10,7 @@ Object.entries({
 	KOMReviewDetailToolbarBrowseButton: '.KOMReviewDetailToolbarBrowseButton',
 	
 	KOMReviewDetailHeading: '.KOMReviewDetailHeading',
+	KOMReviewDetailNoCards: '.KOMReviewDetailNoCards',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
@@ -56,6 +55,10 @@ describe('KOMReviewDetail_Access', function () {
 
 	it('shows KOMReviewDetailHeading', function () {
 		browser.assert.elements(KOMReviewDetailHeading, 1);
+	});
+
+	it('shows KOMReviewDetailNoCards', function () {
+		browser.assert.elements(KOMReviewDetailNoCards, 1);
 	});
 
 });

@@ -58,6 +58,8 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 
 <h1 class="KOMReviewDetailHeading">{ KOMReviewDetailDeck.KOMDeckName }</h1>
 
+<p class="KOMReviewDetailNoCards">{ OLSKLocalized('KOMReviewDetailNoCardsText') }</p>
+
 </div>
 
 </div>
