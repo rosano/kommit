@@ -43,6 +43,14 @@ const mod = {
 			}
 		}
 
+		if (inputData.$KOMDeckSpacings !== undefined) {
+			if (!Array.isArray(inputData.$KOMDeckSpacings)) {
+				errors.$KOMDeckSpacings = [
+					'KOMErrorNotArray',
+				];
+			}
+		}
+
 		return Object.entries(errors).length ? errors : null;
 	},
 

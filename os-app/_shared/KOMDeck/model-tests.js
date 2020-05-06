@@ -95,6 +95,26 @@ describe('KOMDeckModelErrorsFor', function test_KOMDeckModelErrorsFor() {
 
 	});
 
+	context('$KOMDeckSpacings', function() {
+
+		it('returns object if not array', function() {
+			deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
+				$KOMDeckSpacings: {},
+			})), {
+				$KOMDeckSpacings: [
+					'KOMErrorNotArray',
+				],
+			});
+		});
+
+		it('returns null', function() {
+			deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
+				$KOMDeckSpacings: [],
+			})), null);
+		});
+
+	});
+
 	context('KOMOptionValidateIfNotPresent', function() {
 
 		it('returns object if not valid', function() {
