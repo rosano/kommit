@@ -75,6 +75,21 @@ describe('KOMDeckModelErrorsFor', function test_KOMDeckModelErrorsFor() {
 		deepEqual(mainModule.KOMDeckModelErrorsFor(kTesting.StubDeckObjectValid()), null);
 	});
 
+	context('KOMOptionValidateIfNotPresent', function() {
+
+		it('returns object if not valid', function() {
+			deepEqual(Object.keys(mainModule.KOMDeckModelErrorsFor({}, {
+				KOMOptionValidateIfNotPresent: true,
+			})), [
+				'KOMDeckID',
+				'KOMDeckName',
+				'KOMDeckCreationDate',
+				'KOMDeckModificationDate',
+			]);
+		});
+
+	});
+
 });
 
 describe('KOMDeckModelPreJSONSchemaValidate', function test_KOMDeckModelPreJSONSchemaValidate() {

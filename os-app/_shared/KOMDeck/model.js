@@ -35,14 +35,6 @@ const mod = {
 			];
 		}
 
-		if (inputData.KOMDeckHint !== undefined || options.KOMOptionValidateIfNotPresent) {
-			if (typeof inputData.KOMDeckHint !== 'string') {
-				errors.KOMDeckHint = [
-					'KOMErrorNotString',
-				];
-			}
-		}
-
 		return Object.entries(errors).length ? errors : null;
 	},
 

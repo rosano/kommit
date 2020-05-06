@@ -106,6 +106,23 @@ describe('KOMCardModelErrorsFor', function test_KOMCardModelErrorsFor() {
 
 	});
 
+	context('KOMOptionValidateIfNotPresent', function() {
+
+		it('returns object if not valid', function() {
+			deepEqual(Object.keys(mainModule.KOMCardModelErrorsFor({}, {
+				KOMOptionValidateIfNotPresent: true,
+			})), [
+				'KOMCardID',
+				'KOMCardQuestion',
+				'KOMCardAnswer',
+				'KOMCardCreationDate',
+				'KOMCardModificationDate',
+				'KOMCardHint',
+			]);
+		});
+
+	});
+
 });
 
 describe('KOMCardModelPreJSONSchemaValidate', function test_KOMCardModelPreJSONSchemaValidate() {

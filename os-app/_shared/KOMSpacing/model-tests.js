@@ -250,6 +250,23 @@ describe('KOMSpacingModelErrorsFor', function test_KOMSpacingModelErrorsFor() {
 
 	});
 
+	context('KOMOptionValidateIfNotPresent', function() {
+
+		it('returns object if not valid', function() {
+			deepEqual(Object.keys(mainModule.KOMSpacingModelErrorsFor({}, {
+				KOMOptionValidateIfNotPresent: true,
+			})), [
+				'KOMSpacingID',
+				'KOMSpacingDueDate',
+				'KOMSpacingIsLearning',
+				'KOMSpacingIsReadyToGraduate',
+				'KOMSpacingInterval',
+				'KOMSpacingMultiplier',
+			]);
+		});
+
+	});
+
 });
 
 describe('KOMSpacingModelIsBackward', function test_KOMSpacingModelIsBackward() {
