@@ -3,23 +3,19 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 const KOMPlayLogic = require('./ui-logic.js').default;
 
 const kTesting = {
-	uCards () {
-		return KOMPlayLogic._KOMPlaySortShuffle(Array.from(new Array(2)).map(function (e, i) {
-			return {
-				KOMCardID: (i + 1).toString(),
-				KOMCardQuestion: (i + 1).toString(),
-				KOMCardAnswer: 'charlie',
-				KOMCardHint: 'delta',
-				KOMCardCreationDate: new Date('2019-02-23T13:56:36Z'),
-				KOMCardModificationDate: new Date('2019-02-23T13:56:36Z'),
-			};
-		}))
-	},
 	uSpacings () {
 		return KOMPlayLogic._KOMPlaySortShuffle(Array.from(new Array(2)).map(function (e, i) {
 			return {
 				KOMSpacingID: (i + 1).toString() + '-forward',
 				KOMSpacingDueDate: i === 1 ? new Date() : undefined,
+				$KOMSpacingCard: {
+					KOMCardID: (i + 1).toString(),
+					KOMCardQuestion: (i + 1).toString(),
+					KOMCardAnswer: 'charlie',
+					KOMCardHint: 'delta',
+					KOMCardCreationDate: new Date('2019-02-23T13:56:36Z'),
+					KOMCardModificationDate: new Date('2019-02-23T13:56:36Z'),
+				},
 			};
 		}))
 	},
@@ -53,7 +49,6 @@ describe('KOMPlay_Access', function () {
 
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute, {
-			KOMPlayCards: JSON.stringify(kTesting.uCards()),
 			KOMPlaySpacings: JSON.stringify(kTesting.uSpacings()),
 		});
 	});

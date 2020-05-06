@@ -4,19 +4,18 @@ const KOMPlayLogic = require('./ui-logic.js').default;
 const KOMSpacingModel = require('../_shared/KOMSpacing/model.js').default;
 
 const kTesting = {
-	uCards: KOMPlayLogic._KOMPlaySortShuffle(Array.from(new Array(4)).map(function (e, i) {
-		return {
-			KOMCardID: (i + 1).toString(),
-			KOMCardQuestion: (i + 1).toString(),
-			KOMCardAnswer: 'charlie',
-			KOMCardHint: 'delta',
-			KOMCardCreationDate: new Date('2019-02-23T13:56:36Z'),
-			KOMCardModificationDate: new Date('2019-02-23T13:56:36Z'),
-		};
-	})),
 	uSpacings: KOMPlayLogic._KOMPlaySortShuffle(Array.from(new Array(4)).map(function (e, i) {
 		return {
 			KOMSpacingID: (i + 1).toString() + '-forward',
+			KOMSpacingDueDate: i === 1 ? new Date() : undefined,
+			$KOMSpacingCard: {
+				KOMCardID: (i + 1).toString(),
+				KOMCardQuestion: (i + 1).toString(),
+				KOMCardAnswer: 'charlie',
+				KOMCardHint: 'delta',
+				KOMCardCreationDate: new Date('2019-02-23T13:56:36Z'),
+				KOMCardModificationDate: new Date('2019-02-23T13:56:36Z'),
+			},
 		};
 	})).map(function (e, i) {
 		return Object.assign(e, {
@@ -25,18 +24,12 @@ const kTesting = {
 			KOMSpacingDueDate: i === 1 ? new Date() : undefined,
 		})
 	}),
-	uCardAt (inputData) {
-		return kTesting.uCards.filter(function (e) {
-			return KOMSpacingModel.KOMSpacingModelIdentifier(kTesting.uSpacings[inputData].KOMSpacingID) === e.KOMCardID;
-		}).pop();
-	},
 };
 
 describe('KOMPlay_Misc', function () {	
 
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute, {
-			KOMPlayCards: JSON.stringify(kTesting.uCards),
 			KOMPlaySpacings: JSON.stringify(kTesting.uSpacings),
 		});
 	});
@@ -108,7 +101,7 @@ describe('KOMPlay_Misc', function () {
 	describe('KOMPlayCardQuestion', function () {
 
 		it('sets text', function () {
-			browser.assert.text(KOMPlayCardQuestion, kTesting.uCardAt(0).KOMCardQuestion);
+			browser.assert.text(KOMPlayCardQuestion, kTesting.uSpacings[0].$KOMSpacingCard.KOMCardQuestion);
 		});
 
 	});
@@ -120,7 +113,7 @@ describe('KOMPlay_Misc', function () {
 		});
 
 		it('sets text', function () {
-			browser.assert.text(KOMPlayCardAnswer, kTesting.uCardAt(0).KOMCardAnswer)
+			browser.assert.text(KOMPlayCardAnswer, kTesting.uSpacings[0].$KOMSpacingCard.KOMCardAnswer)
 		});
 
 	});
@@ -128,7 +121,7 @@ describe('KOMPlay_Misc', function () {
 	describe('KOMPlayCardHint', function () {
 
 		it('sets text', function () {
-			browser.assert.text(KOMPlayCardHint, kTesting.uCardAt(0).KOMCardHint)
+			browser.assert.text(KOMPlayCardHint, kTesting.uSpacings[0].$KOMSpacingCard.KOMCardHint)
 		});
 
 	});
@@ -156,7 +149,7 @@ describe('KOMPlay_Misc', function () {
 		});
 
 		it('updates KOMPlayStateCurrent', function () {
-			browser.assert.text(KOMPlayCardQuestion, kTesting.uCardAt(1).KOMCardQuestion);
+			browser.assert.text(KOMPlayCardQuestion, kTesting.uSpacings[1].$KOMSpacingCard.KOMCardQuestion);
 		});
 
 	});
@@ -180,7 +173,7 @@ describe('KOMPlay_Misc', function () {
 		});
 
 		it('updates KOMPlayStateCurrent', function () {
-			browser.assert.text(KOMPlayCardQuestion, kTesting.uCardAt(2).KOMCardQuestion);
+			browser.assert.text(KOMPlayCardQuestion, kTesting.uSpacings[2].$KOMSpacingCard.KOMCardQuestion);
 		});
 
 	});
@@ -204,7 +197,7 @@ describe('KOMPlay_Misc', function () {
 		});
 
 		it('updates KOMPlayStateCurrent', function () {
-			browser.assert.text(KOMPlayCardQuestion, kTesting.uCardAt(3).KOMCardQuestion);
+			browser.assert.text(KOMPlayCardQuestion, kTesting.uSpacings[3].$KOMSpacingCard.KOMCardQuestion);
 		});
 
 	});
@@ -228,7 +221,7 @@ describe('KOMPlay_Misc', function () {
 		});
 
 		it('updates KOMPlayStateCurrent', function () {
-			browser.assert.text(KOMPlayCardQuestion, kTesting.uCardAt(0).KOMCardQuestion);
+			browser.assert.text(KOMPlayCardQuestion, kTesting.uSpacings[0].$KOMSpacingCard.KOMCardQuestion);
 		});
 
 	});
@@ -252,7 +245,7 @@ describe('KOMPlay_Misc', function () {
 		});
 
 		it('updates KOMPlayStateCurrent', function () {
-			browser.assert.text(KOMPlayCardQuestion, kTesting.uCardAt(2).KOMCardQuestion);
+			browser.assert.text(KOMPlayCardQuestion, kTesting.uSpacings[2].$KOMSpacingCard.KOMCardQuestion);
 		});
 
 	});

@@ -1,6 +1,5 @@
 <script>
 export let KOMPlaySpacings;
-export let KOMPlayCards;
 export let KOMPlayDispatchBack;
 export let KOMPlayDispatchDone;
 
@@ -22,14 +21,6 @@ const mod = {
 		KOMPlayStateCurrent: KOMPlaySpacings[0],
 		KOMPlayStateQueue: KOMPlaySpacings.slice(1),
 		KOMPlayStateWait: [],
-	},
-
-	// DATA
-
-	DataCardFor (inputData) {
-		return KOMPlayCards.filter(function (e) {
-			return KOMSpacingModel.KOMSpacingModelIdentifier(inputData.KOMSpacingID) === e.KOMCardID;
-		}).pop();
 	},
 
 	// INTERFACE
@@ -105,11 +96,11 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 {#if mod._ValueState.KOMPlayStateCurrent }
 	<div class="KOMPlayCard" on:click={ mod.InterfaceCardDidClick }>
 
-		<div class="KOMPlayCardQuestion">{ mod.DataCardFor(mod._ValueState.KOMPlayStateCurrent).KOMCardQuestion }</div>
+		<div class="KOMPlayCardQuestion">{ mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard.KOMCardQuestion }</div>
 
 		{#if mod._ValueAnswerVisible}
-			<div class="KOMPlayCardAnswer">{ mod.DataCardFor(mod._ValueState.KOMPlayStateCurrent).KOMCardAnswer }</div>
-			<div class="KOMPlayCardHint">{ mod.DataCardFor(mod._ValueState.KOMPlayStateCurrent).KOMCardHint }</div>
+			<div class="KOMPlayCardAnswer">{ mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard.KOMCardAnswer }</div>
+			<div class="KOMPlayCardHint">{ mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard.KOMCardHint }</div>
 		{/if}
 		
 	</div>
