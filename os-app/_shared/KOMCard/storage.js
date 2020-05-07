@@ -44,7 +44,9 @@ const mod = {
 			async KOMStorageList (inputData) {
 				let storagePath = mod.KOMCardStorageCollectionPath(inputData);
 
-				return (await Promise.all((await uList(await uList(await uList(storagePath)))).map(function (e) {
+				return (await Promise.all((await uList(await uList(await uList(storagePath)))).filter(function (e) {
+					return e.slice(-4) === 'main'; // #hotfix include main only
+				}).map(function (e) {
 					return privateClient.getObject(e, false);
 				}))).reduce(function (coll, item) {
 					if (item) {
