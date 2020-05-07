@@ -46,6 +46,14 @@ describe('KOMBrowse_Misc', function () {
 		});
 
 		before(function () {
+			browser.assert.text('#TestKOMBrowseDispatchCreate', '0');
+		});
+
+		before(function () {
+			browser.assert.text('#TestKOMBrowseDispatchCreateData', 'undefined');
+		});
+
+		before(function () {
 			return browser.pressButton('.KOMBrowseListToolbarCreateButton');
 		});
 
@@ -64,6 +72,21 @@ describe('KOMBrowse_Misc', function () {
 
 		it('focuses KOMBrowseInfoFormQuestionField', function() {
 			browser.assert.hasFocus('.KOMBrowseInfoFormQuestionField');
+		});
+
+		it('sends KOMBrowseDispatchCreate', function () {
+			browser.assert.text('#TestKOMBrowseDispatchCreate', '1');
+		});
+
+		it('sends KOMBrowseDispatchCreateData', function () {
+			browser.assert.text('#TestKOMBrowseDispatchCreateData', JSON.stringify([
+				'KOMCardQuestion',
+				'KOMCardAnswer',
+				'KOMCardID',
+				'KOMCardCreationDate',
+				'KOMCardModificationDate',
+				'@context',
+				]));
 		});
 
 	});

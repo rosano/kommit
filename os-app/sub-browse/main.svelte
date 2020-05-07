@@ -2,6 +2,7 @@
 export let KOMBrowseStorageClient;
 
 export let KOMBrowseDeckSelected = null;
+export let KOMBrowseDispatchCreate;
 export let KOMBrowseListDispatchClose;
 
 import OLSKInternational from 'OLSKInternational';
@@ -133,6 +134,8 @@ const mod = {
 		mod.ValueCardsAll(mod._ValueDeckSelected.$KOMDeckCards.concat(item));
 
 		mod.ControlCardSelect(item);
+
+		KOMBrowseDispatchCreate(item);
 	},
 
 	ControlCardUpdate(param1, param2) {
