@@ -71,7 +71,7 @@ describe('KOMSpacingMetalWrite', function test_KOMSpacingMetalWrite() {
 		});
 		
 		before(async function () {
-			storage = (await mainModule.KOMSpacingMetalList(KOMTestingStorageClient, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid())).forward;
+			storage = (await mainModule.KOMSpacingMetalList(KOMTestingStorageClient, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid())).KOMCardSpacingForward;
 		});
 		
 		it('ignores property', function () {
@@ -103,10 +103,10 @@ describe('KOMSpacingMetalList', function test_KOMSpacingMetalList() {
 			KOMCardID: Date.now().toString(),
 		});
 		deepEqual(await mainModule.KOMSpacingMetalList(KOMTestingStorageClient, item, kTesting.StubDeckObjectValid()), {
-			forward: {
+			KOMCardSpacingForward: {
 				KOMSpacingID: `${ item.KOMCardID }-forward`
 			},
-			backward: {
+			KOMCardSpacingBackward: {
 				KOMSpacingID: `${ item.KOMCardID }-backward`
 			},
 		});
@@ -119,7 +119,7 @@ describe('KOMSpacingMetalList', function test_KOMSpacingMetalList() {
 		
 		await mainModule.KOMSpacingMetalWrite(KOMTestingStorageClient, item, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid());
 
-		deepEqual((await mainModule.KOMSpacingMetalList(KOMTestingStorageClient, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid())).forward, item);
+		deepEqual((await mainModule.KOMSpacingMetalList(KOMTestingStorageClient, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid())).KOMCardSpacingForward, item);
 	});
 
 	it('returns existing KOMSpacings backward', async function() {
@@ -130,7 +130,7 @@ describe('KOMSpacingMetalList', function test_KOMSpacingMetalList() {
 		
 		await mainModule.KOMSpacingMetalWrite(KOMTestingStorageClient, item, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid());
 
-		deepEqual((await mainModule.KOMSpacingMetalList(KOMTestingStorageClient, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid())).backward, item);
+		deepEqual((await mainModule.KOMSpacingMetalList(KOMTestingStorageClient, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid())).KOMCardSpacingBackward, item);
 	});
 
 });
@@ -163,10 +163,10 @@ describe('KOMSpacingMetalDelete', function test_KOMSpacingMetalDelete() {
 		await mainModule.KOMSpacingMetalDelete(KOMTestingStorageClient, await mainModule.KOMSpacingMetalWrite(KOMTestingStorageClient, kTesting.StubSpacingObjectValid(), item, kTesting.StubDeckObjectValid()), item, kTesting.StubDeckObjectValid())
 
 		deepEqual(await mainModule.KOMSpacingMetalList(KOMTestingStorageClient, item, kTesting.StubDeckObjectValid()), {
-			forward: {
+			KOMCardSpacingForward: {
 				KOMSpacingID: `${ item.KOMCardID }-forward`
 			},
-			backward: {
+			KOMCardSpacingBackward: {
 				KOMSpacingID: `${ item.KOMCardID }-backward`
 			},
 		});

@@ -157,10 +157,10 @@ describe('KOMCardActionDelete', function test_KOMCardActionDelete() {
 
 		await mainModule.KOMCardActionDelete(KOMTestingStorageClient, item, kTesting.StubDeckObjectValid());
 		deepEqual(await KOMSpacingMetal.KOMSpacingMetalList(KOMTestingStorageClient, item, kTesting.StubDeckObjectValid()), {
-			forward: {
+			KOMCardSpacingForward: {
 				KOMSpacingID: `${ item.KOMCardID }-forward`,
 			},
-			backward: {
+			KOMCardSpacingBackward: {
 				KOMSpacingID: `${ item.KOMCardID }-backward`,
 			},
 		});
