@@ -64,6 +64,10 @@ const mod = {
 		mod._ValueBrowseVisible = false;
 	},
 
+	KOMPlayDispatchDone () {
+		mod._ValuePlayVisible = false;
+	},
+
 	OLSKAppToolbarDispatchStorage () {
 		mod._ValueStorageWidgetHidden = !mod._ValueStorageWidgetHidden;
 	},
@@ -359,6 +363,7 @@ import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svel
 	{#if mod._ValueDeckSelected && mod._ValuePlayVisible}
 		<KOMPlay
 			KOMPlaySpacings={ mod._ValueDeckSelected.$KOMDeckSpacings }
+			KOMPlayDispatchDone={ mod.KOMPlayDispatchDone }
 			/>
 	{/if}
 </OLSKViewportContent>

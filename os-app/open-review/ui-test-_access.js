@@ -225,6 +225,26 @@ describe('KOMReview_Access', function () {
 		it('shows KOMPlay', function () {
 			browser.assert.elements('.KOMPlay', 1);
 		});
+
+		context('done', function () {
+			
+			before(function () {
+				return browser.pressButton('.KOMPlayToolbarDoneButton');
+			});
+
+			it('hides KOMReviewMaster', function () {
+				browser.assert.elements('.KOMReviewMaster', 0);
+			});
+
+			it('shows KOMReviewDetail', function () {
+				browser.assert.elements(KOMReviewDetail, 1);
+			});
+
+			it('hides KOMPlay', function () {
+				browser.assert.elements(KOMPlay, 0);
+			});
+		
+		});
 				
 	});
 
