@@ -2,6 +2,7 @@
 export let KOMPlaySpacings;
 export let KOMPlayDispatchBack;
 export let KOMPlayDispatchDone;
+export let KOMPlayDispatchRespond;
 
 import OLSKInternational from 'OLSKInternational';
 const OLSKLocalized = function(translationConstant) {
@@ -60,6 +61,8 @@ const mod = {
 	},
 
 	ControlRespond (inputData) {
+		const item = mod._ValueState.KOMPlayStateCurrent;
+
 		KOMPlayLogic.KOMPlayRespond(mod._ValueState, {
 			KOMPlayResponseType: inputData,
 			KOMPlayResponseDate: new Date(),
@@ -68,6 +71,8 @@ const mod = {
 		mod._ValueState = mod._ValueState; // #purge-svelte-force-update
 
 		mod._ValueAnswerVisible = false;
+
+		KOMPlayDispatchRespond(item);
 	},
 
 };

@@ -136,6 +136,14 @@ describe('KOMPlay_Misc', function () {
 		});
 
 		before(function () {
+			browser.assert.text('#TestKOMPlayDispatchRespond', '0');
+		});
+		
+		before(function () {
+			browser.assert.text('#TestKOMPlayDispatchRespondData', 'undefined');
+		});
+
+		before(function () {
 			browser.pressButton(KOMPlayResponseButtonAgain);
 		});
 
@@ -145,6 +153,14 @@ describe('KOMPlay_Misc', function () {
 
 		it('updates KOMPlayStateWait', function () {
 			browser.assert.text('#TestKOMPlayStateWaitCount', '1');
+		});
+
+		it('sends KOMPlayDispatchRespond', function () {
+			browser.assert.text('#TestKOMPlayDispatchRespond', '1');
+		});
+		
+		it('sends KOMPlayDispatchRespondData', function () {
+			browser.assert.text('#TestKOMPlayDispatchRespondData', JSON.stringify(Object.keys(kTesting.uSpacings[0]).concat(['KOMSpacingIsLearning', 'KOMSpacingDueDate'])));
 		});
 
 		it('updates KOMPlayStateCurrent', function () {
@@ -160,6 +176,10 @@ describe('KOMPlay_Misc', function () {
 		});
 
 		before(function () {
+			browser.assert.text('#TestKOMPlayDispatchRespond', '1');
+		});
+
+		before(function () {
 			return browser.pressButton(KOMPlayResponseButtonHard);
 		});
 
@@ -169,6 +189,14 @@ describe('KOMPlay_Misc', function () {
 
 		it('updates KOMPlayStateWait', function () {
 			browser.assert.text('#TestKOMPlayStateWaitCount', '1');
+		});
+
+		it('sends KOMPlayDispatchRespond', function () {
+			browser.assert.text('#TestKOMPlayDispatchRespond', '2');
+		});
+		
+		it('sends KOMPlayDispatchRespondData', function () {
+			browser.assert.text('#TestKOMPlayDispatchRespondData', JSON.stringify(Object.keys(kTesting.uSpacings[1])));
 		});
 
 		it('updates KOMPlayStateCurrent', function () {
@@ -184,6 +212,10 @@ describe('KOMPlay_Misc', function () {
 		});
 
 		before(function () {
+			browser.assert.text('#TestKOMPlayDispatchRespond', '2');
+		});
+
+		before(function () {
 			return browser.pressButton(KOMPlayResponseButtonGood);
 		});
 
@@ -193,6 +225,14 @@ describe('KOMPlay_Misc', function () {
 
 		it('updates KOMPlayStateWait', function () {
 			browser.assert.text('#TestKOMPlayStateWaitCount', '2');
+		});
+
+		it('sends KOMPlayDispatchRespond', function () {
+			browser.assert.text('#TestKOMPlayDispatchRespond', '3');
+		});
+		
+		it('sends KOMPlayDispatchRespondData', function () {
+			browser.assert.text('#TestKOMPlayDispatchRespondData', JSON.stringify(Object.keys(kTesting.uSpacings[2]).concat(['KOMSpacingIsLearning', 'KOMSpacingDueDate'])));
 		});
 
 		it('updates KOMPlayStateCurrent', function () {
@@ -208,6 +248,10 @@ describe('KOMPlay_Misc', function () {
 		});
 
 		before(function () {
+			browser.assert.text('#TestKOMPlayDispatchRespond', '3');
+		});
+
+		before(function () {
 			return browser.pressButton(KOMPlayResponseButtonEasy);
 		});
 
@@ -217,6 +261,14 @@ describe('KOMPlay_Misc', function () {
 
 		it('updates KOMPlayStateWait', function () {
 			browser.assert.text('#TestKOMPlayStateWaitCount', '0');
+		});
+
+		it('sends KOMPlayDispatchRespond', function () {
+			browser.assert.text('#TestKOMPlayDispatchRespond', '4');
+		});
+		
+		it('sends KOMPlayDispatchRespondData', function () {
+			browser.assert.text('#TestKOMPlayDispatchRespondData', JSON.stringify(Object.keys(kTesting.uSpacings[3]).concat(['KOMSpacingInterval', 'KOMSpacingMultiplier', 'KOMSpacingDueDate'])));
 		});
 
 		it('updates KOMPlayStateCurrent', function () {
