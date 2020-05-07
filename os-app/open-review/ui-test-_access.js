@@ -49,7 +49,7 @@ describe('KOMReview_Access', function () {
 	});
 
 	it('hides KOMPlay', function () {
-		browser.assert.elements(KOMPlay, 0);
+		browser.assert.elements('.KOMPlay', 0);
 	});
 
 	context('create', function test_create() {
@@ -178,38 +178,54 @@ describe('KOMReview_Access', function () {
 	
 	});
 
-	// context('KOMPlay', function test_KOMPlay() {
+	context('KOMPlay', function test_KOMPlay() {
 		
-	// 	before(function () {
-	// 		return browser.OLSKPrompt(function () {
-	// 			return browser.pressButton('.KOMReviewMasterCreateButton');
-	// 		}, function (dialog) {
-	// 			dialog.response = 'alfa';
+		before(function () {
+			return browser.OLSKPrompt(function () {
+				return browser.pressButton('.KOMReviewMasterCreateButton');
+			}, function (dialog) {
+				dialog.response = 'alfa';
 				
-	// 			return dialog;
-	// 		});
-	// 	});
+				return dialog;
+			});
+		});
 
-	// 	before(function () {
-	// 		return browser.pressButton('.KOMReviewMasterListItem');
-	// 	});
+		before(function () {
+			return browser.wait({ element: '.KOMReviewMasterListItem'});
+		});
 
-	// 	before(function () {
-	// 		return browser.pressButton('.KOMReviewDetailToolbarBrowseButton');
-	// 	});
+		before(function () {
+			return browser.pressButton('.KOMReviewMasterListItem');
+		});
 
-	// 	it('hides KOMReviewMaster', function () {
-	// 		browser.assert.elements('.KOMReviewMaster', 0);
-	// 	});
+		before(function () {
+			return browser.pressButton('.KOMReviewDetailToolbarBrowseButton');
+		});
 
-	// 	it('hides KOMReviewDetail', function () {
-	// 		browser.assert.elements('.KOMReviewDetail', 0);
-	// 	});
+		before(function () {
+			return browser.pressButton('.KOMBrowseListToolbarCreateButton');
+		});
 
-	// 	it('shows KOMBrowse', function () {
-	// 		browser.assert.elements('.KOMBrowse', 1);
-	// 	});
+		before(function () {
+			return browser.pressButton('.KOMBrowseListToolbarCloseButton');
+		});
+
+		before(function () {
+			return browser.pressButton('.KOMReviewDetailPlayButton');
+		});
+
+		it('hides KOMReviewMaster', function () {
+			browser.assert.elements('.KOMReviewMaster', 0);
+		});
+
+		it('hides KOMReviewDetail', function () {
+			browser.assert.elements('.KOMReviewDetail', 0);
+		});
+
+		it('shows KOMPlay', function () {
+			browser.assert.elements('.KOMPlay', 1);
+		});
 				
-	// });
+	});
 
 });

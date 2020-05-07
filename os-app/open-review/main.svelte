@@ -48,6 +48,18 @@ const mod = {
 		mod._ValueBrowseVisible = true;
 	},
 
+	KOMReviewDetailDispatchPlay () {
+		mod._ValuePlayVisible = true;
+	},
+
+	async KOMBrowseDispatchCreate (inputData) {
+		mod._ValueDeckSelected.$KOMDeckSpacings.push(...Object.values(await KOMSpacingMetal.KOMSpacingMetalList(mod._ValueStorageClient, inputData, mod._ValueDeckSelected)).map(function (e) {
+			return Object.assign(e, {
+				$KOMSpacingCard: inputData,
+			});
+		}));
+	},
+
 	KOMBrowseListDispatchClose () {
 		mod._ValueBrowseVisible = false;
 	},
@@ -130,6 +142,8 @@ const mod = {
 	},
 
 	_ValueBrowseVisible: false,
+
+	_ValuePlayVisible: false,
 	
 	_ValueStorageWidgetHidden: true,
 
@@ -306,6 +320,7 @@ import OLSKViewportContent from 'OLSKViewportContent';
 import KOMReviewMaster from './submodules/KOMReviewMaster/main.svelte';
 import KOMReviewDetail from './submodules/KOMReviewDetail/main.svelte';
 import KOMBrowse from '../sub-browse/main.svelte';
+import KOMPlay from '../sub-play/main.svelte';
 import OLSKAppToolbar from 'OLSKAppToolbar';
 import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svelte';
 </script>
@@ -321,21 +336,29 @@ import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svel
 			/>
 	{/if}
 
-	{#if mod._ValueDeckSelected && !mod._ValueBrowseVisible }
+	{#if mod._ValueDeckSelected && !mod._ValueBrowseVisible && !mod._ValuePlayVisible }
 		<KOMReviewDetail
 			KOMReviewDetailDeck={ mod._ValueDeckSelected }
 			KOMReviewDetailDispatchBack={ mod.KOMReviewDetailDispatchBack }
 			KOMReviewDetailDispatchDiscard={ mod.KOMReviewDetailDispatchDiscard }
 			KOMReviewDetailDispatchRename={ mod.KOMReviewDetailDispatchRename }
 			KOMReviewDetailDispatchBrowse={ mod.KOMReviewDetailDispatchBrowse }
+			KOMReviewDetailDispatchPlay={ mod.KOMReviewDetailDispatchPlay }
 			/>
 	{/if}
 
-	{#if mod._ValueDeckSelected && mod._ValueBrowseVisible }
+	{#if mod._ValueDeckSelected && mod._ValueBrowseVisible && !mod._ValuePlayVisible }
 		<KOMBrowse
 			KOMBrowseStorageClient={ mod._ValueStorageClient }
 			KOMBrowseDeckSelected={ mod._ValueDeckSelected }
+			KOMBrowseDispatchCreate={ mod.KOMBrowseDispatchCreate }
 			KOMBrowseListDispatchClose={ mod.KOMBrowseListDispatchClose }
+			/>
+	{/if}
+
+	{#if mod._ValueDeckSelected && mod._ValuePlayVisible}
+		<KOMPlay
+			KOMPlaySpacings={ mod._ValueDeckSelected.$KOMDeckSpacings }
 			/>
 	{/if}
 </OLSKViewportContent>

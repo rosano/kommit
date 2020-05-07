@@ -82,6 +82,7 @@ describe('KOMBrowse_Misc', function () {
 			browser.assert.text('#TestKOMBrowseDispatchCreateData', JSON.stringify([
 				'KOMCardQuestion',
 				'KOMCardAnswer',
+				'KOMCardHint',
 				'KOMCardID',
 				'KOMCardCreationDate',
 				'KOMCardModificationDate',
