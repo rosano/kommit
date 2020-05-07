@@ -96,6 +96,27 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 
 		});
 
+		context('finished', function test_finished () {
+
+			before(function() {
+				return browser.OLSKVisit(kDefaultRoute, {
+					KOMReviewDetailDeck: JSON.stringify({
+						KOMDeckName: 'alfa',
+						$KOMDeckSpacings: kTesting.uSpacings().map(function (e) {
+							return Object.assign(e, {
+								KOMSpacingDueDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3),
+							});
+						}),
+					}),
+				});
+			});
+
+			it('localizes KOMReviewDetailNoSpacings', function () {
+				browser.assert.text(KOMReviewDetailNoSpacings, uLocalized('KOMReviewDetailNoSpacingsText'));
+			});
+
+		});
+
 	});
 
 });

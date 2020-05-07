@@ -12,6 +12,7 @@ Object.entries({
 	KOMReviewDetailHeading: '.KOMReviewDetailHeading',
 	KOMReviewDetailNoCards: '.KOMReviewDetailNoCards',
 	KOMReviewDetailPlayButton: '.KOMReviewDetailPlayButton',
+	KOMReviewDetailNoSpacings: '.KOMReviewDetailNoSpacings',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
@@ -86,6 +87,10 @@ describe('KOMReviewDetail_Access', function () {
 		browser.assert.elements(KOMReviewDetailPlayButton, 0);
 	});
 
+	it('hides KOMReviewDetailNoSpacings', function () {
+		browser.assert.elements(KOMReviewDetailNoSpacings, 0);
+	});
+
 	context('$KOMDeckSpacings', function test_$KOMDeckSpacings () {
 
 		before(function() {
@@ -103,6 +108,35 @@ describe('KOMReviewDetail_Access', function () {
 
 		it('shows KOMReviewDetailPlayButton', function () {
 			browser.assert.elements(KOMReviewDetailPlayButton, 1);
+		});
+
+	});
+
+	context('finished', function test_finished () {
+
+		before(function() {
+			return browser.OLSKVisit(kDefaultRoute, {
+				KOMReviewDetailDeck: JSON.stringify({
+					KOMDeckName: 'alfa',
+					$KOMDeckSpacings: kTesting.uSpacings().map(function (e) {
+						return Object.assign(e, {
+							KOMSpacingDueDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3),
+						});
+					}),
+				}),
+			});
+		});
+
+		it('hides KOMReviewDetailNoCards', function () {
+			browser.assert.elements(KOMReviewDetailNoCards, 0);
+		});
+
+		it('hides KOMReviewDetailPlayButton', function () {
+			browser.assert.elements(KOMReviewDetailPlayButton, 0);
+		});
+
+		it('shows KOMReviewDetailNoSpacings', function () {
+			browser.assert.elements(KOMReviewDetailNoSpacings, 1);
 		});
 
 	});

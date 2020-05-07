@@ -11,7 +11,13 @@ const OLSKLocalized = function(translationConstant) {
 	return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, JSON.parse(`{"OLSK_I18N_SEARCH_REPLACE":"OLSK_I18N_SEARCH_REPLACE"}`)[window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage')]);
 };
 
+import KOMReviewLogic from '../../ui-logic.js';
+
 const mod = {
+
+	// VALUE
+
+	_ValueSpacingsToday: KOMReviewLogic.KOMReviewSpacingsToday(KOMReviewDetailDeck.$KOMDeckSpacings),
 
 	// INTERFACE
 
@@ -63,8 +69,12 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 	<p class="KOMReviewDetailNoCards">{ OLSKLocalized('KOMReviewDetailNoCardsText') }</p>
 {/if}
 
-{#if KOMReviewDetailDeck.$KOMDeckSpacings.length}
+{#if KOMReviewDetailDeck.$KOMDeckSpacings.length && mod._ValueSpacingsToday.length}
 	<button class="KOMReviewDetailPlayButton" on:click={ KOMReviewDetailDispatchPlay }>{ OLSKLocalized('KOMReviewDetailPlayButtonText') }</button>
+{/if}
+
+{#if KOMReviewDetailDeck.$KOMDeckSpacings.length && !mod._ValueSpacingsToday.length}
+	<p class="KOMReviewDetailNoSpacings">{ OLSKLocalized('KOMReviewDetailNoSpacingsText') }</p>
 {/if}
 
 </div>
