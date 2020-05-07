@@ -7,7 +7,6 @@ const kTesting = {
 	uSpacings: KOMPlayLogic._KOMPlaySortShuffle(Array.from(new Array(4)).map(function (e, i) {
 		return {
 			KOMSpacingID: (i + 1).toString() + '-forward',
-			KOMSpacingDueDate: i === 1 ? new Date() : undefined,
 			$KOMSpacingCard: {
 				KOMCardID: (i + 1).toString(),
 				KOMCardQuestion: (i + 1).toString(),
@@ -18,11 +17,11 @@ const kTesting = {
 			},
 		};
 	})).map(function (e, i) {
-		return Object.assign(e, {
-			KOMSpacingMultiplier: i === 1 ? 2 : undefined,
-			KOMSpacingInterval: i === 1 ? 1 : undefined,
-			KOMSpacingDueDate: i === 1 ? new Date() : undefined,
-		})
+		return Object.assign(e, i === 1 ? {
+			KOMSpacingMultiplier: 2,
+			KOMSpacingInterval: 1,
+			KOMSpacingDueDate: new Date(),
+		} : {})
 	}),
 };
 
