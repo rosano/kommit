@@ -245,5 +245,53 @@ describe('KOMBrowseInfo_Misc', function () {
 		});
 
 	});
+	
+	describe('KOMBrowseInfoFormAnswerField', function test_KOMBrowseInfoFormAnswerField() {
+		
+		before(function() {
+			return browser.OLSKVisit(kDefaultRoute, {
+				KOMBrowseInfoItem: JSON.stringify({
+					KOMCardAnswer: 'alfa',
+				}),
+			});
+		});
+
+		it('sets type', function () {
+			browser.assert.attribute(KOMBrowseInfoFormAnswerField, 'type', 'text');
+		});
+
+		it('binds KOMCardAnswer', function () {
+			browser.assert.input(KOMBrowseInfoFormAnswerField, 'alfa');
+		});
+
+		context('input', function () {
+
+			before(function () {
+				browser.assert.text('#TestKOMBrowseInfoItem', JSON.stringify({
+					KOMCardAnswer: 'alfa',
+				}));
+			});
+
+			before(function () {
+				browser.assert.text('#TestKOMBrowseInfoDispatchUpdate', '0');
+			});
+
+			before(function () {
+				browser.fill(KOMBrowseInfoFormAnswerField, 'bravo');
+			});
+
+			it('updates KOMBrowseInfoItem', function () {
+				browser.assert.text('#TestKOMBrowseInfoItem', JSON.stringify({
+					KOMCardAnswer: 'bravo',
+				}));
+			});
+
+			it('sends KOMBrowseInfoDispatchUpdate', function () {
+				browser.assert.text('#TestKOMBrowseInfoDispatchUpdate', '1');
+			});
+		
+		});
+
+	});
 
 });

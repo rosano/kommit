@@ -52,6 +52,10 @@ import _OLSKSharedDiscard from '../../../_shared/__external/OLSKUIAssets/_OLSKSh
 	<input class="KOMBrowseInfoFormAnswerField" placeholder="{ OLSKLocalized('KOMBrowseInfoFormAnswerFieldText') }" type="text" bind:value={ KOMBrowseInfoItem.KOMCardAnswer } on:input={ KOMBrowseInfoDispatchUpdate } />
 </p>
 
+<p>
+	<input class="KOMBrowseInfoFormHintField" placeholder="{ OLSKLocalized('KOMBrowseInfoFormHintFieldText') }" type="text" bind:value={ KOMBrowseInfoItem.KOMCardHint } on:input={ KOMBrowseInfoDispatchUpdate } />
+</p>
+
 </div>
 {/if}
 
