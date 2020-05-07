@@ -73,6 +73,47 @@ describe('KOMReview_Misc', function () {
 		after(function () {
 			return browser.pressButton('.KOMBrowseListToolbarCloseButton');
 		});
+				
+	});	
+
+	describe('KOMPlay', function test_KOMPlay() {
+		
+		before(function () {
+			return browser.pressButton('.KOMReviewDetailPlayButton');
+		});
+
+		before(function () {
+			browser.assert.text('#TestKOMPlayStateQueueCount', '1');
+		});
+
+		before(function () {
+			browser.assert.text('#TestKOMPlayStateWaitCount', '0');
+		});
+
+		before(function () {
+			return browser.click('.KOMPlayCard');
+		});
+
+		before(function () {
+			return browser.pressButton('.KOMPlayResponseButtonEasy');
+		});
+
+		before(function () {
+			return browser.pressButton('.KOMPlayToolbarDoneButton');
+		});
+
+		before(function () {
+			return browser.pressButton('.KOMReviewDetailPlayButton');
+		});
+
+		it('persists responses', function () {
+			browser.assert.text('#TestKOMPlayStateQueueCount', '0');
+			browser.assert.text('#TestKOMPlayStateWaitCount', '0');
+		});
+
+		after(function () {
+			return browser.pressButton('.KOMPlayToolbarDoneButton');
+		});
 
 		after(function () {
 			return browser.pressButton('.KOMReviewDetailToolbarBackButton');

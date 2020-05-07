@@ -15,6 +15,7 @@ const RemoteStorage = RemoteStoragePackage.default || RemoteStoragePackage;
 import KOMDeckAction from '../_shared/KOMDeck/action.js';
 import KOMCardAction from '../_shared/KOMCard/action.js';
 import KOMSpacingMetal from '../_shared/KOMSpacing/metal.js';
+import KOMReviewLogic from './ui-logic.js';
 
 const mod = {
 
@@ -66,6 +67,10 @@ const mod = {
 
 	KOMPlayDispatchDone () {
 		mod._ValuePlayVisible = false;
+	},
+
+	KOMPlayDispatchRespond (inputData) {
+		mod.ControlSpacingSave(inputData);
 	},
 
 	OLSKAppToolbarDispatchStorage () {
@@ -179,6 +184,10 @@ const mod = {
 
 	ControlDeckSelect(inputData) {
 		mod.ValueDeckSelected(inputData);
+	},
+
+	ControlSpacingSave(inputData) {
+		KOMSpacingMetal.KOMSpacingMetalWrite(mod._ValueStorageClient, inputData, inputData.$KOMSpacingCard, mod._ValueDeckSelected);
 	},
 
 	// SETUP
@@ -362,8 +371,9 @@ import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svel
 
 	{#if mod._ValueDeckSelected && mod._ValuePlayVisible}
 		<KOMPlay
-			KOMPlaySpacings={ mod._ValueDeckSelected.$KOMDeckSpacings }
+			KOMPlaySpacings={ KOMReviewLogic.KOMReviewSpacingsToday(mod._ValueDeckSelected.$KOMDeckSpacings) }
 			KOMPlayDispatchDone={ mod.KOMPlayDispatchDone }
+			KOMPlayDispatchRespond={ mod.KOMPlayDispatchRespond }
 			/>
 	{/if}
 </OLSKViewportContent>
