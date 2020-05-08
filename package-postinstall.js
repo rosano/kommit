@@ -52,6 +52,7 @@
 		'launchlet',
 
 		// pass tests
+		'OLSKMasterList',
 		'OLSKInputWrapper',
 		'OLSKDetailPlaceholder',
 		'OLSKAppToolbar',
