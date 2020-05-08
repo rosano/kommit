@@ -82,9 +82,7 @@ import OLSKToolbar from 'OLSKToolbar';
 import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 </script>
 
-<div class="KOMPlay OLSKViewport">
-
-<OLSKViewportContent>
+<div class="KOMPlay">
 
 <header class="KOMPlayToolbar">
 	<OLSKToolbar OLSKToolbarJustify={ true }>
@@ -97,6 +95,8 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 		</OLSKToolbarElementGroup>
 	</OLSKToolbar>
 </header>
+
+<div class="KOMPlayBody">
 
 {#if mod._ValueState.KOMPlayStateCurrent }
 	<div class="KOMPlayCard" on:click={ mod.InterfaceCardDidClick }>
@@ -124,7 +124,7 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 		<button class="KOMPlayResponseButtonEasy" on:click={ mod.InterfaceResponseButtonDidClickEasy }>{ OLSKLocalized('KOMPlayResponseButtonEasyText') }</button>
 	{/if}
 
-	{#if OLSK_TESTING_BEHAVIOUR}
+	{#if OLSK_TESTING_BEHAVIOUR()}
 		<div id="TestKOMPlayStateQueueCount">{ mod._ValueState.KOMPlayStateQueue.length }</div>
 		<div id="TestKOMPlayStateWaitCount">{ mod._ValueState.KOMPlayStateWait.length }</div>
 	{/if}	
@@ -133,7 +133,9 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 {#if !mod._ValueState.KOMPlayStateCurrent}
 	<div class="KOMPlayConclusion">{ OLSKLocalized('KOMPlayConclusionText') }</div>
 {/if}
-	
-</OLSKViewportContent>
 
 </div>
+	
+</div>
+
+<style src="./ui-style.css"></style>

@@ -27,6 +27,8 @@ Object.entries({
 	KOMPlayToolbar: '.KOMPlayToolbar',
 	KOMPlayToolbarBackButton: '.KOMPlayToolbarBackButton',
 	KOMPlayToolbarDoneButton: '.KOMPlayToolbarDoneButton',
+	
+	KOMPlayBody: '.KOMPlayBody',
 
 	KOMPlayCard: '.KOMPlayCard',
 	KOMPlayCardQuestion: '.KOMPlayCardQuestion',
@@ -67,6 +69,10 @@ describe('KOMPlay_Access', function () {
 
 	it('shows KOMPlayToolbarDoneButton', function () {
 		browser.assert.elements(KOMPlayToolbarDoneButton, 1);
+	});
+
+	it('shows KOMPlayBody', function () {
+		browser.assert.elements(KOMPlayBody, 1);
 	});
 
 	it('shows KOMPlayCard', function () {

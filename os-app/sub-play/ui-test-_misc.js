@@ -33,14 +33,6 @@ describe('KOMPlay_Misc', function () {
 		});
 	});
 
-	describe('KOMPlay', function () {
-		
-		it('classes OLSKViewport', function () {
-			browser.assert.hasClass(KOMPlay, 'OLSKViewport');
-		});
-
-	});
-
 	describe('KOMPlayToolbarBackButton', function () {
 		
 		it('classes OLSKLayoutButtonNoStyle', function () {

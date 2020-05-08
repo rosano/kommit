@@ -1,0 +1,27 @@
+.KOMPlay {
+	width: 100%;
+
+	/* KOMPlayFlexbox:Parent */
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+}
+
+.KOMPlayBody {
+	/* KOMPlayFlexbox:Parent */
+	flex-grow: 1;
+
+	/* KOMPlayBodyFlexbox:Parent */
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+}
+
+.KOMPlayCard {
+	/* KOMPlayBodyFlexbox:Child */
+	flex-grow: 1;
+}
+
+.KOMPlayBody button {
+	height: 100px;
+}
