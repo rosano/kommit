@@ -1,5 +1,4 @@
 <script>
-export let KOMBrowseListItemAccessibilitySummary;
 export let KOMBrowseListItemTitle;
 
 import OLSKInternational from 'OLSKInternational';
@@ -8,7 +7,7 @@ const OLSKLocalized = function(translationConstant) {
 };
 </script>
 
-<div class="KOMBrowseListItem" aria-label={ KOMBrowseListItemAccessibilitySummary } role="button">
+<div class="KOMBrowseListItem">
 
 <strong class="KOMBrowseListItemTitle" aria-hidden="true">{ KOMBrowseListItemTitle }</strong>
 

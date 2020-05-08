@@ -102,18 +102,18 @@ const mod = {
 				mod.ControlFilter('');
 
 				if (!OLSK_TESTING_BEHAVIOUR()) {
-					document.querySelector('.KOMBrowseListBody').scrollTo(0, 0);
+					document.querySelector('.OLSKMasterListBody').scrollTo(0, 0);
 				}
 			},
 			Tab () {
-				if (document.activeElement === document.querySelector('.KOMBrowseListFilterField') && mod._ValueCardSelected) {
+				if (document.activeElement === document.querySelector('.OLSKMasterListFilterField') && mod._ValueCardSelected) {
 					mod.ControlFocusDetail();
 
 					return event.preventDefault();
 				}
 
 				if (document.activeElement === document.querySelector('.KOMBrowseInfoFormQuestionField') && event.shiftKey) {
-					document.querySelector('.KOMBrowseListFilterField').focus();
+					document.querySelector('.OLSKMasterListFilterField').focus();
 
 					return event.preventDefault();
 				}
@@ -168,7 +168,7 @@ const mod = {
 		mod.ValueCardSelected(inputData);
 
 		if (!inputData) {
-			return !mod.DataIsMobile() && document.querySelector('.KOMBrowseListFilterField').focus();
+			return !mod.DataIsMobile() && document.querySelector('.OLSKMasterListFilterField').focus();
 		}
 
 		mod.OLSKMobileViewInactive = true;
@@ -213,7 +213,7 @@ const mod = {
 
 	SetupFocus() {
 		setTimeout(function () {
-			document.querySelector('.KOMBrowseListFilterField').focus();
+			document.querySelector('.OLSKMasterListFilterField').focus();
 		});
 	},
 

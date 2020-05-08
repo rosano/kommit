@@ -1,50 +1,19 @@
-.KOMBrowseList {
+:global(.KOMBrowseList) {
 	border-right: var(--KOMBorderStyle);
-
-	/* KOMBrowseListFlexbox:Parent */
-	display: flex;
-	flex-direction: column;
 }
 
-.KOMBrowseListToolbar {
+:global(.KOMBrowseList .OLSKMasterListToolbar) {
 	border-bottom: var(--KOMBorderStyle);
-
-	/* KOMBrowseListFlexbox:Child */
-	flex-shrink: 0;
 }
 
-.KOMBrowseListToolbar :global(.OLSKToolbarElementGroup) {
+:global(.KOMBrowseList .OLSKMasterListToolbar .OLSKToolbarElementGroup) {
 	margin-left: 4px;
 }
 
 @media screen and (max-width: 760px) {
 
-.KOMBrowseListToolbar :global(.OLSKToolbarElementGroup) {
+:global(.KOMBrowseList .OLSKMasterListToolbar .OLSKToolbarElementGroup) {
 	margin-left: 8px;
-}
-
-}
-
-.KOMBrowseListBody {
-	overflow: auto;
-	
-	/* KOMBrowseListFlexbox:Child */
-	flex-grow: 1;
-}
-
-:global(.OLSKIsLoading) .KOMBrowseListBody {
-	visibility: hidden;
-}
-
-.KOMBrowseListBody :global(.OLSKResultsListItemSelected .KOMBrowseListItem) {
-	background: #e6e6e6;
-}
-
-@media screen and (min-width: 760px) {
-
-.KOMBrowseListFocused :global(.OLSKResultsListItemSelected .KOMBrowseListItem) {
-	background: #1a81ff;
-	color: white;
 }
 
 }

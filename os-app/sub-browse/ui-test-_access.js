@@ -53,7 +53,7 @@ describe('KOMBrowse_Access', function () {
 	context('create', function test_create() {
 		
 		before(function () {
-			return browser.pressButton('.KOMBrowseListToolbarCreateButton');
+			return browser.pressButton('.OLSKMasterListToolbarCreateButton');
 		});
 
 		it('shows KOMBrowseListItem', function () {

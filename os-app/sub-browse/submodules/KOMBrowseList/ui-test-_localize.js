@@ -1,5 +1,3 @@
-import { deepEqual } from 'assert';
-
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
@@ -16,16 +14,12 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			});
 		});
 
-		it('localizes KOMBrowseListToolbarCloseButton', function () {
-			browser.assert.text(KOMBrowseListToolbarCloseButton, uLocalized('KOMBrowseListToolbarCloseButtonText'));
+		it('localizes OLSKMasterListToolbarCloseButton', function () {
+			browser.assert.text(OLSKMasterListToolbarCloseButton, uLocalized('OLSKMasterListToolbarCloseButtonText'));
 		});
 	
-		it('localizes KOMBrowseListFilterField', function () {
-			browser.assert.attribute(KOMBrowseListFilterField, 'placeholder', uLocalized('KOMBrowseListFilterFieldText'));
-		});
-	
-		it('localizes KOMBrowseListToolbarCreateButton', function () {
-			browser.assert.attribute(KOMBrowseListToolbarCreateButton, 'title', uLocalized('KOMBrowseListToolbarCreateButtonText'));
+		it('localizes OLSKMasterListToolbarCreateButton', function () {
+			browser.assert.attribute(OLSKMasterListToolbarCreateButton, 'title', uLocalized('OLSKMasterListToolbarCreateButtonText'));
 		});
 
 	});

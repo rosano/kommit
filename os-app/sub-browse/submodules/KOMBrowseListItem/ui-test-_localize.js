@@ -11,7 +11,6 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute, {
 				OLSKRoutingLanguage: languageCode,
-				KOMBrowseListItemAccessibilitySummary: 'alfa',
 				KOMBrowseListItemTitle: 'bravo',
 			});
 		});

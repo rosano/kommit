@@ -20,132 +20,47 @@ import KOMBrowseListLogic from './ui-logic.js';
 
 const mod = {
 
-	// MESSAGE
-
-	OLSKInputWrapperDispatchClear () {
-		KOMBrowseListDispatchFilter('');
-	},
-
-	// VALUE
-
-	_ValueFilterFieldFocused: true,
-
-	// DATA
-
-	DataIsFocused () {
-		return document.activeElement === document.querySelector('.KOMBrowseListFilterField');
-	},
-
-	DataIsMobile () {
-		return window.innerWidth <= 760;
-	},
-
-	// INTERFACE
-
-	InterfaceFilterFieldDidInput (event) {
-		KOMBrowseListDispatchFilter(this.value);
-	},
-
 	InterfaceCreateButtonDidClick () {
 		KOMBrowseListDispatchCreate();
 	},
 
-	// SETUP
-
-	SetupEverything () {
-		mod.SetupFilterFieldEventListeners();
-	},
-
-	SetupFilterFieldEventListeners () {
-		setTimeout(function () {
-			document.querySelector('.KOMBrowseListFilterField').addEventListener('focus', function () {
-				mod._ValueFilterFieldFocused = true;
-			});
-
-			document.querySelector('.KOMBrowseListFilterField').addEventListener('blur', function () {
-				mod._ValueFilterFieldFocused = false;
-			});
-		}, 100);
-	},
-
-	// LIFECYCLE
-
-	LifecycleComponentDidMount () {
-		mod.SetupEverything();
-	},
-
-	LifecycleComponentDidUpdate () {
-		if (OLSK_TESTING_BEHAVIOUR()) {
-			return;
-		}
-
-		if (mod.DataIsMobile()) {
-			return;
-		}
-		
-		const element = document.querySelector('.OLSKResultsListItemSelected');
-
-		if (!element) {
-			return;
-		}
-		
-		element.scrollIntoView({
-			block: 'nearest',
-			inline: 'nearest',
-		});
-	},
-
 };
 
-import { onMount } from 'svelte';
-onMount(mod.LifecycleComponentDidMount);
-
-import { afterUpdate } from 'svelte';
-afterUpdate(mod.LifecycleComponentDidUpdate);
-
-import OLSKToolbar from 'OLSKToolbar';
+import OLSKMasterList from 'OLSKMasterList';
 import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
-import OLSKInputWrapper from 'OLSKInputWrapper';
 import _OLSKSharedCreate from '../../../_shared/__external/OLSKUIAssets/_OLSKSharedCreate.svg';
-import OLSKResults from 'OLSKResults';
 import KOMBrowseListItem from '../KOMBrowseListItem/main.svelte';
 </script>
 
-<div class="KOMBrowseList OLSKViewportMaster" class:OLSKMobileViewInactive={ OLSKMobileViewInactive } class:KOMBrowseListFocused={ mod._ValueFilterFieldFocused } aria-hidden={ OLSKMobileViewInactive ? true : null }>
-
-<header class="KOMBrowseListToolbar OLSKMobileViewHeader">
-	<OLSKToolbar>
+<OLSKMasterList
+	OLSKMasterListItems={ KOMBrowseListItems }
+	OLSKMasterListItemSelected={ KOMBrowseListItemSelected }
+	OLSKMasterListFilterText={ KOMBrowseListFilterText }
+	OLSKMasterListDispatchClick={ KOMBrowseListDispatchClick }
+	OLSKMasterListDispatchArrow={ KOMBrowseListDispatchArrow }
+	OLSKMasterListDispatchFilter={ KOMBrowseListDispatchFilter }
+	let:OLSKResultsListItem={ item }
+	OLSKMasterListItemAccessibilitySummaryFor={ (inputData) => KOMBrowseListLogic.KOMBrowseListItemAccessibilitySummary(inputData, OLSKLocalized) }	
+	OLSKMasterListClass={ 'KOMBrowseList' }
+	OLSKMobileViewInactive={ OLSKMobileViewInactive }
+	>
+	<div slot="OLSKMasterListToolbarHead">
 		<OLSKToolbarElementGroup>
-			<button class="KOMBrowseListToolbarCloseButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton" on:click={ KOMBrowseListDispatchClose }>{ OLSKLocalized('KOMBrowseListToolbarCloseButtonText') }</button>
+			<button class="OLSKMasterListToolbarCloseButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton" on:click={ KOMBrowseListDispatchClose }>{ OLSKLocalized('OLSKMasterListToolbarCloseButtonText') }</button>
 		</OLSKToolbarElementGroup>
+	</div>
 
-		<OLSKInputWrapper OLSKInputWrapperValue={ KOMBrowseListFilterText } OLSKInputWrapperDispatchClear={ mod.OLSKInputWrapperDispatchClear } >
-			<input class="KOMBrowseListFilterField" placeholder={ OLSKLocalized('KOMBrowseListFilterFieldText') } bind:value={ KOMBrowseListFilterText } on:input={ mod.InterfaceFilterFieldDidInput } />
-		</OLSKInputWrapper>
+	<KOMBrowseListItem
+		KOMBrowseListItemTitle={ KOMBrowseListLogic.KOMBrowseListItemTitle(item) }
+		/>
 
+	<div slot="OLSKMasterListToolbarTail">
 		<OLSKToolbarElementGroup>
-			<button class="KOMBrowseListToolbarCreateButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton" on:click={ mod.InterfaceCreateButtonDidClick } accesskey="n" title={ OLSKLocalized('KOMBrowseListToolbarCreateButtonText') }>
-				<div class="KOMBrowseListToolbarCreateButtonImage">{@html _OLSKSharedCreate }</div>
+			<button class="OLSKMasterListToolbarCreateButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton" on:click={ mod.InterfaceCreateButtonDidClick } accesskey="n" title={ OLSKLocalized('OLSKMasterListToolbarCreateButtonText') }>
+				<div class="OLSKMasterListToolbarCreateButtonImage">{@html _OLSKSharedCreate }</div>
 			</button>
 		</OLSKToolbarElementGroup>
-	</OLSKToolbar>
-</header>
-
-<section class="KOMBrowseListBody OLSKMobileViewBody">
-	<OLSKResults
-		OLSKResultsListItems={ KOMBrowseListItems }
-		OLSKResultsListItemSelected={ KOMBrowseListItemSelected }
-		OLSKResultsDispatchClick={ KOMBrowseListDispatchClick }
-		OLSKResultsDispatchArrow={ (inputData) => mod.DataIsFocused() && KOMBrowseListDispatchArrow(inputData) }
-		let:OLSKResultsListItem={ e }
-		>
-		<KOMBrowseListItem
-			KOMBrowseListItemAccessibilitySummary={ KOMBrowseListLogic.KOMBrowseListItemAccessibilitySummary(e, OLSKLocalized) }
-			KOMBrowseListItemTitle={ KOMBrowseListLogic.KOMBrowseListItemTitle(e) }
-			/>
-	</OLSKResults>
-</section>
-
-</div>
+	</div>
+</OLSKMasterList>	
 
 <style src="./ui-style.css"></style>

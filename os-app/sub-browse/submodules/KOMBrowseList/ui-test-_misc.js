@@ -2,145 +2,36 @@ import { deepEqual } from 'assert';
 
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
+const uItem = function (inputData = 'alfa') {
+	return {
+		KOMCardID: inputData,
+		KOMCardQuestion: inputData,
+		KOMCardAnswer: inputData,
+	};
+};
+
 describe('KOMBrowseList_Misc', function () {
 
-	describe('KOMBrowseList', function test_KOMBrowseList () {
-
-		before(function() {
-			return browser.OLSKVisit(kDefaultRoute);
+	before(function() {
+		return browser.OLSKVisit(kDefaultRoute, {
+			KOMBrowseListItems: JSON.stringify([uItem('alfa'), uItem('bravo')]),
+			KOMBrowseListItemSelected: JSON.stringify(uItem('alfa')),
+			KOMBrowseListFilterText: 'alfa',
 		});
-		
-		it('classes OLSKViewportMaster', function () {
-			browser.assert.hasClass(KOMBrowseList, 'OLSKViewportMaster');
-		});
-
-		context('blur KOMBrowseListFilterField', function() {
-
-			before(function () {
-				browser.assert.hasClass(KOMBrowseList, 'KOMBrowseListFocused');
-			});
-
-			before(function () {
-				browser.click(KOMBrowseListToolbarCreateButton);
-			});
-			
-			it.skip('classes KOMBrowseListFocused', function() {
-				browser.assert.hasNoClass(KOMBrowseList, 'KOMBrowseListFocused');
-			});
-
-		});
-
-		context('focus KOMBrowseListFilterField', function() {
-
-			before(function () {
-				return browser.click(KOMBrowseListFilterField);
-			});
-			
-			it('classes KOMBrowseListFocused', function() {
-				browser.assert.hasClass(KOMBrowseList, 'KOMBrowseListFocused');
-			});
-
-		});
-
-		context('OLSKMobileViewInactive', function () {
-
-			before(function () {
-				browser.assert.hasNoClass(KOMBrowseList, 'OLSKMobileViewInactive');
-			});
-
-			before(function () {
-				browser.assert.attribute(KOMBrowseList, 'aria-hidden', null);
-			});
-			
-			before(function() {
-				return browser.OLSKVisit(kDefaultRoute, {
-					OLSKMobileViewInactive: true,
-				});
-			});
-
-			it('classes OLSKMobileViewInactive', function () {
-				browser.assert.hasClass(KOMBrowseList, 'OLSKMobileViewInactive');
-			});
-
-			it('sets aria-hidden', function () {
-				browser.assert.attribute(KOMBrowseList, 'aria-hidden', 'true');
-			});
-		
-		});
-
-		context('OLSKResultsDispatchArrow', function () {
-
-			before(function() {
-				return browser.OLSKVisit(kDefaultRoute, {
-					KOMBrowseListItems: JSON.stringify([{
-						KOMCardID: 'alfa',
-						KOMCardQuestion: 'bravo',
-					}, {
-						KOMCardID: 'charlie',
-						KOMCardQuestion: 'delta',
-					}, {
-						KOMCardID: 'echo',
-						KOMCardQuestion: 'foxtrot',
-					}]),
-					KOMBrowseListItemSelected: JSON.stringify({
-						KOMCardID: 'charlie',
-						KOMCardQuestion: 'delta',
-					}),
-				});
-			});
-
-			context('keydown ArrowUp', function() {
-
-				before(function () {
-					return browser.query('.KOMBrowseListFilterField').focus();
-				});
-				
-				before(function () {
-					browser.assert.text('#TestKOMBrowseListDispatchArrow', '0');
-				});
-
-				before(function () {
-					return browser.OLSKFireKeyboardEvent(browser.window, 'ArrowUp');
-				});
-
-				it('sends KOMBrowseListDispatchArrow', function () {
-					browser.assert.text('#TestKOMBrowseListDispatchArrow', '1');
-					browser.assert.text('#TestKOMBrowseListDispatchArrowData', JSON.stringify({
-						KOMCardID: 'alfa',
-						KOMCardQuestion: 'bravo',
-					}));
-				});
-
-			});
-		
-		});
-	
 	});
-
-	describe('KOMBrowseListToolbar', function test_KOMBrowseListToolbar () {
 		
-		it('classes OLSKMobileViewHeader', function () {
-			browser.assert.hasClass(KOMBrowseListToolbar, 'OLSKMobileViewHeader');
-		});
-	
-	});
-
-	describe('KOMBrowseListToolbarCloseButton', function test_KOMBrowseListToolbarCloseButton () {
+	describe('OLSKMasterListToolbarCloseButton', function test_OLSKMasterListToolbarCloseButton () {
 		
-		before(function() {
-			return browser.OLSKVisit(kDefaultRoute);
-		});
-
 		it('classes OLSKLayoutButtonNoStyle', function () {
-			browser.assert.hasClass(KOMBrowseListToolbarCloseButton, 'OLSKLayoutButtonNoStyle');
+			browser.assert.hasClass(OLSKMasterListToolbarCloseButton, 'OLSKLayoutButtonNoStyle');
 		});
 
 		it('classes OLSKLayoutElementTappable', function () {
-			browser.assert.hasClass(KOMBrowseListToolbarCloseButton, 'OLSKLayoutElementTappable');
+			browser.assert.hasClass(OLSKMasterListToolbarCloseButton, 'OLSKLayoutElementTappable');
 		});
 
 		it('classes OLSKToolbarButton', function () {
-			browser.assert.hasClass(KOMBrowseListToolbarCloseButton, 'OLSKToolbarButton');
+			browser.assert.hasClass(OLSKMasterListToolbarCloseButton, 'OLSKToolbarButton');
 		});
 
 		context('click', function () {
@@ -150,7 +41,7 @@ describe('KOMBrowseList_Misc', function () {
 			});
 			
 			before(function () {
-				return browser.pressButton(KOMBrowseListToolbarCloseButton);
+				return browser.pressButton(OLSKMasterListToolbarCloseButton);
 			});
 
 			it('sends KOMBrowseListDispatchClose', function () {
@@ -161,22 +52,21 @@ describe('KOMBrowseList_Misc', function () {
 	
 	});
 
-	describe('KOMBrowseListFilterField', function test_KOMBrowseListFilterField() {
+	describe('OLSKMasterList', function test_OLSKMasterList() {
 
-		before(function() {
-			return browser.OLSKVisit(kDefaultRoute, {
-				KOMBrowseListFilterText: 'alfa',
-			});
+		it('binds OLSKMasterListFilterText', function () {
+			browser.assert.input('.OLSKMasterListFilterField', 'alfa');
 		});
 
-		it('binds KOMBrowseListFilterText', function () {
-			browser.assert.input(KOMBrowseListFilterField, 'alfa');
+		it('sets OLSKMasterListItemAccessibilitySummaryFor', function () {
+
+			browser.assert.attribute('.OLSKResultsListItem:nth-child(1) .OLSKMasterListItem', 'aria-label', 'alfa');
 		});
 
-		it('sets OLSKInputWrapperValue', function () {
-			browser.assert.elements('.OLSKInputWrapperClearButton', 1);
+		it('sets OLSKMasterListItemSelected', function () {
+			browser.assert.hasClass('.OLSKResultsListItem:nth-child(1)', 'OLSKResultsListItemSelected');
 		});
-			
+
 		context('input', function () {
 		
 			before(function () {
@@ -185,106 +75,14 @@ describe('KOMBrowseList_Misc', function () {
 			});
 
 			before(function () {
-				browser.fill(KOMBrowseListFilterField, 'bravo');
+				browser.fill('.OLSKMasterListFilterField', 'charlie');
 			});
 
 			it('sends KOMBrowseListDispatchFilter', function () {
 				browser.assert.text('#TestKOMBrowseListDispatchFilter', '1');
-				browser.assert.text('#TestKOMBrowseListDispatchFilterData', 'bravo');
+				browser.assert.text('#TestKOMBrowseListDispatchFilterData', 'charlie');
 			});
 		
-		});
-
-		context('clear', function () {
-
-			before(function () {
-				return browser.pressButton('.OLSKInputWrapperClearButton');
-			});
-
-			it('sends KOMBrowseListDispatchFilter', function () {
-				browser.assert.text('#TestKOMBrowseListDispatchFilter', '2');
-				browser.assert.text('#TestKOMBrowseListDispatchFilterData', '');
-			});
-		
-		});
-
-	});
-
-	describe('KOMBrowseListToolbarCreateButton', function test_KOMBrowseListToolbarCreateButton () {
-		
-		before(function() {
-			return browser.OLSKVisit(kDefaultRoute);
-		});
-
-		it('classes OLSKLayoutButtonNoStyle', function () {
-			browser.assert.hasClass(KOMBrowseListToolbarCreateButton, 'OLSKLayoutButtonNoStyle');
-		});
-
-		it('classes OLSKLayoutElementTappable', function () {
-			browser.assert.hasClass(KOMBrowseListToolbarCreateButton, 'OLSKLayoutElementTappable');
-		});
-
-		it('classes OLSKToolbarButton', function () {
-			browser.assert.hasClass(KOMBrowseListToolbarCreateButton, 'OLSKToolbarButton');
-		});
-		
-		it('sets accesskey', function () {
-			browser.assert.attribute(KOMBrowseListToolbarCreateButton, 'accesskey', 'n');
-		});
-
-		context('click', function () {
-			
-			before(function () {
-				browser.assert.text('#TestKOMBrowseListDispatchCreate', '0');
-			});
-			
-			before(function () {
-				return browser.pressButton(KOMBrowseListToolbarCreateButton);
-			});
-
-			it('sends KOMBrowseListDispatchCreate', function () {
-				browser.assert.text('#TestKOMBrowseListDispatchCreate', '1');
-			});
-		
-		});
-	
-	});
-
-	describe('KOMBrowseListToolbarCreateButtonImage', function test_KOMBrowseListToolbarCreateButtonImage () {
-
-		it('sets src', function () {
-			browser.assert.elements(`${ KOMBrowseListToolbarCreateButtonImage } #_OLSKSharedCreate`, 1);
-		});
-	
-	});
-
-	describe('KOMBrowseListBody', function test_KOMBrowseListBody () {
-		
-		it('classes OLSKMobileViewBody', function () {
-			browser.assert.hasClass(KOMBrowseListBody, 'OLSKMobileViewBody');
-		});
-	
-	});
-
-	describe('KOMBrowseListItem', function test_KOMBrowseListItem() {
-
-		const item = {
-			KOMCardID: 'alfa',
-			KOMCardQuestion: 'bravo',
-		};
-		
-		before(function() {
-			return browser.OLSKVisit(kDefaultRoute, {
-				KOMBrowseListItems: JSON.stringify([item]),
-			});
-		});
-
-		it('sets KOMBrowseListItemAccessibilitySummary', function () {
-			browser.assert.attribute('.KOMBrowseListItem', 'aria-label', 'bravo');
-		});
-
-		it('sets KOMBrowseListItemTitle', function () {
-			browser.assert.text('.KOMBrowseListItemTitle', 'bravo');
 		});
 
 		context('click', function () {
@@ -300,34 +98,61 @@ describe('KOMBrowseList_Misc', function () {
 
 			it('sends KOMBrowseListDispatchClick', function () {
 				browser.assert.text('#TestKOMBrowseListDispatchClick', '1');
-				browser.assert.text('#TestKOMBrowseListDispatchClickData', JSON.stringify(item));
+				browser.assert.text('#TestKOMBrowseListDispatchClickData', JSON.stringify(uItem()));
 			});
 		
 		});
-		
+
 	});
 
-	describe('KOMBrowseListItemSelected', function test_KOMBrowseListItemSelected() {
+	describe('OLSKMasterListToolbarCreateButton', function test_OLSKMasterListToolbarCreateButton () {
 		
-		before(function() {
-			return browser.OLSKVisit(kDefaultRoute, {
-				KOMBrowseListItems: JSON.stringify([{
-					KOMCardID: 'alfa',
-					KOMCardQuestion: 'bravo',
-				}, {
-					KOMCardID: 'charlie',
-					KOMCardQuestion: 'delta',
-				}]),
-				KOMBrowseListItemSelected: JSON.stringify({
-					KOMCardID: 'charlie',
-					KOMCardQuestion: 'delta',
-				}),
-			});
+		it('classes OLSKLayoutButtonNoStyle', function () {
+			browser.assert.hasClass(OLSKMasterListToolbarCreateButton, 'OLSKLayoutButtonNoStyle');
 		});
 
-		it('sets OLSKResultsListItemSelected', function () {
-			browser.assert.elements('.OLSKResultsListItemSelected', 1);
-			browser.assert.hasClass('.OLSKResultsListItem:nth-child(2)', 'OLSKResultsListItemSelected');
+		it('classes OLSKLayoutElementTappable', function () {
+			browser.assert.hasClass(OLSKMasterListToolbarCreateButton, 'OLSKLayoutElementTappable');
+		});
+
+		it('classes OLSKToolbarButton', function () {
+			browser.assert.hasClass(OLSKMasterListToolbarCreateButton, 'OLSKToolbarButton');
+		});
+		
+		it('sets accesskey', function () {
+			browser.assert.attribute(OLSKMasterListToolbarCreateButton, 'accesskey', 'n');
+		});
+
+		context('click', function () {
+			
+			before(function () {
+				browser.assert.text('#TestKOMBrowseListDispatchCreate', '0');
+			});
+			
+			before(function () {
+				return browser.pressButton(OLSKMasterListToolbarCreateButton);
+			});
+
+			it('sends KOMBrowseListDispatchCreate', function () {
+				browser.assert.text('#TestKOMBrowseListDispatchCreate', '1');
+			});
+		
+		});
+	
+	});
+
+	describe('OLSKMasterListToolbarCreateButtonImage', function test_OLSKMasterListToolbarCreateButtonImage () {
+
+		it('sets src', function () {
+			browser.assert.elements(`${ OLSKMasterListToolbarCreateButtonImage } #_OLSKSharedCreate`, 1);
+		});
+	
+	});
+
+	describe('KOMBrowseListItem', function test_KOMBrowseListItem() {		
+
+		it('sets KOMBrowseListItemTitle', function () {
+			browser.assert.text('.OLSKResultsListItem:nth-child(1) .OLSKMasterListItem', 'alfa');
 		});
 		
 	});

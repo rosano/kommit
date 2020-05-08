@@ -59,7 +59,7 @@ describe('KOMReview_Misc', function () {
 		});
 
 		before(function () {
-			return browser.pressButton('.KOMBrowseListToolbarCreateButton');
+			return browser.pressButton('.OLSKMasterListToolbarCreateButton');
 		});
 
 		before(function () {
@@ -71,7 +71,7 @@ describe('KOMReview_Misc', function () {
 		});
 
 		after(function () {
-			return browser.pressButton('.KOMBrowseListToolbarCloseButton');
+			return browser.pressButton('.OLSKMasterListToolbarCloseButton');
 		});
 				
 	});	

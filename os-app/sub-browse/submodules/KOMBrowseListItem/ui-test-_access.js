@@ -12,7 +12,6 @@ describe('KOMBrowseListItem_Access', function () {
 
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute, {
-			KOMBrowseListItemAccessibilitySummary: 'alfa',
 			KOMBrowseListItemTitle: 'bravo',
 		});
 	});
