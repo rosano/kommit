@@ -83,6 +83,9 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 
 <style>
 .KOMReviewDetail {
+	/* OLSKViewportContentFlexbox:Child */
+	flex-grow: 1;
+	
 	/* KOMReviewDetailFlexbox:Parent */
 	display: flex;
 	flex-direction: column;

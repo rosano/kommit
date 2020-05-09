@@ -33,7 +33,7 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 <header class="KOMReviewMasterToolbar">
 	<OLSKToolbar OLSKToolbarJustify={ true }>
 		<OLSKToolbarElementGroup>
-			<strong class="KOMReviewMasterToolbarTitle">{ OLSKLocalized('KOMReviewMasterToolbarTitleText') }</strong>
+			<span class="KOMReviewMasterToolbarTitle">{ OLSKLocalized('KOMReviewMasterToolbarTitleText') }</span>
 		</OLSKToolbarElementGroup>
 	</OLSKToolbar>
 </header>
@@ -68,7 +68,7 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 
 .KOMReviewMasterToolbarTitle {
 	display: block;
-	padding: 10px;
+	padding: 7px;
 
 	font-size: 14px;
 }
