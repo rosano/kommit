@@ -104,7 +104,7 @@ const mod = {
 					LCHRecipeName: 'FakeOLSKChangeDelegateDeleteDeck',
 					async LCHRecipeCallback () {
 						return mod.OLSKChangeDelegateDeleteDeck(mod._ValueDecksAll.filter(function (e) {
-							return e.KOMDeckName === 'FakeOLSKChangeDelegateCreateDeck';
+							return e.KOMDeckName.match('FakeOLSKChangeDelegate');
 						}).pop());
 					},
 				},
