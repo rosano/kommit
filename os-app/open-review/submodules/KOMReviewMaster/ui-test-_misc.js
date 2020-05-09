@@ -133,6 +133,14 @@ describe('KOMReviewMaster_Misc', function () {
 
 	});
 
+	describe('KOMReviewMasterListItemReviewValue', function test_KOMReviewMasterListItemReviewValue() {
+		
+		it('sets text', function () {
+			browser.assert.text(KOMReviewMasterListItemReviewValue, '1');
+		});
+
+	});
+
 	describe('KOMReviewMasterListItemUnseenValue', function test_KOMReviewMasterListItemUnseenValue() {
 		
 		it('sets text', function () {

@@ -46,6 +46,10 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 				});
 			});
 
+			it('localizes KOMReviewMasterListItemReviewLabel', function () {
+				browser.assert.text(KOMReviewMasterListItemReviewLabel, uLocalized('KOMReviewMasterListItemReviewLabelText'));
+			});
+
 			it('localizes KOMReviewMasterListItemUnseenLabel', function () {
 				browser.assert.text(KOMReviewMasterListItemUnseenLabel, uLocalized('KOMReviewMasterListItemUnseenLabelText'));
 			});

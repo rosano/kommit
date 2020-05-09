@@ -10,6 +10,8 @@ Object.entries({
 
 	KOMReviewMasterListItem: '.KOMReviewMasterListItem',
 	KOMReviewMasterListItemName: '.KOMReviewMasterListItemName',
+	KOMReviewMasterListItemReviewValue: '.KOMReviewMasterListItemReviewValue',
+	KOMReviewMasterListItemReviewLabel: '.KOMReviewMasterListItemReviewLabel',
 	KOMReviewMasterListItemUnseenValue: '.KOMReviewMasterListItemUnseenValue',
 	KOMReviewMasterListItemUnseenLabel: '.KOMReviewMasterListItemUnseenLabel',
 }).map(function (e) {
@@ -59,6 +61,14 @@ describe('KOMReviewMaster_Access', function () {
 
 		it('shows KOMReviewMasterListItemName', function () {
 			browser.assert.elements(KOMReviewMasterListItemName, 1);
+		});
+
+		it('shows KOMReviewMasterListItemReviewValue', function () {
+			browser.assert.elements(KOMReviewMasterListItemReviewValue, 1);
+		});
+
+		it('shows KOMReviewMasterListItemReviewLabel', function () {
+			browser.assert.elements(KOMReviewMasterListItemReviewLabel, 1);
 		});
 
 		it('shows KOMReviewMasterListItemUnseenValue', function () {
