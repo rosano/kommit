@@ -150,7 +150,7 @@ describe('KOMReviewDetail_Misc', function () {
 	
 	});
 
-	describe('KOMReviewDetailToolbarBrowseButton', function () {
+	describe('KOMReviewDetailToolbarCardsButton', function () {
 		
 		context('click', function () {
 			
@@ -159,7 +159,7 @@ describe('KOMReviewDetail_Misc', function () {
 			});
 			
 			before(function () {
-				return browser.pressButton(KOMReviewDetailToolbarBrowseButton);
+				return browser.pressButton(KOMReviewDetailToolbarCardsButton);
 			});
 
 			it('sends KOMReviewDetailDispatchBrowse', function () {

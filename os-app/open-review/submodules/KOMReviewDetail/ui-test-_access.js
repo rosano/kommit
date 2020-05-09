@@ -7,7 +7,7 @@ Object.entries({
 	KOMReviewDetailToolbarBackButton: '.KOMReviewDetailToolbarBackButton',
 	KOMReviewDetailToolbarDiscardButton: '.KOMReviewDetailToolbarDiscardButton',
 	KOMReviewDetailToolbarRenameButton: '.KOMReviewDetailToolbarRenameButton',
-	KOMReviewDetailToolbarBrowseButton: '.KOMReviewDetailToolbarBrowseButton',
+	KOMReviewDetailToolbarCardsButton: '.KOMReviewDetailToolbarCardsButton',
 	
 	KOMReviewDetailHeading: '.KOMReviewDetailHeading',
 	KOMReviewDetailNoCards: '.KOMReviewDetailNoCards',
@@ -71,8 +71,8 @@ describe('KOMReviewDetail_Access', function () {
 		browser.assert.elements(KOMReviewDetailToolbarRenameButton, 1);
 	});
 
-	it('shows KOMReviewDetailToolbarBrowseButton', function () {
-		browser.assert.elements(KOMReviewDetailToolbarBrowseButton, 1);
+	it('shows KOMReviewDetailToolbarCardsButton', function () {
+		browser.assert.elements(KOMReviewDetailToolbarCardsButton, 1);
 	});
 
 	it('shows KOMReviewDetailHeading', function () {

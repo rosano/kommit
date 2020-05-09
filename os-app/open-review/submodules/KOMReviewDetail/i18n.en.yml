@@ -3,7 +3,7 @@ KOMReviewDetailToolbarDiscardButtonText: Discard
 KOMReviewDetailToolbarDiscardPromptText: Are you sure?
 KOMReviewDetailToolbarRenameButtonText: Rename
 KOMReviewDetailToolbarRenameButtonPromptText: Name
-KOMReviewDetailToolbarBrowseButtonText: Browse
+KOMReviewDetailToolbarCardsButtonText: Cards
 KOMReviewDetailNoCardsText: There are no cards in this deck.
 KOMReviewDetailPlayButtonText: Play
 KOMReviewDetailNoSpacingsText: All cards for today have been reviewed.

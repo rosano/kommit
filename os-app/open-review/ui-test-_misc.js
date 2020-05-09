@@ -55,7 +55,7 @@ describe('KOMReview_Misc', function () {
 		});
 
 		before(function () {
-			return browser.pressButton('.KOMReviewDetailToolbarBrowseButton');
+			return browser.pressButton('.KOMReviewDetailToolbarCardsButton');
 		});
 
 		before(function () {

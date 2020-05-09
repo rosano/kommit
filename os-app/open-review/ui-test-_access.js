@@ -93,7 +93,7 @@ describe('KOMReview_Access', function () {
 	context('browse', function test_browse() {
 		
 		before(function () {
-			return browser.pressButton('.KOMReviewDetailToolbarBrowseButton');
+			return browser.pressButton('.KOMReviewDetailToolbarCardsButton');
 		});
 
 		it('hides KOMReviewMaster', function () {
@@ -199,7 +199,7 @@ describe('KOMReview_Access', function () {
 		});
 
 		before(function () {
-			return browser.pressButton('.KOMReviewDetailToolbarBrowseButton');
+			return browser.pressButton('.KOMReviewDetailToolbarCardsButton');
 		});
 
 		before(function () {

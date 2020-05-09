@@ -56,7 +56,7 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 			
 			<button class="KOMReviewDetailToolbarRenameButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceRenameButtonDidClick }>{ OLSKLocalized('KOMReviewDetailToolbarRenameButtonText') }</button>
 			
-			<button class="KOMReviewDetailToolbarBrowseButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ KOMReviewDetailDispatchBrowse }>{ OLSKLocalized('KOMReviewDetailToolbarBrowseButtonText') }</button>
+			<button class="KOMReviewDetailToolbarCardsButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ KOMReviewDetailDispatchBrowse }>{ OLSKLocalized('KOMReviewDetailToolbarCardsButtonText') }</button>
 		</OLSKToolbarElementGroup>
 	</OLSKToolbar>
 </header>
