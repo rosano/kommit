@@ -15,6 +15,10 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 				OLSKRoutingLanguage: languageCode,
 			});
 		});
+
+		it('localizes KOMReviewMasterToolbarTitle', function () {
+			browser.assert.text(KOMReviewMasterToolbarTitle, uLocalized('KOMReviewMasterToolbarTitleText'));
+		});
 	
 		it('localizes KOMReviewMasterCreateButton', function () {
 			browser.assert.text(KOMReviewMasterCreateButton, uLocalized('KOMReviewMasterCreateButtonText'));

@@ -4,6 +4,9 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 Object.entries({
 	KOMReviewMaster: '.KOMReviewMaster',
+
+	KOMReviewMasterToolbar: '.KOMReviewMasterToolbar',
+	KOMReviewMasterToolbarTitle: '.KOMReviewMasterToolbarTitle',
 	
 	KOMReviewMasterCreateButton: '.KOMReviewMasterCreateButton',
 
@@ -20,6 +23,14 @@ describe('KOMReviewMaster_Access', function () {
 
 	it('shows KOMReviewMaster', function () {
 		browser.assert.elements(KOMReviewMaster, 1);
+	});
+
+	it('shows KOMReviewMasterToolbar', function () {
+		browser.assert.elements(KOMReviewMasterToolbar, 1);
+	});
+
+	it('shows KOMReviewMasterToolbarTitle', function () {
+		browser.assert.elements(KOMReviewMasterToolbarTitle, 1);
 	});
 
 	it('shows KOMReviewMasterCreateButton', function () {

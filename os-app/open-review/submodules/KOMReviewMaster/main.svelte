@@ -23,9 +23,20 @@ const mod = {
 	},
 
 };
+
+import OLSKToolbar from 'OLSKToolbar';
+import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 </script>
 
-<div class="KOMReviewMaster OLSKViewportMaster">
+<div class="KOMReviewMaster">
+
+<header class="KOMReviewMasterToolbar">
+	<OLSKToolbar OLSKToolbarJustify={ true }>
+		<OLSKToolbarElementGroup>
+			<strong class="KOMReviewMasterToolbarTitle">{ OLSKLocalized('KOMReviewMasterToolbarTitleText') }</strong>
+		</OLSKToolbarElementGroup>
+	</OLSKToolbar>
+</header>
 
 {#each KOMReviewMasterListItems as e}
 	<button class="KOMReviewMasterListItem" on:click={ () => KOMReviewMasterDispatchSelect(e) } >{ e.KOMDeckName }</button>
@@ -34,3 +45,26 @@ const mod = {
 <button class="KOMReviewMasterCreateButton" on:click={ mod.InterfaceCreateButtonDidClick } accesskey="n">{ OLSKLocalized('KOMReviewMasterCreateButtonText') }</button>
 
 </div>
+
+<style>
+.KOMReviewMaster {
+	/* OLSKViewportContentFlexbox:Child */
+	flex-grow: 1;
+}
+
+.KOMReviewMasterToolbar {
+	border-bottom: var(--KOMBorderStyle);
+}
+
+.KOMReviewMasterToolbar :global(.OLSKToolbar) {
+	/* OLSKToolbarFlexbox:Parent */
+	justify-content: center;
+}
+
+.KOMReviewMasterToolbarTitle {
+	display: block;
+	padding: 10px;
+
+	font-size: 14px;
+}
+</style>
