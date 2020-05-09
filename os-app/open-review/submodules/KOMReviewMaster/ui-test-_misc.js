@@ -46,23 +46,29 @@ describe('KOMReviewMaster_Misc', function () {
 
 	describe('KOMReviewMasterListItem', function test_KOMReviewMasterListItem() {
 
+		const uFlatten = function (inputData) {
+			return [].concat.apply([], inputData);
+		};
+
 		const item = {
 			KOMDeckID: 'alfa',
 			KOMDeckName: 'bravo',
-			$KOMDeckSpacings: Array.from(new Array(2)).map(function (e, i) {
-				return {
-					KOMSpacingID: (i + 1).toString() + '-forward',
-					KOMSpacingIsLearning: i === 1,
-					$KOMSpacingCard: {
-						KOMCardID: (i + 1).toString(),
-						KOMCardQuestion: (i + 1).toString(),
-						KOMCardAnswer: 'charlie',
-						KOMCardHint: 'delta',
-						KOMCardCreationDate: new Date('2019-02-23T13:56:36Z'),
-						KOMCardModificationDate: new Date('2019-02-23T13:56:36Z'),
-					},
-				};
-			}),
+			$KOMDeckSpacings: uFlatten(Array.from(new Array(2)).map(function (e, i) {
+				return [true, false].map(function (forward) {
+					return {
+						KOMSpacingID: (i + 1).toString() + '-' + (forward ? 'forward' : 'backward'),
+						KOMSpacingIsLearning: !i,
+						$KOMSpacingCard: {
+							KOMCardID: (i + 1).toString(),
+							KOMCardQuestion: (i + 1).toString(),
+							KOMCardAnswer: 'charlie',
+							KOMCardHint: 'delta',
+							KOMCardCreationDate: new Date('2019-02-23T13:56:36Z'),
+							KOMCardModificationDate: new Date('2019-02-23T13:56:36Z'),
+						},
+					};
+				});
+			})),
 		};
 		
 		before(function() {

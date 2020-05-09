@@ -18,6 +18,8 @@ const KOMReviewMaster = new RollupStart({
 	}, Object.fromEntries(Array.from((new window.URLSearchParams(window.location.search)).entries()).map(function (e) {
 		if (['KOMReviewMasterListItems'].includes(e[0])) {
 			e[1] = JSON.parse(e[1]).map(function (e) {
+				let cards = [];
+
 				return Object.assign(e, {
 					$KOMDeckSpacings: (e.$KOMDeckSpacings || []).map(KOMSpacingModel.KOMSpacingModelPostJSONParse).map(function (e) {
 						if (!e.$KOMSpacingCard) {
@@ -25,7 +27,9 @@ const KOMReviewMaster = new RollupStart({
 						}
 
 						return Object.assign(e, {
-							$KOMSpacingCard: KOMCardModel.KOMCardModelPostJSONParse(e.$KOMSpacingCard),
+							$KOMSpacingCard: (cards = cards.concat(KOMCardModel.KOMCardModelPostJSONParse(e.$KOMSpacingCard))).filter(function (item) {
+								return item.KOMCardID === e.$KOMSpacingCard.KOMCardID;
+							}).shift(),
 						})
 					}),
 				});
