@@ -11,6 +11,7 @@ Object.entries({
 	KOMReviewMasterCreateButton: '.KOMReviewMasterCreateButton',
 
 	KOMReviewMasterListItem: '.KOMReviewMasterListItem',
+	KOMReviewMasterListItemName: '.KOMReviewMasterListItemName',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
@@ -53,6 +54,10 @@ describe('KOMReviewMaster_Access', function () {
 
 		it('shows KOMReviewMasterListItem', function () {
 			browser.assert.elements(KOMReviewMasterListItem, 1);
+		});
+
+		it('shows KOMReviewMasterListItemName', function () {
+			browser.assert.elements(KOMReviewMasterListItemName, 1);
 		});
 		
 	});

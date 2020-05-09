@@ -25,7 +25,7 @@ describe('KOMReview_Misc', function () {
 	context('rename', function () {
 		
 		before(function () {
-			return browser.pressButton('.KOMReviewMasterListItem');
+			return browser.click('.KOMReviewMasterListItem');
 		});
 
 		before(function () {
@@ -51,7 +51,7 @@ describe('KOMReview_Misc', function () {
 	context('KOMBrowse', function test_KOMBrowse() {
 		
 		before(function () {
-			return browser.pressButton('.KOMReviewMasterListItem');
+			return browser.click('.KOMReviewMasterListItem');
 		});
 
 		before(function () {

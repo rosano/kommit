@@ -40,10 +40,13 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 
 <div class="KOMReviewMasterBody">
 {#each KOMReviewMasterListItems as e}
-	<button class="KOMReviewMasterListItem" on:click={ () => KOMReviewMasterDispatchSelect(e) } >{ e.KOMDeckName }</button>
+	<div class="KOMReviewMasterListItem" role="button" on:click={ () => KOMReviewMasterDispatchSelect(e) } aria-label={ e.KOMDeckName }>
+		<strong class="KOMReviewMasterListItemName">{ e.KOMDeckName }</strong>
+	</div>
 {/each}
 
-<button class="KOMReviewMasterCreateButton" on:click={ mod.InterfaceCreateButtonDidClick } accesskey="n">{ OLSKLocalized('KOMReviewMasterCreateButtonText') }</button>
+<button class="KOMReviewMasterCreateButton" on:click={ mod.InterfaceCreateButtonDidClick } accesskey="n">{ OLSKLocalized('KOMReviewMasterCreateButtonText') }
+</button>
 </div>
 
 </div>
@@ -72,5 +75,16 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 
 .KOMReviewMasterBody {
 	padding: 10px;
+}
+
+.KOMReviewMasterListItem {
+	display: block;
+	margin-bottom: 10px;
+	padding: 10px;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+
+	clear: both;
+
+	cursor: pointer;
 }
 </style>

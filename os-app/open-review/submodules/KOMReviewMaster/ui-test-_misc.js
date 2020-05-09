@@ -1,10 +1,8 @@
-import { deepEqual } from 'assert';
-
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 describe('KOMReviewMaster_Misc', function () {
 
-	describe('KOMReviewMasterCreateButton', function () {
+	describe('KOMReviewMasterCreateButton', function test_KOMReviewMasterCreateButton () {
 
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute);
@@ -46,7 +44,7 @@ describe('KOMReviewMaster_Misc', function () {
 	
 	});
 
-	describe('KOMReviewMasterListItem', function() {
+	describe('KOMReviewMasterListItem', function test_KOMReviewMasterListItem() {
 		
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute, {
@@ -56,11 +54,14 @@ describe('KOMReviewMaster_Misc', function () {
 				}]),
 			});
 		});
-
-		it('sets text', function () {
-			browser.assert.text(KOMReviewMasterListItem, 'bravo');
+		
+		it('sets role', function () {
+			browser.assert.attribute(KOMReviewMasterListItem, 'role', 'button');
 		});
 
+		it('sets aria-label', function () {
+			browser.assert.attribute(KOMReviewMasterListItem, 'aria-label', 'bravo');
+		});
 
 		context('click', function () {
 			
@@ -83,6 +84,14 @@ describe('KOMReviewMaster_Misc', function () {
 		
 		});
 		
+	});
+
+	describe('KOMReviewMasterListItemName', function test_KOMReviewMasterListItemName() {
+		
+		it('sets text', function () {
+			browser.assert.text(KOMReviewMasterListItemName, 'bravo');
+		});
+
 	});
 
 });
