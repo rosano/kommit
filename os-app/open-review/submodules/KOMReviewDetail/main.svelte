@@ -87,4 +87,8 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 	display: flex;
 	flex-direction: column;
 }
+
+.KOMReviewDetailToolbar {
+	border-bottom: var(--KOMBorderStyle);
+}
 </style>
