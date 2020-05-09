@@ -226,6 +226,10 @@ describe('KOMReview_Access', function () {
 			browser.assert.elements('.KOMPlay', 1);
 		});
 
+		it('hides KOMReviewViewportFooter', function () {
+			browser.assert.elements(KOMReviewViewportFooter, 0);
+		});
+
 		context('done', function () {
 			
 			before(function () {
@@ -242,6 +246,10 @@ describe('KOMReview_Access', function () {
 
 			it('hides KOMPlay', function () {
 				browser.assert.elements(KOMPlay, 0);
+			});
+
+			it('shows KOMReviewViewportFooter', function () {
+				browser.assert.elements(KOMReviewViewportFooter, 1);
 			});
 		
 		});

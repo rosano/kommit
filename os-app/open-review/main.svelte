@@ -67,6 +67,8 @@ const mod = {
 
 	KOMPlayDispatchDone () {
 		mod._ValuePlayVisible = false;
+
+		setTimeout(mod.SetupStorageWidget, 100);
 	},
 
 	KOMPlayDispatchRespond (inputData) {
@@ -369,7 +371,7 @@ import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svel
 			/>
 	{/if}
 
-	{#if mod._ValueDeckSelected && mod._ValuePlayVisible}
+	{#if mod._ValuePlayVisible}
 		<KOMPlay
 			KOMPlaySpacings={ KOMReviewLogic.KOMReviewSpacingsToday(mod._ValueDeckSelected.$KOMDeckSpacings) }
 			KOMPlayDispatchDone={ mod.KOMPlayDispatchDone }
@@ -378,19 +380,21 @@ import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svel
 	{/if}
 </OLSKViewportContent>
 
-<footer class="KOMReviewViewportFooter OLSKMobileViewFooter">
-	<div id="KOMReviewStorageWidget" class:KOMReviewStorageWidgetHidden={ mod._ValueStorageWidgetHidden }></div>
+{#if !mod._ValuePlayVisible}
+	<footer class="KOMReviewViewportFooter OLSKMobileViewFooter">
+		<div id="KOMReviewStorageWidget" class:KOMReviewStorageWidgetHidden={ mod._ValueStorageWidgetHidden }></div>
 
-	<OLSKAppToolbar
-		OLSKAppToolbarDonateURL={ window.OLSKPublicConstants('KOM_SHARED_DONATE_URL') }
-		OLSKAppToolbarLauncherVisible={ true }
-		OLSKAppToolbarDispatchLauncher={ mod.OLSKAppToolbarDispatchLauncher }
-		OLSKAppToolbarStorageStatus={ mod._ValueFooterStorageStatus }
-		OLSKAppToolbarDispatchStorage={ mod.OLSKAppToolbarDispatchStorage }
-		_OLSKAppToolbarDispatchExport={ mod._OLSKAppToolbarDispatchExport }
-		_OLSKAppToolbarDispatchImport={ mod._OLSKAppToolbarDispatchImport }
-		/>
-</footer>
+		<OLSKAppToolbar
+			OLSKAppToolbarDonateURL={ window.OLSKPublicConstants('KOM_SHARED_DONATE_URL') }
+			OLSKAppToolbarLauncherVisible={ true }
+			OLSKAppToolbarDispatchLauncher={ mod.OLSKAppToolbarDispatchLauncher }
+			OLSKAppToolbarStorageStatus={ mod._ValueFooterStorageStatus }
+			OLSKAppToolbarDispatchStorage={ mod.OLSKAppToolbarDispatchStorage }
+			_OLSKAppToolbarDispatchExport={ mod._OLSKAppToolbarDispatchExport }
+			_OLSKAppToolbarDispatchImport={ mod._OLSKAppToolbarDispatchImport }
+			/>
+	</footer>
+{/if}
 
 </div>
 
