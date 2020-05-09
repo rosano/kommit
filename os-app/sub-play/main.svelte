@@ -87,10 +87,10 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 <header class="KOMPlayToolbar">
 	<OLSKToolbar OLSKToolbarJustify={ true }>
 		<OLSKToolbarElementGroup>
-			<button class="KOMPlayToolbarBackButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ KOMPlayDispatchBack }>{ OLSKLocalized('KOMPlayToolbarBackButtonText') }</button>
 		</OLSKToolbarElementGroup>
 
 		<OLSKToolbarElementGroup>
+			<button class="KOMPlayToolbarBackButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ KOMPlayDispatchBack }>{ OLSKLocalized('KOMPlayToolbarBackButtonText') }</button>
 			<button class="KOMPlayToolbarDoneButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ KOMPlayDispatchDone }>{ OLSKLocalized('KOMPlayToolbarDoneButtonText') }</button>
 		</OLSKToolbarElementGroup>
 	</OLSKToolbar>
