@@ -97,6 +97,14 @@ describe('KOMPlay_Misc', function () {
 
 	});
 
+	describe('KOMPlayFlipButton', function test_KOMPlayFlipButton () {
+
+		it('classes OLSKLayoutButtonNoStyle', function () {
+			browser.assert.hasClass(KOMPlayFlipButton, 'OLSKLayoutButtonNoStyle');
+		});
+
+	});
+
 	describe('KOMPlayCardAnswer', function test_KOMPlayCardAnswer () {
 
 		before(function () {
@@ -113,14 +121,6 @@ describe('KOMPlay_Misc', function () {
 
 		it('sets text', function () {
 			browser.assert.text(KOMPlayCardHint, kTesting.uSpacings[0].$KOMSpacingCard.KOMCardHint)
-		});
-
-	});
-
-	describe('KOMPlayFlipButton', function test_KOMPlayFlipButton () {
-
-		it('classes OLSKLayoutButtonNoStyle', function () {
-			browser.assert.hasClass(KOMPlayFlipButton, 'OLSKLayoutButtonNoStyle');
 		});
 
 	});
