@@ -85,9 +85,7 @@ const mod = {
 				{
 					LCHRecipeName: 'FakeOLSKChangeDelegateCreateDeck',
 					async LCHRecipeCallback () {
-						return mod.OLSKChangeDelegateCreateDeck(await KOMDeckAction.KOMDeckActionCreate(mod._ValueStorageClient, {
-							KOMDeckName: 'FakeOLSKChangeDelegateCreateDeck',
-						}));
+						return mod.OLSKChangeDelegateCreateDeck(await KOMDeckAction.KOMDeckActionCreate(mod._ValueStorageClient, mod.DataDeckTemplate('FakeOLSKChangeDelegateCreateDeck')));
 					},
 				},
 				{
@@ -159,15 +157,21 @@ const mod = {
 	_ValueStorageWidgetHidden: true,
 
 	_ValueFooterStorageStatus: '',
+	
+	// DATA
+
+	DataDeckTemplate (inputData) {
+		return {
+			KOMDeckName: inputData,
+			$KOMDeckCards: [],
+			$KOMDeckSpacings: [],
+		};
+	},
 
 	// CONTROL
 
 	async ControlDeckCreate(inputData) {
-		const item = await KOMDeckAction.KOMDeckActionCreate(mod._ValueStorageClient, {
-			KOMDeckName: inputData,
-			$KOMDeckCards: [],
-			$KOMDeckSpacings: [],
-		});
+		const item = await KOMDeckAction.KOMDeckActionCreate(mod._ValueStorageClient, mod.DataDeckTemplate(inputData));
 
 		mod.ValueDecksAll(mod._ValueDecksAll.concat(item));
 	},

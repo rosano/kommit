@@ -48,6 +48,7 @@ describe('KOMReviewMaster_Access', function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMReviewMasterListItems: JSON.stringify([{
 					KOMDeckName: 'alfa',
+					$KOMDeckSpacings: [],
 				}]),
 			});
 		});

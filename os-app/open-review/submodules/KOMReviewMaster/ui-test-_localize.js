@@ -41,6 +41,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 					OLSKRoutingLanguage: languageCode,
 					KOMReviewMasterListItems: JSON.stringify([{
 						KOMDeckName: 'alfa',
+						$KOMDeckSpacings: [],
 					}]),
 				});
 			});

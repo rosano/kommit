@@ -45,13 +45,29 @@ describe('KOMReviewMaster_Misc', function () {
 	});
 
 	describe('KOMReviewMasterListItem', function test_KOMReviewMasterListItem() {
+
+		const item = {
+			KOMDeckID: 'alfa',
+			KOMDeckName: 'bravo',
+			$KOMDeckSpacings: Array.from(new Array(2)).map(function (e, i) {
+				return {
+					KOMSpacingID: (i + 1).toString() + '-forward',
+					KOMSpacingIsLearning: i === 1,
+					$KOMSpacingCard: {
+						KOMCardID: (i + 1).toString(),
+						KOMCardQuestion: (i + 1).toString(),
+						KOMCardAnswer: 'charlie',
+						KOMCardHint: 'delta',
+						KOMCardCreationDate: new Date('2019-02-23T13:56:36Z'),
+						KOMCardModificationDate: new Date('2019-02-23T13:56:36Z'),
+					},
+				};
+			}),
+		};
 		
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute, {
-				KOMReviewMasterListItems: JSON.stringify([{
-					KOMDeckID: 'alfa',
-					KOMDeckName: 'bravo',
-				}]),
+				KOMReviewMasterListItems: JSON.stringify([item]),
 			});
 		});
 		
@@ -80,10 +96,7 @@ describe('KOMReviewMaster_Misc', function () {
 
 			it('sends KOMReviewMasterDispatchSelect', function () {
 				browser.assert.text('#TestKOMReviewMasterDispatchSelect', '1');
-				browser.assert.text('#TestKOMReviewMasterDispatchSelectData', JSON.stringify({
-					KOMDeckID: 'alfa',
-					KOMDeckName: 'bravo',
-				}));
+				browser.assert.text('#TestKOMReviewMasterDispatchSelectData', JSON.stringify(item));
 			});
 		
 		});
@@ -117,7 +130,7 @@ describe('KOMReviewMaster_Misc', function () {
 	describe('KOMReviewMasterListItemUnseenValue', function test_KOMReviewMasterListItemUnseenValue() {
 		
 		it('sets text', function () {
-			browser.assert.text(KOMReviewMasterListItemUnseenValue, '0');
+			browser.assert.text(KOMReviewMasterListItemUnseenValue, '1');
 		});
 
 	});
