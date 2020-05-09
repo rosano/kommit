@@ -40,7 +40,7 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 
 <div class="KOMReviewMasterBody">
 {#each KOMReviewMasterListItems as e}
-	<div class="KOMReviewMasterListItem" role="button" on:click={ () => KOMReviewMasterDispatchSelect(e) } aria-label={ e.KOMDeckName }>
+	<div class="KOMReviewMasterListItem" role="button" tabindex="0" on:click={ () => KOMReviewMasterDispatchSelect(e) } on:keypress={ (event) => event.which === 13 && KOMReviewMasterDispatchSelect(e) } aria-label={ e.KOMDeckName }>
 		<strong class="KOMReviewMasterListItemName">{ e.KOMDeckName }</strong>
 	</div>
 {/each}

@@ -63,6 +63,10 @@ describe('KOMReviewMaster_Misc', function () {
 			browser.assert.attribute(KOMReviewMasterListItem, 'aria-label', 'bravo');
 		});
 
+		it('sets tabindex', function () {
+			browser.assert.attribute(KOMReviewMasterListItem, 'tabindex', '0');
+		});
+
 		context('click', function () {
 			
 			before(function () {
@@ -80,6 +84,22 @@ describe('KOMReviewMaster_Misc', function () {
 					KOMDeckID: 'alfa',
 					KOMDeckName: 'bravo',
 				}));
+			});
+		
+		});
+
+		context('Enter', function () {
+			
+			before(function () {
+				return browser.query(KOMReviewMasterListItem).focus();
+			});
+
+			before(function () {
+				return browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
+			});
+
+			it.skip('sends KOMReviewMasterDispatchSelect', function () {
+				browser.assert.text('#TestKOMReviewMasterDispatchSelect', '2');
 			});
 		
 		});
