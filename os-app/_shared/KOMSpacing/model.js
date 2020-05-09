@@ -174,6 +174,23 @@ const mod = {
 		return !!inputData.KOMSpacingInterval;
 	},
 
+	KOMSpacingModelFilterUnique (inputData) {
+		if (!Array.isArray(inputData)) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		let cards = [];
+		return inputData.filter(function (e, i, coll) {
+			if (cards.indexOf(e.$KOMSpacingCard) !== -1) {
+				return false;
+			}
+
+			cards.push(e.$KOMSpacingCard);
+
+			return true;
+		});
+	},
+
 };
 
 export default mod;
