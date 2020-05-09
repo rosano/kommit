@@ -38,11 +38,13 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 	</OLSKToolbar>
 </header>
 
+<div class="KOMReviewMasterBody">
 {#each KOMReviewMasterListItems as e}
 	<button class="KOMReviewMasterListItem" on:click={ () => KOMReviewMasterDispatchSelect(e) } >{ e.KOMDeckName }</button>
 {/each}
 
 <button class="KOMReviewMasterCreateButton" on:click={ mod.InterfaceCreateButtonDidClick } accesskey="n">{ OLSKLocalized('KOMReviewMasterCreateButtonText') }</button>
+</div>
 
 </div>
 
@@ -66,5 +68,9 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 	padding: 10px;
 
 	font-size: 14px;
+}
+
+.KOMReviewMasterBody {
+	padding: 10px;
 }
 </style>
