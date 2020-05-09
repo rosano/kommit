@@ -41,7 +41,9 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 <div class="KOMReviewMasterBody">
 {#each KOMReviewMasterListItems as e}
 	<div class="KOMReviewMasterListItem" role="button" tabindex="0" on:click={ () => KOMReviewMasterDispatchSelect(e) } on:keypress={ (event) => event.which === 13 && KOMReviewMasterDispatchSelect(e) } aria-label={ e.KOMDeckName }>
-		<strong class="KOMReviewMasterListItemName">{ e.KOMDeckName }</strong>
+		<strong class="KOMReviewMasterListItemName">{ e.KOMDeckName }</strong><br>
+		<span class="KOMReviewMasterListItemUnseenValue">0</span>
+		<span class="KOMReviewMasterListItemUnseenLabel">{ OLSKLocalized('KOMReviewMasterListItemUnseenLabelText') }</span>
 	</div>
 {/each}
 

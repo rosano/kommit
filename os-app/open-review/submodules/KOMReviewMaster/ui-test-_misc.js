@@ -114,4 +114,12 @@ describe('KOMReviewMaster_Misc', function () {
 
 	});
 
+	describe('KOMReviewMasterListItemUnseenValue', function test_KOMReviewMasterListItemUnseenValue() {
+		
+		it('sets text', function () {
+			browser.assert.text(KOMReviewMasterListItemUnseenValue, '0');
+		});
+
+	});
+
 });

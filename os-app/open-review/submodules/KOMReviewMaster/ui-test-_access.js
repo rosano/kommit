@@ -1,5 +1,3 @@
-import { deepEqual } from 'assert';
-
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 Object.entries({
@@ -12,6 +10,8 @@ Object.entries({
 
 	KOMReviewMasterListItem: '.KOMReviewMasterListItem',
 	KOMReviewMasterListItemName: '.KOMReviewMasterListItemName',
+	KOMReviewMasterListItemUnseenValue: '.KOMReviewMasterListItemUnseenValue',
+	KOMReviewMasterListItemUnseenLabel: '.KOMReviewMasterListItemUnseenLabel',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
@@ -58,6 +58,14 @@ describe('KOMReviewMaster_Access', function () {
 
 		it('shows KOMReviewMasterListItemName', function () {
 			browser.assert.elements(KOMReviewMasterListItemName, 1);
+		});
+
+		it('shows KOMReviewMasterListItemUnseenValue', function () {
+			browser.assert.elements(KOMReviewMasterListItemUnseenValue, 1);
+		});
+
+		it('shows KOMReviewMasterListItemUnseenLabel', function () {
+			browser.assert.elements(KOMReviewMasterListItemUnseenLabel, 1);
 		});
 		
 	});

@@ -17,7 +17,7 @@ describe('KOMReview_Misc', function () {
 		});
 
 		it('sets KOMDeckName', function () {
-			browser.assert.text('.KOMReviewMasterListItem', 'alfa');
+			browser.assert.text('.KOMReviewMasterListItemName', 'alfa');
 		});
 	
 	});
@@ -43,7 +43,7 @@ describe('KOMReview_Misc', function () {
 		});
 
 		it('sets KOMDeckName', function () {
-			browser.assert.text('.KOMReviewMasterListItem', 'bravo');
+			browser.assert.text('.KOMReviewMasterListItemName', 'bravo');
 		});
 	
 	});
@@ -176,7 +176,7 @@ describe('KOMReview_Misc', function () {
 		});
 
 		it('adds deck', function () {
-			browser.assert.text('.KOMReviewMasterListItem:nth-of-type(2)', 'FakeOLSKChangeDelegateCreateDeck');
+			browser.assert.text('.KOMReviewMasterListItem:nth-of-type(2) .KOMReviewMasterListItemName', 'FakeOLSKChangeDelegateCreateDeck');
 		});
 
 	});
@@ -196,7 +196,7 @@ describe('KOMReview_Misc', function () {
 		});
 
 		it('updates deck', function () {
-			browser.assert.text('.KOMReviewMasterListItem:nth-of-type(2)', 'FakeOLSKChangeDelegateUpdateDeck');
+			browser.assert.text('.KOMReviewMasterListItem:nth-of-type(2) .KOMReviewMasterListItemName', 'FakeOLSKChangeDelegateUpdateDeck');
 		});
 
 	});
