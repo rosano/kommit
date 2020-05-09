@@ -33,7 +33,7 @@ describe('KOMPlay_Misc', function () {
 		});
 	});
 
-	describe('KOMPlayToolbarBackButton', function () {
+	describe('KOMPlayToolbarBackButton', function test_KOMPlayToolbarBackButton () {
 		
 		it('classes OLSKLayoutButtonNoStyle', function () {
 			browser.assert.hasClass(KOMPlayToolbarBackButton, 'OLSKLayoutButtonNoStyle');
@@ -61,7 +61,7 @@ describe('KOMPlay_Misc', function () {
 	
 	});
 
-	describe('KOMPlayToolbarDoneButton', function () {
+	describe('KOMPlayToolbarDoneButton', function test_KOMPlayToolbarDoneButton () {
 		
 		it('classes OLSKLayoutButtonNoStyle', function () {
 			browser.assert.hasClass(KOMPlayToolbarDoneButton, 'OLSKLayoutButtonNoStyle');
@@ -89,7 +89,7 @@ describe('KOMPlay_Misc', function () {
 	
 	});
 
-	describe('KOMPlayCardQuestion', function () {
+	describe('KOMPlayCardQuestion', function test_KOMPlayCardQuestion () {
 
 		it('sets text', function () {
 			browser.assert.text(KOMPlayCardQuestion, kTesting.uSpacings[0].$KOMSpacingCard.KOMCardQuestion);
@@ -97,7 +97,7 @@ describe('KOMPlay_Misc', function () {
 
 	});
 
-	describe('KOMPlayCardAnswer', function () {
+	describe('KOMPlayCardAnswer', function test_KOMPlayCardAnswer () {
 
 		before(function () {
 			browser.click(KOMPlayCard);
@@ -109,7 +109,7 @@ describe('KOMPlay_Misc', function () {
 
 	});
 
-	describe('KOMPlayCardHint', function () {
+	describe('KOMPlayCardHint', function test_KOMPlayCardHint () {
 
 		it('sets text', function () {
 			browser.assert.text(KOMPlayCardHint, kTesting.uSpacings[0].$KOMSpacingCard.KOMCardHint)
@@ -117,7 +117,15 @@ describe('KOMPlay_Misc', function () {
 
 	});
 
-	describe('KOMPlayResponseButtonAgain', function () {
+	describe('KOMPlayFlipButton', function test_KOMPlayFlipButton () {
+
+		it('classes OLSKLayoutButtonNoStyle', function () {
+			browser.assert.hasClass(KOMPlayFlipButton, 'OLSKLayoutButtonNoStyle');
+		});
+
+	});
+
+	describe('KOMPlayResponseButtonAgain', function test_KOMPlayResponseButtonAgain () {
 
 		it('classes OLSKLayoutButtonNoStyle', function () {
 			browser.assert.hasClass(KOMPlayResponseButtonAgain, 'OLSKLayoutButtonNoStyle');
@@ -169,7 +177,7 @@ describe('KOMPlay_Misc', function () {
 
 	});
 
-	describe('KOMPlayResponseButtonHard', function () {
+	describe('KOMPlayResponseButtonHard', function test_KOMPlayResponseButtonHard () {
 
 		before(function () {
 			return browser.click(KOMPlayCard);
@@ -213,7 +221,7 @@ describe('KOMPlay_Misc', function () {
 
 	});
 
-	describe('KOMPlayResponseButtonGood', function () {
+	describe('KOMPlayResponseButtonGood', function test_KOMPlayResponseButtonGood () {
 
 		before(function () {
 			return browser.click(KOMPlayCard);
@@ -257,7 +265,7 @@ describe('KOMPlay_Misc', function () {
 
 	});
 
-	describe('KOMPlayResponseButtonEasy', function () {
+	describe('KOMPlayResponseButtonEasy', function test_KOMPlayResponseButtonEasy () {
 
 		before(function () {
 			return browser.click(KOMPlayCard);
@@ -301,7 +309,7 @@ describe('KOMPlay_Misc', function () {
 
 	});
 
-	describe('review', function () {
+	describe('review', function test_review () {
 
 		before(function () {
 			return browser.click(KOMPlayCard);

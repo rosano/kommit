@@ -111,7 +111,7 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 	</div>
 	
 	{#if !mod._ValueAnswerVisible}
-		<button class="KOMPlayFlipButton" on:click={ mod.InterfaceFlipButtonDidClick }>{ OLSKLocalized('KOMPlayFlipButtonText') }</button>
+		<button class="KOMPlayFlipButton OLSKLayoutButtonNoStyle" on:click={ mod.InterfaceFlipButtonDidClick }>{ OLSKLocalized('KOMPlayFlipButtonText') }</button>
 	{/if}
 
 	{#if mod._ValueAnswerVisible}
