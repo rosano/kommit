@@ -1,5 +1,5 @@
 <script>
-export let KOMReviewMasterListItems;
+export let KOMReviewMasterItems;
 export let KOMReviewMasterDispatchCreate;
 export let KOMReviewMasterDispatchSelect;
 
@@ -41,7 +41,7 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 </header>
 
 <div class="KOMReviewMasterBody">
-{#each KOMReviewMasterListItems as e}
+{#each KOMReviewMasterItems as e}
 	<div class="KOMReviewMasterListItem" role="button" tabindex="0" on:click={ () => KOMReviewMasterDispatchSelect(e) } on:keypress={ (event) => event.which === 13 && KOMReviewMasterDispatchSelect(e) } aria-label={ e.KOMDeckName }>
 		<strong class="KOMReviewMasterListItemName">{ e.KOMDeckName }</strong><br>
 		<span class="KOMReviewMasterListItemReviewValue">{ KOMSpacingModel.KOMSpacingModelFilterUnique(e.$KOMDeckSpacings.filter(function (e) {

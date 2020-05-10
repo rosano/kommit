@@ -73,7 +73,7 @@ describe('KOMReviewMaster_Misc', function () {
 		
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute, {
-				KOMReviewMasterListItems: JSON.stringify([item]),
+				KOMReviewMasterItems: JSON.stringify([item]),
 			});
 		});
 		

@@ -6,7 +6,7 @@ import KOMSpacingModel from '../../../_shared/KOMSpacing/model.js';
 const KOMReviewMaster = new RollupStart({
 	target: document.body,
 	props: Object.assign({
-		KOMReviewMasterListItems: [],
+		KOMReviewMasterItems: [],
 		KOMReviewMasterDispatchCreate (inputData) {
 			window.TestKOMReviewMasterDispatchCreate.innerHTML = parseInt(window.TestKOMReviewMasterDispatchCreate.innerHTML) + 1;
 			window.TestKOMReviewMasterDispatchCreateData.innerHTML = inputData;
@@ -16,7 +16,7 @@ const KOMReviewMaster = new RollupStart({
 			window.TestKOMReviewMasterDispatchSelectData.innerHTML = JSON.stringify(inputData);
 		},
 	}, Object.fromEntries(Array.from((new window.URLSearchParams(window.location.search)).entries()).map(function (e) {
-		if (['KOMReviewMasterListItems'].includes(e[0])) {
+		if (['KOMReviewMasterItems'].includes(e[0])) {
 			e[1] = JSON.parse(e[1]).map(function (e) {
 				let cards = [];
 

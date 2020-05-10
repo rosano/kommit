@@ -44,11 +44,11 @@ describe('KOMReviewMaster_Access', function () {
 		browser.assert.elements(KOMReviewMasterListItem, 0);
 	});
 
-	context('KOMReviewMasterListItems', function() {
+	context('KOMReviewMasterItems', function() {
 		
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute, {
-				KOMReviewMasterListItems: JSON.stringify([{
+				KOMReviewMasterItems: JSON.stringify([{
 					KOMDeckName: 'alfa',
 					$KOMDeckSpacings: [],
 				}]),

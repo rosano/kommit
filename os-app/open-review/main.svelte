@@ -349,7 +349,7 @@ import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svel
 <OLSKViewportContent>
 	{#if !mod._ValueDeckSelected }
 		<KOMReviewMaster
-			KOMReviewMasterListItems={ mod._ValueDecksAll }
+			KOMReviewMasterItems={ mod._ValueDecksAll }
 			KOMReviewMasterDispatchCreate={ mod.KOMReviewMasterDispatchCreate }
 			KOMReviewMasterDispatchSelect={ mod.KOMReviewMasterDispatchSelect }
 			/>

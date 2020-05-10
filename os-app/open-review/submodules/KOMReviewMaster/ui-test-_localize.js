@@ -34,12 +34,12 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 		
 		});
 
-		context('KOMReviewMasterListItems', function() {
+		context('KOMReviewMasterItems', function() {
 			
 			before(function() {
 				return browser.OLSKVisit(kDefaultRoute, {
 					OLSKRoutingLanguage: languageCode,
-					KOMReviewMasterListItems: JSON.stringify([{
+					KOMReviewMasterItems: JSON.stringify([{
 						KOMDeckName: 'alfa',
 						$KOMDeckSpacings: [],
 					}]),
