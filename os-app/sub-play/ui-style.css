@@ -15,6 +15,10 @@
 
 }
 
+.KOMPlayToolbar {
+	border-bottom: var(--KOMBorderStyle);
+}
+
 .KOMPlayBody {
 	/* KOMPlayFlexbox:Parent */
 	flex-grow: 1;
