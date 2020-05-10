@@ -53,11 +53,11 @@ describe('KOMReviewMaster_Misc', function () {
 		const item = {
 			KOMDeckID: 'alfa',
 			KOMDeckName: 'bravo',
-			$KOMDeckSpacings: uFlatten(Array.from(new Array(2)).map(function (e, i) {
+			$KOMDeckSpacings: uFlatten(Array.from(new Array(3)).map(function (e, i) {
 				return [true, false].map(function (forward) {
 					return {
 						KOMSpacingID: (i + 1).toString() + '-' + (forward ? 'forward' : 'backward'),
-						KOMSpacingDueDate: i ? new Date() : undefined,
+						KOMSpacingDueDate: !i ? new Date() : (i >= 2 ? new Date(Date.now() + 1000 * 60 * 60 * 24 * 3) : undefined),
 						$KOMSpacingCard: {
 							KOMCardID: (i + 1).toString(),
 							KOMCardQuestion: (i + 1).toString(),
@@ -77,18 +77,6 @@ describe('KOMReviewMaster_Misc', function () {
 			});
 		});
 		
-		it('sets role', function () {
-			browser.assert.attribute(KOMReviewMasterListItem, 'role', 'button');
-		});
-
-		it('sets aria-label', function () {
-			browser.assert.attribute(KOMReviewMasterListItem, 'aria-label', 'bravo');
-		});
-
-		it('sets tabindex', function () {
-			browser.assert.attribute(KOMReviewMasterListItem, 'tabindex', '0');
-		});
-
 		context('click', function () {
 			
 			before(function () {
@@ -97,7 +85,7 @@ describe('KOMReviewMaster_Misc', function () {
 			});
 			
 			before(function () {
-				return browser.click(KOMReviewMasterListItem);
+				return browser.click('.KOMReviewMasterListItem');
 			});
 
 			it('sends KOMReviewMasterDispatchSelect', function () {
@@ -110,7 +98,7 @@ describe('KOMReviewMaster_Misc', function () {
 		context('Enter', function () {
 			
 			before(function () {
-				return browser.query(KOMReviewMasterListItem).focus();
+				return browser.query('.KOMReviewMasterListItem').focus();
 			});
 
 			before(function () {
@@ -123,30 +111,6 @@ describe('KOMReviewMaster_Misc', function () {
 		
 		});
 		
-	});
-
-	describe('KOMReviewMasterListItemName', function test_KOMReviewMasterListItemName() {
-		
-		it('sets text', function () {
-			browser.assert.text(KOMReviewMasterListItemName, 'bravo');
-		});
-
-	});
-
-	describe('KOMReviewMasterListItemReviewValue', function test_KOMReviewMasterListItemReviewValue() {
-		
-		it('sets text', function () {
-			browser.assert.text(KOMReviewMasterListItemReviewValue, '1');
-		});
-
-	});
-
-	describe('KOMReviewMasterListItemUnseenValue', function test_KOMReviewMasterListItemUnseenValue() {
-		
-		it('sets text', function () {
-			browser.assert.text(KOMReviewMasterListItemUnseenValue, '1');
-		});
-
 	});
 
 });

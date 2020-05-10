@@ -34,28 +34,6 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 		
 		});
 
-		context('KOMReviewMasterItems', function() {
-			
-			before(function() {
-				return browser.OLSKVisit(kDefaultRoute, {
-					OLSKRoutingLanguage: languageCode,
-					KOMReviewMasterItems: JSON.stringify([{
-						KOMDeckName: 'alfa',
-						$KOMDeckSpacings: [],
-					}]),
-				});
-			});
-
-			it('localizes KOMReviewMasterListItemReviewLabel', function () {
-				browser.assert.text(KOMReviewMasterListItemReviewLabel, uLocalized('KOMReviewMasterListItemReviewLabelText'));
-			});
-
-			it('localizes KOMReviewMasterListItemUnseenLabel', function () {
-				browser.assert.text(KOMReviewMasterListItemUnseenLabel, uLocalized('KOMReviewMasterListItemUnseenLabelText'));
-			});
-
-		});
-
 	});
 
 });

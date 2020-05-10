@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="/_shared/__external/normalize.css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="/<%= OLSKSharedPageControllerSlug %>/__compiled/ui-style.css">
+
+	<script type="text/javascript">
+		window.OLSKPublicConstants = function (inputData) {
+			return <%- JSON.stringify({
+				OLSKSharedPageCurrentLanguage,
+			}) %>[inputData];
+		};
+	</script>
+</head>
+<body>
+
+<script src="/<%= OLSKSharedPageControllerSlug %>/__compiled/ui-behaviour.js"></script>
+
+<p>
+	<strong>TestKOMReviewMasterListItemDispatchCreate</strong>
+	<span id="TestKOMReviewMasterListItemDispatchCreate">0</span>
+	<span id="TestKOMReviewMasterListItemDispatchCreateData">undefined</span>
+</p>
+
+<p>
+	<strong>TestKOMReviewMasterListItemDispatchClick</strong>
+	<span id="TestKOMReviewMasterListItemDispatchClick">0</span>
+	<span id="TestKOMReviewMasterListItemDispatchClickData">undefined</span>
+</p>
+
+<p>
+	<strong>TestKOMReviewMasterListItemDispatchArrow</strong>
+	<span id="TestKOMReviewMasterListItemDispatchArrow">0</span>
+	<span id="TestKOMReviewMasterListItemDispatchArrowData">undefined</span>
+</p>
+
+<p>
+	<strong>TestKOMReviewMasterListItemDispatchFilter</strong>
+	<span id="TestKOMReviewMasterListItemDispatchFilter">0</span>
+	<span id="TestKOMReviewMasterListItemDispatchFilterData">undefined</span>
+</p>
+
+</body>
+</html>

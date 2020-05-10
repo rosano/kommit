@@ -8,8 +8,6 @@ const OLSKLocalized = function(translationConstant) {
 	return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, JSON.parse(`{"OLSK_I18N_SEARCH_REPLACE":"OLSK_I18N_SEARCH_REPLACE"}`)[window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage')]);
 };
 
-import KOMSpacingModel from '../../../_shared/KOMSpacing/model.js';
-
 const mod = {
 
 	// INTERFACE
@@ -28,6 +26,7 @@ const mod = {
 
 import OLSKToolbar from 'OLSKToolbar';
 import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
+import KOMReviewMasterListItem from '../KOMReviewMasterListItem/main.svelte';
 </script>
 
 <div class="KOMReviewMaster">
@@ -42,14 +41,9 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 
 <div class="KOMReviewMasterBody">
 {#each KOMReviewMasterItems as e}
-	<div class="KOMReviewMasterListItem" role="button" tabindex="0" on:click={ () => KOMReviewMasterDispatchSelect(e) } on:keypress={ (event) => event.which === 13 && KOMReviewMasterDispatchSelect(e) } aria-label={ e.KOMDeckName }>
-		<strong class="KOMReviewMasterListItemName">{ e.KOMDeckName }</strong><br>
-		<span class="KOMReviewMasterListItemReviewValue">{ KOMSpacingModel.KOMSpacingModelFilterUnique(e.$KOMDeckSpacings.filter(function (e) {
-			return !KOMSpacingModel.KOMSpacingModelIsUnseen(e);
-		})).length }</span>
-		<span class="KOMReviewMasterListItemReviewLabel">{ OLSKLocalized('KOMReviewMasterListItemReviewLabelText') }</span><br>
-		<span class="KOMReviewMasterListItemUnseenValue">{ KOMSpacingModel.KOMSpacingModelFilterUnique(e.$KOMDeckSpacings.filter(KOMSpacingModel.KOMSpacingModelIsUnseen)).length }</span>
-		<span class="KOMReviewMasterListItemUnseenLabel">{ OLSKLocalized('KOMReviewMasterListItemUnseenLabelText') }</span>
+	<div class="KOMReviewMasterListItemContainer" on:click={ () => KOMReviewMasterDispatchSelect(e) }
+		on:keypress={ (event) => event.which === 13 && KOMReviewMasterDispatchSelect(e) }>
+		<KOMReviewMasterListItem KOMReviewMasterListItemObject={ e } />
 	</div>
 {/each}
 
@@ -85,7 +79,7 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 	padding: 10px;
 }
 
-.KOMReviewMasterListItem {
+.KOMReviewMasterBody :global(.KOMReviewMasterListItem) {
 	display: block;
 	margin-bottom: 10px;
 	padding: 10px;

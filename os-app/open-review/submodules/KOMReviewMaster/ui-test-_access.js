@@ -7,13 +7,6 @@ Object.entries({
 	KOMReviewMasterToolbarTitle: '.KOMReviewMasterToolbarTitle',
 	
 	KOMReviewMasterCreateButton: '.KOMReviewMasterCreateButton',
-
-	KOMReviewMasterListItem: '.KOMReviewMasterListItem',
-	KOMReviewMasterListItemName: '.KOMReviewMasterListItemName',
-	KOMReviewMasterListItemReviewValue: '.KOMReviewMasterListItemReviewValue',
-	KOMReviewMasterListItemReviewLabel: '.KOMReviewMasterListItemReviewLabel',
-	KOMReviewMasterListItemUnseenValue: '.KOMReviewMasterListItemUnseenValue',
-	KOMReviewMasterListItemUnseenLabel: '.KOMReviewMasterListItemUnseenLabel',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
@@ -41,7 +34,7 @@ describe('KOMReviewMaster_Access', function () {
 	});
 
 	it('hides KOMReviewMasterListItem', function () {
-		browser.assert.elements(KOMReviewMasterListItem, 0);
+		browser.assert.elements('.KOMReviewMasterListItem', 0);
 	});
 
 	context('KOMReviewMasterItems', function() {
@@ -56,27 +49,7 @@ describe('KOMReviewMaster_Access', function () {
 		});
 
 		it('shows KOMReviewMasterListItem', function () {
-			browser.assert.elements(KOMReviewMasterListItem, 1);
-		});
-
-		it('shows KOMReviewMasterListItemName', function () {
-			browser.assert.elements(KOMReviewMasterListItemName, 1);
-		});
-
-		it('shows KOMReviewMasterListItemReviewValue', function () {
-			browser.assert.elements(KOMReviewMasterListItemReviewValue, 1);
-		});
-
-		it('shows KOMReviewMasterListItemReviewLabel', function () {
-			browser.assert.elements(KOMReviewMasterListItemReviewLabel, 1);
-		});
-
-		it('shows KOMReviewMasterListItemUnseenValue', function () {
-			browser.assert.elements(KOMReviewMasterListItemUnseenValue, 1);
-		});
-
-		it('shows KOMReviewMasterListItemUnseenLabel', function () {
-			browser.assert.elements(KOMReviewMasterListItemUnseenLabel, 1);
+			browser.assert.elements('.KOMReviewMasterListItem', 1);
 		});
 		
 	});
