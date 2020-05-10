@@ -8,7 +8,6 @@ const kTesting = {
 		return Array.from(new Array(2)).map(function (e, i) {
 			return {
 				KOMSpacingID: (i + 1).toString() + '-forward',
-				KOMSpacingDueDate: i === 1 ? new Date() : undefined,
 				$KOMSpacingCard: {
 					KOMCardID: (i + 1).toString(),
 					KOMCardQuestion: (i + 1).toString(),
@@ -177,7 +176,15 @@ describe('KOMReviewDetail_Misc', function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMReviewDetailDeck: JSON.stringify({
 					KOMDeckName: 'alfa',
-					$KOMDeckSpacings: kTesting.uSpacings(),
+					$KOMDeckSpacings: kTesting.uSpacings().map(function (e, i) {
+						if (i) {
+							return e;
+						}
+
+						return Object.assign(e, {
+							KOMSpacingDueDate: new Date(),
+						});
+					}),
 				}),
 			});
 		});
@@ -196,6 +203,40 @@ describe('KOMReviewDetail_Misc', function () {
 			it('sends KOMReviewDetailDispatchPlay', function () {
 				browser.assert.text('#TestKOMReviewDetailDispatchPlay', '1');
 				browser.assert.text('#TestKOMReviewDetailDispatchPlayData', KOMReviewLogic.KOMReviewSchemeReviewing());
+			});
+		
+		});
+
+	});
+
+	describe('KOMReviewDetailPlayButtonMixed', function test_KOMReviewDetailPlayButtonMixed () {
+
+		context('click', function () {
+			
+			before(function () {
+				return browser.pressButton(KOMReviewDetailPlayButtonMixed);
+			});
+
+			it('sends KOMReviewDetailDispatchPlay', function () {
+				browser.assert.text('#TestKOMReviewDetailDispatchPlay', '2');
+				browser.assert.text('#TestKOMReviewDetailDispatchPlayData', KOMReviewLogic.KOMReviewSchemeMixed());
+			});
+		
+		});
+
+	});
+
+	describe('KOMReviewDetailPlayButtonUnseen', function test_KOMReviewDetailPlayButtonUnseen () {
+
+		context('click', function () {
+			
+			before(function () {
+				return browser.pressButton(KOMReviewDetailPlayButtonUnseen);
+			});
+
+			it('sends KOMReviewDetailDispatchPlay', function () {
+				browser.assert.text('#TestKOMReviewDetailDispatchPlay', '3');
+				browser.assert.text('#TestKOMReviewDetailDispatchPlayData', KOMReviewLogic.KOMReviewSchemeUnseen());
 			});
 		
 		});

@@ -11,13 +11,20 @@ const OLSKLocalized = function(translationConstant) {
 	return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, JSON.parse(`{"OLSK_I18N_SEARCH_REPLACE":"OLSK_I18N_SEARCH_REPLACE"}`)[window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage')]);
 };
 
+import KOMSpacingModel from '../../../_shared/KOMSpacing/model.js';
 import KOMReviewLogic from '../../ui-logic.js';
+
+const itemsToday = KOMReviewLogic.KOMReviewSpacingsToday(KOMReviewDetailDeck.$KOMDeckSpacings);
 
 const mod = {
 
 	// VALUE
 
-	_ValueSpacingsToday: KOMReviewLogic.KOMReviewSpacingsToday(KOMReviewDetailDeck.$KOMDeckSpacings),
+	_ValueSpacingsToday: itemsToday,
+	_ValueSpacingsReviewing: itemsToday.filter(function (e) {
+		return !KOMSpacingModel.KOMSpacingModelIsUnseen(e);
+	}),
+	_ValueSpacingsUnseen: itemsToday.filter(KOMSpacingModel.KOMSpacingModelIsUnseen),
 
 	// INTERFACE
 
@@ -70,7 +77,17 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 {/if}
 
 {#if KOMReviewDetailDeck.$KOMDeckSpacings.length && mod._ValueSpacingsToday.length}
-	<button class="KOMReviewDetailPlayButtonReviewing" on:click={ () => KOMReviewDetailDispatchPlay(KOMReviewLogic.KOMReviewSchemeReviewing()) }>{ OLSKLocalized('KOMReviewDetailPlayButtonReviewingText') }</button>
+	{#if mod._ValueSpacingsReviewing.length }
+		<button class="KOMReviewDetailPlayButtonReviewing" on:click={ () => KOMReviewDetailDispatchPlay(KOMReviewLogic.KOMReviewSchemeReviewing()) }>{ OLSKLocalized('KOMReviewDetailPlayButtonReviewingText') }</button>
+	{/if}
+	
+	{#if mod._ValueSpacingsReviewing.length && mod._ValueSpacingsUnseen.length }
+		<button class="KOMReviewDetailPlayButtonMixed" on:click={ () => KOMReviewDetailDispatchPlay(KOMReviewLogic.KOMReviewSchemeMixed()) }>{ OLSKLocalized('KOMReviewDetailPlayButtonMixedText') }</button>
+	{/if}
+	
+	{#if mod._ValueSpacingsUnseen.length }
+		<button class="KOMReviewDetailPlayButtonUnseen" on:click={ () => KOMReviewDetailDispatchPlay(KOMReviewLogic.KOMReviewSchemeUnseen()) }>{ OLSKLocalized('KOMReviewDetailPlayButtonUnseenText') }</button>
+	{/if}
 {/if}
 
 {#if KOMReviewDetailDeck.$KOMDeckSpacings.length && !mod._ValueSpacingsToday.length}

@@ -7,7 +7,6 @@ const kTesting = {
 		return Array.from(new Array(2)).map(function (e, i) {
 			return {
 				KOMSpacingID: (i + 1).toString() + '-forward',
-				KOMSpacingDueDate: i === 1 ? new Date() : undefined,
 				$KOMSpacingCard: {
 					KOMCardID: (i + 1).toString(),
 					KOMCardQuestion: (i + 1).toString(),
@@ -85,13 +84,29 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 				return browser.OLSKVisit(kDefaultRoute, {
 					KOMReviewDetailDeck: JSON.stringify({
 						KOMDeckName: 'alfa',
-						$KOMDeckSpacings: kTesting.uSpacings(),
+						$KOMDeckSpacings: kTesting.uSpacings().map(function (e, i) {
+							if (i) {
+								return e;
+							}
+
+							return Object.assign(e, {
+								KOMSpacingDueDate: new Date(),
+							});
+						}),
 					}),
 				});
 			});
 
 			it('localizes KOMReviewDetailPlayButtonReviewing', function () {
 				browser.assert.text(KOMReviewDetailPlayButtonReviewing, uLocalized('KOMReviewDetailPlayButtonReviewingText'));
+			});
+
+			it('localizes KOMReviewDetailPlayButtonMixed', function () {
+				browser.assert.text(KOMReviewDetailPlayButtonMixed, uLocalized('KOMReviewDetailPlayButtonMixedText'));
+			});
+
+			it('localizes KOMReviewDetailPlayButtonUnseen', function () {
+				browser.assert.text(KOMReviewDetailPlayButtonUnseen, uLocalized('KOMReviewDetailPlayButtonUnseenText'));
 			});
 
 		});
