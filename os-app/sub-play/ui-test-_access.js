@@ -4,7 +4,7 @@ const KOMPlayLogic = require('./ui-logic.js').default;
 
 const kTesting = {
 	uSpacings () {
-		return KOMPlayLogic._KOMPlaySortShuffle(Array.from(new Array(3)).map(function (e, i) {
+		return Array.from(new Array(3)).map(function (e, i) {
 			return {
 				KOMSpacingID: (i + 1).toString() + '-' + (i >= 2 ? 'backward' : 'forward'),
 				KOMSpacingDueDate: i === 1 ? new Date() : undefined,
@@ -17,7 +17,7 @@ const kTesting = {
 					KOMCardModificationDate: new Date('2019-02-23T13:56:36Z'),
 				},
 			};
-		}))
+		});
 	},
 };
 
