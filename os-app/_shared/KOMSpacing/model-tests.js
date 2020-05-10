@@ -333,15 +333,9 @@ describe('KOMSpacingModelIsUnseen', function test_KOMSpacingModelIsUnseen() {
 		}, /KOMErrorInputNotValid/);
 	});
 
-	it('returns false if KOMSpacingIsLearning', function() {
+	it('returns false if KOMSpacingDueDate', function() {
 		deepEqual(mainModule.KOMSpacingModelIsUnseen(Object.assign(kTesting.StubSpacingObjectValid(), {
-			KOMSpacingIsLearning: true,
-		})), false);
-	});
-
-	it('returns false if KOMSpacingInterval', function() {
-		deepEqual(mainModule.KOMSpacingModelIsUnseen(Object.assign(kTesting.StubSpacingObjectValid(), {
-			KOMSpacingInterval: 1,
+			KOMSpacingDueDate: new Date(),
 		})), false);
 	});
 
