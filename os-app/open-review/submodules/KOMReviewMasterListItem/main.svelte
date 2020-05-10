@@ -7,18 +7,31 @@ const OLSKLocalized = function(translationConstant) {
 };
 
 import KOMSpacingModel from '../../../_shared/KOMSpacing/model.js';
+import KOMReviewLogic from '../../ui-logic.js';
+
+const itemsToday = KOMReviewLogic.KOMReviewSpacingsToday(KOMReviewMasterListItemObject.$KOMDeckSpacings);
+
+const mod = {
+
+	// VALUE
+
+	_ValueSpacingsToday: itemsToday,
+	_ValueSpacingsReviewing: itemsToday.filter(function (e) {
+		return !KOMSpacingModel.KOMSpacingModelIsUnseen(e);
+	}),
+	_ValueSpacingsUnseen: itemsToday.filter(KOMSpacingModel.KOMSpacingModelIsUnseen),
+
+};
 </script>
 
 <div class="KOMReviewMasterListItem" role="button" tabindex="0" aria-label={ KOMReviewMasterListItemObject.KOMDeckName }>
 
 <strong class="KOMReviewMasterListItemName">{ KOMReviewMasterListItemObject.KOMDeckName }</strong><br>
 
-<span class="KOMReviewMasterListItemReviewValue">{ KOMSpacingModel.KOMSpacingModelFilterUnique(KOMReviewMasterListItemObject.$KOMDeckSpacings.filter(function (KOMReviewMasterListItemObject) {
-	return !KOMSpacingModel.KOMSpacingModelIsUnseen(KOMReviewMasterListItemObject);
-})).length }</span>
+<span class="KOMReviewMasterListItemReviewValue">{ KOMSpacingModel.KOMSpacingModelFilterUnique(mod._ValueSpacingsReviewing).length }</span>
 <span class="KOMReviewMasterListItemReviewLabel">{ OLSKLocalized('KOMReviewMasterListItemReviewLabelText') }</span><br>
 
-<span class="KOMReviewMasterListItemUnseenValue">{ KOMSpacingModel.KOMSpacingModelFilterUnique(KOMReviewMasterListItemObject.$KOMDeckSpacings.filter(KOMSpacingModel.KOMSpacingModelIsUnseen)).length }</span>
+<span class="KOMReviewMasterListItemUnseenValue">{ KOMSpacingModel.KOMSpacingModelFilterUnique(mod._ValueSpacingsUnseen).length }</span>
 <span class="KOMReviewMasterListItemUnseenLabel">{ OLSKLocalized('KOMReviewMasterListItemUnseenLabelText') }</span>
 
 </div>
