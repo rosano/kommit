@@ -17,11 +17,12 @@ const KOMReviewDetail = new RollupStart({
 			window.TestKOMReviewDetailDispatchRename.innerHTML = parseInt(window.TestKOMReviewDetailDispatchRename.innerHTML) + 1;
 			window.TestKOMReviewDetailDispatchRenameData.innerHTML = JSON.stringify(inputData);
 		},
-		KOMReviewDetailDispatchBrowse (inputData) {
+		KOMReviewDetailDispatchBrowse () {
 			window.TestKOMReviewDetailDispatchBrowse.innerHTML = parseInt(window.TestKOMReviewDetailDispatchBrowse.innerHTML) + 1;
 		},
 		KOMReviewDetailDispatchPlay (inputData) {
 			window.TestKOMReviewDetailDispatchPlay.innerHTML = parseInt(window.TestKOMReviewDetailDispatchPlay.innerHTML) + 1;
+			window.TestKOMReviewDetailDispatchPlayData.innerHTML = inputData;
 		},
 	}, Object.fromEntries(Array.from((new window.URLSearchParams(window.location.search)).entries()).map(function (e) {
 		if (['KOMReviewDetailDeck'].includes(e[0])) {

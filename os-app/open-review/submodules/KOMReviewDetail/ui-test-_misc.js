@@ -1,6 +1,7 @@
 import { deepEqual } from 'assert';
 
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
+const KOMReviewLogic = require('../../ui-logic.js').default;
 
 const kTesting = {
 	uSpacings () {
@@ -30,7 +31,7 @@ describe('KOMReviewDetail_Misc', function () {
 		};
 	};
 
-	describe('KOMReviewDetail', function () {
+	describe('KOMReviewDetail', function test_KOMReviewDetail () {
 
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute, {
@@ -40,7 +41,7 @@ describe('KOMReviewDetail_Misc', function () {
 
 	});
 
-	describe('OLSKToolbar', function () {
+	describe('OLSKToolbar', function test_OLSKToolbar () {
 
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute, {
@@ -54,7 +55,7 @@ describe('KOMReviewDetail_Misc', function () {
 	
 	});
 
-	describe('KOMReviewDetailToolbarBackButton', function () {
+	describe('KOMReviewDetailToolbarBackButton', function test_KOMReviewDetailToolbarBackButton () {
 		
 		it('classes OLSKLayoutButtonNoStyle', function () {
 			browser.assert.hasClass(KOMReviewDetailToolbarBackButton, 'OLSKLayoutButtonNoStyle');
@@ -82,7 +83,7 @@ describe('KOMReviewDetail_Misc', function () {
 	
 	});
 
-	describe('KOMReviewDetailToolbarDiscardButton', function () {
+	describe('KOMReviewDetailToolbarDiscardButton', function test_KOMReviewDetailToolbarDiscardButton () {
 		
 		it('classes OLSKLayoutButtonNoStyle', function () {
 			browser.assert.hasClass(KOMReviewDetailToolbarDiscardButton, 'OLSKLayoutButtonNoStyle');
@@ -115,7 +116,7 @@ describe('KOMReviewDetail_Misc', function () {
 	
 	});
 
-	describe('KOMReviewDetailToolbarRenameButton', function () {
+	describe('KOMReviewDetailToolbarRenameButton', function test_KOMReviewDetailToolbarRenameButton () {
 		
 		it('classes OLSKLayoutButtonNoStyle', function () {
 			browser.assert.hasClass(KOMReviewDetailToolbarRenameButton, 'OLSKLayoutButtonNoStyle');
@@ -150,7 +151,7 @@ describe('KOMReviewDetail_Misc', function () {
 	
 	});
 
-	describe('KOMReviewDetailToolbarCardsButton', function () {
+	describe('KOMReviewDetailToolbarCardsButton', function test_KOMReviewDetailToolbarCardsButton () {
 		
 		context('click', function () {
 			
@@ -170,7 +171,7 @@ describe('KOMReviewDetail_Misc', function () {
 	
 	});
 
-	context('KOMReviewDetailPlayButton', function () {
+	describe('KOMReviewDetailPlayButtonReviewing', function test_KOMReviewDetailPlayButtonReviewing () {
 
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute, {
@@ -185,14 +186,16 @@ describe('KOMReviewDetail_Misc', function () {
 			
 			before(function () {
 				browser.assert.text('#TestKOMReviewDetailDispatchPlay', '0');
+				browser.assert.text('#TestKOMReviewDetailDispatchPlayData', 'undefined');
 			});
 			
 			before(function () {
-				return browser.pressButton(KOMReviewDetailPlayButton);
+				return browser.pressButton(KOMReviewDetailPlayButtonReviewing);
 			});
 
 			it('sends KOMReviewDetailDispatchPlay', function () {
 				browser.assert.text('#TestKOMReviewDetailDispatchPlay', '1');
+				browser.assert.text('#TestKOMReviewDetailDispatchPlayData', KOMReviewLogic.KOMReviewSchemeReviewing());
 			});
 		
 		});

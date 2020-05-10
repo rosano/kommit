@@ -11,7 +11,7 @@ Object.entries({
 	
 	KOMReviewDetailHeading: '.KOMReviewDetailHeading',
 	KOMReviewDetailNoCards: '.KOMReviewDetailNoCards',
-	KOMReviewDetailPlayButton: '.KOMReviewDetailPlayButton',
+	KOMReviewDetailPlayButtonReviewing: '.KOMReviewDetailPlayButtonReviewing',
 	KOMReviewDetailNoSpacings: '.KOMReviewDetailNoSpacings',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
@@ -83,8 +83,8 @@ describe('KOMReviewDetail_Access', function () {
 		browser.assert.elements(KOMReviewDetailNoCards, 1);
 	});
 
-	it('hides KOMReviewDetailPlayButton', function () {
-		browser.assert.elements(KOMReviewDetailPlayButton, 0);
+	it('hides KOMReviewDetailPlayButtonReviewing', function () {
+		browser.assert.elements(KOMReviewDetailPlayButtonReviewing, 0);
 	});
 
 	it('hides KOMReviewDetailNoSpacings', function () {
@@ -106,8 +106,8 @@ describe('KOMReviewDetail_Access', function () {
 			browser.assert.elements(KOMReviewDetailNoCards, 0);
 		});
 
-		it('shows KOMReviewDetailPlayButton', function () {
-			browser.assert.elements(KOMReviewDetailPlayButton, 1);
+		it('shows KOMReviewDetailPlayButtonReviewing', function () {
+			browser.assert.elements(KOMReviewDetailPlayButtonReviewing, 1);
 		});
 
 	});
@@ -131,8 +131,8 @@ describe('KOMReviewDetail_Access', function () {
 			browser.assert.elements(KOMReviewDetailNoCards, 0);
 		});
 
-		it('hides KOMReviewDetailPlayButton', function () {
-			browser.assert.elements(KOMReviewDetailPlayButton, 0);
+		it('hides KOMReviewDetailPlayButtonReviewing', function () {
+			browser.assert.elements(KOMReviewDetailPlayButtonReviewing, 0);
 		});
 
 		it('shows KOMReviewDetailNoSpacings', function () {

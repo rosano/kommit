@@ -70,7 +70,7 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 {/if}
 
 {#if KOMReviewDetailDeck.$KOMDeckSpacings.length && mod._ValueSpacingsToday.length}
-	<button class="KOMReviewDetailPlayButton" on:click={ KOMReviewDetailDispatchPlay }>{ OLSKLocalized('KOMReviewDetailPlayButtonText') }</button>
+	<button class="KOMReviewDetailPlayButtonReviewing" on:click={ () => KOMReviewDetailDispatchPlay(KOMReviewLogic.KOMReviewSchemeReviewing()) }>{ OLSKLocalized('KOMReviewDetailPlayButtonReviewingText') }</button>
 {/if}
 
 {#if KOMReviewDetailDeck.$KOMDeckSpacings.length && !mod._ValueSpacingsToday.length}

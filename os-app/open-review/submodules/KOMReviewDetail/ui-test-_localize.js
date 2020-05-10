@@ -90,8 +90,8 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 				});
 			});
 
-			it('localizes KOMReviewDetailPlayButton', function () {
-				browser.assert.text(KOMReviewDetailPlayButton, uLocalized('KOMReviewDetailPlayButtonText'));
+			it('localizes KOMReviewDetailPlayButtonReviewing', function () {
+				browser.assert.text(KOMReviewDetailPlayButtonReviewing, uLocalized('KOMReviewDetailPlayButtonReviewingText'));
 			});
 
 		});

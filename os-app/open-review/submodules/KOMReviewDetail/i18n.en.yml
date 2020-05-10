@@ -5,5 +5,5 @@ KOMReviewDetailToolbarRenameButtonText: Rename
 KOMReviewDetailToolbarRenameButtonPromptText: Name
 KOMReviewDetailToolbarCardsButtonText: Cards
 KOMReviewDetailNoCardsText: There are no cards in this deck.
-KOMReviewDetailPlayButtonText: Play
+KOMReviewDetailPlayButtonReviewingText: Review cards
 KOMReviewDetailNoSpacingsText: All cards for today have been reviewed.
