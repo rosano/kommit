@@ -58,3 +58,39 @@ describe('KOMReviewSpacingsToday', function test_KOMReviewSpacingsToday() {
 	});
 
 });
+
+describe('KOMReviewSchemeReviewing', function test_KOMReviewSchemeReviewing() {
+
+	it('returns string', function () {
+		deepEqual(mainModule.KOMReviewSchemeReviewing(), 'kKOMReviewSchemeReviewing');
+	});
+
+});
+
+describe('KOMReviewSchemeMixed', function test_KOMReviewSchemeMixed() {
+
+	it('returns string', function () {
+		deepEqual(mainModule.KOMReviewSchemeMixed(), 'kKOMReviewSchemeMixed');
+	});
+
+});
+
+describe('KOMReviewSchemeUnseen', function test_KOMReviewSchemeUnseen() {
+
+	it('returns string', function () {
+		deepEqual(mainModule.KOMReviewSchemeUnseen(), 'kKOMReviewSchemeUnseen');
+	});
+
+});
+
+describe('KOMReviewSchemes', function test_KOMReviewSchemes() {
+
+	it('returns string', function () {
+		deepEqual(mainModule.KOMReviewSchemes(), [
+			mainModule.KOMReviewSchemeReviewing(),
+			mainModule.KOMReviewSchemeMixed(),
+			mainModule.KOMReviewSchemeUnseen(),
+			]);
+	});
+
+});

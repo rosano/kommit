@@ -16,6 +16,26 @@ const mod = {
 		});
 	},
 
+	KOMReviewSchemeReviewing () {
+		return 'kKOMReviewSchemeReviewing';
+	},
+
+	KOMReviewSchemeMixed () {
+		return 'kKOMReviewSchemeMixed';
+	},
+
+	KOMReviewSchemeUnseen () {
+		return 'kKOMReviewSchemeUnseen';
+	},
+
+	KOMReviewSchemes () {
+		return [
+			mod.KOMReviewSchemeReviewing(),
+			mod.KOMReviewSchemeMixed(),
+			mod.KOMReviewSchemeUnseen(),
+			];
+	},
+
 };
 
 export default mod;
