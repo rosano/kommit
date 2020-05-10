@@ -4,7 +4,7 @@ const KOMPlayLogic = require('./ui-logic.js').default;
 const KOMSpacingModel = require('../_shared/KOMSpacing/model.js').default;
 
 const kTesting = {
-	uSpacings: KOMPlayLogic._KOMPlaySortShuffle(Array.from(new Array(4)).map(function (e, i) {
+	uSpacings: KOMPlayLogic._KOMPlaySortShuffle(Array.from(new Array(9)).map(function (e, i) {
 		return {
 			KOMSpacingID: (i + 1).toString() + '-forward',
 			$KOMSpacingCard: {
@@ -134,7 +134,7 @@ describe('KOMPlay_Misc', function () {
 		context('click', function () {
 
 			before(function () {
-				browser.assert.text('#TestKOMPlayStateQueueCount', '3');
+				browser.assert.text('#TestKOMPlayStateQueueCount', '8');
 			});
 
 			before(function () {
@@ -154,7 +154,7 @@ describe('KOMPlay_Misc', function () {
 			});
 			
 			it('updates KOMPlayStateQueue', function () {
-				browser.assert.text('#TestKOMPlayStateQueueCount', '2');
+				browser.assert.text('#TestKOMPlayStateQueueCount', '7');
 			});
 
 			it('updates KOMPlayStateWait', function () {
@@ -198,7 +198,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('updates KOMPlayStateQueue', function () {
-				browser.assert.text('#TestKOMPlayStateQueueCount', '1');
+				browser.assert.text('#TestKOMPlayStateQueueCount', '6');
 			});
 
 			it('updates KOMPlayStateWait', function () {
@@ -242,7 +242,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('updates KOMPlayStateQueue', function () {
-				browser.assert.text('#TestKOMPlayStateQueueCount', '0');
+				browser.assert.text('#TestKOMPlayStateQueueCount', '5');
 			});
 
 			it('updates KOMPlayStateWait', function () {
@@ -286,11 +286,11 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('updates KOMPlayStateQueue', function () {
-				browser.assert.text('#TestKOMPlayStateQueueCount', '1');
+				browser.assert.text('#TestKOMPlayStateQueueCount', '4');
 			});
 
 			it('updates KOMPlayStateWait', function () {
-				browser.assert.text('#TestKOMPlayStateWaitCount', '0');
+				browser.assert.text('#TestKOMPlayStateWaitCount', '2');
 			});
 
 			it('sends KOMPlayDispatchRespond', function () {
@@ -299,6 +299,262 @@ describe('KOMPlay_Misc', function () {
 			
 			it('sends KOMPlayDispatchRespondData', function () {
 				browser.assert.text('#TestKOMPlayDispatchRespondData', JSON.stringify(Object.keys(kTesting.uSpacings[3]).concat(['KOMSpacingInterval', 'KOMSpacingMultiplier', 'KOMSpacingDueDate'])));
+			});
+
+			it('updates KOMPlayStateCurrent', function () {
+				browser.assert.text(KOMPlayCardQuestion, kTesting.uSpacings[4].$KOMSpacingCard.KOMCardQuestion);
+			});
+		
+		});
+
+	});
+
+	describe('Space', function test_Space () {
+
+		before(function () {
+			browser.assert.elements(KOMPlayResponseButtonAgain, 0);
+		});
+
+		before(function () {
+			return browser.OLSKFireKeyboardEvent(browser.window, 'Space');
+		});
+
+		it('flips card', function () {
+			browser.assert.elements(KOMPlayResponseButtonAgain, 1);
+		});
+
+		context('flipped', function () {
+			
+			before(function () {
+				browser.assert.text('#TestKOMPlayDispatchRespond', '4');
+			});
+
+			before(function () {
+				return browser.OLSKFireKeyboardEvent(browser.window, 'Space');
+			});
+
+			it('updates KOMPlayStateQueue', function () {
+				browser.assert.text('#TestKOMPlayStateQueueCount', '3');
+			});
+
+			it('updates KOMPlayStateWait', function () {
+				browser.assert.text('#TestKOMPlayStateWaitCount', '3');
+			});
+
+			it('sends KOMPlayDispatchRespond', function () {
+				browser.assert.text('#TestKOMPlayDispatchRespond', '5');
+			});
+			
+			it('sends KOMPlayDispatchRespondData', function () {
+				browser.assert.text('#TestKOMPlayDispatchRespondData', JSON.stringify(Object.keys(kTesting.uSpacings[4]).concat(['KOMSpacingIsLearning', 'KOMSpacingDueDate'])));
+			});
+
+			it('updates KOMPlayStateCurrent', function () {
+				browser.assert.text(KOMPlayCardQuestion, kTesting.uSpacings[5].$KOMSpacingCard.KOMCardQuestion);
+			});
+		
+		});
+
+	});
+
+	describe('Digit1', function test_Digit1 () {
+
+		before(function () {
+			browser.assert.elements(KOMPlayResponseButtonAgain, 0);
+		});
+
+		before(function () {
+			return browser.OLSKFireKeyboardEvent(browser.window, 'Digit1');
+		});
+
+		it('does nothing', function () {
+			browser.assert.elements(KOMPlayResponseButtonAgain, 0);
+		});
+
+		context('flipped', function () {
+			
+			before(function () {
+				return browser.pressButton(KOMPlayFlipButton);
+			});
+
+			before(function () {
+				browser.assert.text('#TestKOMPlayDispatchRespond', '5');
+			});
+
+			before(function () {
+				return browser.OLSKFireKeyboardEvent(browser.window, 'Digit1');
+			});
+
+			it('updates KOMPlayStateQueue', function () {
+				browser.assert.text('#TestKOMPlayStateQueueCount', '2');
+			});
+
+			it('updates KOMPlayStateWait', function () {
+				browser.assert.text('#TestKOMPlayStateWaitCount', '4');
+			});
+
+			it('sends KOMPlayDispatchRespond', function () {
+				browser.assert.text('#TestKOMPlayDispatchRespond', '6');
+			});
+			
+			it('sends KOMPlayDispatchRespondData', function () {
+				browser.assert.text('#TestKOMPlayDispatchRespondData', JSON.stringify(Object.keys(kTesting.uSpacings[5]).concat(['KOMSpacingIsLearning', 'KOMSpacingDueDate'])));
+			});
+
+			it('updates KOMPlayStateCurrent', function () {
+				browser.assert.text(KOMPlayCardQuestion, kTesting.uSpacings[6].$KOMSpacingCard.KOMCardQuestion);
+			});
+		
+		});
+
+	});
+
+	describe('Digit2', function test_Digit2 () {
+
+		before(function () {
+			browser.assert.elements(KOMPlayResponseButtonAgain, 0);
+		});
+
+		before(function () {
+			return browser.OLSKFireKeyboardEvent(browser.window, 'Digit2');
+		});
+
+		it('does nothing', function () {
+			browser.assert.elements(KOMPlayResponseButtonAgain, 0);
+		});
+
+		context('flipped', function () {
+			
+			before(function () {
+				return browser.pressButton(KOMPlayFlipButton);
+			});
+
+			before(function () {
+				browser.assert.text('#TestKOMPlayDispatchRespond', '6');
+			});
+
+			before(function () {
+				return browser.OLSKFireKeyboardEvent(browser.window, 'Digit2');
+			});
+
+			it('updates KOMPlayStateQueue', function () {
+				browser.assert.text('#TestKOMPlayStateQueueCount', '1');
+			});
+
+			it('updates KOMPlayStateWait', function () {
+				browser.assert.text('#TestKOMPlayStateWaitCount', '5');
+			});
+
+			it('sends KOMPlayDispatchRespond', function () {
+				browser.assert.text('#TestKOMPlayDispatchRespond', '7');
+			});
+			
+			it('sends KOMPlayDispatchRespondData', function () {
+				browser.assert.text('#TestKOMPlayDispatchRespondData', JSON.stringify(Object.keys(kTesting.uSpacings[6]).concat(['KOMSpacingIsLearning', 'KOMSpacingDueDate'])));
+			});
+
+			it('updates KOMPlayStateCurrent', function () {
+				browser.assert.text(KOMPlayCardQuestion, kTesting.uSpacings[7].$KOMSpacingCard.KOMCardQuestion);
+			});
+		
+		});
+
+	});
+
+	describe('Digit3', function test_Digit3 () {
+
+		before(function () {
+			browser.assert.elements(KOMPlayResponseButtonAgain, 0);
+		});
+
+		before(function () {
+			return browser.OLSKFireKeyboardEvent(browser.window, 'Digit3');
+		});
+
+		it('does nothing', function () {
+			browser.assert.elements(KOMPlayResponseButtonAgain, 0);
+		});
+
+		context('flipped', function () {
+			
+			before(function () {
+				return browser.pressButton(KOMPlayFlipButton);
+			});
+
+			before(function () {
+				browser.assert.text('#TestKOMPlayDispatchRespond', '7');
+			});
+
+			before(function () {
+				return browser.OLSKFireKeyboardEvent(browser.window, 'Digit3');
+			});
+
+			it('updates KOMPlayStateQueue', function () {
+				browser.assert.text('#TestKOMPlayStateQueueCount', '0');
+			});
+
+			it('updates KOMPlayStateWait', function () {
+				browser.assert.text('#TestKOMPlayStateWaitCount', '6');
+			});
+
+			it('sends KOMPlayDispatchRespond', function () {
+				browser.assert.text('#TestKOMPlayDispatchRespond', '8');
+			});
+			
+			it('sends KOMPlayDispatchRespondData', function () {
+				browser.assert.text('#TestKOMPlayDispatchRespondData', JSON.stringify(Object.keys(kTesting.uSpacings[6]).concat(['KOMSpacingIsLearning', 'KOMSpacingDueDate'])));
+			});
+
+			it('updates KOMPlayStateCurrent', function () {
+				browser.assert.text(KOMPlayCardQuestion, kTesting.uSpacings[8].$KOMSpacingCard.KOMCardQuestion);
+			});
+		
+		});
+
+	});
+
+	describe('Digit4', function test_Digit4 () {
+
+		before(function () {
+			browser.assert.elements(KOMPlayResponseButtonAgain, 0);
+		});
+
+		before(function () {
+			return browser.OLSKFireKeyboardEvent(browser.window, 'Digit4');
+		});
+
+		it('does nothing', function () {
+			browser.assert.elements(KOMPlayResponseButtonAgain, 0);
+		});
+
+		context('flipped', function () {
+			
+			before(function () {
+				return browser.pressButton(KOMPlayFlipButton);
+			});
+
+			before(function () {
+				browser.assert.text('#TestKOMPlayDispatchRespond', '8');
+			});
+
+			before(function () {
+				return browser.OLSKFireKeyboardEvent(browser.window, 'Digit4');
+			});
+
+			it('updates KOMPlayStateQueue', function () {
+				browser.assert.text('#TestKOMPlayStateQueueCount', '5');
+			});
+
+			it('updates KOMPlayStateWait', function () {
+				browser.assert.text('#TestKOMPlayStateWaitCount', '0');
+			});
+
+			it('sends KOMPlayDispatchRespond', function () {
+				browser.assert.text('#TestKOMPlayDispatchRespond', '9');
+			});
+			
+			it('sends KOMPlayDispatchRespondData', function () {
+				browser.assert.text('#TestKOMPlayDispatchRespondData', JSON.stringify(Object.keys(kTesting.uSpacings[8]).concat(['KOMSpacingInterval', 'KOMSpacingMultiplier', 'KOMSpacingDueDate'])));
 			});
 
 			it('updates KOMPlayStateCurrent', function () {
@@ -320,7 +576,7 @@ describe('KOMPlay_Misc', function () {
 		});
 
 		it('updates KOMPlayStateQueue', function () {
-			browser.assert.text('#TestKOMPlayStateQueueCount', '0');
+			browser.assert.text('#TestKOMPlayStateQueueCount', '4');
 		});
 
 		it('updates KOMPlayStateWait', function () {

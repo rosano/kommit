@@ -26,6 +26,32 @@ const mod = {
 
 	// INTERFACE
 
+	InterfaceWindowDidKeydown (event) {
+		if (document.querySelector('.LCHLauncher')) { // #spec
+			return;
+		}
+
+		const handlerFunctions = {
+			Space () {
+				mod.ControlFlip();
+			},
+			Digit1 () {
+				mod._ValueIsFlipped && mod.ControlRespond(KOMPlayLogic.KOMPlayResponseTypeAgain());
+			},
+			Digit2 () {
+				mod._ValueIsFlipped && mod.ControlRespond(KOMPlayLogic.KOMPlayResponseTypeHard());
+			},
+			Digit3 () {
+				mod._ValueIsFlipped && mod.ControlRespond(KOMPlayLogic.KOMPlayResponseTypeGood());
+			},
+			Digit4 () {
+				mod._ValueIsFlipped && mod.ControlRespond(KOMPlayLogic.KOMPlayResponseTypeEasy());
+			},
+		};
+
+		handlerFunctions[event.code] && handlerFunctions[event.code]();
+	},
+
 	InterfaceCardDidClick () {
 		mod.ControlFlip();
 	},
@@ -81,6 +107,7 @@ import OLSKViewportContent from 'OLSKViewportContent';
 import OLSKToolbar from 'OLSKToolbar';
 import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 </script>
+<svelte:window on:keydown={ mod.InterfaceWindowDidKeydown } />
 
 <div class="KOMPlay">
 
