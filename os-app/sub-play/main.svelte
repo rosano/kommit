@@ -17,7 +17,7 @@ const mod = {
 
 	// VALUE
 
-	_ValueAnswerVisible: false,
+	_ValueIsFlipped: false,
 	_ValueState: {
 		KOMPlayStateCurrent: KOMPlaySpacings[0],
 		KOMPlayStateQueue: KOMPlaySpacings.slice(1),
@@ -53,9 +53,9 @@ const mod = {
 	// CONTROL
 
 	ControlFlip () {
-		mod._ValueAnswerVisible = !mod._ValueAnswerVisible;
+		mod._ValueIsFlipped = !mod._ValueIsFlipped;
 
-		if (!mod._ValueAnswerVisible) {
+		if (!mod._ValueIsFlipped) {
 			mod.ControlRespond(KOMPlayLogic.KOMPlayResponseTypeGood());
 		}
 	},
@@ -70,7 +70,7 @@ const mod = {
 
 		mod._ValueState = mod._ValueState; // #purge-svelte-force-update
 
-		mod._ValueAnswerVisible = false;
+		mod._ValueIsFlipped = false;
 
 		KOMPlayDispatchRespond(item);
 	},
@@ -101,20 +101,25 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 {#if mod._ValueState.KOMPlayStateCurrent }
 	<div class="KOMPlayCard" on:click={ mod.InterfaceCardDidClick }>
 
-		<div class="KOMPlayCardQuestion">{ mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard.KOMCardQuestion }</div>
+		{#if !KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent) || mod._ValueIsFlipped}
+			<div class="KOMPlayCardQuestion">{ mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard.KOMCardQuestion }</div>
+		{/if}
 
-		{#if mod._ValueAnswerVisible}
+		{#if KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent) || mod._ValueIsFlipped}
 			<div class="KOMPlayCardAnswer">{ mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard.KOMCardAnswer }</div>
+		{/if}
+
+		{#if mod._ValueIsFlipped}
 			<div class="KOMPlayCardHint">{ mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard.KOMCardHint }</div>
 		{/if}
 		
 	</div>
 	
-	{#if !mod._ValueAnswerVisible}
+	{#if !mod._ValueIsFlipped}
 		<button class="KOMPlayFlipButton OLSKLayoutButtonNoStyle" on:click={ mod.InterfaceFlipButtonDidClick }>{ OLSKLocalized('KOMPlayFlipButtonText') }</button>
 	{/if}
 
-	{#if mod._ValueAnswerVisible}
+	{#if mod._ValueIsFlipped}
 		<button class="KOMPlayResponseButtonAgain OLSKLayoutButtonNoStyle" on:click={ mod.InterfaceResponseButtonDidClickAgain }>{ OLSKLocalized('KOMPlayResponseButtonAgainText') }</button>
 
 		<div class="KOMPlayResponseCorrect">
