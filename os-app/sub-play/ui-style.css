@@ -64,7 +64,11 @@
 .KOMPlayBody button {
 	height: 60px;
 
-	background: rgba(0, 0, 0, 0.1);
+}
+
+.KOMPlayFlipButton {
+	background: rgba(0, 0, 0, 0.02);
+	color: rgba(0, 0, 0, 0.8);
 }
 
 .KOMPlayResponseCorrect {
