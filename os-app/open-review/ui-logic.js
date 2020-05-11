@@ -47,6 +47,12 @@ const mod = {
 			errors.KOMReviewScheme = [
 				'KOMErrorNotValid',
 			];
+		} else if (inputData.KOMReviewScheme !== mod.KOMReviewSchemeReviewing()) {
+			if (typeof inputData.KOMReviewMaxUnseenCards === 'undefined') {
+				errors.KOMReviewMaxUnseenCards = [
+					'KOMErrorNotDefined',
+				];
+			}
 		}
 
 		if (inputData.KOMReviewMaxUnseenCards !== undefined) {

@@ -10,7 +10,7 @@ const kTesting = {
 	},
 	StubReviewObjectValid() {
 		return {
-			KOMReviewScheme: mainModule.KOMReviewSchemeMixed(),
+			KOMReviewScheme: mainModule.KOMReviewSchemeReviewing(),
 		};
 	},
 };
@@ -150,6 +150,26 @@ describe('KOMReviewModelErrorsFor', function test_KOMReviewModelErrorsFor() {
 			})), {
 				KOMReviewMaxUnseenCards: [
 					'KOMErrorNotPositive',
+				],
+			});
+		});
+
+		it('returns object if KOMReviewScheme KOMReviewSchemeUnseen', function() {
+			deepEqual(mainModule.KOMReviewModelErrorsFor(Object.assign(kTesting.StubReviewObjectValid(), {
+				KOMReviewScheme: mainModule.KOMReviewSchemeUnseen(),
+			})), {
+				KOMReviewMaxUnseenCards: [
+					'KOMErrorNotDefined',
+				],
+			});
+		});
+
+		it('returns object if KOMReviewScheme KOMReviewSchemeMixed', function() {
+			deepEqual(mainModule.KOMReviewModelErrorsFor(Object.assign(kTesting.StubReviewObjectValid(), {
+				KOMReviewScheme: mainModule.KOMReviewSchemeMixed(),
+			})), {
+				KOMReviewMaxUnseenCards: [
+					'KOMErrorNotDefined',
 				],
 			});
 		});
