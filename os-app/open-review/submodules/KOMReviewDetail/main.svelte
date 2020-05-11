@@ -14,6 +14,8 @@ const OLSKLocalized = function(translationConstant) {
 import KOMSpacingModel from '../../../_shared/KOMSpacing/model.js';
 import KOMReviewLogic from '../../ui-logic.js';
 
+const kMaxUnseenCards = 10;
+
 const itemsToday = KOMReviewLogic.KOMReviewSpacingsToday(KOMReviewDetailDeck.$KOMDeckSpacings);
 
 const mod = {
@@ -60,7 +62,7 @@ const mod = {
 		KOMReviewDetailDispatchPlay(Object.assign({
 			KOMReviewScheme: inputData,
 		}, inputData !== KOMReviewLogic.KOMReviewSchemeReviewing() ? {
-			KOMReviewMaxUnseenCards: 10,
+			KOMReviewMaxUnseenCards: kMaxUnseenCards,
 		} : {}));
 	},
 
