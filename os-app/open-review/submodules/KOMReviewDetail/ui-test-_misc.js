@@ -210,7 +210,9 @@ describe('KOMReviewDetail_Misc', function () {
 
 			it('sends KOMReviewDetailDispatchPlay', function () {
 				browser.assert.text('#TestKOMReviewDetailDispatchPlay', '1');
-				browser.assert.text('#TestKOMReviewDetailDispatchPlayData', KOMReviewLogic.KOMReviewSchemeReviewing());
+				browser.assert.text('#TestKOMReviewDetailDispatchPlayData', JSON.stringify({
+					KOMReviewScheme: KOMReviewLogic.KOMReviewSchemeReviewing(),
+				}));
 			});
 		
 		});
@@ -227,7 +229,9 @@ describe('KOMReviewDetail_Misc', function () {
 
 			it('sends KOMReviewDetailDispatchPlay', function () {
 				browser.assert.text('#TestKOMReviewDetailDispatchPlay', '2');
-				browser.assert.text('#TestKOMReviewDetailDispatchPlayData', KOMReviewLogic.KOMReviewSchemeUnseen());
+				browser.assert.text('#TestKOMReviewDetailDispatchPlayData', JSON.stringify({
+					KOMReviewScheme: KOMReviewLogic.KOMReviewSchemeUnseen(),
+				}));
 			});
 		
 		});
@@ -244,7 +248,9 @@ describe('KOMReviewDetail_Misc', function () {
 
 			it('sends KOMReviewDetailDispatchPlay', function () {
 				browser.assert.text('#TestKOMReviewDetailDispatchPlay', '3');
-				browser.assert.text('#TestKOMReviewDetailDispatchPlayData', KOMReviewLogic.KOMReviewSchemeMixed());
+				browser.assert.text('#TestKOMReviewDetailDispatchPlayData', JSON.stringify({
+					KOMReviewScheme: KOMReviewLogic.KOMReviewSchemeMixed(),
+				}));
 			});
 		
 		});

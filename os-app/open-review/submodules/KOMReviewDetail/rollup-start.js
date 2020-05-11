@@ -22,7 +22,7 @@ const KOMReviewDetail = new RollupStart({
 		}),
 		KOMReviewDetailDispatchPlay: (function _KOMReviewDetailDispatchPlay (inputData) {
 			window.TestKOMReviewDetailDispatchPlay.innerHTML = parseInt(window.TestKOMReviewDetailDispatchPlay.innerHTML) + 1;
-			window.TestKOMReviewDetailDispatchPlayData.innerHTML = inputData;
+			window.TestKOMReviewDetailDispatchPlayData.innerHTML = JSON.stringify(inputData);
 		}),
 	}, Object.fromEntries(Array.from((new window.URLSearchParams(window.location.search)).entries()).map(function (e) {
 		if (['KOMReviewDetailDeck'].includes(e[0])) {

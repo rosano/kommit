@@ -32,6 +32,18 @@ const mod = {
 		mod.ControlRename();
 	},
 
+	InterfaceReviewingButtonDidClick() {
+		mod.ContolPlay(KOMReviewLogic.KOMReviewSchemeReviewing());
+	},
+
+	InterfaceUnseenButtonDidClick() {
+		mod.ContolPlay(KOMReviewLogic.KOMReviewSchemeUnseen());
+	},
+
+	InterfaceMixedButtonDidClick() {
+		mod.ContolPlay(KOMReviewLogic.KOMReviewSchemeMixed());
+	},
+
 	// CONTROL
 
 	ControlRename() {
@@ -42,6 +54,12 @@ const mod = {
 		}
 
 		KOMReviewDetailDispatchRename(outputData);
+	},
+
+	ContolPlay (inputData) {
+		KOMReviewDetailDispatchPlay({
+			KOMReviewScheme: inputData,
+		});
 	},
 
 };
@@ -82,15 +100,15 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 
 {#if KOMReviewDetailDeck.$KOMDeckSpacings.length && mod._ValueSpacingsToday.length}
 	{#if mod._ValueSpacingsReviewing.length }
-		<button class="KOMReviewDetailPlayButtonReviewing" on:click={ () => KOMReviewDetailDispatchPlay(KOMReviewLogic.KOMReviewSchemeReviewing()) }>{ OLSKLocalized('KOMReviewDetailPlayButtonReviewingText') }</button>
+		<button class="KOMReviewDetailPlayButtonReviewing" on:click={ mod.InterfaceReviewingButtonDidClick }>{ OLSKLocalized('KOMReviewDetailPlayButtonReviewingText') }</button>
 	{/if}
 	
 	{#if mod._ValueSpacingsUnseen.length }
-		<button class="KOMReviewDetailPlayButtonUnseen" on:click={ () => KOMReviewDetailDispatchPlay(KOMReviewLogic.KOMReviewSchemeUnseen()) }>{ OLSKLocalized('KOMReviewDetailPlayButtonUnseenText') }</button>
+		<button class="KOMReviewDetailPlayButtonUnseen" on:click={ mod.InterfaceUnseenButtonDidClick }>{ OLSKLocalized('KOMReviewDetailPlayButtonUnseenText') }</button>
 	{/if}
 	
 	{#if mod._ValueSpacingsReviewing.length && mod._ValueSpacingsUnseen.length }
-		<button class="KOMReviewDetailPlayButtonMixed" on:click={ () => KOMReviewDetailDispatchPlay(KOMReviewLogic.KOMReviewSchemeMixed()) }>{ OLSKLocalized('KOMReviewDetailPlayButtonMixedText') }</button>
+		<button class="KOMReviewDetailPlayButtonMixed" on:click={ mod.InterfaceMixedButtonDidClick }>{ OLSKLocalized('KOMReviewDetailPlayButtonMixedText') }</button>
 	{/if}
 {/if}
 
