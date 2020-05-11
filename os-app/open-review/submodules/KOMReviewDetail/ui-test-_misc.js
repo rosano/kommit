@@ -231,6 +231,7 @@ describe('KOMReviewDetail_Misc', function () {
 				browser.assert.text('#TestKOMReviewDetailDispatchPlay', '2');
 				browser.assert.text('#TestKOMReviewDetailDispatchPlayData', JSON.stringify({
 					KOMReviewScheme: KOMReviewLogic.KOMReviewSchemeUnseen(),
+					KOMReviewMaxUnseenCards: 10,
 				}));
 			});
 		
@@ -250,6 +251,7 @@ describe('KOMReviewDetail_Misc', function () {
 				browser.assert.text('#TestKOMReviewDetailDispatchPlay', '3');
 				browser.assert.text('#TestKOMReviewDetailDispatchPlayData', JSON.stringify({
 					KOMReviewScheme: KOMReviewLogic.KOMReviewSchemeMixed(),
+					KOMReviewMaxUnseenCards: 10,
 				}));
 			});
 		

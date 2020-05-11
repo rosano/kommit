@@ -57,9 +57,11 @@ const mod = {
 	},
 
 	ContolPlay (inputData) {
-		KOMReviewDetailDispatchPlay({
+		KOMReviewDetailDispatchPlay(Object.assign({
 			KOMReviewScheme: inputData,
-		});
+		}, inputData !== KOMReviewLogic.KOMReviewSchemeReviewing() ? {
+			KOMReviewMaxUnseenCards: 10,
+		} : {}));
 	},
 
 };
