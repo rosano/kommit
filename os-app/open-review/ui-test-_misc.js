@@ -4,6 +4,10 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 describe('KOMReview_Misc', function () {	
 
+	before(function() {
+		return browser.OLSKVisit(kDefaultRoute);
+	});
+
 	context('create', function () {
 		
 		before(function () {
@@ -48,7 +52,7 @@ describe('KOMReview_Misc', function () {
 	
 	});
 
-	context('KOMBrowse', function test_KOMBrowse() {
+	describe('KOMBrowse', function test_KOMBrowse() {
 		
 		before(function () {
 			return browser.click('.KOMReviewMasterListItem');
@@ -62,12 +66,20 @@ describe('KOMReview_Misc', function () {
 			return browser.pressButton('.KOMBrowseListToolbarCreateButton');
 		});
 
-		before(function () {
+		it('sets KOMBrowseDeckSelected', function () {
+			browser.assert.elements('.KOMBrowseListItem', 1);
+		});
+
+		after(function () {
 			browser.fill('.KOMBrowseInfoFormQuestionField', 'alfa');
 		});
 
-		it('sets KOMBrowseDeckSelected', function () {
-			browser.assert.elements('.KOMBrowseListItem', 1);
+		after(function () {
+			return browser.pressButton('.KOMBrowseListToolbarCreateButton');
+		});
+
+		after(function () {
+			browser.fill('.KOMBrowseInfoFormQuestionField', 'bravo');
 		});
 
 		after(function () {
@@ -83,7 +95,7 @@ describe('KOMReview_Misc', function () {
 		});
 
 		before(function () {
-			browser.assert.text('#TestKOMPlayStateQueueCount', '1');
+			browser.assert.text('#TestKOMPlayStateQueueCount', '3');
 		});
 
 		before(function () {
@@ -95,7 +107,7 @@ describe('KOMReview_Misc', function () {
 		});
 
 		before(function () {
-			return browser.pressButton('.KOMPlayResponseButtonEasy');
+			return browser.pressButton('.KOMPlayResponseButtonGood');
 		});
 
 		before(function () {
@@ -107,7 +119,7 @@ describe('KOMReview_Misc', function () {
 		});
 
 		it('persists responses', function () {
-			browser.assert.text('#TestKOMPlayStateQueueCount', '0');
+			browser.assert.text('#TestKOMPlayStateQueueCount', '2');
 			browser.assert.text('#TestKOMPlayStateWaitCount', '0');
 		});
 

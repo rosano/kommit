@@ -49,7 +49,8 @@ const mod = {
 		mod._ValueBrowseVisible = true;
 	},
 
-	KOMReviewDetailDispatchPlay () {
+	KOMReviewDetailDispatchPlay (inputData) {
+		mod._ValuePlaySpacings = KOMReviewLogic.KOMReviewFilter(KOMReviewLogic.KOMReviewSpacingsToday(mod._ValueDeckSelected.$KOMDeckSpacings), inputData);
 		mod._ValuePlayVisible = true;
 	},
 
@@ -153,6 +154,7 @@ const mod = {
 	_ValueBrowseVisible: false,
 
 	_ValuePlayVisible: false,
+	_ValuePlaySpacings: [],
 	
 	_ValueStorageWidgetHidden: true,
 
@@ -377,7 +379,7 @@ import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svel
 
 	{#if mod._ValuePlayVisible}
 		<KOMPlay
-			KOMPlaySpacings={ KOMReviewLogic.KOMReviewSpacingsToday(mod._ValueDeckSelected.$KOMDeckSpacings) }
+			KOMPlaySpacings={ mod._ValuePlaySpacings }
 			KOMPlayDispatchDone={ mod.KOMPlayDispatchDone }
 			KOMPlayDispatchRespond={ mod.KOMPlayDispatchRespond }
 			/>
