@@ -393,7 +393,7 @@ describe('KOMSpacingModelIsReviewing', function test_KOMSpacingModelIsReviewing(
 
 describe('KOMSpacingModelFilterUnique', function test_KOMSpacingModelFilterUnique() {
 
-	it('throws if not valid', function () {
+	it('throws if not array', function () {
 		throws(function () {
 			mainModule.KOMSpacingModelFilterUnique(null);
 		}, /KOMErrorInputNotValid/);
