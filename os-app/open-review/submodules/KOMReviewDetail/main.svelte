@@ -74,6 +74,8 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 
 <div class="KOMReviewDetailBody">
 
+<h1 class="KOMReviewDetailStudyHeading">{ OLSKLocalized('KOMReviewDetailStudyHeadingText') }</h1>
+
 {#if !KOMReviewDetailDeck.$KOMDeckSpacings.length}
 	<p class="KOMReviewDetailNoCards">{ OLSKLocalized('KOMReviewDetailNoCardsText') }</p>
 {/if}
