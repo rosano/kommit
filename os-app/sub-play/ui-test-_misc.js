@@ -108,7 +108,7 @@ describe('KOMPlay_Misc', function () {
 	describe('KOMPlayCardAnswer', function test_KOMPlayCardAnswer () {
 
 		before(function () {
-			browser.click(KOMPlayCard);
+			return browser.click(KOMPlayCard);
 		});
 
 		it('sets text', function () {
@@ -150,7 +150,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			before(function () {
-				browser.pressButton(KOMPlayResponseButtonAgain);
+				return browser.pressButton(KOMPlayResponseButtonAgain);
 			});
 			
 			it('updates KOMPlayStateQueue', function () {
