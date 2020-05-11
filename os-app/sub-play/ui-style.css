@@ -31,9 +31,34 @@
 
 .KOMPlayCard {
 	padding: var(--KOMCommonPadding);
-	
+
+	font-size: 30px;
+
 	/* KOMPlayBodyFlexbox:Child */
 	flex-grow: 1;
+
+	/* KOMPlayCardFlexbox:Parent */
+	display: flex;
+	flex-direction: column;
+}
+
+.KOMPlayCard > * {
+	/* KOMPlayCardFlexbox:Child */
+	flex-grow: 1;
+
+	/* KOMPlayCardChildFlexbox:Parent */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.KOMPlayCardAnswer {
+	border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.KOMPlayCardHint {
+	opacity: 0.5;
+	font-size: 20px;
 }
 
 .KOMPlayBody button {
