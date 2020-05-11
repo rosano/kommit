@@ -72,8 +72,7 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 	</OLSKToolbar>
 </header>
 
-<div>
-
+<div class="KOMReviewDetailBody">
 
 {#if !KOMReviewDetailDeck.$KOMDeckSpacings.length}
 	<p class="KOMReviewDetailNoCards">{ OLSKLocalized('KOMReviewDetailNoCardsText') }</p>
@@ -113,5 +112,9 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 
 .KOMReviewDetailToolbar {
 	border-bottom: var(--KOMBorderStyle);
+}
+
+.KOMReviewDetailBody {
+	padding: var(--KOMCommonPadding);
 }
 </style>

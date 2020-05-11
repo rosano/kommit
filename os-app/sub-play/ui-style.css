@@ -30,6 +30,8 @@
 }
 
 .KOMPlayCard {
+	padding: var(--KOMCommonPadding);
+	
 	/* KOMPlayBodyFlexbox:Child */
 	flex-grow: 1;
 }

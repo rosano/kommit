@@ -76,13 +76,13 @@ import KOMReviewMasterListItem from '../KOMReviewMasterListItem/main.svelte';
 }
 
 .KOMReviewMasterBody {
-	padding: 10px;
+	padding: var(--KOMCommonPadding);
 }
 
 .KOMReviewMasterBody :global(.KOMReviewMasterListItem) {
 	display: block;
-	margin-bottom: 10px;
-	padding: 10px;
+	margin-bottom: var(--KOMCommonPadding);
+	padding: var(--KOMCommonPadding);
 	border: 1px solid rgba(0, 0, 0, 0.1);
 
 	clear: both;
