@@ -82,6 +82,14 @@ describe('KOMReviewDetail_Misc', function () {
 	
 	});
 
+	describe('KOMReviewDetailToolbarTitle', function test_KOMReviewDetailToolbarTitle () {
+		
+		it('sets text', function () {
+			browser.assert.text(KOMReviewDetailToolbarTitle, uItem().KOMDeckName);
+		});
+	
+	});
+
 	describe('KOMReviewDetailToolbarDiscardButton', function test_KOMReviewDetailToolbarDiscardButton () {
 		
 		it('classes OLSKLayoutButtonNoStyle', function () {

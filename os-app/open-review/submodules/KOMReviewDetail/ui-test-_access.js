@@ -5,11 +5,11 @@ Object.entries({
 
 	KOMReviewDetailToolbar: '.KOMReviewDetailToolbar',
 	KOMReviewDetailToolbarBackButton: '.KOMReviewDetailToolbarBackButton',
+	KOMReviewDetailToolbarTitle: '.KOMReviewDetailToolbarTitle',
 	KOMReviewDetailToolbarDiscardButton: '.KOMReviewDetailToolbarDiscardButton',
 	KOMReviewDetailToolbarRenameButton: '.KOMReviewDetailToolbarRenameButton',
 	KOMReviewDetailToolbarCardsButton: '.KOMReviewDetailToolbarCardsButton',
 	
-	KOMReviewDetailToolbarTitle: '.KOMReviewDetailToolbarTitle',
 	KOMReviewDetailNoCards: '.KOMReviewDetailNoCards',
 	KOMReviewDetailPlayButtonReviewing: '.KOMReviewDetailPlayButtonReviewing',
 	KOMReviewDetailPlayButtonMixed: '.KOMReviewDetailPlayButtonMixed',
