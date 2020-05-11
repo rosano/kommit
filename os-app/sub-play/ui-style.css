@@ -44,7 +44,7 @@
 
 .KOMPlayCard > * {
 	/* KOMPlayCardFlexbox:Child */
-	flex-grow: 1;
+	flex-grow: 0.3;
 
 	/* KOMPlayCardChildFlexbox:Parent */
 	display: flex;
@@ -63,7 +63,6 @@
 
 .KOMPlayBody button {
 	height: 60px;
-
 }
 
 .KOMPlayFlipButton {
