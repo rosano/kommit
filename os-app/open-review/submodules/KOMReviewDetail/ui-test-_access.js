@@ -9,7 +9,7 @@ Object.entries({
 	KOMReviewDetailToolbarRenameButton: '.KOMReviewDetailToolbarRenameButton',
 	KOMReviewDetailToolbarCardsButton: '.KOMReviewDetailToolbarCardsButton',
 	
-	KOMReviewDetailHeading: '.KOMReviewDetailHeading',
+	KOMReviewDetailToolbarTitle: '.KOMReviewDetailToolbarTitle',
 	KOMReviewDetailNoCards: '.KOMReviewDetailNoCards',
 	KOMReviewDetailPlayButtonReviewing: '.KOMReviewDetailPlayButtonReviewing',
 	KOMReviewDetailPlayButtonMixed: '.KOMReviewDetailPlayButtonMixed',
@@ -76,8 +76,8 @@ describe('KOMReviewDetail_Access', function () {
 		browser.assert.elements(KOMReviewDetailToolbarCardsButton, 1);
 	});
 
-	it('shows KOMReviewDetailHeading', function () {
-		browser.assert.elements(KOMReviewDetailHeading, 1);
+	it('shows KOMReviewDetailToolbarTitle', function () {
+		browser.assert.elements(KOMReviewDetailToolbarTitle, 1);
 	});
 
 	it('shows KOMReviewDetailNoCards', function () {
