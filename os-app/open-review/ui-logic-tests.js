@@ -8,6 +8,15 @@ const kTesting = {
 			KOMSpacingID: 'bravo-forward',
 		};
 	},
+	StubCardObjectValid() {
+		return {
+			KOMCardID: 'alfa',
+			KOMCardQuestion: '',
+			KOMCardAnswer: '',
+			KOMCardCreationDate: new Date('2019-02-23T13:56:36Z'),
+			KOMCardModificationDate: new Date('2019-02-23T13:56:36Z'),
+		};
+	},
 	StubReviewObjectValid() {
 		return {
 			KOMReviewScheme: mainModule.KOMReviewSchemeReviewing(),
@@ -182,13 +191,13 @@ describe('KOMReviewModelErrorsFor', function test_KOMReviewModelErrorsFor() {
 
 	});
 
-	context('KOMReviewIsBidirectional', function() {
+	context('KOMReviewIsForwardOnly', function() {
 
 		it('returns object if not boolean', function() {
 			deepEqual(mainModule.KOMReviewModelErrorsFor(Object.assign(kTesting.StubReviewObjectValid(), {
-				KOMReviewIsBidirectional: 'true',
+				KOMReviewIsForwardOnly: 'true',
 			})), {
-				KOMReviewIsBidirectional: [
+				KOMReviewIsForwardOnly: [
 					'KOMErrorNotBoolean',
 				],
 			});
@@ -196,10 +205,85 @@ describe('KOMReviewModelErrorsFor', function test_KOMReviewModelErrorsFor() {
 
 		it('returns null', function() {
 			deepEqual(mainModule.KOMReviewModelErrorsFor(Object.assign(kTesting.StubReviewObjectValid(), {
-				KOMReviewIsBidirectional: true,
+				KOMReviewIsForwardOnly: true,
 			})), null);
 		});
 
+	});
+
+});
+
+describe('KOMReviewFilter', function test_KOMReviewFilter() {
+
+	const uFlatten = function (inputData) {
+		return [].concat.apply([], inputData);
+	};
+
+	const uItems = function (inputData) {
+		return uFlatten(Array.from(new Array(10)).map(function (e, i) {
+			const card = Object.assign(kTesting.StubCardObjectValid(), {
+				KOMCardID: (i + 1).toString(),
+			});
+
+			return [true, false].map(function (forward) {
+				return {
+					KOMSpacingID: card.KOMCardID + '-' + (forward ? 'forward' : 'backward'),
+					KOMSpacingDueDate: inputData ? new Date() : undefined,
+					$KOMSpacingCard: card,
+				};
+			});
+		}));
+	};
+
+	it('throws if param1 not array', function () {
+		throws(function () {
+			mainModule.KOMReviewFilter(null, kTesting.StubReviewObjectValid());
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('throws if param2 not valid', function () {
+		throws(function () {
+			mainModule.KOMReviewFilter([], {});
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns array', function() {
+		deepEqual(mainModule.KOMReviewFilter([], kTesting.StubReviewObjectValid()), []);
+	});
+
+	it('excludes if unseen', function() {
+		deepEqual(mainModule.KOMReviewFilter(uItems(), kTesting.StubReviewObjectValid()), []);
+	});
+
+	context('KOMReviewMaxUnseenCards', function () {
+
+		it('does nothing if KOMReviewSchemeReviewing', function() {
+			deepEqual(mainModule.KOMReviewFilter(uItems(), Object.assign(kTesting.StubReviewObjectValid(), {
+				KOMReviewScheme: mainModule.KOMReviewSchemeReviewing(),
+			})), []);
+		});
+
+		it('includes if unseen until KOMReviewMaxUnseenCards', function() {
+			deepEqual(mainModule.KOMReviewFilter(uItems(), Object.assign(kTesting.StubReviewObjectValid(), {
+				KOMReviewScheme: mainModule.KOMReviewSchemeUnseen(),
+				KOMReviewMaxUnseenCards: 5,
+			})), uItems().slice(0, 10));
+		});
+	
+	});
+
+	context('KOMReviewIsForwardOnly', function () {
+
+		it('excludes backward if true', function() {
+			const items = uItems(true);
+
+			deepEqual(mainModule.KOMReviewFilter(items, Object.assign(kTesting.StubReviewObjectValid(), {
+				KOMReviewIsForwardOnly: true,
+			})), items.filter(function (e) {
+				return !e.KOMSpacingID.match('backward');
+			}));
+		});
+		
 	});
 
 });
