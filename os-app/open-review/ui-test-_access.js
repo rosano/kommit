@@ -203,7 +203,7 @@ describe('KOMReview_Access', function () {
 		});
 
 		before(function () {
-			return browser.pressButton('.OLSKMasterListToolbarCreateButton');
+			return browser.pressButton('.KOMBrowseListToolbarCreateButton');
 		});
 
 		before(function () {

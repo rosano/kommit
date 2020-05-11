@@ -105,22 +105,22 @@ describe('KOMBrowseList_Misc', function () {
 
 	});
 
-	describe('OLSKMasterListToolbarCreateButton', function test_OLSKMasterListToolbarCreateButton () {
+	describe('KOMBrowseListToolbarCreateButton', function test_KOMBrowseListToolbarCreateButton () {
 		
 		it('classes OLSKLayoutButtonNoStyle', function () {
-			browser.assert.hasClass(OLSKMasterListToolbarCreateButton, 'OLSKLayoutButtonNoStyle');
+			browser.assert.hasClass(KOMBrowseListToolbarCreateButton, 'OLSKLayoutButtonNoStyle');
 		});
 
 		it('classes OLSKLayoutElementTappable', function () {
-			browser.assert.hasClass(OLSKMasterListToolbarCreateButton, 'OLSKLayoutElementTappable');
+			browser.assert.hasClass(KOMBrowseListToolbarCreateButton, 'OLSKLayoutElementTappable');
 		});
 
 		it('classes OLSKToolbarButton', function () {
-			browser.assert.hasClass(OLSKMasterListToolbarCreateButton, 'OLSKToolbarButton');
+			browser.assert.hasClass(KOMBrowseListToolbarCreateButton, 'OLSKToolbarButton');
 		});
 		
 		it('sets accesskey', function () {
-			browser.assert.attribute(OLSKMasterListToolbarCreateButton, 'accesskey', 'n');
+			browser.assert.attribute(KOMBrowseListToolbarCreateButton, 'accesskey', 'n');
 		});
 
 		context('click', function () {
@@ -130,7 +130,7 @@ describe('KOMBrowseList_Misc', function () {
 			});
 			
 			before(function () {
-				return browser.pressButton(OLSKMasterListToolbarCreateButton);
+				return browser.pressButton(KOMBrowseListToolbarCreateButton);
 			});
 
 			it('sends KOMBrowseListDispatchCreate', function () {
@@ -141,10 +141,10 @@ describe('KOMBrowseList_Misc', function () {
 	
 	});
 
-	describe('OLSKMasterListToolbarCreateButtonImage', function test_OLSKMasterListToolbarCreateButtonImage () {
+	describe('KOMBrowseListToolbarCreateButtonImage', function test_KOMBrowseListToolbarCreateButtonImage () {
 
 		it('sets src', function () {
-			browser.assert.elements(`${ OLSKMasterListToolbarCreateButtonImage } #_OLSKSharedCreate`, 1);
+			browser.assert.elements(`${ KOMBrowseListToolbarCreateButtonImage } #_OLSKSharedCreate`, 1);
 		});
 	
 	});

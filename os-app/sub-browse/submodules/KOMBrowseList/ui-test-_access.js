@@ -7,8 +7,8 @@ Object.entries({
 	
 	OLSKMasterListToolbarCloseButton: '.OLSKMasterListToolbarCloseButton',
 	
-	OLSKMasterListToolbarCreateButton: '.OLSKMasterListToolbarCreateButton',
-	OLSKMasterListToolbarCreateButtonImage: '.OLSKMasterListToolbarCreateButtonImage',
+	KOMBrowseListToolbarCreateButton: '.KOMBrowseListToolbarCreateButton',
+	KOMBrowseListToolbarCreateButtonImage: '.KOMBrowseListToolbarCreateButtonImage',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
@@ -31,12 +31,12 @@ describe('KOMBrowseList_Access', function () {
 		browser.assert.elements(OLSKMasterListToolbarCloseButton, 1);
 	});
 
-	it('shows OLSKMasterListToolbarCreateButton', function () {
-		browser.assert.elements(OLSKMasterListToolbarCreateButton, 1);
+	it('shows KOMBrowseListToolbarCreateButton', function () {
+		browser.assert.elements(KOMBrowseListToolbarCreateButton, 1);
 	});
 
-	it('shows OLSKMasterListToolbarCreateButtonImage', function () {
-		browser.assert.elements(OLSKMasterListToolbarCreateButtonImage, 1);
+	it('shows KOMBrowseListToolbarCreateButtonImage', function () {
+		browser.assert.elements(KOMBrowseListToolbarCreateButtonImage, 1);
 	});
 
 	it('hides KOMBrowseListItem', function () {

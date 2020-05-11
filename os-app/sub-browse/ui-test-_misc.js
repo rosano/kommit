@@ -54,7 +54,7 @@ describe('KOMBrowse_Misc', function () {
 		});
 
 		before(function () {
-			return browser.pressButton('.OLSKMasterListToolbarCreateButton');
+			return browser.pressButton('.KOMBrowseListToolbarCreateButton');
 		});
 
 		it('classes OLSKMobileViewInactive', function() {
@@ -323,7 +323,7 @@ describe('KOMBrowse_Misc', function () {
 	context('filter', function test_filter () {
 
 		before(function () {
-			return browser.pressButton('.OLSKMasterListToolbarCreateButton');
+			return browser.pressButton('.KOMBrowseListToolbarCreateButton');
 		});
 
 		before(function () {
