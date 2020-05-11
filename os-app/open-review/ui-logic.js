@@ -20,19 +20,19 @@ const mod = {
 		return 'kKOMReviewSchemeReviewing';
 	},
 
-	KOMReviewSchemeMixed () {
-		return 'kKOMReviewSchemeMixed';
-	},
-
 	KOMReviewSchemeUnseen () {
 		return 'kKOMReviewSchemeUnseen';
+	},
+
+	KOMReviewSchemeMixed () {
+		return 'kKOMReviewSchemeMixed';
 	},
 
 	KOMReviewSchemes () {
 		return [
 			mod.KOMReviewSchemeReviewing(),
-			mod.KOMReviewSchemeMixed(),
 			mod.KOMReviewSchemeUnseen(),
+			mod.KOMReviewSchemeMixed(),
 			];
 	},
 

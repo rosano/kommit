@@ -217,23 +217,6 @@ describe('KOMReviewDetail_Misc', function () {
 
 	});
 
-	describe('KOMReviewDetailPlayButtonMixed', function test_KOMReviewDetailPlayButtonMixed () {
-
-		context('click', function () {
-			
-			before(function () {
-				return browser.pressButton(KOMReviewDetailPlayButtonMixed);
-			});
-
-			it('sends KOMReviewDetailDispatchPlay', function () {
-				browser.assert.text('#TestKOMReviewDetailDispatchPlay', '2');
-				browser.assert.text('#TestKOMReviewDetailDispatchPlayData', KOMReviewLogic.KOMReviewSchemeMixed());
-			});
-		
-		});
-
-	});
-
 	describe('KOMReviewDetailPlayButtonUnseen', function test_KOMReviewDetailPlayButtonUnseen () {
 
 		context('click', function () {
@@ -245,6 +228,23 @@ describe('KOMReviewDetail_Misc', function () {
 			it('sends KOMReviewDetailDispatchPlay', function () {
 				browser.assert.text('#TestKOMReviewDetailDispatchPlay', '3');
 				browser.assert.text('#TestKOMReviewDetailDispatchPlayData', KOMReviewLogic.KOMReviewSchemeUnseen());
+			});
+		
+		});
+
+	});
+
+	describe('KOMReviewDetailPlayButtonMixed', function test_KOMReviewDetailPlayButtonMixed () {
+
+		context('click', function () {
+			
+			before(function () {
+				return browser.pressButton(KOMReviewDetailPlayButtonMixed);
+			});
+
+			it('sends KOMReviewDetailDispatchPlay', function () {
+				browser.assert.text('#TestKOMReviewDetailDispatchPlay', '2');
+				browser.assert.text('#TestKOMReviewDetailDispatchPlayData', KOMReviewLogic.KOMReviewSchemeMixed());
 			});
 		
 		});

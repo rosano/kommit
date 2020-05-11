@@ -85,12 +85,12 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 		<button class="KOMReviewDetailPlayButtonReviewing" on:click={ () => KOMReviewDetailDispatchPlay(KOMReviewLogic.KOMReviewSchemeReviewing()) }>{ OLSKLocalized('KOMReviewDetailPlayButtonReviewingText') }</button>
 	{/if}
 	
-	{#if mod._ValueSpacingsReviewing.length && mod._ValueSpacingsUnseen.length }
-		<button class="KOMReviewDetailPlayButtonMixed" on:click={ () => KOMReviewDetailDispatchPlay(KOMReviewLogic.KOMReviewSchemeMixed()) }>{ OLSKLocalized('KOMReviewDetailPlayButtonMixedText') }</button>
-	{/if}
-	
 	{#if mod._ValueSpacingsUnseen.length }
 		<button class="KOMReviewDetailPlayButtonUnseen" on:click={ () => KOMReviewDetailDispatchPlay(KOMReviewLogic.KOMReviewSchemeUnseen()) }>{ OLSKLocalized('KOMReviewDetailPlayButtonUnseenText') }</button>
+	{/if}
+	
+	{#if mod._ValueSpacingsReviewing.length && mod._ValueSpacingsUnseen.length }
+		<button class="KOMReviewDetailPlayButtonMixed" on:click={ () => KOMReviewDetailDispatchPlay(KOMReviewLogic.KOMReviewSchemeMixed()) }>{ OLSKLocalized('KOMReviewDetailPlayButtonMixedText') }</button>
 	{/if}
 {/if}
 

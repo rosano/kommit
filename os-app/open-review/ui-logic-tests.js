@@ -67,18 +67,18 @@ describe('KOMReviewSchemeReviewing', function test_KOMReviewSchemeReviewing() {
 
 });
 
-describe('KOMReviewSchemeMixed', function test_KOMReviewSchemeMixed() {
-
-	it('returns string', function () {
-		deepEqual(mainModule.KOMReviewSchemeMixed(), 'kKOMReviewSchemeMixed');
-	});
-
-});
-
 describe('KOMReviewSchemeUnseen', function test_KOMReviewSchemeUnseen() {
 
 	it('returns string', function () {
 		deepEqual(mainModule.KOMReviewSchemeUnseen(), 'kKOMReviewSchemeUnseen');
+	});
+
+});
+
+describe('KOMReviewSchemeMixed', function test_KOMReviewSchemeMixed() {
+
+	it('returns string', function () {
+		deepEqual(mainModule.KOMReviewSchemeMixed(), 'kKOMReviewSchemeMixed');
 	});
 
 });
@@ -88,8 +88,8 @@ describe('KOMReviewSchemes', function test_KOMReviewSchemes() {
 	it('returns string', function () {
 		deepEqual(mainModule.KOMReviewSchemes(), [
 			mainModule.KOMReviewSchemeReviewing(),
-			mainModule.KOMReviewSchemeMixed(),
 			mainModule.KOMReviewSchemeUnseen(),
+			mainModule.KOMReviewSchemeMixed(),
 			]);
 	});
 
