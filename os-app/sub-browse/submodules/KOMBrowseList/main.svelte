@@ -46,7 +46,7 @@ import KOMBrowseListItem from '../KOMBrowseListItem/main.svelte';
 	>
 	<div slot="OLSKMasterListToolbarHead">
 		<OLSKToolbarElementGroup>
-			<button class="OLSKMasterListToolbarCloseButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton" on:click={ KOMBrowseListDispatchClose }>{ OLSKLocalized('OLSKMasterListToolbarCloseButtonText') }</button>
+			<button class="KOMBrowseListToolbarCloseButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton" on:click={ KOMBrowseListDispatchClose }>{ OLSKLocalized('KOMBrowseListToolbarCloseButtonText') }</button>
 		</OLSKToolbarElementGroup>
 	</div>
 

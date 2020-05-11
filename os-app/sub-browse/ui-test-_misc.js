@@ -459,7 +459,7 @@ describe('KOMBrowse_Misc', function () {
 		});
 
 		before(function () {
-			return browser.pressButton('.OLSKMasterListToolbarCloseButton');
+			return browser.pressButton('.KOMBrowseListToolbarCloseButton');
 		});
 
 		it('sends KOMBrowseListDispatchClose', function () {

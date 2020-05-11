@@ -71,7 +71,7 @@ describe('KOMReview_Misc', function () {
 		});
 
 		after(function () {
-			return browser.pressButton('.OLSKMasterListToolbarCloseButton');
+			return browser.pressButton('.KOMBrowseListToolbarCloseButton');
 		});
 				
 	});	

@@ -14,8 +14,8 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			});
 		});
 
-		it('localizes OLSKMasterListToolbarCloseButton', function () {
-			browser.assert.text(OLSKMasterListToolbarCloseButton, uLocalized('OLSKMasterListToolbarCloseButtonText'));
+		it('localizes KOMBrowseListToolbarCloseButton', function () {
+			browser.assert.text(KOMBrowseListToolbarCloseButton, uLocalized('KOMBrowseListToolbarCloseButtonText'));
 		});
 	
 		it('localizes KOMBrowseListToolbarCreateButton', function () {

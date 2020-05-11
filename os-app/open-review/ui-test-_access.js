@@ -113,7 +113,7 @@ describe('KOMReview_Access', function () {
 	context('close', function test_close() {
 		
 		before(function () {
-			return browser.pressButton('.OLSKMasterListToolbarCloseButton');
+			return browser.pressButton('.KOMBrowseListToolbarCloseButton');
 		});
 
 		it('hides KOMReviewMaster', function () {
@@ -207,7 +207,7 @@ describe('KOMReview_Access', function () {
 		});
 
 		before(function () {
-			return browser.pressButton('.OLSKMasterListToolbarCloseButton');
+			return browser.pressButton('.KOMBrowseListToolbarCloseButton');
 		});
 
 		before(function () {

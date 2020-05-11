@@ -20,18 +20,18 @@ describe('KOMBrowseList_Misc', function () {
 		});
 	});
 		
-	describe('OLSKMasterListToolbarCloseButton', function test_OLSKMasterListToolbarCloseButton () {
+	describe('KOMBrowseListToolbarCloseButton', function test_KOMBrowseListToolbarCloseButton () {
 		
 		it('classes OLSKLayoutButtonNoStyle', function () {
-			browser.assert.hasClass(OLSKMasterListToolbarCloseButton, 'OLSKLayoutButtonNoStyle');
+			browser.assert.hasClass(KOMBrowseListToolbarCloseButton, 'OLSKLayoutButtonNoStyle');
 		});
 
 		it('classes OLSKLayoutElementTappable', function () {
-			browser.assert.hasClass(OLSKMasterListToolbarCloseButton, 'OLSKLayoutElementTappable');
+			browser.assert.hasClass(KOMBrowseListToolbarCloseButton, 'OLSKLayoutElementTappable');
 		});
 
 		it('classes OLSKToolbarButton', function () {
-			browser.assert.hasClass(OLSKMasterListToolbarCloseButton, 'OLSKToolbarButton');
+			browser.assert.hasClass(KOMBrowseListToolbarCloseButton, 'OLSKToolbarButton');
 		});
 
 		context('click', function () {
@@ -41,7 +41,7 @@ describe('KOMBrowseList_Misc', function () {
 			});
 			
 			before(function () {
-				return browser.pressButton(OLSKMasterListToolbarCloseButton);
+				return browser.pressButton(KOMBrowseListToolbarCloseButton);
 			});
 
 			it('sends KOMBrowseListDispatchClose', function () {
