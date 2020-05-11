@@ -4,7 +4,7 @@ const KOMPlayLogic = require('./ui-logic.js').default;
 
 const kTesting = {
 	uSpacings () {
-		return Array.from(new Array(3)).map(function (e, i) {
+		return Array.from(new Array(2)).map(function (e, i) {
 			return {
 				KOMSpacingID: (i + 1).toString() + '-' + (i >= 2 ? 'backward' : 'forward'),
 				KOMSpacingDueDate: i === 1 ? new Date() : undefined,
@@ -183,26 +183,6 @@ describe('KOMPlay_Access', function () {
 
 		it('hides KOMPlayResponseButtonEasy', function () {
 			browser.assert.elements(KOMPlayResponseButtonEasy, 0);
-		});
-	
-	});
-
-	context('backward', function () {
-
-		before(function () {
-			return browser.pressButton(KOMPlayFlipButton);
-		});
-		
-		before(function () {
-			return browser.pressButton(KOMPlayResponseButtonEasy);
-		});
-
-		it('hides KOMPlayCardQuestion', function () {
-			browser.assert.elements(KOMPlayCardQuestion, 0);
-		});
-		
-		it('shows KOMPlayCardAnswer', function () {
-			browser.assert.elements(KOMPlayCardAnswer, 1);
 		});
 	
 	});
