@@ -8,6 +8,11 @@ const kTesting = {
 			KOMSpacingID: 'bravo-forward',
 		};
 	},
+	StubReviewObjectValid() {
+		return {
+			KOMReviewScheme: mainModule.KOMReviewSchemeMixed(),
+		};
+	},
 };
 
 describe('KOMReviewSpacingsToday', function test_KOMReviewSpacingsToday() {
@@ -91,6 +96,90 @@ describe('KOMReviewSchemes', function test_KOMReviewSchemes() {
 			mainModule.KOMReviewSchemeUnseen(),
 			mainModule.KOMReviewSchemeMixed(),
 			]);
+	});
+
+});
+
+describe('KOMReviewModelErrorsFor', function test_KOMReviewModelErrorsFor() {
+
+	it('throws error if not object', function() {
+		throws(function() {
+			mainModule.KOMReviewModelErrorsFor(null);
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns object if KOMReviewScheme not valid', function() {
+		deepEqual(mainModule.KOMReviewModelErrorsFor(Object.assign(kTesting.StubReviewObjectValid(), {
+			KOMReviewScheme: 'alfa',
+		})), {
+			KOMReviewScheme: [
+				'KOMErrorNotValid',
+			],
+		});
+	});
+
+	it('returns null', function() {
+		deepEqual(mainModule.KOMReviewModelErrorsFor(kTesting.StubReviewObjectValid()), null);
+	});
+
+	context('KOMReviewMaxUnseenCards', function() {
+
+		it('returns object if not number', function() {
+			deepEqual(mainModule.KOMReviewModelErrorsFor(Object.assign(kTesting.StubReviewObjectValid(), {
+				KOMReviewMaxUnseenCards: '1',
+			})), {
+				KOMReviewMaxUnseenCards: [
+					'KOMErrorNotNumber',
+				],
+			});
+		});
+
+		it('returns object if 0', function() {
+			deepEqual(mainModule.KOMReviewModelErrorsFor(Object.assign(kTesting.StubReviewObjectValid(), {
+				KOMReviewMaxUnseenCards: 0,
+			})), {
+				KOMReviewMaxUnseenCards: [
+					'KOMErrorNotPositive',
+				],
+			});
+		});
+
+		it('returns object if negative', function() {
+			deepEqual(mainModule.KOMReviewModelErrorsFor(Object.assign(kTesting.StubReviewObjectValid(), {
+				KOMReviewMaxUnseenCards: -1,
+			})), {
+				KOMReviewMaxUnseenCards: [
+					'KOMErrorNotPositive',
+				],
+			});
+		});
+
+		it('returns null', function() {
+			deepEqual(mainModule.KOMReviewModelErrorsFor(Object.assign(kTesting.StubReviewObjectValid(), {
+				KOMReviewMaxUnseenCards: 1,
+			})), null);
+		});
+
+	});
+
+	context('KOMReviewIsBidirectional', function() {
+
+		it('returns object if not boolean', function() {
+			deepEqual(mainModule.KOMReviewModelErrorsFor(Object.assign(kTesting.StubReviewObjectValid(), {
+				KOMReviewIsBidirectional: 'true',
+			})), {
+				KOMReviewIsBidirectional: [
+					'KOMErrorNotBoolean',
+				],
+			});
+		});
+
+		it('returns null', function() {
+			deepEqual(mainModule.KOMReviewModelErrorsFor(Object.assign(kTesting.StubReviewObjectValid(), {
+				KOMReviewIsBidirectional: true,
+			})), null);
+		});
+
 	});
 
 });
