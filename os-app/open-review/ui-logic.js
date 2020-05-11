@@ -94,6 +94,10 @@ const mod = {
 				return false;
 			}
 
+			if (param2.KOMReviewScheme !== mod.KOMReviewSchemeReviewing() && !KOMSpacingModel.KOMSpacingModelIsUnseen(e)) {
+				return false;
+			}
+
 			if (param2.KOMReviewIsForwardOnly && KOMSpacingModel.KOMSpacingModelIsBackward(e) ) {
 				return false;
 			}
