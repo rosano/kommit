@@ -91,6 +91,14 @@ describe('KOMPlay_Misc', function () {
 	
 	});
 
+	describe('KOMPlayCard', function test_KOMPlayCard () {
+
+		it('classes OLSKLayoutElementTappable', function () {
+			browser.assert.hasClass(KOMPlayCard, 'OLSKLayoutElementTappable');
+		});
+
+	});
+
 	describe('KOMPlayCardQuestion', function test_KOMPlayCardQuestion () {
 
 		it('sets text', function () {

@@ -126,7 +126,7 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 <div class="KOMPlayBody">
 
 {#if mod._ValueState.KOMPlayStateCurrent }
-	<div class="KOMPlayCard" on:click={ mod.InterfaceCardDidClick }>
+	<div class="KOMPlayCard OLSKLayoutElementTappable" on:click={ mod.InterfaceCardDidClick }>
 
 		<div class="KOMPlayCardQuestion">{ mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard[KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent) ? 'KOMCardAnswer' : 'KOMCardQuestion'] }</div>
 
