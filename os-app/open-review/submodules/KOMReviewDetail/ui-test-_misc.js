@@ -226,7 +226,7 @@ describe('KOMReviewDetail_Misc', function () {
 			});
 
 			it('sends KOMReviewDetailDispatchPlay', function () {
-				browser.assert.text('#TestKOMReviewDetailDispatchPlay', '3');
+				browser.assert.text('#TestKOMReviewDetailDispatchPlay', '2');
 				browser.assert.text('#TestKOMReviewDetailDispatchPlayData', KOMReviewLogic.KOMReviewSchemeUnseen());
 			});
 		
@@ -243,7 +243,7 @@ describe('KOMReviewDetail_Misc', function () {
 			});
 
 			it('sends KOMReviewDetailDispatchPlay', function () {
-				browser.assert.text('#TestKOMReviewDetailDispatchPlay', '2');
+				browser.assert.text('#TestKOMReviewDetailDispatchPlay', '3');
 				browser.assert.text('#TestKOMReviewDetailDispatchPlayData', KOMReviewLogic.KOMReviewSchemeMixed());
 			});
 		
