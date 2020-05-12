@@ -35,6 +35,14 @@ const mod = {
 			];
 		}
 
+		if (inputData.KOMDeckIsForwardOnly !== undefined) {
+			if (typeof inputData.KOMDeckIsForwardOnly !== 'boolean') {
+				errors.KOMDeckIsForwardOnly = [
+					'KOMErrorNotBoolean',
+				];
+			}
+		}
+
 		if (inputData.$KOMDeckCards !== undefined) {
 			if (!Array.isArray(inputData.$KOMDeckCards)) {
 				errors.$KOMDeckCards = [

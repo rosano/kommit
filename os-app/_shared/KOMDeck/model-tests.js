@@ -75,6 +75,26 @@ describe('KOMDeckModelErrorsFor', function test_KOMDeckModelErrorsFor() {
 		deepEqual(mainModule.KOMDeckModelErrorsFor(kTesting.StubDeckObjectValid()), null);
 	});
 
+	context('KOMDeckIsForwardOnly', function() {
+
+		it('returns object if not boolean', function() {
+			deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
+				KOMDeckIsForwardOnly: null,
+			})), {
+				KOMDeckIsForwardOnly: [
+					'KOMErrorNotBoolean',
+				],
+			});
+		});
+
+		it('returns null', function() {
+			deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
+				KOMDeckIsForwardOnly: true,
+			})), null);
+		});
+
+	});
+
 	context('$KOMDeckCards', function() {
 
 		it('returns object if not array', function() {
