@@ -28,28 +28,3 @@ describe('KOMBrowseListItemAccessibilitySummary', function test_KOMBrowseListIte
 	});
 
 });
-
-describe('KOMBrowseListItemQuestion', function test_KOMBrowseListItemQuestion() {
-
-	const item = {
-		KOMCardID: 'alfa',
-		KOMCardQuestion: 'bravo',
-	};
-
-	it('throws if not object', function () {
-		throws(function () {
-			mainModule.KOMBrowseListItemQuestion(null);
-		}, /KOMErrorInputNotValid/);
-	});
-	
-	it('returns KOMCardQuestion', function() {
-		deepEqual(mainModule.KOMBrowseListItemQuestion(item), 'bravo');
-	});
-	
-	it('returns KOMCardID if no KOMCardQuestion', function() {
-		deepEqual(mainModule.KOMBrowseListItemQuestion(Object.assign(item, {
-			KOMCardQuestion: undefined,
-		})), 'alfa');
-	});
-
-});
