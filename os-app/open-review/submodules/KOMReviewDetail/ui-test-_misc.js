@@ -232,6 +232,10 @@ describe('KOMReviewDetail_Misc', function () {
 			});
 		
 		});
+
+		after(function () {
+			return browser.uncheck(KOMReviewDetailIsForwardOnlyField);
+		});
 	
 	});
 
@@ -292,6 +296,30 @@ describe('KOMReviewDetail_Misc', function () {
 				browser.assert.text('#TestKOMReviewDetailDispatchPlayData', JSON.stringify({
 					KOMReviewScheme: KOMReviewLogic.KOMReviewSchemeMixed(),
 					KOMReviewMaxUnseenCards: 10,
+				}));
+			});
+		
+		});
+
+	});
+
+	describe('KOMReviewDetailForm', function test_KOMReviewDetailForm () {
+
+		context('KOMReviewDetailIsForwardOnlyField', function () {
+			
+			before(function () {
+				return browser.check(KOMReviewDetailIsForwardOnlyField);
+			});
+
+			before(function () {
+				return browser.pressButton(KOMReviewDetailPlayButtonReviewing);
+			});
+
+			it('sets KOMReviewIsForwardOnly', function () {
+				browser.assert.text('#TestKOMReviewDetailDispatchPlay', '4');
+				browser.assert.text('#TestKOMReviewDetailDispatchPlayData', JSON.stringify({
+					KOMReviewScheme: KOMReviewLogic.KOMReviewSchemeReviewing(),
+					KOMReviewIsForwardOnly: true,
 				}));
 			});
 		

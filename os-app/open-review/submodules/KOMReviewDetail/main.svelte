@@ -65,11 +65,19 @@ const mod = {
 	},
 
 	ContolPlay (inputData) {
-		KOMReviewDetailDispatchPlay(Object.assign({
+		const outputData = {
 			KOMReviewScheme: inputData,
-		}, inputData !== KOMReviewLogic.KOMReviewSchemeReviewing() ? {
-			KOMReviewMaxUnseenCards: kMaxUnseenCards,
-		} : {}));
+		};
+
+		if (inputData !== KOMReviewLogic.KOMReviewSchemeReviewing()) {
+			outputData.KOMReviewMaxUnseenCards = kMaxUnseenCards;
+		}
+
+		if (KOMReviewDetailDeck.KOMDeckIsForwardOnly) {
+			outputData.KOMReviewIsForwardOnly = true;
+		}
+		
+		KOMReviewDetailDispatchPlay(outputData);
 	},
 
 };
@@ -109,12 +117,14 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 {/if}
 
 {#if KOMReviewDetailDeck.$KOMDeckSpacings.length && mod._ValueSpacingsToday.length}
-	<p>
-		<label>
-			<input class="KOMReviewDetailIsForwardOnlyField" type="checkbox" bind:checked={ KOMReviewDetailDeck.KOMDeckIsForwardOnly } on:input={ () => window.setTimeout(() => KOMReviewDetailDispatchUpdate(KOMReviewDetailDeck)) } />
-			<span class="KOMReviewDetailIsForwardOnlyFieldLabel">{ OLSKLocalized('KOMReviewDetailIsForwardOnlyFieldLabelText') }</span>
-		</label>
-	</p>
+	<div class="KOMReviewDetailForm">
+		<p>
+			<label>
+				<input class="KOMReviewDetailIsForwardOnlyField" type="checkbox" bind:checked={ KOMReviewDetailDeck.KOMDeckIsForwardOnly } on:input={ () => window.setTimeout(() => KOMReviewDetailDispatchUpdate(KOMReviewDetailDeck)) } />
+				<span class="KOMReviewDetailIsForwardOnlyFieldLabel">{ OLSKLocalized('KOMReviewDetailIsForwardOnlyFieldLabelText') }</span>
+			</label>
+		</p>
+	</div>
 
 	{#if mod._ValueSpacingsReviewing.length }
 		<button class="KOMReviewDetailPlayButtonReviewing" on:click={ mod.InterfaceReviewingButtonDidClick }>{ OLSKLocalized('KOMReviewDetailPlayButtonReviewingText') }</button>
