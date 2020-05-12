@@ -99,6 +99,10 @@ const mod = {
 
 		const handlerFunctions = {
 			Escape () {
+				if (document.activeElement === document.querySelector('.OLSKMasterListFilterField') && !mod._ValueFilterText) {
+					return KOMBrowseListDispatchClose();
+				}
+
 				mod.ControlFilter('');
 
 				if (!OLSK_TESTING_BEHAVIOUR()) {
