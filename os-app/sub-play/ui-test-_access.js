@@ -41,8 +41,6 @@ Object.entries({
 	KOMPlayResponseButtonHard: '.KOMPlayResponseButtonHard',
 	KOMPlayResponseButtonGood: '.KOMPlayResponseButtonGood',
 	KOMPlayResponseButtonEasy: '.KOMPlayResponseButtonEasy',
-
-	KOMPlayConclusion: '.KOMPlayConclusion',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
@@ -109,10 +107,6 @@ describe('KOMPlay_Access', function () {
 
 	it('hides KOMPlayResponseButtonEasy', function () {
 		browser.assert.elements(KOMPlayResponseButtonEasy, 0);
-	});
-
-	it('hides KOMPlayConclusion', function () {
-		browser.assert.elements(KOMPlayConclusion, 0);
 	});
 
 	context('flip', function () {
@@ -183,26 +177,6 @@ describe('KOMPlay_Access', function () {
 
 		it('hides KOMPlayResponseButtonEasy', function () {
 			browser.assert.elements(KOMPlayResponseButtonEasy, 0);
-		});
-	
-	});
-
-	context('KOMPlayConclusion', function () {
-
-		before(function () {
-			return browser.pressButton(KOMPlayFlipButton);
-		});
-		
-		before(function () {
-			return browser.pressButton(KOMPlayResponseButtonEasy);
-		});
-
-		it('hides KOMPlayCard', function () {
-			browser.assert.elements(KOMPlayCard, 0);
-		});
-		
-		it('shows KOMPlayConclusion', function () {
-			browser.assert.elements(KOMPlayConclusion, 1);
 		});
 	
 	});

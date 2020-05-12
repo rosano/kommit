@@ -72,18 +72,6 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 
 		});
 
-		context('KOMPlayConclusion', function () {
-
-			before(function () {
-				return browser.click(KOMPlayResponseButtonEasy);
-			});
-
-			it('localizes KOMPlayConclusion', function () {
-				browser.assert.text(KOMPlayConclusion, uLocalized('KOMPlayConclusionText'));
-			});
-		
-		});
-
 	});
 
 });

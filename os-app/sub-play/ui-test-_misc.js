@@ -631,4 +631,64 @@ describe('KOMPlay_Misc', function () {
 
 	});
 
+	describe('conclusion', function test_conclusion () {
+
+		before(function () {
+			return browser.click(KOMPlayCard);
+		});
+
+		before(function () {
+			return browser.pressButton(KOMPlayResponseButtonEasy);
+		});
+
+		before(function () {
+			return browser.click(KOMPlayCard);
+		});
+
+		before(function () {
+			return browser.pressButton(KOMPlayResponseButtonEasy);
+		});
+
+		before(function () {
+			return browser.click(KOMPlayCard);
+		});
+
+		before(function () {
+			return browser.pressButton(KOMPlayResponseButtonEasy);
+		});
+
+		before(function () {
+			return browser.click(KOMPlayCard);
+		});
+
+		before(function () {
+			return browser.pressButton(KOMPlayResponseButtonEasy);
+		});
+
+		before(function () {
+			return browser.click(KOMPlayCard);
+		});
+
+		before(function () {
+			return browser.pressButton(KOMPlayResponseButtonEasy);
+		});
+
+		before(function () {
+			return browser.click(KOMPlayCard);
+		});
+
+		before(function () {
+			browser.assert.text('#TestKOMPlayDispatchDone', '1');
+		});
+
+		before(function () {
+			return browser.pressButton(KOMPlayResponseButtonEasy);
+		});
+		
+		it('sends KOMPlayDispatchDone', function () {
+			browser.assert.text('#TestKOMPlayDispatchDone', '2');
+		});
+
+	});
+
 });

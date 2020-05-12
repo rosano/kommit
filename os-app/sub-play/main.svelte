@@ -94,11 +94,15 @@ const mod = {
 			KOMPlayResponseDate: new Date(),
 		});
 
+		KOMPlayDispatchRespond(item);
+
+		if (!mod._ValueState.KOMPlayStateCurrent) {
+			return KOMPlayDispatchDone();
+		}
+
 		mod._ValueState = mod._ValueState; // #purge-svelte-force-update
 
 		mod._ValueIsFlipped = false;
-
-		KOMPlayDispatchRespond(item);
 	},
 
 };
@@ -160,10 +164,6 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 		<div id="TestKOMPlayStateQueueCount">{ mod._ValueState.KOMPlayStateQueue.length }</div>
 		<div id="TestKOMPlayStateWaitCount">{ mod._ValueState.KOMPlayStateWait.length }</div>
 	{/if}	
-{/if}
-
-{#if !mod._ValueState.KOMPlayStateCurrent}
-	<div class="KOMPlayConclusion">{ OLSKLocalized('KOMPlayConclusionText') }</div>
 {/if}
 
 </div>
