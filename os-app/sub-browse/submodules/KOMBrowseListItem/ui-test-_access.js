@@ -4,6 +4,7 @@ Object.entries({
 	KOMBrowseListItem: '.KOMBrowseListItem',
 	
 	KOMBrowseListItemQuestion: '.KOMBrowseListItemQuestion',
+	KOMBrowseListItemAnswer: '.KOMBrowseListItemAnswer',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
@@ -12,7 +13,10 @@ describe('KOMBrowseListItem_Access', function () {
 
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute, {
-			KOMBrowseListItemQuestion: 'bravo',
+			KOMBrowseListItemObject: JSON.stringify({
+				KOMCardQuestion: 'alfa',
+				KOMCardAnswer: 'bravo',
+			}),
 		});
 	});
 
@@ -22,6 +26,10 @@ describe('KOMBrowseListItem_Access', function () {
 
 	it('shows KOMBrowseListItemQuestion', function () {
 		browser.assert.elements(KOMBrowseListItemQuestion, 1);
+	});
+
+	it('shows KOMBrowseListItemAnswer', function () {
+		browser.assert.elements(KOMBrowseListItemAnswer, 1);
 	});
 
 });

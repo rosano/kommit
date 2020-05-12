@@ -4,7 +4,10 @@ describe('KOMBrowseListItem_Misc', function () {
 
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute, {
-			KOMBrowseListItemQuestion: 'bravo',
+			KOMBrowseListItemObject: JSON.stringify({
+				KOMCardQuestion: 'alfa',
+				KOMCardAnswer: 'bravo',
+			}),
 		});
 	});
 
@@ -14,8 +17,20 @@ describe('KOMBrowseListItem_Misc', function () {
 			browser.assert.attribute(KOMBrowseListItemQuestion, 'aria-hidden', 'true');
 		});
 
-		it('binds KOMBrowseListItemQuestion', function () {
-			browser.assert.text(KOMBrowseListItemQuestion, 'bravo');
+		it('binds KOMCardQuestion', function () {
+			browser.assert.text(KOMBrowseListItemQuestion, 'alfa');
+		});
+	
+	});
+
+	describe('KOMBrowseListItemAnswer', function test_KOMBrowseListItemAnswer () {
+		
+		it('sets aria-hidden', function () {
+			browser.assert.attribute(KOMBrowseListItemAnswer, 'aria-hidden', 'true');
+		});
+
+		it('binds KOMCardAnswer', function () {
+			browser.assert.text(KOMBrowseListItemAnswer, 'bravo');
 		});
 	
 	});

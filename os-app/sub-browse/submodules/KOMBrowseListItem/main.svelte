@@ -1,5 +1,5 @@
 <script>
-export let KOMBrowseListItemQuestion;
+export let KOMBrowseListItemObject;
 
 import OLSKInternational from 'OLSKInternational';
 const OLSKLocalized = function(translationConstant) {
@@ -9,7 +9,8 @@ const OLSKLocalized = function(translationConstant) {
 
 <div class="KOMBrowseListItem">
 
-<strong class="KOMBrowseListItemQuestion" aria-hidden="true">{ KOMBrowseListItemQuestion }</strong>
+<strong class="KOMBrowseListItemQuestion" aria-hidden="true">{ KOMBrowseListItemObject.KOMCardQuestion }</strong><br>
+<span class="KOMBrowseListItemAnswer" aria-hidden="true">{ KOMBrowseListItemObject.KOMCardAnswer }</span>
 
 </div>
 
