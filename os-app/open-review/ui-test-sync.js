@@ -26,6 +26,38 @@ describe('KOMReview_Sync', function () {
 
 	});
 
+	describe('OLSKChangeDelegateCreateCard', function test_OLSKChangeDelegateCreateCard () {
+
+		before(function () {
+			return browser.pressButton('.OLSKAppToolbarLauncherButton');
+		});
+
+		before(function () {
+			return browser.fill('.LCHLauncherFilterInput', 'FakeOLSKChangeDelegateCreateCard');
+		});
+
+		before(function () {
+			browser.assert.text('#TestCallReactCounts', '0');
+		});
+
+		before(function () {
+			browser.assert.text('#TestCardCount', '0');
+		});
+
+		before(function() {
+			return browser.click('.LCHLauncherResultListItem');
+		});
+
+		it('adds card', function () {
+			browser.assert.text('#TestCardCount', '1');
+		});
+
+		it('calls UpdateCountThrottle', function () {
+			browser.assert.text('#TestCallReactCounts', '1');
+		});
+
+	});
+
 	describe('OLSKChangeDelegateUpdateDeck', function test_OLSKChangeDelegateUpdateDeck () {
 
 		before(function () {

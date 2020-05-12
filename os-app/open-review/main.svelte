@@ -16,6 +16,7 @@ import KOMDeckAction from '../_shared/KOMDeck/action.js';
 import KOMCardAction from '../_shared/KOMCard/action.js';
 import KOMSpacingMetal from '../_shared/KOMSpacing/metal.js';
 import KOMReviewLogic from './ui-logic.js';
+import OLSKThrottle from 'OLSKThrottle';
 
 const mod = {
 
@@ -83,13 +84,13 @@ const mod = {
 			LCHOptionRecipes: [
 				{
 					LCHRecipeName: 'FakeOLSKChangeDelegateCreateDeck',
-					async LCHRecipeCallback () {
+					LCHRecipeCallback: async function FakeOLSKChangeDelegateCreateDeck () {
 						return mod.OLSKChangeDelegateCreateDeck(await KOMDeckAction.KOMDeckActionCreate(mod._ValueStorageClient, mod.DataDeckTemplate('FakeOLSKChangeDelegateCreateDeck')));
 					},
 				},
 				{
 					LCHRecipeName: 'FakeOLSKChangeDelegateUpdateDeck',
-					async LCHRecipeCallback () {
+					LCHRecipeCallback: async function FakeOLSKChangeDelegateUpdateDeck () {
 						return mod.OLSKChangeDelegateUpdateDeck(Object.assign(mod._ValueDecksAll.filter(function (e) {
 							return e.KOMDeckName === 'FakeOLSKChangeDelegateCreateDeck';
 						}).pop(), {
@@ -99,12 +100,20 @@ const mod = {
 				},
 				{
 					LCHRecipeName: 'FakeOLSKChangeDelegateDeleteDeck',
-					async LCHRecipeCallback () {
+					LCHRecipeCallback: async function FakeOLSKChangeDelegateDeleteDeck () {
 						return mod.OLSKChangeDelegateDeleteDeck(mod._ValueDecksAll.filter(function (e) {
 							return e.KOMDeckName.match('FakeOLSKChangeDelegate');
 						}).pop());
 					},
 				},
+				{
+					LCHRecipeName: 'FakeOLSKChangeDelegateCreateCard',
+					LCHRecipeCallback: async function FakeOLSKChangeDelegateCreateCard () {
+						const deck = mod._ValueDecksAll[0];
+						return mod.OLSKChangeDelegateCreateCard(await KOMCardAction.KOMCardActionCreate(mod._ValueStorageClient, mod.DataCardTemplate(deck), deck), deck);
+					},
+				},
+				
 			],
 		});
 	},
@@ -135,6 +144,12 @@ const mod = {
 		}));
 	},
 
+	OLSKChangeDelegateCreateCard (param1, param2) {
+		param2.$KOMDeckCards.push(param1);
+
+		mod.ReactCounts(param2);
+	},
+
 	// VALUE
 
 	_ValueIsLoading: true,
@@ -157,6 +172,8 @@ const mod = {
 	_ValueStorageWidgetHidden: true,
 
 	_ValueFooterStorageStatus: '',
+
+	_ValueCountThrottleMap: {},
 	
 	// DATA
 
@@ -165,6 +182,15 @@ const mod = {
 			KOMDeckName: inputData,
 			$KOMDeckCards: [],
 			$KOMDeckSpacings: [],
+		};
+	},
+
+	DataCardTemplate (inputData) {
+		return {
+			KOMCardQuestion: '',
+			KOMCardAnswer: '',
+			KOMCardHint: '',
+			$KOMCardDeck: inputData,
 		};
 	},
 
@@ -194,6 +220,22 @@ const mod = {
 
 	ControlSpacingSave(inputData) {
 		KOMSpacingMetal.KOMSpacingMetalWrite(mod._ValueStorageClient, inputData, inputData.$KOMSpacingCard, mod._ValueDeckSelected);
+	},
+
+	// REACT
+
+	ReactCounts (inputData) {
+		if (true || OLSK_TESTING_BEHAVIOUR()) {
+			window.TestCardCount.innerHTML = inputData.$KOMDeckCards.length;
+			window.TestCallReactCounts.innerHTML = parseInt(window.TestCallReactCounts.innerHTML) + 1;
+		}
+
+		OLSKThrottle.OLSKThrottleMappedTimeout(mod._ValueCountThrottleMap, 'inputData.KOMDeckID', {
+			OLSKThrottleDuration: 500,
+			OLSKThrottleCallback () {
+				mod._ValueDecksAll = mod._ValueDecksAll; // #purge-svelte-force-update
+			},
+		});
 	},
 
 	// SETUP
@@ -383,6 +425,18 @@ import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svel
 			/>
 	{/if}
 </OLSKViewportContent>
+
+{#if true || OLSK_TESTING_BEHAVIOUR()}
+	<p>
+		<strong>TestCardCount</strong>
+		<span id="TestCardCount">0</span>
+	</p>
+
+	<p>
+		<strong>TestCallReactCounts</strong>
+		<span id="TestCallReactCounts">0</span>
+	</p>
+{/if}
 
 {#if !mod._ValuePlayVisible}
 	<footer class="KOMReviewViewportFooter OLSKMobileViewFooter">
