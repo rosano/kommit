@@ -1,5 +1,3 @@
-import { deepEqual } from 'assert';
-
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 const kTesting = {
@@ -279,7 +277,7 @@ describe('KOMBrowse_Misc', function () {
 		});
 		
 		it('focuses OLSKMasterListFilterField', function() {
-			deepEqual(browser.activeElement, browser.query('.OLSKMasterListFilterField'));
+			browser.assert.hasFocus('.OLSKMasterListFilterField')
 		});
 		
 		it.skip('clears KOMBrowseListFilterText', function() {
