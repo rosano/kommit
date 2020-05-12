@@ -7,11 +7,26 @@ const uFlatten = function (inputData) {
 const item = {
 	KOMDeckID: 'alfa',
 	KOMDeckName: 'bravo',
-	$KOMDeckSpacings: uFlatten(Array.from(new Array(3)).map(function (e, i) {
+	KOMDeckIsForwardOnly: true,
+	$KOMDeckSpacings: uFlatten(Array.from(new Array(4)).map(function (e, i) {
 		return [true, false].map(function (forward) {
 			return {
 				KOMSpacingID: (i + 1).toString() + '-' + (forward ? 'forward' : 'backward'),
-				KOMSpacingDueDate: !i ? new Date() : (i >= 2 ? new Date(Date.now() + 1000 * 60 * 60 * 24 * 3) : undefined),
+				KOMSpacingDueDate: (function() {
+					if (!i) {
+						return new Date();
+					}
+
+					if (i === 2) {
+						return new Date(Date.now() + 1000 * 60 * 60 * 24 * 3)
+					}
+
+					if (i === 3 && forward) {
+						return new Date(Date.now() + 1000 * 60 * 60 * 24 * 3)
+					}
+
+					return undefined;
+				})(),
 				$KOMSpacingCard: {
 					KOMCardID: (i + 1).toString(),
 					KOMCardQuestion: (i + 1).toString(),

@@ -9,7 +9,13 @@ const OLSKLocalized = function(translationConstant) {
 import KOMSpacingModel from '../../../_shared/KOMSpacing/model.js';
 import KOMReviewLogic from '../../ui-logic.js';
 
-const itemsToday = KOMReviewLogic.KOMReviewSpacingsToday(KOMReviewMasterListItemObject.$KOMDeckSpacings);
+const itemsToday = KOMReviewLogic.KOMReviewSpacingsToday(KOMReviewMasterListItemObject.$KOMDeckSpacings).filter(function (e) {
+	if (KOMReviewMasterListItemObject.KOMDeckIsForwardOnly && KOMSpacingModel.KOMSpacingModelIsBackward(e)) {
+		return false;
+	}
+
+	return true;
+});
 
 const mod = {
 

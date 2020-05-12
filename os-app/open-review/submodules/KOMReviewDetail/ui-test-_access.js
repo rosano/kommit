@@ -244,9 +244,12 @@ describe('KOMReviewDetail_Access', function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMReviewDetailDeck: JSON.stringify({
 					KOMDeckName: 'alfa',
-					$KOMDeckSpacings: kTesting.uSpacings().map(function (e) {
-						return Object.assign(e, {
+					KOMDeckIsForwardOnly: true,
+					$KOMDeckSpacings: kTesting.uSpacings().map(function (e, i) {
+						return Object.assign(e, i ? {
 							KOMSpacingDueDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3),
+						} : {
+							KOMSpacingID: e.KOMSpacingID.replace('forward', 'backward'),
 						});
 					}),
 				}),

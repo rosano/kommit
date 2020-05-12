@@ -16,7 +16,13 @@ import KOMReviewLogic from '../../ui-logic.js';
 
 const kMaxUnseenCards = 10;
 
-const itemsToday = KOMReviewLogic.KOMReviewSpacingsToday(KOMReviewDetailDeck.$KOMDeckSpacings);
+const itemsToday = KOMReviewLogic.KOMReviewSpacingsToday(KOMReviewDetailDeck.$KOMDeckSpacings).filter(function (e) {
+	if (KOMReviewDetailDeck.KOMDeckIsForwardOnly && KOMSpacingModel.KOMSpacingModelIsBackward(e)) {
+		return false;
+	}
+
+	return true;
+});
 
 const mod = {
 
