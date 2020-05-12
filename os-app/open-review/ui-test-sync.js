@@ -44,6 +44,10 @@ describe('KOMReview_Sync', function () {
 			browser.assert.text('#TestCardCount', '0');
 		});
 
+		before(function () {
+			browser.assert.text('#TestSpacingCount', '0');
+		});
+
 		before(function() {
 			return browser.click('.LCHLauncherResultListItem');
 		});
@@ -52,8 +56,44 @@ describe('KOMReview_Sync', function () {
 			browser.assert.text('#TestCardCount', '1');
 		});
 
+		it('adds spacings', function () {
+			browser.assert.text('#TestSpacingCount', '2');
+		});
+
 		it('calls UpdateCountThrottle', function () {
 			browser.assert.text('#TestCallReactCounts', '1');
+		});
+
+	});
+
+	describe('OLSKChangeDelegateCreateSpacing', function test_OLSKChangeDelegateCreateSpacing () {
+
+		before(function () {
+			return browser.pressButton('.OLSKAppToolbarLauncherButton');
+		});
+
+		before(function () {
+			return browser.fill('.LCHLauncherFilterInput', 'FakeOLSKChangeDelegateCreateSpacing');
+		});
+
+		before(function () {
+			browser.assert.text('#TestCallReactCounts', '1');
+		});
+
+		before(function () {
+			browser.assert.text('.KOMReviewMasterListItemReviewValue', '0');
+		});
+
+		before(function() {
+			return browser.click('.LCHLauncherResultListItem');
+		});
+
+		it('updates spacing', function () {
+			browser.assert.text('.KOMReviewMasterListItemReviewValue', '1');
+		});
+
+		it('calls UpdateCountThrottle', function () {
+			browser.assert.text('#TestCallReactCounts', '2');
 		});
 
 	});

@@ -113,7 +113,14 @@ const mod = {
 						return mod.OLSKChangeDelegateCreateCard(await KOMCardAction.KOMCardActionCreate(mod._ValueStorageClient, mod.DataCardTemplate(deck), deck), deck);
 					},
 				},
-				
+				{
+					LCHRecipeName: 'FakeOLSKChangeDelegateCreateSpacing',
+					LCHRecipeCallback: async function FakeOLSKChangeDelegateCreateSpacing () {
+						const deck = mod._ValueDecksAll[0];
+						const card = deck.$KOMDeckCards[0];
+						return mod.OLSKChangeDelegateCreateSpacing(await KOMSpacingMetal.KOMSpacingMetalWrite(mod._ValueStorageClient, mod.DataSpacingTemplate(card), card, deck), card, deck);
+					},
+				},
 			],
 		});
 	},
@@ -144,10 +151,23 @@ const mod = {
 		}));
 	},
 
-	OLSKChangeDelegateCreateCard (param1, param2) {
+	async OLSKChangeDelegateCreateCard (param1, param2) {
 		param2.$KOMDeckCards.push(param1);
+		param2.$KOMDeckSpacings.push(...Object.values(await KOMSpacingMetal.KOMSpacingMetalList(mod._ValueStorageClient, param1, param2)).map(function (e) {
+			return Object.assign(e, {
+				$KOMSpacingCard: param1,
+			})
+		}));
 
 		mod.ReactCounts(param2);
+	},
+
+	OLSKChangeDelegateCreateSpacing (param1, param2, param3) {
+		Object.assign(param3.$KOMDeckSpacings.filter(function (e) {
+			return e.KOMSpacingID === param1.KOMSpacingID;
+		}).pop(), param1);
+
+		mod.ReactCounts(param3);
 	},
 
 	// VALUE
@@ -194,6 +214,15 @@ const mod = {
 		};
 	},
 
+	DataSpacingTemplate (inputData) {
+		return {
+			KOMSpacingID: `${ inputData.KOMCardID }-forward`,
+			KOMSpacingIsLearning: true,
+			KOMSpacingDueDate: new Date(),
+			$KOMSpacingCard: inputData,
+		};
+	},
+
 	// CONTROL
 
 	async ControlDeckCreate(inputData) {
@@ -227,6 +256,7 @@ const mod = {
 	ReactCounts (inputData) {
 		if (true || OLSK_TESTING_BEHAVIOUR()) {
 			window.TestCardCount.innerHTML = inputData.$KOMDeckCards.length;
+			window.TestSpacingCount.innerHTML = inputData.$KOMDeckSpacings.length;
 			window.TestCallReactCounts.innerHTML = parseInt(window.TestCallReactCounts.innerHTML) + 1;
 		}
 
@@ -430,6 +460,11 @@ import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svel
 	<p>
 		<strong>TestCardCount</strong>
 		<span id="TestCardCount">0</span>
+	</p>
+
+	<p>
+		<strong>TestSpacingCount</strong>
+		<span id="TestSpacingCount">0</span>
 	</p>
 
 	<p>
