@@ -30,24 +30,14 @@ describe('KOMReviewDetail_Misc', function () {
 		};
 	};
 
-	describe('KOMReviewDetail', function test_KOMReviewDetail () {
-
-		before(function() {
-			return browser.OLSKVisit(kDefaultRoute, {
-				KOMReviewDetailDeck: JSON.stringify(uItem()),
-			});
+	before(function() {
+		return browser.OLSKVisit(kDefaultRoute, {
+			KOMReviewDetailDeck: JSON.stringify(uItem()),
 		});
-
 	});
 
 	describe('OLSKToolbar', function test_OLSKToolbar () {
 
-		before(function() {
-			return browser.OLSKVisit(kDefaultRoute, {
-				KOMReviewDetailDeck: JSON.stringify(uItem()),
-			});
-		});
-		
 		it('classes OLSKToolbarJustify', function () {
 			browser.assert.hasClass('.OLSKToolbar', 'OLSKToolbarJustify');
 		});
@@ -178,24 +168,58 @@ describe('KOMReviewDetail_Misc', function () {
 	
 	});
 
-	describe('KOMReviewDetailPlayButtonReviewing', function test_KOMReviewDetailPlayButtonReviewing () {
+	describe('KOMReviewDetailIsForwardOnlyField', function test_KOMReviewDetailIsForwardOnlyField () {
+
+		const item = {
+			KOMDeckName: 'alfa',
+			$KOMDeckSpacings: kTesting.uSpacings().map(function (e, i) {
+				if (i) {
+					return e;
+				}
+
+				return Object.assign(e, {
+					KOMSpacingDueDate: new Date(),
+				});
+			}),
+		};
 
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute, {
-				KOMReviewDetailDeck: JSON.stringify({
-					KOMDeckName: 'alfa',
-					$KOMDeckSpacings: kTesting.uSpacings().map(function (e, i) {
-						if (i) {
-							return e;
-						}
-
-						return Object.assign(e, {
-							KOMSpacingDueDate: new Date(),
-						});
-					}),
-				}),
+				KOMReviewDetailDeck: JSON.stringify(item),
 			});
 		});
+
+		it('sets type', function () {
+			browser.assert.attribute(KOMReviewDetailIsForwardOnlyField, 'type', 'checkbox');
+		});
+		
+		it('binds KOMDeckIsForwardOnly', function () {
+			browser.assert.evaluate(`document.querySelector('${ KOMReviewDetailIsForwardOnlyField }').checked`, false);
+		});
+		
+		context('click', function () {
+			
+			before(function () {
+				browser.assert.text('#TestKOMReviewDetailDispatchUpdate', '0');
+				browser.assert.text('#TestKOMReviewDetailDispatchUpdateData', 'undefined');
+			});
+			
+			before(function () {
+				return browser.check(KOMReviewDetailIsForwardOnlyField);
+			});
+
+			it('sends KOMReviewDetailDispatchUpdate', function () {
+				browser.assert.text('#TestKOMReviewDetailDispatchUpdate', '1');
+				browser.assert.text('#TestKOMReviewDetailDispatchUpdateData', JSON.stringify(Object.assign(item, {
+					KOMDeckIsForwardOnly: true,
+				})));
+			});
+		
+		});
+	
+	});
+
+	describe('KOMReviewDetailPlayButtonReviewing', function test_KOMReviewDetailPlayButtonReviewing () {
 
 		context('click', function () {
 			

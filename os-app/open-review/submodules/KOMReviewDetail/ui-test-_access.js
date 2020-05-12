@@ -12,6 +12,8 @@ Object.entries({
 	
 	KOMReviewDetailStudyHeading: '.KOMReviewDetailStudyHeading',
 	KOMReviewDetailNoCards: '.KOMReviewDetailNoCards',
+	KOMReviewDetailIsForwardOnlyField: 'label .KOMReviewDetailIsForwardOnlyField',
+	KOMReviewDetailIsForwardOnlyFieldLabel: 'label .KOMReviewDetailIsForwardOnlyFieldLabel',
 	KOMReviewDetailPlayButtonReviewing: '.KOMReviewDetailPlayButtonReviewing',
 	KOMReviewDetailPlayButtonUnseen: '.KOMReviewDetailPlayButtonUnseen',
 	KOMReviewDetailPlayButtonMixed: '.KOMReviewDetailPlayButtonMixed',
@@ -89,6 +91,14 @@ describe('KOMReviewDetail_Access', function () {
 		browser.assert.elements(KOMReviewDetailNoCards, 1);
 	});
 
+	it('hides KOMReviewDetailIsForwardOnlyField', function () {
+		browser.assert.elements(KOMReviewDetailIsForwardOnlyField, 0);
+	});
+
+	it('hides KOMReviewDetailIsForwardOnlyFieldLabel', function () {
+		browser.assert.elements(KOMReviewDetailIsForwardOnlyFieldLabel, 0);
+	});
+
 	it('hides KOMReviewDetailPlayButtonReviewing', function () {
 		browser.assert.elements(KOMReviewDetailPlayButtonReviewing, 0);
 	});
@@ -124,6 +134,14 @@ describe('KOMReviewDetail_Access', function () {
 			browser.assert.elements(KOMReviewDetailNoCards, 0);
 		});
 
+		it('shows KOMReviewDetailIsForwardOnlyField', function () {
+			browser.assert.elements(KOMReviewDetailIsForwardOnlyField, 1);
+		});
+
+		it('shows KOMReviewDetailIsForwardOnlyFieldLabel', function () {
+			browser.assert.elements(KOMReviewDetailIsForwardOnlyFieldLabel, 1);
+		});
+
 		it('shows KOMReviewDetailPlayButtonReviewing', function () {
 			browser.assert.elements(KOMReviewDetailPlayButtonReviewing, 1);
 		});
@@ -151,6 +169,14 @@ describe('KOMReviewDetail_Access', function () {
 
 		it('hides KOMReviewDetailNoCards', function () {
 			browser.assert.elements(KOMReviewDetailNoCards, 0);
+		});
+
+		it('shows KOMReviewDetailIsForwardOnlyField', function () {
+			browser.assert.elements(KOMReviewDetailIsForwardOnlyField, 1);
+		});
+
+		it('shows KOMReviewDetailIsForwardOnlyFieldLabel', function () {
+			browser.assert.elements(KOMReviewDetailIsForwardOnlyFieldLabel, 1);
 		});
 
 		it('hides KOMReviewDetailPlayButtonReviewing', function () {
@@ -190,12 +216,24 @@ describe('KOMReviewDetail_Access', function () {
 			browser.assert.elements(KOMReviewDetailNoCards, 0);
 		});
 
+		it('shows KOMReviewDetailIsForwardOnlyField', function () {
+			browser.assert.elements(KOMReviewDetailIsForwardOnlyField, 1);
+		});
+
+		it('shows KOMReviewDetailIsForwardOnlyFieldLabel', function () {
+			browser.assert.elements(KOMReviewDetailIsForwardOnlyFieldLabel, 1);
+		});
+
 		it('shows KOMReviewDetailPlayButtonReviewing', function () {
 			browser.assert.elements(KOMReviewDetailPlayButtonReviewing, 1);
 		});
 
 		it('shows KOMReviewDetailPlayButtonUnseen', function () {
 			browser.assert.elements(KOMReviewDetailPlayButtonUnseen, 1);
+		});
+
+		it('shows KOMReviewDetailPlayButtonMixed', function () {
+			browser.assert.elements(KOMReviewDetailPlayButtonMixed, 1);
 		});
 
 	});
@@ -221,6 +259,14 @@ describe('KOMReviewDetail_Access', function () {
 
 		it('hides KOMReviewDetailPlayButtonReviewing', function () {
 			browser.assert.elements(KOMReviewDetailPlayButtonReviewing, 0);
+		});
+
+		it('hides KOMReviewDetailPlayButtonUnseen', function () {
+			browser.assert.elements(KOMReviewDetailPlayButtonUnseen, 0);
+		});
+
+		it('hides KOMReviewDetailPlayButtonMixed', function () {
+			browser.assert.elements(KOMReviewDetailPlayButtonMixed, 0);
 		});
 
 		it('shows KOMReviewDetailNoSpacings', function () {

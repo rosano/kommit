@@ -20,6 +20,10 @@ const KOMReviewDetail = new RollupStart({
 		KOMReviewDetailDispatchBrowse: (function _KOMReviewDetailDispatchBrowse () {
 			window.TestKOMReviewDetailDispatchBrowse.innerHTML = parseInt(window.TestKOMReviewDetailDispatchBrowse.innerHTML) + 1;
 		}),
+		KOMReviewDetailDispatchUpdate: (function _KOMReviewDetailDispatchUpdate (inputData) {
+			window.TestKOMReviewDetailDispatchUpdate.innerHTML = parseInt(window.TestKOMReviewDetailDispatchUpdate.innerHTML) + 1;
+			window.TestKOMReviewDetailDispatchUpdateData.innerHTML = JSON.stringify(inputData);
+		}),
 		KOMReviewDetailDispatchPlay: (function _KOMReviewDetailDispatchPlay (inputData) {
 			window.TestKOMReviewDetailDispatchPlay.innerHTML = parseInt(window.TestKOMReviewDetailDispatchPlay.innerHTML) + 1;
 			window.TestKOMReviewDetailDispatchPlayData.innerHTML = JSON.stringify(inputData);

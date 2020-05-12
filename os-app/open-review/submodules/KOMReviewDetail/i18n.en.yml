@@ -6,6 +6,7 @@ KOMReviewDetailToolbarRenameButtonPromptText: Name
 KOMReviewDetailToolbarCardsButtonText: Cards
 KOMReviewDetailStudyHeadingText: Study
 KOMReviewDetailNoCardsText: There are no cards in this deck.
+KOMReviewDetailIsForwardOnlyFieldLabelText: Front to back only
 KOMReviewDetailPlayButtonReviewingText: Review cards
 KOMReviewDetailPlayButtonUnseenText: New cards
 KOMReviewDetailPlayButtonMixedText: All cards

@@ -4,6 +4,7 @@ export let KOMReviewDetailDispatchBack;
 export let KOMReviewDetailDispatchDiscard;
 export let KOMReviewDetailDispatchRename;
 export let KOMReviewDetailDispatchBrowse;
+export let KOMReviewDetailDispatchUpdate;
 export let KOMReviewDetailDispatchPlay;
 
 import OLSKInternational from 'OLSKInternational';
@@ -103,6 +104,13 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 {/if}
 
 {#if KOMReviewDetailDeck.$KOMDeckSpacings.length && mod._ValueSpacingsToday.length}
+	<p>
+		<label>
+			<input class="KOMReviewDetailIsForwardOnlyField" type="checkbox" bind:checked={ KOMReviewDetailDeck.KOMDeckIsForwardOnly } on:input={ () => window.setTimeout(() => KOMReviewDetailDispatchUpdate(KOMReviewDetailDeck)) } />
+			<span class="KOMReviewDetailIsForwardOnlyFieldLabel">{ OLSKLocalized('KOMReviewDetailIsForwardOnlyFieldLabelText') }</span>
+		</label>
+	</p>
+
 	{#if mod._ValueSpacingsReviewing.length }
 		<button class="KOMReviewDetailPlayButtonReviewing" on:click={ mod.InterfaceReviewingButtonDidClick }>{ OLSKLocalized('KOMReviewDetailPlayButtonReviewingText') }</button>
 	{/if}
