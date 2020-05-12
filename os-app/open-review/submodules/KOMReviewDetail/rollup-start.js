@@ -13,10 +13,6 @@ const KOMReviewDetail = new RollupStart({
 			window.TestKOMReviewDetailDispatchDiscard.innerHTML = parseInt(window.TestKOMReviewDetailDispatchDiscard.innerHTML) + 1;
 			window.TestKOMReviewDetailDispatchDiscardData.innerHTML = JSON.stringify(inputData);
 		}),
-		KOMReviewDetailDispatchRename: (function _KOMReviewDetailDispatchRename (inputData) {
-			window.TestKOMReviewDetailDispatchRename.innerHTML = parseInt(window.TestKOMReviewDetailDispatchRename.innerHTML) + 1;
-			window.TestKOMReviewDetailDispatchRenameData.innerHTML = JSON.stringify(inputData);
-		}),
 		KOMReviewDetailDispatchBrowse: (function _KOMReviewDetailDispatchBrowse () {
 			window.TestKOMReviewDetailDispatchBrowse.innerHTML = parseInt(window.TestKOMReviewDetailDispatchBrowse.innerHTML) + 1;
 		}),

@@ -39,9 +39,7 @@ const mod = {
 		mod.ControlDeckDiscard(inputData);
 	},
 
-	KOMReviewDetailDispatchRename (inputData) {
-		mod._ValueDeckSelected.KOMDeckName = inputData;
-		
+	KOMReviewDetailDispatchUpdate (inputData) {
 		mod.ControlDeckSave(mod._ValueDeckSelected);
 	},
 
@@ -362,7 +360,7 @@ import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svel
 			KOMReviewDetailDeck={ mod._ValueDeckSelected }
 			KOMReviewDetailDispatchBack={ mod.KOMReviewDetailDispatchBack }
 			KOMReviewDetailDispatchDiscard={ mod.KOMReviewDetailDispatchDiscard }
-			KOMReviewDetailDispatchRename={ mod.KOMReviewDetailDispatchRename }
+			KOMReviewDetailDispatchUpdate={ mod.KOMReviewDetailDispatchUpdate }
 			KOMReviewDetailDispatchBrowse={ mod.KOMReviewDetailDispatchBrowse }
 			KOMReviewDetailDispatchPlay={ mod.KOMReviewDetailDispatchPlay }
 			/>

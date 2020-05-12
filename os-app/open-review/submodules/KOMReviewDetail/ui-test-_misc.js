@@ -126,22 +126,38 @@ describe('KOMReviewDetail_Misc', function () {
 		context('click', function () {
 			
 			before(function () {
-				browser.assert.text('#TestKOMReviewDetailDispatchRename', '0');
-				browser.assert.text('#TestKOMReviewDetailDispatchRenameData', 'undefined');
+				browser.assert.text('#TestKOMReviewDetailDispatchUpdate', '0');
+				browser.assert.text('#TestKOMReviewDetailDispatchUpdateData', 'undefined');
 			});
 			
 			it('sets KOMReviewDetailToolbarRenameButtonPrompt response', function() {
 				deepEqual(browser.OLSKPromptSync(function () {
 					return browser.pressButton(KOMReviewDetailToolbarRenameButton);
-				}).response, 'alfa');
+				}).response, uItem().KOMDeckName);
 			});
 
-			it('sends KOMReviewDetailDispatchRename', function () {
-				browser.assert.text('#TestKOMReviewDetailDispatchRename', '1');
-			});
+			context('edit', function () {
+				
+				before(function () {
+					return browser.OLSKPrompt(function () {
+						return browser.pressButton(KOMReviewDetailToolbarRenameButton);
+					}, function (dialog) {
+						dialog.response = 'bravo';
 
-			it('sends KOMReviewDetailDispatchRenameData', function () {
-				browser.assert.text('#TestKOMReviewDetailDispatchRenameData', JSON.stringify(uItem().KOMDeckName));
+						return dialog;
+					});
+				});
+
+				it('sends KOMReviewDetailDispatchUpdate', function () {
+					browser.assert.text('#TestKOMReviewDetailDispatchUpdate', '1');
+				});
+
+				it('sends KOMReviewDetailDispatchUpdateData', function () {
+					browser.assert.text('#TestKOMReviewDetailDispatchUpdateData', JSON.stringify(Object.assign(uItem(), {
+						KOMDeckName: 'bravo',
+					})));
+				});
+			
 			});
 		
 		});

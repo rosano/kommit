@@ -1,8 +1,8 @@
 <script>
 export let KOMBrowseInfoItem;
 export let KOMBrowseInfoDispatchBack;
-export let KOMBrowseInfoDispatchDiscard;
 export let KOMBrowseInfoDispatchUpdate;
+export let KOMBrowseInfoDispatchDiscard;
 export let OLSKMobileViewInactive = false;
 
 import OLSKInternational from 'OLSKInternational';

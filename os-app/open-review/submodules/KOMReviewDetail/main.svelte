@@ -2,7 +2,6 @@
 export let KOMReviewDetailDeck;
 export let KOMReviewDetailDispatchBack;
 export let KOMReviewDetailDispatchDiscard;
-export let KOMReviewDetailDispatchRename;
 export let KOMReviewDetailDispatchBrowse;
 export let KOMReviewDetailDispatchUpdate;
 export let KOMReviewDetailDispatchPlay;
@@ -56,7 +55,13 @@ const mod = {
 			return;
 		}
 
-		KOMReviewDetailDispatchRename(outputData);
+		if (outputData === KOMReviewDetailDeck.KOMDeckName) {
+			return;
+		}
+
+		KOMReviewDetailDispatchUpdate(Object.assign(KOMReviewDetailDeck, {
+			KOMDeckName: outputData,
+		}));
 	},
 
 	ContolPlay (inputData) {
