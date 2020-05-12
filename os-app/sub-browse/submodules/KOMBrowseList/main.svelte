@@ -51,7 +51,7 @@ import KOMBrowseListItem from '../KOMBrowseListItem/main.svelte';
 	</div>
 
 	<KOMBrowseListItem
-		KOMBrowseListItemTitle={ KOMBrowseListLogic.KOMBrowseListItemTitle(item) }
+		KOMBrowseListItemQuestion={ KOMBrowseListLogic.KOMBrowseListItemQuestion(item) }
 		/>
 
 	<div slot="OLSKMasterListToolbarTail">

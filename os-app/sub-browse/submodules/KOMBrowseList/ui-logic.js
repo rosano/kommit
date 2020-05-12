@@ -9,7 +9,7 @@ const mod = {
 			inputData.KOMCardQuestion || OLSKLocalized('KOMBrowseListItemUntitledText')].join('\n');
 	},
 
-	KOMBrowseListItemTitle (inputData) {
+	KOMBrowseListItemQuestion (inputData) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			throw new Error('KOMErrorInputNotValid');
 		}

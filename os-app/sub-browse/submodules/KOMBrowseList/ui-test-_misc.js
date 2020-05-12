@@ -151,7 +151,7 @@ describe('KOMBrowseList_Misc', function () {
 
 	describe('KOMBrowseListItem', function test_KOMBrowseListItem() {		
 
-		it('sets KOMBrowseListItemTitle', function () {
+		it('sets KOMBrowseListItemQuestion', function () {
 			browser.assert.text('.OLSKResultsListItem:nth-child(1) .OLSKMasterListItem', 'alfa');
 		});
 		

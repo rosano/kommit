@@ -1,5 +1,5 @@
 <script>
-export let KOMBrowseListItemTitle;
+export let KOMBrowseListItemQuestion;
 
 import OLSKInternational from 'OLSKInternational';
 const OLSKLocalized = function(translationConstant) {
@@ -9,7 +9,7 @@ const OLSKLocalized = function(translationConstant) {
 
 <div class="KOMBrowseListItem">
 
-<strong class="KOMBrowseListItemTitle" aria-hidden="true">{ KOMBrowseListItemTitle }</strong>
+<strong class="KOMBrowseListItemQuestion" aria-hidden="true">{ KOMBrowseListItemQuestion }</strong>
 
 </div>
 
@@ -29,7 +29,7 @@ const OLSKLocalized = function(translationConstant) {
 	hyphens: auto;
 }
 
-.KOMBrowseListItemTitle {
+.KOMBrowseListItemQuestion {
 	display: inline-block;
 }
 </style>

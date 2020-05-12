@@ -29,7 +29,7 @@ describe('KOMBrowseListItemAccessibilitySummary', function test_KOMBrowseListIte
 
 });
 
-describe('KOMBrowseListItemTitle', function test_KOMBrowseListItemTitle() {
+describe('KOMBrowseListItemQuestion', function test_KOMBrowseListItemQuestion() {
 
 	const item = {
 		KOMCardID: 'alfa',
@@ -38,16 +38,16 @@ describe('KOMBrowseListItemTitle', function test_KOMBrowseListItemTitle() {
 
 	it('throws if not object', function () {
 		throws(function () {
-			mainModule.KOMBrowseListItemTitle(null);
+			mainModule.KOMBrowseListItemQuestion(null);
 		}, /KOMErrorInputNotValid/);
 	});
 	
 	it('returns KOMCardQuestion', function() {
-		deepEqual(mainModule.KOMBrowseListItemTitle(item), 'bravo');
+		deepEqual(mainModule.KOMBrowseListItemQuestion(item), 'bravo');
 	});
 	
 	it('returns KOMCardID if no KOMCardQuestion', function() {
-		deepEqual(mainModule.KOMBrowseListItemTitle(Object.assign(item, {
+		deepEqual(mainModule.KOMBrowseListItemQuestion(Object.assign(item, {
 			KOMCardQuestion: undefined,
 		})), 'alfa');
 	});
