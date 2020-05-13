@@ -114,6 +114,13 @@ const mod = {
 					},
 				},
 				{
+					LCHRecipeName: 'FakeOLSKChangeDelegateUpdateCard',
+					LCHRecipeCallback: async function FakeOLSKChangeDelegateUpdateCard () {
+						const deck = mod._ValueDecksAll[0];
+						return mod.OLSKChangeDelegateUpdateCard(mod.DataCardTemplate(deck), deck);
+					},
+				},
+				{
 					LCHRecipeName: 'FakeOLSKChangeDelegateCreateSpacing',
 					LCHRecipeCallback: async function FakeOLSKChangeDelegateCreateSpacing () {
 						const deck = mod._ValueDecksAll[0];
@@ -191,6 +198,8 @@ const mod = {
 
 		mod.ReactCounts(param2);
 	},
+
+	OLSKChangeDelegateUpdateCard (param1, param2) {},
 
 	OLSKChangeDelegateCreateSpacing (param1, param2, param3) {
 		Object.assign(param3.$KOMDeckSpacings.filter(function (e) {

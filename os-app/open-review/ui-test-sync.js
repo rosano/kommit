@@ -162,6 +162,26 @@ describe('KOMReview_Sync', function () {
 
 	});
 
+	describe('OLSKChangeDelegateUpdateCard', function test_OLSKChangeDelegateUpdateCard () {
+
+		before(function () {
+			return browser.pressButton('.OLSKAppToolbarLauncherButton');
+		});
+
+		before(function () {
+			return browser.fill('.LCHLauncherFilterInput', 'FakeOLSKChangeDelegateUpdateCard');
+		});
+
+		before(function () {
+			return browser.click('.LCHLauncherResultListItem');
+		});
+
+		it('does nothing', function () {
+			browser.assert.text('#TestCallReactCounts', '3');
+		});
+
+	});
+
 	describe('OLSKChangeDelegateUpdateDeck', function test_OLSKChangeDelegateUpdateDeck () {
 
 		before(function () {
