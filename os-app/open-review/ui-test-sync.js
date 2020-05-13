@@ -182,6 +182,46 @@ describe('KOMReview_Sync', function () {
 
 	});
 
+	describe('OLSKChangeDelegateDeleteCard', function test_OLSKChangeDelegateDeleteCard () {
+
+		before(function () {
+			browser.assert.text('.KOMReviewMasterListItemUnseenValue', '0');
+		});
+
+		before(function () {
+			browser.assert.text('.KOMReviewMasterListItemReviewValue', '1');
+		});
+
+		before(function () {
+			return browser.pressButton('.OLSKAppToolbarLauncherButton');
+		});
+
+		before(function () {
+			return browser.fill('.LCHLauncherFilterInput', 'FakeOLSKChangeDelegateDeleteCard');
+		});
+
+		before(function () {
+			return browser.click('.LCHLauncherResultListItem');
+		});
+
+		it('updates spacing objects', function () {
+			browser.assert.text('#TestSpacingCount', '0');
+		});
+
+		it('calls UpdateCountThrottle', function () {
+			browser.assert.text('#TestCallReactCounts', '4');
+		});
+
+		it('sets KOMReviewMasterListItemUnseenValue', function () {
+			browser.assert.text('.KOMReviewMasterListItemUnseenValue', '0');
+		});
+
+		it('sets KOMReviewMasterListItemReviewValue', function () {
+			browser.assert.text('.KOMReviewMasterListItemReviewValue', '0');
+		});
+
+	});
+
 	describe('OLSKChangeDelegateUpdateDeck', function test_OLSKChangeDelegateUpdateDeck () {
 
 		before(function () {

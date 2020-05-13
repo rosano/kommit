@@ -121,6 +121,14 @@ const mod = {
 					},
 				},
 				{
+					LCHRecipeName: 'FakeOLSKChangeDelegateDeleteCard',
+					LCHRecipeCallback: async function FakeOLSKChangeDelegateDeleteCard () {
+						const deck = mod._ValueDecksAll[0];
+						const card = deck.$KOMDeckCards[0];
+						return mod.OLSKChangeDelegateDeleteCard(card, deck);
+					},
+				},
+				{
 					LCHRecipeName: 'FakeOLSKChangeDelegateCreateSpacing',
 					LCHRecipeCallback: async function FakeOLSKChangeDelegateCreateSpacing () {
 						const deck = mod._ValueDecksAll[0];
@@ -155,7 +163,7 @@ const mod = {
 					LCHRecipeCallback: async function FakeOLSKChangeDelegateDeleteSpacing () {
 						const deck = mod._ValueDecksAll[0];
 						const card = deck.$KOMDeckCards[0];
-						return mod.OLSKChangeDelegateDeleteSpacing(await KOMSpacingMetal.KOMSpacingMetalWrite(mod._ValueStorageClient, mod.DataSpacingTemplate(card), card, deck), card, deck);
+						return mod.OLSKChangeDelegateDeleteSpacing(deck.$KOMDeckSpacings[0], card, deck);
 					},
 				},
 			],
@@ -200,6 +208,18 @@ const mod = {
 	},
 
 	OLSKChangeDelegateUpdateCard (param1, param2) {},
+
+	OLSKChangeDelegateDeleteCard (param1, param2) {
+		param2.$KOMDeckCards = param2.$KOMDeckCards.filter(function (e) {
+			return e.KOMCardID !== param1.KOMCardID;
+		});
+
+		param2.$KOMDeckSpacings = param2.$KOMDeckSpacings.filter(function (e) {
+			return e.$KOMSpacingCard !== param1;
+		});
+
+		mod.ReactCounts(param2);
+	},
 
 	OLSKChangeDelegateCreateSpacing (param1, param2, param3) {
 		Object.assign(param3.$KOMDeckSpacings.filter(function (e) {
