@@ -308,7 +308,7 @@ const mod = {
 		}
 
 		OLSKThrottle.OLSKThrottleMappedTimeout(mod._ValueCountThrottleMap, 'inputData.KOMDeckID', {
-			OLSKThrottleDuration: 500,
+			OLSKThrottleDuration: OLSK_TESTING_BEHAVIOUR () ? 0 : 500,
 			OLSKThrottleCallback () {
 				mod._ValueDecksAll = mod._ValueDecksAll; // #purge-svelte-force-update
 			},
