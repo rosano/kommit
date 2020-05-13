@@ -14,7 +14,6 @@ const kTesting = {
 	},
 	StubCardObject() {
 		return {
-			KOMCardDeckID: 'alfa',
 			KOMCardQuestion: 'bravo',
 			KOMCardAnswer: 'charlie',
 		};
@@ -55,6 +54,7 @@ describe('KOMCardActionCreate', function test_KOMCardActionCreate() {
 
 		deepEqual(item, Object.assign(kTesting.StubCardObject(), {
 			KOMCardID: item.KOMCardID,
+			KOMCardDeckID: kTesting.StubDeckObjectValid().KOMDeckID,
 			KOMCardCreationDate: item.KOMCardCreationDate,
 			KOMCardModificationDate: item.KOMCardModificationDate,
 			'@context': item['@context'],
@@ -116,9 +116,11 @@ describe('KOMCardActionUpdate', function test_KOMCardActionUpdate() {
 		let item = await mainModule.KOMCardActionUpdate(KOMTestingStorageClient, Object.assign(kTesting.StubCardObject(), {
 			KOMCardID: 'alfa',
 			KOMCardCreationDate: new Date(),
+			KOMCardDeckID: kTesting.StubDeckObjectValid().KOMDeckID,
 		}), kTesting.StubDeckObjectValid());
 		deepEqual(item, Object.assign(kTesting.StubCardObject(), {
 			KOMCardID: item.KOMCardID,
+			KOMCardDeckID: kTesting.StubDeckObjectValid().KOMDeckID,
 			KOMCardCreationDate: item.KOMCardCreationDate,
 			KOMCardModificationDate: item.KOMCardModificationDate,
 			'@context': item['@context'],

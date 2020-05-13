@@ -19,6 +19,7 @@ const mod = {
 
 		return await KOMCardMetal.KOMCardMetalWrite(storageClient, Object.assign(param1, {
 			KOMCardID: uniqueID(),
+			KOMCardDeckID: param2.KOMDeckID,
 			KOMCardCreationDate: creationDate,
 			KOMCardModificationDate: creationDate,
 		}), param2);
