@@ -121,6 +121,28 @@ const mod = {
 						return mod.OLSKChangeDelegateCreateSpacing(await KOMSpacingMetal.KOMSpacingMetalWrite(mod._ValueStorageClient, mod.DataSpacingTemplate(card), card, deck), card, deck);
 					},
 				},
+				{
+					LCHRecipeName: 'FakeOLSKChangeDelegateUpdateSpacing',
+					LCHRecipeCallback: async function FakeOLSKChangeDelegateUpdateSpacing () {
+						const deck = mod._ValueDecksAll[0];
+						const card = deck.$KOMDeckCards[0];
+						deck.$KOMDeckSpacings.map(function (e, i) {
+							let spacing = Object.assign(!i ? e : Object.assign({}, e), {
+								KOMSpacingIsLearning: true,
+								KOMSpacingDueDate: new Date(),
+							});
+
+							if (!i) {
+								return;
+							}
+
+							mod.OLSKChangeDelegateUpdateSpacing(Object.assign(spacing, {
+								KOMSpacingIsLearning: true,
+								KOMSpacingDueDate: new Date(),
+							}), card, deck);
+						});
+					},
+				},
 			],
 		});
 	},
@@ -163,6 +185,14 @@ const mod = {
 	},
 
 	OLSKChangeDelegateCreateSpacing (param1, param2, param3) {
+		Object.assign(param3.$KOMDeckSpacings.filter(function (e) {
+			return e.KOMSpacingID === param1.KOMSpacingID;
+		}).pop(), param1);
+
+		mod.ReactCounts(param3);
+	},
+
+	OLSKChangeDelegateUpdateSpacing (param1, param2, param3) {
 		Object.assign(param3.$KOMDeckSpacings.filter(function (e) {
 			return e.KOMSpacingID === param1.KOMSpacingID;
 		}).pop(), param1);
@@ -217,8 +247,6 @@ const mod = {
 	DataSpacingTemplate (inputData) {
 		return {
 			KOMSpacingID: `${ inputData.KOMCardID }-forward`,
-			KOMSpacingIsLearning: true,
-			KOMSpacingDueDate: new Date(),
 			$KOMSpacingCard: inputData,
 		};
 	},
