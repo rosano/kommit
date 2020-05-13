@@ -1,5 +1,26 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
+const kTesting = {
+	uSerial (inputData) {
+		return inputData.reduce(function (coll, e) {
+			return coll.then(e);
+		}, Promise.resolve());
+	},
+	uLaunch (inputData) {
+		return kTesting.uSerial([
+			function () {
+				return browser.pressButton('.OLSKAppToolbarLauncherButton');
+			},
+			function () {
+				return browser.fill('.LCHLauncherFilterInput', inputData);
+			},
+			function () {
+				return browser.click('.LCHLauncherResultListItem');
+			},
+			]);
+	},
+};
+
 describe('KOMReview_Sync', function () {	
 
 	before(function() {
@@ -9,15 +30,7 @@ describe('KOMReview_Sync', function () {
 	describe('OLSKChangeDelegateCreateDeck', function test_OLSKChangeDelegateCreateDeck () {
 
 		before(function () {
-			return browser.pressButton('.OLSKAppToolbarLauncherButton');
-		});
-
-		before(function () {
-			return browser.fill('.LCHLauncherFilterInput', 'FakeOLSKChangeDelegateCreateDeck');
-		});
-
-		before(function () {
-			return browser.click('.LCHLauncherResultListItem');
+			return kTesting.uLaunch('FakeOLSKChangeDelegateCreateDeck');
 		});
 
 		it('adds deck', function () {
@@ -45,15 +58,7 @@ describe('KOMReview_Sync', function () {
 		});
 
 		before(function () {
-			return browser.pressButton('.OLSKAppToolbarLauncherButton');
-		});
-
-		before(function () {
-			return browser.fill('.LCHLauncherFilterInput', 'FakeOLSKChangeDelegateCreateCard');
-		});
-
-		before(function () {
-			return browser.click('.LCHLauncherResultListItem');
+			return kTesting.uLaunch('FakeOLSKChangeDelegateCreateCard');
 		});
 
 		it('adds card object', function () {
@@ -77,15 +82,7 @@ describe('KOMReview_Sync', function () {
 	describe('OLSKChangeDelegateCreateSpacing', function test_OLSKChangeDelegateCreateSpacing () {
 
 		before(function () {
-			return browser.pressButton('.OLSKAppToolbarLauncherButton');
-		});
-
-		before(function () {
-			return browser.fill('.LCHLauncherFilterInput', 'FakeOLSKChangeDelegateCreateSpacing');
-		});
-
-		before(function () {
-			return browser.click('.LCHLauncherResultListItem');
+			return kTesting.uLaunch('FakeOLSKChangeDelegateCreateSpacing');
 		});
 
 		it('updates spacing object', function () {
@@ -113,15 +110,7 @@ describe('KOMReview_Sync', function () {
 		});
 
 		before(function () {
-			return browser.pressButton('.OLSKAppToolbarLauncherButton');
-		});
-
-		before(function () {
-			return browser.fill('.LCHLauncherFilterInput', 'FakeOLSKChangeDelegateUpdateSpacing');
-		});
-
-		before(function () {
-			return browser.click('.LCHLauncherResultListItem');
+			return kTesting.uLaunch('FakeOLSKChangeDelegateUpdateSpacing');
 		});
 
 		it('updates spacing object', function () {
@@ -145,15 +134,7 @@ describe('KOMReview_Sync', function () {
 	describe('OLSKChangeDelegateDeleteSpacing', function test_OLSKChangeDelegateDeleteSpacing () {
 
 		before(function () {
-			return browser.pressButton('.OLSKAppToolbarLauncherButton');
-		});
-
-		before(function () {
-			return browser.fill('.LCHLauncherFilterInput', 'FakeOLSKChangeDelegateDeleteSpacing');
-		});
-
-		before(function () {
-			return browser.click('.LCHLauncherResultListItem');
+			return kTesting.uLaunch('FakeOLSKChangeDelegateDeleteSpacing');
 		});
 
 		it('does nothing', function () {
@@ -165,15 +146,7 @@ describe('KOMReview_Sync', function () {
 	describe('OLSKChangeDelegateUpdateCard', function test_OLSKChangeDelegateUpdateCard () {
 
 		before(function () {
-			return browser.pressButton('.OLSKAppToolbarLauncherButton');
-		});
-
-		before(function () {
-			return browser.fill('.LCHLauncherFilterInput', 'FakeOLSKChangeDelegateUpdateCard');
-		});
-
-		before(function () {
-			return browser.click('.LCHLauncherResultListItem');
+			return kTesting.uLaunch('FakeOLSKChangeDelegateUpdateCard');
 		});
 
 		it('does nothing', function () {
@@ -193,15 +166,7 @@ describe('KOMReview_Sync', function () {
 		});
 
 		before(function () {
-			return browser.pressButton('.OLSKAppToolbarLauncherButton');
-		});
-
-		before(function () {
-			return browser.fill('.LCHLauncherFilterInput', 'FakeOLSKChangeDelegateDeleteCard');
-		});
-
-		before(function () {
-			return browser.click('.LCHLauncherResultListItem');
+			return kTesting.uLaunch('FakeOLSKChangeDelegateDeleteCard');
 		});
 
 		it('updates spacing objects', function () {
@@ -225,15 +190,7 @@ describe('KOMReview_Sync', function () {
 	describe('OLSKChangeDelegateUpdateDeck', function test_OLSKChangeDelegateUpdateDeck () {
 
 		before(function () {
-			return browser.pressButton('.OLSKAppToolbarLauncherButton');
-		});
-
-		before(function () {
-			return browser.fill('.LCHLauncherFilterInput', 'FakeOLSKChangeDelegateUpdateDeck');
-		});
-
-		before(function () {
-			return browser.click('.LCHLauncherResultListItem');
+			return kTesting.uLaunch('FakeOLSKChangeDelegateUpdateDeck');
 		});
 
 		it('updates deck', function () {
@@ -245,15 +202,7 @@ describe('KOMReview_Sync', function () {
 	describe('OLSKChangeDelegateDeleteDeck', function test_OLSKChangeDelegateDeleteDeck () {
 
 		before(function () {
-			return browser.pressButton('.OLSKAppToolbarLauncherButton');
-		});
-
-		before(function () {
-			return browser.fill('.LCHLauncherFilterInput', 'FakeOLSKChangeDelegateDeleteDeck');
-		});
-
-		before(function () {
-			return browser.click('.LCHLauncherResultListItem');
+			return kTesting.uLaunch('FakeOLSKChangeDelegateDeleteDeck');
 		});
 
 		it('deletes deck deck', function () {
