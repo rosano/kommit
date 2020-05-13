@@ -14,6 +14,7 @@ const kTesting = {
 	StubCardObjectValid() {
 		return {
 			KOMCardID: 'bravo',
+			KOMCardDeckID: 'alfa',
 			KOMCardQuestion: 'charlie',
 			KOMCardAnswer: 'delta',
 			KOMCardCreationDate: new Date('2019-02-23T13:56:36Z'),

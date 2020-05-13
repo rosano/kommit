@@ -14,6 +14,7 @@ const kTesting = {
 	},
 	StubCardObject() {
 		return {
+			KOMCardDeckID: 'alfa',
 			KOMCardQuestion: 'bravo',
 			KOMCardAnswer: 'charlie',
 		};

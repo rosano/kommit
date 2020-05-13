@@ -6,6 +6,7 @@ const kTesting = {
 	StubCardObjectValid() {
 		return {
 			KOMCardID: 'alfa',
+			KOMCardDeckID: 'bravo',
 			KOMCardQuestion: '',
 			KOMCardAnswer: '',
 			KOMCardCreationDate: new Date('2019-02-23T13:56:36Z'),
@@ -37,6 +38,26 @@ describe('KOMCardModelErrorsFor', function test_KOMCardModelErrorsFor() {
 			KOMCardID: ' ',
 		})), {
 			KOMCardID: [
+				'KOMErrorNotFilled',
+			],
+		});
+	});
+
+	it('returns object if KOMCardDeckID not string', function() {
+		deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubCardObjectValid(), {
+			KOMCardDeckID: null,
+		})), {
+			KOMCardDeckID: [
+				'KOMErrorNotString',
+			],
+		});
+	});
+
+	it('returns object if KOMCardDeckID not filled', function() {
+		deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubCardObjectValid(), {
+			KOMCardDeckID: ' ',
+		})), {
+			KOMCardDeckID: [
 				'KOMErrorNotFilled',
 			],
 		});
@@ -113,6 +134,7 @@ describe('KOMCardModelErrorsFor', function test_KOMCardModelErrorsFor() {
 				KOMOptionValidateIfNotPresent: true,
 			})), [
 				'KOMCardID',
+				'KOMCardDeckID',
 				'KOMCardQuestion',
 				'KOMCardAnswer',
 				'KOMCardCreationDate',

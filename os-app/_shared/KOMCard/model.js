@@ -17,6 +17,16 @@ const mod = {
 			];
 		}
 
+		if (typeof inputData.KOMCardDeckID !== 'string') {
+			errors.KOMCardDeckID = [
+				'KOMErrorNotString',
+			];
+		} else if (inputData.KOMCardDeckID.trim() === '') {
+			errors.KOMCardDeckID = [
+				'KOMErrorNotFilled',
+			];
+		}
+
 		if (typeof inputData.KOMCardQuestion !== 'string') {
 			errors.KOMCardQuestion = [
 				'KOMErrorNotString',
