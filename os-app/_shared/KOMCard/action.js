@@ -17,12 +17,12 @@ const mod = {
 
 		const creationDate = new Date();
 
-		return await KOMCardMetal.KOMCardMetalWrite(storageClient, Object.assign(param1, {
+		return await KOMCardMetal.KOMCardMetalWrite(storageClient, Object.assign({
 			KOMCardID: uniqueID(),
 			KOMCardDeckID: param2.KOMDeckID,
 			KOMCardCreationDate: creationDate,
 			KOMCardModificationDate: creationDate,
-		}), param2);
+		}, param1), param2);
 	},
 
 	async KOMCardActionUpdate (storageClient, param1, param2) {

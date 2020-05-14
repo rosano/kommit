@@ -13,11 +13,11 @@ const mod = {
 
 		const creationDate = new Date();
 
-		return await KOMDeckMetal.KOMDeckMetalWrite(storageClient, Object.assign(inputData, {
+		return await KOMDeckMetal.KOMDeckMetalWrite(storageClient, Object.assign({
 			KOMDeckID: uniqueID(),
 			KOMDeckCreationDate: creationDate,
 			KOMDeckModificationDate: creationDate,
-		}));
+		}, inputData));
 	},
 
 	async KOMDeckActionUpdate (storageClient, inputData) {
