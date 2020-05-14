@@ -30,7 +30,15 @@ describe('KOMReview_Sync', function () {
 	describe('OLSKChangeDelegateCreateDeck', function test_OLSKChangeDelegateCreateDeck () {
 
 		before(function () {
+			browser.assert.text('#TestCallReactThrottle', '0');
+		});
+
+		before(function () {
 			return kTesting.uLaunch('FakeOLSKChangeDelegateCreateDeck');
+		});
+
+		it('calls ReactThrottle', function () {
+			browser.assert.text('#TestCallReactThrottle', '1');
 		});
 
 		it('adds deck', function () {
@@ -40,10 +48,6 @@ describe('KOMReview_Sync', function () {
 	});
 
 	describe('OLSKChangeDelegateCreateCard', function test_OLSKChangeDelegateCreateCard () {
-
-		before(function () {
-			browser.assert.text('#TestCallReactCounts', '0');
-		});
 
 		before(function () {
 			browser.assert.text('#TestCardCount', '0');
@@ -69,8 +73,8 @@ describe('KOMReview_Sync', function () {
 			browser.assert.text('#TestSpacingCount', '2');
 		});
 
-		it('calls UpdateCountThrottle', function () {
-			browser.assert.text('#TestCallReactCounts', '1');
+		it('calls ReactThrottle', function () {
+			browser.assert.text('#TestCallReactThrottle', '2');
 		});
 
 		it('sets KOMReviewMasterListItemUnseenValue', function () {
@@ -89,8 +93,8 @@ describe('KOMReview_Sync', function () {
 			browser.assert.text('#TestSpacingCount', '2');
 		});
 
-		it('calls UpdateCountThrottle', function () {
-			browser.assert.text('#TestCallReactCounts', '2');
+		it('calls ReactThrottle', function () {
+			browser.assert.text('#TestCallReactThrottle', '3');
 		});
 
 		it('sets KOMReviewMasterListItemUnseenValue', function () {
@@ -117,8 +121,8 @@ describe('KOMReview_Sync', function () {
 			browser.assert.text('#TestSpacingCount', '2');
 		});
 
-		it('calls UpdateCountThrottle', function () {
-			browser.assert.text('#TestCallReactCounts', '3');
+		it('calls ReactThrottle', function () {
+			browser.assert.text('#TestCallReactThrottle', '4');
 		});
 
 		it('sets KOMReviewMasterListItemUnseenValue', function () {
@@ -137,8 +141,8 @@ describe('KOMReview_Sync', function () {
 			return kTesting.uLaunch('FakeOLSKChangeDelegateDeleteSpacing');
 		});
 
-		it('does nothing', function () {
-			browser.assert.text('#TestCallReactCounts', '3');
+		it('skips react', function () {
+			browser.assert.text('#TestCallReactThrottle', '4');
 		});
 
 	});
@@ -149,8 +153,8 @@ describe('KOMReview_Sync', function () {
 			return kTesting.uLaunch('FakeOLSKChangeDelegateUpdateCard');
 		});
 
-		it('does nothing', function () {
-			browser.assert.text('#TestCallReactCounts', '3');
+		it('skips react', function () {
+			browser.assert.text('#TestCallReactThrottle', '4');
 		});
 
 	});
@@ -173,8 +177,8 @@ describe('KOMReview_Sync', function () {
 			browser.assert.text('#TestSpacingCount', '0');
 		});
 
-		it('calls UpdateCountThrottle', function () {
-			browser.assert.text('#TestCallReactCounts', '4');
+		it('calls ReactThrottle', function () {
+			browser.assert.text('#TestCallReactThrottle', '5');
 		});
 
 		it('sets KOMReviewMasterListItemUnseenValue', function () {
@@ -193,6 +197,10 @@ describe('KOMReview_Sync', function () {
 			return kTesting.uLaunch('FakeOLSKChangeDelegateUpdateDeck');
 		});
 
+		it('calls ReactThrottle', function () {
+			browser.assert.text('#TestCallReactThrottle', '6');
+		});
+
 		it('updates deck', function () {
 			browser.assert.text('.KOMReviewMasterListItemName', 'FakeOLSKChangeDelegateUpdateDeck');
 		});
@@ -205,10 +213,70 @@ describe('KOMReview_Sync', function () {
 			return kTesting.uLaunch('FakeOLSKChangeDelegateDeleteDeck');
 		});
 
+		it('calls ReactThrottle', function () {
+			browser.assert.text('#TestCallReactThrottle', '7');
+		});
+
 		it('deletes deck deck', function () {
 			browser.assert.elements('.KOMReviewMasterListItem', 0);
 		});
 
+	});
+
+	context('asynchronous', function test_asynchronous () {
+
+		describe('OLSKChangeDelegateCreateSpacing', function () {
+
+			before(function () {
+				return kTesting.uLaunch('FakeOLSKChangeDelegateCreateSpacing');
+			});
+
+			it('calls ReactThrottle', function () {
+				browser.assert.text('#TestCallReactThrottle', '8');
+			});
+
+		});
+
+		describe('OLSKChangeDelegateCreateCard', function () {
+
+			before(function () {
+				return kTesting.uLaunch('FakeOLSKChangeDelegateCreateCard');
+			});
+
+			it('calls ReactThrottle', function () {
+				browser.assert.text('#TestCallReactThrottle', '9');
+			});
+
+		});
+		
+		describe('OLSKChangeDelegateCreateDeck', function () {
+
+			before(function () {
+				browser.assert.text('#TestCardCount', '0');
+			});
+
+			before(function () {
+				browser.assert.text('#TestSpacingCount', '0');
+			});
+
+			before(function () {
+				return kTesting.uLaunch('FakeOLSKChangeDelegateCreateDeck');
+			});
+
+			it('adds card object', function () {
+				browser.assert.text('#TestCardCount', '1');
+			});
+
+			it('adds spacing objects', function () {
+				browser.assert.text('#TestSpacingCount', '2');
+			});
+
+			it('calls ReactThrottle', function () {
+				browser.assert.text('#TestCallReactThrottle', '10');
+			});
+
+		});
+	
 	});
 
 });
