@@ -60,6 +60,7 @@ describe('KOMReviewMaster_Misc', function () {
 						KOMSpacingDueDate: !i ? new Date() : (i >= 2 ? new Date(Date.now() + 1000 * 60 * 60 * 24 * 3) : undefined),
 						$KOMSpacingCard: {
 							KOMCardID: (i + 1).toString(),
+							KOMCardDeckID: 'alfa',
 							KOMCardQuestion: (i + 1).toString(),
 							KOMCardAnswer: 'charlie',
 							KOMCardHint: 'delta',

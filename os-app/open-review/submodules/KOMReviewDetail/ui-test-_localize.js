@@ -8,7 +8,8 @@ const kTesting = {
 			return {
 				KOMSpacingID: (i + 1).toString() + '-forward',
 				$KOMSpacingCard: {
-					KOMCardID: (i + 1).toString(),
+					KOMCardID: 'bravo',
+					KOMCardDeckID: 'alfa',
 					KOMCardQuestion: (i + 1).toString(),
 					KOMCardAnswer: 'charlie',
 					KOMCardHint: 'delta',

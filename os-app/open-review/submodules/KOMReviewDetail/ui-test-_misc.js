@@ -10,6 +10,7 @@ const kTesting = {
 				KOMSpacingID: (i + 1).toString() + '-forward',
 				$KOMSpacingCard: {
 					KOMCardID: (i + 1).toString(),
+					KOMCardDeckID: 'alfa',
 					KOMCardQuestion: (i + 1).toString(),
 					KOMCardAnswer: 'charlie',
 					KOMCardHint: 'delta',

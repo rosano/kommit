@@ -10,6 +10,7 @@ const kTesting = {
 				KOMSpacingDueDate: i === 1 ? new Date() : undefined,
 				$KOMSpacingCard: {
 					KOMCardID: (i + 1).toString(),
+					KOMCardDeckID: 'alfa',
 					KOMCardQuestion: (i + 1).toString(),
 					KOMCardAnswer: 'charlie',
 					KOMCardHint: 'delta',

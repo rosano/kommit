@@ -29,6 +29,7 @@ const item = {
 				})(),
 				$KOMSpacingCard: {
 					KOMCardID: (i + 1).toString(),
+					KOMCardDeckID: 'bravo',
 					KOMCardQuestion: (i + 1).toString(),
 					KOMCardAnswer: 'charlie',
 					KOMCardHint: 'delta',

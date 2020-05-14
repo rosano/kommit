@@ -78,12 +78,13 @@ describe('KOMBrowse_Misc', function () {
 
 		it('sends KOMBrowseDispatchCreateData', function () {
 			browser.assert.text('#TestKOMBrowseDispatchCreateData', JSON.stringify([
+				'KOMCardID',
+				'KOMCardDeckID',
+				'KOMCardCreationDate',
+				'KOMCardModificationDate',
 				'KOMCardQuestion',
 				'KOMCardAnswer',
 				'KOMCardHint',
-				'KOMCardID',
-				'KOMCardCreationDate',
-				'KOMCardModificationDate',
 				'@context',
 				]));
 		});
