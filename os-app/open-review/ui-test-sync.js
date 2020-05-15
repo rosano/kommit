@@ -339,4 +339,40 @@ describe('KOMReview_Sync', function () {
 
 	});
 
+	context('KOMBrowse', function test_KOMBrowse () {
+
+		before(function () {
+			return kTesting.uLaunch('FakeOLSKChangeDelegateCreateDeck');
+		});
+
+		before(function () {
+			return browser.click('.KOMReviewMasterListItem');
+		});
+
+		before(function () {
+			return browser.click('.KOMReviewDetailToolbarCardsButton');
+		});
+
+		describe('OLSKChangeDelegateDeleteDeck', function () {
+
+			before(function () {
+				browser.assert.text('#TestCallReactThrottle', '14');
+			});
+
+			before(function () {
+				return kTesting.uLaunch('FakeOLSKChangeDelegateDeleteDeck');
+			});
+
+			it('calls ReactThrottle', function () {
+				browser.assert.text('#TestCallReactThrottle', '15');
+			});
+
+			it('deletes deck deck', function () {
+				browser.assert.elements('.KOMReviewBrowse', 0);
+			});
+
+		});	
+
+	});
+
 });
