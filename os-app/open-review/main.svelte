@@ -42,6 +42,8 @@ const mod = {
 
 	KOMReviewDetailDispatchUpdate (inputData) {
 		mod.ControlDeckSave(mod._ValueDeckSelected);
+
+		mod._ValueDeckSelected = mod._ValueDeckSelected // #purge-svelte-force-update
 	},
 
 	KOMReviewDetailDispatchBrowse () {
@@ -438,6 +440,14 @@ const mod = {
 				})))),
 			})
 		})));
+
+		if (!mod._ValueDeckSelected) {
+			return;
+		}
+
+		mod._ValueDeckSelected = mod._ValueDecksAll.filter(function (e) {
+			return e.KOMDeckID === mod._ValueDeckSelected.KOMDeckID;
+		}).pop();
 	},
 
 	// LIFECYCLE
