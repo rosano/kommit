@@ -145,7 +145,7 @@ const mod = {
 
 	ControlCardUpdate(param1, param2) {
 		OLSKThrottle.OLSKThrottleMappedTimeout(mod._ValueCardUpdateThrottleMap, param1.KOMCardID, {
-			OLSKThrottleDuration: 500,
+			OLSKThrottleDuration: OLSK_TESTING_BEHAVIOUR () ? 0 : 500,
 			OLSKThrottleCallback () {
 				return KOMCardAction.KOMCardActionUpdate(KOMBrowseStorageClient, param1, param2);
 			},
