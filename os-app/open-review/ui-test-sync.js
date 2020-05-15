@@ -437,18 +437,50 @@ describe('KOMReview_Sync', function () {
 
 		});
 
+		describe('OLSKChangeDelegateCreateCard', function () {
+
+			before(function () {
+				return kTesting.uLaunch('FakeOLSKChangeDelegateCreateCard');
+			});
+
+			before(function () {
+				return browser.click('.KOMBrowseListItem');
+			});
+
+			before(function () {
+				browser.assert.elements('.OLSKResultsListItemSelected', 1);
+			});
+
+			before(function () {
+				return kTesting.uLaunch('FakeOLSKChangeDelegateUpdateCard');
+			});
+			
+			it('maintains selection', function () {
+				browser.assert.elements('.OLSKResultsListItemSelected', 1);
+			});
+
+		});
+
 		describe('OLSKChangeDelegateDeleteDeck', function () {
+
+			before(function () {
+				browser.assert.text('#TestCallReactThrottle', '20');
+			});
+
+			before(function () {
+				browser.assert.text('#TestCallReactSelected', '8');
+			});
 
 			before(function () {
 				return kTesting.uLaunch('FakeOLSKChangeDelegateDeleteDeck');
 			});
 
 			it('calls ReactThrottle', function () {
-				browser.assert.text('#TestCallReactThrottle', '19');
+				browser.assert.text('#TestCallReactThrottle', '21');
 			});
 
 			it('calls ReactSelected', function () {
-				browser.assert.text('#TestCallReactSelected', '7');
+				browser.assert.text('#TestCallReactSelected', '9');
 			});
 
 			it('deletes deck', function () {

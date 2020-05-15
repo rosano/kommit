@@ -202,6 +202,18 @@ const mod = {
 
 	ReactDeckSelected (inputData) {
 		mod.ValueCardsVisible(inputData.$KOMDeckCards);
+
+		mod.ReactCardSelected();
+	},
+
+	ReactCardSelected () {
+		if (!mod._ValueCardSelected) {
+			return;
+		}
+
+		mod._ValueCardSelected = mod._ValueCardsVisible.filter(function (e) {
+			return e.KOMCardID === mod._ValueCardSelected.KOMCardID;
+		}).pop();
 	},
 
 	// SETUP
