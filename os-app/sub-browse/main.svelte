@@ -1,7 +1,7 @@
 <script>
 export let KOMBrowseStorageClient;
 
-export let KOMBrowseDeckSelected = null;
+export let KOMBrowseDeckSelected;
 export let KOMBrowseDispatchCreate;
 export let KOMBrowseListDispatchClose;
 
@@ -20,7 +20,7 @@ const mod = {
 	// MESSAGE
 
 	KOMBrowseListDispatchCreate () {
-		mod.ControlCardCreate(mod._ValueDeckSelected);
+		mod.ControlCardCreate(KOMBrowseDeckSelected);
 	},
 
 	KOMBrowseListDispatchClick (inputData) {
@@ -40,20 +40,19 @@ const mod = {
 	},
 
 	KOMBrowseInfoDispatchDiscard () {
-		mod.ControlCardDiscard(mod._ValueCardSelected, mod._ValueDeckSelected);
+		mod.ControlCardDiscard(mod._ValueCardSelected, KOMBrowseDeckSelected);
 	},
 
 	KOMBrowseInfoDispatchUpdate () {
 		mod._ValueCardSelected = mod._ValueCardSelected; // #purge-svelte-force-update
 
-		mod.ControlCardUpdate(mod._ValueCardSelected, mod._ValueDeckSelected);
+		mod.ControlCardUpdate(mod._ValueCardSelected, KOMBrowseDeckSelected);
 	},
 
 	// VALUE
 
-	_ValueCardsAll: [],
 	ValueCardsAll (inputData, shouldSort = true) {
-		mod.ValueCardsVisible(mod._ValueDeckSelected.$KOMDeckCards = inputData, shouldSort);
+		mod.ValueCardsVisible(KOMBrowseDeckSelected.$KOMDeckCards = inputData, shouldSort);
 	},
 
 	_ValueCardsVisible: [],
@@ -73,11 +72,6 @@ const mod = {
 		}
 	},
 	
-	_ValueDeckSelected: KOMBrowseDeckSelected,
-	ValueDeckSelected (inputData) {
-		mod._ValueDeckSelected = inputData
-	},
-
 	_ValueFilterText: '',
 
 	_ValueCardUpdateThrottleMap: {},
@@ -136,7 +130,7 @@ const mod = {
 			KOMCardHint: '',
 		}, inputData);
 
-		mod.ValueCardsAll(mod._ValueDeckSelected.$KOMDeckCards.concat(item));
+		mod.ValueCardsAll(KOMBrowseDeckSelected.$KOMDeckCards.concat(item));
 
 		mod.ControlCardSelect(item);
 
@@ -153,7 +147,7 @@ const mod = {
 	},
 
 	async ControlCardDiscard (param1, param2) {
-		mod.ValueCardsAll(mod._ValueDeckSelected.$KOMDeckCards.filter(function (e) {
+		mod.ValueCardsAll(KOMBrowseDeckSelected.$KOMDeckCards.filter(function (e) {
 			return e !== param1;
 		}))
 
@@ -187,7 +181,7 @@ const mod = {
 	ControlFilter(inputData) {
 		mod._ValueFilterText = inputData;
 
-		mod.ValueCardsVisible(mod._ValueDeckSelected.$KOMDeckCards);
+		mod.ValueCardsVisible(KOMBrowseDeckSelected.$KOMDeckCards);
 
 		if (!inputData) {
 			return mod.ControlCardSelect(null);
@@ -212,7 +206,7 @@ const mod = {
 	},
 
 	async SetupValueCardsAll() {
-		mod.ValueCardsAll(mod._ValueDeckSelected.$KOMDeckCards);
+		mod.ValueCardsAll(KOMBrowseDeckSelected.$KOMDeckCards);
 	},
 
 	SetupFocus() {
