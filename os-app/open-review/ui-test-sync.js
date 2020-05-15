@@ -153,8 +153,8 @@ describe('KOMReview_Sync', function () {
 			return kTesting.uLaunch('FakeOLSKChangeDelegateUpdateCard');
 		});
 
-		it('skips react', function () {
-			browser.assert.text('#TestCallReactThrottle', '4');
+		it('calls ReactThrottle', function () {
+			browser.assert.text('#TestCallReactThrottle', '5');
 		});
 
 	});
@@ -178,7 +178,7 @@ describe('KOMReview_Sync', function () {
 		});
 
 		it('calls ReactThrottle', function () {
-			browser.assert.text('#TestCallReactThrottle', '5');
+			browser.assert.text('#TestCallReactThrottle', '6');
 		});
 
 		it('sets KOMReviewMasterListItemUnseenValue', function () {
@@ -198,7 +198,7 @@ describe('KOMReview_Sync', function () {
 		});
 
 		it('calls ReactThrottle', function () {
-			browser.assert.text('#TestCallReactThrottle', '6');
+			browser.assert.text('#TestCallReactThrottle', '7');
 		});
 
 		it('updates deck', function () {
@@ -214,7 +214,7 @@ describe('KOMReview_Sync', function () {
 		});
 
 		it('calls ReactThrottle', function () {
-			browser.assert.text('#TestCallReactThrottle', '7');
+			browser.assert.text('#TestCallReactThrottle', '8');
 		});
 
 		it('deletes deck', function () {
@@ -232,7 +232,7 @@ describe('KOMReview_Sync', function () {
 			});
 
 			it('calls ReactThrottle', function () {
-				browser.assert.text('#TestCallReactThrottle', '8');
+				browser.assert.text('#TestCallReactThrottle', '9');
 			});
 
 		});
@@ -244,7 +244,7 @@ describe('KOMReview_Sync', function () {
 			});
 
 			it('calls ReactThrottle', function () {
-				browser.assert.text('#TestCallReactThrottle', '9');
+				browser.assert.text('#TestCallReactThrottle', '10');
 			});
 
 		});
@@ -272,7 +272,7 @@ describe('KOMReview_Sync', function () {
 			});
 
 			it('calls ReactThrottle', function () {
-				browser.assert.text('#TestCallReactThrottle', '10');
+				browser.assert.text('#TestCallReactThrottle', '11');
 			});
 
 		});
@@ -296,7 +296,7 @@ describe('KOMReview_Sync', function () {
 			});
 
 			it('calls ReactThrottle', function () {
-				browser.assert.text('#TestCallReactThrottle', '11');
+				browser.assert.text('#TestCallReactThrottle', '12');
 			});
 
 			it('calls ReactSelected', function () {
@@ -320,7 +320,7 @@ describe('KOMReview_Sync', function () {
 			});
 
 			it('calls ReactThrottle', function () {
-				browser.assert.text('#TestCallReactThrottle', '12');
+				browser.assert.text('#TestCallReactThrottle', '13');
 			});
 
 			it('calls ReactSelected', function () {
@@ -340,7 +340,7 @@ describe('KOMReview_Sync', function () {
 			});
 
 			it('calls ReactThrottle', function () {
-				browser.assert.text('#TestCallReactThrottle', '13');
+				browser.assert.text('#TestCallReactThrottle', '14');
 			});
 
 			it('calls ReactSelected', function () {
@@ -376,7 +376,7 @@ describe('KOMReview_Sync', function () {
 			});
 
 			before(function () {
-				browser.assert.text('#TestCallReactThrottle', '14');
+				browser.assert.text('#TestCallReactThrottle', '15');
 			});
 
 			before(function () {
@@ -384,7 +384,7 @@ describe('KOMReview_Sync', function () {
 			});
 
 			it('calls ReactThrottle', function () {
-				browser.assert.text('#TestCallReactThrottle', '15');
+				browser.assert.text('#TestCallReactThrottle', '16');
 			});
 
 			it('calls ReactSelected', function () {
@@ -392,7 +392,27 @@ describe('KOMReview_Sync', function () {
 			});
 
 			it('adds card', function () {
-				browser.assert.elements('.KOMBrowseListItem', 1);
+				browser.assert.text('.KOMBrowseListItem', 'FakeOLSKChangeDelegateCreateCard');
+			});
+
+		});
+
+		describe('OLSKChangeDelegateUpdateCard', function () {
+
+			before(function () {
+				return kTesting.uLaunch('FakeOLSKChangeDelegateUpdateCard');
+			});
+
+			it('calls ReactThrottle', function () {
+				browser.assert.text('#TestCallReactThrottle', '17');
+			});
+
+			it('calls ReactSelected', function () {
+				browser.assert.text('#TestCallReactSelected', '5');
+			});
+
+			it('update card', function () {
+				browser.assert.text('.KOMBrowseListItem', 'FakeOLSKChangeDelegateUpdateCard');
 			});
 
 		});
@@ -404,11 +424,11 @@ describe('KOMReview_Sync', function () {
 			});
 
 			it('calls ReactThrottle', function () {
-				browser.assert.text('#TestCallReactThrottle', '16');
+				browser.assert.text('#TestCallReactThrottle', '18');
 			});
 
 			it('calls ReactSelected', function () {
-				browser.assert.text('#TestCallReactSelected', '5');
+				browser.assert.text('#TestCallReactSelected', '6');
 			});
 
 			it('deletes deck', function () {

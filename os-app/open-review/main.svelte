@@ -107,13 +107,13 @@ const mod = {
 				{
 					LCHRecipeName: 'FakeOLSKChangeDelegateCreateCard',
 					LCHRecipeCallback: async function FakeOLSKChangeDelegateCreateCard () {
-						return mod.OLSKChangeDelegateCreateCard(await KOMCardAction.KOMCardActionCreate(mod._ValueStorageClient, mod.FakeCardObjectValid(), mod.FakeDeckObjectValid()));
+						return mod.OLSKChangeDelegateCreateCard(await KOMCardAction.KOMCardActionCreate(mod._ValueStorageClient, mod.FakeCardObjectValid('FakeOLSKChangeDelegateCreateCard'), mod.FakeDeckObjectValid()));
 					},
 				},
 				{
 					LCHRecipeName: 'FakeOLSKChangeDelegateUpdateCard',
 					LCHRecipeCallback: async function FakeOLSKChangeDelegateUpdateCard () {
-						return mod.OLSKChangeDelegateUpdateCard(await KOMCardAction.KOMCardActionUpdate(mod._ValueStorageClient, mod.FakeCardObjectValid(), mod.FakeDeckObjectValid()));
+						return mod.OLSKChangeDelegateUpdateCard(await KOMCardAction.KOMCardActionUpdate(mod._ValueStorageClient, mod.FakeCardObjectValid('FakeOLSKChangeDelegateUpdateCard'), mod.FakeDeckObjectValid()));
 					},
 				},
 				{
@@ -172,7 +172,9 @@ const mod = {
 		mod.ReactThrottle();
 	},
 
-	OLSKChangeDelegateUpdateCard (inputData) {},
+	OLSKChangeDelegateUpdateCard (inputData) {
+		mod.ReactThrottle();
+	},
 
 	OLSKChangeDelegateDeleteCard (inputData) {
 		mod.ReactThrottle();
@@ -251,11 +253,11 @@ const mod = {
 		};
 	},
 
-	FakeCardObjectValid() {
+	FakeCardObjectValid(inputData) {
 		return {
 			KOMCardID: 'FakeCardID',
 			KOMCardDeckID: 'FakeDeckID',
-			KOMCardQuestion: '',
+			KOMCardQuestion: inputData || '',
 			KOMCardAnswer: '',
 			KOMCardCreationDate: new Date(),
 			KOMCardModificationDate: new Date(),
