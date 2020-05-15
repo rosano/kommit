@@ -198,6 +198,12 @@ const mod = {
 		})).shift());
 	},
 
+	// REACT
+
+	ReactDeckSelected (inputData) {
+		mod.ValueCardsVisible(inputData.$KOMDeckCards);
+	},
+
 	// SETUP
 
 	SetupEverything() {
@@ -225,6 +231,8 @@ const mod = {
 
 import { onMount } from 'svelte';
 onMount(mod.LifecycleModuleWillMount);
+
+$: mod.ReactDeckSelected(KOMBrowseDeckSelected);
 
 import OLSKViewportContent from 'OLSKViewportContent';
 import KOMBrowseList from './submodules/KOMBrowseList/main.svelte';

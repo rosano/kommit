@@ -369,14 +369,18 @@ describe('KOMReview_Sync', function () {
 			return browser.click('.KOMReviewDetailToolbarCardsButton');
 		});
 
-		describe('OLSKChangeDelegateDeleteDeck', function () {
+		describe('OLSKChangeDelegateCreateCard', function () {
+
+			before(function () {
+				browser.assert.elements('.KOMBrowseListItem', 0);
+			});
 
 			before(function () {
 				browser.assert.text('#TestCallReactThrottle', '14');
 			});
 
 			before(function () {
-				return kTesting.uLaunch('FakeOLSKChangeDelegateDeleteDeck');
+				return kTesting.uLaunch('FakeOLSKChangeDelegateCreateCard');
 			});
 
 			it('calls ReactThrottle', function () {
@@ -385,6 +389,26 @@ describe('KOMReview_Sync', function () {
 
 			it('calls ReactSelected', function () {
 				browser.assert.text('#TestCallReactSelected', '4');
+			});
+
+			it('adds card', function () {
+				browser.assert.elements('.KOMBrowseListItem', 1);
+			});
+
+		});
+
+		describe('OLSKChangeDelegateDeleteDeck', function () {
+
+			before(function () {
+				return kTesting.uLaunch('FakeOLSKChangeDelegateDeleteDeck');
+			});
+
+			it('calls ReactThrottle', function () {
+				browser.assert.text('#TestCallReactThrottle', '16');
+			});
+
+			it('calls ReactSelected', function () {
+				browser.assert.text('#TestCallReactSelected', '5');
 			});
 
 			it('deletes deck', function () {
