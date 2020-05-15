@@ -310,8 +310,24 @@ const mod = {
 					window.TestSpacingCount.innerHTML = !deck ? 0 : deck.$KOMDeckSpacings.length;
 					window.TestCallReactThrottle.innerHTML = parseInt(window.TestCallReactThrottle.innerHTML) + 1;
 				}
+
+				mod.ReactSelected();
 			},
 		});
+	},
+
+	ReactSelected () {
+		if (!mod._ValueDeckSelected) {
+			return;
+		}
+
+		mod._ValueDeckSelected = mod._ValueDecksAll.filter(function (e) {
+			return e.KOMDeckID === mod._ValueDeckSelected.KOMDeckID;
+		}).pop();
+
+		if (OLSK_TESTING_BEHAVIOUR()) {
+			window.TestCallReactSelected.innerHTML = parseInt(window.TestCallReactSelected.innerHTML) + 1;
+		}
 	},
 
 	// SETUP
@@ -440,14 +456,6 @@ const mod = {
 				})))),
 			})
 		})));
-
-		if (!mod._ValueDeckSelected) {
-			return;
-		}
-
-		mod._ValueDeckSelected = mod._ValueDecksAll.filter(function (e) {
-			return e.KOMDeckID === mod._ValueDeckSelected.KOMDeckID;
-		}).pop();
 	},
 
 	// LIFECYCLE
@@ -524,6 +532,11 @@ import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svel
 	<p>
 		<strong>TestCallReactThrottle</strong>
 		<span id="TestCallReactThrottle">0</span>
+	</p>
+
+	<p>
+		<strong>TestCallReactSelected</strong>
+		<span id="TestCallReactSelected">0</span>
 	</p>
 {/if}
 
