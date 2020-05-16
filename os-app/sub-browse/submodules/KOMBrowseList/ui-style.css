@@ -1,7 +1,7 @@
 :global(.KOMBrowseList) {
 	border-right: var(--KOMBorderStyle);
 
-	--OLSKViewportMasterWidth: 60%;
+	/*--OLSKViewportMasterWidth: 60%;*/
 }
 
 :global(.KOMBrowseList .OLSKMasterListToolbar) {
