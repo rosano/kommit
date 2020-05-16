@@ -6,6 +6,7 @@ const kTesting = {
 	StubSpacingObjectValid() {
 		return {
 			KOMSpacingID: 'bravo-forward',
+			KOMSpacingEvents: [],
 		};
 	},
 	StubCardObjectValid() {
@@ -231,6 +232,26 @@ describe('KOMSpacingModelErrorsFor', function test_KOMSpacingModelErrorsFor() {
 
 	});
 
+	context('KOMSpacingEvents', function() {
+
+		it('returns object if not array', function() {
+			deepEqual(mainModule.KOMSpacingModelErrorsFor(Object.assign(kTesting.StubSpacingObjectValid(), {
+				KOMSpacingEvents: null,
+			})), {
+				KOMSpacingEvents: [
+					'KOMErrorNotArray',
+				],
+			});
+		});
+
+		it('returns null', function() {
+			deepEqual(mainModule.KOMSpacingModelErrorsFor(Object.assign(kTesting.StubSpacingObjectValid(), {
+				KOMSpacingEvents: [],
+			})), null);
+		});
+
+	});
+
 	context('$KOMSpacingCard', function() {
 
 		it('returns object if not valid', function() {
@@ -258,6 +279,7 @@ describe('KOMSpacingModelErrorsFor', function test_KOMSpacingModelErrorsFor() {
 				KOMOptionValidateIfNotPresent: true,
 			})), [
 				'KOMSpacingID',
+				'KOMSpacingEvents',
 				'KOMSpacingDueDate',
 				'KOMSpacingIsLearning',
 				'KOMSpacingIsReadyToGraduate',

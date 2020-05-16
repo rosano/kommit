@@ -6,6 +6,7 @@ const kTesting = {
 	StubSpacingObjectValid() {
 		return {
 			KOMSpacingID: 'bravo-forward',
+			KOMSpacingEvents: [],
 		};
 	},
 	StubCardObjectValid() {
@@ -227,11 +228,11 @@ describe('KOMReviewFilter', function test_KOMReviewFilter() {
 			});
 
 			return [true, false].map(function (forward) {
-				return {
+				return Object.assign(kTesting.StubSpacingObjectValid(), {
 					KOMSpacingID: card.KOMCardID + '-' + (forward ? 'forward' : 'backward'),
 					KOMSpacingDueDate: inputData ? new Date() : undefined,
 					$KOMSpacingCard: card,
-				};
+				});
 			});
 		}));
 	};

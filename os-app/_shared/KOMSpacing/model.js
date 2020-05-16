@@ -59,6 +59,12 @@ const mod = {
 			];
 		}
 
+		if (!Array.isArray(inputData.KOMSpacingEvents)) {
+			errors.KOMSpacingEvents = [
+				'KOMErrorNotArray',
+			];
+		}
+
 		if (inputData.KOMSpacingDueDate !== undefined || options.KOMOptionValidateIfNotPresent) {
 			if (!(inputData.KOMSpacingDueDate instanceof Date) || Number.isNaN(inputData.KOMSpacingDueDate.getTime())) {
 				errors.KOMSpacingDueDate = [
