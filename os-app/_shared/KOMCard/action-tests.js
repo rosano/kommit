@@ -18,6 +18,12 @@ const kTesting = {
 			KOMCardAnswer: 'charlie',
 		};
 	},
+	StubSpacingObjectValid() {
+		return {
+			KOMSpacingID: 'bravo-forward',
+			KOMSpacingEvents: [],
+		};
+	},
 	uSerial (inputData) {
 		return inputData.reduce(async function (coll, e) {
 			return e.then(Array.prototype.concat.bind(await coll));
@@ -160,12 +166,12 @@ describe('KOMCardActionDelete', function test_KOMCardActionDelete() {
 
 		await mainModule.KOMCardActionDelete(KOMTestingStorageClient, item, kTesting.StubDeckObjectValid());
 		deepEqual(await KOMSpacingMetal.KOMSpacingMetalList(KOMTestingStorageClient, item, kTesting.StubDeckObjectValid()), {
-			KOMCardSpacingForward: {
+			KOMCardSpacingForward: Object.assign(kTesting.StubSpacingObjectValid(), {
 				KOMSpacingID: `${ item.KOMCardID }-forward`,
-			},
-			KOMCardSpacingBackward: {
+			}),
+			KOMCardSpacingBackward: Object.assign(kTesting.StubSpacingObjectValid(), {
 				KOMSpacingID: `${ item.KOMCardID }-backward`,
-			},
+			}),
 		});
 	});
 

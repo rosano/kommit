@@ -33,10 +33,12 @@ const mod = {
 			async KOMStorageList (param1, param2) {
 				return {
 					KOMCardSpacingForward: (await privateClient.getObject(mod.KOMSpacingStoragePathForward(param1, param2))) || {
-						KOMSpacingID: `${ param1.KOMCardID }-forward`
+						KOMSpacingID: `${ param1.KOMCardID }-forward`,
+						KOMSpacingEvents: [],
 					},
 					KOMCardSpacingBackward: (await privateClient.getObject(mod.KOMSpacingStoragePathBackward(param1, param2))) || {
-						KOMSpacingID: `${ param1.KOMCardID }-backward`
+						KOMSpacingID: `${ param1.KOMCardID }-backward`,
+						KOMSpacingEvents: [],
 					},
 				};
 			},
