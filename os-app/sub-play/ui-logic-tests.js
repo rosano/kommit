@@ -258,7 +258,7 @@ describe('KOMPlayStateIsValid', function test_KOMPlayStateIsValid() {
 describe('KOMPlayResponseTypeAgain', function test_KOMPlayResponseTypeAgain() {
 
 	it('returns string', function () {
-		deepEqual(mainModule.KOMPlayResponseTypeAgain(), 'kKOMPlayResponseTypeAgain')
+		deepEqual(mainModule.KOMPlayResponseTypeAgain(), 'RESPONSE_AGAIN')
 	});
 
 });
@@ -266,7 +266,7 @@ describe('KOMPlayResponseTypeAgain', function test_KOMPlayResponseTypeAgain() {
 describe('KOMPlayResponseTypeHard', function test_KOMPlayResponseTypeHard() {
 
 	it('returns string', function () {
-		deepEqual(mainModule.KOMPlayResponseTypeHard(), 'kKOMPlayResponseTypeHard')
+		deepEqual(mainModule.KOMPlayResponseTypeHard(), 'RESPONSE_HARD')
 	});
 
 });
@@ -274,7 +274,7 @@ describe('KOMPlayResponseTypeHard', function test_KOMPlayResponseTypeHard() {
 describe('KOMPlayResponseTypeGood', function test_KOMPlayResponseTypeGood() {
 
 	it('returns string', function () {
-		deepEqual(mainModule.KOMPlayResponseTypeGood(), 'kKOMPlayResponseTypeGood')
+		deepEqual(mainModule.KOMPlayResponseTypeGood(), 'RESPONSE_GOOD')
 	});
 
 });
@@ -282,7 +282,7 @@ describe('KOMPlayResponseTypeGood', function test_KOMPlayResponseTypeGood() {
 describe('KOMPlayResponseTypeEasy', function test_KOMPlayResponseTypeEasy() {
 
 	it('returns string', function () {
-		deepEqual(mainModule.KOMPlayResponseTypeEasy(), 'kKOMPlayResponseTypeEasy')
+		deepEqual(mainModule.KOMPlayResponseTypeEasy(), 'RESPONSE_EASY')
 	});
 
 });

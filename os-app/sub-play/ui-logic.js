@@ -117,19 +117,19 @@ const mod = {
 	},
 
 	KOMPlayResponseTypeAgain () {
-		return 'kKOMPlayResponseTypeAgain';
+		return 'RESPONSE_AGAIN';
 	},
 
 	KOMPlayResponseTypeHard () {
-		return 'kKOMPlayResponseTypeHard';
+		return 'RESPONSE_HARD';
 	},
 
 	KOMPlayResponseTypeGood () {
-		return 'kKOMPlayResponseTypeGood';
+		return 'RESPONSE_GOOD';
 	},
 
 	KOMPlayResponseTypeEasy () {
-		return 'kKOMPlayResponseTypeEasy';
+		return 'RESPONSE_EASY';
 	},
 
 	KOMPlayResponseTypes () {
