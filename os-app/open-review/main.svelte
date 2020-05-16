@@ -220,30 +220,6 @@ const mod = {
 	
 	// DATA
 
-	DataDeckTemplate (inputData) {
-		return {
-			KOMDeckName: inputData,
-			$KOMDeckCards: [],
-			$KOMDeckSpacings: [],
-		};
-	},
-
-	DataCardTemplate (inputData) {
-		return {
-			KOMCardQuestion: '',
-			KOMCardAnswer: '',
-			KOMCardHint: '',
-			$KOMCardDeck: inputData,
-		};
-	},
-
-	DataSpacingTemplate (inputData) {
-		return {
-			KOMSpacingID: `${ inputData.KOMCardID }-forward`,
-			$KOMSpacingCard: inputData,
-		};
-	},
-
 	FakeDeckObjectValid(inputData) {
 		return {
 			KOMDeckID: 'FakeDeckID',
@@ -273,7 +249,11 @@ const mod = {
 	// CONTROL
 
 	async ControlDeckCreate(inputData) {
-		const item = await KOMDeckAction.KOMDeckActionCreate(mod._ValueStorageClient, mod.DataDeckTemplate(inputData));
+		const item = await KOMDeckAction.KOMDeckActionCreate(mod._ValueStorageClient, {
+			KOMDeckName: inputData,
+			$KOMDeckCards: [],
+			$KOMDeckSpacings: [],
+		});
 
 		mod.ValueDecksAll(mod._ValueDecksAll.concat(item));
 	},
