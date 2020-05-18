@@ -650,9 +650,11 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		}, /KOMErrorInputNotValid/);
 	});
 
-	it('throws if param2 not valid', function () {
+	it('throws if param2 not prepared', function () {
 		throws(function () {
-			mainModule.KOMPlayRespond(uState(), {});
+			mainModule.KOMPlayRespond(uState(), Object.assign(kTesting.StubChronicleObjectValid(), {
+				KOMChronicleDrawDate: null,
+			}));
 		}, /KOMErrorInputNotValid/);
 	});
 
