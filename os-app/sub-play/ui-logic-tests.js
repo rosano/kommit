@@ -837,7 +837,10 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 			deepEqual(spacing, Object.assign(kTesting.StubSpacingObjectValid(), {
 				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + mainModule.KOMPlayResponseIntervalAgain()),
 				KOMSpacingIsLearning: true,
-				KOMSpacingChronicles: [chronicle],
+				KOMSpacingChronicles: [uChronicle({
+					KOMChronicleResponseType: mainModule.KOMPlayResponseTypeAgain(),
+					KOMChronicleDueDate: spacing.KOMSpacingDueDate,
+				})],
 			}));
 		});
 		
@@ -866,7 +869,10 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 			deepEqual(spacing, Object.assign(kTesting.StubSpacingObjectValid(), {
 				KOMSpacingIsLearning: true,
 				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + mainModule.KOMPlayResponseIntervalLearn1()),
-				KOMSpacingChronicles: [chronicle],
+				KOMSpacingChronicles: [uChronicle({
+					KOMChronicleResponseType: mainModule.KOMPlayResponseTypeHard(),
+					KOMChronicleDueDate: spacing.KOMSpacingDueDate,
+				})],
 			}));
 		});
 		
@@ -895,7 +901,10 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 			deepEqual(spacing, Object.assign(kTesting.StubSpacingObjectValid(), {
 				KOMSpacingIsLearning: true,
 				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + mainModule.KOMPlayResponseIntervalLearn1()),
-				KOMSpacingChronicles: [chronicle],
+				KOMSpacingChronicles: [uChronicle({
+					KOMChronicleResponseType: mainModule.KOMPlayResponseTypeGood(),
+					KOMChronicleDueDate: spacing.KOMSpacingDueDate,
+				})],
 			}));
 		});
 		
@@ -925,7 +934,10 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 				KOMSpacingInterval: mainModule.KOMPlayResponseIntervalGraduateEasy(),
 				KOMSpacingMultiplier: mainModule.KOMPlayResponseMultiplierDefault(),
 				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + 1000 * 60 * 60 * 24 * mainModule.KOMPlayResponseIntervalGraduateEasy()),
-				KOMSpacingChronicles: [chronicle],
+				KOMSpacingChronicles: [uChronicle({
+					KOMChronicleResponseType: mainModule.KOMPlayResponseTypeEasy(),
+					KOMChronicleDueDate: spacing.KOMSpacingDueDate,
+				})],
 			}));
 		});
 		
