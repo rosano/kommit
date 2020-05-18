@@ -141,22 +141,6 @@ const mod = {
 		];
 	},
 
-	KOMPlayResponseIsValid (inputData) {
-		if (typeof inputData !== 'object' || inputData === null) {
-			throw new Error('KOMErrorInputNotValid');
-		}
-
-		if (mod.KOMPlayResponseTypes().indexOf(inputData.KOMPlayResponseType) === -1) {
-			return false;
-		}
-
-		if (!(inputData.KOMPlayResponseDate instanceof Date) || Number.isNaN(inputData.KOMPlayResponseDate.getTime())) {
-			return false
-		}
-
-		return true;
-	},
-
 	KOMPlayResponseIntervalAgain () {
 		return 1000 * kIntervalAgainSeconds;
 	},
@@ -189,12 +173,12 @@ const mod = {
 		return kIntervalOverdueDivisorEasy;
 	},
 
-	KOMPlayResponseIntervalOverdueDays (spacing, response) {
+	KOMPlayResponseIntervalOverdueDays (spacing, chronicle) {
 		if (KOMSpacingModel.KOMSpacingModelErrorsFor(spacing)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		if (!mod.KOMPlayResponseIsValid(response)) {
+		if (!mod.KOMChronicleIsValid(chronicle)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
@@ -203,7 +187,7 @@ const mod = {
 		}
 
 		const due = new Date(mod.KOMPlayDayGrouping(spacing.KOMSpacingDueDate)).valueOf();
-		const date = new Date(mod.KOMPlayDayGrouping(response.KOMPlayResponseDate)).valueOf();
+		const date = new Date(mod.KOMPlayDayGrouping(chronicle.KOMChronicleResponseDate)).valueOf();
 
 		if (date <= due) {
 			return 0;
@@ -212,26 +196,26 @@ const mod = {
 		return (date - due) / 1000 / 60 / 60 / 24;
 	},
 
-	KOMPlayResponseIntervalOverdueBonus (spacing, response) {
+	KOMPlayResponseIntervalOverdueBonus (spacing, chronicle) {
 		if (KOMSpacingModel.KOMSpacingModelErrorsFor(spacing)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		if (!mod.KOMPlayResponseIsValid(response)) {
+		if (!mod.KOMChronicleIsValid(chronicle)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		const days = mod.KOMPlayResponseIntervalOverdueDays(spacing, response);
+		const days = mod.KOMPlayResponseIntervalOverdueDays(spacing, chronicle);
 
-		if (response.KOMPlayResponseType === mod.KOMPlayResponseTypeHard()) {
+		if (chronicle.KOMChronicleResponseType === mod.KOMPlayResponseTypeHard()) {
 			return days / mod.KOMPlayResponseIntervalOverdueDivisorHard();
 		}
 
-		if (response.KOMPlayResponseType === mod.KOMPlayResponseTypeGood()) {
+		if (chronicle.KOMChronicleResponseType === mod.KOMPlayResponseTypeGood()) {
 			return days / mod.KOMPlayResponseIntervalOverdueDivisorGood();
 		}
 
-		if (response.KOMPlayResponseType === mod.KOMPlayResponseTypeEasy()) {
+		if (chronicle.KOMChronicleResponseType === mod.KOMPlayResponseTypeEasy()) {
 			return days / mod.KOMPlayResponseIntervalOverdueDivisorEasy();
 		}
 
@@ -270,12 +254,12 @@ const mod = {
 		return kMultiplierMultiplicandEasy;
 	},
 
-	KOMPlayRespond (state, response) {
+	KOMPlayRespond (state, chronicle) {
 		if (!mod.KOMPlayStateIsValid(state)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		if (!mod.KOMPlayResponseIsValid(response)) {
+		if (!mod.KOMChronicleIsValid(chronicle)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
@@ -283,54 +267,54 @@ const mod = {
 
 		Object.assign(spacing, (function update_spacing() {
 			// FAIL
-			if (response.KOMPlayResponseType === mod.KOMPlayResponseTypeAgain()) {
+			if (chronicle.KOMChronicleResponseType === mod.KOMPlayResponseTypeAgain()) {
 				delete spacing.KOMSpacingIsReadyToGraduate;
 			}
 			
 			// GRADUATE
-			if (!KOMSpacingModel.KOMSpacingModelIsReviewing(spacing) && (response.KOMPlayResponseType === mod.KOMPlayResponseTypeEasy() || spacing.KOMSpacingIsReadyToGraduate)) {
+			if (!KOMSpacingModel.KOMSpacingModelIsReviewing(spacing) && (chronicle.KOMChronicleResponseType === mod.KOMPlayResponseTypeEasy() || spacing.KOMSpacingIsReadyToGraduate)) {
 				delete spacing.KOMSpacingIsLearning;
 				delete spacing.KOMSpacingIsReadyToGraduate;
 
-				const interval = response.KOMPlayResponseType === mod.KOMPlayResponseTypeEasy() ? mod.KOMPlayResponseIntervalGraduateEasy() : mod.KOMPlayResponseIntervalGraduateDefault();
+				const interval = chronicle.KOMChronicleResponseType === mod.KOMPlayResponseTypeEasy() ? mod.KOMPlayResponseIntervalGraduateEasy() : mod.KOMPlayResponseIntervalGraduateDefault();
 				return {
 					KOMSpacingInterval: interval,
 					KOMSpacingMultiplier: mod.KOMPlayResponseMultiplierDefault(),
-					KOMSpacingDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * interval),
+					KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + 1000 * 60 * 60 * 24 * interval),
 				};
 			}
 
 			// REVIEW
-			if (KOMSpacingModel.KOMSpacingModelIsReviewing(spacing) && response.KOMPlayResponseType !== mod.KOMPlayResponseTypeAgain()) {
-				let interval = (spacing.KOMSpacingInterval + mod.KOMPlayResponseIntervalOverdueBonus(spacing, response)) * (response.KOMPlayResponseType === mod.KOMPlayResponseTypeHard() ? mod.KOMPlayResponseMultiplierHard() : spacing.KOMSpacingMultiplier);
+			if (KOMSpacingModel.KOMSpacingModelIsReviewing(spacing) && chronicle.KOMChronicleResponseType !== mod.KOMPlayResponseTypeAgain()) {
+				let interval = (spacing.KOMSpacingInterval + mod.KOMPlayResponseIntervalOverdueBonus(spacing, chronicle)) * (chronicle.KOMChronicleResponseType === mod.KOMPlayResponseTypeHard() ? mod.KOMPlayResponseMultiplierHard() : spacing.KOMSpacingMultiplier);
 
 				if (state.KOMPlayStateShouldRandomize) {
 					interval *= 1 + (Math.min(0.25, Math.random()) / 100 + 0.005) * (Math.random() > 0.5 ? -1 : 1);
 				}
 
-				if (response.KOMPlayResponseType === mod.KOMPlayResponseTypeEasy()) {
+				if (chronicle.KOMChronicleResponseType === mod.KOMPlayResponseTypeEasy()) {
 					interval *= mod.KOMPlayResponseMultiplierMultiplicandEasy();
 				}
 
 				let multiplier = spacing.KOMSpacingMultiplier;
 
-				if (response.KOMPlayResponseType === mod.KOMPlayResponseTypeHard()) {
+				if (chronicle.KOMChronicleResponseType === mod.KOMPlayResponseTypeHard()) {
 					multiplier += mod.KOMPlayResponseMultiplierSummandHard();
 				}
 
-				if (response.KOMPlayResponseType === mod.KOMPlayResponseTypeEasy()) {
+				if (chronicle.KOMChronicleResponseType === mod.KOMPlayResponseTypeEasy()) {
 					multiplier += mod.KOMPlayResponseMultiplierSummandEasy();
 				}
 
 				return {
 					KOMSpacingInterval: interval,
 					KOMSpacingMultiplier: Math.max(mod.KOMPlayResponseMultiplierMin(), multiplier),
-					KOMSpacingDueDate: new Date(response.KOMPlayResponseDate.valueOf() + 1000 * 60 * 60 * 24 * interval),
+					KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + 1000 * 60 * 60 * 24 * interval),
 				};
 			}
 
 			// LAPSE
-			if (KOMSpacingModel.KOMSpacingModelIsReviewing(spacing) && response.KOMPlayResponseType === mod.KOMPlayResponseTypeAgain()) {
+			if (KOMSpacingModel.KOMSpacingModelIsReviewing(spacing) && chronicle.KOMChronicleResponseType === mod.KOMPlayResponseTypeAgain()) {
 				delete spacing.KOMSpacingInterval;
 
 				spacing.KOMSpacingMultiplier += mod.KOMPlayResponseMultiplierSummandFail();
@@ -339,18 +323,18 @@ const mod = {
 			// LEARN
 			let interval = mod.KOMPlayResponseIntervalAgain();
 			
-			if (response.KOMPlayResponseType !== mod.KOMPlayResponseTypeAgain() && KOMSpacingModel.KOMSpacingModelIsUnseen(spacing)) {
+			if (chronicle.KOMChronicleResponseType !== mod.KOMPlayResponseTypeAgain() && KOMSpacingModel.KOMSpacingModelIsUnseen(spacing)) {
 				interval = mod.KOMPlayResponseIntervalLearn1();
 			}
 
-			if (response.KOMPlayResponseType !== mod.KOMPlayResponseTypeAgain() && KOMSpacingModel.KOMSpacingModelIsLearning(spacing)) {
+			if (chronicle.KOMChronicleResponseType !== mod.KOMPlayResponseTypeAgain() && KOMSpacingModel.KOMSpacingModelIsLearning(spacing)) {
 				interval = mod.KOMPlayResponseIntervalLearn2();
 			}
 
 			return Object.assign({
 				KOMSpacingIsLearning: true,
-				KOMSpacingDueDate: new Date(response.KOMPlayResponseDate.valueOf() + interval),
-			}, KOMSpacingModel.KOMSpacingModelIsLearning(spacing) && response.KOMPlayResponseType !== mod.KOMPlayResponseTypeAgain() ? {
+				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + interval),
+			}, KOMSpacingModel.KOMSpacingModelIsLearning(spacing) && chronicle.KOMChronicleResponseType !== mod.KOMPlayResponseTypeAgain() ? {
 				KOMSpacingIsReadyToGraduate: true,
 			} : {})
 		})());
@@ -365,7 +349,7 @@ const mod = {
 					return true;
 				}
 
-				return e.KOMSpacingDueDate < response.KOMPlayResponseDate;
+				return e.KOMSpacingDueDate < chronicle.KOMChronicleResponseDate;
 			}).reverse().forEach(function (e) {
 				state.KOMPlayStateQueue.unshift(state.KOMPlayStateWait.splice(state.KOMPlayStateWait.indexOf(e), 1).pop());
 			});
