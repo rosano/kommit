@@ -16,6 +16,17 @@ const kTesting = {
 			KOMPlayResponseDate: new Date('2019-02-24T12:00:00Z'),
 		};
 	},
+	StubChronicleObjectValid () {
+		return {
+			KOMChronicleDrawDate: new Date(),
+			KOMChronicleFlipDate: new Date(),
+			KOMChronicleResponseDate: new Date(),
+			KOMChronicleResponseType: mainModule.KOMPlayResponseTypeEasy(),
+			KOMChronicleInterval: 1,
+			KOMChronicleMultiplier: 1,
+			KOMChronicleDueDate: new Date(),
+		};
+	},
 	StubSpacingObjectValid() {
 		return {
 			KOMSpacingID: 'bravo-forward',
@@ -544,6 +555,94 @@ describe('KOMPlayResponseIsValid', function test_KOMPlayResponseIsValid() {
 
 	it('returns true', function() {
 		deepEqual(mainModule.KOMPlayResponseIsValid(kTesting.StubResponseObjectValid()), true);
+	});
+
+});
+
+describe('KOMChronicleIsValid', function test_KOMChronicleIsValid() {
+	
+	it('throws if not object', function () {
+		throws(function () {
+			mainModule.KOMChronicleIsValid(null);
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns false if KOMChronicleDrawDate not date', function() {
+		deepEqual(mainModule.KOMChronicleIsValid(Object.assign(kTesting.StubChronicleObjectValid(), {
+			KOMChronicleDrawDate: new Date('alfa'),
+		})), false);
+	});
+
+	it('returns false if KOMChronicleFlipDate not date', function() {
+		deepEqual(mainModule.KOMChronicleIsValid(Object.assign(kTesting.StubChronicleObjectValid(), {
+			KOMChronicleFlipDate: new Date('alfa'),
+		})), false);
+	});
+
+	it('returns false if KOMChronicleResponseDate not date', function() {
+		deepEqual(mainModule.KOMChronicleIsValid(Object.assign(kTesting.StubChronicleObjectValid(), {
+			KOMChronicleResponseDate: new Date('alfa'),
+		})), false);
+	});
+
+	it('returns false if KOMChronicleResponseType not valid', function() {
+		deepEqual(mainModule.KOMChronicleIsValid(Object.assign(kTesting.StubChronicleObjectValid(), {
+			KOMChronicleResponseType: 'alfa',
+		})), false);
+	});
+
+	it('returns false if KOMChronicleInterval not number', function() {
+		deepEqual(mainModule.KOMChronicleIsValid(Object.assign(kTesting.StubChronicleObjectValid(), {
+			KOMChronicleInterval: '1',
+		})), false);
+	});
+
+	it('returns false if KOMChronicleMultiplier not number', function() {
+		deepEqual(mainModule.KOMChronicleIsValid(Object.assign(kTesting.StubChronicleObjectValid(), {
+			KOMChronicleMultiplier: '1',
+		})), false);
+	});
+
+	it('returns false if KOMChronicleDueDate not date', function() {
+		deepEqual(mainModule.KOMChronicleIsValid(Object.assign(kTesting.StubChronicleObjectValid(), {
+			KOMChronicleDueDate: new Date('alfa'),
+		})), false);
+	});
+
+	it('returns true', function() {
+		deepEqual(mainModule.KOMChronicleIsValid(kTesting.StubChronicleObjectValid()), true);
+	});
+
+	context('KOMChronicleDidDrawMultipleTimes', function () {
+
+		it('returns false if not boolean', function() {
+			deepEqual(mainModule.KOMChronicleIsValid(Object.assign(kTesting.StubChronicleObjectValid(), {
+				KOMChronicleDidDrawMultipleTimes: 'true',
+			})), false);
+		});
+
+		it('returns true', function() {
+			deepEqual(mainModule.KOMChronicleIsValid(Object.assign(kTesting.StubChronicleObjectValid(), {
+				KOMChronicleDidDrawMultipleTimes: true,
+			})), true);
+		});
+	
+	});
+
+	context('KOMChronicleDidFlipMultipleTimes', function () {
+		
+		it('returns false if not boolean', function() {
+			deepEqual(mainModule.KOMChronicleIsValid(Object.assign(kTesting.StubChronicleObjectValid(), {
+				KOMChronicleDidFlipMultipleTimes: 'true',
+			})), false);
+		});
+
+		it('returns true', function() {
+			deepEqual(mainModule.KOMChronicleIsValid(Object.assign(kTesting.StubChronicleObjectValid(), {
+				KOMChronicleDidFlipMultipleTimes: true,
+			})), true);
+		});
+	
 	});
 
 });

@@ -376,6 +376,54 @@ const mod = {
 		return state;
 	},
 
+	KOMChronicleIsValid (inputData) {
+		if (typeof inputData !== 'object' || inputData === null) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		if (!(inputData.KOMChronicleDrawDate instanceof Date) || Number.isNaN(inputData.KOMChronicleDrawDate.getTime())) {
+			return false
+		}
+
+		if (!(inputData.KOMChronicleFlipDate instanceof Date) || Number.isNaN(inputData.KOMChronicleFlipDate.getTime())) {
+			return false
+		}
+
+		if (!(inputData.KOMChronicleResponseDate instanceof Date) || Number.isNaN(inputData.KOMChronicleResponseDate.getTime())) {
+			return false
+		}
+
+		if (mod.KOMPlayResponseTypes().indexOf(inputData.KOMChronicleResponseType) === -1) {
+			return false;
+		}
+
+		if (typeof inputData.KOMChronicleInterval !== 'number') {
+			return false
+		}
+
+		if (typeof inputData.KOMChronicleMultiplier !== 'number') {
+			return false
+		}
+
+		if (!(inputData.KOMChronicleDueDate instanceof Date) || Number.isNaN(inputData.KOMChronicleDueDate.getTime())) {
+			return false
+		}
+
+		if (inputData.KOMChronicleDidDrawMultipleTimes !== undefined) {
+			if (typeof inputData.KOMChronicleDidDrawMultipleTimes !== 'boolean') {
+				return false;
+			}
+		}
+
+		if (inputData.KOMChronicleDidFlipMultipleTimes !== undefined) {
+			if (typeof inputData.KOMChronicleDidFlipMultipleTimes !== 'boolean') {
+				return false;
+			}
+		}
+
+		return true;
+	},
+
 };
 
 export default mod;
