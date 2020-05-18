@@ -1202,28 +1202,35 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		
 		const spacing = kTesting.StubSpacingObjectValid();
 		const state = uState(spacing, [kTesting.StubSpacingObjectValid()]);
-		const chronicle = uChronicle({
+		let chronicle = uChronicle({
 			KOMChronicleResponseType: mainModule.KOMPlayResponseTypeGood(),
 		});
+		const events = [];
 
 		before(function () {
 			mainModule.KOMPlayRespond(state, chronicle);
+
+			events.push(uChronicle(chronicle));
 		});
 		
 		before(function () {
 			state.KOMPlayStateQueue.unshift(state.KOMPlayStateCurrent);
 			state.KOMPlayStateCurrent = state.KOMPlayStateWait.pop();
 
-			mainModule.KOMPlayRespond(state, Object.assign(chronicle, {
+			mainModule.KOMPlayRespond(state, chronicle = uChronicle({
+				KOMChronicleResponseType: mainModule.KOMPlayResponseTypeGood(),
 				KOMChronicleResponseDate: state.KOMPlayStateCurrent.KOMSpacingDueDate,
-			}));	
+			}));
+
+			events.push(uChronicle(chronicle));
 		});
 		
 		before(function () {
 			state.KOMPlayStateQueue.unshift(state.KOMPlayStateCurrent);
 			state.KOMPlayStateCurrent = state.KOMPlayStateWait.pop();
 
-			mainModule.KOMPlayRespond(state, Object.assign(chronicle, {
+			mainModule.KOMPlayRespond(state, chronicle = uChronicle({
+				KOMChronicleResponseType: mainModule.KOMPlayResponseTypeGood(),
 				KOMChronicleResponseDate: state.KOMPlayStateCurrent.KOMSpacingDueDate,
 			}));	
 		});
@@ -1233,7 +1240,13 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 				KOMSpacingInterval: mainModule.KOMPlayResponseIntervalGraduateDefault(),
 				KOMSpacingMultiplier: mainModule.KOMPlayResponseMultiplierDefault(),
 				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + 1000 * 60 * 60 * 24 * mainModule.KOMPlayResponseIntervalGraduateDefault()),
-				KOMSpacingChronicles: [chronicle, chronicle, chronicle],
+				KOMSpacingChronicles: events.concat(uChronicle({
+					KOMChronicleResponseDate: chronicle.KOMChronicleResponseDate,
+					KOMChronicleResponseType: chronicle.KOMChronicleResponseType,
+					KOMChronicleDueDate: spacing.KOMSpacingDueDate,
+					KOMChronicleInterval: spacing.KOMSpacingInterval,
+					KOMChronicleMultiplier: spacing.KOMSpacingMultiplier,
+				})),
 			}));
 		});
 		
