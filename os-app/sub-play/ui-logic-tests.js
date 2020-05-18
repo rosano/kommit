@@ -673,6 +673,21 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		deepEqual(mainModule.KOMPlayRespond(item, uChronicle()) === item, true);
 	});
 
+	context('param2', function () {
+		
+		const spacing = kTesting.StubSpacingObjectValid();
+		const chronicle = uChronicle();
+
+		before(function () {
+			mainModule.KOMPlayRespond(uState(spacing), chronicle);
+		});
+		
+		it('adds to KOMSpacingChronicles', function () {
+			deepEqual(spacing.KOMSpacingChronicles[0] === chronicle, true);
+		});
+
+	});
+
 	context('KOMPlayStateCurrent', function () {
 		
 		it('sets to null if queue empty', function () {
