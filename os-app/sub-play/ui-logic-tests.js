@@ -10,16 +10,20 @@ const kTesting = {
 			KOMPlayStateWait: [],
 		};
 	},
-	StubChronicleObjectValid () {
+	StubChronicleObjectPrepared () {
 		return {
 			KOMChronicleDrawDate: new Date('2019-02-23T13:56:36Z'),
 			KOMChronicleFlipDate: new Date('2019-02-23T13:56:36Z'),
 			KOMChronicleResponseDate: new Date('2019-02-23T13:56:36Z'),
 			KOMChronicleResponseType: mainModule.KOMPlayResponseTypeEasy(),
+		};
+	},
+	StubChronicleObjectValid () {
+		return Object.assign(kTesting.StubChronicleObjectPrepared(), {
 			KOMChronicleInterval: 1,
 			KOMChronicleMultiplier: 1,
 			KOMChronicleDueDate: new Date('2019-02-23T13:56:36Z'),
-		};
+		});
 	},
 	StubSpacingObjectValid() {
 		return {
@@ -527,36 +531,52 @@ describe('KOMPlayResponseMultiplierMultiplicandEasy', function test_KOMPlayRespo
 
 });
 
-describe('KOMChronicleIsValid', function test_KOMChronicleIsValid() {
+describe('KOMChronicleIsPrepared', function test_KOMChronicleIsPrepared() {
 	
 	it('throws if not object', function () {
 		throws(function () {
-			mainModule.KOMChronicleIsValid(null);
+			mainModule.KOMChronicleIsPrepared(null);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns false if KOMChronicleDrawDate not date', function() {
-		deepEqual(mainModule.KOMChronicleIsValid(Object.assign(kTesting.StubChronicleObjectValid(), {
+		deepEqual(mainModule.KOMChronicleIsPrepared(Object.assign(kTesting.StubChronicleObjectPrepared(), {
 			KOMChronicleDrawDate: new Date('alfa'),
 		})), false);
 	});
 
 	it('returns false if KOMChronicleFlipDate not date', function() {
-		deepEqual(mainModule.KOMChronicleIsValid(Object.assign(kTesting.StubChronicleObjectValid(), {
+		deepEqual(mainModule.KOMChronicleIsPrepared(Object.assign(kTesting.StubChronicleObjectPrepared(), {
 			KOMChronicleFlipDate: new Date('alfa'),
 		})), false);
 	});
 
 	it('returns false if KOMChronicleResponseDate not date', function() {
-		deepEqual(mainModule.KOMChronicleIsValid(Object.assign(kTesting.StubChronicleObjectValid(), {
+		deepEqual(mainModule.KOMChronicleIsPrepared(Object.assign(kTesting.StubChronicleObjectPrepared(), {
 			KOMChronicleResponseDate: new Date('alfa'),
 		})), false);
 	});
 
 	it('returns false if KOMChronicleResponseType not valid', function() {
-		deepEqual(mainModule.KOMChronicleIsValid(Object.assign(kTesting.StubChronicleObjectValid(), {
+		deepEqual(mainModule.KOMChronicleIsPrepared(Object.assign(kTesting.StubChronicleObjectPrepared(), {
 			KOMChronicleResponseType: 'alfa',
 		})), false);
+	});
+
+	it('returns true', function() {
+		deepEqual(mainModule.KOMChronicleIsPrepared(kTesting.StubChronicleObjectPrepared()), true);
+	});
+
+});
+
+describe('KOMChronicleIsValid', function test_KOMChronicleIsValid() {
+	
+	it('throws if not prepared', function () {
+		throws(function () {
+			mainModule.KOMChronicleIsValid(mainModule.KOMChronicleIsValid(Object.assign(kTesting.StubChronicleObjectValid(), {
+			KOMChronicleDrawDate: new Date('alfa'),
+		})));
+		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns false if KOMChronicleInterval not number', function() {

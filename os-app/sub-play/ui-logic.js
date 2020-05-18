@@ -361,8 +361,32 @@ const mod = {
 		return state;
 	},
 
-	KOMChronicleIsValid (inputData) {
+	KOMChronicleIsPrepared (inputData) {
 		if (typeof inputData !== 'object' || inputData === null) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		if (!(inputData.KOMChronicleDrawDate instanceof Date) || Number.isNaN(inputData.KOMChronicleDrawDate.getTime())) {
+			return false
+		}
+
+		if (!(inputData.KOMChronicleFlipDate instanceof Date) || Number.isNaN(inputData.KOMChronicleFlipDate.getTime())) {
+			return false
+		}
+
+		if (!(inputData.KOMChronicleResponseDate instanceof Date) || Number.isNaN(inputData.KOMChronicleResponseDate.getTime())) {
+			return false
+		}
+
+		if (mod.KOMPlayResponseTypes().indexOf(inputData.KOMChronicleResponseType) === -1) {
+			return false;
+		}
+
+		return true;
+	},
+
+	KOMChronicleIsValid (inputData) {
+		if (!mod.KOMChronicleIsPrepared(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
