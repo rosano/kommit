@@ -21,7 +21,7 @@ const kTesting = {
 	StubSpacingObjectValid() {
 		return {
 			KOMSpacingID: 'bravo-forward',
-			KOMSpacingEvents: [],
+			KOMSpacingChronicles: [],
 		};
 	},
 	uSerial (inputData) {

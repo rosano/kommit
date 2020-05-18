@@ -19,7 +19,7 @@ const kTesting = {
 	StubSpacingObjectValid() {
 		return {
 			KOMSpacingID: 'bravo-forward',
-			KOMSpacingEvents: [],
+			KOMSpacingChronicles: [],
 		};
 	},
 };

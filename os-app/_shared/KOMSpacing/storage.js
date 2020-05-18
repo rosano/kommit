@@ -34,11 +34,11 @@ const mod = {
 				return {
 					KOMCardSpacingForward: (await privateClient.getObject(mod.KOMSpacingStoragePathForward(param1, param2))) || {
 						KOMSpacingID: `${ param1.KOMCardID }-forward`,
-						KOMSpacingEvents: [],
+						KOMSpacingChronicles: [],
 					},
 					KOMCardSpacingBackward: (await privateClient.getObject(mod.KOMSpacingStoragePathBackward(param1, param2))) || {
 						KOMSpacingID: `${ param1.KOMCardID }-backward`,
-						KOMSpacingEvents: [],
+						KOMSpacingChronicles: [],
 					},
 				};
 			},

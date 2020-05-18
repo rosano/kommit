@@ -59,8 +59,8 @@ const mod = {
 			];
 		}
 
-		if (!Array.isArray(inputData.KOMSpacingEvents)) {
-			errors.KOMSpacingEvents = [
+		if (!Array.isArray(inputData.KOMSpacingChronicles)) {
+			errors.KOMSpacingChronicles = [
 				'KOMErrorNotArray',
 			];
 		}
