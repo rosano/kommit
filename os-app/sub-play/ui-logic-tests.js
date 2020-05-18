@@ -648,13 +648,13 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		});
 	};
 	
-	const uChronicle = function (inputData = {}) {
+	const uChroniclePrepared = function (inputData = {}) {
 		return Object.assign(kTesting.StubChronicleObjectPrepared(), inputData);
 	};
 	
 	it('throws if param1 not valid', function () {
 		throws(function () {
-			mainModule.KOMPlayRespond({}, uChronicle());
+			mainModule.KOMPlayRespond({}, uChroniclePrepared());
 		}, /KOMErrorInputNotValid/);
 	});
 
@@ -668,20 +668,20 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 	it('returns param1', function() {
 		const item = uState(kTesting.StubSpacingObjectValid());
-		deepEqual(mainModule.KOMPlayRespond(item, uChronicle()) === item, true);
+		deepEqual(mainModule.KOMPlayRespond(item, uChroniclePrepared()) === item, true);
 	});
 
 	context('KOMPlayStateCurrent', function () {
 		
 		it('sets to null if queue empty', function () {
-			deepEqual(mainModule.KOMPlayRespond(uState(kTesting.StubSpacingObjectValid()), uChronicle()), Object.assign(uState(), {
+			deepEqual(mainModule.KOMPlayRespond(uState(kTesting.StubSpacingObjectValid()), uChroniclePrepared()), Object.assign(uState(), {
 				KOMPlayStateCurrent: null,
 			}));
 		});
 
 		it('sets to first in queue', function () {
 			const item = kTesting.StubSpacingObjectValid();
-			deepEqual(mainModule.KOMPlayRespond(uState(kTesting.StubSpacingObjectValid(), item), uChronicle()).KOMPlayStateCurrent === item, true);
+			deepEqual(mainModule.KOMPlayRespond(uState(kTesting.StubSpacingObjectValid(), item), uChroniclePrepared()).KOMPlayStateCurrent === item, true);
 		});
 	
 	});
@@ -700,7 +700,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 			const state = uWait(-1000);
 			const queue = state.KOMPlayStateQueue.slice();
 			const first = state.KOMPlayStateWait.slice()[0];
-			deepEqual(mainModule.KOMPlayRespond(state, uChronicle()), Object.assign(uWait(-1000), {
+			deepEqual(mainModule.KOMPlayRespond(state, uChroniclePrepared()), Object.assign(uWait(-1000), {
 				KOMPlayStateCurrent: first,
 				KOMPlayStateQueue: queue,
 				KOMPlayStateWait: [],
@@ -712,7 +712,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 				KOMPlayStateQueue: [],
 			});
 			const wait = (state.KOMPlayStateWait = state.KOMPlayStateWait.concat(state.KOMPlayStateWait.slice())).slice();
-			deepEqual(mainModule.KOMPlayRespond(state, uChronicle()), Object.assign(uWait(1000), {
+			deepEqual(mainModule.KOMPlayRespond(state, uChroniclePrepared()), Object.assign(uWait(1000), {
 				KOMPlayStateCurrent: wait[0],
 				KOMPlayStateQueue: wait.slice(1),
 				KOMPlayStateWait: [],
@@ -739,7 +739,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 				const state = Object.assign(uState(spacing), {
 					KOMPlayStateShouldRandomize: true,
 				});
-				const chronicle = uChronicle({
+				const chronicle = uChroniclePrepared({
 					KOMChronicleResponseDate: date,
 					KOMChronicleResponseType: mainModule.KOMPlayResponseTypeEasy(),
 				});
@@ -823,7 +823,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 		const spacing = kTesting.StubSpacingObjectValid();
 		const state = uState(spacing, [kTesting.StubSpacingObjectValid()]);
-		const chronicle = uChronicle({
+		const chronicle = uChroniclePrepared({
 			KOMChronicleResponseType: mainModule.KOMPlayResponseTypeAgain(),
 		});
 
@@ -852,7 +852,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		
 		const spacing = kTesting.StubSpacingObjectValid();
 		const state = uState(spacing, [kTesting.StubSpacingObjectValid()]);
-		const chronicle = uChronicle({
+		const chronicle = uChroniclePrepared({
 			KOMChronicleResponseType: mainModule.KOMPlayResponseTypeHard(),
 		});
 
@@ -881,7 +881,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		
 		const spacing = kTesting.StubSpacingObjectValid();
 		const state = uState(spacing, [kTesting.StubSpacingObjectValid()]);
-		const chronicle = uChronicle({
+		const chronicle = uChroniclePrepared({
 			KOMChronicleResponseType: mainModule.KOMPlayResponseTypeGood(),
 		});
 
@@ -910,7 +910,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		
 		const spacing = kTesting.StubSpacingObjectValid();
 		const state = uState(spacing);
-		const chronicle = uChronicle({
+		const chronicle = uChroniclePrepared({
 			KOMChronicleResponseType: mainModule.KOMPlayResponseTypeEasy(),
 		});
 
@@ -937,7 +937,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 		const spacing = kTesting.StubSpacingObjectValid();
 		const state = uState(spacing, [kTesting.StubSpacingObjectValid()]);
-		const chronicle = uChronicle({
+		const chronicle = uChroniclePrepared({
 			KOMChronicleResponseType: mainModule.KOMPlayResponseTypeAgain(),
 		});
 
@@ -975,7 +975,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		
 		const spacing = kTesting.StubSpacingObjectValid();
 		const state = uState(spacing, [kTesting.StubSpacingObjectValid()]);
-		const chronicle = uChronicle({
+		const chronicle = uChroniclePrepared({
 			KOMChronicleResponseType: mainModule.KOMPlayResponseTypeHard(),
 		});
 
@@ -1014,7 +1014,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		
 		const spacing = kTesting.StubSpacingObjectValid();
 		const state = uState(spacing, [kTesting.StubSpacingObjectValid()]);
-		const chronicle = uChronicle({
+		const chronicle = uChroniclePrepared({
 			KOMChronicleResponseType: mainModule.KOMPlayResponseTypeGood(),
 		});
 
@@ -1053,7 +1053,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		
 		const spacing = kTesting.StubSpacingObjectValid();
 		const state = uState(spacing, [kTesting.StubSpacingObjectValid()]);
-		const chronicle = uChronicle({
+		const chronicle = uChroniclePrepared({
 			KOMChronicleResponseType: mainModule.KOMPlayResponseTypeGood(),
 		});
 
@@ -1092,7 +1092,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		
 		const spacing = kTesting.StubSpacingObjectValid();
 		const state = uState(spacing, [kTesting.StubSpacingObjectValid()]);
-		const chronicle = uChronicle({
+		const chronicle = uChroniclePrepared({
 			KOMChronicleResponseType: mainModule.KOMPlayResponseTypeHard(),
 		});
 
@@ -1139,7 +1139,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		
 		const spacing = kTesting.StubSpacingObjectValid();
 		const state = uState(spacing, [kTesting.StubSpacingObjectValid()]);
-		const chronicle = uChronicle({
+		const chronicle = uChroniclePrepared({
 			KOMChronicleResponseType: mainModule.KOMPlayResponseTypeGood(),
 		});
 
@@ -1186,7 +1186,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		
 		const spacing = kTesting.StubSpacingObjectValid();
 		const state = uState(spacing, [kTesting.StubSpacingObjectValid()]);
-		const chronicle = uChronicle({
+		const chronicle = uChroniclePrepared({
 			KOMChronicleResponseType: mainModule.KOMPlayResponseTypeGood(),
 		});
 
@@ -1234,7 +1234,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 		const spacing = kTesting.StubSpacingObjectValid();
 		const state = uState(spacing, [kTesting.StubSpacingObjectValid()]);
-		const chronicle = uChronicle({
+		const chronicle = uChroniclePrepared({
 			KOMChronicleResponseType: mainModule.KOMPlayResponseTypeEasy(),
 		});
 
@@ -1274,7 +1274,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 		const spacing = kTesting.StubSpacingObjectValid();
 		const state = uState(spacing, [kTesting.StubSpacingObjectValid()]);
-		const chronicle = uChronicle({
+		const chronicle = uChroniclePrepared({
 			KOMChronicleResponseType: mainModule.KOMPlayResponseTypeEasy(),
 		});
 
@@ -1315,7 +1315,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 		const spacing = kTesting.StubSpacingObjectValid();
 		const state = uState(spacing, [kTesting.StubSpacingObjectValid()]);
-		const chronicle = uChronicle({
+		const chronicle = uChroniclePrepared({
 			KOMChronicleResponseType: mainModule.KOMPlayResponseTypeEasy(),
 		});
 
@@ -1356,7 +1356,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 		const spacing = kTesting.StubSpacingObjectValid();
 		const state = uState(spacing, [kTesting.StubSpacingObjectValid()]);
-		const chronicle = uChronicle({
+		const chronicle = uChroniclePrepared({
 			KOMChronicleResponseType: mainModule.KOMPlayResponseTypeEasy(),
 		});
 
@@ -1401,7 +1401,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 			KOMSpacingMultiplier: mainModule.KOMPlayResponseMultiplierDefault(),
 			KOMSpacingDueDate: date,
 		});
-		const chronicle = uChronicle({
+		const chronicle = uChroniclePrepared({
 			KOMChronicleResponseDate: new Date(date.valueOf() + 1000 * 60 * 60 * 24 * 10),
 			KOMChronicleResponseType: mainModule.KOMPlayResponseTypeHard(),
 		});
@@ -1430,7 +1430,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 			KOMSpacingMultiplier: mainModule.KOMPlayResponseMultiplierDefault(),
 			KOMSpacingDueDate: date,
 		});
-		const chronicle = uChronicle({
+		const chronicle = uChroniclePrepared({
 			KOMChronicleResponseDate: new Date(date.valueOf() + 1000 * 60 * 60 * 24 * 10),
 			KOMChronicleResponseType: mainModule.KOMPlayResponseTypeGood(),
 		});
@@ -1459,7 +1459,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 			KOMSpacingMultiplier: mainModule.KOMPlayResponseMultiplierDefault(),
 			KOMSpacingDueDate: date,
 		});
-		const chronicle = uChronicle({
+		const chronicle = uChroniclePrepared({
 			KOMChronicleResponseDate: new Date(date.valueOf() + 1000 * 60 * 60 * 24 * 10),
 			KOMChronicleResponseType: mainModule.KOMPlayResponseTypeEasy(),
 		});
@@ -1488,7 +1488,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 			KOMSpacingMultiplier: mainModule.KOMPlayResponseMultiplierMin(),
 			KOMSpacingDueDate: date,
 		});
-		const chronicle = uChronicle({
+		const chronicle = uChroniclePrepared({
 			KOMChronicleResponseDate: new Date(date.valueOf() + 1000 * 60 * 60 * 24 * 10),
 			KOMChronicleResponseType: mainModule.KOMPlayResponseTypeHard(),
 		});
