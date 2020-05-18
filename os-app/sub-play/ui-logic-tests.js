@@ -658,7 +658,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		}, /KOMErrorInputNotValid/);
 	});
 
-	it('returns param2', function() {
+	it('returns param1', function() {
 		const item = uState(kTesting.StubSpacingObjectValid());
 		deepEqual(mainModule.KOMPlayRespond(item, kTesting.StubChronicleObjectValid()) === item, true);
 	});
