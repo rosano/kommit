@@ -536,9 +536,9 @@ describe('KOMPlayResponseIsValid', function test_KOMPlayResponseIsValid() {
 		})), false);
 	});
 
-	it('returns false if KOMPlayResponseType not date', function() {
+	it('returns false if KOMPlayResponseDate not date', function() {
 		deepEqual(mainModule.KOMPlayResponseIsValid(Object.assign(kTesting.StubResponseObjectValid(), {
-			KOMPlayResponseType: new Date('alfa'),
+			KOMPlayResponseDate: new Date('alfa'),
 		})), false);
 	});
 
