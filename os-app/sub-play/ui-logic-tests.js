@@ -1641,7 +1641,13 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 				KOMSpacingMultiplier: mainModule.KOMPlayResponseMultiplierMin(),
 				KOMSpacingInterval: interval,
 				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + 1000 * 60 * 60 * 24 * interval),
-				KOMSpacingChronicles: [chronicle],
+				KOMSpacingChronicles: [uChronicle({
+					KOMChronicleResponseDate: chronicle.KOMChronicleResponseDate,
+					KOMChronicleResponseType: chronicle.KOMChronicleResponseType,
+					KOMChronicleDueDate: spacing.KOMSpacingDueDate,
+					KOMChronicleInterval: spacing.KOMSpacingInterval,
+					KOMChronicleMultiplier: spacing.KOMSpacingMultiplier,
+				})],
 			}));
 		});
 		
