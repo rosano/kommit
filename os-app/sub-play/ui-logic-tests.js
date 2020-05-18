@@ -20,8 +20,6 @@ const kTesting = {
 	},
 	StubChronicleObjectValid () {
 		return Object.assign(kTesting.StubChronicleObjectPrepared(), {
-			KOMChronicleInterval: 1,
-			KOMChronicleMultiplier: 1,
 			KOMChronicleDueDate: new Date('2019-02-23T13:56:36Z'),
 		});
 	},
@@ -583,18 +581,6 @@ describe('KOMChronicleIsValid', function test_KOMChronicleIsValid() {
 		}, /KOMErrorInputNotValid/);
 	});
 
-	it('returns false if KOMChronicleInterval not number', function() {
-		deepEqual(mainModule.KOMChronicleIsValid(Object.assign(kTesting.StubChronicleObjectValid(), {
-			KOMChronicleInterval: '1',
-		})), false);
-	});
-
-	it('returns false if KOMChronicleMultiplier not number', function() {
-		deepEqual(mainModule.KOMChronicleIsValid(Object.assign(kTesting.StubChronicleObjectValid(), {
-			KOMChronicleMultiplier: '1',
-		})), false);
-	});
-
 	it('returns false if KOMChronicleDueDate not date', function() {
 		deepEqual(mainModule.KOMChronicleIsValid(Object.assign(kTesting.StubChronicleObjectValid(), {
 			KOMChronicleDueDate: new Date('alfa'),
@@ -605,17 +591,33 @@ describe('KOMChronicleIsValid', function test_KOMChronicleIsValid() {
 		deepEqual(mainModule.KOMChronicleIsValid(kTesting.StubChronicleObjectValid()), true);
 	});
 
-	context('KOMChronicleDidDrawMultipleTimes', function () {
+	context('KOMChronicleInterval', function () {
 
-		it('returns false if not boolean', function() {
+		it('returns false if KOMChronicleInterval not number', function() {
 			deepEqual(mainModule.KOMChronicleIsValid(Object.assign(kTesting.StubChronicleObjectValid(), {
-				KOMChronicleDidDrawMultipleTimes: 'true',
+				KOMChronicleInterval: '1',
 			})), false);
 		});
 
 		it('returns true', function() {
 			deepEqual(mainModule.KOMChronicleIsValid(Object.assign(kTesting.StubChronicleObjectValid(), {
-				KOMChronicleDidDrawMultipleTimes: true,
+				KOMChronicleInterval: 1,
+			})), true);
+		});
+	
+	});
+
+	context('KOMChronicleMultiplier', function () {
+
+		it('returns false if KOMChronicleMultiplier not number', function() {
+			deepEqual(mainModule.KOMChronicleIsValid(Object.assign(kTesting.StubChronicleObjectValid(), {
+				KOMChronicleMultiplier: '1',
+			})), false);
+		});
+
+		it('returns true', function() {
+			deepEqual(mainModule.KOMChronicleIsValid(Object.assign(kTesting.StubChronicleObjectValid(), {
+				KOMChronicleMultiplier: 1,
 			})), true);
 		});
 	

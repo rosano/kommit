@@ -390,32 +390,20 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		if (!(inputData.KOMChronicleDrawDate instanceof Date) || Number.isNaN(inputData.KOMChronicleDrawDate.getTime())) {
-			return false
-		}
-
-		if (!(inputData.KOMChronicleFlipDate instanceof Date) || Number.isNaN(inputData.KOMChronicleFlipDate.getTime())) {
-			return false
-		}
-
-		if (!(inputData.KOMChronicleResponseDate instanceof Date) || Number.isNaN(inputData.KOMChronicleResponseDate.getTime())) {
-			return false
-		}
-
-		if (mod.KOMPlayResponseTypes().indexOf(inputData.KOMChronicleResponseType) === -1) {
-			return false;
-		}
-
-		if (typeof inputData.KOMChronicleInterval !== 'number') {
-			return false
-		}
-
-		if (typeof inputData.KOMChronicleMultiplier !== 'number') {
-			return false
-		}
-
 		if (!(inputData.KOMChronicleDueDate instanceof Date) || Number.isNaN(inputData.KOMChronicleDueDate.getTime())) {
 			return false
+		}
+
+		if (inputData.KOMChronicleInterval !== undefined) {
+			if (typeof inputData.KOMChronicleInterval !== 'number') {
+				return false
+			}
+		}
+
+		if (inputData.KOMChronicleMultiplier !== undefined) {
+			if (typeof inputData.KOMChronicleMultiplier !== 'number') {
+				return false
+			}
 		}
 
 		if (inputData.KOMChronicleDidDrawMultipleTimes !== undefined) {
