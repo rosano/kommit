@@ -12,13 +12,13 @@ const kTesting = {
 	},
 	StubChronicleObjectValid () {
 		return {
-			KOMChronicleDrawDate: new Date(),
-			KOMChronicleFlipDate: new Date(),
-			KOMChronicleResponseDate: new Date(),
+			KOMChronicleDrawDate: new Date('2019-02-23T13:56:36Z'),
+			KOMChronicleFlipDate: new Date('2019-02-23T13:56:36Z'),
+			KOMChronicleResponseDate: new Date('2019-02-23T13:56:36Z'),
 			KOMChronicleResponseType: mainModule.KOMPlayResponseTypeEasy(),
 			KOMChronicleInterval: 1,
 			KOMChronicleMultiplier: 1,
-			KOMChronicleDueDate: new Date(),
+			KOMChronicleDueDate: new Date('2019-02-23T13:56:36Z'),
 		};
 	},
 	StubSpacingObjectValid() {
@@ -805,6 +805,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 			deepEqual(spacing, Object.assign(kTesting.StubSpacingObjectValid(), {
 				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + mainModule.KOMPlayResponseIntervalAgain()),
 				KOMSpacingIsLearning: true,
+				KOMSpacingChronicles: [chronicle],
 			}));
 		});
 		
@@ -833,6 +834,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 			deepEqual(spacing, Object.assign(kTesting.StubSpacingObjectValid(), {
 				KOMSpacingIsLearning: true,
 				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + mainModule.KOMPlayResponseIntervalLearn1()),
+				KOMSpacingChronicles: [chronicle],
 			}));
 		});
 		
@@ -861,6 +863,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 			deepEqual(spacing, Object.assign(kTesting.StubSpacingObjectValid(), {
 				KOMSpacingIsLearning: true,
 				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + mainModule.KOMPlayResponseIntervalLearn1()),
+				KOMSpacingChronicles: [chronicle],
 			}));
 		});
 		
@@ -890,6 +893,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 				KOMSpacingInterval: mainModule.KOMPlayResponseIntervalGraduateEasy(),
 				KOMSpacingMultiplier: mainModule.KOMPlayResponseMultiplierDefault(),
 				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + 1000 * 60 * 60 * 24 * mainModule.KOMPlayResponseIntervalGraduateEasy()),
+				KOMSpacingChronicles: [chronicle],
 			}));
 		});
 		
@@ -924,6 +928,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 			deepEqual(spacing, Object.assign(kTesting.StubSpacingObjectValid(), {
 				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + mainModule.KOMPlayResponseIntervalAgain()),
 				KOMSpacingIsLearning: true,
+				KOMSpacingChronicles: [chronicle, chronicle],
 			}));
 		});
 		
@@ -962,6 +967,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 				KOMSpacingIsLearning: true,
 				KOMSpacingIsReadyToGraduate: true,
 				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + mainModule.KOMPlayResponseIntervalLearn2()),
+				KOMSpacingChronicles: [chronicle, chronicle],
 			}));
 		});
 		
@@ -1000,6 +1006,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 				KOMSpacingIsLearning: true,
 				KOMSpacingIsReadyToGraduate: true,
 				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + mainModule.KOMPlayResponseIntervalLearn2()),
+				KOMSpacingChronicles: [chronicle, chronicle],
 			}));
 		});
 		
@@ -1039,6 +1046,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 				KOMSpacingInterval: mainModule.KOMPlayResponseIntervalGraduateEasy(),
 				KOMSpacingMultiplier: mainModule.KOMPlayResponseMultiplierDefault(),
 				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + 1000 * 60 * 60 * 24 * mainModule.KOMPlayResponseIntervalGraduateEasy()),
+				KOMSpacingChronicles: [chronicle, chronicle],
 			}));
 		});
 		
@@ -1085,6 +1093,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 				KOMSpacingInterval: mainModule.KOMPlayResponseIntervalGraduateDefault(),
 				KOMSpacingMultiplier: mainModule.KOMPlayResponseMultiplierDefault(),
 				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + 1000 * 60 * 60 * 24 * mainModule.KOMPlayResponseIntervalGraduateDefault()),
+				KOMSpacingChronicles: [chronicle, chronicle, chronicle],
 			}));
 		});
 		
@@ -1131,6 +1140,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 				KOMSpacingInterval: mainModule.KOMPlayResponseIntervalGraduateDefault(),
 				KOMSpacingMultiplier: mainModule.KOMPlayResponseMultiplierDefault(),
 				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + 1000 * 60 * 60 * 24 * mainModule.KOMPlayResponseIntervalGraduateDefault()),
+				KOMSpacingChronicles: [chronicle, chronicle, chronicle],
 			}));
 		});
 		
@@ -1177,6 +1187,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 			deepEqual(spacing, Object.assign(kTesting.StubSpacingObjectValid(), {
 				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + mainModule.KOMPlayResponseIntervalAgain()),
 				KOMSpacingIsLearning: true,
+				KOMSpacingChronicles: [chronicle, chronicle, chronicle],
 			}));
 		});
 		
@@ -1216,6 +1227,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 				KOMSpacingMultiplier: mainModule.KOMPlayResponseMultiplierDefault() + mainModule.KOMPlayResponseMultiplierSummandFail(),
 				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + mainModule.KOMPlayResponseIntervalAgain()),
 				KOMSpacingIsLearning: true,
+				KOMSpacingChronicles: [chronicle, chronicle],
 			}));
 		});
 		
@@ -1256,6 +1268,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 				KOMSpacingMultiplier: mainModule.KOMPlayResponseMultiplierDefault() + mainModule.KOMPlayResponseMultiplierSummandHard(),
 				KOMSpacingInterval: interval,
 				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + 1000 * 60 * 60 * 24 * interval),
+				KOMSpacingChronicles: [chronicle, chronicle],
 			}));
 		});
 		
@@ -1296,6 +1309,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 				KOMSpacingMultiplier: mainModule.KOMPlayResponseMultiplierDefault() + mainModule.KOMPlayResponseMultiplierSummandGood(),
 				KOMSpacingInterval: interval,
 				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + 1000 * 60 * 60 * 24 * interval),
+				KOMSpacingChronicles: [chronicle, chronicle ],
 			}));
 		});
 		
@@ -1336,6 +1350,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 				KOMSpacingMultiplier: mainModule.KOMPlayResponseMultiplierDefault() + mainModule.KOMPlayResponseMultiplierSummandEasy(),
 				KOMSpacingInterval: interval,
 				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + 1000 * 60 * 60 * 24 * interval),
+				KOMSpacingChronicles: [chronicle, chronicle],
 			}));
 		});
 		
@@ -1371,6 +1386,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 				KOMSpacingMultiplier: mainModule.KOMPlayResponseMultiplierDefault() + mainModule.KOMPlayResponseMultiplierSummandHard(),
 				KOMSpacingInterval: interval,
 				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + 1000 * 60 * 60 * 24 * interval),
+				KOMSpacingChronicles: [chronicle],
 			}));
 		});
 		
@@ -1399,6 +1415,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 				KOMSpacingMultiplier: mainModule.KOMPlayResponseMultiplierDefault() + mainModule.KOMPlayResponseMultiplierSummandGood(),
 				KOMSpacingInterval: interval,
 				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + 1000 * 60 * 60 * 24 * interval),
+				KOMSpacingChronicles: [chronicle],
 			}));
 		});
 		
@@ -1427,6 +1444,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 				KOMSpacingMultiplier: mainModule.KOMPlayResponseMultiplierDefault() + mainModule.KOMPlayResponseMultiplierSummandEasy(),
 				KOMSpacingInterval: interval,
 				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + 1000 * 60 * 60 * 24 * interval),
+				KOMSpacingChronicles: [chronicle],
 			}));
 		});
 		
@@ -1455,6 +1473,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 				KOMSpacingMultiplier: mainModule.KOMPlayResponseMultiplierMin(),
 				KOMSpacingInterval: interval,
 				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + 1000 * 60 * 60 * 24 * interval),
+				KOMSpacingChronicles: [chronicle],
 			}));
 		});
 		

@@ -338,6 +338,7 @@ const mod = {
 				KOMSpacingIsReadyToGraduate: true,
 			} : {})
 		})());
+		spacing.KOMSpacingChronicles.push(chronicle);
 
 		(function update_state() {
 			if (KOMSpacingModel.KOMSpacingModelIsLearning(spacing)) {
