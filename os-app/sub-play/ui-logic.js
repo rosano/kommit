@@ -341,6 +341,9 @@ const mod = {
 
 		spacing.KOMSpacingChronicles.push(Object.assign(chronicle, {
 			KOMChronicleDueDate: spacing.KOMSpacingDueDate,
+		}, spacing.KOMSpacingIsLearning ? {} : {
+			KOMChronicleInterval: spacing.KOMSpacingInterval,
+			KOMChronicleMultiplier: spacing.KOMSpacingMultiplier,
 		}));
 
 		(function update_state() {
