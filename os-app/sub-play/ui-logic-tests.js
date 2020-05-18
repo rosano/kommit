@@ -12,15 +12,15 @@ const kTesting = {
 	},
 	StubChronicleObjectPrepared () {
 		return {
-			KOMChronicleDrawDate: new Date('2019-02-23T13:56:36Z'),
-			KOMChronicleFlipDate: new Date('2019-02-23T13:56:36Z'),
-			KOMChronicleResponseDate: new Date('2019-02-23T13:56:36Z'),
+			KOMChronicleDrawDate: new Date('2019-02-23T12:00:00Z'),
+			KOMChronicleFlipDate: new Date('2019-02-23T12:00:00Z'),
+			KOMChronicleResponseDate: new Date('2019-02-23T12:00:00Z'),
 			KOMChronicleResponseType: mainModule.KOMPlayResponseTypeEasy(),
 		};
 	},
 	StubChronicleObjectValid () {
 		return Object.assign(kTesting.StubChronicleObjectPrepared(), {
-			KOMChronicleDueDate: new Date('2019-02-23T13:56:36Z'),
+			KOMChronicleDueDate: new Date('2019-02-23T12:00:00Z'),
 		});
 	},
 	StubSpacingObjectValid() {
