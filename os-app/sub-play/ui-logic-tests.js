@@ -644,10 +644,8 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		});
 	};
 	
-	const uChronicle = function (param1 = {}, param2 = []) {
-		return Object.assign(kTesting.StubChronicleObjectValid(), param1, {
-			KOMSpacingChronicles: param2,
-		});
+	const uChronicle = function (inputData = {}) {
+		return Object.assign(kTesting.StubChronicleObjectValid(), inputData);
 	};
 	
 	it('throws if param1 not valid', function () {
