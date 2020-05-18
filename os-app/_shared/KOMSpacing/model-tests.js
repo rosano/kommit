@@ -196,7 +196,7 @@ describe('KOMSpacingModelErrorsFor', function test_KOMSpacingModelErrorsFor() {
 
 		it('returns object if not number', function() {
 			deepEqual(mainModule.KOMSpacingModelErrorsFor(Object.assign(kTesting.StubSpacingObjectValid(), {
-				KOMSpacingInterval: null,
+				KOMSpacingInterval: '1',
 			})), {
 				KOMSpacingInterval: [
 					'KOMErrorNotNumber',
@@ -216,7 +216,7 @@ describe('KOMSpacingModelErrorsFor', function test_KOMSpacingModelErrorsFor() {
 
 		it('returns object if not number', function() {
 			deepEqual(mainModule.KOMSpacingModelErrorsFor(Object.assign(kTesting.StubSpacingObjectValid(), {
-				KOMSpacingMultiplier: null,
+				KOMSpacingMultiplier: '1',
 			})), {
 				KOMSpacingMultiplier: [
 					'KOMErrorNotNumber',
