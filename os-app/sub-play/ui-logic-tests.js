@@ -426,8 +426,8 @@ describe('KOMPlayResponseIntervalOverdueBonus', function test_KOMPlayResponseInt
 			KOMSpacingInterval: mainModule.KOMPlayResponseIntervalGraduateEasy(),
 			KOMSpacingDueDate: new Date(`2020-05-02T12:00:00-${ offset }:00`),
 		}), Object.assign(kTesting.StubChronicleObjectValid(), {
-			KOMChronicleResponseType: mainModule.KOMPlayResponseTypeAgain(),
 			KOMChronicleResponseDate: new Date(`2020-05-12T18:00:00-${ offset }:00`),
+			KOMChronicleResponseType: mainModule.KOMPlayResponseTypeAgain(),
 		})), 0);
 	});
 
@@ -436,8 +436,8 @@ describe('KOMPlayResponseIntervalOverdueBonus', function test_KOMPlayResponseInt
 			KOMSpacingInterval: mainModule.KOMPlayResponseIntervalGraduateEasy(),
 			KOMSpacingDueDate: new Date(`2020-05-02T12:00:00-${ offset }:00`),
 		}), Object.assign(kTesting.StubChronicleObjectValid(), {
-			KOMChronicleResponseType: mainModule.KOMPlayResponseTypeHard(),
 			KOMChronicleResponseDate: new Date(`2020-05-12T18:00:00-${ offset }:00`),
+			KOMChronicleResponseType: mainModule.KOMPlayResponseTypeHard(),
 		})), 10 / mainModule.KOMPlayResponseIntervalOverdueDivisorHard());
 	});
 
@@ -446,8 +446,8 @@ describe('KOMPlayResponseIntervalOverdueBonus', function test_KOMPlayResponseInt
 			KOMSpacingInterval: mainModule.KOMPlayResponseIntervalGraduateEasy(),
 			KOMSpacingDueDate: new Date(`2020-05-02T12:00:00-${ offset }:00`),
 		}), Object.assign(kTesting.StubChronicleObjectValid(), {
-			KOMChronicleResponseType: mainModule.KOMPlayResponseTypeGood(),
 			KOMChronicleResponseDate: new Date(`2020-05-12T18:00:00-${ offset }:00`),
+			KOMChronicleResponseType: mainModule.KOMPlayResponseTypeGood(),
 		})), 10 / mainModule.KOMPlayResponseIntervalOverdueDivisorGood());
 	});
 
@@ -456,8 +456,8 @@ describe('KOMPlayResponseIntervalOverdueBonus', function test_KOMPlayResponseInt
 			KOMSpacingInterval: mainModule.KOMPlayResponseIntervalGraduateEasy(),
 			KOMSpacingDueDate: new Date(`2020-05-02T12:00:00-${ offset }:00`),
 		}), Object.assign(kTesting.StubChronicleObjectValid(), {
-			KOMChronicleResponseType: mainModule.KOMPlayResponseTypeEasy(),
 			KOMChronicleResponseDate: new Date(`2020-05-12T18:00:00-${ offset }:00`),
+			KOMChronicleResponseType: mainModule.KOMPlayResponseTypeEasy(),
 		})), 10 / mainModule.KOMPlayResponseIntervalOverdueDivisorEasy());
 	});
 
@@ -710,8 +710,8 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 					KOMPlayStateShouldRandomize: true,
 				});
 				const chronicle = Object.assign(kTesting.StubChronicleObjectValid(), {
-					KOMChronicleResponseType: mainModule.KOMPlayResponseTypeEasy(),
 					KOMChronicleResponseDate: date,
+					KOMChronicleResponseType: mainModule.KOMPlayResponseTypeEasy(),
 				});
 
 				mainModule.KOMPlayRespond(state, chronicle);
@@ -1357,8 +1357,8 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 			KOMSpacingDueDate: date,
 		});
 		const chronicle = Object.assign(kTesting.StubChronicleObjectValid(), {
-			KOMChronicleResponseType: mainModule.KOMPlayResponseTypeHard(),
 			KOMChronicleResponseDate: new Date(date.valueOf() + 1000 * 60 * 60 * 24 * 10),
+			KOMChronicleResponseType: mainModule.KOMPlayResponseTypeHard(),
 		});
 
 		before(function () {
@@ -1385,8 +1385,8 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 			KOMSpacingDueDate: date,
 		});
 		const chronicle = Object.assign(kTesting.StubChronicleObjectValid(), {
-			KOMChronicleResponseType: mainModule.KOMPlayResponseTypeGood(),
 			KOMChronicleResponseDate: new Date(date.valueOf() + 1000 * 60 * 60 * 24 * 10),
+			KOMChronicleResponseType: mainModule.KOMPlayResponseTypeGood(),
 		});
 
 		before(function () {
@@ -1413,8 +1413,8 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 			KOMSpacingDueDate: date,
 		});
 		const chronicle = Object.assign(kTesting.StubChronicleObjectValid(), {
-			KOMChronicleResponseType: mainModule.KOMPlayResponseTypeEasy(),
 			KOMChronicleResponseDate: new Date(date.valueOf() + 1000 * 60 * 60 * 24 * 10),
+			KOMChronicleResponseType: mainModule.KOMPlayResponseTypeEasy(),
 		});
 
 		before(function () {
@@ -1441,8 +1441,8 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 			KOMSpacingDueDate: date,
 		});
 		const chronicle = Object.assign(kTesting.StubChronicleObjectValid(), {
-			KOMChronicleResponseType: mainModule.KOMPlayResponseTypeHard(),
 			KOMChronicleResponseDate: new Date(date.valueOf() + 1000 * 60 * 60 * 24 * 10),
+			KOMChronicleResponseType: mainModule.KOMPlayResponseTypeHard(),
 		});
 
 		before(function () {
