@@ -178,7 +178,7 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		if (!mod.KOMChronicleIsValid(chronicle)) {
+		if (!mod.KOMChronicleIsPrepared(chronicle)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
@@ -201,7 +201,7 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		if (!mod.KOMChronicleIsValid(chronicle)) {
+		if (!mod.KOMChronicleIsPrepared(chronicle)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 

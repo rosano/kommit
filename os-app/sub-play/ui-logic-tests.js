@@ -381,9 +381,11 @@ describe('KOMPlayResponseIntervalOverdueDays', function test_KOMPlayResponseInte
 		}, /KOMErrorInputNotValid/);
 	});
 
-	it('throws if param2 not valid', function () {
+	it('throws if param2 not prepared', function () {
 		throws(function () {
-			mainModule.KOMPlayResponseIntervalOverdueDays(kTesting.StubSpacingObjectValid(), {});
+			mainModule.KOMPlayResponseIntervalOverdueDays(kTesting.StubSpacingObjectValid(), Object.assign(kTesting.StubChronicleObjectValid(), {
+				KOMChronicleDrawDate: null,
+			}));
 		}, /KOMErrorInputNotValid/);
 	});
 
@@ -419,9 +421,11 @@ describe('KOMPlayResponseIntervalOverdueBonus', function test_KOMPlayResponseInt
 		}, /KOMErrorInputNotValid/);
 	});
 
-	it('throws if param2 not valid', function () {
+	it('throws if param2 not prepared', function () {
 		throws(function () {
-			mainModule.KOMPlayResponseIntervalOverdueBonus(kTesting.StubSpacingObjectValid(), {});
+			mainModule.KOMPlayResponseIntervalOverdueBonus(kTesting.StubSpacingObjectValid(), Object.assign(kTesting.StubChronicleObjectValid(), {
+				KOMChronicleDrawDate: null,
+			}));
 		}, /KOMErrorInputNotValid/);
 	});
 
@@ -645,7 +649,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 	};
 	
 	const uChronicle = function (inputData = {}) {
-		return Object.assign(kTesting.StubChronicleObjectValid(), inputData);
+		return Object.assign(kTesting.StubChronicleObjectPrepared(), inputData);
 	};
 	
 	it('throws if param1 not valid', function () {
