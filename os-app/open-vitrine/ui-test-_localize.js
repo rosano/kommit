@@ -37,8 +37,22 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			deepEqual(browser.query(KOMVitrineContent).textContent.trim().slice(0, 20), item.slice(0, 20));
 		});
 
+		it('localizes KOM_VITRINE_ANKI_URL', function() {
+			browser.assert.element(`a[href="${ process.env.KOM_VITRINE_ANKI_URL }"]`);
+		});
+
+		it('localizes KOMReviewRoute', function() {
+			browser.assert.element(`a[href="${ OLSKTestingCanonicalFor(require('../open-review/controller.js').OLSKControllerRoutes().shift().OLSKRoutePath, {
+				OLSKRoutingLanguage: languageCode,
+			}) }"]`);
+		});
+
 		it('localizes KOM_SHARED_GITHUB_URL', function() {
 			browser.assert.element(`a[href="${ process.env.KOM_SHARED_GITHUB_URL }"]`);
+		});
+
+		it('localizes KOM_SHARED_DONATE_URL', function() {
+			browser.assert.element(`a[href="${ process.env.KOM_SHARED_DONATE_URL }"]`);
 		});
 
 	});
