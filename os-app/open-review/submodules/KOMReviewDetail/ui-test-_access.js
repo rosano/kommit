@@ -6,8 +6,6 @@ Object.entries({
 	KOMReviewDetailToolbar: '.KOMReviewDetailToolbar',
 	KOMReviewDetailToolbarBackButton: '.KOMReviewDetailToolbarBackButton',
 	KOMReviewDetailToolbarTitle: '.KOMReviewDetailToolbarTitle',
-	KOMReviewDetailToolbarDiscardButton: '.KOMReviewDetailToolbarDiscardButton',
-	KOMReviewDetailToolbarRenameButton: '.KOMReviewDetailToolbarRenameButton',
 	KOMReviewDetailToolbarCardsButton: '.KOMReviewDetailToolbarCardsButton',
 	
 	KOMReviewDetailStudyHeading: '.KOMReviewDetailStudyHeading',
@@ -18,6 +16,8 @@ Object.entries({
 	KOMReviewDetailPlayButtonUnseen: '.KOMReviewDetailPlayButtonUnseen',
 	KOMReviewDetailPlayButtonMixed: '.KOMReviewDetailPlayButtonMixed',
 	KOMReviewDetailNoSpacings: '.KOMReviewDetailNoSpacings',
+	KOMReviewDetailRenameButton: '.KOMReviewDetailRenameButton',
+	KOMReviewDetailDiscardButton: '.KOMReviewDetailDiscardButton',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
@@ -72,14 +72,6 @@ describe('KOMReviewDetail_Access', function () {
 		browser.assert.elements(KOMReviewDetailToolbarTitle, 1);
 	});
 
-	it('shows KOMReviewDetailToolbarDiscardButton', function () {
-		browser.assert.elements(KOMReviewDetailToolbarDiscardButton, 1);
-	});
-
-	it('shows KOMReviewDetailToolbarRenameButton', function () {
-		browser.assert.elements(KOMReviewDetailToolbarRenameButton, 1);
-	});
-
 	it('shows KOMReviewDetailToolbarCardsButton', function () {
 		browser.assert.elements(KOMReviewDetailToolbarCardsButton, 1);
 	});
@@ -114,6 +106,14 @@ describe('KOMReviewDetail_Access', function () {
 
 	it('hides KOMReviewDetailNoSpacings', function () {
 		browser.assert.elements(KOMReviewDetailNoSpacings, 0);
+	});
+
+	it('shows KOMReviewDetailRenameButton', function () {
+		browser.assert.elements(KOMReviewDetailRenameButton, 1);
+	});
+
+	it('shows KOMReviewDetailDiscardButton', function () {
+		browser.assert.elements(KOMReviewDetailDiscardButton, 1);
 	});
 
 	context('reviewing', function test_reviewing () {

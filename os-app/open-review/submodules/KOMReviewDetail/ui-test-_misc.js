@@ -81,16 +81,28 @@ describe('KOMReviewDetail_Misc', function () {
 	
 	});
 
-	describe('KOMReviewDetailToolbarDiscardButton', function test_KOMReviewDetailToolbarDiscardButton () {
+	describe('KOMReviewDetailToolbarCardsButton', function test_KOMReviewDetailToolbarCardsButton () {
 		
-		it('classes OLSKLayoutButtonNoStyle', function () {
-			browser.assert.hasClass(KOMReviewDetailToolbarDiscardButton, 'OLSKLayoutButtonNoStyle');
-		});
+		context('click', function () {
+			
+			before(function () {
+				browser.assert.text('#TestKOMReviewDetailDispatchBrowse', '0');
+			});
+			
+			before(function () {
+				return browser.pressButton(KOMReviewDetailToolbarCardsButton);
+			});
 
-		it('classes OLSKLayoutElementTappable', function () {
-			browser.assert.hasClass(KOMReviewDetailToolbarDiscardButton, 'OLSKLayoutElementTappable');
+			it('sends KOMReviewDetailDispatchBrowse', function () {
+				browser.assert.text('#TestKOMReviewDetailDispatchBrowse', '1');
+			});
+		
 		});
+	
+	});
 
+	describe('KOMReviewDetailDiscardButton', function test_KOMReviewDetailDiscardButton () {
+		
 		context('click', function () {
 			
 			before(function () {
@@ -99,7 +111,7 @@ describe('KOMReviewDetail_Misc', function () {
 			});
 			
 			before(function () {
-				return browser.pressButton(KOMReviewDetailToolbarDiscardButton);
+				return browser.pressButton(KOMReviewDetailDiscardButton);
 			});
 
 			it('sends KOMReviewDetailDispatchDiscard', function () {
@@ -114,16 +126,8 @@ describe('KOMReviewDetail_Misc', function () {
 	
 	});
 
-	describe('KOMReviewDetailToolbarRenameButton', function test_KOMReviewDetailToolbarRenameButton () {
+	describe('KOMReviewDetailRenameButton', function test_KOMReviewDetailRenameButton () {
 		
-		it('classes OLSKLayoutButtonNoStyle', function () {
-			browser.assert.hasClass(KOMReviewDetailToolbarRenameButton, 'OLSKLayoutButtonNoStyle');
-		});
-
-		it('classes OLSKLayoutElementTappable', function () {
-			browser.assert.hasClass(KOMReviewDetailToolbarRenameButton, 'OLSKLayoutElementTappable');
-		});
-
 		context('click', function () {
 			
 			before(function () {
@@ -131,9 +135,9 @@ describe('KOMReviewDetail_Misc', function () {
 				browser.assert.text('#TestKOMReviewDetailDispatchUpdateData', 'undefined');
 			});
 			
-			it('sets KOMReviewDetailToolbarRenameButtonPrompt response', function() {
+			it('sets KOMReviewDetailRenameButtonPrompt response', function() {
 				deepEqual(browser.OLSKPromptSync(function () {
-					return browser.pressButton(KOMReviewDetailToolbarRenameButton);
+					return browser.pressButton(KOMReviewDetailRenameButton);
 				}).response, uItem().KOMDeckName);
 			});
 
@@ -141,7 +145,7 @@ describe('KOMReviewDetail_Misc', function () {
 				
 				before(function () {
 					return browser.OLSKPrompt(function () {
-						return browser.pressButton(KOMReviewDetailToolbarRenameButton);
+						return browser.pressButton(KOMReviewDetailRenameButton);
 					}, function (dialog) {
 						dialog.response = 'bravo';
 
@@ -159,26 +163,6 @@ describe('KOMReviewDetail_Misc', function () {
 					})));
 				});
 			
-			});
-		
-		});
-	
-	});
-
-	describe('KOMReviewDetailToolbarCardsButton', function test_KOMReviewDetailToolbarCardsButton () {
-		
-		context('click', function () {
-			
-			before(function () {
-				browser.assert.text('#TestKOMReviewDetailDispatchBrowse', '0');
-			});
-			
-			before(function () {
-				return browser.pressButton(KOMReviewDetailToolbarCardsButton);
-			});
-
-			it('sends KOMReviewDetailDispatchBrowse', function () {
-				browser.assert.text('#TestKOMReviewDetailDispatchBrowse', '1');
 			});
 		
 		});

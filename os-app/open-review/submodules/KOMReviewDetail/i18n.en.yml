@@ -1,8 +1,4 @@
 KOMReviewDetailToolbarBackButtonText: Back
-KOMReviewDetailToolbarDiscardButtonText: Discard
-KOMReviewDetailToolbarDiscardPromptText: Are you sure?
-KOMReviewDetailToolbarRenameButtonText: Rename
-KOMReviewDetailToolbarRenameButtonPromptText: Name
 KOMReviewDetailToolbarCardsButtonText: Cards
 KOMReviewDetailStudyHeadingText: Study
 KOMReviewDetailNoCardsText: There are no cards in this deck.
@@ -11,3 +7,7 @@ KOMReviewDetailPlayButtonReviewingText: Review cards
 KOMReviewDetailPlayButtonUnseenText: New cards
 KOMReviewDetailPlayButtonMixedText: All cards
 KOMReviewDetailNoSpacingsText: All cards for today have been reviewed.
+KOMReviewDetailRenameButtonText: Rename
+KOMReviewDetailRenameButtonPromptText: Name
+KOMReviewDetailDiscardButtonText: Discard
+KOMReviewDetailDiscardPromptText: Are you sure?

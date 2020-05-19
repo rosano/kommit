@@ -43,14 +43,6 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			browser.assert.text(KOMReviewDetailToolbarBackButton, uLocalized('KOMReviewDetailToolbarBackButtonText'));
 		});
 
-		it('localizes KOMReviewDetailToolbarDiscardButton', function () {
-			browser.assert.text(KOMReviewDetailToolbarDiscardButton, uLocalized('KOMReviewDetailToolbarDiscardButtonText'));
-		});
-
-		it('localizes KOMReviewDetailToolbarRenameButton', function () {
-			browser.assert.text(KOMReviewDetailToolbarRenameButton, uLocalized('KOMReviewDetailToolbarRenameButtonText'));
-		});
-
 		it('localizes KOMReviewDetailToolbarCardsButton', function () {
 			browser.assert.text(KOMReviewDetailToolbarCardsButton, uLocalized('KOMReviewDetailToolbarCardsButtonText'));
 		});
@@ -63,22 +55,30 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			browser.assert.text(KOMReviewDetailNoCards, uLocalized('KOMReviewDetailNoCardsText'));
 		});
 
+		it('localizes KOMReviewDetailRenameButton', function () {
+			browser.assert.text(KOMReviewDetailRenameButton, uLocalized('KOMReviewDetailRenameButtonText'));
+		});
+
+		it('localizes KOMReviewDetailDiscardButton', function () {
+			browser.assert.text(KOMReviewDetailDiscardButton, uLocalized('KOMReviewDetailDiscardButtonText'));
+		});
+
 		context('on discard', function () {
 		
 			it('localizes KOMReviewDetailDiscardPrompt', async function() {
 				deepEqual((await browser.OLSKConfirm(async function () {
-					browser.pressButton(KOMReviewDetailToolbarDiscardButton);
-				})).question, uLocalized('KOMReviewDetailToolbarDiscardPromptText'));
+					browser.pressButton(KOMReviewDetailDiscardButton);
+				})).question, uLocalized('KOMReviewDetailDiscardPromptText'));
 			});
 		
 		});
 
 		context('on rename', function () {
 		
-			it('localizes KOMReviewDetailToolbarRenameButtonPrompt', function() {
+			it('localizes KOMReviewDetailRenameButtonPrompt', function() {
 				deepEqual(browser.OLSKPromptSync(function () {
-					return browser.pressButton(KOMReviewDetailToolbarRenameButton);
-				}).question, uLocalized('KOMReviewDetailToolbarRenameButtonPromptText'));
+					return browser.pressButton(KOMReviewDetailRenameButton);
+				}).question, uLocalized('KOMReviewDetailRenameButtonPromptText'));
 			});
 		
 		});

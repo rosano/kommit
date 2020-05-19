@@ -1,10 +1,10 @@
 <script>
 export let KOMReviewDetailDeck;
 export let KOMReviewDetailDispatchBack;
-export let KOMReviewDetailDispatchDiscard;
 export let KOMReviewDetailDispatchBrowse;
 export let KOMReviewDetailDispatchUpdate;
 export let KOMReviewDetailDispatchPlay;
+export let KOMReviewDetailDispatchDiscard;
 
 import OLSKInternational from 'OLSKInternational';
 const OLSKLocalized = function(translationConstant) {
@@ -36,10 +36,6 @@ const mod = {
 
 	// INTERFACE
 
-	InterfaceRenameButtonDidClick() {
-		mod.ControlRename();
-	},
-
 	InterfaceReviewingButtonDidClick() {
 		mod.ContolPlay(KOMReviewLogic.KOMReviewSchemeReviewing());
 	},
@@ -52,10 +48,14 @@ const mod = {
 		mod.ContolPlay(KOMReviewLogic.KOMReviewSchemeMixed());
 	},
 
+	InterfaceRenameButtonDidClick() {
+		mod.ControlRename();
+	},
+
 	// CONTROL
 
 	ControlRename() {
-		let outputData = window.prompt(OLSKLocalized('KOMReviewDetailToolbarRenameButtonPromptText'), KOMReviewDetailDeck.KOMDeckName);
+		let outputData = window.prompt(OLSKLocalized('KOMReviewDetailRenameButtonPromptText'), KOMReviewDetailDeck.KOMDeckName);
 		
 		if (!outputData) {
 			return;
@@ -105,10 +105,6 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 		</OLSKToolbarElementGroup>
 
 		<OLSKToolbarElementGroup>
-			<button class="KOMReviewDetailToolbarDiscardButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ () => window.confirm(OLSKLocalized('KOMReviewDetailToolbarDiscardPromptText')) && KOMReviewDetailDispatchDiscard(KOMReviewDetailDeck) }>{ OLSKLocalized('KOMReviewDetailToolbarDiscardButtonText') }</button>
-			
-			<button class="KOMReviewDetailToolbarRenameButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceRenameButtonDidClick }>{ OLSKLocalized('KOMReviewDetailToolbarRenameButtonText') }</button>
-			
 			<button class="KOMReviewDetailToolbarCardsButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ KOMReviewDetailDispatchBrowse }>{ OLSKLocalized('KOMReviewDetailToolbarCardsButtonText') }</button>
 		</OLSKToolbarElementGroup>
 	</OLSKToolbar>
@@ -149,6 +145,16 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 	<p class="KOMReviewDetailNoSpacings">{ OLSKLocalized('KOMReviewDetailNoSpacingsText') }</p>
 {/if}
 
+<hr>
+
+<p>
+	<button class="KOMReviewDetailRenameButton" on:click={ mod.InterfaceRenameButtonDidClick }>{ OLSKLocalized('KOMReviewDetailRenameButtonText') }</button>
+</p>
+
+<p>
+	<button class="KOMReviewDetailDiscardButton" on:click={ () => window.confirm(OLSKLocalized('KOMReviewDetailDiscardPromptText')) && KOMReviewDetailDispatchDiscard(KOMReviewDetailDeck) }>{ OLSKLocalized('KOMReviewDetailDiscardButtonText') }</button>
+</p>
+
 </div>
 
 </div>
@@ -169,5 +175,13 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 
 .KOMReviewDetailBody {
 	padding: var(--KOMCommonPadding);
+}
+
+hr {
+	width: 100%;
+	height: 1px;
+	border: none;
+
+	background: #e6e6e6;
 }
 </style>

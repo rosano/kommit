@@ -9,10 +9,6 @@ const KOMReviewDetail = new RollupStart({
 		KOMReviewDetailDispatchBack: (function _KOMReviewDetailDispatchBack () {
 			window.TestKOMReviewDetailDispatchBack.innerHTML = parseInt(window.TestKOMReviewDetailDispatchBack.innerHTML) + 1;
 		}),
-		KOMReviewDetailDispatchDiscard: (function _KOMReviewDetailDispatchDiscard (inputData) {
-			window.TestKOMReviewDetailDispatchDiscard.innerHTML = parseInt(window.TestKOMReviewDetailDispatchDiscard.innerHTML) + 1;
-			window.TestKOMReviewDetailDispatchDiscardData.innerHTML = JSON.stringify(inputData);
-		}),
 		KOMReviewDetailDispatchBrowse: (function _KOMReviewDetailDispatchBrowse () {
 			window.TestKOMReviewDetailDispatchBrowse.innerHTML = parseInt(window.TestKOMReviewDetailDispatchBrowse.innerHTML) + 1;
 		}),
@@ -23,6 +19,10 @@ const KOMReviewDetail = new RollupStart({
 		KOMReviewDetailDispatchPlay: (function _KOMReviewDetailDispatchPlay (inputData) {
 			window.TestKOMReviewDetailDispatchPlay.innerHTML = parseInt(window.TestKOMReviewDetailDispatchPlay.innerHTML) + 1;
 			window.TestKOMReviewDetailDispatchPlayData.innerHTML = JSON.stringify(inputData);
+		}),
+		KOMReviewDetailDispatchDiscard: (function _KOMReviewDetailDispatchDiscard (inputData) {
+			window.TestKOMReviewDetailDispatchDiscard.innerHTML = parseInt(window.TestKOMReviewDetailDispatchDiscard.innerHTML) + 1;
+			window.TestKOMReviewDetailDispatchDiscardData.innerHTML = JSON.stringify(inputData);
 		}),
 	}, Object.fromEntries(Array.from((new window.URLSearchParams(window.location.search)).entries()).map(function (e) {
 		if (['KOMReviewDetailDeck'].includes(e[0])) {

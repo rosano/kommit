@@ -34,7 +34,7 @@ describe('KOMReview_Misc', function () {
 
 		before(function () {
 			return browser.OLSKPrompt(function () {
-				return browser.pressButton('.KOMReviewDetailToolbarRenameButton');
+				return browser.pressButton('.KOMReviewDetailRenameButton');
 			}, function (dialog) {
 				dialog.response = 'bravo';
 				

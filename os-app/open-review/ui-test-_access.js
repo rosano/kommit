@@ -157,7 +157,7 @@ describe('KOMReview_Access', function () {
 		});
 
 		before(function () {
-			return browser.pressButton('.KOMReviewDetailToolbarDiscardButton');
+			return browser.pressButton('.KOMReviewDetailDiscardButton');
 		});
 
 		it('shows KOMReviewMaster', function () {
