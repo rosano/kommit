@@ -147,6 +147,8 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 
 <hr>
 
+<h1 class="KOMReviewDetailDeckHeading">{ OLSKLocalized('KOMReviewDetailDeckHeadingText') }</h1>
+
 <p>
 	<button class="KOMReviewDetailRenameButton" on:click={ mod.InterfaceRenameButtonDidClick }>{ OLSKLocalized('KOMReviewDetailRenameButtonText') }</button>
 </p>
