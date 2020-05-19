@@ -66,11 +66,13 @@ describe('KOMPlaySort', function test_KOMPlaySort() {
 			return Object.assign(kTesting.StubSpacingObjectValid(), {
 				KOMSpacingID: (i + 1).toString() + '-forward',
 				KOMSpacingDueDate: i >= param2 ? new Date() : undefined,
+				KOMSpacingChronicles: [],
 			});
 		}).concat(param3 ? Array.from(new Array(param1)).map(function (e, i) {
 			return Object.assign(kTesting.StubSpacingObjectValid(), {
 				KOMSpacingID: (i + 1).toString() + '-backward',
 				KOMSpacingDueDate: i >= param2 ? new Date() : undefined,
+				KOMSpacingChronicles: [],
 			});
 		}) : []);
 	};

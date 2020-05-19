@@ -79,20 +79,22 @@ const mod = {
 	// CONTROL
 
 	ControlFlip () {
-		mod._ValueIsFlipped = !mod._ValueIsFlipped;
-
-		if (!mod._ValueIsFlipped) {
-			mod.ControlRespond(KOMPlayLogic.KOMPlayResponseTypeGood());
+		if (mod._ValueIsFlipped) {
+			return mod.ControlRespond(KOMPlayLogic.KOMPlayResponseTypeGood());
 		}
+
+		mod._ValueIsFlipped = true;
+
+		mod._ValueChronicle.KOMChronicleFlipDate = new Date();
 	},
 
 	ControlRespond (inputData) {
 		const item = mod._ValueState.KOMPlayStateCurrent;
 
-		KOMPlayLogic.KOMPlayRespond(mod._ValueState, {
-			KOMPlayResponseType: inputData,
-			KOMPlayResponseDate: new Date(),
-		});
+		KOMPlayLogic.KOMPlayRespond(mod._ValueState, Object.assign(mod._ValueChronicle, {
+			KOMChronicleResponseDate: new Date(),
+			KOMChronicleResponseType: inputData,
+		}));
 
 		KOMPlayDispatchRespond(item);
 
@@ -103,9 +105,21 @@ const mod = {
 		mod._ValueState = mod._ValueState; // #purge-svelte-force-update
 
 		mod._ValueIsFlipped = false;
+
+		mod.SetupChronicle();
+	},
+
+	// SETUP
+
+	SetupChronicle () {
+		mod._ValueChronicle = {
+			KOMChronicleDrawDate: new Date(),
+		};
 	},
 
 };
+
+mod.SetupChronicle();
 
 import OLSKViewportContent from 'OLSKViewportContent';
 import OLSKToolbar from 'OLSKToolbar';

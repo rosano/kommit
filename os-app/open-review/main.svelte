@@ -243,6 +243,7 @@ const mod = {
 	FakeSpacingObjectValid(inputData) {
 		return {
 			KOMSpacingID: 'FakeCardID-' + (inputData ? 'backward' : 'forward'),
+			KOMSpacingChronicles: [],
 		};
 	},
 

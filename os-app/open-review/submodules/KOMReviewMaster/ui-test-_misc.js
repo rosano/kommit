@@ -57,6 +57,7 @@ describe('KOMReviewMaster_Misc', function () {
 				return [true, false].map(function (forward) {
 					return {
 						KOMSpacingID: (i + 1).toString() + '-' + (forward ? 'forward' : 'backward'),
+						KOMSpacingChronicles: [],
 						KOMSpacingDueDate: !i ? new Date() : (i >= 2 ? new Date(Date.now() + 1000 * 60 * 60 * 24 * 3) : undefined),
 						$KOMSpacingCard: {
 							KOMCardID: (i + 1).toString(),

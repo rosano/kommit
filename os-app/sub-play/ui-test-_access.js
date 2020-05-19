@@ -8,6 +8,7 @@ const kTesting = {
 			return {
 				KOMSpacingID: (i + 1).toString() + '-' + (i >= 2 ? 'backward' : 'forward'),
 				KOMSpacingDueDate: i === 1 ? new Date() : undefined,
+				KOMSpacingChronicles: [],
 				$KOMSpacingCard: {
 					KOMCardID: (i + 1).toString(),
 					KOMCardDeckID: 'alfa',

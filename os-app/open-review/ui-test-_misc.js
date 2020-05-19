@@ -174,4 +174,3 @@ describe('KOMReview_Misc', function () {
 	});
 
 });
- 

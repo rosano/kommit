@@ -7,6 +7,7 @@ const kTesting = {
 		return KOMPlayLogic._KOMPlaySortShuffle(Array.from(new Array(1)).map(function (e, i) {
 			return {
 				KOMSpacingID: (i + 1).toString() + '-forward',
+				KOMSpacingChronicles: [],
 				KOMSpacingDueDate: i === 1 ? new Date() : undefined,
 				$KOMSpacingCard: {
 					KOMCardID: (i + 1).toString(),

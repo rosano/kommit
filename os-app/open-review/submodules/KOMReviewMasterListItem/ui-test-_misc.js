@@ -12,6 +12,7 @@ const item = {
 		return [true, false].map(function (forward) {
 			return {
 				KOMSpacingID: (i + 1).toString() + '-' + (forward ? 'forward' : 'backward'),
+				KOMSpacingChronicles: [],
 				KOMSpacingDueDate: (function() {
 					if (!i) {
 						return new Date();

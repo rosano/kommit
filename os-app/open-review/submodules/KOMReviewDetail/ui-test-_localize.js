@@ -7,6 +7,7 @@ const kTesting = {
 		return Array.from(new Array(2)).map(function (e, i) {
 			return {
 				KOMSpacingID: (i + 1).toString() + '-forward',
+				KOMSpacingChronicles: [],
 				$KOMSpacingCard: {
 					KOMCardID: 'bravo',
 					KOMCardDeckID: 'alfa',
