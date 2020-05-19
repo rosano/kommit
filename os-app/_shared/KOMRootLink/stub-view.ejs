@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript">
+		window.OLSKPublicConstants = function (inputData) {
+			return <%- JSON.stringify({
+				OLSKSharedPageCurrentLanguage,
+			}) %>[inputData];
+		};
+	</script>
+
+	<script src="/_shared/__external/OLSKRouting/main.js"></script>
+	<script type="text/javascript">
+		window.OLSKCanonicalFor = function(inputData, params) {
+			return OLSKRouting.OLSKRoutingCanonicalPathWithRoutePathAndOptionalParams((<%- JSON.stringify(['KOMVitrineRoute'].reduce(function (map, e) {
+				map[e] = OLSKRouteObjectFor(e).OLSKRoutePath;
+				return map;
+			}, {})) %>)[inputData], params);
+		};
+	</script>
+</head>
+<body>
+
+<% if (OLSKSharedActiveRouteConstant !== 'KOMRootLinkSvelteStubRoute') { -%>
+
+<%- include('./main.ejs') %>	
+
+<% } -%>
+
+<% if (OLSKSharedActiveRouteConstant === 'KOMRootLinkSvelteStubRoute') { -%>
+
+<script src="/<%= OLSKSharedPageControllerSlug %>/__compiled/ui-behaviour.js"></script>
+
+<% } -%>
+
+</body>
+</html>
