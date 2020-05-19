@@ -623,6 +623,22 @@ describe('KOMChronicleIsValid', function test_KOMChronicleIsValid() {
 	
 	});
 
+	context('KOMChronicleDidDrawMultipleTimes', function () {
+		
+		it('returns false if not boolean', function() {
+			deepEqual(mainModule.KOMChronicleIsValid(Object.assign(kTesting.StubChronicleObjectValid(), {
+				KOMChronicleDidDrawMultipleTimes: 'true',
+			})), false);
+		});
+
+		it('returns true', function() {
+			deepEqual(mainModule.KOMChronicleIsValid(Object.assign(kTesting.StubChronicleObjectValid(), {
+				KOMChronicleDidDrawMultipleTimes: true,
+			})), true);
+		});
+	
+	});
+
 	context('KOMChronicleDidFlipMultipleTimes', function () {
 		
 		it('returns false if not boolean', function() {
