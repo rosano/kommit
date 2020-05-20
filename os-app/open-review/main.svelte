@@ -82,8 +82,10 @@ const mod = {
 	},
 
 	OLSKAppToolbarDispatchLauncher () {
-		window.Launchlet.LCHSingletonCreate({
-			LCHOptionRecipes: [
+		const items = [];
+
+		if (OLSK_TESTING_BEHAVIOUR()) {
+			items.push(...[
 				{
 					LCHRecipeName: 'FakeOLSKChangeDelegateCreateDeck',
 					LCHRecipeCallback: async function FakeOLSKChangeDelegateCreateDeck () {
@@ -153,7 +155,11 @@ const mod = {
 						return mod.OLSKChangeDelegateDeleteSpacing(mod.FakeSpacingObjectValid());
 					},
 				},
-			],
+			]);
+		}
+		
+		window.Launchlet.LCHSingletonCreate({
+			LCHOptionRecipes: items,
 		});
 	},
 
