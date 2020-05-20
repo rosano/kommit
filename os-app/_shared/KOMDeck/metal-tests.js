@@ -60,7 +60,7 @@ describe('KOMDeckMetalWrite', function test_KOMDeckMetalWrite() {
 
 		it('clones object', function () {
 			deepEqual(memory.$KOMDeckCards, []);
-		});;
+		});
 	
 	});
 
@@ -87,7 +87,7 @@ describe('KOMDeckMetalWrite', function test_KOMDeckMetalWrite() {
 
 		it('clones object', function () {
 			deepEqual(memory.$KOMDeckSpacings, []);
-		});;
+		});
 	
 	});
 

@@ -19,11 +19,11 @@ const item = {
 					}
 
 					if (i === 2) {
-						return new Date(Date.now() + 1000 * 60 * 60 * 24 * 3)
+						return new Date(Date.now() + 1000 * 60 * 60 * 24 * 3);
 					}
 
 					if (i === 3 && forward) {
-						return new Date(Date.now() + 1000 * 60 * 60 * 24 * 3)
+						return new Date(Date.now() + 1000 * 60 * 60 * 24 * 3);
 					}
 
 					return undefined;

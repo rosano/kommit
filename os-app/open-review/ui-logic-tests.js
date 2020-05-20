@@ -106,7 +106,7 @@ describe('KOMReviewSchemes', function test_KOMReviewSchemes() {
 			mainModule.KOMReviewSchemeReviewing(),
 			mainModule.KOMReviewSchemeUnseen(),
 			mainModule.KOMReviewSchemeMixed(),
-			]);
+		]);
 	});
 
 });

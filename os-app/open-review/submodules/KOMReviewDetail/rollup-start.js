@@ -30,7 +30,7 @@ const KOMReviewDetail = new RollupStart({
 			e[1].$KOMDeckSpacings = e[1].$KOMDeckSpacings.map(KOMSpacingModel.KOMSpacingModelPostJSONParse).map(function (e) {
 				return Object.assign(e, {
 					$KOMSpacingCard: KOMCardModel.KOMCardModelPostJSONParse(e.$KOMSpacingCard),
-				})
+				});
 			});
 		}
 

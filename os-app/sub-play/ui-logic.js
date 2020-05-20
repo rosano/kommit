@@ -68,7 +68,7 @@ const mod = {
 
 		if (!outputData.length) {
 			return unseenForward;
-		};
+		}
 
 		const lastIndex = outputData.length - 1;
 		const slots = Math.floor(outputData.length / (unseenForward.length + 1));
@@ -336,7 +336,7 @@ const mod = {
 				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + interval),
 			}, KOMSpacingModel.KOMSpacingModelIsLearning(spacing) && chronicle.KOMChronicleResponseType !== mod.KOMPlayResponseTypeAgain() ? {
 				KOMSpacingIsReadyToGraduate: true,
-			} : {})
+			} : {});
 		})());
 
 		spacing.KOMSpacingChronicles.push(Object.assign(chronicle, {
@@ -377,15 +377,15 @@ const mod = {
 		}
 
 		if (!(inputData.KOMChronicleDrawDate instanceof Date) || Number.isNaN(inputData.KOMChronicleDrawDate.getTime())) {
-			return false
+			return false;
 		}
 
 		if (!(inputData.KOMChronicleFlipDate instanceof Date) || Number.isNaN(inputData.KOMChronicleFlipDate.getTime())) {
-			return false
+			return false;
 		}
 
 		if (!(inputData.KOMChronicleResponseDate instanceof Date) || Number.isNaN(inputData.KOMChronicleResponseDate.getTime())) {
-			return false
+			return false;
 		}
 
 		if (mod.KOMPlayResponseTypes().indexOf(inputData.KOMChronicleResponseType) === -1) {
@@ -401,7 +401,7 @@ const mod = {
 		}
 
 		if (!(inputData.KOMChronicleDueDate instanceof Date) || Number.isNaN(inputData.KOMChronicleDueDate.getTime())) {
-			return false
+			return false;
 		}
 
 		if (inputData.KOMChronicleIsLearning !== undefined) {
@@ -418,13 +418,13 @@ const mod = {
 
 		if (inputData.KOMChronicleInterval !== undefined) {
 			if (typeof inputData.KOMChronicleInterval !== 'number') {
-				return false
+				return false;
 			}
 		}
 
 		if (inputData.KOMChronicleMultiplier !== undefined) {
 			if (typeof inputData.KOMChronicleMultiplier !== 'number') {
-				return false
+				return false;
 			}
 		}
 

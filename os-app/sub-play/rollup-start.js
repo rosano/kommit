@@ -19,7 +19,7 @@ const KOMPlay = new RollupStart({
 			e[1] = JSON.parse(e[1]).map(KOMSpacingModel.KOMSpacingModelPostJSONParse).map(function (e) {
 				return Object.assign(e, {
 					$KOMSpacingCard: KOMCardModel.KOMCardModelPostJSONParse(e.$KOMSpacingCard),
-				})
+				});
 			});
 		}
 

@@ -19,7 +19,7 @@ const mod = {
 	SetupStorageClient() {
 		const storageModule = KOM_Data.KOM_DataModule([
 			KOMCardStorage.KOMCardStorageBuild,
-			]);
+		]);
 		
 		mod._ValueStorageClient = new RemoteStorage({ modules: [ storageModule ] });
 

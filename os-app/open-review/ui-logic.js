@@ -11,7 +11,7 @@ const mod = {
 		return inputData.filter(function (e) {
 			if (!e.KOMSpacingDueDate) {
 				return true;
-			};
+			}
 
 			return KOMPlayLogic.KOMPlayDayGrouping(e.KOMSpacingDueDate).valueOf() <= KOMPlayLogic.KOMPlayDayGrouping(new Date()).valueOf();
 		});
@@ -34,7 +34,7 @@ const mod = {
 			mod.KOMReviewSchemeReviewing(),
 			mod.KOMReviewSchemeUnseen(),
 			mod.KOMReviewSchemeMixed(),
-			];
+		];
 	},
 	
 	KOMReviewModelErrorsFor (inputData) {

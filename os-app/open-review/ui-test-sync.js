@@ -17,7 +17,7 @@ const kTesting = {
 			function () {
 				return browser.click('.LCHLauncherResultListItem');
 			},
-			]);
+		]);
 	},
 };
 

@@ -84,7 +84,7 @@ describe('KOMSpacingMetalWrite', function test_KOMSpacingMetalWrite() {
 
 		it('clones object', function () {
 			deepEqual(memory.$KOMSpacingCard, kTesting.StubCardObjectValid());
-		});;
+		});
 	
 	});
 
@@ -162,7 +162,7 @@ describe('KOMSpacingMetalDelete', function test_KOMSpacingMetalDelete() {
 			KOMCardID: Date.now().toString(),
 		});
 
-		await mainModule.KOMSpacingMetalDelete(KOMTestingStorageClient, await mainModule.KOMSpacingMetalWrite(KOMTestingStorageClient, kTesting.StubSpacingObjectValid(), item, kTesting.StubDeckObjectValid()), item, kTesting.StubDeckObjectValid())
+		await mainModule.KOMSpacingMetalDelete(KOMTestingStorageClient, await mainModule.KOMSpacingMetalWrite(KOMTestingStorageClient, kTesting.StubSpacingObjectValid(), item, kTesting.StubDeckObjectValid()), item, kTesting.StubDeckObjectValid());
 
 		deepEqual(await mainModule.KOMSpacingMetalList(KOMTestingStorageClient, item, kTesting.StubDeckObjectValid()), {
 			KOMCardSpacingForward: Object.assign(kTesting.StubSpacingObjectValid(), {

@@ -19,7 +19,7 @@ const kTesting = {
 					KOMCardModificationDate: new Date('2019-02-23T13:56:36Z'),
 				},
 			};
-		}))
+		}));
 	},
 };
 

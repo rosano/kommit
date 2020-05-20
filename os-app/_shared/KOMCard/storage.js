@@ -65,7 +65,7 @@ const mod = {
 			async KOMStorageDelete (param1, param2) {
 				await Promise.all((await uList(mod.KOMCardStorageFolderPath(param1, param2))).map(async function (e) {
 					if (e === mod.KOMCardStorageObjectPath(param1, param2)) {
-						return
+						return;
 					}
 					
 					return await privateClient.remove(e);

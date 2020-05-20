@@ -5,7 +5,7 @@ exports.OLSKControllerUseLivereload = function() {
 exports.OLSKControllerSharedMiddlewares = function() {
 	return {
 		KOMVitrineRouteGuardMiddleware (req, res, next) {
-			return next(require('./logic.js').KOMVitrineRouteGuard(process.env))
+			return next(require('./logic.js').KOMVitrineRouteGuard(process.env));
 		},
 	};
 };

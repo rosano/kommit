@@ -37,7 +37,7 @@ describe('KOMBrowse_Misc', function () {
 		browser.assert.hasFocus('.OLSKMasterListFilterField');
 	});    
     
-  context('create', function test_create () {
+	context('create', function test_create () {
 
 		before(function () {
 			browser.assert.elements('.OLSKResultsListItemSelected', 0);
@@ -80,7 +80,7 @@ describe('KOMBrowse_Misc', function () {
 				'KOMCardAnswer',
 				'KOMCardHint',
 				'@context',
-				]));
+			]));
 		});
 
 	});
@@ -280,7 +280,7 @@ describe('KOMBrowse_Misc', function () {
 		});
 		
 		it('focuses OLSKMasterListFilterField', function() {
-			browser.assert.hasFocus('.OLSKMasterListFilterField')
+			browser.assert.hasFocus('.OLSKMasterListFilterField');
 		});
 		
 		it.skip('clears KOMBrowseListFilterText', function() {

@@ -19,7 +19,7 @@ const KOMReviewMasterListItem = new RollupStart({
 					$KOMSpacingCard: (cards = cards.concat(KOMCardModel.KOMCardModelPostJSONParse(e.$KOMSpacingCard))).filter(function (item) {
 						return item.KOMCardID === e.$KOMSpacingCard.KOMCardID;
 					}).shift(),
-				})
+				});
 			});
 		}
 

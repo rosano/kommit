@@ -1,4 +1,4 @@
-import KOMCardModel from '../KOMCard/model.js'
+import KOMCardModel from '../KOMCard/model.js';
 
 const mod = {
 

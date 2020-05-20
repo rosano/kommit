@@ -154,7 +154,7 @@ describe('KOMPlaySort', function test_KOMPlaySort() {
 					}
 
 					if (KOMSpacingModel.KOMSpacingModelLabel(item.KOMSpacingID) !== KOMSpacingModel.KOMSpacingModelLabelBackward()) {
-						return false
+						return false;
 					}
 
 					return index < i;
@@ -165,7 +165,7 @@ describe('KOMPlaySort', function test_KOMPlaySort() {
 		it('spaces apart from sibling', function() {
 			deepEqual(Array.from(new Array(10)).map(function (e) {
 				return mainModule.KOMPlaySort(uItems(10, Infinity, true)).filter(function (e, i, coll) {
-					return i && KOMSpacingModel.KOMSpacingModelIsBackward(e) && KOMSpacingModel.KOMSpacingModelIdentifier(e.KOMSpacingID) === KOMSpacingModel.KOMSpacingModelIdentifier(coll[i - 1].KOMSpacingID)
+					return i && KOMSpacingModel.KOMSpacingModelIsBackward(e) && KOMSpacingModel.KOMSpacingModelIdentifier(e.KOMSpacingID) === KOMSpacingModel.KOMSpacingModelIdentifier(coll[i - 1].KOMSpacingID);
 				});
 			}).filter(function (e) {
 				return e.length;
@@ -187,7 +187,7 @@ describe('KOMPlaySort', function test_KOMPlaySort() {
 		it('spaces apart from sibling', function() {
 			deepEqual(Array.from(new Array(10)).map(function (e) {
 				return mainModule.KOMPlaySort(uItems(10, 0, true)).filter(function (e, i, coll) {
-					return i && KOMSpacingModel.KOMSpacingModelIsBackward(e) && KOMSpacingModel.KOMSpacingModelIdentifier(e.KOMSpacingID) === KOMSpacingModel.KOMSpacingModelIdentifier(coll[i - 1].KOMSpacingID)
+					return i && KOMSpacingModel.KOMSpacingModelIsBackward(e) && KOMSpacingModel.KOMSpacingModelIdentifier(e.KOMSpacingID) === KOMSpacingModel.KOMSpacingModelIdentifier(coll[i - 1].KOMSpacingID);
 				});
 			}).filter(function (e) {
 				return e.length;
@@ -267,7 +267,7 @@ describe('KOMPlayStateIsValid', function test_KOMPlayStateIsValid() {
 describe('KOMPlayResponseTypeAgain', function test_KOMPlayResponseTypeAgain() {
 
 	it('returns string', function () {
-		deepEqual(mainModule.KOMPlayResponseTypeAgain(), 'RESPONSE_AGAIN')
+		deepEqual(mainModule.KOMPlayResponseTypeAgain(), 'RESPONSE_AGAIN');
 	});
 
 });
@@ -275,7 +275,7 @@ describe('KOMPlayResponseTypeAgain', function test_KOMPlayResponseTypeAgain() {
 describe('KOMPlayResponseTypeHard', function test_KOMPlayResponseTypeHard() {
 
 	it('returns string', function () {
-		deepEqual(mainModule.KOMPlayResponseTypeHard(), 'RESPONSE_HARD')
+		deepEqual(mainModule.KOMPlayResponseTypeHard(), 'RESPONSE_HARD');
 	});
 
 });
@@ -283,7 +283,7 @@ describe('KOMPlayResponseTypeHard', function test_KOMPlayResponseTypeHard() {
 describe('KOMPlayResponseTypeGood', function test_KOMPlayResponseTypeGood() {
 
 	it('returns string', function () {
-		deepEqual(mainModule.KOMPlayResponseTypeGood(), 'RESPONSE_GOOD')
+		deepEqual(mainModule.KOMPlayResponseTypeGood(), 'RESPONSE_GOOD');
 	});
 
 });
@@ -291,7 +291,7 @@ describe('KOMPlayResponseTypeGood', function test_KOMPlayResponseTypeGood() {
 describe('KOMPlayResponseTypeEasy', function test_KOMPlayResponseTypeEasy() {
 
 	it('returns string', function () {
-		deepEqual(mainModule.KOMPlayResponseTypeEasy(), 'RESPONSE_EASY')
+		deepEqual(mainModule.KOMPlayResponseTypeEasy(), 'RESPONSE_EASY');
 	});
 
 });
@@ -304,7 +304,7 @@ describe('KOMPlayResponseTypes', function test_KOMPlayResponseTypes() {
 			mainModule.KOMPlayResponseTypeHard(),
 			mainModule.KOMPlayResponseTypeGood(),
 			mainModule.KOMPlayResponseTypeEasy(),
-			])
+		]);
 	});
 
 });
@@ -578,8 +578,8 @@ describe('KOMChronicleIsValid', function test_KOMChronicleIsValid() {
 	it('throws if not prepared', function () {
 		throws(function () {
 			mainModule.KOMChronicleIsValid(mainModule.KOMChronicleIsValid(Object.assign(kTesting.StubChronicleObjectValid(), {
-			KOMChronicleDrawDate: new Date('alfa'),
-		})));
+				KOMChronicleDrawDate: new Date('alfa'),
+			})));
 		}, /KOMErrorInputNotValid/);
 	});
 
@@ -818,7 +818,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 				for (var i = 0; i < param1; i++) {
 					state.KOMPlayStateCurrent = spacing;
 					mainModule.KOMPlayRespond(state, chronicle);
-				};
+				}
 
 				return Math.abs(spacing.KOMSpacingInterval - param2);
 			});
@@ -1223,7 +1223,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		before(function () {
 			mainModule.KOMPlayRespond(state, chronicle);
 
-			events.push(uChronicle(chronicle))
+			events.push(uChronicle(chronicle));
 		});
 		
 		before(function () {
@@ -1402,7 +1402,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		before(function () {
 			mainModule.KOMPlayRespond(state, chronicle);
 
-			events.push(uChronicle(chronicle))
+			events.push(uChronicle(chronicle));
 		});
 		
 		before(function () {
@@ -1450,7 +1450,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		before(function () {
 			mainModule.KOMPlayRespond(state, chronicle);
 
-			events.push(uChronicle(chronicle))
+			events.push(uChronicle(chronicle));
 		});
 		
 		before(function () {
@@ -1500,7 +1500,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		before(function () {
 			mainModule.KOMPlayRespond(state, chronicle);
 
-			events.push(uChronicle(chronicle))
+			events.push(uChronicle(chronicle));
 		});
 		
 		before(function () {
@@ -1550,7 +1550,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		before(function () {
 			mainModule.KOMPlayRespond(state, chronicle);
 
-			events.push(uChronicle(chronicle))
+			events.push(uChronicle(chronicle));
 		});
 		
 		before(function () {
@@ -1749,13 +1749,13 @@ describe('KOMPlayUndo', function test_KOMPlayUndo() {
 			KOMSpacingChronicles: [kTesting.StubChronicleObjectValid()],
 		});
 
-		deepEqual(mainModule.KOMPlayUndo(item) === item, true)
+		deepEqual(mainModule.KOMPlayUndo(item) === item, true);
 	});
 
 	it('removes last KOMSpacingChronicles item', function () {
 		deepEqual(mainModule.KOMPlayUndo(Object.assign(kTesting.StubSpacingObjectValid(), {
 			KOMSpacingChronicles: [kTesting.StubChronicleObjectValid(), kTesting.StubChronicleObjectValid()],
-		})).KOMSpacingChronicles, [kTesting.StubChronicleObjectValid()])
+		})).KOMSpacingChronicles, [kTesting.StubChronicleObjectValid()]);
 	});
 
 	it('keeps KOMSpacingDrawDate', function () {
@@ -1765,7 +1765,7 @@ describe('KOMPlayUndo', function test_KOMPlayUndo() {
 			KOMSpacingChronicles: [kTesting.StubChronicleObjectValid()],
 		})), Object.assign(kTesting.StubSpacingObjectValid(), {
 			KOMSpacingDrawDate: new Date('2019-02-23T12:00:00Z'),
-		}))
+		}));
 	});
 
 	it('keeps KOMSpacingFlipDate', function () {
@@ -1775,7 +1775,7 @@ describe('KOMPlayUndo', function test_KOMPlayUndo() {
 			KOMSpacingChronicles: [kTesting.StubChronicleObjectValid()],
 		})), Object.assign(kTesting.StubSpacingObjectValid(), {
 			KOMSpacingFlipDate: new Date('2019-02-23T12:00:00Z'),
-		}))
+		}));
 	});
 
 	it('keeps relations', function () {
@@ -1785,7 +1785,7 @@ describe('KOMPlayUndo', function test_KOMPlayUndo() {
 			$alfa: 'bravo',
 		})), Object.assign(kTesting.StubSpacingObjectValid(), {
 			$alfa: 'bravo',
-		}))
+		}));
 	});
 	
 	context('with no history', function () {
@@ -1814,7 +1814,7 @@ describe('KOMPlayUndo', function test_KOMPlayUndo() {
 				KOMSpacingDrawDate: new Date('2019-02-23T12:00:00Z'),
 				KOMSpacingFlipDate: new Date('2019-02-23T12:00:00Z'),
 				KOMSpacingDueDate: new Date('2019-02-23T12:00:00Z'),
-			}))
+			}));
 		});
 
 		it('removes existing properties', function () {
@@ -1831,7 +1831,7 @@ describe('KOMPlayUndo', function test_KOMPlayUndo() {
 				KOMSpacingDrawDate: new Date('2019-02-23T12:00:00Z'),
 				KOMSpacingFlipDate: new Date('2019-02-23T12:00:00Z'),
 				KOMSpacingDueDate: new Date('2019-02-23T12:00:00Z'),
-			}))
+			}));
 		});
 	
 	});

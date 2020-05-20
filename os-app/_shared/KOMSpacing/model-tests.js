@@ -338,7 +338,7 @@ describe('KOMSpacingModelIsBackward', function test_KOMSpacingModelIsBackward() 
 
 	it('throws if not valid', function () {
 		throws(function () {
-			mainModule.KOMSpacingModelIsBackward({})
+			mainModule.KOMSpacingModelIsBackward({});
 		}, /KOMErrorInputNotValid/);
 	});
 

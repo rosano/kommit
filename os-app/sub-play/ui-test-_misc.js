@@ -30,7 +30,7 @@ describe('KOMPlay_Misc', function () {
 			KOMSpacingMultiplier: 2,
 			KOMSpacingInterval: 1,
 			KOMSpacingDueDate: new Date(),
-		} : {})
+		} : {});
 	});
 
 	before(function() {
@@ -98,7 +98,7 @@ describe('KOMPlay_Misc', function () {
 		});
 
 		it('sets text', function () {
-			browser.assert.text(KOMPlayCardAnswer, items[0].$KOMSpacingCard.KOMCardAnswer)
+			browser.assert.text(KOMPlayCardAnswer, items[0].$KOMSpacingCard.KOMCardAnswer);
 		});
 
 	});
@@ -106,7 +106,7 @@ describe('KOMPlay_Misc', function () {
 	describe('KOMPlayCardHint', function test_KOMPlayCardHint () {
 
 		it('sets text', function () {
-			browser.assert.text(KOMPlayCardHint, items[0].$KOMSpacingCard.KOMCardHint)
+			browser.assert.text(KOMPlayCardHint, items[0].$KOMSpacingCard.KOMCardHint);
 		});
 
 	});
@@ -534,7 +534,7 @@ describe('KOMPlay_Misc', function () {
 		const items = kTesting.uSpacings(1).map(function (e, i) {
 			return Object.assign(e, {
 				KOMSpacingID: (i + 1).toString() + '-' + 'backward',
-			})
+			});
 		});
 
 		before(function() {
@@ -558,7 +558,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('sets text', function () {
-				browser.assert.text(KOMPlayCardAnswer, items[0].$KOMSpacingCard.KOMCardQuestion)
+				browser.assert.text(KOMPlayCardAnswer, items[0].$KOMSpacingCard.KOMCardQuestion);
 			});
 
 		});
