@@ -1729,3 +1729,111 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 	});
 
 });
+
+describe('KOMPlayUndo', function test_KOMPlayUndo() {
+
+	it('throws if not valid', function () {
+		throws(function () {
+			mainModule.KOMPlayUndo({});
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('throws if no KOMSpacingChronicles', function () {
+		throws(function () {
+			mainModule.KOMPlayUndo(kTesting.StubSpacingObjectValid());
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns input', function () {
+		const item = Object.assign(kTesting.StubSpacingObjectValid(), {
+			KOMSpacingChronicles: [kTesting.StubChronicleObjectValid()],
+		});
+
+		deepEqual(mainModule.KOMPlayUndo(item) === item, true)
+	});
+
+	it('removes last KOMSpacingChronicles item', function () {
+		deepEqual(mainModule.KOMPlayUndo(Object.assign(kTesting.StubSpacingObjectValid(), {
+			KOMSpacingChronicles: [kTesting.StubChronicleObjectValid(), kTesting.StubChronicleObjectValid()],
+		})).KOMSpacingChronicles, [kTesting.StubChronicleObjectValid()])
+	});
+
+	it('keeps KOMSpacingDrawDate', function () {
+		deepEqual(mainModule.KOMPlayUndo(Object.assign(kTesting.StubSpacingObjectValid(), {
+			KOMSpacingDrawDate: new Date('2019-02-23T12:00:00Z'),
+			KOMSpacingIsLearning: true,
+			KOMSpacingChronicles: [kTesting.StubChronicleObjectValid()],
+		})), Object.assign(kTesting.StubSpacingObjectValid(), {
+			KOMSpacingDrawDate: new Date('2019-02-23T12:00:00Z'),
+		}))
+	});
+
+	it('keeps KOMSpacingFlipDate', function () {
+		deepEqual(mainModule.KOMPlayUndo(Object.assign(kTesting.StubSpacingObjectValid(), {
+			KOMSpacingFlipDate: new Date('2019-02-23T12:00:00Z'),
+			KOMSpacingIsLearning: true,
+			KOMSpacingChronicles: [kTesting.StubChronicleObjectValid()],
+		})), Object.assign(kTesting.StubSpacingObjectValid(), {
+			KOMSpacingFlipDate: new Date('2019-02-23T12:00:00Z'),
+		}))
+	});
+
+	it('keeps relations', function () {
+		deepEqual(mainModule.KOMPlayUndo(Object.assign(kTesting.StubSpacingObjectValid(), {
+			KOMSpacingIsLearning: true,
+			KOMSpacingChronicles: [kTesting.StubChronicleObjectValid()],
+			$alfa: 'bravo',
+		})), Object.assign(kTesting.StubSpacingObjectValid(), {
+			$alfa: 'bravo',
+		}))
+	});
+	
+	context('with no history', function () {
+
+		it('removes existing properties', function () {
+			deepEqual(mainModule.KOMPlayUndo(Object.assign(kTesting.StubSpacingObjectValid(), {
+				KOMSpacingIsLearning: true,
+				KOMSpacingIsReadyToGraduate: true,
+				KOMSpacingChronicles: [kTesting.StubChronicleObjectValid()],
+			})), kTesting.StubSpacingObjectValid());
+		});
+	
+	});
+
+	context('with history', function () {
+
+		it('sets spacing properties', function () {
+			const item = Object.assign(kTesting.StubChronicleObjectValid(), {
+				KOMChronicleIsLearning: true,
+			});
+			deepEqual(mainModule.KOMPlayUndo(Object.assign(kTesting.StubSpacingObjectValid(), {
+				KOMSpacingChronicles: [item, kTesting.StubChronicleObjectValid()],
+			})), Object.assign(kTesting.StubSpacingObjectValid(), {
+				KOMSpacingChronicles: [item],
+				KOMSpacingIsLearning: true,
+				KOMSpacingDrawDate: new Date('2019-02-23T12:00:00Z'),
+				KOMSpacingFlipDate: new Date('2019-02-23T12:00:00Z'),
+				KOMSpacingDueDate: new Date('2019-02-23T12:00:00Z'),
+			}))
+		});
+
+		it('removes existing properties', function () {
+			const item = Object.assign(kTesting.StubChronicleObjectValid(), {
+				KOMChronicleIsLearning: true,
+			});
+			deepEqual(mainModule.KOMPlayUndo(Object.assign(kTesting.StubSpacingObjectValid(), {
+				KOMSpacingIsLearning: true,
+				KOMSpacingIsReadyToGraduate: true,
+				KOMSpacingChronicles: [item, kTesting.StubChronicleObjectValid()],
+			})), Object.assign(kTesting.StubSpacingObjectValid(), {
+				KOMSpacingChronicles: [item],
+				KOMSpacingIsLearning: true,
+				KOMSpacingDrawDate: new Date('2019-02-23T12:00:00Z'),
+				KOMSpacingFlipDate: new Date('2019-02-23T12:00:00Z'),
+				KOMSpacingDueDate: new Date('2019-02-23T12:00:00Z'),
+			}))
+		});
+	
+	});
+
+});

@@ -443,6 +443,41 @@ const mod = {
 		return true;
 	},
 
+	KOMPlayUndo (inputData) {
+		if (KOMSpacingModel.KOMSpacingModelErrorsFor(inputData)) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		if (!inputData.KOMSpacingChronicles.length) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		Object.keys(inputData).forEach(function (e) {
+			if (['KOMSpacingID', 'KOMSpacingChronicles', 'KOMSpacingDrawDate', 'KOMSpacingFlipDate'].includes(e)) {
+				return;
+			}
+
+			if (e[0] === '$') {
+				return;
+			}
+
+			delete inputData[e];
+		});
+
+		inputData.KOMSpacingChronicles.pop();
+
+		const item = inputData.KOMSpacingChronicles.slice(-1).pop();
+		Object.keys(item || {}).forEach(function (e) {
+			if (['KOMChronicleResponseDate', 'KOMChronicleResponseType'].includes(e)) {
+				return;
+			}
+
+			inputData[e.replace('KOMChronicle', 'KOMSpacing')] = item[e];
+		});
+
+		return inputData;
+	},
+
 };
 
 export default mod;
