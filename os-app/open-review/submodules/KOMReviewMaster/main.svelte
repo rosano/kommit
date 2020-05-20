@@ -42,7 +42,7 @@ import KOMReviewMasterListItem from '../KOMReviewMasterListItem/main.svelte';
 <div class="KOMReviewMasterBody">
 {#each KOMReviewMasterItems as e}
 	<div class="KOMReviewMasterListItemContainer" on:click={ () => KOMReviewMasterDispatchSelect(e) }
-		on:keypress={ (event) => event.which === 13 && KOMReviewMasterDispatchSelect(e) }>
+		on:keypress={ (event) => ['Enter', 'Space'].includes(event.code) && KOMReviewMasterDispatchSelect(e) }>
 		<KOMReviewMasterListItem KOMReviewMasterListItemObject={ e } />
 	</div>
 {/each}

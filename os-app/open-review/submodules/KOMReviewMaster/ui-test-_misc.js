@@ -112,6 +112,18 @@ describe('KOMReviewMaster_Misc', function () {
 			});
 		
 		});
+
+		context('Space', function () {
+			
+			before(function () {
+				return browser.OLSKFireKeyboardEvent(browser.window, 'Space');
+			});
+
+			it.skip('sends KOMReviewMasterDispatchSelect', function () {
+				browser.assert.text('#TestKOMReviewMasterDispatchSelect', '3');
+			});
+		
+		});
 		
 	});
 
