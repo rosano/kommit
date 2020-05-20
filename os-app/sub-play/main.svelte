@@ -1,6 +1,5 @@
 <script>
 export let KOMPlaySpacings;
-export let KOMPlayDispatchBack;
 export let KOMPlayDispatchDone;
 export let KOMPlayDispatchUpdate;
 
@@ -160,7 +159,7 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 		</OLSKToolbarElementGroup>
 
 		<OLSKToolbarElementGroup>
-			<button class="KOMPlayToolbarBackButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ KOMPlayDispatchBack }>{ OLSKLocalized('KOMPlayToolbarBackButtonText') }</button>
+			<button class="KOMPlayToolbarUndoButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceUndoButtonDidClick }>{ OLSKLocalized('KOMPlayToolbarUndoButtonText') }</button>
 			<button class="KOMPlayToolbarDoneButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ KOMPlayDispatchDone }>{ OLSKLocalized('KOMPlayToolbarDoneButtonText') }</button>
 		</OLSKToolbarElementGroup>
 	</OLSKToolbar>

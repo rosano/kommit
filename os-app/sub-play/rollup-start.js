@@ -7,9 +7,6 @@ const KOMPlay = new RollupStart({
 	target: document.getElementById('Target'),
 	props: Object.assign({
 		KOMPlaySpacings: [],
-		KOMPlayDispatchBack: (function _KOMPlayDispatchBack () {
-			window.TestKOMPlayDispatchBack.innerHTML = parseInt(window.TestKOMPlayDispatchBack.innerHTML) + 1;
-		}),
 		KOMPlayDispatchDone: (function _KOMPlayDispatchDone () {
 			window.TestKOMPlayDispatchDone.innerHTML = parseInt(window.TestKOMPlayDispatchDone.innerHTML) + 1;
 		}),
