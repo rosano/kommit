@@ -593,6 +593,38 @@ describe('KOMChronicleIsValid', function test_KOMChronicleIsValid() {
 		deepEqual(mainModule.KOMChronicleIsValid(kTesting.StubChronicleObjectValid()), true);
 	});
 
+	context('KOMChronicleIsLearning', function () {
+		
+		it('returns false if not boolean', function() {
+			deepEqual(mainModule.KOMChronicleIsValid(Object.assign(kTesting.StubChronicleObjectValid(), {
+				KOMChronicleIsLearning: 'true',
+			})), false);
+		});
+
+		it('returns true', function() {
+			deepEqual(mainModule.KOMChronicleIsValid(Object.assign(kTesting.StubChronicleObjectValid(), {
+				KOMChronicleIsLearning: true,
+			})), true);
+		});
+	
+	});
+
+	context('KOMChronicleIsReadyToGraduate', function () {
+		
+		it('returns false if not boolean', function() {
+			deepEqual(mainModule.KOMChronicleIsValid(Object.assign(kTesting.StubChronicleObjectValid(), {
+				KOMChronicleIsReadyToGraduate: 'true',
+			})), false);
+		});
+
+		it('returns true', function() {
+			deepEqual(mainModule.KOMChronicleIsValid(Object.assign(kTesting.StubChronicleObjectValid(), {
+				KOMChronicleIsReadyToGraduate: true,
+			})), true);
+		});
+	
+	});
+
 	context('KOMChronicleInterval', function () {
 
 		it('returns false if KOMChronicleInterval not number', function() {

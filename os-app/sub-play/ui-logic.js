@@ -400,6 +400,18 @@ const mod = {
 			return false
 		}
 
+		if (inputData.KOMChronicleIsLearning !== undefined) {
+			if (typeof inputData.KOMChronicleIsLearning !== 'boolean') {
+				return false;
+			}
+		}
+
+		if (inputData.KOMChronicleIsReadyToGraduate !== undefined) {
+			if (typeof inputData.KOMChronicleIsReadyToGraduate !== 'boolean') {
+				return false;
+			}
+		}
+
 		if (inputData.KOMChronicleInterval !== undefined) {
 			if (typeof inputData.KOMChronicleInterval !== 'number') {
 				return false
