@@ -1,5 +1,3 @@
-import { deepEqual } from 'assert';
-
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 describe('KOMReview_Misc', function () {	
@@ -172,5 +170,21 @@ describe('KOMReview_Misc', function () {
 		});
 
 	});
+
+	describe('KOMReviewLauncherItemSelectDeck', function test_KOMReviewLauncherItemSelectDeck() {
+		
+		before(function () {
+			return browser.fill('.LCHLauncherFilterInput', 'bravo');
+		});
+
+		before(function () {
+			return browser.click('.LCHLauncherResultListItem');
+		});
+
+		it('selects deck', function () {
+			browser.assert.text('.KOMReviewDetailToolbarTitle', 'bravo');
+		});
+
+	});	
 
 });

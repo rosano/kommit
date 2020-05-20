@@ -4,6 +4,9 @@ const OLSKLocalized = function(translationConstant) {
 	return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, JSON.parse(`{"OLSK_I18N_SEARCH_REPLACE":"OLSK_I18N_SEARCH_REPLACE"}`)[window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage')]);
 };
 
+import OLSKString from 'OLSKString';
+const OLSKFormatted = OLSKString.OLSKStringWithFormat;
+
 import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting'
 import * as OLSKRemoteStorage from '../_shared/__external/OLSKRemoteStorage/main.js'
 import KOM_Data from '../_shared/KOM_Data/main.js';
@@ -82,7 +85,14 @@ const mod = {
 	},
 
 	OLSKAppToolbarDispatchLauncher () {
-		const items = [];
+		const items = mod._ValueDecksAll.map(function (e) {
+			return {
+				LCHRecipeName: OLSKFormatted(OLSKLocalized('KOMReviewLauncherItemSelectDeckTextFormat'), e.KOMDeckName),
+				LCHRecipeCallback () {
+					return mod.ControlDeckSelect(e);
+				},
+			}
+		});
 
 		if (OLSK_TESTING_BEHAVIOUR()) {
 			items.push(...[

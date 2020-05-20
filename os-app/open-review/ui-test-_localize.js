@@ -20,6 +20,32 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			browser.assert.text('title', uLocalized('KOMReviewTitle'));
 		});
 
+		context('KOMReviewLauncherItemSelectDeck', function () {
+			
+			before(function () {
+				return browser.OLSKPrompt(function () {
+					return browser.pressButton('.KOMReviewMasterCreateButton');
+				}, function (dialog) {
+					dialog.response = 'alfa';
+					
+					return dialog;
+				});
+			});
+
+			before(function () {
+				return browser.pressButton('.OLSKAppToolbarLauncherButton');
+			});
+
+			before(function () {
+				return browser.fill('.LCHLauncherFilterInput', 'alfa');
+			});
+
+			it.skip('localizes KOMReviewLauncherItemSelectDeck', function () {
+				browser.assert.text('.LCHLauncherResultListItem', uStringWithFormat(uLocalized('KOMReviewLauncherItemSelectDeckTextFormat'), 'alfa'));
+			});
+		
+		});
+
 	});
 
 });
