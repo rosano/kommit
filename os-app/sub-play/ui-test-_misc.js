@@ -620,12 +620,12 @@ describe('KOMPlay_Misc', function () {
 
 	describe('review', function test_review () {
 
-		before(function () {
-			browser.assert.text('#TestKOMPlayStateQueueCount', '6');
-		});
+		const items = kTesting.uSpacingsFor(2);
 
-		before(function () {
-			browser.assert.text('#TestKOMPlayStateWaitCount', '0');
+		before(function() {
+			return browser.OLSKVisit(kDefaultRoute, {
+				KOMPlaySpacings: JSON.stringify(items),
+			});
 		});
 
 		before(function () {
@@ -633,11 +633,27 @@ describe('KOMPlay_Misc', function () {
 		});
 
 		before(function () {
-			return browser.pressButton(KOMPlayResponseButtonEasy);
+			return browser.pressButton(KOMPlayResponseButtonGood);
+		});
+
+		before(function () {
+			return browser.click(KOMPlayCard);
+		});
+
+		before(function () {
+			browser.assert.text('#TestKOMPlayStateQueueCount', '0');
+		});
+
+		before(function () {
+			browser.assert.text('#TestKOMPlayStateWaitCount', '1');
+		});
+
+		before(function () {
+			return browser.pressButton(KOMPlayResponseButtonGood);
 		});
 
 		it('updates KOMPlayStateQueue', function () {
-			browser.assert.text('#TestKOMPlayStateQueueCount', '5');
+			browser.assert.text('#TestKOMPlayStateQueueCount', '1');
 		});
 
 		it('updates KOMPlayStateWait', function () {
@@ -645,7 +661,7 @@ describe('KOMPlay_Misc', function () {
 		});
 
 		it('updates KOMPlayStateCurrent', function () {
-			browser.assert.text(KOMPlayCardQuestion, kTesting.uSpacings[2].$KOMSpacingCard.KOMCardQuestion);
+			browser.assert.text(KOMPlayCardQuestion, items[0].$KOMSpacingCard.KOMCardQuestion);
 		});
 
 	});
