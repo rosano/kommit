@@ -667,7 +667,7 @@ describe('KOMPlay_Misc', function () {
 
 	});
 
-	describe('KOMSpacingDrawDate', 'KOMSpacingFlipDate', function test_KOMSpacingDrawDate () {
+	describe('KOMSpacingDrawDate', function test_KOMSpacingDrawDate () {
 
 		const items = kTesting.uSpacings(3).map(function (e, i) {
 			return !i ? e : Object.assign(e, {
@@ -689,7 +689,7 @@ describe('KOMPlay_Misc', function () {
 			
 			it('sets no KOMChronicleDidDrawMultipleTimes', function () {
 				browser.assert.text('#TestKOMChronicleDidDrawMultipleTimes', 'undefined');
-			});			
+			});
 		
 		});
 
