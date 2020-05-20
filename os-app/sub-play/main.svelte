@@ -92,6 +92,7 @@ const mod = {
 		}
 
 		mod._ValueState.KOMPlayStateCurrent.KOMSpacingFlipDate = mod._ValueChronicle.KOMChronicleFlipDate;
+		KOMPlayDispatchUpdate(mod._ValueState.KOMPlayStateCurrent);
 	},
 
 	ControlRespond (inputData) {
