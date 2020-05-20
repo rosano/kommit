@@ -86,6 +86,12 @@ const mod = {
 		mod._ValueIsFlipped = true;
 
 		mod._ValueChronicle.KOMChronicleFlipDate = new Date();
+
+		if (mod._ValueState.KOMPlayStateCurrent.KOMSpacingFlipDate && KOMPlayLogic.KOMPlayDayGrouping(mod._ValueChronicle.KOMChronicleFlipDate) === KOMPlayLogic.KOMPlayDayGrouping(mod._ValueState.KOMPlayStateCurrent.KOMSpacingFlipDate)) {
+			mod._ValueChronicle.KOMChronicleDidFlipMultipleTimes = true;
+		}
+
+		mod._ValueState.KOMPlayStateCurrent.KOMSpacingFlipDate = mod._ValueChronicle.KOMChronicleFlipDate;
 	},
 
 	ControlRespond (inputData) {
@@ -189,6 +195,8 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 		<div id="TestKOMPlayStateWaitCount">{ mod._ValueState.KOMPlayStateWait.length }</div>
 		<div id="TestKOMSpacingDrawDate">{ mod._ValueState.KOMPlayStateCurrent.KOMSpacingDrawDate ? KOMPlayLogic.KOMPlayDayGrouping(mod._ValueState.KOMPlayStateCurrent.KOMSpacingDrawDate) : 'undefined' }</div>
 		<div id="TestKOMChronicleDidDrawMultipleTimes">{ JSON.stringify(mod._ValueChronicle.KOMChronicleDidDrawMultipleTimes) }</div>
+		<div id="TestKOMSpacingFlipDate">{ mod._ValueState.KOMPlayStateCurrent.KOMSpacingFlipDate ? KOMPlayLogic.KOMPlayDayGrouping(mod._ValueState.KOMPlayStateCurrent.KOMSpacingFlipDate) : 'undefined' }</div>
+		<div id="TestKOMChronicleDidFlipMultipleTimes">{ JSON.stringify(mod._ValueChronicle.KOMChronicleDidFlipMultipleTimes) }</div>
 	{/if}	
 {/if}
 

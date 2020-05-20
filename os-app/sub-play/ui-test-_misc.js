@@ -180,7 +180,7 @@ describe('KOMPlay_Misc', function () {
 			});
 			
 			it('sends KOMPlayDispatchRespondData', function () {
-				browser.assert.text('#TestKOMPlayDispatchRespondData', JSON.stringify(Object.keys(items[0]).concat(['KOMSpacingDrawDate', 'KOMSpacingIsLearning', 'KOMSpacingDueDate'])));
+				browser.assert.text('#TestKOMPlayDispatchRespondData', JSON.stringify(Object.keys(items[0]).concat(['KOMSpacingDrawDate', 'KOMSpacingFlipDate', 'KOMSpacingIsLearning', 'KOMSpacingDueDate'])));
 			});
 
 			it('updates KOMPlayStateCurrent', function () {
@@ -224,7 +224,7 @@ describe('KOMPlay_Misc', function () {
 			});
 			
 			it('sends KOMPlayDispatchRespondData', function () {
-				browser.assert.text('#TestKOMPlayDispatchRespondData', JSON.stringify(Object.keys(items[1]).concat('KOMSpacingDrawDate')));
+				browser.assert.text('#TestKOMPlayDispatchRespondData', JSON.stringify(Object.keys(items[1]).concat('KOMSpacingDrawDate', 'KOMSpacingFlipDate')));
 			});
 
 			it('updates KOMPlayStateCurrent', function () {
@@ -268,7 +268,7 @@ describe('KOMPlay_Misc', function () {
 			});
 			
 			it('sends KOMPlayDispatchRespondData', function () {
-				browser.assert.text('#TestKOMPlayDispatchRespondData', JSON.stringify(Object.keys(items[2]).concat(['KOMSpacingDrawDate', 'KOMSpacingIsLearning', 'KOMSpacingDueDate'])));
+				browser.assert.text('#TestKOMPlayDispatchRespondData', JSON.stringify(Object.keys(items[2]).concat(['KOMSpacingDrawDate', 'KOMSpacingFlipDate', 'KOMSpacingIsLearning', 'KOMSpacingDueDate'])));
 			});
 
 			it('updates KOMPlayStateCurrent', function () {
@@ -312,7 +312,7 @@ describe('KOMPlay_Misc', function () {
 			});
 			
 			it('sends KOMPlayDispatchRespondData', function () {
-				browser.assert.text('#TestKOMPlayDispatchRespondData', JSON.stringify(Object.keys(items[3]).concat(['KOMSpacingDrawDate', 'KOMSpacingInterval', 'KOMSpacingMultiplier', 'KOMSpacingDueDate'])));
+				browser.assert.text('#TestKOMPlayDispatchRespondData', JSON.stringify(Object.keys(items[3]).concat(['KOMSpacingDrawDate', 'KOMSpacingFlipDate', 'KOMSpacingInterval', 'KOMSpacingMultiplier', 'KOMSpacingDueDate'])));
 			});
 
 			it('updates KOMPlayStateCurrent', function () {
@@ -360,7 +360,7 @@ describe('KOMPlay_Misc', function () {
 			});
 			
 			it('sends KOMPlayDispatchRespondData', function () {
-				browser.assert.text('#TestKOMPlayDispatchRespondData', JSON.stringify(Object.keys(items[4]).concat(['KOMSpacingDrawDate', 'KOMSpacingIsLearning', 'KOMSpacingDueDate'])));
+				browser.assert.text('#TestKOMPlayDispatchRespondData', JSON.stringify(Object.keys(items[4]).concat(['KOMSpacingDrawDate', 'KOMSpacingFlipDate', 'KOMSpacingIsLearning', 'KOMSpacingDueDate'])));
 			});
 
 			it('updates KOMPlayStateCurrent', function () {
@@ -422,7 +422,7 @@ describe('KOMPlay_Misc', function () {
 				});
 				
 				it('sends KOMPlayDispatchRespondData', function () {
-					browser.assert.text('#TestKOMPlayDispatchRespondData', JSON.stringify(Object.keys(items[0]).concat(['KOMSpacingDrawDate', 'KOMSpacingIsLearning', 'KOMSpacingDueDate'])));
+					browser.assert.text('#TestKOMPlayDispatchRespondData', JSON.stringify(Object.keys(items[0]).concat(['KOMSpacingDrawDate', 'KOMSpacingFlipDate', 'KOMSpacingIsLearning', 'KOMSpacingDueDate'])));
 				});
 
 				it('updates KOMPlayStateCurrent', function () {
@@ -474,7 +474,7 @@ describe('KOMPlay_Misc', function () {
 				});
 				
 				it('sends KOMPlayDispatchRespondData', function () {
-					browser.assert.text('#TestKOMPlayDispatchRespondData', JSON.stringify(Object.keys(items[1]).concat(['KOMSpacingDrawDate', 'KOMSpacingIsLearning', 'KOMSpacingDueDate'])));
+					browser.assert.text('#TestKOMPlayDispatchRespondData', JSON.stringify(Object.keys(items[1]).concat(['KOMSpacingDrawDate', 'KOMSpacingFlipDate', 'KOMSpacingIsLearning', 'KOMSpacingDueDate'])));
 				});
 
 				it('updates KOMPlayStateCurrent', function () {
@@ -526,7 +526,7 @@ describe('KOMPlay_Misc', function () {
 				});
 				
 				it('sends KOMPlayDispatchRespondData', function () {
-					browser.assert.text('#TestKOMPlayDispatchRespondData', JSON.stringify(Object.keys(items[2]).concat(['KOMSpacingDrawDate', 'KOMSpacingIsLearning', 'KOMSpacingDueDate'])));
+					browser.assert.text('#TestKOMPlayDispatchRespondData', JSON.stringify(Object.keys(items[2]).concat(['KOMSpacingDrawDate', 'KOMSpacingFlipDate', 'KOMSpacingIsLearning', 'KOMSpacingDueDate'])));
 				});
 
 				it('updates KOMPlayStateCurrent', function () {
@@ -578,7 +578,7 @@ describe('KOMPlay_Misc', function () {
 				});
 				
 				it('sends KOMPlayDispatchRespondData', function () {
-					browser.assert.text('#TestKOMPlayDispatchRespondData', JSON.stringify(Object.keys(items[0]).concat(['KOMSpacingDrawDate', 'KOMSpacingInterval', 'KOMSpacingMultiplier', 'KOMSpacingDueDate'])));
+					browser.assert.text('#TestKOMPlayDispatchRespondData', JSON.stringify(Object.keys(items[0]).concat(['KOMSpacingDrawDate', 'KOMSpacingFlipDate', 'KOMSpacingInterval', 'KOMSpacingMultiplier', 'KOMSpacingDueDate'])));
 				});
 			
 			});
@@ -697,7 +697,7 @@ describe('KOMPlay_Misc', function () {
 
 	});
 
-	describe('KOMSpacingDrawDate', function test_KOMSpacingDrawDate () {
+	describe('KOMSpacingDrawDate', 'KOMSpacingFlipDate', function test_KOMSpacingDrawDate () {
 
 		const items = kTesting.uSpacings(3).map(function (e, i) {
 			return !i ? e : Object.assign(e, {
@@ -759,6 +759,90 @@ describe('KOMPlay_Misc', function () {
 			
 			it('sets KOMChronicleDidDrawMultipleTimes', function () {
 				browser.assert.text('#TestKOMChronicleDidDrawMultipleTimes', 'true');
+			});
+		
+		});
+
+	});
+
+	describe('KOMSpacingFlipDate', function test_KOMSpacingFlipDate () {
+
+		const items = kTesting.uSpacings(3).map(function (e, i) {
+			return !i ? e : Object.assign(e, {
+				KOMSpacingFlipDate: new Date(Date.now() - (i === 1 ? 1000 * 60 * 60 * 24 * 3 : 0)),
+			});
+		});
+
+		before(function() {
+			return browser.OLSKVisit(kDefaultRoute, {
+				KOMPlaySpacings: JSON.stringify(items),
+			});
+		});
+
+		context('undefined', function () {
+
+			before(function () {
+				browser.assert.text('#TestKOMSpacingFlipDate', 'undefined');
+			});
+
+			before(function () {
+				return browser.pressButton(KOMPlayFlipButton);
+			});
+
+			it('sets KOMSpacingFlipDate', function () {
+				browser.assert.text('#TestKOMSpacingFlipDate', KOMPlayLogic.KOMPlayDayGrouping(new Date()));
+			});
+			
+			it('sets no KOMChronicleDidFlipMultipleTimes', function () {
+				browser.assert.text('#TestKOMChronicleDidFlipMultipleTimes', 'undefined');
+			});			
+		
+		});
+
+		context('past', function () {
+
+			before(function () {
+				return browser.pressButton(KOMPlayResponseButtonEasy);
+			});
+			
+			before(function () {
+				browser.assert.text('#TestKOMSpacingFlipDate', KOMPlayLogic.KOMPlayDayGrouping(items[1].KOMSpacingFlipDate));
+			});
+
+			before(function () {
+				return browser.pressButton(KOMPlayFlipButton);
+			});
+			
+			it('sets KOMSpacingFlipDate', function () {
+				browser.assert.text('#TestKOMSpacingFlipDate', KOMPlayLogic.KOMPlayDayGrouping(new Date()));
+			});
+			
+			it('sets no KOMChronicleDidFlipMultipleTimes', function () {
+				browser.assert.text('#TestKOMChronicleDidFlipMultipleTimes', 'undefined');
+			});
+		
+		});
+
+		context('today', function () {
+
+			before(function () {
+				return browser.pressButton(KOMPlayResponseButtonEasy);
+			});
+			
+			before(function () {
+				browser.assert.text('#TestKOMSpacingFlipDate', KOMPlayLogic.KOMPlayDayGrouping(items[2].KOMSpacingFlipDate));
+			});
+
+			before(function () {
+				return browser.pressButton(KOMPlayFlipButton);
+			});
+			
+			it('sets KOMSpacingFlipDate', function () {
+				browser.assert.text('#TestKOMSpacingFlipDate', KOMPlayLogic.KOMPlayDayGrouping(new Date()));
+			});
+			
+			it('sets KOMChronicleDidFlipMultipleTimes', function () {
+				browser.assert.text('#TestKOMChronicleDidFlipMultipleTimes', 'true');
 			});
 		
 		});
