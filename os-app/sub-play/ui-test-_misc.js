@@ -122,7 +122,7 @@ describe('KOMPlay_Misc', function () {
 	describe('KOMPlayCardAnswer', function test_KOMPlayCardAnswer () {
 
 		before(function () {
-			return browser.click(KOMPlayCard);
+			return browser.pressButton(KOMPlayFlipButton);
 		});
 
 		it('sets text', function () {
@@ -194,7 +194,7 @@ describe('KOMPlay_Misc', function () {
 	describe('KOMPlayResponseButtonHard', function test_KOMPlayResponseButtonHard () {
 
 		before(function () {
-			return browser.click(KOMPlayCard);
+			return browser.pressButton(KOMPlayFlipButton);
 		});
 
 		it('classes OLSKLayoutButtonNoStyle', function () {
@@ -238,7 +238,7 @@ describe('KOMPlay_Misc', function () {
 	describe('KOMPlayResponseButtonGood', function test_KOMPlayResponseButtonGood () {
 
 		before(function () {
-			return browser.click(KOMPlayCard);
+			return browser.pressButton(KOMPlayFlipButton);
 		});
 
 		it('classes OLSKLayoutButtonNoStyle', function () {
@@ -282,7 +282,7 @@ describe('KOMPlay_Misc', function () {
 	describe('KOMPlayResponseButtonEasy', function test_KOMPlayResponseButtonEasy () {
 
 		before(function () {
-			return browser.click(KOMPlayCard);
+			return browser.pressButton(KOMPlayFlipButton);
 		});
 
 		it('classes OLSKLayoutButtonNoStyle', function () {
@@ -612,15 +612,11 @@ describe('KOMPlay_Misc', function () {
 		context('KOMPlayCardAnswer', function () {
 
 			before(function () {
-				return browser.click(KOMPlayCard);
+				return browser.pressButton(KOMPlayFlipButton);
 			});
 
 			it('sets text', function () {
 				browser.assert.text(KOMPlayCardAnswer, items[0].$KOMSpacingCard.KOMCardQuestion)
-			});
-
-			after(function () {
-				return browser.click(KOMPlayCard);
 			});
 
 		});
@@ -638,7 +634,7 @@ describe('KOMPlay_Misc', function () {
 		});
 
 		before(function () {
-			return browser.click(KOMPlayCard);
+			return browser.pressButton(KOMPlayFlipButton);
 		});
 
 		before(function () {
@@ -646,7 +642,7 @@ describe('KOMPlay_Misc', function () {
 		});
 
 		before(function () {
-			return browser.click(KOMPlayCard);
+			return browser.pressButton(KOMPlayFlipButton);
 		});
 
 		before(function () {
@@ -684,7 +680,7 @@ describe('KOMPlay_Misc', function () {
 		});
 
 		before(function () {
-			return browser.click(KOMPlayCard);
+			return browser.pressButton(KOMPlayFlipButton);
 		});
 
 		before(function () {
