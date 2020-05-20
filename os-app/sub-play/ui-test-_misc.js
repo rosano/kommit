@@ -39,14 +39,14 @@ describe('KOMPlay_Misc', function () {
 		});
 	});
 
-	describe('KOMPlayToolbarBackButton', function test_KOMPlayToolbarBackButton () {
+	describe('KOMPlayToolbarUndoButton', function test_KOMPlayToolbarUndoButton () {
 		
 		it('classes OLSKLayoutButtonNoStyle', function () {
-			browser.assert.hasClass(KOMPlayToolbarBackButton, 'OLSKLayoutButtonNoStyle');
+			browser.assert.hasClass(KOMPlayToolbarUndoButton, 'OLSKLayoutButtonNoStyle');
 		});
 
 		it('classes OLSKLayoutElementTappable', function () {
-			browser.assert.hasClass(KOMPlayToolbarBackButton, 'OLSKLayoutElementTappable');
+			browser.assert.hasClass(KOMPlayToolbarUndoButton, 'OLSKLayoutElementTappable');
 		});
 
 		context('click', function () {

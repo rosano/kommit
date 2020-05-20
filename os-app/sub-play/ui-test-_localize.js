@@ -38,8 +38,8 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			});
 		});
 
-		it('localizes KOMPlayToolbarBackButton', function () {
-			browser.assert.text(KOMPlayToolbarBackButton, uLocalized('KOMPlayToolbarBackButtonText'));
+		it('localizes KOMPlayToolbarUndoButton', function () {
+			browser.assert.text(KOMPlayToolbarUndoButton, uLocalized('KOMPlayToolbarUndoButtonText'));
 		});
 
 		it('localizes KOMPlayToolbarDoneButton', function () {
