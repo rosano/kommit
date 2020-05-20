@@ -117,9 +117,6 @@ describe('KOMReviewDetail_Misc', function () {
 
 			it('sends KOMReviewDetailDispatchDiscard', function () {
 				browser.assert.text('#TestKOMReviewDetailDispatchDiscard', '1');
-			});
-
-			it('sends KOMReviewDetailDispatchDiscardData', function () {
 				browser.assert.text('#TestKOMReviewDetailDispatchDiscardData', JSON.stringify(uItem()));
 			});
 		
@@ -156,9 +153,6 @@ describe('KOMReviewDetail_Misc', function () {
 
 				it('sends KOMReviewDetailDispatchUpdate', function () {
 					browser.assert.text('#TestKOMReviewDetailDispatchUpdate', '1');
-				});
-
-				it('sends KOMReviewDetailDispatchUpdateData', function () {
 					browser.assert.text('#TestKOMReviewDetailDispatchUpdateData', JSON.stringify(Object.assign(uItem(), {
 						KOMDeckName: 'bravo',
 					})));

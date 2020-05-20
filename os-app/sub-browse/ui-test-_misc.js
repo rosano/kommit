@@ -45,9 +45,6 @@ describe('KOMBrowse_Misc', function () {
 
 		before(function () {
 			browser.assert.text('#TestKOMBrowseDispatchCreate', '0');
-		});
-
-		before(function () {
 			browser.assert.text('#TestKOMBrowseDispatchCreateData', 'undefined');
 		});
 
@@ -74,9 +71,6 @@ describe('KOMBrowse_Misc', function () {
 
 		it('sends KOMBrowseDispatchCreate', function () {
 			browser.assert.text('#TestKOMBrowseDispatchCreate', '1');
-		});
-
-		it('sends KOMBrowseDispatchCreateData', function () {
 			browser.assert.text('#TestKOMBrowseDispatchCreateData', JSON.stringify([
 				'KOMCardID',
 				'KOMCardDeckID',
