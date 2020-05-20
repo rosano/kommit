@@ -73,7 +73,7 @@ const mod = {
 		setTimeout(mod.SetupStorageWidget, 100);
 	},
 
-	KOMPlayDispatchRespond (inputData) {
+	KOMPlayDispatchUpdate (inputData) {
 		mod.ControlSpacingSave(inputData);
 	},
 
@@ -496,7 +496,7 @@ import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svel
 		<KOMPlay
 			KOMPlaySpacings={ mod._ValuePlaySpacings }
 			KOMPlayDispatchDone={ mod.KOMPlayDispatchDone }
-			KOMPlayDispatchRespond={ mod.KOMPlayDispatchRespond }
+			KOMPlayDispatchUpdate={ mod.KOMPlayDispatchUpdate }
 			/>
 	{/if}
 </OLSKViewportContent>

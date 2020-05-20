@@ -13,9 +13,9 @@ const KOMPlay = new RollupStart({
 		KOMPlayDispatchDone: (function _KOMPlayDispatchDone () {
 			window.TestKOMPlayDispatchDone.innerHTML = parseInt(window.TestKOMPlayDispatchDone.innerHTML) + 1;
 		}),
-		KOMPlayDispatchRespond: (function _KOMPlayDispatchRespond (inputData) {
-			window.TestKOMPlayDispatchRespond.innerHTML = parseInt(window.TestKOMPlayDispatchRespond.innerHTML) + 1;
-			window.TestKOMPlayDispatchRespondData.innerHTML = JSON.stringify(Object.keys(inputData));
+		KOMPlayDispatchUpdate: (function _KOMPlayDispatchUpdate (inputData) {
+			window.TestKOMPlayDispatchUpdate.innerHTML = parseInt(window.TestKOMPlayDispatchUpdate.innerHTML) + 1;
+			window.TestKOMPlayDispatchUpdateData.innerHTML = JSON.stringify(Object.keys(inputData));
 		}),
 	}, Object.fromEntries(Array.from((new window.URLSearchParams(window.location.search)).entries()).map(function (e, index, coll) {
 		if (['KOMPlaySpacings'].includes(e[0])) {

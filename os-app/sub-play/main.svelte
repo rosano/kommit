@@ -2,7 +2,7 @@
 export let KOMPlaySpacings;
 export let KOMPlayDispatchBack;
 export let KOMPlayDispatchDone;
-export let KOMPlayDispatchRespond;
+export let KOMPlayDispatchUpdate;
 
 import OLSKInternational from 'OLSKInternational';
 const OLSKLocalized = function(translationConstant) {
@@ -102,7 +102,7 @@ const mod = {
 			KOMChronicleResponseType: inputData,
 		}));
 
-		KOMPlayDispatchRespond(item);
+		KOMPlayDispatchUpdate(item);
 
 		if (!mod._ValueState.KOMPlayStateCurrent) {
 			return KOMPlayDispatchDone();
