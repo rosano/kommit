@@ -4,7 +4,7 @@ import KOMCardModel from '../_shared/KOMCard/model.js';
 import KOMSpacingModel from '../_shared/KOMSpacing/model.js';
 
 const KOMPlay = new RollupStart({
-	target: document.body,
+	target: document.getElementById('Target'),
 	props: Object.assign({
 		KOMPlaySpacings: [],
 		KOMPlayDispatchBack: (function _KOMPlayDispatchBack () {
