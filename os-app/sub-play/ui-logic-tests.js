@@ -905,6 +905,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 				KOMSpacingChronicles: [uChronicle({
 					KOMChronicleResponseType: mainModule.KOMPlayResponseTypeAgain(),
 					KOMChronicleDueDate: spacing.KOMSpacingDueDate,
+					KOMChronicleIsLearning: true,
 				})],
 			}));
 		});
@@ -937,6 +938,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 				KOMSpacingChronicles: [uChronicle({
 					KOMChronicleResponseType: mainModule.KOMPlayResponseTypeHard(),
 					KOMChronicleDueDate: spacing.KOMSpacingDueDate,
+					KOMChronicleIsLearning: true,
 				})],
 			}));
 		});
@@ -969,6 +971,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 				KOMSpacingChronicles: [uChronicle({
 					KOMChronicleResponseType: mainModule.KOMPlayResponseTypeGood(),
 					KOMChronicleDueDate: spacing.KOMSpacingDueDate,
+					KOMChronicleIsLearning: true,
 				})],
 			}));
 		});
@@ -1048,6 +1051,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 					KOMChronicleResponseDate: chronicle.KOMChronicleResponseDate,
 					KOMChronicleResponseType: chronicle.KOMChronicleResponseType,
 					KOMChronicleDueDate: spacing.KOMSpacingDueDate,
+					KOMChronicleIsLearning: true,
 				})),
 			}));
 		});
@@ -1095,6 +1099,8 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 					KOMChronicleResponseDate: chronicle.KOMChronicleResponseDate,
 					KOMChronicleResponseType: chronicle.KOMChronicleResponseType,
 					KOMChronicleDueDate: spacing.KOMSpacingDueDate,
+					KOMChronicleIsLearning: true,
+					KOMChronicleIsReadyToGraduate: true,
 				})),
 			}));
 		});
@@ -1142,6 +1148,8 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 					KOMChronicleResponseDate: chronicle.KOMChronicleResponseDate,
 					KOMChronicleResponseType: chronicle.KOMChronicleResponseType,
 					KOMChronicleDueDate: spacing.KOMSpacingDueDate,
+					KOMChronicleIsLearning: true,
+					KOMChronicleIsReadyToGraduate: true,
 				})),
 			}));
 		});
@@ -1368,6 +1376,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 					KOMChronicleResponseDate: chronicle.KOMChronicleResponseDate,
 					KOMChronicleResponseType: chronicle.KOMChronicleResponseType,
 					KOMChronicleDueDate: spacing.KOMSpacingDueDate,
+					KOMChronicleIsLearning: true,
 				})),
 			}));
 		});
@@ -1415,6 +1424,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 					KOMChronicleResponseDate: chronicle.KOMChronicleResponseDate,
 					KOMChronicleResponseType: chronicle.KOMChronicleResponseType,
 					KOMChronicleDueDate: spacing.KOMSpacingDueDate,
+					KOMChronicleIsLearning: true,
 				})),
 			}));
 		});
