@@ -119,6 +119,12 @@ const mod = {
 		mod._ValueChronicle = {
 			KOMChronicleDrawDate: new Date(),
 		};
+
+		if (mod._ValueState.KOMPlayStateCurrent.KOMSpacingDrawDate && KOMPlayLogic.KOMPlayDayGrouping(mod._ValueChronicle.KOMChronicleDrawDate) === KOMPlayLogic.KOMPlayDayGrouping(mod._ValueState.KOMPlayStateCurrent.KOMSpacingDrawDate)) {
+			mod._ValueChronicle.KOMChronicleDidDrawMultipleTimes = true;
+		}
+
+		mod._ValueState.KOMPlayStateCurrent.KOMSpacingDrawDate = mod._ValueChronicle.KOMChronicleDrawDate;
 	},
 
 };
@@ -181,6 +187,8 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 	{#if OLSK_TESTING_BEHAVIOUR()}
 		<div id="TestKOMPlayStateQueueCount">{ mod._ValueState.KOMPlayStateQueue.length }</div>
 		<div id="TestKOMPlayStateWaitCount">{ mod._ValueState.KOMPlayStateWait.length }</div>
+		<div id="TestKOMSpacingDrawDate">{ mod._ValueState.KOMPlayStateCurrent.KOMSpacingDrawDate ? KOMPlayLogic.KOMPlayDayGrouping(mod._ValueState.KOMPlayStateCurrent.KOMSpacingDrawDate) : 'undefined' }</div>
+		<div id="TestKOMChronicleDidDrawMultipleTimes">{ JSON.stringify(mod._ValueChronicle.KOMChronicleDidDrawMultipleTimes) }</div>
 	{/if}	
 {/if}
 
