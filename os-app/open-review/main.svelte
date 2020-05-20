@@ -216,6 +216,7 @@ const mod = {
 
 	_ValueFooterStorageStatus: '',
 
+	_ValueSpacingUpdateThrottleMap: {},
 	_ValueCountThrottleMap: {},
 	
 	// DATA
@@ -276,7 +277,13 @@ const mod = {
 	},
 
 	ControlSpacingSave(inputData) {
-		KOMSpacingMetal.KOMSpacingMetalWrite(mod._ValueStorageClient, inputData, inputData.$KOMSpacingCard, mod._ValueDeckSelected);
+		const deck = mod._ValueDeckSelected;
+		OLSKThrottle.OLSKThrottleMappedTimeout(mod._ValueSpacingUpdateThrottleMap, inputData.KOMSpacingID, {
+			OLSKThrottleDuration: OLSK_TESTING_BEHAVIOUR () ? 0 : 500,
+			OLSKThrottleCallback () {
+				return KOMSpacingMetal.KOMSpacingMetalWrite(mod._ValueStorageClient, inputData, inputData.$KOMSpacingCard, deck);
+			},
+		});
 	},
 
 	// REACT
