@@ -65,6 +65,22 @@ const mod = {
 			];
 		}
 
+		if (inputData.KOMSpacingDrawDate !== undefined || options.KOMOptionValidateIfNotPresent) {
+			if (!(inputData.KOMSpacingDrawDate instanceof Date) || Number.isNaN(inputData.KOMSpacingDrawDate.getTime())) {
+				errors.KOMSpacingDrawDate = [
+					'KOMErrorNotDate',
+				];
+			}
+		}
+
+		if (inputData.KOMSpacingFlipDate !== undefined || options.KOMOptionValidateIfNotPresent) {
+			if (!(inputData.KOMSpacingFlipDate instanceof Date) || Number.isNaN(inputData.KOMSpacingFlipDate.getTime())) {
+				errors.KOMSpacingFlipDate = [
+					'KOMErrorNotDate',
+				];
+			}
+		}
+
 		if (inputData.KOMSpacingDueDate !== undefined || options.KOMOptionValidateIfNotPresent) {
 			if (!(inputData.KOMSpacingDueDate instanceof Date) || Number.isNaN(inputData.KOMSpacingDueDate.getTime())) {
 				errors.KOMSpacingDueDate = [
@@ -125,6 +141,14 @@ const mod = {
 	},
 
 	KOMSpacingModelPreJSONSchemaValidate (inputData) {
+		if (inputData.KOMSpacingDrawDate) {
+			inputData.KOMSpacingDrawDate = inputData.KOMSpacingDrawDate.toISOString();
+		}
+
+		if (inputData.KOMSpacingFlipDate) {
+			inputData.KOMSpacingFlipDate = inputData.KOMSpacingFlipDate.toISOString();
+		}
+
 		if (inputData.KOMSpacingDueDate) {
 			inputData.KOMSpacingDueDate = inputData.KOMSpacingDueDate.toISOString();
 		}
@@ -135,6 +159,14 @@ const mod = {
 	KOMSpacingModelPostJSONParse (inputData) {
 		if (!inputData) {
 			return inputData;
+		}
+
+		if (inputData.KOMSpacingDrawDate) {
+			inputData.KOMSpacingDrawDate = new Date(inputData.KOMSpacingDrawDate);
+		}
+
+		if (inputData.KOMSpacingFlipDate) {
+			inputData.KOMSpacingFlipDate = new Date(inputData.KOMSpacingFlipDate);
 		}
 
 		if (inputData.KOMSpacingDueDate) {

@@ -132,6 +132,46 @@ describe('KOMSpacingModelErrorsFor', function test_KOMSpacingModelErrorsFor() {
 		})), null);
 	});
 
+	context('KOMSpacingDrawDate', function() {
+
+		it('returns object if not date', function() {
+			deepEqual(mainModule.KOMSpacingModelErrorsFor(Object.assign(kTesting.StubSpacingObjectValid(), {
+				KOMSpacingDrawDate: null,
+			})), {
+				KOMSpacingDrawDate: [
+					'KOMErrorNotDate',
+				],
+			});
+		});
+
+		it('returns null', function() {
+			deepEqual(mainModule.KOMSpacingModelErrorsFor(Object.assign(kTesting.StubSpacingObjectValid(), {
+				KOMSpacingDrawDate: new Date(),
+			})), null);
+		});
+
+	});
+
+	context('KOMSpacingFlipDate', function() {
+
+		it('returns object if not date', function() {
+			deepEqual(mainModule.KOMSpacingModelErrorsFor(Object.assign(kTesting.StubSpacingObjectValid(), {
+				KOMSpacingFlipDate: null,
+			})), {
+				KOMSpacingFlipDate: [
+					'KOMErrorNotDate',
+				],
+			});
+		});
+
+		it('returns null', function() {
+			deepEqual(mainModule.KOMSpacingModelErrorsFor(Object.assign(kTesting.StubSpacingObjectValid(), {
+				KOMSpacingFlipDate: new Date(),
+			})), null);
+		});
+
+	});
+
 	context('KOMSpacingDueDate', function() {
 
 		it('returns object if not date', function() {
@@ -280,6 +320,8 @@ describe('KOMSpacingModelErrorsFor', function test_KOMSpacingModelErrorsFor() {
 			})), [
 				'KOMSpacingID',
 				'KOMSpacingChronicles',
+				'KOMSpacingDrawDate',
+				'KOMSpacingFlipDate',
 				'KOMSpacingDueDate',
 				'KOMSpacingIsLearning',
 				'KOMSpacingIsReadyToGraduate',
@@ -318,6 +360,22 @@ describe('KOMSpacingModelPreJSONSchemaValidate', function test_KOMSpacingModelPr
 		deepEqual(mainModule.KOMSpacingModelPreJSONSchemaValidate({}), {});
 	});
 
+	it('returns input with KOMSpacingDrawDate as string', function() {
+		deepEqual(mainModule.KOMSpacingModelPreJSONSchemaValidate({
+			KOMSpacingDrawDate: new Date('2018-12-09T19:07:01.902Z'),
+		}), {
+			KOMSpacingDrawDate: '2018-12-09T19:07:01.902Z',
+		});
+	});
+
+	it('returns input with KOMSpacingFlipDate as string', function() {
+		deepEqual(mainModule.KOMSpacingModelPreJSONSchemaValidate({
+			KOMSpacingFlipDate: new Date('2018-12-09T19:07:01.902Z'),
+		}), {
+			KOMSpacingFlipDate: '2018-12-09T19:07:01.902Z',
+		});
+	});
+
 	it('returns input with KOMSpacingDueDate as string', function() {
 		deepEqual(mainModule.KOMSpacingModelPreJSONSchemaValidate({
 			KOMSpacingDueDate: new Date('2018-12-09T19:07:01.902Z'),
@@ -336,6 +394,22 @@ describe('KOMSpacingModelPostJSONParse', function test_KOMSpacingModelPostJSONPa
 
 	it('returns input object', function() {
 		deepEqual(mainModule.KOMSpacingModelPostJSONParse({}), {});
+	});
+
+	it('returns input with KOMSpacingDrawDate as date', function() {
+		deepEqual(mainModule.KOMSpacingModelPostJSONParse({
+			KOMSpacingDrawDate: '2018-12-09T19:07:01.902Z',
+		}), {
+			KOMSpacingDrawDate: new Date('2018-12-09T19:07:01.902Z'),
+		});
+	});
+
+	it('returns input with KOMSpacingFlipDate as date', function() {
+		deepEqual(mainModule.KOMSpacingModelPostJSONParse({
+			KOMSpacingFlipDate: '2018-12-09T19:07:01.902Z',
+		}), {
+			KOMSpacingFlipDate: new Date('2018-12-09T19:07:01.902Z'),
+		});
 	});
 
 	it('returns input with KOMSpacingDueDate as date', function() {
