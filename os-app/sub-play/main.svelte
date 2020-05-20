@@ -131,11 +131,19 @@ const mod = {
 		}
 
 		mod._ValueState.KOMPlayStateCurrent.KOMSpacingDrawDate = mod._ValueChronicle.KOMChronicleDrawDate;
+		KOMPlayDispatchUpdate(mod._ValueState.KOMPlayStateCurrent);
+	},
+
+	// LIFECYCLE
+
+	LifecycleModuleWillMount () {
+		mod.SetupEverything();
 	},
 
 };
 
-mod.SetupEverything();
+import { onMount } from 'svelte';
+OLSK_TESTING_BEHAVIOUR() ? mod.LifecycleModuleWillMount() : onMount(mod.LifecycleModuleWillMount);
 
 import OLSKViewportContent from 'OLSKViewportContent';
 import OLSKToolbar from 'OLSKToolbar';
