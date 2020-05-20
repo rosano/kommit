@@ -111,6 +111,10 @@ const mod = {
 
 	// SETUP
 
+	SetupEverything () {
+		mod.SetupChronicle();
+	},
+
 	SetupChronicle () {
 		mod._ValueChronicle = {
 			KOMChronicleDrawDate: new Date(),
@@ -119,7 +123,7 @@ const mod = {
 
 };
 
-mod.SetupChronicle();
+mod.SetupEverything();
 
 import OLSKViewportContent from 'OLSKViewportContent';
 import OLSKToolbar from 'OLSKToolbar';
