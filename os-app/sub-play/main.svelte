@@ -33,7 +33,7 @@ const mod = {
 
 		const handlerFunctions = {
 			Space () {
-				mod.ControlFlip();
+				mod.InterfaceCardDidClick();
 			},
 			Digit1 () {
 				mod._ValueIsFlipped && mod.ControlRespond(KOMPlayLogic.KOMPlayResponseTypeAgain());
@@ -53,6 +53,10 @@ const mod = {
 	},
 
 	InterfaceCardDidClick () {
+		if (mod._ValueIsFlipped) {
+			return mod.ControlRespond(KOMPlayLogic.KOMPlayResponseTypeGood());
+		}
+
 		mod.ControlFlip();
 	},
 
@@ -79,10 +83,6 @@ const mod = {
 	// CONTROL
 
 	ControlFlip () {
-		if (mod._ValueIsFlipped) {
-			return mod.ControlRespond(KOMPlayLogic.KOMPlayResponseTypeGood());
-		}
-
 		mod._ValueIsFlipped = true;
 
 		mod._ValueChronicle.KOMChronicleFlipDate = new Date();
