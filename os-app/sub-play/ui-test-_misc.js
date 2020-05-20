@@ -39,34 +39,6 @@ describe('KOMPlay_Misc', function () {
 		});
 	});
 
-	describe('KOMPlayToolbarUndoButton', function test_KOMPlayToolbarUndoButton () {
-		
-		it('classes OLSKLayoutButtonNoStyle', function () {
-			browser.assert.hasClass(KOMPlayToolbarUndoButton, 'OLSKLayoutButtonNoStyle');
-		});
-
-		it('classes OLSKLayoutElementTappable', function () {
-			browser.assert.hasClass(KOMPlayToolbarUndoButton, 'OLSKLayoutElementTappable');
-		});
-
-		context('click', function () {
-			
-			before(function () {
-				browser.assert.text('#TestKOMPlayDispatchBack', '0');
-			});
-			
-			before(function () {
-				return browser.pressButton(KOMPlayToolbarBackButton);
-			});
-
-			it('sends KOMPlayDispatchBack', function () {
-				browser.assert.text('#TestKOMPlayDispatchBack', '1');
-			});
-		
-		});
-	
-	});
-
 	describe('KOMPlayToolbarDoneButton', function test_KOMPlayToolbarDoneButton () {
 		
 		it('classes OLSKLayoutButtonNoStyle', function () {
@@ -865,6 +837,88 @@ describe('KOMPlay_Misc', function () {
 				browser.assert.text('#TestKOMPlayDispatchUpdateData', JSON.stringify(Object.keys(items[0]).concat(['KOMSpacingFlipDate', 'KOMSpacingDrawDate'])));
 			});	
 		
+		});
+
+	});
+
+	describe('KOMPlayToolbarUndoButton', function test_KOMPlayToolbarUndoButton () {
+	
+		const items = kTesting.uSpacings(3);
+
+		before(function() {
+			return browser.OLSKVisit(kDefaultRoute, {
+				KOMPlaySpacings: JSON.stringify(items),
+			});
+		});
+
+		it('classes OLSKLayoutButtonNoStyle', function () {
+			browser.assert.hasClass(KOMPlayToolbarUndoButton, 'OLSKLayoutButtonNoStyle');
+		});
+
+		it('classes OLSKLayoutElementTappable', function () {
+			browser.assert.hasClass(KOMPlayToolbarUndoButton, 'OLSKLayoutElementTappable');
+		});
+
+		it('sets disabled', function () {
+			browser.assert.attribute(KOMPlayToolbarUndoButton, 'disabled', '');
+		});
+
+		context('graduate', function () {
+
+			before(function () {
+				return browser.pressButton(KOMPlayFlipButton);
+			});
+
+			before(function () {
+				return browser.pressButton(KOMPlayResponseButtonEasy);
+			});
+
+			it('removes disabled', function () {
+				browser.assert.attribute(KOMPlayToolbarUndoButton, 'disabled', null);
+			});
+
+			context('click', function () {
+
+				before(function () {
+					browser.assert.text('#TestKOMPlayStateQueueCount', '1');
+				});
+
+				before(function () {
+					browser.assert.text('#TestKOMPlayStateWaitCount', '0');
+				});
+
+				before(function () {
+					browser.assert.text('#TestKOMPlayDispatchUpdate', '4');
+					// browser.assert.text('#TestKOMPlayDispatchUpdateData', 'undefined');
+				});
+				
+				before(function () {
+					return browser.pressButton(KOMPlayToolbarUndoButton);
+				});
+
+				it('updates KOMPlayStateQueue', function () {
+					browser.assert.text('#TestKOMPlayStateQueueCount', '2');
+				});
+
+				it('updates KOMPlayStateWait', function () {
+					browser.assert.text('#TestKOMPlayStateWaitCount', '0');
+				});
+
+				it('sends KOMPlayDispatchUpdate', function () {
+					browser.assert.text('#TestKOMPlayDispatchUpdate', '5');
+					browser.assert.text('#TestKOMPlayDispatchUpdateData', JSON.stringify(Object.keys(items[0]).concat(['KOMSpacingDrawDate', 'KOMSpacingFlipDate'])));
+				});
+
+				it('updates KOMPlayStateCurrent', function () {
+					browser.assert.text(KOMPlayCardQuestion, items[0].$KOMSpacingCard.KOMCardQuestion);
+				});
+
+				it('sets disabled', function () {
+					browser.assert.attribute(KOMPlayToolbarUndoButton, 'disabled', '');
+				});
+				
+			});
+
 		});
 
 	});

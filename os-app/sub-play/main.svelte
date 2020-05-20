@@ -17,13 +17,20 @@ const mod = {
 	// VALUE
 
 	_ValueIsFlipped: false,
+
 	_ValueState: {
 		KOMPlayStateCurrent: KOMPlaySpacings[0],
 		KOMPlayStateQueue: KOMPlaySpacings.slice(1),
 		KOMPlayStateWait: [],
 	},
 
+	_ValueHistory: [],
+
 	// INTERFACE
+
+	InterfaceUndoButtonDidClick () {
+		mod.ControlUndo();
+	},
 
 	InterfaceWindowDidKeydown (event) {
 		if (document.querySelector('.LCHLauncher')) { // #spec
@@ -81,6 +88,12 @@ const mod = {
 
 	// CONTROL
 
+	ControlUndo () {
+		mod._ValueState.KOMPlayStateQueue.unshift(mod._ValueState.KOMPlayStateCurrent);
+		
+		KOMPlayDispatchUpdate(mod._ValueState.KOMPlayStateCurrent = KOMPlayLogic.KOMPlayUndo(mod._ValueHistory.pop()));
+	},
+
 	ControlFlip () {
 		mod._ValueIsFlipped = true;
 
@@ -103,6 +116,8 @@ const mod = {
 		}));
 
 		KOMPlayDispatchUpdate(item);
+
+		mod._ValueHistory.push(item);
 
 		if (!mod._ValueState.KOMPlayStateCurrent) {
 			return KOMPlayDispatchDone();
@@ -159,7 +174,7 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 		</OLSKToolbarElementGroup>
 
 		<OLSKToolbarElementGroup>
-			<button class="KOMPlayToolbarUndoButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceUndoButtonDidClick }>{ OLSKLocalized('KOMPlayToolbarUndoButtonText') }</button>
+			<button class="KOMPlayToolbarUndoButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" disabled={ mod._ValueHistory.length ? null : true } on:click={ mod.InterfaceUndoButtonDidClick }>{ OLSKLocalized('KOMPlayToolbarUndoButtonText') }</button>
 			<button class="KOMPlayToolbarDoneButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ KOMPlayDispatchDone }>{ OLSKLocalized('KOMPlayToolbarDoneButtonText') }</button>
 		</OLSKToolbarElementGroup>
 	</OLSKToolbar>
