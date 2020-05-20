@@ -27,6 +27,23 @@ const kTesting = {
 			KOMSpacingID: (i + 1).toString() + '-' + 'backward',
 		} : {})
 	}),
+	uSpacingsFor (inputData) {
+		return KOMPlayLogic._KOMPlaySortShuffle(Array.from(new Array(inputData)).map(function (e, i) {
+			return {
+				KOMSpacingID: (i + 1).toString() + '-forward',
+				KOMSpacingChronicles: [],
+				$KOMSpacingCard: {
+					KOMCardID: (i + 1).toString(),
+					KOMCardDeckID: 'alfa',
+					KOMCardQuestion: (i + 1).toString(),
+					KOMCardAnswer: 'charlie',
+					KOMCardHint: 'delta',
+					KOMCardCreationDate: new Date('2019-02-23T13:56:36Z'),
+					KOMCardModificationDate: new Date('2019-02-23T13:56:36Z'),
+				},
+			};
+		}));
+	},
 };
 
 describe('KOMPlay_Misc', function () {	
@@ -635,20 +652,10 @@ describe('KOMPlay_Misc', function () {
 
 	describe('conclusion', function test_conclusion () {
 
-		before(function () {
-			return browser.click(KOMPlayCard);
-		});
-
-		before(function () {
-			return browser.pressButton(KOMPlayResponseButtonEasy);
-		});
-
-		before(function () {
-			return browser.click(KOMPlayCard);
-		});
-
-		before(function () {
-			return browser.pressButton(KOMPlayResponseButtonEasy);
+		before(function() {
+			return browser.OLSKVisit(kDefaultRoute, {
+				KOMPlaySpacings: JSON.stringify(kTesting.uSpacingsFor(1)),
+			});
 		});
 
 		before(function () {
@@ -656,31 +663,7 @@ describe('KOMPlay_Misc', function () {
 		});
 
 		before(function () {
-			return browser.pressButton(KOMPlayResponseButtonEasy);
-		});
-
-		before(function () {
-			return browser.click(KOMPlayCard);
-		});
-
-		before(function () {
-			return browser.pressButton(KOMPlayResponseButtonEasy);
-		});
-
-		before(function () {
-			return browser.click(KOMPlayCard);
-		});
-
-		before(function () {
-			return browser.pressButton(KOMPlayResponseButtonEasy);
-		});
-
-		before(function () {
-			return browser.click(KOMPlayCard);
-		});
-
-		before(function () {
-			browser.assert.text('#TestKOMPlayDispatchDone', '1');
+			browser.assert.text('#TestKOMPlayDispatchDone', '0');
 		});
 
 		before(function () {
@@ -688,7 +671,7 @@ describe('KOMPlay_Misc', function () {
 		});
 		
 		it('sends KOMPlayDispatchDone', function () {
-			browser.assert.text('#TestKOMPlayDispatchDone', '2');
+			browser.assert.text('#TestKOMPlayDispatchDone', '1');
 		});
 
 	});
