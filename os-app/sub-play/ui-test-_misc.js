@@ -592,10 +592,22 @@ describe('KOMPlay_Misc', function () {
 
 	describe('backwards', function test_backwards () {
 
+		const items = kTesting.uSpacingsFor(1).map(function (e, i) {
+			return Object.assign(e, {
+				KOMSpacingID: (i + 1).toString() + '-' + 'backward',
+			})
+		});
+
+		before(function() {
+			return browser.OLSKVisit(kDefaultRoute, {
+				KOMPlaySpacings: JSON.stringify(items),
+			});
+		});
+
 		context('KOMPlayCardQuestion', function () {
 
 			it('sets text', function () {
-				browser.assert.text(KOMPlayCardQuestion, kTesting.uSpacings[9].$KOMSpacingCard.KOMCardAnswer);
+				browser.assert.text(KOMPlayCardQuestion, items[0].$KOMSpacingCard.KOMCardAnswer);
 			});
 
 		});
@@ -607,7 +619,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('sets text', function () {
-				browser.assert.text(KOMPlayCardAnswer, kTesting.uSpacings[9].$KOMSpacingCard.KOMCardQuestion)
+				browser.assert.text(KOMPlayCardAnswer, items[0].$KOMSpacingCard.KOMCardQuestion)
 			});
 
 			after(function () {
