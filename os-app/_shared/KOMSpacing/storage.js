@@ -19,6 +19,21 @@ const mod = {
 		return KOMCardStorage.KOMCardStorageObjectPath(param1, param2).replace('main', 'spacing-backward');
 	},
 
+	KOMSpacingStorageMatch (inputData) {
+		if (typeof inputData !== 'string') {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		if (KOMCardStorage.KOMCardStorageMatch(inputData)) {
+			return false;
+		}
+
+		return [
+			mod.KOMSpacingStoragePathForward(KOMCardStorage.uFakeCard(inputData), KOMCardStorage.uFakeDeck(inputData)),
+			mod.KOMSpacingStoragePathBackward(KOMCardStorage.uFakeCard(inputData), KOMCardStorage.uFakeDeck(inputData)),
+			].includes(inputData);
+	},
+
 	KOMSpacingStorageBuild (privateClient, publicClient, changeDelegate) {
 		const uList = async function (inputData) {
 			return uFlatten(await Promise.all(uFlatten([inputData]).map(async function (path) {

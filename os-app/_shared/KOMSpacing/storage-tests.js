@@ -63,3 +63,29 @@ describe('KOMSpacingStoragePathBackward', function test_KOMSpacingStoragePathBac
 	});
 
 });
+
+describe('KOMSpacingStorageMatch', function test_KOMSpacingStorageMatch() {
+
+	it('throws error if not string', function() {
+		throws(function() {
+			mainModule.KOMSpacingStorageMatch(null);
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns false if parent path', function() {
+		deepEqual(mainModule.KOMSpacingStorageMatch(KOMCardStorage.KOMCardStorageObjectPath(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid())), false);
+	});
+
+	it('returns true if forward path', function() {
+		deepEqual(mainModule.KOMSpacingStorageMatch(mainModule.KOMSpacingStoragePathForward(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid())), true);
+	});
+
+	it('returns true if backward path', function() {
+		deepEqual(mainModule.KOMSpacingStorageMatch(mainModule.KOMSpacingStoragePathBackward(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid())), true);
+	});
+
+	it('returns false', function() {
+		deepEqual(mainModule.KOMSpacingStorageMatch(mainModule.KOMSpacingStoragePathBackward(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()).slice(0, -1)), false);
+	});
+
+});
