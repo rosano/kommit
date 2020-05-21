@@ -1,4 +1,5 @@
 import KOMDeckModel from './model.js';
+import * as OLSKRemoteStorage from 'OLSKRemoteStorage';
 
 const kType = 'kom_deck';
 const kCollection = 'kom_decks';
@@ -18,6 +19,28 @@ const mod = {
 	},
 
 	KOMDeckStorageBuild (privateClient, publicClient, changeDelegate) {
+		privateClient.on('change', function (event) {
+			if (!changeDelegate) {
+				return;
+			}
+			
+			if (event.relativePath.indexOf(kCollection) !== 0) {
+				return;
+			}
+
+			const delegateMethod = OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateProperty(event);
+
+			if (!delegateMethod) {
+				return;
+			}
+
+			if (typeof changeDelegate[delegateMethod] !== 'function') {
+				return console.warn(`${ delegateMethod } not function`);
+			}
+
+			changeDelegate[delegateMethod](KOMDeckModel.KOMDeckModelPostJSONParse(event[OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateInput(delegateMethod)]));
+		});
+
 		const KOMStorageExports = {
 
 			async KOMStorageList () {
