@@ -6,6 +6,14 @@ describe('KOMReview_Misc', function () {
 		return browser.OLSKVisit(kDefaultRoute);
 	});
 
+	context('apple-touch-icon', function () {
+		
+		it('sets href', function () {
+			browser.assert.attribute('link[rel=apple-touch-icon]', 'href', process.env.KOM_TOUCH_ICON_URL);
+		});
+	
+	});
+
 	context('create', function () {
 		
 		before(function () {
