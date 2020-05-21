@@ -5,6 +5,7 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 Object.entries({
 	KOMReviewViewportFooter: '.KOMReviewViewportFooter',
 
+	KOMReviewStorageToolbar: '.KOMReviewStorageToolbar',
 	KOMReviewStorageWidget: '#KOMReviewStorageWidget',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
@@ -34,6 +35,10 @@ describe('KOMReview_Access', function () {
 
 	it('shows KOMReviewViewportFooter', function () {
 		browser.assert.elements(KOMReviewViewportFooter, 1);
+	});
+
+	it('shows KOMReviewStorageToolbar', function () {
+		browser.assert.elements(KOMReviewStorageToolbar, 1);
 	});
 
 	it('shows KOMReviewStorageWidget', function () {

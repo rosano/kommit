@@ -81,7 +81,7 @@ const mod = {
 	},
 
 	OLSKAppToolbarDispatchStorage () {
-		mod._ValueStorageWidgetHidden = !mod._ValueStorageWidgetHidden;
+		mod._ValueStorageToolbarHidden = !mod._ValueStorageToolbarHidden;
 	},
 
 	OLSKAppToolbarDispatchLauncher () {
@@ -228,7 +228,7 @@ const mod = {
 	_ValueHoldCards: [],
 	_ValueHoldSpacings: [],
 	
-	_ValueStorageWidgetHidden: true,
+	_ValueStorageToolbarHidden: true,
 
 	_ValueFooterStorageStatus: '',
 
@@ -492,6 +492,8 @@ import KOMReviewMaster from './submodules/KOMReviewMaster/main.svelte';
 import KOMReviewDetail from './submodules/KOMReviewDetail/main.svelte';
 import KOMBrowse from '../sub-browse/main.svelte';
 import KOMPlay from '../sub-play/main.svelte';
+import OLSKToolbar from 'OLSKToolbar';
+import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 import OLSKAppToolbar from 'OLSKAppToolbar';
 import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svelte';
 </script>
@@ -560,7 +562,17 @@ import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svel
 
 {#if !mod._ValuePlayVisible}
 	<footer class="KOMReviewViewportFooter OLSKMobileViewFooter">
-		<div id="KOMReviewStorageWidget" class:KOMReviewStorageWidgetHidden={ mod._ValueStorageWidgetHidden }></div>
+		<div class="KOMReviewStorageToolbar OLSKStorageToolbar" class:KOMReviewStorageToolbarHidden={ mod._ValueStorageToolbarHidden }>
+			<OLSKToolbar OLSKToolbarJustify={ true }>
+				<OLSKToolbarElementGroup>
+					<div></div>
+				</OLSKToolbarElementGroup>
+
+				<OLSKToolbarElementGroup>
+					<div id="KOMReviewStorageWidget"></div>
+				</OLSKToolbarElementGroup>
+			</OLSKToolbar>
+		</div>
 
 		<OLSKAppToolbar
 			OLSKAppToolbarDonateURL={ window.OLSKPublicConstants('KOM_SHARED_DONATE_URL') }

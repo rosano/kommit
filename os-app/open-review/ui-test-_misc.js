@@ -131,10 +131,22 @@ describe('KOMReview_Misc', function () {
 				
 	});
 
-	describe('KOMReviewStorageWidget', function test_KOMReviewStorageWidget () {
+	describe('KOMReviewViewportFooter', function test_KOMReviewViewportFooter () {
+
+		it('classes OLSKMobileViewFooter', function () {
+			browser.assert.hasClass(KOMReviewViewportFooter, 'OLSKMobileViewFooter');
+		});
+
+	});
+
+	describe('KOMReviewStorageToolbar', function test_KOMReviewStorageToolbar () {
 		
-		it('classes KOMReviewStorageWidgetHidden', function () {
-			browser.assert.hasClass(KOMReviewStorageWidget, 'KOMReviewStorageWidgetHidden');
+		it('classes OLSKStorageToolbar', function () {
+			browser.assert.hasClass(KOMReviewStorageToolbar, 'OLSKStorageToolbar');
+		});
+		
+		it('classes KOMReviewStorageToolbarHidden', function () {
+			browser.assert.hasClass(KOMReviewStorageToolbar, 'KOMReviewStorageToolbarHidden');
 		});
 
 		context('click OLSKAppToolbarStorageButton', function () {
@@ -143,20 +155,12 @@ describe('KOMReview_Misc', function () {
 				return browser.pressButton('.OLSKAppToolbarStorageButton');
 			});
 			
-			it('classes KOMReviewStorageWidgetHidden', function () {
-				browser.assert.hasNoClass(KOMReviewStorageWidget, 'KOMReviewStorageWidgetHidden');
+			it('classes KOMReviewStorageToolbarHidden', function () {
+				browser.assert.hasNoClass(KOMReviewStorageToolbar, 'KOMReviewStorageToolbarHidden');
 			});
 		
 		});
 	
-	});
-
-	describe('KOMReviewViewportFooter', function test_KOMReviewViewportFooter () {
-
-		it('classes OLSKMobileViewFooter', function () {
-			browser.assert.hasClass(KOMReviewViewportFooter, 'OLSKMobileViewFooter');
-		});
-
 	});
 
 	describe('OLSKAppToolbarLauncherButton', function test_OLSKAppToolbarLauncherButton () {

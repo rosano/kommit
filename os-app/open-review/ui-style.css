@@ -8,10 +8,10 @@
 	color: var(--KOMCommonForeground);
 }
 
-#KOMReviewStorageWidget {
+.KOMReviewStorageToolbar {
 	border-top: var(--KOMBorderStyle)
 }
 
-.KOMReviewStorageWidgetHidden {
+.KOMReviewStorageToolbarHidden {
 	display: none;
 }
