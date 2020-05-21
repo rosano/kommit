@@ -79,6 +79,10 @@ import KOMReviewMasterListItem from '../KOMReviewMasterListItem/main.svelte';
 	padding: var(--KOMCommonPadding);
 }
 
+:global(.OLSKIsLoading) .KOMReviewMasterBody {
+	visibility: hidden;
+}
+
 .KOMReviewMasterBody :global(.KOMReviewMasterListItem) {
 	display: block;
 	margin-bottom: var(--KOMCommonPadding);
