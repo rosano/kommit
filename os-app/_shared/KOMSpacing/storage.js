@@ -1,6 +1,7 @@
 import KOMCardStorage from '../KOMCard/storage.js';
 import KOMCardModel from '../KOMCard/model.js';
 import KOMSpacingModel from './model.js';
+import * as OLSKRemoteStorage from 'OLSKRemoteStorage';
 import KOMDeckStorage from '../KOMDeck/storage.js';
 
 const kType = 'kom_spacing';
@@ -25,6 +26,10 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
+		if (KOMDeckStorage.KOMDeckStorageMatch(inputData)) {
+			return false;
+		}
+
 		if (KOMCardStorage.KOMCardStorageMatch(inputData)) {
 			return false;
 		}
@@ -43,6 +48,28 @@ const mod = {
 				});
 			})));
 		};
+
+		privateClient.on('change', function (event) {
+			if (!changeDelegate) {
+				return;
+			}
+
+			if (!mod.KOMSpacingStorageMatch(event.relativePath)) {
+				return;
+			}
+
+			const delegateMethod = OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateProperty(event);
+
+			if (!delegateMethod) {
+				return;
+			}
+
+			if (typeof changeDelegate[delegateMethod] !== 'function') {
+				return console.warn(`${ delegateMethod } not function`);
+			}
+
+			changeDelegate[delegateMethod](KOMSpacingModel.KOMSpacingModelPostJSONParse(event[OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateInput(delegateMethod)]));
+		});
 
 		const KOMStorageExports = {
 
