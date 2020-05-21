@@ -31,12 +31,13 @@ const mod = {
 		const KOMStorageExports = {
 
 			async KOMStorageList (param1, param2) {
+				const result = await privateClient.getAll(KOMCardStorage.KOMCardStorageFolderPath(param1, param2));
 				return {
-					KOMCardSpacingForward: (await privateClient.getObject(mod.KOMSpacingStoragePathForward(param1, param2))) || {
+					KOMCardSpacingForward: result['spacing-forward'] || {
 						KOMSpacingID: `${ param1.KOMCardID }-forward`,
 						KOMSpacingChronicles: [],
 					},
-					KOMCardSpacingBackward: (await privateClient.getObject(mod.KOMSpacingStoragePathBackward(param1, param2))) || {
+					KOMCardSpacingBackward: result['spacing-backward'] || {
 						KOMSpacingID: `${ param1.KOMCardID }-backward`,
 						KOMSpacingChronicles: [],
 					},

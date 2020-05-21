@@ -361,8 +361,20 @@ const mod = {
 					OLSKChangeDelegateDelete: mod.OLSKChangeDelegateDeleteDeck,
 				},
 			}),
-			KOMCardStorage.KOMCardStorageBuild,
-			KOMSpacingStorage.KOMSpacingStorageBuild,
+			Object.assign(KOMCardStorage.KOMCardStorageBuild, {
+				KOM_DataChangeDelegate: {
+					OLSKChangeDelegateCreate: mod.OLSKChangeDelegateCreateCard,
+					OLSKChangeDelegateUpdate: mod.OLSKChangeDelegateUpdateCard,
+					OLSKChangeDelegateDelete: mod.OLSKChangeDelegateDeleteCard,
+				},
+			}),
+			Object.assign(KOMSpacingStorage.KOMSpacingStorageBuild, {
+				KOM_DataChangeDelegate: {
+					OLSKChangeDelegateCreate: mod.OLSKChangeDelegateCreateSpacing,
+					OLSKChangeDelegateUpdate: mod.OLSKChangeDelegateUpdateSpacing,
+					OLSKChangeDelegateDelete: mod.OLSKChangeDelegateDeleteSpacing,
+				},
+			}),
 			]);
 		
 		mod._ValueStorageClient = new RemoteStorage({ modules: [ storageModule ] });
