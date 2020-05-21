@@ -31,6 +31,30 @@ const mod = {
 		return mod.KOMCardStorageFolderPath(param1, param2) + 'main';
 	},
 
+	KOMCardStorageMatch (inputData) {
+		if (typeof inputData !== 'string') {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		if (KOMDeckStorage.KOMDeckStorageMatch(inputData)) {
+			return false;
+		}
+
+		return inputData === mod.KOMCardStorageObjectPath({
+			KOMCardID: inputData.split('/')[4],
+			KOMCardDeckID: inputData.split('/')[1],
+			KOMCardQuestion: '',
+			KOMCardAnswer: '',
+			KOMCardCreationDate: new Date(inputData.split('/')[3]),
+			KOMCardModificationDate: new Date(),
+		}, {
+			KOMDeckID: inputData.split('/')[1],
+			KOMDeckName: '',
+			KOMDeckCreationDate: new Date(),
+			KOMDeckModificationDate: new Date(),
+		});
+	},
+
 	KOMCardStorageBuild (privateClient, publicClient, changeDelegate) {
 		const uList = async function (inputData) {
 			return uFlatten(await Promise.all(uFlatten([inputData]).map(async function (path) {

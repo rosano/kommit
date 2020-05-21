@@ -77,3 +77,30 @@ describe('KOMCardStorageObjectPath', function test_KOMCardStorageObjectPath() {
 	});
 
 });
+
+describe('KOMCardStorageMatch', function test_KOMCardStorageMatch() {
+
+	it('throws error if not string', function() {
+		throws(function() {
+			mainModule.KOMCardStorageMatch(null);
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns false if parent path', function() {
+		deepEqual(mainModule.KOMCardStorageMatch(KOMDeckStorage.KOMDeckStorageObjectPath('alfa')), false);
+	});
+
+	it('returns false if no collection path', function() {
+		const item = mainModule.KOMCardStorageCollectionPath(kTesting.StubDeckObjectValid());
+		deepEqual(mainModule.KOMCardStorageMatch(mainModule.KOMCardStorageObjectPath(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()).replace(item, item.slice(0, -2) + '/')), false);
+	});
+
+	it('returns false if no object path', function() {
+		deepEqual(mainModule.KOMCardStorageMatch(mainModule.KOMCardStorageObjectPath(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()).slice(0, -1)), false);
+	});
+
+	it('returns true', function() {
+		deepEqual(mainModule.KOMCardStorageMatch(mainModule.KOMCardStorageObjectPath(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid())), true);
+	});
+
+});
