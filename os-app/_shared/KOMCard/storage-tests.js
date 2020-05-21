@@ -1,6 +1,7 @@
 const { throws, deepEqual } = require('assert');
 
 const mainModule = require('./storage.js').default;
+const KOMDeckStorage = require('../KOMDeck/storage.js').default;
 
 const kTesting = {
 	StubDeckObjectValid() {
@@ -32,7 +33,7 @@ describe('KOMCardStorageCollectionPath', function test_KOMCardStorageCollectionP
 	});
 
 	it('returns string', function() {
-		deepEqual(mainModule.KOMCardStorageCollectionPath(kTesting.StubDeckObjectValid()), 'kom_decks/alfa/kom_cards/');
+		deepEqual(mainModule.KOMCardStorageCollectionPath(kTesting.StubDeckObjectValid()), `${ KOMDeckStorage.KOMDeckStorageFolderPath() }alfa/kom_cards/`);
 	});
 
 });
