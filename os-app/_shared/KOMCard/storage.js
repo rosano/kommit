@@ -1,6 +1,7 @@
 import KOMDeckStorage from '../KOMDeck/storage.js';
 import KOMDeckModel from '../KOMDeck/model.js';
 import KOMCardModel from './model.js';
+import * as OLSKRemoteStorage from 'OLSKRemoteStorage';
 
 const kType = 'kom_card';
 const kCollection = 'kom_cards';
@@ -63,6 +64,28 @@ const mod = {
 				});
 			})));
 		};
+
+		privateClient.on('change', function (event) {
+			if (!changeDelegate) {
+				return;
+			}
+			
+			if (!mod.KOMCardStorageMatch(event.relativePath)) {
+				return;
+			}
+
+			const delegateMethod = OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateProperty(event);
+
+			if (!delegateMethod) {
+				return;
+			}
+
+			if (typeof changeDelegate[delegateMethod] !== 'function') {
+				return console.warn(`${ delegateMethod } not function`);
+			}
+
+			changeDelegate[delegateMethod](KOMCardModel.KOMCardModelPostJSONParse(event[OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateInput(delegateMethod)]));
+		});
 
 		const KOMStorageExports = {
 
