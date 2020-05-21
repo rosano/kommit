@@ -1,6 +1,7 @@
 import KOMCardStorage from '../KOMCard/storage.js';
 import KOMCardModel from '../KOMCard/model.js';
 import KOMSpacingModel from './model.js';
+import KOMDeckStorage from '../KOMDeck/storage.js';
 
 const kType = 'kom_spacing';
 const kCollection = 'kom_spacings';
@@ -82,25 +83,14 @@ const mod = {
 			},
 			async __KOMStorageResetFakeDecks () {
 				// fake objects because there may not be a deck_id/main file
-				return Object.keys(await privateClient.getAll('kom_decks/', false)).map(function (e) {
-					return {
-						KOMDeckID: e.slice(0, -1),
-						KOMDeckName: '',
-						KOMDeckCreationDate: new Date(),
-						KOMDeckModificationDate: new Date(),
-					};
+				return Object.keys(await privateClient.getAll(KOMDeckStorage.KOMDeckStorageCollectionPath(), false)).map(function (e) {
+					return KOMCardStorage.uFakeDeck(KOMDeckStorage.KOMDeckStorageCollectionPath() + e);
 				});
 			},
 			async __KOMStorageResetFakeCards (inputData) {
 				// fake objects because there may not be a deck_id/main file
 				return (await uList(await uList(KOMCardStorage.KOMCardStorageCollectionPath(inputData)))).map(function (e) {
-					return {
-						KOMCardID: e.slice(0, -1).split('/').pop(),
-						KOMCardQuestion: '',
-						KOMCardAnswer: '',
-						KOMCardCreationDate: new Date(e.slice(0, -1).split('/').slice(-2).shift() + 'T12:00:00Z'),
-						KOMCardModificationDate: new Date(),
-					};
+					return KOMCardStorage.uFakeCard(KOMCardStorage.KOMCardStorageCollectionPath(inputData) + e);
 				});
 			},
 			
