@@ -33,7 +33,7 @@ describe('KOMCardStorageCollectionPath', function test_KOMCardStorageCollectionP
 	});
 
 	it('returns string', function() {
-		deepEqual(mainModule.KOMCardStorageCollectionPath(kTesting.StubDeckObjectValid()), `${ KOMDeckStorage.KOMDeckStorageFolderPath() }alfa/kom_cards/`);
+		deepEqual(mainModule.KOMCardStorageCollectionPath(kTesting.StubDeckObjectValid()), KOMDeckStorage.KOMDeckStorageFolderPath('alfa') + 'kom_cards/');
 	});
 
 });
@@ -53,7 +53,7 @@ describe('KOMCardStorageFolderPath', function test_KOMCardStorageFolderPath() {
 	});
 
 	it('returns string', function() {
-		deepEqual(mainModule.KOMCardStorageFolderPath(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()), `${ mainModule.KOMCardStorageCollectionPath(kTesting.StubDeckObjectValid()) }${ kTesting.StubCardObjectValid().KOMCardCreationDate.toJSON().split('T').shift() }/charlie/`);
+		deepEqual(mainModule.KOMCardStorageFolderPath(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()), mainModule.KOMCardStorageCollectionPath(kTesting.StubDeckObjectValid()) + kTesting.StubCardObjectValid().KOMCardCreationDate.toJSON().split('T').shift() + '/charlie/');
 	});
 
 });

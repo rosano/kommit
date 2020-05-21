@@ -1,3 +1,4 @@
+import KOMDeckStorage from '../KOMDeck/storage.js';
 import KOMDeckModel from '../KOMDeck/model.js';
 import KOMCardModel from './model.js';
 
@@ -15,7 +16,7 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		return `kom_decks/${ inputData.KOMDeckID }/${ kCollection }/`;
+		return KOMDeckStorage.KOMDeckStorageFolderPath(inputData.KOMDeckID) + kCollection + '/';
 	},
 
 	KOMCardStorageFolderPath (param1, param2) {
@@ -23,7 +24,7 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		return `${ mod.KOMCardStorageCollectionPath(param2) }${ param1.KOMCardCreationDate.toJSON().split('T').shift() }/${ param1.KOMCardID }/`;
+		return mod.KOMCardStorageCollectionPath(param2) + param1.KOMCardCreationDate.toJSON().split('T').shift() + '/' + param1.KOMCardID + '/';
 	},
 
 	KOMCardStorageObjectPath (param1, param2) {
