@@ -46,11 +46,11 @@ describe('KOMDeckStorageMatch', function test_KOMDeckStorageMatch() {
 		}, /KOMErrorInputNotValid/);
 	});
 
-	it('returns false if no collection path', function() {
+	it('returns false if no KOMDeckStorageCollectionPath', function() {
 		deepEqual(mainModule.KOMDeckStorageMatch(mainModule.KOMDeckStorageObjectPath('alfa').replace(mainModule.KOMDeckStorageCollectionPath(), mainModule.KOMDeckStorageCollectionPath().slice(1))), false);
 	});
 
-	it('returns false if no object path', function() {
+	it('returns false if no KOMDeckStorageObjectPath', function() {
 		deepEqual(mainModule.KOMDeckStorageMatch(mainModule.KOMDeckStorageObjectPath('alfa').slice(0, -1)), false);
 	});
 

@@ -73,19 +73,19 @@ describe('KOMSpacingStorageMatch', function test_KOMSpacingStorageMatch() {
 		}, /KOMErrorInputNotValid/);
 	});
 
-	it('returns false if parent path', function() {
+	it('returns false if KOMDeckStorageObjectPath', function() {
 		deepEqual(mainModule.KOMSpacingStorageMatch(KOMDeckStorage.KOMDeckStorageObjectPath('alfa')), false);
 	});
 
-	it('returns false if card path', function() {
+	it('returns false if KOMCardStorageObjectPath', function() {
 		deepEqual(mainModule.KOMSpacingStorageMatch(KOMCardStorage.KOMCardStorageObjectPath(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid())), false);
 	});
 
-	it('returns true if forward path', function() {
+	it('returns true if KOMSpacingStoragePathForward', function() {
 		deepEqual(mainModule.KOMSpacingStorageMatch(mainModule.KOMSpacingStoragePathForward(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid())), true);
 	});
 
-	it('returns true if backward path', function() {
+	it('returns true if KOMSpacingStoragePathBackward', function() {
 		deepEqual(mainModule.KOMSpacingStorageMatch(mainModule.KOMSpacingStoragePathBackward(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid())), true);
 	});
 
