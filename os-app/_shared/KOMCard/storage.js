@@ -21,6 +21,17 @@ const mod = {
 		};
 	},
 
+	uFakeCard (inputData) {
+		return {
+			KOMCardID: inputData.split('/')[4],
+			KOMCardDeckID: inputData.split('/')[1],
+			KOMCardQuestion: '',
+			KOMCardAnswer: '',
+			KOMCardCreationDate: new Date(inputData.split('/')[3]),
+			KOMCardModificationDate: new Date(),
+		};
+	},
+
 	KOMCardStorageCollectionPath (inputData) {
 		if (KOMDeckModel.KOMDeckModelErrorsFor(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
@@ -50,14 +61,7 @@ const mod = {
 			return false;
 		}
 
-		return inputData === mod.KOMCardStorageObjectPath({
-			KOMCardID: inputData.split('/')[4],
-			KOMCardDeckID: inputData.split('/')[1],
-			KOMCardQuestion: '',
-			KOMCardAnswer: '',
-			KOMCardCreationDate: new Date(inputData.split('/')[3]),
-			KOMCardModificationDate: new Date(),
-		}, mod.uFakeDeck(inputData));
+		return inputData === mod.KOMCardStorageObjectPath(mod.uFakeCard(inputData), mod.uFakeDeck(inputData));
 	},
 
 	KOMCardStorageBuild (privateClient, publicClient, changeDelegate) {
