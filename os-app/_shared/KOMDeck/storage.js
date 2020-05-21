@@ -18,6 +18,14 @@ const mod = {
 		return `${ mod.KOMDeckStorageFolderPath() }${ inputData }/main`;
 	},
 
+	KOMDeckStorageMatch (inputData) {
+		if (typeof inputData !== 'string') {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		return inputData === mod.KOMDeckStorageObjectPath(inputData.split('/')[1]);
+	},
+
 	KOMDeckStorageBuild (privateClient, publicClient, changeDelegate) {
 		privateClient.on('change', function (event) {
 			if (!changeDelegate) {
