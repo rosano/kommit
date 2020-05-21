@@ -32,7 +32,7 @@ const mod = {
 				return;
 			}
 			
-			if (event.relativePath.indexOf(kCollection) !== 0) {
+			if (!mod.KOMDeckStorageMatch(event.relativePath)) {
 				return;
 			}
 
