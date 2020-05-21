@@ -6,8 +6,16 @@ const kCollection = 'kom_decks';
 
 const mod = {
 
-	KOMDeckStorageFolderPath () {
-		return `${ kCollection }/`;
+	KOMDeckStorageCollectionPath () {
+		return kCollection + '/';
+	},
+
+	KOMDeckStorageFolderPath (inputData) {
+		if (!inputData) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		return mod.KOMDeckStorageCollectionPath() + inputData + '/';
 	},
 
 	KOMDeckStorageObjectPath (inputData) {
@@ -15,7 +23,7 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		return `${ mod.KOMDeckStorageFolderPath() }${ inputData }/main`;
+		return mod.KOMDeckStorageFolderPath(inputData) + 'main';
 	},
 
 	KOMDeckStorageMatch (inputData) {
@@ -52,7 +60,7 @@ const mod = {
 		const KOMStorageExports = {
 
 			async KOMStorageList () {
-				return (await Promise.all(Object.keys(await privateClient.getAll(mod.KOMDeckStorageFolderPath(), false)).map(function (e) {
+				return (await Promise.all(Object.keys(await privateClient.getAll(mod.KOMDeckStorageCollectionPath(), false)).map(function (e) {
 					return privateClient.getObject(mod.KOMDeckStorageObjectPath(e.slice(0, -1)), false);
 				}))).reduce(function (coll, item) {
 					if (item) {

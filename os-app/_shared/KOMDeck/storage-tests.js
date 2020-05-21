@@ -2,10 +2,24 @@ const { throws, deepEqual } = require('assert');
 
 const mainModule = require('./storage.js').default;
 
-describe('KOMDeckStorageFolderPath', function test_KOMDeckStorageFolderPath() {
+describe('KOMDeckStorageCollectionPath', function test_KOMDeckStorageCollectionPath() {
 
 	it('returns string', function() {
-		deepEqual(mainModule.KOMDeckStorageFolderPath(), 'kom_decks/');
+		deepEqual(mainModule.KOMDeckStorageCollectionPath(), 'kom_decks/');
+	});
+
+});
+
+describe('KOMDeckStorageFolderPath', function test_KOMDeckStorageFolderPath() {
+
+	it('throws error if blank', function() {
+		throws(function() {
+			mainModule.KOMDeckStorageFolderPath('');
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns string', function() {
+		deepEqual(mainModule.KOMDeckStorageFolderPath('alfa'), mainModule.KOMDeckStorageCollectionPath() + 'alfa/');
 	});
 
 });
@@ -19,7 +33,7 @@ describe('KOMDeckStorageObjectPath', function test_KOMDeckStorageObjectPath() {
 	});
 
 	it('returns string', function() {
-		deepEqual(mainModule.KOMDeckStorageObjectPath('alfa'), 'kom_decks/alfa/main');
+		deepEqual(mainModule.KOMDeckStorageObjectPath('alfa'), mainModule.KOMDeckStorageFolderPath('alfa') + 'main');
 	});
 
 });
@@ -32,8 +46,8 @@ describe('KOMDeckStorageMatch', function test_KOMDeckStorageMatch() {
 		}, /KOMErrorInputNotValid/);
 	});
 
-	it('returns false if no folder path', function() {
-		deepEqual(mainModule.KOMDeckStorageMatch(mainModule.KOMDeckStorageObjectPath('alfa').replace(mainModule.KOMDeckStorageFolderPath(), mainModule.KOMDeckStorageFolderPath().slice(1))), false);
+	it('returns false if no collection path', function() {
+		deepEqual(mainModule.KOMDeckStorageMatch(mainModule.KOMDeckStorageObjectPath('alfa').replace(mainModule.KOMDeckStorageCollectionPath(), mainModule.KOMDeckStorageCollectionPath().slice(1))), false);
 	});
 
 	it('returns false if no object path', function() {
