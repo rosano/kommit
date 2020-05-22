@@ -14,11 +14,13 @@ const mod = {
 			});
 		}
 
-		const cleanObject = Object.assign({}, param1);
+		return Object.assign(param1, await storageClient.kommit.kom_spacings.KOMStorageWrite(Object.keys(param1).reduce(function (coll, item) {
+			if (item[0] !== '$') {
+				coll[item] = param1[item];
+			}
 
-		delete cleanObject.$KOMSpacingCard;
-
-		return Object.assign(param1, await storageClient.kommit.kom_spacings.KOMStorageWrite(cleanObject, param2, param3));
+			return coll
+		}, {}), param2, param3));
 	},
 
 	async KOMSpacingMetalList (storageClient, param1, param2) {

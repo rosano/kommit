@@ -61,10 +61,10 @@ describe('KOMSpacingMetalWrite', function test_KOMSpacingMetalWrite() {
 		}));
 	});
 
-	context('$KOMSpacingCard', function () {
+	context('relations', function () {
 
 		const memory = Object.assign(kTesting.StubSpacingObjectValid(), {
-			$KOMSpacingCard: kTesting.StubCardObjectValid(),
+			$alfa: 'bravo',
 		});
 		let storage;
 
@@ -83,7 +83,7 @@ describe('KOMSpacingMetalWrite', function test_KOMSpacingMetalWrite() {
 		});
 
 		it('clones object', function () {
-			deepEqual(memory.$KOMSpacingCard, kTesting.StubCardObjectValid());
+			deepEqual(memory.$alfa, 'bravo');
 		});
 	
 	});

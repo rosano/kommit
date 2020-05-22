@@ -37,10 +37,10 @@ describe('KOMDeckMetalWrite', function test_KOMDeckMetalWrite() {
 		}));
 	});
 
-	context('$KOMDeckCards', function () {
+	context('relations', function () {
 
 		const memory = Object.assign(kTesting.StubDeckObjectValid(), {
-			$KOMDeckCards: [],
+			$alfa: 'bravo',
 		});
 		let storage = [];
 
@@ -59,34 +59,7 @@ describe('KOMDeckMetalWrite', function test_KOMDeckMetalWrite() {
 		});
 
 		it('clones object', function () {
-			deepEqual(memory.$KOMDeckCards, []);
-		});
-	
-	});
-
-	context('$KOMDeckSpacings', function () {
-
-		const memory = Object.assign(kTesting.StubDeckObjectValid(), {
-			$KOMDeckSpacings: [],
-		});
-		let storage = [];
-
-		before(async function () {
-			await mainModule.KOMDeckMetalWrite(KOMTestingStorageClient, memory);
-		});
-		
-		before(async function () {
-			storage = Object.values(await mainModule.KOMDeckMetalList(KOMTestingStorageClient));
-		});
-		
-		it('ignores property', function () {
-			deepEqual(storage, [Object.assign(kTesting.StubDeckObjectValid(), {
-				'@context': memory['@context'],
-			})]);
-		});
-
-		it('clones object', function () {
-			deepEqual(memory.$KOMDeckSpacings, []);
+			deepEqual(memory.$alfa, 'bravo');
 		});
 	
 	});
