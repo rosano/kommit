@@ -43,6 +43,14 @@ const mod = {
 			}
 		}
 
+		if (inputData.KOMDeckIsOralFront !== undefined) {
+			if (typeof inputData.KOMDeckIsOralFront !== 'boolean') {
+				errors.KOMDeckIsOralFront = [
+					'KOMErrorNotBoolean',
+				];
+			}
+		}
+
 		if (inputData.KOMDeckFrontLanguageCode !== undefined) {
 			if (typeof inputData.KOMDeckFrontLanguageCode !== 'string') {
 				errors.KOMDeckFrontLanguageCode = [
