@@ -90,6 +90,7 @@ const mod = {
 
 import OLSKToolbar from 'OLSKToolbar';
 import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
+import _OLSKSharedBack from '../../../_shared/__external/OLSKUIAssets/_OLSKSharedBack.svg';
 </script>
 
 <div class="KOMReviewDetail">
@@ -97,7 +98,9 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 <header class="KOMReviewDetailToolbar">
 	<OLSKToolbar OLSKToolbarJustify={ true }>
 		<OLSKToolbarElementGroup>
-			<button class="KOMReviewDetailToolbarBackButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ KOMReviewDetailDispatchBack }>{ OLSKLocalized('KOMReviewDetailToolbarBackButtonText') }</button>
+			<button class="KOMReviewDetailToolbarBackButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton" title={ OLSKLocalized('KOMReviewDetailToolbarBackButtonText') } on:click={ KOMReviewDetailDispatchBack }>
+				<div class="KOMReviewDetailToolbarBackButtonImage">{@html _OLSKSharedBack }</div>
+			</button>
 		</OLSKToolbarElementGroup>
 
 		<OLSKToolbarElementGroup>

@@ -5,6 +5,7 @@ Object.entries({
 
 	KOMReviewDetailToolbar: '.KOMReviewDetailToolbar',
 	KOMReviewDetailToolbarBackButton: '.KOMReviewDetailToolbarBackButton',
+	KOMReviewDetailToolbarBackButtonImage: '.KOMReviewDetailToolbarBackButtonImage',
 	KOMReviewDetailToolbarTitle: '.KOMReviewDetailToolbarTitle',
 	KOMReviewDetailToolbarCardsButton: '.KOMReviewDetailToolbarCardsButton',
 	
@@ -69,6 +70,10 @@ describe('KOMReviewDetail_Access', function () {
 
 	it('shows KOMReviewDetailToolbarBackButton', function () {
 		browser.assert.elements(KOMReviewDetailToolbarBackButton, 1);
+	});
+
+	it('shows KOMReviewDetailToolbarBackButtonImage', function () {
+		browser.assert.elements(KOMReviewDetailToolbarBackButtonImage, 1);
 	});
 
 	it('shows KOMReviewDetailToolbarTitle', function () {

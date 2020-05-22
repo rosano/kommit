@@ -41,7 +41,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 		});
 
 		it('localizes KOMReviewDetailToolbarBackButton', function () {
-			browser.assert.text(KOMReviewDetailToolbarBackButton, uLocalized('KOMReviewDetailToolbarBackButtonText'));
+			browser.assert.attribute(KOMReviewDetailToolbarBackButton, 'title', uLocalized('KOMReviewDetailToolbarBackButtonText'));
 		});
 
 		it('localizes KOMReviewDetailToolbarCardsButton', function () {

@@ -74,6 +74,14 @@ describe('KOMReviewDetail_Misc', function () {
 	
 	});
 
+	describe('KOMReviewDetailToolbarBackButtonImage', function test_KOMReviewDetailToolbarBackButtonImage () {
+
+		it('sets src', function () {
+			browser.assert.elements(`${ KOMReviewDetailToolbarBackButtonImage } #_OLSKSharedBack`, 1);
+		});
+	
+	});
+
 	describe('KOMReviewDetailToolbarTitle', function test_KOMReviewDetailToolbarTitle () {
 		
 		it('sets text', function () {
