@@ -23,14 +23,14 @@ describe('KOMBrowseListItem_Misc', function () {
 	
 	});
 
-	describe('KOMBrowseListItemAnswer', function test_KOMBrowseListItemAnswer () {
+	describe('KOMBrowseListItemRear', function test_KOMBrowseListItemRear () {
 		
 		it('sets aria-hidden', function () {
-			browser.assert.attribute(KOMBrowseListItemAnswer, 'aria-hidden', 'true');
+			browser.assert.attribute(KOMBrowseListItemRear, 'aria-hidden', 'true');
 		});
 
 		it('binds KOMCardRear', function () {
-			browser.assert.text(KOMBrowseListItemAnswer, 'bravo');
+			browser.assert.text(KOMBrowseListItemRear, 'bravo');
 		});
 	
 	});

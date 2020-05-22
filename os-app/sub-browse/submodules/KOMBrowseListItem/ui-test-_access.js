@@ -4,7 +4,7 @@ Object.entries({
 	KOMBrowseListItem: '.KOMBrowseListItem',
 	
 	KOMBrowseListItemFront: '.KOMBrowseListItemFront',
-	KOMBrowseListItemAnswer: '.KOMBrowseListItemAnswer',
+	KOMBrowseListItemRear: '.KOMBrowseListItemRear',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
@@ -28,8 +28,8 @@ describe('KOMBrowseListItem_Access', function () {
 		browser.assert.elements(KOMBrowseListItemFront, 1);
 	});
 
-	it('shows KOMBrowseListItemAnswer', function () {
-		browser.assert.elements(KOMBrowseListItemAnswer, 1);
+	it('shows KOMBrowseListItemRear', function () {
+		browser.assert.elements(KOMBrowseListItemRear, 1);
 	});
 
 });
