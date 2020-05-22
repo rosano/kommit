@@ -125,14 +125,14 @@ import _OLSKSharedBack from '../../../_shared/__external/OLSKUIAssets/_OLSKShare
 	<div class="KOMReviewDetailForm">
 		<p>
 			<label>
-				<input class="KOMReviewDetailIsOralFrontField" type="checkbox" bind:checked={ KOMReviewDetailDeck.KOMDeckIsOralFront } on:input={ () => window.setTimeout(() => KOMReviewDetailDispatchUpdate(KOMReviewDetailDeck)) } />
-				<span class="KOMReviewDetailIsOralFrontFieldLabel">{ OLSKLocalized('KOMReviewDetailIsOralFrontFieldLabelText') }</span>
+				<input class="KOMReviewDetailFormIsOralFrontField" type="checkbox" bind:checked={ KOMReviewDetailDeck.KOMDeckIsOralFront } on:input={ () => window.setTimeout(() => KOMReviewDetailDispatchUpdate(KOMReviewDetailDeck)) } />
+				<span class="KOMReviewDetailFormIsOralFrontFieldLabel">{ OLSKLocalized('KOMReviewDetailFormIsOralFrontFieldLabelText') }</span>
 			</label>
 		</p>
 		<p>
 			<label>
-				<input class="KOMReviewDetailIsForwardOnlyField" type="checkbox" bind:checked={ KOMReviewDetailDeck.KOMDeckIsForwardOnly } on:input={ () => window.setTimeout(() => KOMReviewDetailDispatchUpdate(KOMReviewDetailDeck)) } />
-				<span class="KOMReviewDetailIsForwardOnlyFieldLabel">{ OLSKLocalized('KOMReviewDetailIsForwardOnlyFieldLabelText') }</span>
+				<input class="KOMReviewDetailFormIsForwardOnlyField" type="checkbox" bind:checked={ KOMReviewDetailDeck.KOMDeckIsForwardOnly } on:input={ () => window.setTimeout(() => KOMReviewDetailDispatchUpdate(KOMReviewDetailDeck)) } />
+				<span class="KOMReviewDetailFormIsForwardOnlyFieldLabel">{ OLSKLocalized('KOMReviewDetailFormIsForwardOnlyFieldLabelText') }</span>
 			</label>
 		</p>
 		

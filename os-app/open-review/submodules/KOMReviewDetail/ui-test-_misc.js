@@ -172,7 +172,7 @@ describe('KOMReviewDetail_Misc', function () {
 	
 	});
 
-	describe('KOMReviewDetailIsOralFrontField', function test_KOMReviewDetailIsOralFrontField () {
+	describe('KOMReviewDetailFormIsOralFrontField', function test_KOMReviewDetailFormIsOralFrontField () {
 
 		const item = {
 			KOMDeckName: 'alfa',
@@ -194,11 +194,11 @@ describe('KOMReviewDetail_Misc', function () {
 		});
 
 		it('sets type', function () {
-			browser.assert.attribute(KOMReviewDetailIsOralFrontField, 'type', 'checkbox');
+			browser.assert.attribute(KOMReviewDetailFormIsOralFrontField, 'type', 'checkbox');
 		});
 		
 		it('binds KOMDeckIsOralFront', function () {
-			browser.assert.evaluate(`document.querySelector('${ KOMReviewDetailIsOralFrontField }').checked`, false);
+			browser.assert.evaluate(`document.querySelector('${ KOMReviewDetailFormIsOralFrontField }').checked`, false);
 		});
 		
 		context('click', function () {
@@ -209,7 +209,7 @@ describe('KOMReviewDetail_Misc', function () {
 			});
 			
 			before(function () {
-				return browser.check(KOMReviewDetailIsOralFrontField);
+				return browser.check(KOMReviewDetailFormIsOralFrontField);
 			});
 
 			it('sends KOMReviewDetailDispatchUpdate', function () {
@@ -222,12 +222,12 @@ describe('KOMReviewDetail_Misc', function () {
 		});
 
 		after(function () {
-			return browser.uncheck(KOMReviewDetailIsOralFrontField);
+			return browser.uncheck(KOMReviewDetailFormIsOralFrontField);
 		});
 	
 	});
 
-	describe('KOMReviewDetailIsForwardOnlyField', function test_KOMReviewDetailIsForwardOnlyField () {
+	describe('KOMReviewDetailFormIsForwardOnlyField', function test_KOMReviewDetailFormIsForwardOnlyField () {
 
 		const item = {
 			KOMDeckName: 'alfa',
@@ -249,11 +249,11 @@ describe('KOMReviewDetail_Misc', function () {
 		});
 
 		it('sets type', function () {
-			browser.assert.attribute(KOMReviewDetailIsForwardOnlyField, 'type', 'checkbox');
+			browser.assert.attribute(KOMReviewDetailFormIsForwardOnlyField, 'type', 'checkbox');
 		});
 		
 		it('binds KOMDeckIsForwardOnly', function () {
-			browser.assert.evaluate(`document.querySelector('${ KOMReviewDetailIsForwardOnlyField }').checked`, false);
+			browser.assert.evaluate(`document.querySelector('${ KOMReviewDetailFormIsForwardOnlyField }').checked`, false);
 		});
 		
 		context('click', function () {
@@ -264,7 +264,7 @@ describe('KOMReviewDetail_Misc', function () {
 			});
 			
 			before(function () {
-				return browser.check(KOMReviewDetailIsForwardOnlyField);
+				return browser.check(KOMReviewDetailFormIsForwardOnlyField);
 			});
 
 			it('sends KOMReviewDetailDispatchUpdate', function () {
@@ -277,7 +277,7 @@ describe('KOMReviewDetail_Misc', function () {
 		});
 
 		after(function () {
-			return browser.uncheck(KOMReviewDetailIsForwardOnlyField);
+			return browser.uncheck(KOMReviewDetailFormIsForwardOnlyField);
 		});
 	
 	});
@@ -348,10 +348,10 @@ describe('KOMReviewDetail_Misc', function () {
 
 	describe('KOMReviewDetailForm', function test_KOMReviewDetailForm () {
 
-		context('KOMReviewDetailIsForwardOnlyField', function () {
+		context('KOMReviewDetailFormIsForwardOnlyField', function () {
 			
 			before(function () {
-				return browser.check(KOMReviewDetailIsForwardOnlyField);
+				return browser.check(KOMReviewDetailFormIsForwardOnlyField);
 			});
 
 			before(function () {

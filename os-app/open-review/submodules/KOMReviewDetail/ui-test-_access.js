@@ -14,10 +14,10 @@ Object.entries({
 	KOMReviewDetailNoCards: '.KOMReviewDetailNoCards',
 	
 	KOMReviewDetailForm: '.KOMReviewDetailForm',
-	KOMReviewDetailIsOralFrontField: 'label .KOMReviewDetailIsOralFrontField',
-	KOMReviewDetailIsOralFrontFieldLabel: 'label .KOMReviewDetailIsOralFrontFieldLabel',
-	KOMReviewDetailIsForwardOnlyField: 'label .KOMReviewDetailIsForwardOnlyField',
-	KOMReviewDetailIsForwardOnlyFieldLabel: 'label .KOMReviewDetailIsForwardOnlyFieldLabel',
+	KOMReviewDetailFormIsOralFrontField: 'label .KOMReviewDetailFormIsOralFrontField',
+	KOMReviewDetailFormIsOralFrontFieldLabel: 'label .KOMReviewDetailFormIsOralFrontFieldLabel',
+	KOMReviewDetailFormIsForwardOnlyField: 'label .KOMReviewDetailFormIsForwardOnlyField',
+	KOMReviewDetailFormIsForwardOnlyFieldLabel: 'label .KOMReviewDetailFormIsForwardOnlyFieldLabel',
 	KOMReviewDetailPlayButtonReviewing: '.KOMReviewDetailPlayButtonReviewing',
 	KOMReviewDetailPlayButtonUnseen: '.KOMReviewDetailPlayButtonUnseen',
 	KOMReviewDetailPlayButtonMixed: '.KOMReviewDetailPlayButtonMixed',
@@ -141,20 +141,20 @@ describe('KOMReviewDetail_Access', function () {
 			browser.assert.elements(KOMReviewDetailForm, 1);
 		});
 
-		it('shows KOMReviewDetailIsOralFrontField', function () {
-			browser.assert.elements(KOMReviewDetailIsOralFrontField, 1);
+		it('shows KOMReviewDetailFormIsOralFrontField', function () {
+			browser.assert.elements(KOMReviewDetailFormIsOralFrontField, 1);
 		});
 
-		it('shows KOMReviewDetailIsOralFrontFieldLabel', function () {
-			browser.assert.elements(KOMReviewDetailIsOralFrontFieldLabel, 1);
+		it('shows KOMReviewDetailFormIsOralFrontFieldLabel', function () {
+			browser.assert.elements(KOMReviewDetailFormIsOralFrontFieldLabel, 1);
 		});
 
-		it('shows KOMReviewDetailIsForwardOnlyField', function () {
-			browser.assert.elements(KOMReviewDetailIsForwardOnlyField, 1);
+		it('shows KOMReviewDetailFormIsForwardOnlyField', function () {
+			browser.assert.elements(KOMReviewDetailFormIsForwardOnlyField, 1);
 		});
 
-		it('shows KOMReviewDetailIsForwardOnlyFieldLabel', function () {
-			browser.assert.elements(KOMReviewDetailIsForwardOnlyFieldLabel, 1);
+		it('shows KOMReviewDetailFormIsForwardOnlyFieldLabel', function () {
+			browser.assert.elements(KOMReviewDetailFormIsForwardOnlyFieldLabel, 1);
 		});
 
 		context('reviewing', function test_reviewing () {

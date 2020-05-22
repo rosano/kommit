@@ -2,8 +2,8 @@ KOMReviewDetailToolbarBackButtonText: Back
 KOMReviewDetailToolbarCardsButtonText: Cards
 KOMReviewDetailStudyHeadingText: Study
 KOMReviewDetailNoCardsText: There are no cards in this deck.
-KOMReviewDetailIsOralFrontFieldLabelText: Front is oral
-KOMReviewDetailIsForwardOnlyFieldLabelText: Front to back only
+KOMReviewDetailFormIsOralFrontFieldLabelText: Front is oral
+KOMReviewDetailFormIsForwardOnlyFieldLabelText: Front to back only
 KOMReviewDetailPlayButtonReviewingText: Review cards
 KOMReviewDetailPlayButtonUnseenText: New cards
 KOMReviewDetailPlayButtonMixedText: All cards
