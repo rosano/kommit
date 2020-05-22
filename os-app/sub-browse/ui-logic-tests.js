@@ -37,25 +37,25 @@ describe('KOMBrowseFilterFunction', function test_KOMBrowseFilterFunction() {
 
 		it('returns false if no match', function() {
 			deepEqual(mainModule.KOMBrowseFilterFunction('bravo')({
-				KOMCardQuestion: 'alfa',
+				KOMCardFront: 'alfa',
 			}), false);
 		});
 
 		it('returns true', function() {
 			deepEqual(mainModule.KOMBrowseFilterFunction('alfa')({
-				KOMCardQuestion: 'alfa',
+				KOMCardFront: 'alfa',
 			}), true);
 		});
 
 		it('matches partial', function() {
 			deepEqual(mainModule.KOMBrowseFilterFunction('alf')({
-				KOMCardQuestion: 'alfa',
+				KOMCardFront: 'alfa',
 			}), true);
 		});
 
 		it('matches case insensitive', function() {
 			deepEqual(mainModule.KOMBrowseFilterFunction('ALF')({
-				KOMCardQuestion: 'alfa',
+				KOMCardFront: 'alfa',
 			}), true);
 		});
 

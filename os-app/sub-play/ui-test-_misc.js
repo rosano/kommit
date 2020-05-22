@@ -12,7 +12,7 @@ const kTesting = {
 				$KOMSpacingCard: {
 					KOMCardID: (i + 1).toString(),
 					KOMCardDeckID: 'alfa',
-					KOMCardQuestion: (i + 1).toString(),
+					KOMCardFront: (i + 1).toString(),
 					KOMCardAnswer: 'charlie',
 					KOMCardHint: 'delta',
 					KOMCardCreationDate: new Date('2019-02-23T13:56:36Z'),
@@ -78,7 +78,7 @@ describe('KOMPlay_Misc', function () {
 	describe('KOMPlayCardQuestion', function test_KOMPlayCardQuestion () {
 
 		it('sets text', function () {
-			browser.assert.text(KOMPlayCardQuestion, items[0].$KOMSpacingCard.KOMCardQuestion);
+			browser.assert.text(KOMPlayCardQuestion, items[0].$KOMSpacingCard.KOMCardFront);
 		});
 
 	});
@@ -150,7 +150,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('updates KOMPlayStateCurrent', function () {
-				browser.assert.text(KOMPlayCardQuestion, items[1].$KOMSpacingCard.KOMCardQuestion);
+				browser.assert.text(KOMPlayCardQuestion, items[1].$KOMSpacingCard.KOMCardFront);
 			});
 		
 		});
@@ -191,7 +191,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('updates KOMPlayStateCurrent', function () {
-				browser.assert.text(KOMPlayCardQuestion, items[2].$KOMSpacingCard.KOMCardQuestion);
+				browser.assert.text(KOMPlayCardQuestion, items[2].$KOMSpacingCard.KOMCardFront);
 			});
 		
 		});
@@ -232,7 +232,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('updates KOMPlayStateCurrent', function () {
-				browser.assert.text(KOMPlayCardQuestion, items[3].$KOMSpacingCard.KOMCardQuestion);
+				browser.assert.text(KOMPlayCardQuestion, items[3].$KOMSpacingCard.KOMCardFront);
 			});
 		
 		});
@@ -273,7 +273,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('updates KOMPlayStateCurrent', function () {
-				browser.assert.text(KOMPlayCardQuestion, items[4].$KOMSpacingCard.KOMCardQuestion);
+				browser.assert.text(KOMPlayCardQuestion, items[4].$KOMSpacingCard.KOMCardFront);
 			});
 		
 		});
@@ -318,7 +318,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('updates KOMPlayStateCurrent', function () {
-				browser.assert.text(KOMPlayCardQuestion, items[0].$KOMSpacingCard.KOMCardQuestion);
+				browser.assert.text(KOMPlayCardQuestion, items[0].$KOMSpacingCard.KOMCardFront);
 			});
 		
 		});
@@ -377,7 +377,7 @@ describe('KOMPlay_Misc', function () {
 				});
 
 				it('updates KOMPlayStateCurrent', function () {
-					browser.assert.text(KOMPlayCardQuestion, items[1].$KOMSpacingCard.KOMCardQuestion);
+					browser.assert.text(KOMPlayCardQuestion, items[1].$KOMSpacingCard.KOMCardFront);
 				});
 			
 			});
@@ -426,7 +426,7 @@ describe('KOMPlay_Misc', function () {
 				});
 
 				it('updates KOMPlayStateCurrent', function () {
-					browser.assert.text(KOMPlayCardQuestion, items[2].$KOMSpacingCard.KOMCardQuestion);
+					browser.assert.text(KOMPlayCardQuestion, items[2].$KOMSpacingCard.KOMCardFront);
 				});
 			
 			});
@@ -475,7 +475,7 @@ describe('KOMPlay_Misc', function () {
 				});
 
 				it('updates KOMPlayStateCurrent', function () {
-					browser.assert.text(KOMPlayCardQuestion, items[3].$KOMSpacingCard.KOMCardQuestion);
+					browser.assert.text(KOMPlayCardQuestion, items[3].$KOMSpacingCard.KOMCardFront);
 				});
 			
 			});
@@ -558,7 +558,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('sets text', function () {
-				browser.assert.text(KOMPlayCardAnswer, items[0].$KOMSpacingCard.KOMCardQuestion);
+				browser.assert.text(KOMPlayCardAnswer, items[0].$KOMSpacingCard.KOMCardFront);
 			});
 
 		});
@@ -608,7 +608,7 @@ describe('KOMPlay_Misc', function () {
 		});
 
 		it('updates KOMPlayStateCurrent', function () {
-			browser.assert.text(KOMPlayCardQuestion, items[0].$KOMSpacingCard.KOMCardQuestion);
+			browser.assert.text(KOMPlayCardQuestion, items[0].$KOMSpacingCard.KOMCardFront);
 		});
 
 	});
@@ -910,7 +910,7 @@ describe('KOMPlay_Misc', function () {
 				});
 
 				it('updates KOMPlayStateCurrent', function () {
-					browser.assert.text(KOMPlayCardQuestion, items[0].$KOMSpacingCard.KOMCardQuestion);
+					browser.assert.text(KOMPlayCardQuestion, items[0].$KOMSpacingCard.KOMCardFront);
 				});
 
 				it('sets disabled', function () {

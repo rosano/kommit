@@ -5,7 +5,7 @@ describe('KOMBrowseListItem_Misc', function () {
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute, {
 			KOMBrowseListItemObject: JSON.stringify({
-				KOMCardQuestion: 'alfa',
+				KOMCardFront: 'alfa',
 				KOMCardAnswer: 'bravo',
 			}),
 		});
@@ -17,7 +17,7 @@ describe('KOMBrowseListItem_Misc', function () {
 			browser.assert.attribute(KOMBrowseListItemQuestion, 'aria-hidden', 'true');
 		});
 
-		it('binds KOMCardQuestion', function () {
+		it('binds KOMCardFront', function () {
 			browser.assert.text(KOMBrowseListItemQuestion, 'alfa');
 		});
 	

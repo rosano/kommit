@@ -14,7 +14,7 @@ const kTesting = {
 	},
 	StubCardObject() {
 		return {
-			KOMCardQuestion: 'bravo',
+			KOMCardFront: 'bravo',
 			KOMCardAnswer: 'charlie',
 		};
 	},
@@ -47,9 +47,9 @@ describe('KOMCardActionCreate', function test_KOMCardActionCreate() {
 
 	it('returns object with KOMErrors if param1 not valid', async function() {
 		deepEqual((await mainModule.KOMCardActionCreate(KOMTestingStorageClient, Object.assign(kTesting.StubCardObject(), {
-			KOMCardQuestion: null,
+			KOMCardFront: null,
 		}), kTesting.StubDeckObjectValid())).KOMErrors, {
-			KOMCardQuestion: [
+			KOMCardFront: [
 				'KOMErrorNotString',
 			],
 		});

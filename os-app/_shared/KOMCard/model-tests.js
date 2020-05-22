@@ -7,7 +7,7 @@ const kTesting = {
 		return {
 			KOMCardID: 'alfa',
 			KOMCardDeckID: 'bravo',
-			KOMCardQuestion: '',
+			KOMCardFront: '',
 			KOMCardAnswer: '',
 			KOMCardCreationDate: new Date('2019-02-23T13:56:36Z'),
 			KOMCardModificationDate: new Date('2019-02-23T13:56:36Z'),
@@ -63,11 +63,11 @@ describe('KOMCardModelErrorsFor', function test_KOMCardModelErrorsFor() {
 		});
 	});
 
-	it('returns object if KOMCardQuestion not string', function() {
+	it('returns object if KOMCardFront not string', function() {
 		deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubCardObjectValid(), {
-			KOMCardQuestion: null,
+			KOMCardFront: null,
 		})), {
-			KOMCardQuestion: [
+			KOMCardFront: [
 				'KOMErrorNotString',
 			],
 		});
@@ -135,7 +135,7 @@ describe('KOMCardModelErrorsFor', function test_KOMCardModelErrorsFor() {
 			})), [
 				'KOMCardID',
 				'KOMCardDeckID',
-				'KOMCardQuestion',
+				'KOMCardFront',
 				'KOMCardAnswer',
 				'KOMCardCreationDate',
 				'KOMCardModificationDate',

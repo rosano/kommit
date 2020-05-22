@@ -130,7 +130,7 @@ describe('KOMDeckActionDelete', function test_KOMDeckActionDelete() {
 		const item = await mainModule.KOMDeckActionCreate(KOMTestingStorageClient, kTesting.StubDeckObject());
 		
 		await KOMCardAction.KOMCardActionCreate(KOMTestingStorageClient, {
-			KOMCardQuestion: 'alfa',
+			KOMCardFront: 'alfa',
 			KOMCardAnswer: 'bravo',
 		}, item);
 

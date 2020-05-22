@@ -6,7 +6,7 @@ const mod = {
 		}
 
 		return [
-			inputData.KOMCardQuestion || OLSKLocalized('KOMBrowseListItemUntitledText')].join('\n');
+			inputData.KOMCardFront || OLSKLocalized('KOMBrowseListItemUntitledText')].join('\n');
 	},
 
 };

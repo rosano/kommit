@@ -5,7 +5,7 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 const uItem = function (inputData = 'alfa') {
 	return {
 		KOMCardID: inputData,
-		KOMCardQuestion: inputData,
+		KOMCardFront: inputData,
 		KOMCardAnswer: inputData,
 	};
 };

@@ -45,7 +45,7 @@ import _OLSKSharedDiscard from '../../../_shared/__external/OLSKUIAssets/_OLSKSh
 <div class="KOMBrowseInfoForm">
 
 <p>
-	<input class="KOMBrowseInfoFormQuestionField OLSKMobileSafariRemoveDefaultInputStyle" placeholder="{ OLSKLocalized('KOMBrowseInfoFormQuestionFieldText') }" type="text" bind:value={ KOMBrowseInfoItem.KOMCardQuestion } on:input={ KOMBrowseInfoDispatchUpdate } />
+	<input class="KOMBrowseInfoFormQuestionField OLSKMobileSafariRemoveDefaultInputStyle" placeholder="{ OLSKLocalized('KOMBrowseInfoFormQuestionFieldText') }" type="text" bind:value={ KOMBrowseInfoItem.KOMCardFront } on:input={ KOMBrowseInfoDispatchUpdate } />
 </p>
 
 <p>

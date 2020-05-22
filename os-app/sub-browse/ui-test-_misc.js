@@ -76,7 +76,7 @@ describe('KOMBrowse_Misc', function () {
 				'KOMCardDeckID',
 				'KOMCardCreationDate',
 				'KOMCardModificationDate',
-				'KOMCardQuestion',
+				'KOMCardFront',
 				'KOMCardAnswer',
 				'KOMCardHint',
 				'@context',

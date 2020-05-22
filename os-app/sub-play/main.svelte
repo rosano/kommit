@@ -185,10 +185,10 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 {#if mod._ValueState.KOMPlayStateCurrent }
 	<div class="KOMPlayCard OLSKLayoutElementTappable" on:click={ mod.InterfaceCardDidClick }>
 
-		<div class="KOMPlayCardQuestion">{ mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard[KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent) ? 'KOMCardAnswer' : 'KOMCardQuestion'] }</div>
+		<div class="KOMPlayCardQuestion">{ mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard[KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent) ? 'KOMCardAnswer' : 'KOMCardFront'] }</div>
 
 		{#if mod._ValueIsFlipped}
-			<div class="KOMPlayCardAnswer">{ mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard[KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent) ? 'KOMCardQuestion' : 'KOMCardAnswer'] }</div>
+			<div class="KOMPlayCardAnswer">{ mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard[KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent) ? 'KOMCardFront' : 'KOMCardAnswer'] }</div>
 		{/if}
 
 		{#if mod._ValueIsFlipped}
