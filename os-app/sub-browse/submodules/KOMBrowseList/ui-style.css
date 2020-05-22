@@ -8,14 +8,14 @@
 	border-bottom: var(--KOMBorderStyle);
 }
 
-:global(.KOMBrowseList .OLSKMasterListToolbar .OLSKToolbarElementGroup) {
-	margin-left: 4px;
+.KOMBrowseListToolbarCreateButton {
+	margin-left: 4px !important;
 }
 
 @media screen and (max-width: 760px) {
 
-:global(.KOMBrowseList .OLSKMasterListToolbar .OLSKToolbarElementGroup) {
-	margin-left: 8px;
+.KOMBrowseListToolbarCreateButton {
+	margin-left: 8px !important;
 }
 
 }
