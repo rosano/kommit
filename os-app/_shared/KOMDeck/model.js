@@ -55,6 +55,18 @@ const mod = {
 			}
 		}
 
+		if (inputData.KOMDeckRearLanguageCode !== undefined) {
+			if (typeof inputData.KOMDeckRearLanguageCode !== 'string') {
+				errors.KOMDeckRearLanguageCode = [
+					'KOMErrorNotString',
+				];
+			} else if (inputData.KOMDeckRearLanguageCode.trim() === '') {
+				errors.KOMDeckRearLanguageCode = [
+					'KOMErrorNotFilled',
+				];
+			}
+		}
+
 		if (inputData.$KOMDeckCards !== undefined) {
 			if (!Array.isArray(inputData.$KOMDeckCards)) {
 				errors.$KOMDeckCards = [

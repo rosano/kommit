@@ -125,6 +125,36 @@ describe('KOMDeckModelErrorsFor', function test_KOMDeckModelErrorsFor() {
 
 	});
 
+	context('KOMDeckRearLanguageCode', function() {
+
+		it('returns object if not string', function() {
+			deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
+				KOMDeckRearLanguageCode: null,
+			})), {
+				KOMDeckRearLanguageCode: [
+					'KOMErrorNotString',
+				],
+			});
+		});
+
+		it('returns object if not filled', function() {
+			deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
+				KOMDeckRearLanguageCode: ' ',
+			})), {
+				KOMDeckRearLanguageCode: [
+					'KOMErrorNotFilled',
+				],
+			});
+		});
+
+		it('returns null', function() {
+			deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
+				KOMDeckRearLanguageCode: 'en',
+			})), null);
+		});
+
+	});
+
 	context('$KOMDeckCards', function() {
 
 		it('returns object if not array', function() {
