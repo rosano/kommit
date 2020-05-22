@@ -172,6 +172,61 @@ describe('KOMReviewDetail_Misc', function () {
 	
 	});
 
+	describe('KOMReviewDetailIsOralFrontField', function test_KOMReviewDetailIsOralFrontField () {
+
+		const item = {
+			KOMDeckName: 'alfa',
+			$KOMDeckSpacings: kTesting.uSpacings().map(function (e, i) {
+				if (i) {
+					return e;
+				}
+
+				return Object.assign(e, {
+					KOMSpacingDueDate: new Date(),
+				});
+			}),
+		};
+
+		before(function() {
+			return browser.OLSKVisit(kDefaultRoute, {
+				KOMReviewDetailDeck: JSON.stringify(item),
+			});
+		});
+
+		it('sets type', function () {
+			browser.assert.attribute(KOMReviewDetailIsOralFrontField, 'type', 'checkbox');
+		});
+		
+		it('binds KOMDeckIsOralFront', function () {
+			browser.assert.evaluate(`document.querySelector('${ KOMReviewDetailIsOralFrontField }').checked`, false);
+		});
+		
+		context('click', function () {
+			
+			before(function () {
+				browser.assert.text('#TestKOMReviewDetailDispatchUpdate', '0');
+				browser.assert.text('#TestKOMReviewDetailDispatchUpdateData', 'undefined');
+			});
+			
+			before(function () {
+				return browser.check(KOMReviewDetailIsOralFrontField);
+			});
+
+			it('sends KOMReviewDetailDispatchUpdate', function () {
+				browser.assert.text('#TestKOMReviewDetailDispatchUpdate', '1');
+				browser.assert.text('#TestKOMReviewDetailDispatchUpdateData', JSON.stringify(Object.assign(item, {
+					KOMDeckIsOralFront: true,
+				})));
+			});
+		
+		});
+
+		after(function () {
+			return browser.uncheck(KOMReviewDetailIsOralFrontField);
+		});
+	
+	});
+
 	describe('KOMReviewDetailIsForwardOnlyField', function test_KOMReviewDetailIsForwardOnlyField () {
 
 		const item = {
