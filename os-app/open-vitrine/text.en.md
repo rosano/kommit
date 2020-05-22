@@ -7,3 +7,15 @@ Check out the features below or [try it](KOMVitrineTokenReviewURL).
 The code is open-source and available on [GitHub](KOM_SHARED_GITHUB_URL).
 
 The project is freely accessible but if you are in a position to give, please [donate](KOM_SHARED_DONATE_URL) to support future development.
+
+* * *
+
+## Features
+- Create unlimited decks
+- Create unlimited cards
+- Sync with multiple devices
+- Works offline without internet access
+- Simple interface
+- No complicated instructions
+- No ads, behavioural analytics, 3rd party trackers
+- Works on any device
