@@ -12,7 +12,7 @@ Object.entries({
 	KOMBrowseInfoForm: '.KOMBrowseInfoForm',
 
 	KOMBrowseInfoFormFrontField: '.KOMBrowseInfoFormFrontField',
-	KOMBrowseInfoFormAnswerField: '.KOMBrowseInfoFormAnswerField',
+	KOMBrowseInfoFormRearField: '.KOMBrowseInfoFormRearField',
 	KOMBrowseInfoFormHintField: '.KOMBrowseInfoFormHintField',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
@@ -82,8 +82,8 @@ describe('KOMBrowseInfo_Access', function () {
 			browser.assert.elements(KOMBrowseInfoFormFrontField, 1);
 		});
 
-		it('shows KOMBrowseInfoFormAnswerField', function () {
-			browser.assert.elements(KOMBrowseInfoFormAnswerField, 1);
+		it('shows KOMBrowseInfoFormRearField', function () {
+			browser.assert.elements(KOMBrowseInfoFormRearField, 1);
 		});
 
 		it('shows KOMBrowseInfoFormHintField', function () {

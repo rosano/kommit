@@ -29,8 +29,8 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 				browser.assert.attribute(KOMBrowseInfoFormFrontField, 'placeholder', uLocalized('KOMBrowseInfoFormFrontFieldText'));
 			});
 
-			it('localizes KOMBrowseInfoFormAnswerField', function () {
-				browser.assert.attribute(KOMBrowseInfoFormAnswerField, 'placeholder', uLocalized('KOMBrowseInfoFormAnswerFieldText'));
+			it('localizes KOMBrowseInfoFormRearField', function () {
+				browser.assert.attribute(KOMBrowseInfoFormRearField, 'placeholder', uLocalized('KOMBrowseInfoFormRearFieldText'));
 			});
 
 			it('localizes KOMBrowseInfoFormHintField', function () {

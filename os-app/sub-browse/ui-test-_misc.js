@@ -172,7 +172,7 @@ describe('KOMBrowse_Misc', function () {
 			});
 
 			it.skip('focuses other field', function() {
-				browser.assert.hasFocus('.KOMBrowseInfoFormAnswerField');
+				browser.assert.hasFocus('.KOMBrowseInfoFormRearField');
 			});
 		
 		});
@@ -182,7 +182,7 @@ describe('KOMBrowse_Misc', function () {
 			context.skip('other field focused', function () {
 
 				before(function() {
-					browser.assert.hasFocus('.KOMBrowseInfoFormAnswerField');
+					browser.assert.hasFocus('.KOMBrowseInfoFormRearField');
 				});
 
 				before(function () {
