@@ -51,6 +51,14 @@ const mod = {
 			}
 		}
 
+		if (inputData.KOMDeckIsOralRear !== undefined) {
+			if (typeof inputData.KOMDeckIsOralRear !== 'boolean') {
+				errors.KOMDeckIsOralRear = [
+					'KOMErrorNotBoolean',
+				];
+			}
+		}
+
 		if (inputData.KOMDeckFrontLanguageCode !== undefined) {
 			if (typeof inputData.KOMDeckFrontLanguageCode !== 'string') {
 				errors.KOMDeckFrontLanguageCode = [
