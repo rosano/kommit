@@ -422,7 +422,7 @@ describe('KOMBrowse_Misc', function () {
 			});
 
 			it('sorts KOMBrowseListItem', function () {
-				browser.assert.text('.KOMBrowseListItemQuestion', 'bravoalfa');
+				browser.assert.text('.KOMBrowseListItemFront', 'bravoalfa');
 			});
 		
 		});
@@ -461,8 +461,8 @@ describe('KOMBrowse_Misc', function () {
 
 		context('title', function () {
 			
-			it('sets KOMBrowseListItemQuestion', function () {
-				browser.assert.text('.OLSKResultsListItemSelected .KOMBrowseListItemQuestion', 'bravo');
+			it('sets KOMBrowseListItemFront', function () {
+				browser.assert.text('.OLSKResultsListItemSelected .KOMBrowseListItemFront', 'bravo');
 			});
 
 		});

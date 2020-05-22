@@ -3,7 +3,7 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 Object.entries({
 	KOMBrowseListItem: '.KOMBrowseListItem',
 	
-	KOMBrowseListItemQuestion: '.KOMBrowseListItemQuestion',
+	KOMBrowseListItemFront: '.KOMBrowseListItemFront',
 	KOMBrowseListItemAnswer: '.KOMBrowseListItemAnswer',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
@@ -24,8 +24,8 @@ describe('KOMBrowseListItem_Access', function () {
 		browser.assert.elements(KOMBrowseListItem, 1);
 	});
 
-	it('shows KOMBrowseListItemQuestion', function () {
-		browser.assert.elements(KOMBrowseListItemQuestion, 1);
+	it('shows KOMBrowseListItemFront', function () {
+		browser.assert.elements(KOMBrowseListItemFront, 1);
 	});
 
 	it('shows KOMBrowseListItemAnswer', function () {

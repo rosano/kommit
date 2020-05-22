@@ -159,8 +159,8 @@ describe('KOMBrowseList_Misc', function () {
 
 	describe('KOMBrowseListItem', function test_KOMBrowseListItem() {		
 
-		it('sets KOMBrowseListItemQuestion', function () {
-			browser.assert.text('.OLSKResultsListItem:nth-child(1) .KOMBrowseListItemQuestion', 'alfa');
+		it('sets KOMBrowseListItemFront', function () {
+			browser.assert.text('.OLSKResultsListItem:nth-child(1) .KOMBrowseListItemFront', 'alfa');
 		});
 		
 	});

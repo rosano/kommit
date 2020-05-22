@@ -9,7 +9,7 @@ const OLSKLocalized = function(translationConstant) {
 
 <div class="KOMBrowseListItem">
 
-<strong class="KOMBrowseListItemQuestion" aria-hidden="true">{ KOMBrowseListItemObject.KOMCardFront }</strong><br>
+<strong class="KOMBrowseListItemFront" aria-hidden="true">{ KOMBrowseListItemObject.KOMCardFront }</strong><br>
 <span class="KOMBrowseListItemAnswer" aria-hidden="true">{ KOMBrowseListItemObject.KOMCardRear }</span>
 
 </div>
@@ -30,7 +30,7 @@ const OLSKLocalized = function(translationConstant) {
 	hyphens: auto;
 }
 
-.KOMBrowseListItemQuestion {
+.KOMBrowseListItemFront {
 	display: inline-block;
 }
 </style>
