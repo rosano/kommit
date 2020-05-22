@@ -52,6 +52,14 @@ describe('KOMBrowseList_Misc', function () {
 	
 	});
 
+	describe('KOMBrowseListToolbarCloseButtonImage', function test_KOMBrowseListToolbarCloseButtonImage () {
+
+		it('sets src', function () {
+			browser.assert.elements(`${ KOMBrowseListToolbarCloseButtonImage } #_OLSKSharedBack`, 1);
+		});
+	
+	});
+
 	describe('OLSKMasterList', function test_OLSKMasterList() {
 
 		it('binds OLSKMasterListFilterText', function () {

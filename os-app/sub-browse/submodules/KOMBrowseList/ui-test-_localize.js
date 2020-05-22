@@ -15,7 +15,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 		});
 
 		it('localizes KOMBrowseListToolbarCloseButton', function () {
-			browser.assert.text(KOMBrowseListToolbarCloseButton, uLocalized('KOMBrowseListToolbarCloseButtonText'));
+			browser.assert.attribute(KOMBrowseListToolbarCloseButton, 'title', uLocalized('KOMBrowseListToolbarCloseButtonText'));
 		});
 	
 		it('localizes KOMBrowseListToolbarCreateButton', function () {
