@@ -45,15 +45,15 @@ import _OLSKSharedDiscard from '../../../_shared/__external/OLSKUIAssets/_OLSKSh
 <div class="KOMBrowseInfoForm">
 
 <p>
-	<input class="KOMBrowseInfoFormQuestionField" placeholder="{ OLSKLocalized('KOMBrowseInfoFormQuestionFieldText') }" type="text" bind:value={ KOMBrowseInfoItem.KOMCardQuestion } on:input={ KOMBrowseInfoDispatchUpdate } />
+	<input class="KOMBrowseInfoFormQuestionField OLSKMobileSafariRemoveDefaultInputStyle" placeholder="{ OLSKLocalized('KOMBrowseInfoFormQuestionFieldText') }" type="text" bind:value={ KOMBrowseInfoItem.KOMCardQuestion } on:input={ KOMBrowseInfoDispatchUpdate } />
 </p>
 
 <p>
-	<input class="KOMBrowseInfoFormAnswerField" placeholder="{ OLSKLocalized('KOMBrowseInfoFormAnswerFieldText') }" type="text" bind:value={ KOMBrowseInfoItem.KOMCardAnswer } on:input={ KOMBrowseInfoDispatchUpdate } />
+	<input class="KOMBrowseInfoFormAnswerField OLSKMobileSafariRemoveDefaultInputStyle" placeholder="{ OLSKLocalized('KOMBrowseInfoFormAnswerFieldText') }" type="text" bind:value={ KOMBrowseInfoItem.KOMCardAnswer } on:input={ KOMBrowseInfoDispatchUpdate } />
 </p>
 
 <p>
-	<input class="KOMBrowseInfoFormHintField" placeholder="{ OLSKLocalized('KOMBrowseInfoFormHintFieldText') }" type="text" bind:value={ KOMBrowseInfoItem.KOMCardHint } on:input={ KOMBrowseInfoDispatchUpdate } />
+	<input class="KOMBrowseInfoFormHintField OLSKMobileSafariRemoveDefaultInputStyle" placeholder="{ OLSKLocalized('KOMBrowseInfoFormHintFieldText') }" type="text" bind:value={ KOMBrowseInfoItem.KOMCardHint } on:input={ KOMBrowseInfoDispatchUpdate } />
 </p>
 
 </div>

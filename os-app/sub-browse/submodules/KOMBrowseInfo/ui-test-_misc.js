@@ -157,6 +157,10 @@ describe('KOMBrowseInfo_Misc', function () {
 			});
 		});
 
+		it('classes OLSKMobileSafariRemoveDefaultInputStyle', function () {
+			browser.assert.hasClass(KOMBrowseInfoFormQuestionField, 'OLSKMobileSafariRemoveDefaultInputStyle');
+		});
+
 		it('sets type', function () {
 			browser.assert.attribute(KOMBrowseInfoFormQuestionField, 'type', 'text');
 		});
@@ -205,6 +209,10 @@ describe('KOMBrowseInfo_Misc', function () {
 			});
 		});
 
+		it('classes OLSKMobileSafariRemoveDefaultInputStyle', function () {
+			browser.assert.hasClass(KOMBrowseInfoFormAnswerField, 'OLSKMobileSafariRemoveDefaultInputStyle');
+		});
+
 		it('sets type', function () {
 			browser.assert.attribute(KOMBrowseInfoFormAnswerField, 'type', 'text');
 		});
@@ -243,29 +251,33 @@ describe('KOMBrowseInfo_Misc', function () {
 
 	});
 	
-	describe('KOMBrowseInfoFormAnswerField', function test_KOMBrowseInfoFormAnswerField() {
+	describe('KOMBrowseInfoFormHintField', function test_KOMBrowseInfoFormHintField() {
 		
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMBrowseInfoItem: JSON.stringify({
-					KOMCardAnswer: 'alfa',
+					KOMCardHint: 'alfa',
 				}),
 			});
 		});
 
-		it('sets type', function () {
-			browser.assert.attribute(KOMBrowseInfoFormAnswerField, 'type', 'text');
+		it('classes OLSKMobileSafariRemoveDefaultInputStyle', function () {
+			browser.assert.hasClass(KOMBrowseInfoFormHintField, 'OLSKMobileSafariRemoveDefaultInputStyle');
 		});
 
-		it('binds KOMCardAnswer', function () {
-			browser.assert.input(KOMBrowseInfoFormAnswerField, 'alfa');
+		it('sets type', function () {
+			browser.assert.attribute(KOMBrowseInfoFormHintField, 'type', 'text');
+		});
+
+		it('binds KOMCardHint', function () {
+			browser.assert.input(KOMBrowseInfoFormHintField, 'alfa');
 		});
 
 		context('input', function () {
 
 			before(function () {
 				browser.assert.text('#TestKOMBrowseInfoItem', JSON.stringify({
-					KOMCardAnswer: 'alfa',
+					KOMCardHint: 'alfa',
 				}));
 			});
 
@@ -274,12 +286,12 @@ describe('KOMBrowseInfo_Misc', function () {
 			});
 
 			before(function () {
-				browser.fill(KOMBrowseInfoFormAnswerField, 'bravo');
+				browser.fill(KOMBrowseInfoFormHintField, 'bravo');
 			});
 
 			it('updates KOMBrowseInfoItem', function () {
 				browser.assert.text('#TestKOMBrowseInfoItem', JSON.stringify({
-					KOMCardAnswer: 'bravo',
+					KOMCardHint: 'bravo',
 				}));
 			});
 

@@ -69,3 +69,12 @@
 
 	line-height: 1.7;
 }
+
+@media screen and (max-width: 760px) {
+
+	.KOMBrowseInfoForm input[type=text] {
+		width: 90%;
+		padding: 10px;
+	}
+
+}
