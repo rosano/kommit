@@ -105,7 +105,7 @@ describe('KOMReview_Misc', function () {
 	describe('KOMPlay', function test_KOMPlay() {
 		
 		before(function () {
-			return browser.pressButton('.KOMReviewDetailPlayButtonUnseen');
+			return browser.pressButton('.KOMReviewDetailFormPlayButtonUnseen');
 		});
 
 		before(function () {
@@ -129,7 +129,7 @@ describe('KOMReview_Misc', function () {
 		});
 
 		before(function () {
-			return browser.pressButton('.KOMReviewDetailPlayButtonUnseen');
+			return browser.pressButton('.KOMReviewDetailFormPlayButtonUnseen');
 		});
 
 		it('persists responses', function () {

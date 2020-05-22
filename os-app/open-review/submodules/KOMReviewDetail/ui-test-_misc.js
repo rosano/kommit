@@ -282,7 +282,7 @@ describe('KOMReviewDetail_Misc', function () {
 	
 	});
 
-	describe('KOMReviewDetailPlayButtonReviewing', function test_KOMReviewDetailPlayButtonReviewing () {
+	describe('KOMReviewDetailFormPlayButtonReviewing', function test_KOMReviewDetailFormPlayButtonReviewing () {
 
 		context('click', function () {
 			
@@ -292,7 +292,7 @@ describe('KOMReviewDetail_Misc', function () {
 			});
 			
 			before(function () {
-				return browser.pressButton(KOMReviewDetailPlayButtonReviewing);
+				return browser.pressButton(KOMReviewDetailFormPlayButtonReviewing);
 			});
 
 			it('sends KOMReviewDetailDispatchPlay', function () {
@@ -306,12 +306,12 @@ describe('KOMReviewDetail_Misc', function () {
 
 	});
 
-	describe('KOMReviewDetailPlayButtonUnseen', function test_KOMReviewDetailPlayButtonUnseen () {
+	describe('KOMReviewDetailFormPlayButtonUnseen', function test_KOMReviewDetailFormPlayButtonUnseen () {
 
 		context('click', function () {
 			
 			before(function () {
-				return browser.pressButton(KOMReviewDetailPlayButtonUnseen);
+				return browser.pressButton(KOMReviewDetailFormPlayButtonUnseen);
 			});
 
 			it('sends KOMReviewDetailDispatchPlay', function () {
@@ -326,12 +326,12 @@ describe('KOMReviewDetail_Misc', function () {
 
 	});
 
-	describe('KOMReviewDetailPlayButtonMixed', function test_KOMReviewDetailPlayButtonMixed () {
+	describe('KOMReviewDetailFormPlayButtonMixed', function test_KOMReviewDetailFormPlayButtonMixed () {
 
 		context('click', function () {
 			
 			before(function () {
-				return browser.pressButton(KOMReviewDetailPlayButtonMixed);
+				return browser.pressButton(KOMReviewDetailFormPlayButtonMixed);
 			});
 
 			it('sends KOMReviewDetailDispatchPlay', function () {
@@ -355,7 +355,7 @@ describe('KOMReviewDetail_Misc', function () {
 			});
 
 			before(function () {
-				return browser.pressButton(KOMReviewDetailPlayButtonReviewing);
+				return browser.pressButton(KOMReviewDetailFormPlayButtonReviewing);
 			});
 
 			it('sets KOMReviewIsForwardOnly', function () {

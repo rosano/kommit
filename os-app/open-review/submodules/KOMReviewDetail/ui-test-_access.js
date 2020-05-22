@@ -18,9 +18,9 @@ Object.entries({
 	KOMReviewDetailFormIsOralFrontFieldLabel: 'label .KOMReviewDetailFormIsOralFrontFieldLabel',
 	KOMReviewDetailFormIsForwardOnlyField: 'label .KOMReviewDetailFormIsForwardOnlyField',
 	KOMReviewDetailFormIsForwardOnlyFieldLabel: 'label .KOMReviewDetailFormIsForwardOnlyFieldLabel',
-	KOMReviewDetailPlayButtonReviewing: '.KOMReviewDetailPlayButtonReviewing',
-	KOMReviewDetailPlayButtonUnseen: '.KOMReviewDetailPlayButtonUnseen',
-	KOMReviewDetailPlayButtonMixed: '.KOMReviewDetailPlayButtonMixed',
+	KOMReviewDetailFormPlayButtonReviewing: '.KOMReviewDetailFormPlayButtonReviewing',
+	KOMReviewDetailFormPlayButtonUnseen: '.KOMReviewDetailFormPlayButtonUnseen',
+	KOMReviewDetailFormPlayButtonMixed: '.KOMReviewDetailFormPlayButtonMixed',
 
 	KOMReviewDetailNoSpacings: '.KOMReviewDetailNoSpacings',
 
@@ -159,16 +159,16 @@ describe('KOMReviewDetail_Access', function () {
 
 		context('reviewing', function test_reviewing () {
 
-			it('shows KOMReviewDetailPlayButtonReviewing', function () {
-				browser.assert.elements(KOMReviewDetailPlayButtonReviewing, 1);
+			it('shows KOMReviewDetailFormPlayButtonReviewing', function () {
+				browser.assert.elements(KOMReviewDetailFormPlayButtonReviewing, 1);
 			});
 
-			it('hides KOMReviewDetailPlayButtonUnseen', function () {
-				browser.assert.elements(KOMReviewDetailPlayButtonUnseen, 0);
+			it('hides KOMReviewDetailFormPlayButtonUnseen', function () {
+				browser.assert.elements(KOMReviewDetailFormPlayButtonUnseen, 0);
 			});
 
-			it('hides KOMReviewDetailPlayButtonMixed', function () {
-				browser.assert.elements(KOMReviewDetailPlayButtonMixed, 0);
+			it('hides KOMReviewDetailFormPlayButtonMixed', function () {
+				browser.assert.elements(KOMReviewDetailFormPlayButtonMixed, 0);
 			});
 
 		});
@@ -184,16 +184,16 @@ describe('KOMReviewDetail_Access', function () {
 				});
 			});
 
-			it('hides KOMReviewDetailPlayButtonReviewing', function () {
-				browser.assert.elements(KOMReviewDetailPlayButtonReviewing, 0);
+			it('hides KOMReviewDetailFormPlayButtonReviewing', function () {
+				browser.assert.elements(KOMReviewDetailFormPlayButtonReviewing, 0);
 			});
 
-			it('shows KOMReviewDetailPlayButtonUnseen', function () {
-				browser.assert.elements(KOMReviewDetailPlayButtonUnseen, 1);
+			it('shows KOMReviewDetailFormPlayButtonUnseen', function () {
+				browser.assert.elements(KOMReviewDetailFormPlayButtonUnseen, 1);
 			});
 
-			it('hides KOMReviewDetailPlayButtonMixed', function () {
-				browser.assert.elements(KOMReviewDetailPlayButtonMixed, 0);
+			it('hides KOMReviewDetailFormPlayButtonMixed', function () {
+				browser.assert.elements(KOMReviewDetailFormPlayButtonMixed, 0);
 			});
 
 		});
@@ -217,16 +217,16 @@ describe('KOMReviewDetail_Access', function () {
 				});
 			});
 
-			it('shows KOMReviewDetailPlayButtonReviewing', function () {
-				browser.assert.elements(KOMReviewDetailPlayButtonReviewing, 1);
+			it('shows KOMReviewDetailFormPlayButtonReviewing', function () {
+				browser.assert.elements(KOMReviewDetailFormPlayButtonReviewing, 1);
 			});
 
-			it('shows KOMReviewDetailPlayButtonUnseen', function () {
-				browser.assert.elements(KOMReviewDetailPlayButtonUnseen, 1);
+			it('shows KOMReviewDetailFormPlayButtonUnseen', function () {
+				browser.assert.elements(KOMReviewDetailFormPlayButtonUnseen, 1);
 			});
 
-			it('shows KOMReviewDetailPlayButtonMixed', function () {
-				browser.assert.elements(KOMReviewDetailPlayButtonMixed, 1);
+			it('shows KOMReviewDetailFormPlayButtonMixed', function () {
+				browser.assert.elements(KOMReviewDetailFormPlayButtonMixed, 1);
 			});
 
 		});

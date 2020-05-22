@@ -137,15 +137,15 @@ import _OLSKSharedBack from '../../../_shared/__external/OLSKUIAssets/_OLSKShare
 		</p>
 		
 		{#if mod._ValueSpacingsReviewing.length }
-			<button class="KOMReviewDetailPlayButtonReviewing" on:click={ mod.InterfaceReviewingButtonDidClick }>{ OLSKLocalized('KOMReviewDetailPlayButtonReviewingText') }</button>
+			<button class="KOMReviewDetailFormPlayButtonReviewing" on:click={ mod.InterfaceReviewingButtonDidClick }>{ OLSKLocalized('KOMReviewDetailFormPlayButtonReviewingText') }</button>
 		{/if}
 		
 		{#if mod._ValueSpacingsUnseen.length }
-			<button class="KOMReviewDetailPlayButtonUnseen" on:click={ mod.InterfaceUnseenButtonDidClick }>{ OLSKLocalized('KOMReviewDetailPlayButtonUnseenText') }</button>
+			<button class="KOMReviewDetailFormPlayButtonUnseen" on:click={ mod.InterfaceUnseenButtonDidClick }>{ OLSKLocalized('KOMReviewDetailFormPlayButtonUnseenText') }</button>
 		{/if}
 		
 		{#if mod._ValueSpacingsReviewing.length && mod._ValueSpacingsUnseen.length }
-			<button class="KOMReviewDetailPlayButtonMixed" on:click={ mod.InterfaceMixedButtonDidClick }>{ OLSKLocalized('KOMReviewDetailPlayButtonMixedText') }</button>
+			<button class="KOMReviewDetailFormPlayButtonMixed" on:click={ mod.InterfaceMixedButtonDidClick }>{ OLSKLocalized('KOMReviewDetailFormPlayButtonMixedText') }</button>
 		{/if}
 	</div>
 {/if}

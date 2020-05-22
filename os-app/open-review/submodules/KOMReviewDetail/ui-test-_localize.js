@@ -115,16 +115,16 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 				browser.assert.text(KOMReviewDetailFormIsForwardOnlyFieldLabel, uLocalized('KOMReviewDetailFormIsForwardOnlyFieldLabelText'));
 			});
 
-			it('localizes KOMReviewDetailPlayButtonReviewing', function () {
-				browser.assert.text(KOMReviewDetailPlayButtonReviewing, uLocalized('KOMReviewDetailPlayButtonReviewingText'));
+			it('localizes KOMReviewDetailFormPlayButtonReviewing', function () {
+				browser.assert.text(KOMReviewDetailFormPlayButtonReviewing, uLocalized('KOMReviewDetailFormPlayButtonReviewingText'));
 			});
 
-			it('localizes KOMReviewDetailPlayButtonUnseen', function () {
-				browser.assert.text(KOMReviewDetailPlayButtonUnseen, uLocalized('KOMReviewDetailPlayButtonUnseenText'));
+			it('localizes KOMReviewDetailFormPlayButtonUnseen', function () {
+				browser.assert.text(KOMReviewDetailFormPlayButtonUnseen, uLocalized('KOMReviewDetailFormPlayButtonUnseenText'));
 			});
 
-			it('localizes KOMReviewDetailPlayButtonMixed', function () {
-				browser.assert.text(KOMReviewDetailPlayButtonMixed, uLocalized('KOMReviewDetailPlayButtonMixedText'));
+			it('localizes KOMReviewDetailFormPlayButtonMixed', function () {
+				browser.assert.text(KOMReviewDetailFormPlayButtonMixed, uLocalized('KOMReviewDetailFormPlayButtonMixedText'));
 			});
 
 		});

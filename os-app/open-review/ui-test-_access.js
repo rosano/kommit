@@ -248,7 +248,7 @@ describe('KOMReview_Access', function () {
 		});
 
 		before(function () {
-			return browser.pressButton('.KOMReviewDetailPlayButtonUnseen');
+			return browser.pressButton('.KOMReviewDetailFormPlayButtonUnseen');
 		});
 
 		it('hides KOMReviewMaster', function () {
