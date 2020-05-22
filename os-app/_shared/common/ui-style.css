@@ -1,5 +1,5 @@
 :root {
-	--KOMCommonBackground: rgba(0, 0, 0, 0);
+	--KOMCommonBackground: white;
 	--KOMCommonForeground: rgba(0, 0, 0, 1);
 	--KOMCommonPadding: 10px;
 }

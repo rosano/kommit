@@ -8,10 +8,6 @@
 	color: var(--KOMCommonForeground);
 }
 
-.KOMBrowse :global(.OLSKToolbar) {
-	--OLSKToolbarBackground: var(--KOMCommonBackground);
-}
-
 .KOMBrowseTools {
 	border-top: var(--KOMBorderStyle);
 }

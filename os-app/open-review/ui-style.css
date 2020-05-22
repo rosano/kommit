@@ -8,6 +8,10 @@
 	color: var(--KOMCommonForeground);
 }
 
+.KOMReview :global(.OLSKToolbar) {
+	--OLSKToolbarBackground: var(--KOMCommonBackground);
+}
+
 .KOMReviewStorageToolbar {
 	border-top: var(--KOMBorderStyle)
 }
