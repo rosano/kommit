@@ -135,19 +135,19 @@ import _OLSKSharedBack from '../../../_shared/__external/OLSKUIAssets/_OLSKShare
 				<span class="KOMReviewDetailIsForwardOnlyFieldLabel">{ OLSKLocalized('KOMReviewDetailIsForwardOnlyFieldLabelText') }</span>
 			</label>
 		</p>
+		
+		{#if mod._ValueSpacingsReviewing.length }
+			<button class="KOMReviewDetailPlayButtonReviewing" on:click={ mod.InterfaceReviewingButtonDidClick }>{ OLSKLocalized('KOMReviewDetailPlayButtonReviewingText') }</button>
+		{/if}
+		
+		{#if mod._ValueSpacingsUnseen.length }
+			<button class="KOMReviewDetailPlayButtonUnseen" on:click={ mod.InterfaceUnseenButtonDidClick }>{ OLSKLocalized('KOMReviewDetailPlayButtonUnseenText') }</button>
+		{/if}
+		
+		{#if mod._ValueSpacingsReviewing.length && mod._ValueSpacingsUnseen.length }
+			<button class="KOMReviewDetailPlayButtonMixed" on:click={ mod.InterfaceMixedButtonDidClick }>{ OLSKLocalized('KOMReviewDetailPlayButtonMixedText') }</button>
+		{/if}
 	</div>
-
-	{#if mod._ValueSpacingsReviewing.length }
-		<button class="KOMReviewDetailPlayButtonReviewing" on:click={ mod.InterfaceReviewingButtonDidClick }>{ OLSKLocalized('KOMReviewDetailPlayButtonReviewingText') }</button>
-	{/if}
-	
-	{#if mod._ValueSpacingsUnseen.length }
-		<button class="KOMReviewDetailPlayButtonUnseen" on:click={ mod.InterfaceUnseenButtonDidClick }>{ OLSKLocalized('KOMReviewDetailPlayButtonUnseenText') }</button>
-	{/if}
-	
-	{#if mod._ValueSpacingsReviewing.length && mod._ValueSpacingsUnseen.length }
-		<button class="KOMReviewDetailPlayButtonMixed" on:click={ mod.InterfaceMixedButtonDidClick }>{ OLSKLocalized('KOMReviewDetailPlayButtonMixedText') }</button>
-	{/if}
 {/if}
 
 {#if KOMReviewDetailDeck.$KOMDeckSpacings.length && !mod._ValueSpacingsToday.length}
