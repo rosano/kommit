@@ -6,10 +6,18 @@ describe('KOMReview_Misc', function () {
 		return browser.OLSKVisit(kDefaultRoute);
 	});
 
-	context('apple-touch-icon', function () {
+	context('link apple-touch-icon', function () {
 		
 		it('sets href', function () {
 			browser.assert.attribute('link[rel=apple-touch-icon]', 'href', process.env.KOM_TOUCH_ICON_URL);
+		});
+	
+	});
+
+	context('meta viewport', function () {
+		
+		it('sets content', function () {
+			browser.assert.attribute('meta[name=viewport]', 'content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0');
 		});
 	
 	});
