@@ -12,7 +12,7 @@ const kTesting = {
 					KOMCardID: 'bravo',
 					KOMCardDeckID: 'alfa',
 					KOMCardFront: (i + 1).toString(),
-					KOMCardAnswer: 'charlie',
+					KOMCardRear: 'charlie',
 					KOMCardHint: 'delta',
 					KOMCardCreationDate: new Date('2019-02-23T13:56:36Z'),
 					KOMCardModificationDate: new Date('2019-02-23T13:56:36Z'),

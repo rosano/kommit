@@ -251,7 +251,7 @@ const mod = {
 			KOMCardID: 'FakeCardID',
 			KOMCardDeckID: 'FakeDeckID',
 			KOMCardFront: inputData || '',
-			KOMCardAnswer: '',
+			KOMCardRear: '',
 			KOMCardCreationDate: new Date(),
 			KOMCardModificationDate: new Date(),
 		};

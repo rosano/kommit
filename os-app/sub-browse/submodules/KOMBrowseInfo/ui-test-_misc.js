@@ -204,7 +204,7 @@ describe('KOMBrowseInfo_Misc', function () {
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMBrowseInfoItem: JSON.stringify({
-					KOMCardAnswer: 'alfa',
+					KOMCardRear: 'alfa',
 				}),
 			});
 		});
@@ -217,7 +217,7 @@ describe('KOMBrowseInfo_Misc', function () {
 			browser.assert.attribute(KOMBrowseInfoFormAnswerField, 'type', 'text');
 		});
 
-		it('binds KOMCardAnswer', function () {
+		it('binds KOMCardRear', function () {
 			browser.assert.input(KOMBrowseInfoFormAnswerField, 'alfa');
 		});
 
@@ -225,7 +225,7 @@ describe('KOMBrowseInfo_Misc', function () {
 
 			before(function () {
 				browser.assert.text('#TestKOMBrowseInfoItem', JSON.stringify({
-					KOMCardAnswer: 'alfa',
+					KOMCardRear: 'alfa',
 				}));
 			});
 
@@ -239,7 +239,7 @@ describe('KOMBrowseInfo_Misc', function () {
 
 			it('updates KOMBrowseInfoItem', function () {
 				browser.assert.text('#TestKOMBrowseInfoItem', JSON.stringify({
-					KOMCardAnswer: 'bravo',
+					KOMCardRear: 'bravo',
 				}));
 			});
 

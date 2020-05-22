@@ -15,7 +15,7 @@ const kTesting = {
 	StubCardObject() {
 		return {
 			KOMCardFront: 'bravo',
-			KOMCardAnswer: 'charlie',
+			KOMCardRear: 'charlie',
 		};
 	},
 	StubSpacingObjectValid() {

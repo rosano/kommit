@@ -16,7 +16,7 @@ const kTesting = {
 			KOMCardID: 'bravo',
 			KOMCardDeckID: 'alfa',
 			KOMCardFront: 'charlie',
-			KOMCardAnswer: 'delta',
+			KOMCardRear: 'delta',
 			KOMCardCreationDate: new Date('2019-02-23T13:56:36Z'),
 			KOMCardModificationDate: new Date('2019-02-23T13:56:36Z'),
 		};

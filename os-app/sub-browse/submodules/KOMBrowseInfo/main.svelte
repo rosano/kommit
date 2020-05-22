@@ -49,7 +49,7 @@ import _OLSKSharedDiscard from '../../../_shared/__external/OLSKUIAssets/_OLSKSh
 </p>
 
 <p>
-	<input class="KOMBrowseInfoFormAnswerField OLSKMobileSafariRemoveDefaultInputStyle" placeholder="{ OLSKLocalized('KOMBrowseInfoFormAnswerFieldText') }" type="text" bind:value={ KOMBrowseInfoItem.KOMCardAnswer } on:input={ KOMBrowseInfoDispatchUpdate } />
+	<input class="KOMBrowseInfoFormAnswerField OLSKMobileSafariRemoveDefaultInputStyle" placeholder="{ OLSKLocalized('KOMBrowseInfoFormAnswerFieldText') }" type="text" bind:value={ KOMBrowseInfoItem.KOMCardRear } on:input={ KOMBrowseInfoDispatchUpdate } />
 </p>
 
 <p>
