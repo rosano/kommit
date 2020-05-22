@@ -110,7 +110,7 @@ const mod = {
 					return event.preventDefault();
 				}
 
-				if (document.activeElement === document.querySelector('.KOMBrowseInfoFormQuestionField') && event.shiftKey) {
+				if (document.activeElement === document.querySelector('.KOMBrowseInfoFormFrontField') && event.shiftKey) {
 					document.querySelector('.OLSKMasterListFilterField').focus();
 
 					return event.preventDefault();
@@ -158,7 +158,7 @@ const mod = {
 
 	ControlFocusDetail () {
 		setTimeout(function () {
-			document.querySelector('.KOMBrowseInfoFormQuestionField').focus();
+			document.querySelector('.KOMBrowseInfoFormFrontField').focus();
 		});
 	},
 

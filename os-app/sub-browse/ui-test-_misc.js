@@ -65,8 +65,8 @@ describe('KOMBrowse_Misc', function () {
 			browser.assert.elements('.OLSKDetailPlaceholder', 0);
 		});
 
-		it('focuses KOMBrowseInfoFormQuestionField', function() {
-			browser.assert.hasFocus('.KOMBrowseInfoFormQuestionField');
+		it('focuses KOMBrowseInfoFormFrontField', function() {
+			browser.assert.hasFocus('.KOMBrowseInfoFormFrontField');
 		});
 
 		it('sends KOMBrowseDispatchCreate', function () {
@@ -155,8 +155,8 @@ describe('KOMBrowse_Misc', function () {
 				browser.assert.hasNoClass('.KOMBrowseList', 'OLSKMasterListFocused');
 			});
 
-			it('focuses KOMBrowseInfoFormQuestionField', function() {
-				browser.assert.hasFocus('.KOMBrowseInfoFormQuestionField');
+			it('focuses KOMBrowseInfoFormFrontField', function() {
+				browser.assert.hasFocus('.KOMBrowseInfoFormFrontField');
 			});
 		
 		});
@@ -164,7 +164,7 @@ describe('KOMBrowse_Misc', function () {
 		context('master not focused', function () {
 
 			before(function () {
-				browser.assert.hasFocus('.KOMBrowseInfoFormQuestionField');
+				browser.assert.hasFocus('.KOMBrowseInfoFormFrontField');
 			});
 			
 			before(function () {
@@ -191,8 +191,8 @@ describe('KOMBrowse_Misc', function () {
 					});
 				});
 
-				it('focuses KOMBrowseInfoFormQuestionField', function() {
-					browser.assert.hasFocus('.KOMBrowseInfoFormQuestionField');
+				it('focuses KOMBrowseInfoFormFrontField', function() {
+					browser.assert.hasFocus('.KOMBrowseInfoFormFrontField');
 				});
 			
 			});
@@ -200,7 +200,7 @@ describe('KOMBrowse_Misc', function () {
 			context('first field focused', function () {
 
 				before(function() {
-					browser.assert.hasFocus('.KOMBrowseInfoFormQuestionField');
+					browser.assert.hasFocus('.KOMBrowseInfoFormFrontField');
 				});
 
 				before(function() {
@@ -243,8 +243,8 @@ describe('KOMBrowse_Misc', function () {
 					browser.assert.hasNoClass('.KOMBrowseList', 'OLSKMasterListFocused');
 				});
 
-				it('focuses KOMBrowseInfoFormQuestionField', function() {
-					browser.assert.hasFocus('.KOMBrowseInfoFormQuestionField');
+				it('focuses KOMBrowseInfoFormFrontField', function() {
+					browser.assert.hasFocus('.KOMBrowseInfoFormFrontField');
 				});
 			
 			});
@@ -256,7 +256,7 @@ describe('KOMBrowse_Misc', function () {
 	context('escape', function test_escape () {
 
 		before(function () {
-			browser.fill('.KOMBrowseInfoFormQuestionField', 'alfa');
+			browser.fill('.KOMBrowseInfoFormFrontField', 'alfa');
 		});
 
 		before(function () {
@@ -331,8 +331,8 @@ describe('KOMBrowse_Misc', function () {
 			browser.assert.elements('.OLSKDetailPlaceholder', 0);
 		});
 
-		it('focus KOMBrowseInfoFormQuestionField', function() {
-			browser.assert.hasFocus('.KOMBrowseInfoFormQuestionField');
+		it('focus KOMBrowseInfoFormFrontField', function() {
+			browser.assert.hasFocus('.KOMBrowseInfoFormFrontField');
 		});
 
 	});
@@ -344,7 +344,7 @@ describe('KOMBrowse_Misc', function () {
 		});
 
 		before(function () {
-			browser.fill('.KOMBrowseInfoFormQuestionField', 'bravo');
+			browser.fill('.KOMBrowseInfoFormFrontField', 'bravo');
 		});
 
 		context('no match', function () {
@@ -442,7 +442,7 @@ describe('KOMBrowse_Misc', function () {
 		context('arrow', function () {
 
 			before(function () {
-				return browser.focus('.KOMBrowseInfoFormQuestionField');
+				return browser.focus('.KOMBrowseInfoFormFrontField');
 			});
 
 			before(function () {

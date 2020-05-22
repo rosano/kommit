@@ -85,7 +85,7 @@ describe('KOMReview_Misc', function () {
 		});
 
 		after(function () {
-			browser.fill('.KOMBrowseInfoFormQuestionField', 'alfa');
+			browser.fill('.KOMBrowseInfoFormFrontField', 'alfa');
 		});
 
 		after(function () {
@@ -93,7 +93,7 @@ describe('KOMReview_Misc', function () {
 		});
 
 		after(function () {
-			browser.fill('.KOMBrowseInfoFormQuestionField', 'bravo');
+			browser.fill('.KOMBrowseInfoFormFrontField', 'bravo');
 		});
 
 		after(function () {
