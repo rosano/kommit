@@ -1,5 +1,3 @@
-import { deepEqual } from 'assert';
-
 Object.entries({
 	KOMRootLink: '.KOMRootLink',
 }).map(function (e) {
