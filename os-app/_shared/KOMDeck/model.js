@@ -51,9 +51,9 @@ const mod = {
 			}
 		}
 
-		if (inputData.KOMDeckIsOralRear !== undefined) {
-			if (typeof inputData.KOMDeckIsOralRear !== 'boolean') {
-				errors.KOMDeckIsOralRear = [
+		if (inputData.KOMDeckRearIsOral !== undefined) {
+			if (typeof inputData.KOMDeckRearIsOral !== 'boolean') {
+				errors.KOMDeckRearIsOral = [
 					'KOMErrorNotBoolean',
 				];
 			}

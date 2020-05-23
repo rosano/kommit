@@ -115,13 +115,13 @@ describe('KOMDeckModelErrorsFor', function test_KOMDeckModelErrorsFor() {
 
 	});
 
-	context('KOMDeckIsOralRear', function() {
+	context('KOMDeckRearIsOral', function() {
 
 		it('returns object if not boolean', function() {
 			deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
-				KOMDeckIsOralRear: null,
+				KOMDeckRearIsOral: null,
 			})), {
-				KOMDeckIsOralRear: [
+				KOMDeckRearIsOral: [
 					'KOMErrorNotBoolean',
 				],
 			});
