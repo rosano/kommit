@@ -13,6 +13,7 @@ The project is freely accessible but if you are in a position to give, please [d
 ## Features
 - Create unlimited decks
 - Create unlimited cards
+- Hear cards orally with text-to-speech
 - Sync with multiple devices
 - Works offline without internet access
 - Simple interface
