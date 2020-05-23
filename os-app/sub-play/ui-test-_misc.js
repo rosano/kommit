@@ -966,6 +966,10 @@ describe('KOMPlay_Misc', function () {
 				return browser.pressButton(KOMPlayCardQuestionRepeatButton);
 			});
 
+			it('sets tabindex', function () {
+				browser.assert.attribute('#TestKOMPlayOralFrontLog', 'tabindex', '-1');
+			});
+
 			it('starts read', function () {
 				browser.assert.text('#TestKOMPlayOralFrontLog', 'read,read');
 			});

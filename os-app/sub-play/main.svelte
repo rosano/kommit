@@ -1,3 +1,4 @@
+
 <script>
 export let KOMPlaySpacings;
 export let KOMPlayDeck;
@@ -261,7 +262,7 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 
 {#if mod._ValueState.KOMPlayStateCurrent }
 	{#if KOMPlayDeck.KOMDeckFrontIsOral}
-		<button class="KOMPlayCardQuestionRepeatButton" on:click={ mod.InterfaceQuestionRepeatButtonDidClick }>{ OLSKLocalized('KOMPlayCardQuestionRepeatButtonText') }</button>
+		<button class="KOMPlayCardQuestionRepeatButton" on:click={ mod.InterfaceQuestionRepeatButtonDidClick } tabindex="-1">{ OLSKLocalized('KOMPlayCardQuestionRepeatButtonText') }</button>
 	{/if}
 
 	<div class="KOMPlayCard OLSKLayoutElementTappable" on:click={ mod.InterfaceCardDidClick }>
