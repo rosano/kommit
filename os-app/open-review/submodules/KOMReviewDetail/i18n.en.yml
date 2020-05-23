@@ -1,12 +1,12 @@
 KOMReviewDetailToolbarBackButtonText: Back
 KOMReviewDetailToolbarCardsButtonText: Cards
-KOMReviewDetailStudyHeadingText: Study
+KOMReviewDetailStudyHeadingText: Review
 KOMReviewDetailNoCardsText: There are no cards in this deck.
 KOMReviewDetailFormFrontIsOralFieldLabelText: Front is oral
-KOMReviewDetailFormIsForwardOnlyFieldLabelText: Front to back only
-KOMReviewDetailFormPlayButtonReviewingText: Review cards
-KOMReviewDetailFormPlayButtonUnseenText: New cards
-KOMReviewDetailFormPlayButtonMixedText: All cards
+KOMReviewDetailFormIsForwardOnlyFieldLabelText: Skip reversed cards
+KOMReviewDetailFormPlayButtonReviewingText: Study review cards
+KOMReviewDetailFormPlayButtonUnseenText: Study new cards
+KOMReviewDetailFormPlayButtonMixedText: Study all cards
 KOMReviewDetailNoSpacingsText: All cards for today have been reviewed.
 KOMReviewDetailDeckHeadingText: Deck
 KOMReviewDetailRenameButtonText: Rename
