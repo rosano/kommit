@@ -44,7 +44,10 @@ const mod = {
 
 	InterfaceFormDidUpdate () {
 		if (!KOMReviewDetailDeck.KOMDeckFrontLanguageCode) {
-			delete KOMReviewDetailDeck.KOMDeckFrontLanguageCode
+			delete KOMReviewDetailDeck.KOMDeckFrontLanguageCode;
+			
+			KOMReviewDetailDeck.KOMDeckFrontIsOral = false; // #purge-svelte-trigger-update
+			delete KOMReviewDetailDeck.KOMDeckFrontIsOral;
 		}
 		
 		window.setTimeout(function () {
@@ -151,7 +154,7 @@ import KOMReviewDetailLanguageCode from '../KOMReviewDetailLanguageCode/main.sve
 					KOMReviewDetailLanguageCodeItem={ KOMReviewDetailDeck }
 					KOMReviewDetailLanguageCodeItemProperty={ 'KOMDeckFrontLanguageCode' }
 					KOMReviewDetailLanguageCodeOptions={ mod._ValueLanguages }
-					KOMReviewDetailLanguageCodeDispatchUpdate={ KOMReviewDetailDispatchUpdate }
+					KOMReviewDetailLanguageCodeDispatchUpdate={ mod.InterfaceFormDidUpdate }
 					/>
 			</span>
 		</p>

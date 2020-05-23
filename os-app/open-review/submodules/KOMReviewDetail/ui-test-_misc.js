@@ -29,7 +29,7 @@ const kTesting = {
 			}
 
 			return Object.assign(e, {
-				KOMSpacingDueDate: new Date(),
+				KOMSpacingDueDate: new Date((new Date()).toJSON().slice(0, 10)),
 			});
 		});
 	},
@@ -202,14 +202,16 @@ describe('KOMReviewDetail_Misc', function () {
 
 	describe('KOMReviewDetailFormFrontIsOralField', function test_KOMReviewDetailFormFrontIsOralField () {
 
-		const item = kTesting.uDeck({
-			KOMDeckFrontLanguageCode: 'DEFAULT_LANGUAGE',
-			$KOMDeckSpacings: kTesting.uSpacings(true),
-		});
+		const uItem = function () {
+			return kTesting.uDeck({
+				KOMDeckFrontLanguageCode: 'DEFAULT_LANGUAGE',
+				$KOMDeckSpacings: kTesting.uSpacings(true),
+			})
+		};
 
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute, {
-				KOMReviewDetailDeck: JSON.stringify(item),
+				KOMReviewDetailDeck: JSON.stringify(uItem()),
 			});
 		});
 
@@ -243,7 +245,7 @@ describe('KOMReviewDetail_Misc', function () {
 
 		});
 		
-		context('click', function () {
+		context('check', function () {
 			
 			before(function () {
 				browser.assert.text('#TestKOMReviewDetailDispatchUpdate', '0');
@@ -256,15 +258,31 @@ describe('KOMReviewDetail_Misc', function () {
 
 			it('sends KOMReviewDetailDispatchUpdate', function () {
 				browser.assert.text('#TestKOMReviewDetailDispatchUpdate', '1');
-				browser.assert.text('#TestKOMReviewDetailDispatchUpdateData', JSON.stringify(Object.assign(item, {
+				browser.assert.text('#TestKOMReviewDetailDispatchUpdateData', JSON.stringify(Object.assign(uItem(), {
 					KOMDeckFrontIsOral: true,
 				})));
 			});
-
-			after(function () {
-				return browser.uncheck(KOMReviewDetailFormFrontIsOralField);
-			});
 		
+		});
+
+		context('select language unspecified', function () {
+
+			before(function () {
+				return browser.select(`${ KOMReviewDetailFormFrontLanguageCode } .KOMReviewDetailLanguageCodeField`, '');
+			});
+
+			it('sets disabled', function () {
+				browser.assert.attribute(KOMReviewDetailFormFrontIsOralField, 'disabled', '');
+			});
+
+			it('sends KOMReviewDetailDispatchUpdate', function () {
+				const item = uItem();
+				delete item.KOMDeckFrontLanguageCode;
+
+				browser.assert.text('#TestKOMReviewDetailDispatchUpdate', '2');
+				browser.assert.text('#TestKOMReviewDetailDispatchUpdateData', JSON.stringify(item));
+			});
+
 		});
 	
 	});
