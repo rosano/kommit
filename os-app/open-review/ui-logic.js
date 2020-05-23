@@ -1,5 +1,6 @@
 import KOMPlayLogic from '../sub-play/ui-logic.js';
 import KOMSpacingModel from '../_shared/KOMSpacing/model.js';
+import KOMDeckModel from '../_shared/KOMDeck/model.js';
 
 const mod = {
 
@@ -68,31 +69,19 @@ const mod = {
 			}
 		}
 
-		if (inputData.KOMReviewIsForwardOnly !== undefined) {
-			if (typeof inputData.KOMReviewIsForwardOnly !== 'boolean') {
-				errors.KOMReviewIsForwardOnly = [
-					'KOMErrorNotBoolean',
-				];
-			}
-		}
-
-		if (inputData.KOMReviewFrontIsOral !== undefined) {
-			if (typeof inputData.KOMReviewFrontIsOral !== 'boolean') {
-				errors.KOMReviewFrontIsOral = [
-					'KOMErrorNotBoolean',
-				];
-			}
-		}
-
 		return Object.entries(errors).length ? errors : null;
 	},
 
-	KOMReviewFilter (param1, param2) {
+	KOMReviewFilter (param1, param2, param3) {
 		if (!Array.isArray(param1)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
 		if (mod.KOMReviewModelErrorsFor(param2)) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		if (KOMDeckModel.KOMDeckModelErrorsFor(param3)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
@@ -106,7 +95,7 @@ const mod = {
 				return false;
 			}
 
-			if (param2.KOMReviewIsForwardOnly && KOMSpacingModel.KOMSpacingModelIsBackward(e) ) {
+			if (param3.KOMDeckIsForwardOnly && KOMSpacingModel.KOMSpacingModelIsBackward(e) ) {
 				return false;
 			}
 

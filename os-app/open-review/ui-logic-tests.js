@@ -19,6 +19,14 @@ const kTesting = {
 			KOMCardModificationDate: new Date('2019-02-23T13:56:36Z'),
 		};
 	},
+	StubDeckObjectValid() {
+		return {
+			KOMDeckID: 'alfa',
+			KOMDeckName: '',
+			KOMDeckCreationDate: new Date('2019-02-23T13:56:36Z'),
+			KOMDeckModificationDate: new Date('2019-02-23T13:56:36Z'),
+		};
+	},
 	StubReviewObjectValid() {
 		return {
 			KOMReviewScheme: mainModule.KOMReviewSchemeReviewing(),
@@ -193,46 +201,6 @@ describe('KOMReviewModelErrorsFor', function test_KOMReviewModelErrorsFor() {
 
 	});
 
-	context('KOMReviewIsForwardOnly', function() {
-
-		it('returns object if not boolean', function() {
-			deepEqual(mainModule.KOMReviewModelErrorsFor(Object.assign(kTesting.StubReviewObjectValid(), {
-				KOMReviewIsForwardOnly: 'true',
-			})), {
-				KOMReviewIsForwardOnly: [
-					'KOMErrorNotBoolean',
-				],
-			});
-		});
-
-		it('returns null', function() {
-			deepEqual(mainModule.KOMReviewModelErrorsFor(Object.assign(kTesting.StubReviewObjectValid(), {
-				KOMReviewIsForwardOnly: true,
-			})), null);
-		});
-
-	});
-
-	context('KOMReviewFrontIsOral', function() {
-
-		it('returns object if not boolean', function() {
-			deepEqual(mainModule.KOMReviewModelErrorsFor(Object.assign(kTesting.StubReviewObjectValid(), {
-				KOMReviewFrontIsOral: 'true',
-			})), {
-				KOMReviewFrontIsOral: [
-					'KOMErrorNotBoolean',
-				],
-			});
-		});
-
-		it('returns null', function() {
-			deepEqual(mainModule.KOMReviewModelErrorsFor(Object.assign(kTesting.StubReviewObjectValid(), {
-				KOMReviewFrontIsOral: true,
-			})), null);
-		});
-
-	});
-
 });
 
 describe('KOMReviewFilter', function test_KOMReviewFilter() {
@@ -259,18 +227,25 @@ describe('KOMReviewFilter', function test_KOMReviewFilter() {
 
 	it('throws if param1 not array', function () {
 		throws(function () {
-			mainModule.KOMReviewFilter(null, kTesting.StubReviewObjectValid());
+			mainModule.KOMReviewFilter(null, kTesting.StubReviewObjectValid(), kTesting.StubDeckObjectValid());
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('throws if param2 not valid', function () {
 		throws(function () {
-			mainModule.KOMReviewFilter([], {});
+			mainModule.KOMReviewFilter([], {}, kTesting.StubDeckObjectValid());
+		}, /KOMErrorInputNotValid/);
+	});
+
+
+	it('throws if param3 not valid', function () {
+		throws(function () {
+			mainModule.KOMReviewFilter([], kTesting.StubReviewObjectValid(), {});
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns array', function() {
-		deepEqual(mainModule.KOMReviewFilter([], kTesting.StubReviewObjectValid()), []);
+		deepEqual(mainModule.KOMReviewFilter([], kTesting.StubReviewObjectValid(), kTesting.StubDeckObjectValid()), []);
 	});
 
 	context('KOMReviewScheme', function () {		
@@ -278,14 +253,14 @@ describe('KOMReviewFilter', function test_KOMReviewFilter() {
 		it('excludes unseen if KOMReviewSchemeReviewing', function() {
 			deepEqual(mainModule.KOMReviewFilter(uItems(), Object.assign(kTesting.StubReviewObjectValid(), {
 				KOMReviewScheme: mainModule.KOMReviewSchemeReviewing(),
-			})), []);
+			}), kTesting.StubDeckObjectValid()), []);
 		});
 
 		it('excludes reviewing if KOMReviewSchemeUnseen', function() {
 			deepEqual(mainModule.KOMReviewFilter(uItems(true), Object.assign(kTesting.StubReviewObjectValid(), {
 				KOMReviewScheme: mainModule.KOMReviewSchemeUnseen(),
 				KOMReviewMaxUnseenCards: 5,
-			})), []);
+			}), kTesting.StubDeckObjectValid()), []);
 		});
 	
 	});
@@ -295,19 +270,19 @@ describe('KOMReviewFilter', function test_KOMReviewFilter() {
 		it('does nothing if KOMReviewSchemeReviewing', function() {
 			deepEqual(mainModule.KOMReviewFilter(uItems(), Object.assign(kTesting.StubReviewObjectValid(), {
 				KOMReviewScheme: mainModule.KOMReviewSchemeReviewing(),
-			})), []);
+			}), kTesting.StubDeckObjectValid()), []);
 		});
 
 		it('includes if unseen until KOMReviewMaxUnseenCards', function() {
 			deepEqual(mainModule.KOMReviewFilter(uItems(), Object.assign(kTesting.StubReviewObjectValid(), {
 				KOMReviewScheme: mainModule.KOMReviewSchemeUnseen(),
 				KOMReviewMaxUnseenCards: 5,
-			})), uItems().slice(0, 10));
+			}), kTesting.StubDeckObjectValid()), uItems().slice(0, 10));
 		});
 	
 	});
 
-	context('KOMReviewIsForwardOnly', function () {
+	context('KOMDeckIsForwardOnly', function () {
 
 		it('excludes backward if true', function() {
 			const items = uItems();
@@ -315,7 +290,8 @@ describe('KOMReviewFilter', function test_KOMReviewFilter() {
 			deepEqual(mainModule.KOMReviewFilter(items, Object.assign(kTesting.StubReviewObjectValid(), {
 				KOMReviewScheme: mainModule.KOMReviewSchemeUnseen(),
 				KOMReviewMaxUnseenCards: 10,
-				KOMReviewIsForwardOnly: true,
+			}), Object.assign(kTesting.StubDeckObjectValid(), {
+				KOMDeckIsForwardOnly: true,
 			})), items.filter(function (e) {
 				return !e.KOMSpacingID.match('backward');
 			}));
