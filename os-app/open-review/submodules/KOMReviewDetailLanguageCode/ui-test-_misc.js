@@ -63,6 +63,21 @@ describe('KOMReviewDetailLanguageCode_Misc', function () {
 		
 		});
 
+		context('select KOMReviewDetailLanguageCodeFieldOptionPlaceholder', function () {
+			
+			before(function () {
+				return browser.select(KOMReviewDetailLanguageCodeField, '');
+			});
+
+			it('sends KOMReviewDetailDispatchUpdate', function () {
+				browser.assert.text('#TestKOMReviewDetailLanguageCodeDispatchUpdate', '2');
+				browser.assert.text('#TestKOMReviewDetailLanguageCodeDispatchUpdateData', JSON.stringify({
+					KOMDeckName: 'alfa',
+				}));
+			});
+		
+		});
+
 		context('KOMReviewDetailLanguageCodeItemProperty', function () {
 			
 			before(function() {
