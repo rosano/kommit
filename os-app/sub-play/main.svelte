@@ -1,4 +1,3 @@
-
 <script>
 export let KOMPlaySpacings;
 export let KOMPlayDeck;

@@ -967,7 +967,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('sets tabindex', function () {
-				browser.assert.attribute('#TestKOMPlayOralFrontLog', 'tabindex', '-1');
+				browser.assert.attribute(KOMPlayCardQuestionRepeatButton, 'tabindex', '-1');
 			});
 
 			it('starts read', function () {
