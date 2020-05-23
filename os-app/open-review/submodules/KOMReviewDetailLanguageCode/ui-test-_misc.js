@@ -8,7 +8,7 @@ describe('KOMReviewDetailLanguageCode_Misc', function () {
 				KOMDeckName: 'alfa',
 			}),
 			KOMReviewDetailLanguageCodeItemProperty: 'KOMDeckFrontLanguageCode',
-			KOMReviewDetailLanguageCodeOptions: JSON.stringify(['alfa']),
+			KOMReviewDetailLanguageCodeOptions: JSON.stringify(['bravo']),
 		});
 	});
 
@@ -39,7 +39,28 @@ describe('KOMReviewDetailLanguageCode_Misc', function () {
 		});
 
 		it('binds KOMReviewDetailLanguageCodeOptions', function () {
-			browser.assert.text('option[value=alfa]', 'alfa');
+			browser.assert.text('option[value=bravo]', 'bravo');
+		});
+
+		context('select', function () {
+			
+			before(function () {
+				browser.assert.text('#TestKOMReviewDetailLanguageCodeDispatchUpdate', '0');
+				browser.assert.text('#TestKOMReviewDetailLanguageCodeDispatchUpdateData', 'undefined');
+			});
+			
+			before(function () {
+				return browser.select(KOMReviewDetailLanguageCodeField, 'bravo');
+			});
+
+			it('sends KOMReviewDetailDispatchUpdate', function () {
+				browser.assert.text('#TestKOMReviewDetailLanguageCodeDispatchUpdate', '1');
+				browser.assert.text('#TestKOMReviewDetailLanguageCodeDispatchUpdateData', JSON.stringify({
+					KOMDeckName: 'alfa',
+					KOMDeckFrontLanguageCode: 'bravo',
+				}));
+			});
+		
 		});
 
 		context('KOMReviewDetailLanguageCodeItemProperty', function () {
