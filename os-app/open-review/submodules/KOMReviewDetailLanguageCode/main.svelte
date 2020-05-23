@@ -10,7 +10,7 @@ const OLSKLocalized = function(translationConstant) {
 
 <label class="KOMReviewDetailLanguageCode">
 	<span class="KOMReviewDetailLanguageCodeFieldLabel">{ OLSKLocalized('KOMReviewDetailLanguageCodeFieldLabelText') }</span>
-	<select class="KOMReviewDetailLanguageCodeField" bind:value={ KOMReviewDetailLanguageCodeItem[KOMReviewDetailLanguageCodeItemProperty] }>
+	<select class="KOMReviewDetailLanguageCodeField" bind:value={ KOMReviewDetailLanguageCodeItem[KOMReviewDetailLanguageCodeItemProperty] } tabindex={ KOMReviewDetailLanguageCodeItem[KOMReviewDetailLanguageCodeItemProperty] ? -1 : null }>
 		<option class="KOMReviewDetailLanguageCodeFieldOptionPlaceholder" value="">{ OLSKLocalized('KOMReviewDetailLanguageCodeFieldOptionPlaceholderText') }</option>
 		<option class="KOMReviewDetailLanguageCodeFieldOptionDefault" value="DEFAULT_LANGUAGE">{ OLSKLocalized('KOMReviewDetailLanguageCodeFieldOptionDefaultText') }</option>
 	</select>
