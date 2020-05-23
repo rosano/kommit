@@ -21,20 +21,19 @@ const kTesting = {
 			};
 		});
 	},
-};
-
-describe('KOMReviewDetail_Misc', function () {
-
-	const uItem = function () {
+	uDeck () {
 		return {
 			KOMDeckName: 'alfa',
 			$KOMDeckSpacings: [],
 		};
-	};
+	},
+};
+
+describe('KOMReviewDetail_Misc', function () {
 
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute, {
-			KOMReviewDetailDeck: JSON.stringify(uItem()),
+			KOMReviewDetailDeck: JSON.stringify(kTesting.uDeck()),
 		});
 	});
 
@@ -85,7 +84,7 @@ describe('KOMReviewDetail_Misc', function () {
 	describe('KOMReviewDetailToolbarTitle', function test_KOMReviewDetailToolbarTitle () {
 		
 		it('sets text', function () {
-			browser.assert.text(KOMReviewDetailToolbarTitle, uItem().KOMDeckName);
+			browser.assert.text(KOMReviewDetailToolbarTitle, kTesting.uDeck().KOMDeckName);
 		});
 	
 	});
@@ -125,7 +124,7 @@ describe('KOMReviewDetail_Misc', function () {
 
 			it('sends KOMReviewDetailDispatchDiscard', function () {
 				browser.assert.text('#TestKOMReviewDetailDispatchDiscard', '1');
-				browser.assert.text('#TestKOMReviewDetailDispatchDiscardData', JSON.stringify(uItem()));
+				browser.assert.text('#TestKOMReviewDetailDispatchDiscardData', JSON.stringify(kTesting.uDeck()));
 			});
 		
 		});
@@ -144,7 +143,7 @@ describe('KOMReviewDetail_Misc', function () {
 			it('sets KOMReviewDetailRenameButtonPrompt response', function() {
 				deepEqual(browser.OLSKPromptSync(function () {
 					return browser.pressButton(KOMReviewDetailRenameButton);
-				}).response, uItem().KOMDeckName);
+				}).response, kTesting.uDeck().KOMDeckName);
 			});
 
 			context('edit', function () {
@@ -161,7 +160,7 @@ describe('KOMReviewDetail_Misc', function () {
 
 				it('sends KOMReviewDetailDispatchUpdate', function () {
 					browser.assert.text('#TestKOMReviewDetailDispatchUpdate', '1');
-					browser.assert.text('#TestKOMReviewDetailDispatchUpdateData', JSON.stringify(Object.assign(uItem(), {
+					browser.assert.text('#TestKOMReviewDetailDispatchUpdateData', JSON.stringify(Object.assign(kTesting.uDeck(), {
 						KOMDeckName: 'bravo',
 					})));
 				});
