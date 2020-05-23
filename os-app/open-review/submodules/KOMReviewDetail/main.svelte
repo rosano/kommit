@@ -136,7 +136,7 @@ import KOMReviewDetailLanguageCode from '../KOMReviewDetailLanguageCode/main.sve
 	<div class="KOMReviewDetailForm">
 		<p>
 			<label>
-				<input class="KOMReviewDetailFormFrontIsOralField" type="checkbox" bind:checked={ KOMReviewDetailDeck.KOMDeckFrontIsOral } on:input={ mod.InterfaceFormDidUpdate } />
+				<input class="KOMReviewDetailFormFrontIsOralField" type="checkbox" bind:checked={ KOMReviewDetailDeck.KOMDeckFrontIsOral } disabled={ KOMReviewDetailDeck.KOMDeckFrontLanguageCode ? null : true } on:input={ mod.InterfaceFormDidUpdate } />
 				<span class="KOMReviewDetailFormFrontIsOralFieldLabel">{ OLSKLocalized('KOMReviewDetailFormFrontIsOralFieldLabelText') }</span>
 			</label>
 

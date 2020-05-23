@@ -873,7 +873,7 @@ describe('KOMPlay_Misc', function () {
 				return browser.pressButton(KOMPlayResponseButtonEasy);
 			});
 
-			it('removes disabled', function () {
+			it('sets disabled', function () {
 				browser.assert.attribute(KOMPlayToolbarUndoButton, 'disabled', null);
 			});
 

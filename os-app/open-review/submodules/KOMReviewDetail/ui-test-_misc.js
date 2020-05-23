@@ -203,6 +203,7 @@ describe('KOMReviewDetail_Misc', function () {
 	describe('KOMReviewDetailFormFrontIsOralField', function test_KOMReviewDetailFormFrontIsOralField () {
 
 		const item = kTesting.uDeck({
+			KOMDeckFrontLanguageCode: 'DEFAULT_LANGUAGE',
 			$KOMDeckSpacings: kTesting.uSpacings(true),
 		});
 
@@ -218,6 +219,28 @@ describe('KOMReviewDetail_Misc', function () {
 		
 		it('binds KOMDeckFrontIsOral', function () {
 			browser.assert.evaluate(`document.querySelector('${ KOMReviewDetailFormFrontIsOralField }').checked`, false);
+		});
+
+		it('sets disabled', function () {
+			browser.assert.attribute(KOMReviewDetailFormFrontIsOralField, 'disabled', null);
+			// browser.assert.attribute(KOMReviewDetailFormFrontIsOralField, 'disabled', '');
+		});
+
+		context('select language', function () {
+
+			before(function () {
+				browser.assert.text('#TestKOMReviewDetailDispatchUpdate', '0');
+				browser.assert.text('#TestKOMReviewDetailDispatchUpdateData', 'undefined');
+			});
+			
+			before(function () {
+				// return browser.select(`${ KOMReviewDetailFormFrontLanguageCode } .KOMReviewDetailLanguageCodeField`, 'DEFAULT_LANGUAGE');
+			});
+
+			it.skip('sets disabled', function () {
+				browser.assert.attribute(KOMReviewDetailFormFrontIsOralField, 'disabled', null);
+			});
+
 		});
 		
 		context('click', function () {
@@ -237,11 +260,11 @@ describe('KOMReviewDetail_Misc', function () {
 					KOMDeckFrontIsOral: true,
 				})));
 			});
-		
-		});
 
-		after(function () {
-			return browser.uncheck(KOMReviewDetailFormFrontIsOralField);
+			after(function () {
+				return browser.uncheck(KOMReviewDetailFormFrontIsOralField);
+			});
+		
 		});
 	
 	});
