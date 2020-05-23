@@ -83,6 +83,25 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 
 		});
 
+		describe('oral', function test_oral () {
+
+			const items = kTesting.uSpacings(2);
+
+			before(function() {
+				return browser.OLSKVisit(kDefaultRoute, {
+					KOMPlaySpacings: JSON.stringify(items),
+					KOMPlayDeck: JSON.stringify(Object.assign(kTesting.uDeck(), {
+						KOMDeckFrontIsOral: true,
+					})),
+				});
+			});
+
+			it('localizes KOMPlayCardQuestionRepeatButton', function () {
+				browser.assert.text(KOMPlayCardQuestionRepeatButton, uLocalized('KOMPlayCardQuestionRepeatButtonText'));
+			});
+
+		});
+
 	});
 
 });

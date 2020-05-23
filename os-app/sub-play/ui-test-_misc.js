@@ -956,8 +956,20 @@ describe('KOMPlay_Misc', function () {
 			});
 		});
 
-		it('start read', function () {
+		it('starts read', function () {
 			browser.assert.text('#TestKOMPlayOralFrontLog', 'read');
+		});
+
+		context('KOMPlayCardQuestionRepeatButton', function () {
+
+			before(function () {
+				return browser.pressButton(KOMPlayCardQuestionRepeatButton);
+			});
+
+			it('starts read', function () {
+				browser.assert.text('#TestKOMPlayOralFrontLog', 'read,read');
+			});
+
 		});
 
 		context('flip', function () {
@@ -967,7 +979,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('stop read', function () {
-				browser.assert.text('#TestKOMPlayOralFrontLog', 'read,stop');
+				browser.assert.text('#TestKOMPlayOralFrontLog', 'read,read,stop');
 			});
 
 		});
@@ -978,8 +990,8 @@ describe('KOMPlay_Misc', function () {
 				return browser.pressButton(KOMPlayResponseButtonEasy);
 			});
 
-			it('start read', function () {
-				browser.assert.text('#TestKOMPlayOralFrontLog', 'read,stop,read');
+			it('starts read', function () {
+				browser.assert.text('#TestKOMPlayOralFrontLog', 'read,read,stop,read');
 			});
 
 		});
@@ -990,8 +1002,8 @@ describe('KOMPlay_Misc', function () {
 				return browser.pressButton(KOMPlayToolbarUndoButton);
 			});
 
-			it('start read', function () {
-				browser.assert.text('#TestKOMPlayOralFrontLog', 'read,stop,read');
+			it('starts read', function () {
+				browser.assert.text('#TestKOMPlayOralFrontLog', 'read,read,stop,read,read');
 			});
 			
 		});

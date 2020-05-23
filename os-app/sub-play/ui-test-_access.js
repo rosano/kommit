@@ -42,6 +42,7 @@ Object.entries({
 
 	KOMPlayCard: '.KOMPlayCard',
 	KOMPlayCardQuestion: '.KOMPlayCardQuestion',
+	KOMPlayCardQuestionRepeatButton: '.KOMPlayCardQuestionRepeatButton',
 	KOMPlayCardAnswer: '.KOMPlayCardAnswer',
 	KOMPlayCardHint: '.KOMPlayCardHint',
 
@@ -90,6 +91,10 @@ describe('KOMPlay_Access', function () {
 
 	it('shows KOMPlayCardQuestion', function () {
 		browser.assert.elements(KOMPlayCardQuestion, 1);
+	});
+
+	it('hides KOMPlayCardQuestionRepeatButton', function () {
+		browser.assert.elements(KOMPlayCardQuestionRepeatButton, 0);
 	});
 
 	it('hides KOMPlayCardAnswer', function () {
@@ -190,6 +195,25 @@ describe('KOMPlay_Access', function () {
 			browser.assert.elements(KOMPlayResponseButtonEasy, 0);
 		});
 	
+	});
+
+	describe('oral', function test_oral () {
+
+		const items = kTesting.uSpacings(2);
+
+		before(function() {
+			return browser.OLSKVisit(kDefaultRoute, {
+				KOMPlaySpacings: JSON.stringify(items),
+				KOMPlayDeck: JSON.stringify(Object.assign(kTesting.uDeck(), {
+					KOMDeckFrontIsOral: true,
+				})),
+			});
+		});
+
+		it('shows KOMPlayCardQuestionRepeatButton', function () {
+			browser.assert.elements(KOMPlayCardQuestionRepeatButton, 1);
+		});
+
 	});
 
 });

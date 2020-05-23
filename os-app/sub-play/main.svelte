@@ -41,6 +41,10 @@ const mod = {
 		mod.ControlUndo();
 	},
 
+	InterfaceQuestionRepeatButtonDidClick () {
+		mod.ControlQuestionRead();
+	},
+
 	InterfaceWindowDidKeydown (event) {
 		if (document.querySelector('.LCHLauncher')) { // #spec
 			return;
@@ -48,7 +52,7 @@ const mod = {
 
 		const handlerFunctions = {
 			Space () {
-				mod.InterfaceCardDidClick();
+				mod.ControlProgress();
 			},
 			Digit1 () {
 				mod._ValueIsFlipped && mod.ControlRespond(KOMPlayLogic.KOMPlayResponseTypeAgain());
@@ -68,11 +72,7 @@ const mod = {
 	},
 
 	InterfaceCardDidClick () {
-		if (mod._ValueIsFlipped) {
-			return mod.ControlRespond(KOMPlayLogic.KOMPlayResponseTypeGood());
-		}
-
-		mod.ControlFlip();
+		mod.ControlProgress();
 	},
 
 	InterfaceFlipButtonDidClick () {
@@ -105,11 +105,15 @@ const mod = {
 		mod.SetupChronicle();
 
 		if (KOMPlayDeck.KOMDeckFrontIsOral) {
-			mod.ControlReadFront();
+			mod.ControlQuestionRead();
 		}
 	},
 
-	ControlReadFront () {
+	ControlQuestionRead () {
+		mod.ControlReadStart(mod.DataQuestion());
+	},
+
+	ControlReadStart (inputData) {
 		if (OLSK_TESTING_BEHAVIOUR()) {
 			mod.DebugFrontLog('read');
 		}
@@ -118,8 +122,15 @@ const mod = {
 			return;
 		}
 
-		const item = new SpeechSynthesisUtterance(mod.DataQuestion());
+		if (speechSynthesis.speaking) {
+			speechSynthesis.cancel();
+		}
+
+		const item = new SpeechSynthesisUtterance(inputData);
 		item.lang = KOMPlayDeck.KOMDeckFrontLanguageCode;
+		item.voice = speechSynthesis.getVoices().filter(function (e) {
+			return e.lang == item.lang;
+		}).pop();
 
 		speechSynthesis.speak(item);
 	},
@@ -138,10 +149,20 @@ const mod = {
 		}
 	},
 
+	ControlProgress() {
+		if (mod._ValueIsFlipped) {
+			return mod.ControlRespond(KOMPlayLogic.KOMPlayResponseTypeGood());
+		}
+
+		mod.ControlFlip();
+	},
+
 	ControlUndo () {
 		mod._ValueState.KOMPlayStateQueue.unshift(mod._ValueState.KOMPlayStateCurrent);
 		
-		KOMPlayDispatchUpdate(mod._ValueState.KOMPlayStateCurrent = KOMPlayLogic.KOMPlayUndo(mod._ValueHistory.pop()));
+		mod._ValueState.KOMPlayStateCurrent = KOMPlayLogic.KOMPlayUndo(mod._ValueHistory.pop());
+
+		mod.ControlDraw();
 	},
 
 	ControlFlip () {
@@ -239,6 +260,10 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 <div class="KOMPlayBody">
 
 {#if mod._ValueState.KOMPlayStateCurrent }
+	{#if KOMPlayDeck.KOMDeckFrontIsOral}
+		<button class="KOMPlayCardQuestionRepeatButton" on:click={ mod.InterfaceQuestionRepeatButtonDidClick }>{ OLSKLocalized('KOMPlayCardQuestionRepeatButtonText') }</button>
+	{/if}
+
 	<div class="KOMPlayCard OLSKLayoutElementTappable" on:click={ mod.InterfaceCardDidClick }>
 
 		<div class="KOMPlayCardQuestion">{ mod.DataQuestion() }</div>
