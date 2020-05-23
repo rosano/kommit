@@ -76,6 +76,14 @@ const mod = {
 			}
 		}
 
+		if (inputData.KOMReviewFrontIsOral !== undefined) {
+			if (typeof inputData.KOMReviewFrontIsOral !== 'boolean') {
+				errors.KOMReviewFrontIsOral = [
+					'KOMErrorNotBoolean',
+				];
+			}
+		}
+
 		return Object.entries(errors).length ? errors : null;
 	},
 

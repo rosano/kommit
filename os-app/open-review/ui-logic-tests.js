@@ -213,6 +213,26 @@ describe('KOMReviewModelErrorsFor', function test_KOMReviewModelErrorsFor() {
 
 	});
 
+	context('KOMReviewFrontIsOral', function() {
+
+		it('returns object if not boolean', function() {
+			deepEqual(mainModule.KOMReviewModelErrorsFor(Object.assign(kTesting.StubReviewObjectValid(), {
+				KOMReviewFrontIsOral: 'true',
+			})), {
+				KOMReviewFrontIsOral: [
+					'KOMErrorNotBoolean',
+				],
+			});
+		});
+
+		it('returns null', function() {
+			deepEqual(mainModule.KOMReviewModelErrorsFor(Object.assign(kTesting.StubReviewObjectValid(), {
+				KOMReviewFrontIsOral: true,
+			})), null);
+		});
+
+	});
+
 });
 
 describe('KOMReviewFilter', function test_KOMReviewFilter() {
