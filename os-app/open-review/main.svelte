@@ -532,6 +532,7 @@ import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svel
 	{#if mod._ValuePlayVisible}
 		<KOMPlay
 			KOMPlaySpacings={ mod._ValuePlaySpacings }
+			KOMPlayDeck={ mod._ValueDeckSelected }
 			KOMPlayDispatchDone={ mod.KOMPlayDispatchDone }
 			KOMPlayDispatchUpdate={ mod.KOMPlayDispatchUpdate }
 			/>
