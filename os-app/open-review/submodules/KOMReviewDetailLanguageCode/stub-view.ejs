@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="/_shared/__external/normalize.css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="/<%= OLSKSharedPageControllerSlug %>/__compiled/ui-style.css">
+
+	<script type="text/javascript">
+		window.OLSKPublicConstants = function (inputData) {
+			return <%- JSON.stringify({
+				OLSKSharedPageCurrentLanguage,
+			}) %>[inputData];
+		};
+	</script>
+</head>
+<body>
+
+<script src="/<%= OLSKSharedPageControllerSlug %>/__compiled/ui-behaviour.js"></script>
+
+<p>
+	<strong>TestKOMReviewDetailLanguageCodeDispatchCreate</strong>
+	<span id="TestKOMReviewDetailLanguageCodeDispatchCreate">0</span>
+	<span id="TestKOMReviewDetailLanguageCodeDispatchCreateData">undefined</span>
+</p>
+
+<p>
+	<strong>TestKOMReviewDetailLanguageCodeDispatchClick</strong>
+	<span id="TestKOMReviewDetailLanguageCodeDispatchClick">0</span>
+	<span id="TestKOMReviewDetailLanguageCodeDispatchClickData">undefined</span>
+</p>
+
+<p>
+	<strong>TestKOMReviewDetailLanguageCodeDispatchArrow</strong>
+	<span id="TestKOMReviewDetailLanguageCodeDispatchArrow">0</span>
+	<span id="TestKOMReviewDetailLanguageCodeDispatchArrowData">undefined</span>
+</p>
+
+<p>
+	<strong>TestKOMReviewDetailLanguageCodeDispatchFilter</strong>
+	<span id="TestKOMReviewDetailLanguageCodeDispatchFilter">0</span>
+	<span id="TestKOMReviewDetailLanguageCodeDispatchFilterData">undefined</span>
+</p>
+
+</body>
+</html>
