@@ -4,6 +4,14 @@ const KOMPlayLogic = require('./ui-logic.js').default;
 const KOMSpacingModel = require('../_shared/KOMSpacing/model.js').default;
 
 const kTesting = {
+	uDeck () {
+		return {
+			KOMDeckID: 'alfa',
+			KOMDeckName: '',
+			KOMDeckCreationDate: new Date('2019-02-23T13:56:36Z'),
+			KOMDeckModificationDate: new Date('2019-02-23T13:56:36Z'),
+		};
+	},
 	uSpacings (inputData) {
 		return KOMPlayLogic._KOMPlaySortShuffle(Array.from(new Array(inputData)).map(function (e, i) {
 			return {
@@ -36,6 +44,7 @@ describe('KOMPlay_Misc', function () {
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute, {
 			KOMPlaySpacings: JSON.stringify(items),
+			KOMPlayDeck: JSON.stringify(kTesting.uDeck()),
 		});
 	});
 
@@ -332,6 +341,7 @@ describe('KOMPlay_Misc', function () {
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMPlaySpacings: JSON.stringify(items),
+				KOMPlayDeck: JSON.stringify(kTesting.uDeck()),
 			});
 		});
 
@@ -540,6 +550,7 @@ describe('KOMPlay_Misc', function () {
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMPlaySpacings: JSON.stringify(items),
+				KOMPlayDeck: JSON.stringify(kTesting.uDeck()),
 			});
 		});
 
@@ -572,6 +583,7 @@ describe('KOMPlay_Misc', function () {
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMPlaySpacings: JSON.stringify(items),
+				KOMPlayDeck: JSON.stringify(kTesting.uDeck()),
 			});
 		});
 
@@ -618,6 +630,7 @@ describe('KOMPlay_Misc', function () {
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMPlaySpacings: JSON.stringify(kTesting.uSpacings(1)),
+				KOMPlayDeck: JSON.stringify(kTesting.uDeck()),
 			});
 		});
 
@@ -650,6 +663,7 @@ describe('KOMPlay_Misc', function () {
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMPlaySpacings: JSON.stringify(items),
+				KOMPlayDeck: JSON.stringify(kTesting.uDeck()),
 			});
 		});
 
@@ -738,6 +752,7 @@ describe('KOMPlay_Misc', function () {
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMPlaySpacings: JSON.stringify(items),
+				KOMPlayDeck: JSON.stringify(kTesting.uDeck()),
 			});
 		});
 
@@ -848,6 +863,7 @@ describe('KOMPlay_Misc', function () {
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMPlaySpacings: JSON.stringify(items),
+				KOMPlayDeck: JSON.stringify(kTesting.uDeck()),
 			});
 		});
 

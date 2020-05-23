@@ -23,6 +23,10 @@ const KOMPlay = new RollupStart({
 			});
 		}
 
+		if (['KOMPlayDeck'].includes(e[0])) {
+			e[1] = JSON.parse(e[1]);
+		}
+
 		return e;
 	}))),
 });

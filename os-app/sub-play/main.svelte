@@ -1,5 +1,6 @@
 <script>
 export let KOMPlaySpacings;
+export let KOMPlayDeck;
 export let KOMPlayDispatchDone;
 export let KOMPlayDispatchUpdate;
 

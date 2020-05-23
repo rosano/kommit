@@ -3,6 +3,14 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 const KOMPlayLogic = require('./ui-logic.js').default;
 
 const kTesting = {
+	uDeck () {
+		return {
+			KOMDeckID: 'alfa',
+			KOMDeckName: '',
+			KOMDeckCreationDate: new Date('2019-02-23T13:56:36Z'),
+			KOMDeckModificationDate: new Date('2019-02-23T13:56:36Z'),
+		};
+	},
 	uSpacings () {
 		return Array.from(new Array(2)).map(function (e, i) {
 			return {
@@ -52,6 +60,7 @@ describe('KOMPlay_Access', function () {
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute, {
 			KOMPlaySpacings: JSON.stringify(kTesting.uSpacings()),
+			KOMPlayDeck: JSON.stringify(kTesting.uDeck()),
 		});
 	});
 
