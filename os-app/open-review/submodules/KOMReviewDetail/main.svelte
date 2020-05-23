@@ -97,10 +97,6 @@ const mod = {
 		if (inputData !== KOMReviewLogic.KOMReviewSchemeReviewing()) {
 			outputData.KOMReviewMaxUnseenCards = kMaxUnseenCards;
 		}
-
-		if (KOMReviewDetailDeck.KOMDeckIsForwardOnly) {
-			outputData.KOMReviewIsForwardOnly = true;
-		}
 		
 		KOMReviewDetailDispatchPlay(outputData);
 	},

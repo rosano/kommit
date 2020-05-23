@@ -54,7 +54,7 @@ const mod = {
 	},
 
 	KOMReviewDetailDispatchPlay (inputData) {
-		mod._ValuePlaySpacings = KOMReviewLogic.KOMReviewFilter(KOMReviewLogic.KOMReviewSpacingsToday(mod._ValueDeckSelected.$KOMDeckSpacings), inputData);
+		mod._ValuePlaySpacings = KOMReviewLogic.KOMReviewFilter(KOMReviewLogic.KOMReviewSpacingsToday(mod._ValueDeckSelected.$KOMDeckSpacings), inputData, mod._ValueDeckSelected);
 		mod._ValuePlayVisible = true;
 	},
 

@@ -398,28 +398,4 @@ describe('KOMReviewDetail_Misc', function () {
 
 	});
 
-	describe('KOMReviewDetailForm', function test_KOMReviewDetailForm () {
-
-		context('KOMReviewDetailFormIsForwardOnlyField', function () {
-			
-			before(function () {
-				return browser.check(KOMReviewDetailFormIsForwardOnlyField);
-			});
-
-			before(function () {
-				return browser.pressButton(KOMReviewDetailFormPlayButtonReviewing);
-			});
-
-			it('sets KOMReviewIsForwardOnly', function () {
-				browser.assert.text('#TestKOMReviewDetailDispatchPlay', '4');
-				browser.assert.text('#TestKOMReviewDetailDispatchPlayData', JSON.stringify({
-					KOMReviewScheme: KOMReviewLogic.KOMReviewSchemeReviewing(),
-					KOMReviewIsForwardOnly: true,
-				}));
-			});
-		
-		});
-
-	});
-
 });
