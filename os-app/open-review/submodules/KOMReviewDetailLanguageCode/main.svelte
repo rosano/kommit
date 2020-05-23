@@ -1,6 +1,7 @@
 <script>
 export let KOMReviewDetailLanguageCodeItem;
 export let KOMReviewDetailLanguageCodeItemProperty;
+export let KOMReviewDetailLanguageCodeOptions;
 
 import OLSKInternational from 'OLSKInternational';
 const OLSKLocalized = function(translationConstant) {
@@ -13,6 +14,9 @@ const OLSKLocalized = function(translationConstant) {
 	<select class="KOMReviewDetailLanguageCodeField" bind:value={ KOMReviewDetailLanguageCodeItem[KOMReviewDetailLanguageCodeItemProperty] } tabindex={ KOMReviewDetailLanguageCodeItem[KOMReviewDetailLanguageCodeItemProperty] ? -1 : null }>
 		<option class="KOMReviewDetailLanguageCodeFieldOptionPlaceholder" value="">{ OLSKLocalized('KOMReviewDetailLanguageCodeFieldOptionPlaceholderText') }</option>
 		<option class="KOMReviewDetailLanguageCodeFieldOptionDefault" value="DEFAULT_LANGUAGE">{ OLSKLocalized('KOMReviewDetailLanguageCodeFieldOptionDefaultText') }</option>
+		{#each KOMReviewDetailLanguageCodeOptions as item}
+			<option value={ item }>{ item }</option>
+		{/each}
 	</select>
 </label>
 

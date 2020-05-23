@@ -20,6 +20,7 @@ describe('KOMReviewDetailLanguageCode_Access', function () {
 				KOMDeckName: 'alfa',
 			}),
 			KOMReviewDetailLanguageCodeItemProperty: 'KOMDeckFrontLanguageCode',
+			KOMReviewDetailLanguageCodeOptions: JSON.stringify([]),
 		});
 	});
 

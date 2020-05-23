@@ -15,6 +15,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 					KOMDeckName: 'alfa',
 				}),
 				KOMReviewDetailLanguageCodeItemProperty: 'KOMDeckFrontLanguageCode',
+				KOMReviewDetailLanguageCodeOptions: JSON.stringify([]),
 			});
 		});
 

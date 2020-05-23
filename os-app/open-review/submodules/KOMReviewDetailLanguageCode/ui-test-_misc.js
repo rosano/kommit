@@ -8,6 +8,7 @@ describe('KOMReviewDetailLanguageCode_Misc', function () {
 				KOMDeckName: 'alfa',
 			}),
 			KOMReviewDetailLanguageCodeItemProperty: 'KOMDeckFrontLanguageCode',
+			KOMReviewDetailLanguageCodeOptions: JSON.stringify(['alfa']),
 		});
 	});
 
@@ -37,6 +38,10 @@ describe('KOMReviewDetailLanguageCode_Misc', function () {
 			browser.assert.attribute(KOMReviewDetailLanguageCodeField, 'tabindex', null);
 		});
 
+		it('binds KOMReviewDetailLanguageCodeOptions', function () {
+			browser.assert.text('option[value=alfa]', 'alfa');
+		});
+
 		context('KOMReviewDetailLanguageCodeItemProperty', function () {
 			
 			before(function() {
@@ -46,6 +51,7 @@ describe('KOMReviewDetailLanguageCode_Misc', function () {
 						KOMDeckFrontLanguageCode: 'DEFAULT_LANGUAGE',
 					}),
 					KOMReviewDetailLanguageCodeItemProperty: 'KOMDeckFrontLanguageCode',
+					KOMReviewDetailLanguageCodeOptions: JSON.stringify([]),
 				});
 			});
 
