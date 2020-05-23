@@ -14,8 +14,8 @@ Object.entries({
 	KOMReviewDetailNoCards: '.KOMReviewDetailNoCards',
 	
 	KOMReviewDetailForm: '.KOMReviewDetailForm',
-	KOMReviewDetailFormIsOralFrontField: '.KOMReviewDetailFormIsOralFrontField',
-	KOMReviewDetailFormIsOralFrontFieldLabel: '.KOMReviewDetailFormIsOralFrontFieldLabel',
+	KOMReviewDetailFormFrontIsOralField: '.KOMReviewDetailFormFrontIsOralField',
+	KOMReviewDetailFormFrontIsOralFieldLabel: '.KOMReviewDetailFormFrontIsOralFieldLabel',
 	KOMReviewDetailFormFrontLanguageCode: '.KOMReviewDetailFormFrontLanguageCode .KOMReviewDetailLanguageCode',
 	KOMReviewDetailFormIsForwardOnlyField: '.KOMReviewDetailFormIsForwardOnlyField',
 	KOMReviewDetailFormIsForwardOnlyFieldLabel: '.KOMReviewDetailFormIsForwardOnlyFieldLabel',
@@ -142,12 +142,12 @@ describe('KOMReviewDetail_Access', function () {
 			browser.assert.elements(KOMReviewDetailForm, 1);
 		});
 
-		it('shows KOMReviewDetailFormIsOralFrontField', function () {
-			browser.assert.elements(KOMReviewDetailFormIsOralFrontField, 1);
+		it('shows KOMReviewDetailFormFrontIsOralField', function () {
+			browser.assert.elements(KOMReviewDetailFormFrontIsOralField, 1);
 		});
 
-		it('shows KOMReviewDetailFormIsOralFrontFieldLabel', function () {
-			browser.assert.elements(KOMReviewDetailFormIsOralFrontFieldLabel, 1);
+		it('shows KOMReviewDetailFormFrontIsOralFieldLabel', function () {
+			browser.assert.elements(KOMReviewDetailFormFrontIsOralFieldLabel, 1);
 		});
 
 		it('shows KOMReviewDetailFormFrontLanguageCode', function () {

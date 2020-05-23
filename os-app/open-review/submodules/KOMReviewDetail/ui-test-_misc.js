@@ -200,7 +200,7 @@ describe('KOMReviewDetail_Misc', function () {
 	
 	});
 
-	describe('KOMReviewDetailFormIsOralFrontField', function test_KOMReviewDetailFormIsOralFrontField () {
+	describe('KOMReviewDetailFormFrontIsOralField', function test_KOMReviewDetailFormFrontIsOralField () {
 
 		const item = kTesting.uDeck({
 			$KOMDeckSpacings: kTesting.uSpacings(true),
@@ -213,11 +213,11 @@ describe('KOMReviewDetail_Misc', function () {
 		});
 
 		it('sets type', function () {
-			browser.assert.attribute(KOMReviewDetailFormIsOralFrontField, 'type', 'checkbox');
+			browser.assert.attribute(KOMReviewDetailFormFrontIsOralField, 'type', 'checkbox');
 		});
 		
-		it('binds KOMDeckIsOralFront', function () {
-			browser.assert.evaluate(`document.querySelector('${ KOMReviewDetailFormIsOralFrontField }').checked`, false);
+		it('binds KOMDeckFrontIsOral', function () {
+			browser.assert.evaluate(`document.querySelector('${ KOMReviewDetailFormFrontIsOralField }').checked`, false);
 		});
 		
 		context('click', function () {
@@ -228,20 +228,20 @@ describe('KOMReviewDetail_Misc', function () {
 			});
 			
 			before(function () {
-				return browser.check(KOMReviewDetailFormIsOralFrontField);
+				return browser.check(KOMReviewDetailFormFrontIsOralField);
 			});
 
 			it('sends KOMReviewDetailDispatchUpdate', function () {
 				browser.assert.text('#TestKOMReviewDetailDispatchUpdate', '1');
 				browser.assert.text('#TestKOMReviewDetailDispatchUpdateData', JSON.stringify(Object.assign(item, {
-					KOMDeckIsOralFront: true,
+					KOMDeckFrontIsOral: true,
 				})));
 			});
 		
 		});
 
 		after(function () {
-			return browser.uncheck(KOMReviewDetailFormIsOralFrontField);
+			return browser.uncheck(KOMReviewDetailFormFrontIsOralField);
 		});
 	
 	});

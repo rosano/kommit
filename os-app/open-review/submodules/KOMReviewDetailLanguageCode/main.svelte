@@ -37,9 +37,9 @@ const mod = {
 
 <style>	
 .KOMReviewDetailLanguageCode {
-	padding: 4px;
+	padding: 5px;
 	border: var(--KOMBorderStyle);
 
-	margin: 4px;
+	margin: 0 5px;
 }
 </style>

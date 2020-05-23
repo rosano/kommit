@@ -95,13 +95,13 @@ describe('KOMDeckModelErrorsFor', function test_KOMDeckModelErrorsFor() {
 
 	});
 
-	context('KOMDeckIsOralFront', function() {
+	context('KOMDeckFrontIsOral', function() {
 
 		it('returns object if not boolean', function() {
 			deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
-				KOMDeckIsOralFront: null,
+				KOMDeckFrontIsOral: null,
 			})), {
-				KOMDeckIsOralFront: [
+				KOMDeckFrontIsOral: [
 					'KOMErrorNotBoolean',
 				],
 			});
@@ -109,7 +109,7 @@ describe('KOMDeckModelErrorsFor', function test_KOMDeckModelErrorsFor() {
 
 		it('returns null', function() {
 			deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
-				KOMDeckIsOralFront: true,
+				KOMDeckFrontIsOral: true,
 			})), null);
 		});
 
@@ -129,7 +129,7 @@ describe('KOMDeckModelErrorsFor', function test_KOMDeckModelErrorsFor() {
 
 		it('returns null', function() {
 			deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
-				KOMDeckIsOralFront: true,
+				KOMDeckFrontIsOral: true,
 			})), null);
 		});
 
