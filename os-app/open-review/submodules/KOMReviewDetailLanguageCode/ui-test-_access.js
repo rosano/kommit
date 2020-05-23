@@ -17,8 +17,7 @@ describe('KOMReviewDetailLanguageCode_Access', function () {
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute, {
 			KOMReviewDetailLanguageCodeItem: JSON.stringify({
-				KOMCardFront: 'alfa',
-				KOMCardRear: 'bravo',
+				KOMDeckName: 'alfa',
 			}),
 			KOMReviewDetailLanguageCodeItemProperty: 'KOMDeckFrontLanguageCode',
 		});
