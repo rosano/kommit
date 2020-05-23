@@ -172,6 +172,34 @@ describe('KOMReviewDetail_Misc', function () {
 	
 	});
 
+	describe('KOMReviewDetailFormFrontLanguageCode', function test_KOMReviewDetailFormFrontLanguageCode () {
+
+		const item = {
+			KOMDeckName: 'alfa',
+			KOMDeckFrontLanguageCode: 'DEFAULT_LANGUAGE',
+			$KOMDeckSpacings: kTesting.uSpacings().map(function (e, i) {
+				if (i) {
+					return e;
+				}
+
+				return Object.assign(e, {
+					KOMSpacingDueDate: new Date(),
+				});
+			}),
+		};
+
+		before(function() {
+			return browser.OLSKVisit(kDefaultRoute, {
+				KOMReviewDetailDeck: JSON.stringify(item),
+			});
+		});
+
+		it('binds KOMDeckFrontLanguageCode', function () {
+			browser.assert.input(`${ KOMReviewDetailFormFrontLanguageCode } .KOMReviewDetailLanguageCodeField`, 'DEFAULT_LANGUAGE');
+		});
+	
+	});
+
 	describe('KOMReviewDetailFormIsOralFrontField', function test_KOMReviewDetailFormIsOralFrontField () {
 
 		const item = {

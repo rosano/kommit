@@ -36,6 +36,16 @@ const mod = {
 
 	// INTERFACE
 
+	InterfaceFormDidUpdate () {
+		if (!KOMReviewDetailDeck.KOMDeckFrontLanguageCode) {
+			delete KOMReviewDetailDeck.KOMDeckFrontLanguageCode
+		}
+		
+		window.setTimeout(function () {
+			KOMReviewDetailDispatchUpdate(KOMReviewDetailDeck)
+		})
+	},
+
 	InterfaceReviewingButtonDidClick() {
 		mod.ContolPlay(KOMReviewLogic.KOMReviewSchemeReviewing());
 	},
@@ -91,6 +101,7 @@ const mod = {
 import OLSKToolbar from 'OLSKToolbar';
 import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 import _OLSKSharedBack from '../../../_shared/__external/OLSKUIAssets/_OLSKSharedBack.svg';
+import KOMReviewDetailLanguageCode from '../KOMReviewDetailLanguageCode/main.svelte';
 </script>
 
 <div class="KOMReviewDetail">
@@ -125,13 +136,22 @@ import _OLSKSharedBack from '../../../_shared/__external/OLSKUIAssets/_OLSKShare
 	<div class="KOMReviewDetailForm">
 		<p>
 			<label>
-				<input class="KOMReviewDetailFormIsOralFrontField" type="checkbox" bind:checked={ KOMReviewDetailDeck.KOMDeckIsOralFront } on:input={ () => window.setTimeout(() => KOMReviewDetailDispatchUpdate(KOMReviewDetailDeck)) } />
+				<input class="KOMReviewDetailFormIsOralFrontField" type="checkbox" bind:checked={ KOMReviewDetailDeck.KOMDeckIsOralFront } on:input={ mod.InterfaceFormDidUpdate } />
 				<span class="KOMReviewDetailFormIsOralFrontFieldLabel">{ OLSKLocalized('KOMReviewDetailFormIsOralFrontFieldLabelText') }</span>
 			</label>
+
+			<span class="KOMReviewDetailFormFrontLanguageCode">
+				<KOMReviewDetailLanguageCode
+					KOMReviewDetailLanguageCodeItem={ KOMReviewDetailDeck }
+					KOMReviewDetailLanguageCodeItemProperty={ 'KOMDeckFrontLanguageCode' }
+					KOMReviewDetailLanguageCodeOptions={ [] }
+					KOMReviewDetailLanguageCodeDispatchUpdate={ KOMReviewDetailDispatchUpdate }
+					/>
+			</span>
 		</p>
 		<p>
 			<label>
-				<input class="KOMReviewDetailFormIsForwardOnlyField" type="checkbox" bind:checked={ KOMReviewDetailDeck.KOMDeckIsForwardOnly } on:input={ () => window.setTimeout(() => KOMReviewDetailDispatchUpdate(KOMReviewDetailDeck)) } />
+				<input class="KOMReviewDetailFormIsForwardOnlyField" type="checkbox" bind:checked={ KOMReviewDetailDeck.KOMDeckIsForwardOnly } on:input={ mod.InterfaceFormDidUpdate } />
 				<span class="KOMReviewDetailFormIsForwardOnlyFieldLabel">{ OLSKLocalized('KOMReviewDetailFormIsForwardOnlyFieldLabelText') }</span>
 			</label>
 		</p>
