@@ -34,6 +34,12 @@ const mod = {
 	}),
 	_ValueSpacingsUnseen: itemsToday.filter(KOMSpacingModel.KOMSpacingModelIsUnseen),
 
+	_ValueLanguages: 'speechSynthesis' in window ? speechSynthesis.getVoices().map(function (e) {
+		return e.lang
+	}).filter(function (e, i, coll) {
+		return coll.indexOf(e) === i;
+	}).sort() : [],
+
 	// INTERFACE
 
 	InterfaceFormDidUpdate () {
@@ -144,7 +150,7 @@ import KOMReviewDetailLanguageCode from '../KOMReviewDetailLanguageCode/main.sve
 				<KOMReviewDetailLanguageCode
 					KOMReviewDetailLanguageCodeItem={ KOMReviewDetailDeck }
 					KOMReviewDetailLanguageCodeItemProperty={ 'KOMDeckFrontLanguageCode' }
-					KOMReviewDetailLanguageCodeOptions={ [] }
+					KOMReviewDetailLanguageCodeOptions={ mod._ValueLanguages }
 					KOMReviewDetailLanguageCodeDispatchUpdate={ KOMReviewDetailDispatchUpdate }
 					/>
 			</span>
