@@ -27,6 +27,14 @@ const mod = {
 
 	_ValueHistory: [],
 
+	_ValueSpeechAvailable: 'speechSynthesis' in window,
+
+	// DATA
+
+	DataQuestion () {
+		return mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard[KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent) ? 'KOMCardRear' : 'KOMCardFront'];
+	},
+
 	// INTERFACE
 
 	InterfaceUndoButtonDidClick () {
@@ -89,6 +97,47 @@ const mod = {
 
 	// CONTROL
 
+	ControlDraw() {
+		mod._ValueState = mod._ValueState; // #purge-svelte-force-update
+
+		mod._ValueIsFlipped = false;
+
+		mod.SetupChronicle();
+
+		if (KOMPlayDeck.KOMDeckFrontIsOral) {
+			mod.ControlReadFront();
+		}
+	},
+
+	ControlReadFront () {
+		if (OLSK_TESTING_BEHAVIOUR()) {
+			mod.DebugFrontLog('read');
+		}
+
+		if (!mod._ValueSpeechAvailable) {
+			return;
+		}
+
+		const item = new SpeechSynthesisUtterance(mod.DataQuestion());
+		item.lang = KOMPlayDeck.KOMDeckFrontLanguageCode;
+
+		speechSynthesis.speak(item);
+	},
+
+	ControlReadStop () {
+		if (OLSK_TESTING_BEHAVIOUR()) {
+			mod.DebugFrontLog('stop');
+		}
+
+		if (!mod._ValueSpeechAvailable) {
+			return;
+		}
+
+		if (speechSynthesis.speaking) {
+			speechSynthesis.cancel();
+		}
+	},
+
 	ControlUndo () {
 		mod._ValueState.KOMPlayStateQueue.unshift(mod._ValueState.KOMPlayStateCurrent);
 		
@@ -106,6 +155,10 @@ const mod = {
 
 		mod._ValueState.KOMPlayStateCurrent.KOMSpacingFlipDate = mod._ValueChronicle.KOMChronicleFlipDate;
 		KOMPlayDispatchUpdate(mod._ValueState.KOMPlayStateCurrent);
+
+		if (KOMPlayDeck.KOMDeckFrontIsOral) {
+			mod.ControlReadStop();
+		}
 	},
 
 	ControlRespond (inputData) {
@@ -124,17 +177,19 @@ const mod = {
 			return KOMPlayDispatchDone();
 		}
 
-		mod._ValueState = mod._ValueState; // #purge-svelte-force-update
+		mod.ControlDraw();
+	},
 
-		mod._ValueIsFlipped = false;
+	// DEBUG
 
-		mod.SetupChronicle();
+	DebugFrontLog (inputData) {
+		window.TestKOMPlayOralFrontLog.innerHTML = window.TestKOMPlayOralFrontLog.innerHTML ? window.TestKOMPlayOralFrontLog.innerHTML.split(',').concat(inputData).join(',') : inputData;
 	},
 
 	// SETUP
 
 	SetupEverything () {
-		mod.SetupChronicle();
+		mod.ControlDraw();
 	},
 
 	SetupChronicle () {
@@ -186,7 +241,7 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 {#if mod._ValueState.KOMPlayStateCurrent }
 	<div class="KOMPlayCard OLSKLayoutElementTappable" on:click={ mod.InterfaceCardDidClick }>
 
-		<div class="KOMPlayCardQuestion">{ mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard[KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent) ? 'KOMCardRear' : 'KOMCardFront'] }</div>
+		<div class="KOMPlayCardQuestion">{ mod.DataQuestion() }</div>
 
 		{#if mod._ValueIsFlipped}
 			<div class="KOMPlayCardAnswer">{ mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard[KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent) ? 'KOMCardFront' : 'KOMCardRear'] }</div>

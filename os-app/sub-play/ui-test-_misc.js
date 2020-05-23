@@ -939,4 +939,63 @@ describe('KOMPlay_Misc', function () {
 
 	});
 
+	describe('oral', function test_oral () {
+
+		const items = kTesting.uSpacings(2);
+
+		before(function () {
+			browser.assert.text('#TestKOMPlayOralFrontLog', '');
+		});
+		
+		before(function() {
+			return browser.OLSKVisit(kDefaultRoute, {
+				KOMPlaySpacings: JSON.stringify(items),
+				KOMPlayDeck: JSON.stringify(Object.assign(kTesting.uDeck(), {
+					KOMDeckFrontIsOral: true,
+				})),
+			});
+		});
+
+		it('start read', function () {
+			browser.assert.text('#TestKOMPlayOralFrontLog', 'read');
+		});
+
+		context('flip', function () {
+
+			before(function () {
+				return browser.pressButton(KOMPlayFlipButton);
+			});
+
+			it('stop read', function () {
+				browser.assert.text('#TestKOMPlayOralFrontLog', 'read,stop');
+			});
+
+		});
+
+		context('respond', function () {
+
+			before(function () {
+				return browser.pressButton(KOMPlayResponseButtonEasy);
+			});
+
+			it('start read', function () {
+				browser.assert.text('#TestKOMPlayOralFrontLog', 'read,stop,read');
+			});
+
+		});
+
+		context('undo', function () {
+
+			before(function () {
+				return browser.pressButton(KOMPlayToolbarUndoButton);
+			});
+
+			it('start read', function () {
+				browser.assert.text('#TestKOMPlayOralFrontLog', 'read,stop,read');
+			});
+			
+		});
+
+	});
+
 });
