@@ -4,7 +4,7 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 const KOMReviewLogic = require('../../ui-logic.js').default;
 
 const kTesting = {
-	uSpacings () {
+	uSpacings (inputData) {
 		return Array.from(new Array(2)).map(function (e, i) {
 			return {
 				KOMSpacingID: (i + 1).toString() + '-forward',
@@ -19,13 +19,25 @@ const kTesting = {
 					KOMCardModificationDate: new Date('2019-02-23T13:56:36Z'),
 				},
 			};
+		}).map(function (e, i) {
+			if (!inputData) {
+				return e;
+			}
+
+			if (i) {
+				return e;
+			}
+
+			return Object.assign(e, {
+				KOMSpacingDueDate: new Date(),
+			});
 		});
 	},
-	uDeck () {
-		return {
+	uDeck (inputData = {}) {
+		return Object.assign({
 			KOMDeckName: 'alfa',
 			$KOMDeckSpacings: [],
-		};
+		}, inputData);
 	},
 };
 
@@ -173,23 +185,12 @@ describe('KOMReviewDetail_Misc', function () {
 
 	describe('KOMReviewDetailFormFrontLanguageCode', function test_KOMReviewDetailFormFrontLanguageCode () {
 
-		const item = {
-			KOMDeckName: 'alfa',
-			KOMDeckFrontLanguageCode: 'DEFAULT_LANGUAGE',
-			$KOMDeckSpacings: kTesting.uSpacings().map(function (e, i) {
-				if (i) {
-					return e;
-				}
-
-				return Object.assign(e, {
-					KOMSpacingDueDate: new Date(),
-				});
-			}),
-		};
-
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute, {
-				KOMReviewDetailDeck: JSON.stringify(item),
+				KOMReviewDetailDeck: JSON.stringify(kTesting.uDeck({
+					KOMDeckFrontLanguageCode: 'DEFAULT_LANGUAGE',
+					$KOMDeckSpacings: kTesting.uSpacings(true),
+				})),
 			});
 		});
 
@@ -201,18 +202,9 @@ describe('KOMReviewDetail_Misc', function () {
 
 	describe('KOMReviewDetailFormIsOralFrontField', function test_KOMReviewDetailFormIsOralFrontField () {
 
-		const item = {
-			KOMDeckName: 'alfa',
-			$KOMDeckSpacings: kTesting.uSpacings().map(function (e, i) {
-				if (i) {
-					return e;
-				}
-
-				return Object.assign(e, {
-					KOMSpacingDueDate: new Date(),
-				});
-			}),
-		};
+		const item = kTesting.uDeck({
+			$KOMDeckSpacings: kTesting.uSpacings(true),
+		});
 
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute, {
@@ -258,15 +250,7 @@ describe('KOMReviewDetail_Misc', function () {
 
 		const item = {
 			KOMDeckName: 'alfa',
-			$KOMDeckSpacings: kTesting.uSpacings().map(function (e, i) {
-				if (i) {
-					return e;
-				}
-
-				return Object.assign(e, {
-					KOMSpacingDueDate: new Date(),
-				});
-			}),
+			$KOMDeckSpacings: kTesting.uSpacings(true),
 		};
 
 		before(function() {
