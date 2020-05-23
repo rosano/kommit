@@ -65,9 +65,9 @@ const mod = {
 					'KOMErrorNotString',
 				];
 			} else if (inputData.KOMDeckFrontLanguageCode.trim() === '') {
-				errors.KOMDeckFrontLanguageCode = [
-					'KOMErrorNotFilled',
-				];
+				// errors.KOMDeckFrontLanguageCode = [
+				// 	'KOMErrorNotFilled',
+				// ];
 			}
 		}
 
