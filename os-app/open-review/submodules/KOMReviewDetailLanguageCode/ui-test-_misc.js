@@ -8,6 +8,7 @@ describe('KOMReviewDetailLanguageCode_Misc', function () {
 				KOMCardFront: 'alfa',
 				KOMCardRear: 'bravo',
 			}),
+			KOMReviewDetailLanguageCodeItemProperty: 'KOMDeckFrontLanguageCode',
 		});
 	});
 

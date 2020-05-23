@@ -1,5 +1,6 @@
 <script>
 export let KOMReviewDetailLanguageCodeItem;
+export let KOMReviewDetailLanguageCodeItemProperty;
 
 import OLSKInternational from 'OLSKInternational';
 const OLSKLocalized = function(translationConstant) {

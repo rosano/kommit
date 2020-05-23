@@ -20,6 +20,7 @@ describe('KOMReviewDetailLanguageCode_Access', function () {
 				KOMCardFront: 'alfa',
 				KOMCardRear: 'bravo',
 			}),
+			KOMReviewDetailLanguageCodeItemProperty: 'KOMDeckFrontLanguageCode',
 		});
 	});
 
