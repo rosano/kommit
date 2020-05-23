@@ -27,4 +27,22 @@ describe('KOMReviewDetailLanguageCode_Misc', function () {
 
 	});
 
+	describe('KOMReviewDetailLanguageCodeField', function test_KOMReviewDetailLanguageCodeField () {
+
+		before(function() {
+			return browser.OLSKVisit(kDefaultRoute, {
+				KOMReviewDetailLanguageCodeItem: JSON.stringify({
+					KOMDeckName: 'alfa',
+					KOMDeckFrontLanguageCode: 'DEFAULT_LANGUAGE',
+				}),
+				KOMReviewDetailLanguageCodeItemProperty: 'KOMDeckFrontLanguageCode',
+			});
+		});
+		
+		it('binds KOMReviewDetailLanguageCodeItemProperty', function () {
+			browser.assert.input(KOMReviewDetailLanguageCodeField, 'DEFAULT_LANGUAGE');
+		});
+
+	});
+
 });
