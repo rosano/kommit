@@ -136,44 +136,46 @@ import KOMReviewDetailLanguageCode from '../KOMReviewDetailLanguageCode/main.sve
 
 <h1 class="KOMReviewDetailStudyHeading">{ OLSKLocalized('KOMReviewDetailStudyHeadingText') }</h1>
 
+<div class="KOMReviewDetailForm">
+	<p>
+		<label>
+			<input class="KOMReviewDetailFormFrontIsOralField" type="checkbox" bind:checked={ KOMReviewDetailDeck.KOMDeckFrontIsOral } disabled={ KOMReviewDetailDeck.KOMDeckFrontLanguageCode ? null : true } on:input={ mod.InterfaceFormDidUpdate } />
+			<span class="KOMReviewDetailFormFrontIsOralFieldLabel">{ OLSKLocalized('KOMReviewDetailFormFrontIsOralFieldLabelText') }</span>
+		</label>
+
+		<span class="KOMReviewDetailFormFrontLanguageCode">
+			<KOMReviewDetailLanguageCode
+				KOMReviewDetailLanguageCodeItem={ KOMReviewDetailDeck }
+				KOMReviewDetailLanguageCodeItemProperty={ 'KOMDeckFrontLanguageCode' }
+				KOMReviewDetailLanguageCodeOptions={ mod._ValueLanguages }
+				KOMReviewDetailLanguageCodeDispatchUpdate={ mod.InterfaceFormDidUpdate }
+				/>
+		</span>
+	</p>
+	<p>
+		<label>
+			<input class="KOMReviewDetailFormIsForwardOnlyField" type="checkbox" bind:checked={ KOMReviewDetailDeck.KOMDeckIsForwardOnly } on:input={ mod.InterfaceFormDidUpdate } />
+			<span class="KOMReviewDetailFormIsForwardOnlyFieldLabel">{ OLSKLocalized('KOMReviewDetailFormIsForwardOnlyFieldLabelText') }</span>
+		</label>
+	</p>
+</div>
+
 {#if !KOMReviewDetailDeck.$KOMDeckSpacings.length}
 	<p class="KOMReviewDetailNoCards">{ OLSKLocalized('KOMReviewDetailNoCardsText') }</p>
 {/if}
 
 {#if KOMReviewDetailDeck.$KOMDeckSpacings.length && mod._ValueSpacingsToday.length}
-	<div class="KOMReviewDetailForm">
-		<p>
-			<label>
-				<input class="KOMReviewDetailFormFrontIsOralField" type="checkbox" bind:checked={ KOMReviewDetailDeck.KOMDeckFrontIsOral } disabled={ KOMReviewDetailDeck.KOMDeckFrontLanguageCode ? null : true } on:input={ mod.InterfaceFormDidUpdate } />
-				<span class="KOMReviewDetailFormFrontIsOralFieldLabel">{ OLSKLocalized('KOMReviewDetailFormFrontIsOralFieldLabelText') }</span>
-			</label>
-
-			<span class="KOMReviewDetailFormFrontLanguageCode">
-				<KOMReviewDetailLanguageCode
-					KOMReviewDetailLanguageCodeItem={ KOMReviewDetailDeck }
-					KOMReviewDetailLanguageCodeItemProperty={ 'KOMDeckFrontLanguageCode' }
-					KOMReviewDetailLanguageCodeOptions={ mod._ValueLanguages }
-					KOMReviewDetailLanguageCodeDispatchUpdate={ mod.InterfaceFormDidUpdate }
-					/>
-			</span>
-		</p>
-		<p>
-			<label>
-				<input class="KOMReviewDetailFormIsForwardOnlyField" type="checkbox" bind:checked={ KOMReviewDetailDeck.KOMDeckIsForwardOnly } on:input={ mod.InterfaceFormDidUpdate } />
-				<span class="KOMReviewDetailFormIsForwardOnlyFieldLabel">{ OLSKLocalized('KOMReviewDetailFormIsForwardOnlyFieldLabelText') }</span>
-			</label>
-		</p>
-		
+	<div class="KOMReviewDetailPlay">
 		{#if mod._ValueSpacingsReviewing.length }
-			<button class="KOMReviewDetailFormPlayButtonReviewing" on:click={ mod.InterfaceReviewingButtonDidClick }>{ OLSKLocalized('KOMReviewDetailFormPlayButtonReviewingText') }</button>
+			<button class="KOMReviewDetailPlayButtonReviewing" on:click={ mod.InterfaceReviewingButtonDidClick }>{ OLSKLocalized('KOMReviewDetailPlayButtonReviewingText') }</button>
 		{/if}
 		
 		{#if mod._ValueSpacingsUnseen.length }
-			<button class="KOMReviewDetailFormPlayButtonUnseen" on:click={ mod.InterfaceUnseenButtonDidClick }>{ OLSKLocalized('KOMReviewDetailFormPlayButtonUnseenText') }</button>
+			<button class="KOMReviewDetailPlayButtonUnseen" on:click={ mod.InterfaceUnseenButtonDidClick }>{ OLSKLocalized('KOMReviewDetailPlayButtonUnseenText') }</button>
 		{/if}
 		
 		{#if mod._ValueSpacingsReviewing.length && mod._ValueSpacingsUnseen.length }
-			<button class="KOMReviewDetailFormPlayButtonMixed" on:click={ mod.InterfaceMixedButtonDidClick }>{ OLSKLocalized('KOMReviewDetailFormPlayButtonMixedText') }</button>
+			<button class="KOMReviewDetailPlayButtonMixed" on:click={ mod.InterfaceMixedButtonDidClick }>{ OLSKLocalized('KOMReviewDetailPlayButtonMixedText') }</button>
 		{/if}
 	</div>
 {/if}

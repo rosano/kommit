@@ -334,7 +334,7 @@ describe('KOMReviewDetail_Misc', function () {
 	
 	});
 
-	describe('KOMReviewDetailFormPlayButtonReviewing', function test_KOMReviewDetailFormPlayButtonReviewing () {
+	describe('KOMReviewDetailPlayButtonReviewing', function test_KOMReviewDetailPlayButtonReviewing () {
 
 		context('click', function () {
 			
@@ -344,7 +344,7 @@ describe('KOMReviewDetail_Misc', function () {
 			});
 			
 			before(function () {
-				return browser.pressButton(KOMReviewDetailFormPlayButtonReviewing);
+				return browser.pressButton(KOMReviewDetailPlayButtonReviewing);
 			});
 
 			it('sends KOMReviewDetailDispatchPlay', function () {
@@ -358,12 +358,12 @@ describe('KOMReviewDetail_Misc', function () {
 
 	});
 
-	describe('KOMReviewDetailFormPlayButtonUnseen', function test_KOMReviewDetailFormPlayButtonUnseen () {
+	describe('KOMReviewDetailPlayButtonUnseen', function test_KOMReviewDetailPlayButtonUnseen () {
 
 		context('click', function () {
 			
 			before(function () {
-				return browser.pressButton(KOMReviewDetailFormPlayButtonUnseen);
+				return browser.pressButton(KOMReviewDetailPlayButtonUnseen);
 			});
 
 			it('sends KOMReviewDetailDispatchPlay', function () {
@@ -378,12 +378,12 @@ describe('KOMReviewDetail_Misc', function () {
 
 	});
 
-	describe('KOMReviewDetailFormPlayButtonMixed', function test_KOMReviewDetailFormPlayButtonMixed () {
+	describe('KOMReviewDetailPlayButtonMixed', function test_KOMReviewDetailPlayButtonMixed () {
 
 		context('click', function () {
 			
 			before(function () {
-				return browser.pressButton(KOMReviewDetailFormPlayButtonMixed);
+				return browser.pressButton(KOMReviewDetailPlayButtonMixed);
 			});
 
 			it('sends KOMReviewDetailDispatchPlay', function () {
