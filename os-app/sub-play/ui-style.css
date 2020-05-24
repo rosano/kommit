@@ -33,6 +33,7 @@
 	padding: var(--KOMCommonPadding);
 
 	font-size: 30px;
+	text-align: center;
 
 	/* KOMPlayBodyFlexbox:Child */
 	flex-grow: 1;
