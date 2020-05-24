@@ -16,23 +16,13 @@ import KOMReviewLogic from '../../ui-logic.js';
 
 const kMaxUnseenCards = 10;
 
-const itemsToday = KOMReviewLogic.KOMReviewSpacingsToday(KOMReviewDetailDeck.$KOMDeckSpacings).filter(function (e) {
-	if (KOMReviewDetailDeck.KOMDeckIsForwardOnly && KOMSpacingModel.KOMSpacingModelIsBackward(e)) {
-		return false;
-	}
-
-	return true;
-});
-
 const mod = {
 
 	// VALUE
 
-	_ValueSpacingsToday: itemsToday,
-	_ValueSpacingsReviewing: itemsToday.filter(function (e) {
-		return !KOMSpacingModel.KOMSpacingModelIsUnseen(e);
-	}),
-	_ValueSpacingsUnseen: itemsToday.filter(KOMSpacingModel.KOMSpacingModelIsUnseen),
+	_ValueSpacingsToday: [],
+	_ValueSpacingsReviewing: [],
+	_ValueSpacingsUnseen: [],
 
 	_ValueLanguages: 'speechSynthesis' in window ? speechSynthesis.getVoices().map(function (e) {
 		return e.lang
@@ -100,7 +90,31 @@ const mod = {
 		KOMReviewDetailDispatchPlay(outputData);
 	},
 
+	// REACT
+
+	ReactObject (inputData) {
+		const items = KOMReviewLogic.KOMReviewSpacingsToday(inputData.$KOMDeckSpacings).filter(function (e) {
+			if (inputData.KOMDeckIsForwardOnly && KOMSpacingModel.KOMSpacingModelIsBackward(e)) {
+				return false;
+			}
+
+			return true;
+		});
+
+		mod._ValueSpacingsToday = items;
+		mod._ValueSpacingsReviewing = items.filter(function (e) {
+			return !KOMSpacingModel.KOMSpacingModelIsUnseen(e);
+		});
+		mod._ValueSpacingsUnseen = items.filter(KOMSpacingModel.KOMSpacingModelIsUnseen);
+	},
+
+	ReactDirection () {
+		mod.ReactObject(KOMReviewDetailDeck);
+	},
+
 };
+
+$: mod.ReactDirection(KOMReviewDetailDeck.KOMDeckIsForwardOnly);
 
 import OLSKToolbar from 'OLSKToolbar';
 import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';

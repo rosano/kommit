@@ -274,6 +274,26 @@ describe('KOMReviewDetail_Access', function () {
 			browser.assert.elements(KOMReviewDetailNoSpacings, 1);
 		});
 
+		context('change direction', function () {
+			
+			before(function () {
+				return browser.uncheck(KOMReviewDetailFormIsForwardOnlyField);
+			});
+
+			it('hides KOMReviewDetailNoCards', function () {
+				browser.assert.elements(KOMReviewDetailNoCards, 0);
+			});
+
+			it('shows KOMReviewDetailPlay', function () {
+				browser.assert.elements(KOMReviewDetailPlay, 1);
+			});
+
+			it('hides KOMReviewDetailNoSpacings', function () {
+				browser.assert.elements(KOMReviewDetailNoSpacings, 0);
+			});
+		
+		});
+
 	});
 
 });
