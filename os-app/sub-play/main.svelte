@@ -281,7 +281,7 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 		<div class="KOMPlayCardQuestion">{ mod.DataQuestion() }</div>
 
 		{#if mod._ValueIsFlipped}
-			<div class="KOMPlayCardAnswer">{ mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard[KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent) ? 'KOMCardFront' : 'KOMCardRear'] }</div>
+			<div class="KOMPlayCardAnswer">{ mod.DataAnswer() }</div>
 		{/if}
 
 		{#if mod._ValueIsFlipped}
