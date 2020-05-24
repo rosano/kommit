@@ -1001,7 +1001,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('starts read', function () {
-				browser.assert.text('#TestKOMPlayOralFrontLog', `read:${ items[0].$KOMSpacingCard.KOMCardFront },read:${ items[0].$KOMSpacingCard.KOMCardFront },stop,read:${ items[1].$KOMSpacingCard.KOMCardRear }`);
+				browser.assert.text('#TestKOMPlayOralFrontLog', `read:${ items[0].$KOMSpacingCard.KOMCardFront },read:${ items[0].$KOMSpacingCard.KOMCardFront },stop`);
 			});
 
 		});
@@ -1013,7 +1013,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('starts read', function () {
-				browser.assert.text('#TestKOMPlayOralFrontLog', `read:${ items[0].$KOMSpacingCard.KOMCardFront },read:${ items[0].$KOMSpacingCard.KOMCardFront },stop,read:${ items[1].$KOMSpacingCard.KOMCardRear },read:${ items[0].$KOMSpacingCard.KOMCardFront }`);
+				browser.assert.text('#TestKOMPlayOralFrontLog', `read:${ items[0].$KOMSpacingCard.KOMCardFront },read:${ items[0].$KOMSpacingCard.KOMCardFront },stop,read:${ items[0].$KOMSpacingCard.KOMCardFront }`);
 			});
 			
 		});

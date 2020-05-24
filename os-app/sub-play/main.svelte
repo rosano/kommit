@@ -104,7 +104,7 @@ const mod = {
 
 		mod.SetupChronicle();
 
-		if (KOMPlayDeck.KOMDeckFrontIsOral) {
+		if (KOMPlayDeck.KOMDeckFrontIsOral && !KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent)) {
 			mod.ControlQuestionRead();
 		}
 	},
