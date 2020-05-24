@@ -941,7 +941,13 @@ describe('KOMPlay_Misc', function () {
 
 	describe('oral', function test_oral () {
 
-		const items = kTesting.uSpacings(2);
+		const items = kTesting.uSpacings(2).sort(function (a, b) {
+			return a.KOMSpacingID > b.KOMSpacingID;
+		}).map(function (e, i) {
+			return Object.assign(e, i ? {
+				KOMSpacingID: e.KOMSpacingID.replace('forward', 'backward')
+			} : {})
+		});
 
 		before(function () {
 			browser.assert.text('#TestKOMPlayOralFrontLog', '');
@@ -995,7 +1001,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('starts read', function () {
-				browser.assert.text('#TestKOMPlayOralFrontLog', `read:${ items[0].$KOMSpacingCard.KOMCardFront },read:${ items[0].$KOMSpacingCard.KOMCardFront },stop,read:${ items[1].$KOMSpacingCard.KOMCardFront }`);
+				browser.assert.text('#TestKOMPlayOralFrontLog', `read:${ items[0].$KOMSpacingCard.KOMCardFront },read:${ items[0].$KOMSpacingCard.KOMCardFront },stop,read:${ items[1].$KOMSpacingCard.KOMCardRear }`);
 			});
 
 		});
@@ -1007,7 +1013,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('starts read', function () {
-				browser.assert.text('#TestKOMPlayOralFrontLog', `read:${ items[0].$KOMSpacingCard.KOMCardFront },read:${ items[0].$KOMSpacingCard.KOMCardFront },stop,read:${ items[1].$KOMSpacingCard.KOMCardFront },read:${ items[0].$KOMSpacingCard.KOMCardFront }`);
+				browser.assert.text('#TestKOMPlayOralFrontLog', `read:${ items[0].$KOMSpacingCard.KOMCardFront },read:${ items[0].$KOMSpacingCard.KOMCardFront },stop,read:${ items[1].$KOMSpacingCard.KOMCardRear },read:${ items[0].$KOMSpacingCard.KOMCardFront }`);
 			});
 			
 		});
