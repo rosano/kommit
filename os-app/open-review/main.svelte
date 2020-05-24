@@ -19,6 +19,7 @@ import KOMDeckAction from '../_shared/KOMDeck/action.js';
 import KOMCardAction from '../_shared/KOMCard/action.js';
 import KOMSpacingMetal from '../_shared/KOMSpacing/metal.js';
 import KOMReviewLogic from './ui-logic.js';
+import KOMPlayLogic from '../sub-play/ui-logic.js';
 import OLSKThrottle from 'OLSKThrottle';
 
 const mod = {
@@ -54,7 +55,7 @@ const mod = {
 	},
 
 	KOMReviewDetailDispatchPlay (inputData) {
-		mod._ValuePlaySpacings = KOMReviewLogic.KOMReviewFilter(KOMReviewLogic.KOMReviewSpacingsToday(mod._ValueDeckSelected.$KOMDeckSpacings), inputData, mod._ValueDeckSelected);
+		mod._ValuePlaySpacings = KOMPlayLogic.KOMPlaySort(KOMReviewLogic.KOMReviewFilter(KOMReviewLogic.KOMReviewSpacingsToday(mod._ValueDeckSelected.$KOMDeckSpacings), inputData, mod._ValueDeckSelected));
 		mod._ValuePlayVisible = true;
 	},
 
