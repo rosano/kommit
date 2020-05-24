@@ -115,7 +115,7 @@ const mod = {
 
 	ControlReadStart (inputData) {
 		if (OLSK_TESTING_BEHAVIOUR()) {
-			mod.DebugFrontLog('read:' + inputData);
+			mod.DebugFrontLog(`read:${ KOMPlayDeck.KOMDeckFrontLanguageCode }:${ inputData }`);
 		}
 
 		if (!mod._ValueSpeechAvailable) {
