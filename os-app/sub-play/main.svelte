@@ -35,6 +35,10 @@ const mod = {
 		return mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard[KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent) ? 'KOMCardRear' : 'KOMCardFront'];
 	},
 
+	DataAnswer () {
+		return mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard[!KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent) ? 'KOMCardRear' : 'KOMCardFront'];
+	},
+
 	// INTERFACE
 
 	InterfaceUndoButtonDidClick () {
@@ -110,12 +114,16 @@ const mod = {
 	},
 
 	ControlQuestionRead () {
-		mod.ControlReadStart(mod.DataQuestion());
+		mod.ControlReadStart(mod.DataQuestion(), KOMPlayDeck.KOMDeckFrontLanguageCode);
 	},
 
-	ControlReadStart (inputData) {
+	ControlAnswerRead () {
+		mod.ControlReadStart(mod.DataAnswer(), KOMPlayDeck.KOMDeckFrontLanguageCode);
+	},
+
+	ControlReadStart (param1, param2) {
 		if (OLSK_TESTING_BEHAVIOUR()) {
-			mod.DebugFrontLog(`read:${ KOMPlayDeck.KOMDeckFrontLanguageCode }:${ inputData }`);
+			mod.DebugFrontLog(`read:${ param2 }:${ param1 }`);
 		}
 
 		if (!mod._ValueSpeechAvailable) {
@@ -126,8 +134,8 @@ const mod = {
 			speechSynthesis.cancel();
 		}
 
-		const item = new SpeechSynthesisUtterance(inputData);
-		item.lang = KOMPlayDeck.KOMDeckFrontLanguageCode;
+		const item = new SpeechSynthesisUtterance(param1);
+		item.lang = param2;
 		item.voice = speechSynthesis.getVoices().filter(function (e) {
 			return e.lang == item.lang;
 		}).pop();
@@ -177,8 +185,12 @@ const mod = {
 		mod._ValueState.KOMPlayStateCurrent.KOMSpacingFlipDate = mod._ValueChronicle.KOMChronicleFlipDate;
 		KOMPlayDispatchUpdate(mod._ValueState.KOMPlayStateCurrent);
 
-		if (KOMPlayDeck.KOMDeckFrontIsOral) {
+		if (KOMPlayDeck.KOMDeckFrontIsOral && !KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent)) {
 			mod.ControlReadStop();
+		}
+
+		if (KOMPlayDeck.KOMDeckFrontIsOral && KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent)) {
+			mod.ControlAnswerRead();
 		}
 	},
 
