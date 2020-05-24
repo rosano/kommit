@@ -115,7 +115,7 @@ const mod = {
 
 	ControlReadStart (inputData) {
 		if (OLSK_TESTING_BEHAVIOUR()) {
-			mod.DebugFrontLog('read');
+			mod.DebugFrontLog('read:' + inputData);
 		}
 
 		if (!mod._ValueSpeechAvailable) {
