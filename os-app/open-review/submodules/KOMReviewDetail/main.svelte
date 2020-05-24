@@ -38,6 +38,10 @@ const mod = {
 			delete KOMReviewDetailDeck.KOMDeckFrontIsOral;
 		}
 
+		if (!KOMReviewDetailDeck.KOMDeckRearLanguageCode && KOMReviewDetailDeck.KOMDeckRearIsOral) {
+			KOMReviewDetailDeck.KOMDeckRearIsOral = false;
+			delete KOMReviewDetailDeck.KOMDeckRearIsOral;
+		}
 
 		window.setTimeout(function () {
 			KOMReviewDetailDispatchUpdate(KOMReviewDetailDeck);
@@ -157,6 +161,21 @@ import KOMReviewDetailLanguageCode from '../KOMReviewDetailLanguageCode/main.sve
 			<KOMReviewDetailLanguageCode
 				KOMReviewDetailLanguageCodeItem={ KOMReviewDetailDeck }
 				KOMReviewDetailLanguageCodeItemProperty={ 'KOMDeckFrontLanguageCode' }
+				KOMReviewDetailLanguageCodeOptions={ mod._ValueLanguages }
+				KOMReviewDetailLanguageCodeDispatchUpdate={ mod.InterfaceFormDidUpdate }
+				/>
+		</span>
+	</p>
+	<p>
+		<label>
+			<input class="KOMReviewDetailFormRearIsOralField" type="checkbox" bind:checked={ KOMReviewDetailDeck.KOMDeckRearIsOral } disabled={ KOMReviewDetailDeck.KOMDeckRearLanguageCode ? null : true } on:input={ mod.InterfaceFormDidUpdate } />
+			<span class="KOMReviewDetailFormRearIsOralFieldLabel">{ OLSKLocalized('KOMReviewDetailFormRearIsOralFieldLabelText') }</span>
+		</label>
+
+		<span class="KOMReviewDetailFormRearLanguageCode">
+			<KOMReviewDetailLanguageCode
+				KOMReviewDetailLanguageCodeItem={ KOMReviewDetailDeck }
+				KOMReviewDetailLanguageCodeItemProperty={ 'KOMDeckRearLanguageCode' }
 				KOMReviewDetailLanguageCodeOptions={ mod._ValueLanguages }
 				KOMReviewDetailLanguageCodeDispatchUpdate={ mod.InterfaceFormDidUpdate }
 				/>

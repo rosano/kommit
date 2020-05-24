@@ -111,6 +111,10 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 				browser.assert.text(KOMReviewDetailFormFrontIsOralFieldLabel, uLocalized('KOMReviewDetailFormFrontIsOralFieldLabelText'));
 			});
 
+			it('localizes KOMReviewDetailFormRearIsOralFieldLabel', function () {
+				browser.assert.text(KOMReviewDetailFormRearIsOralFieldLabel, uLocalized('KOMReviewDetailFormRearIsOralFieldLabelText'));
+			});
+
 			it('localizes KOMReviewDetailFormIsForwardOnlyFieldLabel', function () {
 				browser.assert.text(KOMReviewDetailFormIsForwardOnlyFieldLabel, uLocalized('KOMReviewDetailFormIsForwardOnlyFieldLabelText'));
 			});
