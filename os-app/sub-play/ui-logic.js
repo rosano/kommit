@@ -44,8 +44,11 @@ const mod = {
 			return KOMSpacingModel.KOMSpacingModelIsBackward(e) && e.KOMSpacingDueDate;
 		}));
 
-		while (reviewForward.length && reviewBackward.length && KOMSpacingModel.KOMSpacingModelIdentifier(reviewForward.slice(-1).pop().KOMSpacingID) === KOMSpacingModel.KOMSpacingModelIdentifier(reviewBackward[0].KOMSpacingID)) {
+		let reviewTrialCount = 0;
+		while (reviewForward.length && reviewBackward.length && KOMSpacingModel.KOMSpacingModelIdentifier(reviewForward.slice(-1).pop().KOMSpacingID) === KOMSpacingModel.KOMSpacingModelIdentifier(reviewBackward[0].KOMSpacingID) && reviewTrialCount < inputData.length) {
 			reviewBackward = mod._KOMPlaySortShuffle(reviewBackward);
+
+			reviewTrialCount++;
 		}
 
 		outputData.push(...reviewBackward);
@@ -60,8 +63,11 @@ const mod = {
 			}).length;
 		}));
 
-		while (unseenForward.length && unseenBackward.length && KOMSpacingModel.KOMSpacingModelIdentifier(unseenForward.slice(-1).pop().KOMSpacingID) === KOMSpacingModel.KOMSpacingModelIdentifier(unseenBackward[0].KOMSpacingID)) {
+		let unseenTrialCount = 0;
+		while (unseenForward.length && unseenBackward.length && KOMSpacingModel.KOMSpacingModelIdentifier(unseenForward.slice(-1).pop().KOMSpacingID) === KOMSpacingModel.KOMSpacingModelIdentifier(unseenBackward[0].KOMSpacingID) && unseenTrialCount < inputData.length) {
 			unseenBackward = mod._KOMPlaySortShuffle(unseenBackward);
+
+			unseenTrialCount++;
 		}
 
 		unseenForward.push(...unseenBackward);

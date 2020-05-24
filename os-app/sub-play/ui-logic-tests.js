@@ -179,6 +179,11 @@ describe('KOMPlaySort', function test_KOMPlaySort() {
 				return self.indexOf(value) === index;
 			}).length > 1, true);
 		});
+
+		it('terminates if impossible to space apart from sibling', function() {
+			const items = uItems(1, Infinity, true);
+			deepEqual(mainModule.KOMPlaySort(items), items);
+		});
 	
 	});
 
@@ -200,6 +205,11 @@ describe('KOMPlaySort', function test_KOMPlaySort() {
 			}).filter(function (value, index, self) {
 				return self.indexOf(value) === index;
 			}).length > 1, true);
+		});
+
+		it('terminates if impossible to space apart from sibling', function() {
+			const items = uItems(1, 0, true);
+			deepEqual(mainModule.KOMPlaySort(items), items);
 		});
 		
 	});
