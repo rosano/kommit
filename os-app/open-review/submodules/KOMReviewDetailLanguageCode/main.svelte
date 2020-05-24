@@ -11,11 +11,19 @@ const OLSKLocalized = function(translationConstant) {
 
 const mod = {
 
+	// VALUE
+
+	_ValueLanguageCode: KOMReviewDetailLanguageCodeItem[KOMReviewDetailLanguageCodeItemProperty],
+
 	// INTERFACE
 
 	InterfaceFieldDidChange () {
-		if (!KOMReviewDetailLanguageCodeItem[KOMReviewDetailLanguageCodeItemProperty]) {
+		if (!mod._ValueLanguageCode) {
 			delete KOMReviewDetailLanguageCodeItem[KOMReviewDetailLanguageCodeItemProperty];
+		}
+
+		if (mod._ValueLanguageCode) {
+			KOMReviewDetailLanguageCodeItem[KOMReviewDetailLanguageCodeItemProperty] = mod._ValueLanguageCode;
 		}
 
 		KOMReviewDetailLanguageCodeDispatchUpdate(KOMReviewDetailLanguageCodeItem);
@@ -26,7 +34,7 @@ const mod = {
 
 <label class="KOMReviewDetailLanguageCode">
 	<span class="KOMReviewDetailLanguageCodeFieldLabel">{ OLSKLocalized('KOMReviewDetailLanguageCodeFieldLabelText') }</span>
-	<select class="KOMReviewDetailLanguageCodeField" bind:value={ KOMReviewDetailLanguageCodeItem[KOMReviewDetailLanguageCodeItemProperty] } tabindex={ KOMReviewDetailLanguageCodeItem[KOMReviewDetailLanguageCodeItemProperty] ? -1 : null } on:change={ mod.InterfaceFieldDidChange }>
+	<select class="KOMReviewDetailLanguageCodeField" bind:value={ mod._ValueLanguageCode } tabindex={ KOMReviewDetailLanguageCodeItem[KOMReviewDetailLanguageCodeItemProperty] ? -1 : null } on:change={ mod.InterfaceFieldDidChange }>
 		<option class="KOMReviewDetailLanguageCodeFieldOptionPlaceholder" value="">{ OLSKLocalized('KOMReviewDetailLanguageCodeFieldOptionPlaceholderText') }</option>
 		<option class="KOMReviewDetailLanguageCodeFieldOptionDefault" value="DEFAULT_LANGUAGE">{ OLSKLocalized('KOMReviewDetailLanguageCodeFieldOptionDefaultText') }</option>
 		{#each KOMReviewDetailLanguageCodeOptions as item}

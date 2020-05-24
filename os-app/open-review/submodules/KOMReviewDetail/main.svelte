@@ -43,19 +43,14 @@ const mod = {
 	// INTERFACE
 
 	InterfaceFormDidUpdate () {
-		if (KOMReviewDetailDeck.KOMDeckFrontLanguageCode === '') {
-			delete KOMReviewDetailDeck.KOMDeckFrontLanguageCode;
-		}
-
-		if (!KOMReviewDetailDeck.KOMDeckFrontLanguageCode && KOMReviewDetailDeck.KOMDeckFrontIsOral) { // #mysterious blocks update of other checkbox if no guard
+		if (!KOMReviewDetailDeck.KOMDeckFrontLanguageCode && KOMReviewDetailDeck.KOMDeckFrontIsOral) {
+			KOMReviewDetailDeck.KOMDeckFrontIsOral = false;
 			delete KOMReviewDetailDeck.KOMDeckFrontIsOral;
-			KOMReviewDetailDeck.KOMDeckFrontLanguageCode = KOMReviewDetailDeck.KOMDeckFrontLanguageCode; // #purge-svelte-force-update
 		}
 
-		KOMReviewDetailDeck.KOMDeckFrontLanguageCode = KOMReviewDetailDeck.KOMDeckFrontLanguageCode;
 
 		window.setTimeout(function () {
-			KOMReviewDetailDispatchUpdate(KOMReviewDetailDeck)
+			KOMReviewDetailDispatchUpdate(KOMReviewDetailDeck);
 		});
 	},
 
