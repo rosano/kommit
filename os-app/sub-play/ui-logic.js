@@ -58,9 +58,7 @@ const mod = {
 		}));
 
 		let unseenBackward = mod._KOMPlaySortShuffle(inputData.filter(function (e) {
-			return KOMSpacingModel.KOMSpacingModelIsBackward(e) && !e.KOMSpacingDueDate && unseenForward.filter(function (item) {
-				return KOMSpacingModel.KOMSpacingModelIdentifier(item.KOMSpacingID) === KOMSpacingModel.KOMSpacingModelIdentifier(e.KOMSpacingID);
-			}).length;
+			return KOMSpacingModel.KOMSpacingModelIsBackward(e) && !e.KOMSpacingDueDate;
 		}));
 
 		let unseenTrialCount = 0;
