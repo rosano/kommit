@@ -44,6 +44,7 @@ Object.entries({
 	KOMPlayCardQuestion: '.KOMPlayCardQuestion',
 	KOMPlayCardQuestionRepeatButton: '.KOMPlayCardQuestionRepeatButton',
 	KOMPlayCardAnswer: '.KOMPlayCardAnswer',
+	KOMPlayCardAnswerRepeatButton: '.KOMPlayCardAnswerRepeatButton',
 	KOMPlayCardHint: '.KOMPlayCardHint',
 
 	KOMPlayFlipButton: '.KOMPlayFlipButton',
@@ -99,6 +100,10 @@ describe('KOMPlay_Access', function () {
 
 	it('hides KOMPlayCardAnswer', function () {
 		browser.assert.elements(KOMPlayCardAnswer, 0);
+	});
+
+	it('hides KOMPlayCardAnswerRepeatButton', function () {
+		browser.assert.elements(KOMPlayCardAnswerRepeatButton, 0);
 	});
 
 	it('hides KOMPlayCardHint', function () {
@@ -197,9 +202,13 @@ describe('KOMPlay_Access', function () {
 	
 	});
 
-	describe('oral', function test_oral () {
+	describe('oral_front', function test_oral_front () {
 
-		const items = kTesting.uSpacings(2);
+		const items = kTesting.uSpacings(1).map(function (e, i) {
+			return Object.assign(e, i ? {
+				KOMSpacingID: e.KOMSpacingID.replace('forward', 'backward')
+			} : {})
+		});
 
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute, {
@@ -212,6 +221,101 @@ describe('KOMPlay_Access', function () {
 
 		it('shows KOMPlayCardQuestionRepeatButton', function () {
 			browser.assert.elements(KOMPlayCardQuestionRepeatButton, 1);
+		});
+
+		context('flip', function () {
+
+			before(function () {
+				return browser.pressButton(KOMPlayFlipButton);
+			});
+			
+			it('hides KOMPlayCardAnswerRepeatButton', function () {
+				browser.assert.elements(KOMPlayCardAnswerRepeatButton, 0);
+			});
+		
+		});
+
+		context('backward', function () {
+
+			before(function () {
+				return browser.pressButton(KOMPlayResponseButtonGood);
+			});
+			
+			it('hides KOMPlayCardQuestionRepeatButton', function () {
+				browser.assert.elements(KOMPlayCardQuestionRepeatButton, 0);
+			});
+		
+		});
+
+		context('backward_flip', function () {
+
+			before(function () {
+				return browser.pressButton(KOMPlayFlipButton);
+			});
+			
+			it('shows KOMPlayCardAnswerRepeatButton', function () {
+				browser.assert.elements(KOMPlayCardAnswerRepeatButton, 1);
+			});
+		
+		});
+
+	});
+
+	describe('oral_rear', function test_oral_rear () {
+
+		const items = kTesting.uSpacings(1).map(function (e, i) {
+			return Object.assign(e, i ? {
+				KOMSpacingID: e.KOMSpacingID.replace('forward', 'backward')
+			} : {})
+		});
+
+		before(function() {
+			return browser.OLSKVisit(kDefaultRoute, {
+				KOMPlaySpacings: JSON.stringify(items),
+				KOMPlayDeck: JSON.stringify(Object.assign(kTesting.uDeck(), {
+					KOMDeckRearIsOral: true,
+				})),
+			});
+		});
+
+		it('hides KOMPlayCardQuestionRepeatButton', function () {
+			browser.assert.elements(KOMPlayCardQuestionRepeatButton, 0);
+		});
+
+		context('flip', function () {
+
+			before(function () {
+				return browser.pressButton(KOMPlayFlipButton);
+			});
+			
+			it('shows KOMPlayCardAnswerRepeatButton', function () {
+				browser.assert.elements(KOMPlayCardAnswerRepeatButton, 1);
+			});
+		
+		});
+
+		context('backward', function () {
+
+			before(function () {
+				return browser.pressButton(KOMPlayResponseButtonGood);
+			});
+			
+			it('shows KOMPlayCardQuestionRepeatButton', function () {
+				browser.assert.elements(KOMPlayCardQuestionRepeatButton, 1);
+			});
+		
+		});
+
+		context('backward_flip', function () {
+
+			before(function () {
+				return browser.pressButton(KOMPlayFlipButton);
+			});
+			
+			it('hides KOMPlayCardAnswerRepeatButton', function () {
+				browser.assert.elements(KOMPlayCardAnswerRepeatButton, 0);
+			});
+		
 		});
 
 	});

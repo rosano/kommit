@@ -977,16 +977,20 @@ describe('KOMPlay_Misc', function () {
 
 		context('KOMPlayCardQuestionRepeatButton', function () {
 
-			before(function () {
-				return browser.pressButton(KOMPlayCardQuestionRepeatButton);
-			});
-
 			it('sets tabindex', function () {
 				browser.assert.attribute(KOMPlayCardQuestionRepeatButton, 'tabindex', '-1');
 			});
 
-			it('starts read', function () {
-				browser.assert.text('#TestKOMPlayOralLog', uLog(`read:${ deck.KOMDeckFrontLanguageCode }:${ items[0].$KOMSpacingCard.KOMCardFront }`));
+			context('click', function () {
+				
+				before(function () {
+					return browser.pressButton(KOMPlayCardQuestionRepeatButton);
+				});
+
+				it('starts read', function () {
+					browser.assert.text('#TestKOMPlayOralLog', uLog(`read:${ deck.KOMDeckFrontLanguageCode }:${ items[0].$KOMSpacingCard.KOMCardFront }`));
+				});
+			
 			});
 
 		});
@@ -1009,7 +1013,7 @@ describe('KOMPlay_Misc', function () {
 				return browser.pressButton(KOMPlayResponseButtonEasy);
 			});
 
-			it('starts read', function () {
+			it('does nothing', function () {
 				browser.assert.text('#TestKOMPlayOralLog', _log.join(','));
 			});
 
@@ -1045,6 +1049,140 @@ describe('KOMPlay_Misc', function () {
 				browser.assert.text('#TestKOMPlayOralLog', uLog(`stop,read:${ deck.KOMDeckFrontLanguageCode }:${ items[1].$KOMSpacingCard.KOMCardFront }`));
 			});
 
+		});
+
+		context('KOMPlayCardAnswerRepeatButton', function () {
+
+			it('sets tabindex', function () {
+				browser.assert.attribute(KOMPlayCardAnswerRepeatButton, 'tabindex', '-1');
+			});
+
+			context('click', function () {
+				
+				before(function () {
+					return browser.pressButton(KOMPlayCardAnswerRepeatButton);
+				});
+
+				it('starts read', function () {
+					browser.assert.text('#TestKOMPlayOralLog', uLog(`read:${ deck.KOMDeckFrontLanguageCode }:${ items[1].$KOMSpacingCard.KOMCardFront }`));
+				});
+			
+			});
+
+		});
+
+	});
+
+	describe('oral_rear', function test_oral_rear () {
+
+		const items = kTesting.uSpacings(2).sort(function (a, b) {
+			return a.KOMSpacingID > b.KOMSpacingID;
+		}).map(function (e, i) {
+			return Object.assign(e, i ? {
+				KOMSpacingID: e.KOMSpacingID.replace('forward', 'backward')
+			} : {})
+		});
+
+		const deck = Object.assign(kTesting.uDeck(), {
+			KOMDeckRearIsOral: true,
+			KOMDeckRearLanguageCode: 'en',
+		});
+
+		const _log = [];
+		const uLog = function (inputData) {
+			_log.push(inputData);
+			return _log.join(',');
+		};
+
+		before(function() {
+			return browser.OLSKVisit(kDefaultRoute, {
+				KOMPlaySpacings: JSON.stringify(items),
+				KOMPlayDeck: JSON.stringify(deck),
+			});
+		});
+
+		it('skips read', function () {
+			browser.assert.text('#TestKOMPlayOralLog', '');
+		});
+
+		context('flip', function () {
+
+			before(function () {
+				return browser.pressButton(KOMPlayFlipButton);
+			});
+
+			it('starts read', function () {
+				browser.assert.text('#TestKOMPlayOralLog', uLog(`read:${ deck.KOMDeckRearLanguageCode }:${ items[0].$KOMSpacingCard.KOMCardRear }`));
+			});
+
+		});
+
+		context('KOMPlayCardAnswerRepeatButton', function () {
+
+			before(function () {
+				return browser.pressButton(KOMPlayCardAnswerRepeatButton);
+			});
+
+			it('starts read', function () {
+				browser.assert.text('#TestKOMPlayOralLog', uLog(`read:${ deck.KOMDeckRearLanguageCode }:${ items[0].$KOMSpacingCard.KOMCardRear }`));
+			});
+			
+		});
+
+		context('respond', function () {
+
+			before(function () {
+				return browser.pressButton(KOMPlayResponseButtonEasy);
+			});
+
+			it('starts read', function () {
+				browser.assert.text('#TestKOMPlayOralLog', uLog(`stop,read:${ deck.KOMDeckRearLanguageCode }:${ items[1].$KOMSpacingCard.KOMCardRear }`));
+			});
+
+		});
+
+		context('undo', function () {
+
+			before(function () {
+				return browser.pressButton(KOMPlayToolbarUndoButton);
+			});
+
+			it('does nothing', function () {
+				browser.assert.text('#TestKOMPlayOralLog', _log.join(','));
+			});
+			
+		});
+
+		context('reverse', function () {
+
+			before(function () {
+				return browser.pressButton(KOMPlayFlipButton);
+			});
+
+			before(function () {
+				uLog(`read:${ deck.KOMDeckRearLanguageCode }:${ items[1].$KOMSpacingCard.KOMCardRear }`);
+			});
+
+			before(function () {
+				return browser.pressButton(KOMPlayResponseButtonEasy);
+			});
+
+			it('starts read', function () {
+				browser.assert.text('#TestKOMPlayOralLog', uLog(`stop,read:${ deck.KOMDeckRearLanguageCode }:${ items[1].$KOMSpacingCard.KOMCardRear }`));
+			});
+
+		});
+
+		context('KOMPlayCardQuestionRepeatButton', function () {
+
+			before(function () {
+				return browser.pressButton(KOMPlayCardQuestionRepeatButton);
+			});
+
+			it('starts read', function () {
+				browser.assert.text('#TestKOMPlayOralLog', uLog(`read:${ deck.KOMDeckRearLanguageCode }:${ items[1].$KOMSpacingCard.KOMCardRear }`));
+			});
+			
 		});
 
 	});

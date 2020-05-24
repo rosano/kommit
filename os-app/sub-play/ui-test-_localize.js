@@ -62,7 +62,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 		context('flip', function () {
 
 			before(function () {
-				return browser.click(KOMPlayCard);
+				return browser.pressButton(KOMPlayFlipButton);
 			});
 			
 			it('localizes KOMPlayResponseButtonAgain', function () {
@@ -92,12 +92,25 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 					KOMPlaySpacings: JSON.stringify(items),
 					KOMPlayDeck: JSON.stringify(Object.assign(kTesting.uDeck(), {
 						KOMDeckFrontIsOral: true,
+						KOMDeckRearIsOral: true,
 					})),
 				});
 			});
 
 			it('localizes KOMPlayCardQuestionRepeatButton', function () {
 				browser.assert.text(KOMPlayCardQuestionRepeatButton, uLocalized('KOMPlayCardQuestionRepeatButtonText'));
+			});
+
+			context('flip', function () {
+
+				before(function () {
+					return browser.pressButton(KOMPlayFlipButton);
+				});
+				
+				it('localizes KOMPlayCardAnswerRepeatButton', function () {
+					browser.assert.text(KOMPlayCardAnswerRepeatButton, uLocalized('KOMPlayCardAnswerRepeatButtonText'));
+				});
+			
 			});
 
 		});
