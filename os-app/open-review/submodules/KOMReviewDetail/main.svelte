@@ -49,6 +49,7 @@ const mod = {
 
 		if (!KOMReviewDetailDeck.KOMDeckFrontLanguageCode && KOMReviewDetailDeck.KOMDeckFrontIsOral) { // #mysterious blocks update of other checkbox if no guard
 			delete KOMReviewDetailDeck.KOMDeckFrontIsOral;
+			KOMReviewDetailDeck.KOMDeckFrontLanguageCode = KOMReviewDetailDeck.KOMDeckFrontLanguageCode; // #purge-svelte-force-update
 		}
 
 		KOMReviewDetailDeck.KOMDeckFrontLanguageCode = KOMReviewDetailDeck.KOMDeckFrontLanguageCode;
