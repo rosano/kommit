@@ -83,7 +83,6 @@ describe('KOMReviewDetailAudio_Access', function () {
 		});
 
 		it('hides KOMReviewDetailAudioRecordButton', function () {
-			console.log(browser.url);
 			browser.assert.elements(KOMReviewDetailAudioRecordButton, 0);
 		});
 

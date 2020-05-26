@@ -19,6 +19,10 @@ const mod = {
 
 	_ValueAudio: KOMReviewDetailAudioItem[KOMReviewDetailAudioItemProperty],
 
+	_ValueIsAvailable: 'WebAssembly' in window,
+
+	_ValueIsRecording: false,
+
 	_ValueIsPlaying: false,
 
 	// INTERFACE
@@ -37,15 +41,43 @@ const mod = {
 
 	// CONTROL
 
-	ControlRecordStart () {
+	async ControlRecordStart () {
+		if (mod._ValueIsRecording) {
+		  await mod.ControlRecordStop();
+		}
+		
 		if (true || OLSK_TESTING_BEHAVIOUR()) {
 			mod.DebugLog('record');
 		}
+
+		if (!mod._ValueIsAvailable) {
+			return;
+		}
+
+		try {
+		  await mod._ValueRecorder.initAudio();
+		  await mod._ValueRecorder.initWorker();
+
+		  mod._ValueRecorder.startRecording();
+
+		  mod._ValueIsRecording = true;
+		} catch (e) {
+		  console.error(e);
+		}
 	},
 
-	ControlRecordStop () {
+	async ControlRecordStop () {
 		if (true || OLSK_TESTING_BEHAVIOUR()) {
 			mod.DebugLog('stop');
+		}
+
+		if (!mod._ValueIsRecording) {
+			return;
+		}
+
+		if (mod._ValueIsAvailable) {
+			const blob = await mod._ValueRecorder.stopRecording();
+			mod._ValueIsRecording = false;
 		}
 
 		KOMReviewDetailAudioItem[KOMReviewDetailAudioItemProperty] = 'bravo';
@@ -69,6 +101,22 @@ const mod = {
 		mod._ValueIsPlaying = false;
 	},
 
+	// SETUP
+
+	SetupEverything() {
+		mod.SetupRecorder();
+	},
+
+	SetupRecorder() {
+		if (!KOMReviewDetailAudioAvailable) {
+			return;
+		}
+
+		mod._ValueRecorder = new record.Recorder({
+		  wasmURL: '/_shared/__external/vmsg/vmsg.wasm',
+		});
+	},
+
 	// DEBUG
 
 	DebugLog (inputData) {
@@ -76,6 +124,8 @@ const mod = {
 	},
 
 };
+
+mod.SetupEverything();
 </script>
 
 <div class="KOMReviewDetailAudio">
