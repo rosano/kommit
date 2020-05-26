@@ -50,6 +50,7 @@
 		'ROCORootLink',
 		'OLSKUIAssets',
 		'launchlet',
+		'vmsg',
 
 		// pass tests
 		'OLSKMasterList',

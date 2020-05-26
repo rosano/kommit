@@ -61,6 +61,9 @@
     "OLSKRootLink": "olsk/OLSKRootLink",
     "ROCORootLink": "rationalcreative/ROCORootLink",
 
+    "// AUDIO RECORDING": null,
+    "vmsg": "latest",
+
     "// I sacrifice myself for the commas of others": null
   },
   "devDependencies": {
