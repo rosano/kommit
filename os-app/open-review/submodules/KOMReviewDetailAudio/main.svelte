@@ -77,13 +77,9 @@ const mod = {
 			return;
 		}
 
-		if (!mod._ValueSkipRecording) {
-			const blob = await mod._ValueRecorder.stopRecording();
-		}
-
 		mod._ValueIsRecording = false;
 
-		KOMReviewDetailAudioDispatchCapture(KOMReviewDetailAudioItemProperty);
+		KOMReviewDetailAudioDispatchCapture(KOMReviewDetailAudioItemProperty, !mod._ValueSkipRecording && await mod._ValueRecorder.stopRecording());
 	},
 
 	ControlPlaybackStart () {
