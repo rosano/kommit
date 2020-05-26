@@ -59,6 +59,14 @@ const mod = {
 			}
 		}
 
+		if (inputData.KOMCardFrontAudio !== undefined || options.KOMOptionValidateIfNotPresent) {
+			if (typeof inputData.KOMCardFrontAudio !== 'boolean') {
+				errors.KOMCardFrontAudio = [
+					'KOMErrorNotBoolean',
+				];
+			}
+		}
+
 		return Object.entries(errors).length ? errors : null;
 	},
 
