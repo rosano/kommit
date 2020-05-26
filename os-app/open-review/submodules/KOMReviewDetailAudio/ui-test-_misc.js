@@ -130,7 +130,7 @@ describe('KOMReviewDetailAudio_Misc', function () {
 
 				it('sends KOMReviewDetailAudioDispatchClear', function () {
 					browser.assert.text('#TestKOMReviewDetailAudioDispatchClear', '1');
-					browser.assert.text('#TestKOMReviewDetailAudioDispatchClearData', JSON.stringify(Object.assign(item)));
+					browser.assert.text('#TestKOMReviewDetailAudioDispatchClearData', JSON.stringify('KOMCardFrontAudio'));
 				});
 			
 			});

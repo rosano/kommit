@@ -136,7 +136,7 @@ mod.SetupEverything();
 	{#if mod._ValueAudio }
 		<button class="KOMReviewDetailAudioPlaybackButton" on:click={ mod.InterfacePlaybackButtonDidClick }>{ OLSKLocalized('KOMReviewDetailAudioPlaybackButtonText') }</button>
 
-		<button class="KOMReviewDetailAudioClearButton" on:click={ () => KOMReviewDetailAudioDispatchClear(KOMReviewDetailAudioItem) }>{ OLSKLocalized('KOMReviewDetailAudioClearButtonText') }</button>
+		<button class="KOMReviewDetailAudioClearButton" on:click={ () => KOMReviewDetailAudioDispatchClear(KOMReviewDetailAudioItemProperty) }>{ OLSKLocalized('KOMReviewDetailAudioClearButtonText') }</button>
 	{/if}
 
 {/if}
