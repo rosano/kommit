@@ -44,6 +44,24 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 		
 		});
 
+		context('KOMReviewDetailAudioAvailable', function () {
+			
+			before(function() {
+				return browser.OLSKVisit(kDefaultRoute, {
+					KOMReviewDetailAudioAvailable: false,
+					KOMReviewDetailAudioItem: JSON.stringify({
+						KOMCardID: 'alfa',
+					}),
+					KOMReviewDetailAudioItemProperty: 'KOMCardFrontAudio',
+				});
+			});
+
+			it('localizes KOMReviewDetailAudioNotAvailableAlert', function () {
+				browser.assert.text(KOMReviewDetailAudioNotAvailableAlert, uLocalized('KOMReviewDetailAudioNotAvailableAlertText'));
+			});
+		
+		});
+
 	});
 
 });

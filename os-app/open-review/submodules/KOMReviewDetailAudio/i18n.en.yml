@@ -1,3 +1,4 @@
 KOMReviewDetailAudioRecordButtonText: Record
 KOMReviewDetailAudioPlaybackButtonText: Playback
 KOMReviewDetailAudioClearButtonText: Clear
+KOMReviewDetailAudioNotAvailableAlertText: Audio recording unsupported in this browser

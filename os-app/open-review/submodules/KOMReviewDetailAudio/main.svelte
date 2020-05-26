@@ -1,4 +1,5 @@
 <script>
+export let KOMReviewDetailAudioAvailable;
 export let KOMReviewDetailAudioItem;
 export let KOMReviewDetailAudioItemProperty;
 export let KOMReviewDetailAudioDispatchUpdate;
@@ -10,6 +11,7 @@ const OLSKLocalized = function(translationConstant) {
 };
 
 import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting';
+import record from 'vmsg';
 
 const mod = {
 
@@ -78,14 +80,22 @@ const mod = {
 
 <div class="KOMReviewDetailAudio">
 
-{#if !mod._ValueAudio }
-	<button class="KOMReviewDetailAudioRecordButton" on:mousedown={ mod.InterfaceRecordButtonDidTouchDown } on:mouseup={ mod.InterfaceRecordButtonDidTouchUp }>{ OLSKLocalized('KOMReviewDetailAudioRecordButtonText') }</button>
+{#if KOMReviewDetailAudioAvailable }
+
+	{#if !mod._ValueAudio }
+		<button class="KOMReviewDetailAudioRecordButton" on:mousedown={ mod.InterfaceRecordButtonDidTouchDown } on:mouseup={ mod.InterfaceRecordButtonDidTouchUp }>{ OLSKLocalized('KOMReviewDetailAudioRecordButtonText') }</button>
+	{/if}
+
+	{#if mod._ValueAudio }
+		<button class="KOMReviewDetailAudioPlaybackButton" on:click={ mod.InterfacePlaybackButtonDidClick }>{ OLSKLocalized('KOMReviewDetailAudioPlaybackButtonText') }</button>
+
+		<button class="KOMReviewDetailAudioClearButton" on:click={ () => KOMReviewDetailAudioDispatchClear(KOMReviewDetailAudioItem) }>{ OLSKLocalized('KOMReviewDetailAudioClearButtonText') }</button>
+	{/if}
+
 {/if}
 
-{#if mod._ValueAudio }
-	<button class="KOMReviewDetailAudioPlaybackButton" on:click={ mod.InterfacePlaybackButtonDidClick }>{ OLSKLocalized('KOMReviewDetailAudioPlaybackButtonText') }</button>
-
-	<button class="KOMReviewDetailAudioClearButton" on:click={ () => KOMReviewDetailAudioDispatchClear(KOMReviewDetailAudioItem) }>{ OLSKLocalized('KOMReviewDetailAudioClearButtonText') }</button>
+{#if !KOMReviewDetailAudioAvailable }
+	<span class="KOMReviewDetailAudioNotAvailableAlert">{ OLSKLocalized('KOMReviewDetailAudioNotAvailableAlertText') }</span>
 {/if}
 
 </div>
