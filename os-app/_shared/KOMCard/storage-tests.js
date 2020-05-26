@@ -62,13 +62,13 @@ describe('KOMCardStorageObjectPath', function test_KOMCardStorageObjectPath() {
 
 	it('throws if param1 not valid', function () {
 		throws(function () {
-			mainModule.KOMCardStorageCollectionPath({}, kTesting.StubDeckObjectValid());
+			mainModule.KOMCardStorageObjectPath({}, kTesting.StubDeckObjectValid());
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('throws if param2 not valid', function () {
 		throws(function () {
-			mainModule.KOMCardStorageCollectionPath(kTesting.StubCardObjectValid(), {});
+			mainModule.KOMCardStorageObjectPath(kTesting.StubCardObjectValid(), {});
 		}, /KOMErrorInputNotValid/);
 	});
 
