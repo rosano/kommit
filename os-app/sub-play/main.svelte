@@ -293,7 +293,7 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 		{/if}
 
 		{#if mod._ValueIsFlipped}
-			<div class="KOMPlayCardHint">{ mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard.KOMCardHint }</div>
+			<div class="KOMPlayCardHint">{ mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard.KOMCardNotes }</div>
 		{/if}
 		
 	</div>

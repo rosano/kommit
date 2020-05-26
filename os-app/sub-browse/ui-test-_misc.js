@@ -78,7 +78,7 @@ describe('KOMBrowse_Misc', function () {
 				'KOMCardModificationDate',
 				'KOMCardFront',
 				'KOMCardRear',
-				'KOMCardHint',
+				'KOMCardNotes',
 				'@context',
 			]));
 		});

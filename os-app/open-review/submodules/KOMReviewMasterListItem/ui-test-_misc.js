@@ -33,7 +33,7 @@ const item = {
 					KOMCardDeckID: 'bravo',
 					KOMCardFront: (i + 1).toString(),
 					KOMCardRear: 'charlie',
-					KOMCardHint: 'delta',
+					KOMCardNotes: 'delta',
 					KOMCardCreationDate: new Date('2019-02-23T13:56:36Z'),
 					KOMCardModificationDate: new Date('2019-02-23T13:56:36Z'),
 				},

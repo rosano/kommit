@@ -127,7 +127,7 @@ const mod = {
 		const item = await KOMCardAction.KOMCardActionCreate(KOMBrowseStorageClient, {
 			KOMCardFront: '',
 			KOMCardRear: '',
-			KOMCardHint: '',
+			KOMCardNotes: '',
 		}, inputData);
 
 		mod.ValueCardsAll(KOMBrowseDeckSelected.$KOMDeckCards.concat(item));

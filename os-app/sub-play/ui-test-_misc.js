@@ -22,7 +22,7 @@ const kTesting = {
 					KOMCardDeckID: 'alfa',
 					KOMCardFront: (i + 1).toString(),
 					KOMCardRear: 'charlie',
-					KOMCardHint: 'delta',
+					KOMCardNotes: 'delta',
 					KOMCardCreationDate: new Date('2019-02-23T13:56:36Z'),
 					KOMCardModificationDate: new Date('2019-02-23T13:56:36Z'),
 				},
@@ -115,7 +115,7 @@ describe('KOMPlay_Misc', function () {
 	describe('KOMPlayCardHint', function test_KOMPlayCardHint () {
 
 		it('sets text', function () {
-			browser.assert.text(KOMPlayCardHint, items[0].$KOMSpacingCard.KOMCardHint);
+			browser.assert.text(KOMPlayCardHint, items[0].$KOMSpacingCard.KOMCardNotes);
 		});
 
 	});

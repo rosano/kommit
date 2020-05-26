@@ -53,7 +53,7 @@ import _OLSKSharedDiscard from '../../../_shared/__external/OLSKUIAssets/_OLSKSh
 </p>
 
 <p>
-	<input class="KOMBrowseInfoFormHintField OLSKMobileSafariRemoveDefaultInputStyle" placeholder="{ OLSKLocalized('KOMBrowseInfoFormHintFieldText') }" type="text" bind:value={ KOMBrowseInfoItem.KOMCardHint } on:input={ KOMBrowseInfoDispatchUpdate } />
+	<input class="KOMBrowseInfoFormHintField OLSKMobileSafariRemoveDefaultInputStyle" placeholder="{ OLSKLocalized('KOMBrowseInfoFormHintFieldText') }" type="text" bind:value={ KOMBrowseInfoItem.KOMCardNotes } on:input={ KOMBrowseInfoDispatchUpdate } />
 </p>
 
 </div>

@@ -107,13 +107,13 @@ describe('KOMCardModelErrorsFor', function test_KOMCardModelErrorsFor() {
 		deepEqual(mainModule.KOMCardModelErrorsFor(kTesting.StubCardObjectValid()), null);
 	});
 
-	context('KOMCardHint', function() {
+	context('KOMCardNotes', function() {
 
 		it('returns object if not string', function() {
 			deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubCardObjectValid(), {
-				KOMCardHint: null,
+				KOMCardNotes: null,
 			})), {
-				KOMCardHint: [
+				KOMCardNotes: [
 					'KOMErrorNotString',
 				],
 			});
@@ -121,7 +121,7 @@ describe('KOMCardModelErrorsFor', function test_KOMCardModelErrorsFor() {
 
 		it('returns null', function() {
 			deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubCardObjectValid(), {
-				KOMCardHint: 'alfa',
+				KOMCardNotes: 'alfa',
 			})), null);
 		});
 
@@ -139,7 +139,7 @@ describe('KOMCardModelErrorsFor', function test_KOMCardModelErrorsFor() {
 				'KOMCardRear',
 				'KOMCardCreationDate',
 				'KOMCardModificationDate',
-				'KOMCardHint',
+				'KOMCardNotes',
 			]);
 		});
 

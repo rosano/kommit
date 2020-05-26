@@ -51,9 +51,9 @@ const mod = {
 			];
 		}
 
-		if (inputData.KOMCardHint !== undefined || options.KOMOptionValidateIfNotPresent) {
-			if (typeof inputData.KOMCardHint !== 'string') {
-				errors.KOMCardHint = [
+		if (inputData.KOMCardNotes !== undefined || options.KOMOptionValidateIfNotPresent) {
+			if (typeof inputData.KOMCardNotes !== 'string') {
+				errors.KOMCardNotes = [
 					'KOMErrorNotString',
 				];
 			}
