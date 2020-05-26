@@ -22,6 +22,18 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			browser.assert.text(KOMReviewDetailAudioRecordButton, uLocalized('KOMReviewDetailAudioRecordButtonText'));
 		});
 
+		context('click KOMReviewDetailAudioRecordButton', function () {
+			
+			before(function () {
+				return browser.pressButton(KOMReviewDetailAudioRecordButton);
+			});
+
+			it('localizes KOMReviewDetailAudioRecordingAlert', function () {
+				browser.assert.text(KOMReviewDetailAudioRecordingAlert, uLocalized('KOMReviewDetailAudioRecordingAlertText'));
+			});
+		
+		});
+
 		context('KOMReviewDetailAudioItemProperty', function () {
 			
 			before(function() {

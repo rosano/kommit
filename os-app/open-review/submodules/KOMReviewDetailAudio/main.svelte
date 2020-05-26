@@ -133,6 +133,10 @@ mod.SetupEverything();
 		<button class="KOMReviewDetailAudioRecordButton" on:click={ mod.InterfaceRecordButtonDidClick }>{ OLSKLocalized('KOMReviewDetailAudioRecordButtonText') }</button>
 	{/if}
 
+	{#if mod._ValueIsRecording}
+		<span class="KOMReviewDetailAudioRecordingAlert">{ OLSKLocalized('KOMReviewDetailAudioRecordingAlertText') }</span>
+	{/if}
+
 	{#if mod._ValueAudio }
 		<button class="KOMReviewDetailAudioPlaybackButton" on:click={ mod.InterfacePlaybackButtonDidClick }>{ OLSKLocalized('KOMReviewDetailAudioPlaybackButtonText') }</button>
 

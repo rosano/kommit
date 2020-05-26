@@ -4,6 +4,7 @@ Object.entries({
 	KOMReviewDetailAudio: '.KOMReviewDetailAudio',
 	
 	KOMReviewDetailAudioRecordButton: '.KOMReviewDetailAudioRecordButton',
+	KOMReviewDetailAudioRecordingAlert: '.KOMReviewDetailAudioRecordingAlert',
 	
 	KOMReviewDetailAudioPlaybackButton: '.KOMReviewDetailAudioPlaybackButton',
 	KOMReviewDetailAudioClearButton: '.KOMReviewDetailAudioClearButton',
@@ -32,6 +33,10 @@ describe('KOMReviewDetailAudio_Access', function () {
 		browser.assert.elements(KOMReviewDetailAudioRecordButton, 1);
 	});
 
+	it('hides KOMReviewDetailAudioRecordingAlert', function () {
+		browser.assert.elements(KOMReviewDetailAudioRecordingAlert, 0);
+	});
+
 	it('hides KOMReviewDetailAudioPlaybackButton', function () {
 		browser.assert.elements(KOMReviewDetailAudioPlaybackButton, 0);
 	});
@@ -42,6 +47,34 @@ describe('KOMReviewDetailAudio_Access', function () {
 
 	it('hides KOMReviewDetailAudioNotAvailableAlert', function () {
 		browser.assert.elements(KOMReviewDetailAudioNotAvailableAlert, 0);
+	});
+
+	context('KOMReviewDetailAudioRecordButton', function () {
+		
+		context('click', function () {
+			
+			before(function () {
+				return browser.pressButton(KOMReviewDetailAudioRecordButton);
+			});
+
+			it('shows KOMReviewDetailAudioRecordingAlert', function () {
+				browser.assert.elements(KOMReviewDetailAudioRecordingAlert, 1);
+			});
+		
+		});
+
+		context('click during record', function () {
+			
+			before(function () {
+				return browser.pressButton(KOMReviewDetailAudioRecordButton);
+			});
+
+			it('hides KOMReviewDetailAudioRecordingAlert', function () {
+				browser.assert.elements(KOMReviewDetailAudioRecordingAlert, 0);
+			});
+		
+		});
+	
 	});
 
 	context('KOMReviewDetailAudioItemProperty', function () {
