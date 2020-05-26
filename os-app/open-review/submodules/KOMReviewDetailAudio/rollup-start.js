@@ -4,9 +4,9 @@ const KOMReviewDetailAudio = new RollupStart({
 	target: document.body,
 	props: Object.assign({
 		KOMReviewDetailAudioAvailable: true,
-		KOMReviewDetailAudioDispatchUpdate: (function _KOMReviewDetailAudioDispatchUpdate (inputData) {
-			window.TestKOMReviewDetailAudioDispatchUpdate.innerHTML = parseInt(window.TestKOMReviewDetailAudioDispatchUpdate.innerHTML) + 1;
-			window.TestKOMReviewDetailAudioDispatchUpdateData.innerHTML = JSON.stringify(inputData);
+		KOMReviewDetailAudioDispatchCapture: (function _KOMReviewDetailAudioDispatchCapture (inputData) {
+			window.TestKOMReviewDetailAudioDispatchCapture.innerHTML = parseInt(window.TestKOMReviewDetailAudioDispatchCapture.innerHTML) + 1;
+			window.TestKOMReviewDetailAudioDispatchCaptureData.innerHTML = JSON.stringify(inputData);
 		}),
 		KOMReviewDetailAudioDispatchClear: (function _KOMReviewDetailAudioDispatchClear (inputData) {
 			window.TestKOMReviewDetailAudioDispatchClear.innerHTML = parseInt(window.TestKOMReviewDetailAudioDispatchClear.innerHTML) + 1;

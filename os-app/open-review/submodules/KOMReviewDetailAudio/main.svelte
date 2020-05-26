@@ -2,7 +2,7 @@
 export let KOMReviewDetailAudioAvailable;
 export let KOMReviewDetailAudioItem;
 export let KOMReviewDetailAudioItemProperty;
-export let KOMReviewDetailAudioDispatchUpdate;
+export let KOMReviewDetailAudioDispatchCapture;
 export let KOMReviewDetailAudioDispatchClear;
 
 import OLSKInternational from 'OLSKInternational';
@@ -85,7 +85,7 @@ const mod = {
 
 		KOMReviewDetailAudioItem[KOMReviewDetailAudioItemProperty] = 'bravo';
 
-		KOMReviewDetailAudioDispatchUpdate(KOMReviewDetailAudioItem);
+		KOMReviewDetailAudioDispatchCapture(KOMReviewDetailAudioItem);
 	},
 
 	ControlPlaybackStart () {

@@ -41,8 +41,8 @@ describe('KOMReviewDetailAudio_Misc', function () {
 		context('click during recording', function () {
 			
 			before(function () {
-				browser.assert.text('#TestKOMReviewDetailAudioDispatchUpdate', '0');
-				browser.assert.text('#TestKOMReviewDetailAudioDispatchUpdateData', 'undefined');
+				browser.assert.text('#TestKOMReviewDetailAudioDispatchCapture', '0');
+				browser.assert.text('#TestKOMReviewDetailAudioDispatchCaptureData', 'undefined');
 			});
 
 			before(function () {
@@ -53,9 +53,9 @@ describe('KOMReviewDetailAudio_Misc', function () {
 				browser.assert.text('#TestKOMReviewDetailAudioLog', uLog('stop'));
 			});
 			
-			it('sends KOMReviewDetailAudioDispatchUpdate', function () {
-				browser.assert.text('#TestKOMReviewDetailAudioDispatchUpdate', '1');
-				browser.assert.text('#TestKOMReviewDetailAudioDispatchUpdateData', JSON.stringify(Object.assign(item, {
+			it('sends KOMReviewDetailAudioDispatchCapture', function () {
+				browser.assert.text('#TestKOMReviewDetailAudioDispatchCapture', '1');
+				browser.assert.text('#TestKOMReviewDetailAudioDispatchCaptureData', JSON.stringify(Object.assign(item, {
 					KOMCardFrontAudio: 'bravo',
 				})));
 			});
