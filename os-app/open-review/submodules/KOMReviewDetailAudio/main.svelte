@@ -42,7 +42,7 @@ const mod = {
 		  await mod.ControlRecordStop();
 		}
 		
-		if (true || OLSK_TESTING_BEHAVIOUR()) {
+		if (OLSK_TESTING_BEHAVIOUR()) {
 			mod.DebugLog('record');
 		}
 
@@ -64,7 +64,7 @@ const mod = {
 	},
 
 	async ControlRecordStop () {
-		if (true || OLSK_TESTING_BEHAVIOUR()) {
+		if (OLSK_TESTING_BEHAVIOUR()) {
 			mod.DebugLog('stop');
 		}
 
@@ -84,7 +84,7 @@ const mod = {
 	},
 
 	ControlPlaybackStart () {
-		if (true || OLSK_TESTING_BEHAVIOUR()) {
+		if (OLSK_TESTING_BEHAVIOUR()) {
 			mod.DebugLog('play');
 		}
 
@@ -92,7 +92,7 @@ const mod = {
 	},
 
 	ControlPlaybackStop () {
-		if (true || OLSK_TESTING_BEHAVIOUR()) {
+		if (OLSK_TESTING_BEHAVIOUR()) {
 			mod.DebugLog('stop');
 		}
 
