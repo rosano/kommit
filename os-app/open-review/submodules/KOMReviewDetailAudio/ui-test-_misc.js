@@ -22,14 +22,14 @@ describe('KOMReviewDetailAudio_Misc', function () {
 
 	describe('KOMReviewDetailAudioRecordButton', function test_KOMReviewDetailAudioRecordButton () {
 
-		context('mousedown', function () {
+		context('click', function () {
 			
 			before(function () {
 				browser.assert.text('#TestKOMReviewDetailAudioLog', '');
 			});
 			
 			before(function () {
-				return browser.fire(KOMReviewDetailAudioRecordButton, 'mousedown');
+				return browser.pressButton(KOMReviewDetailAudioRecordButton);
 			});
 
 			it('starts record', function () {
@@ -38,15 +38,15 @@ describe('KOMReviewDetailAudio_Misc', function () {
 		
 		});
 
-		context('mouseup', function () {
-
+		context('click during recording', function () {
+			
 			before(function () {
 				browser.assert.text('#TestKOMReviewDetailAudioDispatchUpdate', '0');
 				browser.assert.text('#TestKOMReviewDetailAudioDispatchUpdateData', 'undefined');
 			});
 
 			before(function () {
-				return browser.fire(KOMReviewDetailAudioRecordButton, 'mouseup');
+				return browser.pressButton(KOMReviewDetailAudioRecordButton);
 			});
 
 			it('stops record', function () {

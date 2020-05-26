@@ -19,7 +19,7 @@ const mod = {
 
 	_ValueAudio: KOMReviewDetailAudioItem[KOMReviewDetailAudioItemProperty],
 
-	_ValueIsAvailable: 'WebAssembly' in window,
+	_ValueSkipRecording: OLSK_TESTING_BEHAVIOUR(),
 
 	_ValueIsRecording: false,
 
@@ -27,12 +27,8 @@ const mod = {
 
 	// INTERFACE
 
-	InterfaceRecordButtonDidTouchDown () {
-		mod.ControlRecordStart();
-	},
-
-	InterfaceRecordButtonDidTouchUp () {
-		mod.ControlRecordStop();
+	InterfaceRecordButtonDidClick () {
+		!mod._ValueIsRecording ? mod.ControlRecordStart() : mod.ControlRecordStop();
 	},
 
 	InterfacePlaybackButtonDidClick () {
@@ -50,7 +46,9 @@ const mod = {
 			mod.DebugLog('record');
 		}
 
-		if (!mod._ValueIsAvailable) {
+		mod._ValueIsRecording = true;
+
+		if (mod._ValueSkipRecording) {
 			return;
 		}
 
@@ -60,7 +58,6 @@ const mod = {
 
 		  mod._ValueRecorder.startRecording();
 
-		  mod._ValueIsRecording = true;
 		} catch (e) {
 		  console.error(e);
 		}
@@ -75,10 +72,11 @@ const mod = {
 			return;
 		}
 
-		if (mod._ValueIsAvailable) {
+		if (!mod._ValueSkipRecording) {
 			const blob = await mod._ValueRecorder.stopRecording();
-			mod._ValueIsRecording = false;
 		}
+
+		mod._ValueIsRecording = false;
 
 		KOMReviewDetailAudioItem[KOMReviewDetailAudioItemProperty] = 'bravo';
 
@@ -108,7 +106,7 @@ const mod = {
 	},
 
 	SetupRecorder() {
-		if (!KOMReviewDetailAudioAvailable) {
+		if (mod._ValueSkipRecording) {
 			return;
 		}
 
@@ -133,7 +131,7 @@ mod.SetupEverything();
 {#if KOMReviewDetailAudioAvailable }
 
 	{#if !mod._ValueAudio }
-		<button class="KOMReviewDetailAudioRecordButton" on:mousedown={ mod.InterfaceRecordButtonDidTouchDown } on:mouseup={ mod.InterfaceRecordButtonDidTouchUp }>{ OLSKLocalized('KOMReviewDetailAudioRecordButtonText') }</button>
+		<button class="KOMReviewDetailAudioRecordButton" on:click={ mod.InterfaceRecordButtonDidClick }>{ OLSKLocalized('KOMReviewDetailAudioRecordButtonText') }</button>
 	{/if}
 
 	{#if mod._ValueAudio }
