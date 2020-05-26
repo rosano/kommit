@@ -70,6 +70,7 @@
     "// TESTS": null,
     "mocha": "latest",
     "supervisor": "latest",
+    "cross-blob": "latest",
 
     "// UI TESTS": null,
     "zombie": "latest",
