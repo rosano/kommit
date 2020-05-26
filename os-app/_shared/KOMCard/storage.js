@@ -52,6 +52,10 @@ const mod = {
 		return mod.KOMCardStorageFolderPath(param1, param2) + 'main';
 	},
 
+	KOMCardStorageAudioPathFront (param1, param2) {
+		return mod.KOMCardStorageFolderPath(param1, param2) + 'front/audio';
+	},
+
 	KOMCardStorageMatch (inputData) {
 		if (typeof inputData !== 'string') {
 			throw new Error('KOMErrorInputNotValid');
