@@ -55,9 +55,7 @@ describe('KOMReviewDetailAudio_Misc', function () {
 			
 			it('sends KOMReviewDetailAudioDispatchCapture', function () {
 				browser.assert.text('#TestKOMReviewDetailAudioDispatchCapture', '1');
-				browser.assert.text('#TestKOMReviewDetailAudioDispatchCaptureData', JSON.stringify(Object.assign(item, {
-					KOMCardFrontAudio: 'bravo',
-				})));
+				browser.assert.text('#TestKOMReviewDetailAudioDispatchCaptureData', JSON.stringify('KOMCardFrontAudio'));
 			});
 		
 		});

@@ -83,9 +83,7 @@ const mod = {
 
 		mod._ValueIsRecording = false;
 
-		KOMReviewDetailAudioItem[KOMReviewDetailAudioItemProperty] = 'bravo';
-
-		KOMReviewDetailAudioDispatchCapture(KOMReviewDetailAudioItem);
+		KOMReviewDetailAudioDispatchCapture(KOMReviewDetailAudioItemProperty);
 	},
 
 	ControlPlaybackStart () {
