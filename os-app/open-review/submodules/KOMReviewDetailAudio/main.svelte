@@ -10,6 +10,8 @@ const OLSKLocalized = function(translationConstant) {
 	return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, JSON.parse(`{"OLSK_I18N_SEARCH_REPLACE":"OLSK_I18N_SEARCH_REPLACE"}`)[window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage')]);
 };
 
+const kMaxLengthSeconds = 10;
+
 import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting';
 import record from 'vmsg';
 
@@ -58,6 +60,9 @@ const mod = {
 
 		  mod._ValueRecorder.startRecording();
 
+		  setTimeout(function () {
+		  	mod._ValueIsRecording && mod.ControlRecordStop();
+		  }, 1000 * kMaxLengthSeconds);
 		} catch (e) {
 		  console.error(e);
 		}
