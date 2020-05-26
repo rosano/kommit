@@ -42,7 +42,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 		});
 
 		it('localizes KOMReviewRoute', function() {
-			browser.assert.element(`a[href="${ OLSKTestingCanonicalFor(require('../open-review/controller.js').OLSKControllerRoutes().shift().OLSKRoutePath, {
+			browser.assert.element(`a[href="${ OLSKTestingCanonical(require('../open-review/controller.js').OLSKControllerRoutes().shift(), {
 				OLSKRoutingLanguage: languageCode,
 			}) }"]`);
 		});
