@@ -70,14 +70,6 @@ const mod = {
 	},
 
 	KOMCardStorageBuild (privateClient, publicClient, changeDelegate) {
-		const uList = async function (inputData) {
-			return uFlatten(await Promise.all(uFlatten([inputData]).map(async function (path) {
-				return await Object.keys(await privateClient.getAll(path, false)).map(function (e) {
-					return path + e;
-				});
-			})));
-		};
-
 		privateClient.on('change', function (event) {
 			if (!changeDelegate) {
 				return;
@@ -105,9 +97,7 @@ const mod = {
 			async KOMStorageList (inputData) {
 				let storagePath = mod.KOMCardStorageCollectionPath(inputData);
 
-				return (await Promise.all((await uList(await uList(await uList(storagePath)))).filter(function (e) {
-					return e.slice(-4) === 'main'; // #hotfix include main only
-				}).map(function (e) {
+				return (await Promise.all((await OLSKRemoteStorage.OLSKRemoteStorageListObjectsRecursive(privateClient, storagePath)).filter(mod.KOMCardStorageMatch).map(function (e) {
 					return privateClient.getObject(e, false);
 				}))).reduce(function (coll, item) {
 					if (item) {
@@ -138,15 +128,9 @@ const mod = {
 			},
 			
 			async KOMStorageDelete (param1, param2) {
-				await Promise.all((await uList(mod.KOMCardStorageFolderPath(param1, param2))).map(async function (e) {
-					if (e === mod.KOMCardStorageObjectPath(param1, param2)) {
-						return;
-					}
-					
-					return await privateClient.remove(e);
-				}));
-				
-				return privateClient.remove(mod.KOMCardStorageObjectPath(param1, param2));
+				return (await Promise.all((await OLSKRemoteStorage.OLSKRemoteStorageListObjectsRecursive(privateClient, mod.KOMCardStorageFolderPath(param1, param2))).map(async function (path) {
+					return await privateClient.remove(path);
+				}))).pop();
 			},
 			
 		};
