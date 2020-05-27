@@ -13,12 +13,6 @@ const KOMSpacingStorage = require('./os-app/_shared/KOMSpacing/storage.js').defa
 		return;
 	}
 
-	const uSerial = function (inputData) {
-		return inputData.reduce(async function (coll, e) {
-			return e.then(Array.prototype.concat.bind(await coll));
-		}, Promise.resolve([]));
-	};
-
 	const storageModule = KOM_Data.KOM_DataModule([
 		KOMDeckStorage.KOMDeckStorageBuild,
 		KOMCardStorage.KOMCardStorageBuild,
