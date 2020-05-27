@@ -1,7 +1,8 @@
 import KOMDeckStorage from '../KOMDeck/storage.js';
 import KOMDeckModel from '../KOMDeck/model.js';
 import KOMCardModel from './model.js';
-import * as OLSKRemoteStorage from 'OLSKRemoteStorage';
+import * as OLSKRemoteStoragePackage from 'OLSKRemoteStorage';
+const OLSKRemoteStorage = OLSKRemoteStoragePackage.default || OLSKRemoteStoragePackage;
 
 const kType = 'kom_card';
 const kCollection = 'kom_cards';

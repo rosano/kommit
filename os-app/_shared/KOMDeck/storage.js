@@ -1,5 +1,6 @@
 import KOMDeckModel from './model.js';
-import * as OLSKRemoteStorage from 'OLSKRemoteStorage';
+import * as OLSKRemoteStoragePackage from 'OLSKRemoteStorage';
+const OLSKRemoteStorage = OLSKRemoteStoragePackage.default || OLSKRemoteStoragePackage;
 
 const kType = 'kom_deck';
 const kCollection = 'kom_decks';

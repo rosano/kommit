@@ -8,7 +8,8 @@ import OLSKString from 'OLSKString';
 const OLSKFormatted = OLSKString.OLSKStringWithFormat;
 
 import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting'
-import * as OLSKRemoteStorage from '../_shared/__external/OLSKRemoteStorage/main.js'
+import * as OLSKRemoteStoragePackage from '../_shared/__external/OLSKRemoteStorage/main.js'
+const OLSKRemoteStorage = OLSKRemoteStoragePackage.default || OLSKRemoteStoragePackage;
 import KOM_Data from '../_shared/KOM_Data/main.js';
 import KOMDeckStorage from '../_shared/KOMDeck/storage.js';
 import KOMCardStorage from '../_shared/KOMCard/storage.js';

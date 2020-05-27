@@ -1,7 +1,8 @@
 import KOMCardStorage from '../KOMCard/storage.js';
 import KOMCardModel from '../KOMCard/model.js';
 import KOMSpacingModel from './model.js';
-import * as OLSKRemoteStorage from 'OLSKRemoteStorage';
+import * as OLSKRemoteStoragePackage from 'OLSKRemoteStorage';
+const OLSKRemoteStorage = OLSKRemoteStoragePackage.default || OLSKRemoteStoragePackage;
 import KOMDeckStorage from '../KOMDeck/storage.js';
 
 const kType = 'kom_spacing';

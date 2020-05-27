@@ -1,5 +1,5 @@
-import * as _OLSKRemoteStorage from 'OLSKRemoteStorage';
-const OLSKRemoteStorage = _OLSKRemoteStorage.default || _OLSKRemoteStorage;
+import * as OLSKRemoteStoragePackage from 'OLSKRemoteStorage';
+const OLSKRemoteStorage = OLSKRemoteStoragePackage.default || OLSKRemoteStoragePackage;
 
 const mod = {
 
