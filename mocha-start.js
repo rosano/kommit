@@ -23,7 +23,9 @@ const KOMSpacingStorage = require('./os-app/_shared/KOMSpacing/storage.js').defa
 		KOMDeckStorage.KOMDeckStorageBuild,
 		KOMCardStorage.KOMCardStorageBuild,
 		KOMSpacingStorage.KOMSpacingStorageBuild,
-	]);
+	], {
+		OLSKOptionIncludeDebug: true,
+	});
 
 	before(function() {
 		global.KOMTestingStorageClient = new RemoteStorage({ modules: [ storageModule ] });
