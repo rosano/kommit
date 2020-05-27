@@ -99,7 +99,7 @@ const mod = {
 			changeDelegate[delegateMethod](KOMCardModel.KOMCardModelPostJSONParse(event[OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateInput(delegateMethod)]));
 		});
 
-		const KOMStorageExports = {
+		const OLSKRemoteStorageCollectionExports = {
 
 			async KOMStorageList (inputData) {
 				let storagePath = mod.KOMCardStorageCollectionPath(inputData);
@@ -144,26 +144,12 @@ const mod = {
 				return privateClient.remove(mod.KOMCardStorageObjectPath(param1, param2));
 			},
 			
-			async _KOMStorageReset () {
-				return (await KOMStorageExports.__KOMStorageResetFakeDecks()).map(async function (deck) {
-					return Object.values(await KOMStorageExports.KOMStorageList(deck)).map(KOMCardModel.KOMCardModelPostJSONParse).map(function (e) {
-						return KOMStorageExports.KOMStorageDelete(e, deck);
-					});
-				});
-			},
-			async __KOMStorageResetFakeDecks () {
-				// fake objects because there may not be a deck_id/main file
-				return Object.keys(await privateClient.getAll(KOMDeckStorage.KOMDeckStorageCollectionPath(), false)).map(function (e) {
-					return mod.uFakeDeck(KOMDeckStorage.KOMDeckStorageCollectionPath() + e);
-				});
-			},
-			
 		};
 
 		return {
-			KOMStorageCollection: kCollection,
-			KOMStorageType: kType,
-			KOMStorageModelErrors: Object.entries(KOMCardModel.KOMCardModelErrorsFor({}, {
+			OLSKRemoteStorageCollectionName: kCollection,
+			OLSKRemoteStorageCollectionType: kType,
+			OLSKRemoteStorageCollectionModelErrors: Object.entries(KOMCardModel.KOMCardModelErrorsFor({}, {
 				KOMOptionValidateIfNotPresent: true,
 			})).map(function (e) {
 				if (Object.keys(KOMCardModel.KOMCardModelErrorsFor({})).indexOf(e[0]) === -1) {
@@ -176,7 +162,7 @@ const mod = {
 
 				return coll;
 			}, {}),
-			KOMStorageExports,
+			OLSKRemoteStorageCollectionExports,
 		};
 	},
 

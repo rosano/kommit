@@ -7,10 +7,6 @@ import KOMDeckStorage from '../KOMDeck/storage.js';
 const kType = 'kom_spacing';
 const kCollection = 'kom_spacings';
 
-const uFlatten = function (inputData) {
-	return [].concat.apply([], inputData);
-};
-
 const mod = {
 
 	KOMSpacingStoragePathForward (param1, param2) {
@@ -41,14 +37,6 @@ const mod = {
 	},
 
 	KOMSpacingStorageBuild (privateClient, publicClient, changeDelegate) {
-		const uList = async function (inputData) {
-			return uFlatten(await Promise.all(uFlatten([inputData]).map(async function (path) {
-				return await Object.keys(await privateClient.getAll(path, false)).map(function (e) {
-					return path + e;
-				});
-			})));
-		};
-
 		privateClient.on('change', function (event) {
 			if (!changeDelegate) {
 				return;
@@ -71,7 +59,7 @@ const mod = {
 			changeDelegate[delegateMethod](KOMSpacingModel.KOMSpacingModelPostJSONParse(event[OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateInput(delegateMethod)]));
 		});
 
-		const KOMStorageExports = {
+		const OLSKRemoteStorageCollectionExports = {
 
 			async KOMStorageList (param1, param2) {
 				const result = await privateClient.getAll(KOMCardStorage.KOMCardStorageFolderPath(param1, param2));
@@ -96,37 +84,12 @@ const mod = {
 				return privateClient.remove((KOMSpacingModel.KOMSpacingModelIsBackward(param1) ? mod.KOMSpacingStoragePathBackward : mod.KOMSpacingStoragePathForward)(param2, param3));
 			},
 			
-			async _KOMStorageReset () {
-				return (await KOMStorageExports.__KOMStorageResetFakeDecks()).map(async function (deck) {
-					return (await KOMStorageExports.__KOMStorageResetFakeCards(deck)).map(async function (card) {
-						return [
-							mod.KOMSpacingStoragePathForward(card, deck),
-							mod.KOMSpacingStoragePathBackward(card, deck),
-						].map(async function (e) {
-							return await privateClient.getObject(e) && await privateClient.remove(e);
-						});
-					});
-				});
-			},
-			async __KOMStorageResetFakeDecks () {
-				// fake objects because there may not be a deck_id/main file
-				return Object.keys(await privateClient.getAll(KOMDeckStorage.KOMDeckStorageCollectionPath(), false)).map(function (e) {
-					return KOMCardStorage.uFakeDeck(KOMDeckStorage.KOMDeckStorageCollectionPath() + e);
-				});
-			},
-			async __KOMStorageResetFakeCards (inputData) {
-				// fake objects because there may not be a deck_id/main file
-				return (await uList(await uList(KOMCardStorage.KOMCardStorageCollectionPath(inputData)))).map(function (e) {
-					return KOMCardStorage.uFakeCard(KOMCardStorage.KOMCardStorageCollectionPath(inputData) + e);
-				});
-			},
-			
 		};
 
 		return {
-			KOMStorageCollection: kCollection,
-			KOMStorageType: kType,
-			KOMStorageModelErrors: Object.entries(KOMSpacingModel.KOMSpacingModelErrorsFor({}, {
+			OLSKRemoteStorageCollectionName: kCollection,
+			OLSKRemoteStorageCollectionType: kType,
+			OLSKRemoteStorageCollectionModelErrors: Object.entries(KOMSpacingModel.KOMSpacingModelErrorsFor({}, {
 				KOMOptionValidateIfNotPresent: true,
 			})).map(function (e) {
 				if (Object.keys(KOMSpacingModel.KOMSpacingModelErrorsFor({})).indexOf(e[0]) === -1) {
@@ -139,7 +102,7 @@ const mod = {
 
 				return coll;
 			}, {}),
-			KOMStorageExports,
+			OLSKRemoteStorageCollectionExports,
 		};
 	},
 

@@ -32,8 +32,6 @@ const KOMSpacingStorage = require('./os-app/_shared/KOMSpacing/storage.js').defa
 	});
 
 	beforeEach(async function() {
-		await uSerial(Object.keys(global.KOMTestingStorageClient[storageModule.name]).map(function (e) {
-			return global.KOMTestingStorageClient[storageModule.name][e]._KOMStorageReset();
-		}));
+		return await global.KOMTestingStorageClient[storageModule.name].__DEBUG._OLSKRemoteStorageReset();
 	});
 })();

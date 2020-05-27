@@ -57,7 +57,7 @@ const mod = {
 			changeDelegate[delegateMethod](KOMDeckModel.KOMDeckModelPostJSONParse(event[OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateInput(delegateMethod)]));
 		});
 
-		const KOMStorageExports = {
+		const OLSKRemoteStorageCollectionExports = {
 
 			async KOMStorageList () {
 				return (await Promise.all(Object.keys(await privateClient.getAll(mod.KOMDeckStorageCollectionPath(), false)).map(function (e) {
@@ -80,16 +80,12 @@ const mod = {
 				return privateClient.remove(mod.KOMDeckStorageObjectPath(inputData.KOMDeckID));
 			},
 			
-			async _KOMStorageReset () {
-				return Object.values(await KOMStorageExports.KOMStorageList()).map(KOMStorageExports.KOMStorageDelete);
-			},
-			
 		};
 
 		return {
-			KOMStorageCollection: kCollection,
-			KOMStorageType: kType,
-			KOMStorageModelErrors: Object.entries(KOMDeckModel.KOMDeckModelErrorsFor({}, {
+			OLSKRemoteStorageCollectionName: kCollection,
+			OLSKRemoteStorageCollectionType: kType,
+			OLSKRemoteStorageCollectionModelErrors: Object.entries(KOMDeckModel.KOMDeckModelErrorsFor({}, {
 				KOMOptionValidateIfNotPresent: true,
 			})).map(function (e) {
 				if (Object.keys(KOMDeckModel.KOMDeckModelErrorsFor({})).indexOf(e[0]) === -1) {
@@ -102,7 +98,7 @@ const mod = {
 
 				return coll;
 			}, {}),
-			KOMStorageExports,
+			OLSKRemoteStorageCollectionExports,
 		};
 	},
 

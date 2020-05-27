@@ -356,21 +356,21 @@ const mod = {
 	SetupStorageClient() {
 		const storageModule = KOM_Data.KOM_DataModule([
 			Object.assign(KOMDeckStorage.KOMDeckStorageBuild, {
-				KOM_DataChangeDelegate: {
+				OLSKChangeDelegate: {
 					OLSKChangeDelegateCreate: mod.OLSKChangeDelegateCreateDeck,
 					OLSKChangeDelegateUpdate: mod.OLSKChangeDelegateUpdateDeck,
 					OLSKChangeDelegateDelete: mod.OLSKChangeDelegateDeleteDeck,
 				},
 			}),
 			Object.assign(KOMCardStorage.KOMCardStorageBuild, {
-				KOM_DataChangeDelegate: {
+				OLSKChangeDelegate: {
 					OLSKChangeDelegateCreate: mod.OLSKChangeDelegateCreateCard,
 					OLSKChangeDelegateUpdate: mod.OLSKChangeDelegateUpdateCard,
 					OLSKChangeDelegateDelete: mod.OLSKChangeDelegateDeleteCard,
 				},
 			}),
 			Object.assign(KOMSpacingStorage.KOMSpacingStorageBuild, {
-				KOM_DataChangeDelegate: {
+				OLSKChangeDelegate: {
 					OLSKChangeDelegateCreate: mod.OLSKChangeDelegateCreateSpacing,
 					OLSKChangeDelegateUpdate: mod.OLSKChangeDelegateUpdateSpacing,
 					OLSKChangeDelegateDelete: mod.OLSKChangeDelegateDeleteSpacing,
