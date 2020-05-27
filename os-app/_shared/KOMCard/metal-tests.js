@@ -122,7 +122,7 @@ describe('KOMCardMetalFileRead', function test_KOMCardMetalFileRead() {
 		await rejects(mainModule.KOMCardMetalFileRead(KOMTestingStorageClient, null), /KOMErrorInputNotValid/);
 	});
 
-	it.skip('returns null if non-existing', async function() {
+	it('returns null if non-existing', async function() {
 		deepEqual(await mainModule.KOMCardMetalFileRead(KOMTestingStorageClient, 'bravo'), null);
 	});
 

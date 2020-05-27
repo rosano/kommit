@@ -130,6 +130,10 @@ const mod = {
 			
 			async KOMStorageFileRead (inputData) {
 				const file = await privateClient.getFile(inputData);
+				
+				if (!file.data) {
+					return null;
+				}
 				return new Blob([file.data], { type: file.mimeType });;
 			},
 			
