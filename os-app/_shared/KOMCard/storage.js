@@ -122,6 +122,16 @@ const mod = {
 				return KOMCardModel.KOMCardModelPostJSONParse(param1);
 			},
 			
+			async KOMStorageFileWrite (param1, param2) {
+				await privateClient.storeFile(param1.type, param2, param1);
+				return param1;
+			},
+			
+			async KOMStorageFileRead (inputData) {
+				const file = await privateClient.getFile(inputData);
+				return new Blob([file.data], { type: file.mimeType });;
+			},
+			
 			async KOMStorageDelete (param1, param2) {
 				await Promise.all((await uList(mod.KOMCardStorageFolderPath(param1, param2))).map(async function (e) {
 					if (e === mod.KOMCardStorageObjectPath(param1, param2)) {

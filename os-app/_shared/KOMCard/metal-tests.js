@@ -89,3 +89,43 @@ describe('KOMCardMetalDelete', function test_KOMCardMetalDelete() {
 	});
 
 });
+
+describe('KOMCardMetalFileWrite', function test_KOMCardMetalFileWrite() {
+
+	const blob = new Blob(['alfa'], { type: 'text/plain' });
+
+	it('rejects if param1 not blob', async function() {
+		await rejects(mainModule.KOMCardMetalFileWrite(KOMTestingStorageClient, 'alfa', 'bravo'), /KOMErrorInputNotValid/);
+	});
+
+	it('rejects if param2 not string', async function() {
+		await rejects(mainModule.KOMCardMetalFileWrite(KOMTestingStorageClient, blob, null), /KOMErrorInputNotValid/);
+	});
+
+	it('returns inputData', async function() {
+		let item = await mainModule.KOMCardMetalFileWrite(KOMTestingStorageClient, blob, 'bravo');
+
+		deepEqual(item === blob, true);
+	});
+
+});
+
+describe('KOMCardMetalFileRead', function test_KOMCardMetalFileRead() {
+
+	const blob = new Blob(['alfa'], { type: 'text/plain' });
+
+	it('rejects if not string', async function() {
+		await rejects(mainModule.KOMCardMetalFileRead(KOMTestingStorageClient, null), /KOMErrorInputNotValid/);
+	});
+
+	it('returns null if non-existing ', async function() {
+		deepEqual(await mainModule.KOMCardMetalFileRead(KOMTestingStorageClient, 'bravo'), null);
+	});
+
+	it('returns blob ', async function() {
+		let item = await mainModule.KOMCardMetalFileWrite(KOMTestingStorageClient, blob, 'bravo');
+
+		deepEqual(await (await mainModule.KOMCardMetalFileRead(KOMTestingStorageClient, 'bravo')).text(), await blob.text());
+	});
+
+});

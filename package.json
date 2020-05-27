@@ -71,6 +71,7 @@
     "mocha": "latest",
     "supervisor": "latest",
     "cross-blob": "latest",
+    "filereader": "latest",
 
     "// UI TESTS": null,
     "zombie": "latest",

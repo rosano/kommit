@@ -35,6 +35,26 @@ const mod = {
 		return await storageClient.kommit.kom_cards.KOMStorageDelete(param1, param2);
 	},
 
+	async KOMCardMetalFileWrite (storageClient, param1, param2) {
+		if (!(param1 instanceof Blob)) {
+			return Promise.reject(new Error('KOMErrorInputNotValid'));
+		}
+
+		if (typeof param2 !== 'string') {
+			return Promise.reject(new Error('KOMErrorInputNotValid'));
+		}
+
+		return await storageClient.kommit.kom_cards.KOMStorageFileWrite(param1, param2);
+	},
+
+	async KOMCardMetalFileRead (storageClient, inputData) {
+		if (typeof inputData !== 'string') {
+			return Promise.reject(new Error('KOMErrorInputNotValid'));
+		}
+
+		return await storageClient.kommit.kom_cards.KOMStorageFileRead(inputData);
+	},
+
 };
 
 export default mod;
