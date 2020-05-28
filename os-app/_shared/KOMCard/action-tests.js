@@ -282,12 +282,40 @@ describe('KOMCardActionAudioClear', function test_KOMCardActionAudioClear() {
 		
 		it('deletes KOMCardFrontAudio', async function() {
 			const item = kTesting.StubCardObjectValid();
-			
+
 			await mainModule.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardFrontAudio', blob, item, kTesting.StubDeckObjectValid());
 
 			deepEqual(typeof (await mainModule.KOMCardActionAudioClear(KOMTestingStorageClient, 'KOMCardFrontAudio', item, kTesting.StubDeckObjectValid())).KOMCardFrontAudio, 'undefined');
 		});
 	
+	});
+
+});
+
+describe('KOMCardActionAudioList', function test_KOMCardActionAudioList() {
+	
+	const blob = new Blob(['alfa'], { type: 'text/plain' });
+
+	it('rejects if param1 not valid', async function() {
+		await rejects(mainModule.KOMCardActionAudioList(KOMTestingStorageClient, {}, kTesting.StubDeckObjectValid()), /KOMErrorInputNotValid/);
+	});
+
+	it('rejects if param2 not valid', async function() {
+		await rejects(mainModule.KOMCardActionAudioList(KOMTestingStorageClient, kTesting.StubCardObjectValid(), {}), /KOMErrorInputNotValid/);
+	});
+
+	it('returns object', async function() {
+		deepEqual(await mainModule.KOMCardActionAudioList(KOMTestingStorageClient, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()), {});
+	});
+
+	it('returns KOMCardFrontAudio', async function() {
+		const item = kTesting.StubCardObjectValid();
+
+		await mainModule.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardFrontAudio', blob, item, kTesting.StubDeckObjectValid());
+
+		deepEqual(await mainModule.KOMCardActionAudioList(KOMTestingStorageClient, item, kTesting.StubDeckObjectValid()), {
+			KOMCardFrontAudio: blob,
+		});
 	});
 
 });

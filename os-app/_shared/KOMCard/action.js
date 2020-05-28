@@ -92,6 +92,26 @@ const mod = {
 
 		return param2;		
 	},
+
+	async KOMCardActionAudioList (storageClient, param1, param2) {
+		if (KOMCardModel.KOMCardModelErrorsFor(param1)) {
+			return Promise.reject(new Error('KOMErrorInputNotValid'));
+		}
+		
+		if (KOMDeckModel.KOMDeckModelErrorsFor(param2)) {
+			return Promise.reject(new Error('KOMErrorInputNotValid'));
+		}
+
+		return KOMCardModel.KOMCardModelAudioFields().reduce(function (coll, item) {
+			if (!coll[item]) {
+				delete coll[item];
+			}
+
+			return coll;
+		}, {
+			KOMCardFrontAudio: await KOMCardMetal.KOMCardMetalFileRead(storageClient, KOMCardStorage.KOMCardStorageAudioPathFront(param1, param2)),
+		});
+	},
 	
 };
 	
