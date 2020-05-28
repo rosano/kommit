@@ -1,0 +1,5 @@
+KOMBrowseInfoAudioRecordButtonText: Record
+KOMBrowseInfoAudioRecordingAlertText: Recording
+KOMBrowseInfoAudioPlaybackButtonText: Playback
+KOMBrowseInfoAudioClearButtonText: Clear
+KOMBrowseInfoAudioNotAvailableAlertText: Audio recording unsupported in this browser

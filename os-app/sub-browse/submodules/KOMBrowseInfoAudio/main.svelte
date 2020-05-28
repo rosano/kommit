@@ -1,9 +1,9 @@
 <script>
-export let KOMReviewDetailAudioAvailable;
-export let KOMReviewDetailAudioItem;
-export let KOMReviewDetailAudioItemProperty;
-export let KOMReviewDetailAudioDispatchCapture;
-export let KOMReviewDetailAudioDispatchClear;
+export let KOMBrowseInfoAudioAvailable;
+export let KOMBrowseInfoAudioItem;
+export let KOMBrowseInfoAudioItemProperty;
+export let KOMBrowseInfoAudioDispatchCapture;
+export let KOMBrowseInfoAudioDispatchClear;
 
 import OLSKInternational from 'OLSKInternational';
 const OLSKLocalized = function(translationConstant) {
@@ -19,7 +19,7 @@ const mod = {
 
 	// VALUE
 
-	_ValueAudio: KOMReviewDetailAudioItem[KOMReviewDetailAudioItemProperty],
+	_ValueAudio: KOMBrowseInfoAudioItem[KOMBrowseInfoAudioItemProperty],
 
 	_ValueSkipRecording: OLSK_TESTING_BEHAVIOUR(),
 
@@ -79,7 +79,7 @@ const mod = {
 
 		mod._ValueIsRecording = false;
 
-		KOMReviewDetailAudioDispatchCapture(KOMReviewDetailAudioItemProperty, !mod._ValueSkipRecording && await mod._ValueRecorder.stopRecording());
+		KOMBrowseInfoAudioDispatchCapture(KOMBrowseInfoAudioItemProperty, !mod._ValueSkipRecording && await mod._ValueRecorder.stopRecording());
 	},
 
 	ControlPlaybackStart () {
@@ -117,7 +117,7 @@ const mod = {
 	// DEBUG
 
 	DebugLog (inputData) {
-		window.TestKOMReviewDetailAudioLog.innerHTML = window.TestKOMReviewDetailAudioLog.innerHTML ? window.TestKOMReviewDetailAudioLog.innerHTML.split(',').concat(inputData).join(',') : inputData;
+		window.TestKOMBrowseInfoAudioLog.innerHTML = window.TestKOMBrowseInfoAudioLog.innerHTML ? window.TestKOMBrowseInfoAudioLog.innerHTML.split(',').concat(inputData).join(',') : inputData;
 	},
 
 };
@@ -125,28 +125,28 @@ const mod = {
 mod.SetupEverything();
 </script>
 
-<div class="KOMReviewDetailAudio">
+<div class="KOMBrowseInfoAudio">
 
-{#if KOMReviewDetailAudioAvailable }
+{#if KOMBrowseInfoAudioAvailable }
 
 	{#if !mod._ValueAudio }
-		<button class="KOMReviewDetailAudioRecordButton" on:click={ mod.InterfaceRecordButtonDidClick }>{ OLSKLocalized('KOMReviewDetailAudioRecordButtonText') }</button>
+		<button class="KOMBrowseInfoAudioRecordButton" on:click={ mod.InterfaceRecordButtonDidClick }>{ OLSKLocalized('KOMBrowseInfoAudioRecordButtonText') }</button>
 	{/if}
 
 	{#if mod._ValueIsRecording}
-		<span class="KOMReviewDetailAudioRecordingAlert">{ OLSKLocalized('KOMReviewDetailAudioRecordingAlertText') }</span>
+		<span class="KOMBrowseInfoAudioRecordingAlert">{ OLSKLocalized('KOMBrowseInfoAudioRecordingAlertText') }</span>
 	{/if}
 
 	{#if mod._ValueAudio }
-		<button class="KOMReviewDetailAudioPlaybackButton" on:click={ mod.InterfacePlaybackButtonDidClick }>{ OLSKLocalized('KOMReviewDetailAudioPlaybackButtonText') }</button>
+		<button class="KOMBrowseInfoAudioPlaybackButton" on:click={ mod.InterfacePlaybackButtonDidClick }>{ OLSKLocalized('KOMBrowseInfoAudioPlaybackButtonText') }</button>
 
-		<button class="KOMReviewDetailAudioClearButton" on:click={ () => KOMReviewDetailAudioDispatchClear(KOMReviewDetailAudioItemProperty) }>{ OLSKLocalized('KOMReviewDetailAudioClearButtonText') }</button>
+		<button class="KOMBrowseInfoAudioClearButton" on:click={ () => KOMBrowseInfoAudioDispatchClear(KOMBrowseInfoAudioItemProperty) }>{ OLSKLocalized('KOMBrowseInfoAudioClearButtonText') }</button>
 	{/if}
 
 {/if}
 
-{#if !KOMReviewDetailAudioAvailable }
-	<span class="KOMReviewDetailAudioNotAvailableAlert">{ OLSKLocalized('KOMReviewDetailAudioNotAvailableAlertText') }</span>
+{#if !KOMBrowseInfoAudioAvailable }
+	<span class="KOMBrowseInfoAudioNotAvailableAlert">{ OLSKLocalized('KOMBrowseInfoAudioNotAvailableAlertText') }</span>
 {/if}
 
 </div>
