@@ -19,8 +19,6 @@ const mod = {
 
 	// VALUE
 
-	_ValueAudio: KOMBrowseInfoAudioItem[KOMBrowseInfoAudioItemProperty],
-
 	_ValueSkipRecording: OLSK_TESTING_BEHAVIOUR(),
 
 	_ValueIsRecording: false,
@@ -129,7 +127,7 @@ mod.SetupEverything();
 
 {#if KOMBrowseInfoAudioAvailable }
 
-	{#if !mod._ValueAudio }
+	{#if !KOMBrowseInfoAudioItem[KOMBrowseInfoAudioItemProperty] }
 		<button class="KOMBrowseInfoAudioRecordButton" on:click={ mod.InterfaceRecordButtonDidClick }>{ OLSKLocalized('KOMBrowseInfoAudioRecordButtonText') }</button>
 	{/if}
 
@@ -137,7 +135,7 @@ mod.SetupEverything();
 		<span class="KOMBrowseInfoAudioRecordingAlert">{ OLSKLocalized('KOMBrowseInfoAudioRecordingAlertText') }</span>
 	{/if}
 
-	{#if mod._ValueAudio }
+	{#if KOMBrowseInfoAudioItem[KOMBrowseInfoAudioItemProperty] }
 		<button class="KOMBrowseInfoAudioPlaybackButton" on:click={ mod.InterfacePlaybackButtonDidClick }>{ OLSKLocalized('KOMBrowseInfoAudioPlaybackButtonText') }</button>
 
 		<button class="KOMBrowseInfoAudioClearButton" on:click={ () => KOMBrowseInfoAudioDispatchClear(KOMBrowseInfoAudioItemProperty) }>{ OLSKLocalized('KOMBrowseInfoAudioClearButtonText') }</button>
