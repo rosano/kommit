@@ -4,6 +4,7 @@ export let KOMBrowseInfoDispatchBack;
 export let KOMBrowseInfoDispatchUpdate;
 export let KOMBrowseInfoDispatchDiscard;
 export let KOMBrowseInfoAudioDispatchCapture;
+export let KOMBrowseInfoAudioDispatchFetch;
 export let KOMBrowseInfoAudioDispatchClear;
 export let OLSKMobileViewInactive = false;
 
@@ -52,7 +53,14 @@ import KOMBrowseInfoAudio from '../KOMBrowseInfoAudio/main.svelte';
 </p>
 
 <p class="KOMBrowseInfoFormFrontAudio">
-	<KOMBrowseInfoAudio KOMBrowseInfoAudioItem={ KOMBrowseInfoItem } KOMBrowseInfoAudioItemProperty="KOMCardFrontAudio" KOMBrowseInfoAudioAvailable={ true } KOMBrowseInfoAudioDispatchCapture={ KOMBrowseInfoAudioDispatchCapture } KOMBrowseInfoAudioDispatchClear={ KOMBrowseInfoAudioDispatchClear } />
+	<KOMBrowseInfoAudio
+		KOMBrowseInfoAudioItem={ KOMBrowseInfoItem }
+		KOMBrowseInfoAudioItemProperty="KOMCardFrontAudio"
+		KOMBrowseInfoAudioAvailable={ true }
+		KOMBrowseInfoAudioDispatchCapture={ KOMBrowseInfoAudioDispatchCapture }
+		KOMBrowseInfoAudioDispatchFetch={ KOMBrowseInfoAudioDispatchFetch }
+		KOMBrowseInfoAudioDispatchClear={ KOMBrowseInfoAudioDispatchClear }
+		/>
 </p>
 
 <p>

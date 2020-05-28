@@ -221,7 +221,7 @@ describe('KOMBrowseInfo_Misc', function () {
 		
 		});
 		
-		context('clear', function () {
+		context('play', function () {
 
 			before(function() {
 				return browser.OLSKVisit(kDefaultRoute, {
@@ -231,6 +231,22 @@ describe('KOMBrowseInfo_Misc', function () {
 					}),
 				});
 			});
+
+			before(function () {
+				browser.assert.text('#TestKOMBrowseInfoAudioDispatchFetch', '0');
+			});
+			
+			before(function () {
+				return browser.pressButton(`${ KOMBrowseInfoFormFrontAudio } .KOMBrowseInfoAudioPlaybackButton`);
+			});
+
+			it('passes KOMBrowseInfoAudioDispatchFetch', function () {
+				browser.assert.text('#TestKOMBrowseInfoAudioDispatchFetch', '1');
+			});
+		
+		});
+		
+		context('clear', function () {
 
 			before(function () {
 				browser.assert.text('#TestKOMBrowseInfoAudioDispatchClear', '0');

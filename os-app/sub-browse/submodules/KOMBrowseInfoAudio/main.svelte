@@ -3,8 +3,8 @@ export let KOMBrowseInfoAudioAvailable;
 export let KOMBrowseInfoAudioItem;
 export let KOMBrowseInfoAudioItemProperty;
 export let KOMBrowseInfoAudioDispatchCapture;
-export let KOMBrowseInfoAudioDispatchClear;
 export let KOMBrowseInfoAudioDispatchFetch;
+export let KOMBrowseInfoAudioDispatchClear;
 
 import OLSKInternational from 'OLSKInternational';
 const OLSKLocalized = function(translationConstant) {
