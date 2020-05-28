@@ -49,13 +49,15 @@ const mod = {
 		mod.ControlCardUpdate(mod._ValueCardSelected, KOMBrowseDeckSelected);
 	},
 
-	KOMBrowseInfoAudioDispatchCapture (param1, param2) {
-		mod.ControlCardAudioCapture(param1, param2, mod._ValueCardSelected, KOMBrowseDeckSelected);
+	async KOMBrowseInfoAudioDispatchCapture (param1, param2) {
+		await mod.ControlCardAudioCapture(param1, param2, mod._ValueCardSelected, KOMBrowseDeckSelected);
+
+		mod._ValueCardSelected = mod._ValueCardSelected; // #purge-svelte-force-update
 	},
 
-	KOMBrowseInfoAudioDispatchClear (inputData) {
-		mod.ControlCardAudioClear(inputData, mod._ValueCardSelected, KOMBrowseDeckSelected);
-		
+	async KOMBrowseInfoAudioDispatchClear (inputData) {
+		await mod.ControlCardAudioClear(inputData, mod._ValueCardSelected, KOMBrowseDeckSelected);
+
 		mod._ValueCardSelected = mod._ValueCardSelected; // #purge-svelte-force-update
 	},
 
@@ -156,16 +158,16 @@ const mod = {
 		});
 	},
 
-	ControlCardAudioCapture(param1, param2, param3, param4) {
-		param3[param1] = true;
+	async ControlCardAudioCapture(param1, param2, param3, param4) {
+		await KOMCardAction.KOMCardActionAudioCapture(...[KOMBrowseStorageClient].concat(Object.values(arguments)));
 
-		mod.ControlCardUpdate(param3, param4);
+		await mod.ControlCardUpdate(param3, param4);
 	},
 
-	ControlCardAudioClear(param1, param2, param3) {
-		delete param2[param1];
+	async ControlCardAudioClear(param1, param2, param3) {
+		await KOMCardAction.KOMCardActionAudioClear(...([KOMBrowseStorageClient].concat(Object.values(arguments))));
 
-		mod.ControlCardUpdate(param2, param3);
+		await mod.ControlCardUpdate(param2, param3);
 	},
 
 	async ControlCardDiscard (param1, param2) {
