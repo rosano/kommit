@@ -168,6 +168,16 @@ describe('KOMCardModelErrorsFor', function test_KOMCardModelErrorsFor() {
 
 });
 
+describe('KOMCardModelAudioFields', function test_KOMCardModelAudioFields() {
+
+	it('returns array', function() {
+		deepEqual(mainModule.KOMCardModelAudioFields(), [
+			'KOMCardFrontAudio',
+		]);
+	});
+
+});
+
 describe('KOMCardModelPreJSONSchemaValidate', function test_KOMCardModelPreJSONSchemaValidate() {
 
 	it('returns input', function() {

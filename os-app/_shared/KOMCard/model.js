@@ -70,6 +70,12 @@ const mod = {
 		return Object.entries(errors).length ? errors : null;
 	},
 
+	KOMCardModelAudioFields () {
+		return [
+			'KOMCardFrontAudio',
+		];
+	},
+
 	KOMCardModelPreJSONSchemaValidate (inputData) {
 		if (inputData.KOMCardCreationDate) {
 			inputData.KOMCardCreationDate = inputData.KOMCardCreationDate.toISOString();
