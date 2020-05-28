@@ -61,6 +61,10 @@ const mod = {
 		mod._ValueCardSelected = mod._ValueCardSelected; // #purge-svelte-force-update
 	},
 
+	async KOMBrowseInfoAudioDispatchFetch (inputData) {
+		return await KOMCardAction.KOMCardActionAudioFetch(KOMBrowseStorageClient, inputData, mod._ValueCardSelected, KOMBrowseDeckSelected);
+	},
+
 	// VALUE
 
 	ValueCardsAll (inputData, shouldSort = true) {
@@ -299,6 +303,7 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 		KOMBrowseInfoDispatchDiscard={ mod.KOMBrowseInfoDispatchDiscard }
 		KOMBrowseInfoDispatchUpdate={ mod.KOMBrowseInfoDispatchUpdate }
 		KOMBrowseInfoAudioDispatchCapture={ mod.KOMBrowseInfoAudioDispatchCapture }
+		KOMBrowseInfoAudioDispatchFetch={ mod.KOMBrowseInfoAudioDispatchFetch }
 		KOMBrowseInfoAudioDispatchClear={ mod.KOMBrowseInfoAudioDispatchClear }
 		OLSKMobileViewInactive={ !mod.OLSKMobileViewInactive }
 		/>
