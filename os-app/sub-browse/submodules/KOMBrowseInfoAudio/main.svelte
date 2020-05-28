@@ -86,16 +86,23 @@ const mod = {
 		if (!mod._ValueAudio && OLSK_TESTING_BEHAVIOUR()) {
 			mod._ValueAudio = KOMBrowseInfoAudioDispatchFetch(KOMBrowseInfoAudioItemProperty) || true;
 		}
-		
+
 		if (!mod._ValueAudio) {
 			(mod._ValueAudio = new Audio()).src = URL.createObjectURL(await KOMBrowseInfoAudioDispatchFetch(KOMBrowseInfoAudioItemProperty));
 		}
-		
+
 		if (OLSK_TESTING_BEHAVIOUR()) {
 			mod.DebugLog('play');
 		}
 
 		mod._ValueAudioIsPlaying = true;
+
+		if (mod._ValueSkipRecording) {
+			return;
+		}
+
+		mod._ValueAudio.currentTime = 0;
+		mod._ValueAudio.play();
 	},
 
 	ControlPlaybackStop () {
