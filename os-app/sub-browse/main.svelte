@@ -199,7 +199,7 @@ const mod = {
 			return;
 		}
 		
-		setTimeout(mod.ControlFocusDetail)
+		setTimeout(mod.ControlFocusDetail);
 	},
 	
 	ControlFilter(inputData) {
