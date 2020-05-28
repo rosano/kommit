@@ -114,7 +114,15 @@ const mod = {
 			},
 			
 			async KOMStorageFileWrite (param1, param2) {
-				await privateClient.storeFile(param1.type, param2, param1);
+				await privateClient.storeFile(param1.type, param2, global.KOMTestingStorageClient ? param1 : await new Promise(function (res, rej) {
+					const reader = new FileReader();
+
+					reader.onload = function() {
+					  res(reader.result);
+					};
+
+					reader.readAsArrayBuffer(param1);
+				}));
 				return param1;
 			},
 			
