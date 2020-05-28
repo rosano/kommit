@@ -133,7 +133,7 @@ const mod = {
 					return null;
 				}
 
-				return new Blob([file.data], { type: file.mimeType });;
+				return new Blob([file.data], { type: file.contentType });
 			},
 			
 			KOMStorageFileDelete (inputData) {
