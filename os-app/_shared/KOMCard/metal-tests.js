@@ -102,11 +102,11 @@ describe('KOMCardMetalFileWrite', function test_KOMCardMetalFileWrite() {
 		await rejects(mainModule.KOMCardMetalFileWrite(KOMTestingStorageClient, 'alfa', 'bravo'), /KOMErrorInputNotValid/);
 	});
 
-	it('rejects if param2 not string', async function() {
+	it('rejects if param2 not path', async function() {
 		await rejects(mainModule.KOMCardMetalFileWrite(KOMTestingStorageClient, blob, null), /KOMErrorInputNotValid/);
 	});
 
-	it('returns inputData', async function() {
+	it('returns param1', async function() {
 		const item = await mainModule.KOMCardMetalFileWrite(KOMTestingStorageClient, blob, 'bravo');
 
 		deepEqual(item === blob, true);
@@ -118,7 +118,7 @@ describe('KOMCardMetalFileRead', function test_KOMCardMetalFileRead() {
 
 	const blob = new Blob(['alfa'], { type: 'text/plain' });
 
-	it('rejects if not string', async function() {
+	it('rejects if not path', async function() {
 		await rejects(mainModule.KOMCardMetalFileRead(KOMTestingStorageClient, null), /KOMErrorInputNotValid/);
 	});
 
