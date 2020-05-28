@@ -231,7 +231,7 @@ describe('KOMCardActionAudioCapture', function test_KOMCardActionAudioCapture() 
 
 	context('KOMCardFrontAudio', function () {
 
-		it('writes to front', async function () {
+		it('writes KOMCardStorageAudioPathFront', async function () {
 			await mainModule.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardFrontAudio', blob, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid());
 			deepEqual(await OLSKRemoteStorage.OLSKRemoteStorageListObjectsRecursive(OLSKRemoteStorage._OLSKRemoteStoragePrivateClient(KOMTestingStorageClient.kommit), ''), [
 				KOMCardStorage.KOMCardStorageAudioPathFront(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()),
@@ -246,3 +246,48 @@ describe('KOMCardActionAudioCapture', function test_KOMCardActionAudioCapture() 
 
 });
 
+describe('KOMCardActionAudioClear', function test_KOMCardActionAudioClear() {
+
+	const blob = new Blob(['alfa'], { type: 'text/plain' });
+
+	it('rejects if param1 not valid', async function() {
+		await rejects(mainModule.KOMCardActionAudioClear(KOMTestingStorageClient, 'alfa', kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()), /KOMErrorInputNotValid/);
+	});
+
+	it('rejects if param2 not valid', async function() {
+		await rejects(mainModule.KOMCardActionAudioClear(KOMTestingStorageClient, 'KOMCardFrontAudio', {}, kTesting.StubDeckObjectValid()), /KOMErrorInputNotValid/);
+	});
+
+	it('rejects if param3 not valid', async function() {
+		await rejects(mainModule.KOMCardActionAudioClear(KOMTestingStorageClient, 'KOMCardFrontAudio', kTesting.StubCardObjectValid(), {}), /KOMErrorInputNotValid/);
+	});
+
+	it('returns param2', async function() {
+		const item = kTesting.StubCardObjectValid();
+		
+		await mainModule.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardFrontAudio', blob, item, kTesting.StubDeckObjectValid());
+
+		deepEqual(await mainModule.KOMCardActionAudioClear(KOMTestingStorageClient, 'KOMCardFrontAudio', item, kTesting.StubDeckObjectValid()) === item, true);
+	});
+
+	context('KOMCardFrontAudio', function () {
+
+		it('deletes KOMCardStorageAudioPathFront', async function () {
+			await mainModule.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardFrontAudio', blob, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid());
+
+			await mainModule.KOMCardActionAudioClear(KOMTestingStorageClient, 'KOMCardFrontAudio', kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid());
+
+			deepEqual(await OLSKRemoteStorage.OLSKRemoteStorageListObjectsRecursive(OLSKRemoteStorage._OLSKRemoteStoragePrivateClient(KOMTestingStorageClient.kommit), ''), []);
+		});
+		
+		it('deletes KOMCardFrontAudio', async function() {
+			const item = kTesting.StubCardObjectValid();
+			
+			await mainModule.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardFrontAudio', blob, item, kTesting.StubDeckObjectValid());
+
+			deepEqual(typeof (await mainModule.KOMCardActionAudioClear(KOMTestingStorageClient, 'KOMCardFrontAudio', item, kTesting.StubDeckObjectValid())).KOMCardFrontAudio, 'undefined');
+		});
+	
+	});
+
+});
