@@ -133,8 +133,8 @@ const mod = {
 			},
 			
 			async KOMStorageDelete (param1, param2) {
-				return (await Promise.all((await OLSKRemoteStorage.OLSKRemoteStorageListObjectsRecursive(privateClient, mod.KOMCardStorageFolderPath(param1, param2))).map(async function (path) {
-					return await privateClient.remove(path);
+				return (await Promise.all((await OLSKRemoteStorage.OLSKRemoteStorageListObjectsRecursive(privateClient, mod.KOMCardStorageFolderPath(param1, param2))).map(function (path) {
+					return privateClient.remove(path);
 				}))).pop();
 			},
 			
