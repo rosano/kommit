@@ -133,3 +133,27 @@ describe('KOMCardMetalFileRead', function test_KOMCardMetalFileRead() {
 	});
 
 });
+
+describe('KOMCardMetalFileDelete', function test_KOMCardMetalFileDelete() {
+
+	const blob = new Blob(['alfa'], { type: 'text/plain' });
+
+	it('rejects if not path', async function() {
+		await rejects(mainModule.KOMCardMetalFileDelete(KOMTestingStorageClient, null), /KOMErrorInputNotValid/);
+	});
+
+	it('returns status if non-existing', async function() {
+		deepEqual(await mainModule.KOMCardMetalFileDelete(KOMTestingStorageClient, 'bravo'), {
+			statusCode: 200,
+		});
+	});
+
+	it('returns status', async function() {
+		await mainModule.KOMCardMetalFileWrite(KOMTestingStorageClient, blob, 'bravo');
+
+		deepEqual(await mainModule.KOMCardMetalFileDelete(KOMTestingStorageClient, 'bravo'), {
+			statusCode: 200,
+		});
+	});
+
+});

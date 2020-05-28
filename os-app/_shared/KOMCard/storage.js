@@ -124,7 +124,12 @@ const mod = {
 				if (!file.data) {
 					return null;
 				}
+
 				return new Blob([file.data], { type: file.mimeType });;
+			},
+			
+			KOMStorageFileDelete (inputData) {
+				return privateClient.remove(inputData);
 			},
 			
 			async KOMStorageDelete (param1, param2) {

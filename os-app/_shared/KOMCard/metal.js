@@ -55,6 +55,14 @@ const mod = {
 		return await storageClient.kommit.kom_cards.KOMStorageFileRead(inputData);
 	},
 
+	async KOMCardMetalFileDelete (storageClient, inputData) {
+		if (typeof inputData !== 'string') {
+			return Promise.reject(new Error('KOMErrorInputNotValid'));
+		}
+
+		return await storageClient.kommit.kom_cards.KOMStorageFileDelete(inputData);
+	},
+
 };
 
 export default mod;
