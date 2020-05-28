@@ -3,6 +3,8 @@ export let KOMBrowseInfoItem;
 export let KOMBrowseInfoDispatchBack;
 export let KOMBrowseInfoDispatchUpdate;
 export let KOMBrowseInfoDispatchDiscard;
+export let KOMBrowseInfoAudioDispatchCapture;
+export let KOMBrowseInfoAudioDispatchClear;
 export let OLSKMobileViewInactive = false;
 
 import OLSKInternational from 'OLSKInternational';
@@ -17,6 +19,7 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 import OLSKDetailPlaceholder from 'OLSKDetailPlaceholder';
 import _OLSKSharedBack from '../../../_shared/__external/OLSKUIAssets/_OLSKSharedBack.svg';
 import _OLSKSharedDiscard from '../../../_shared/__external/OLSKUIAssets/_OLSKSharedDiscard.svg';
+import KOMBrowseInfoAudio from '../KOMBrowseInfoAudio/main.svelte';
 </script>
 
 <div class="KOMBrowseInfo OLSKViewportDetail" class:OLSKMobileViewInactive={ OLSKMobileViewInactive } aria-hidden={ OLSKMobileViewInactive ? true : null }>
@@ -46,6 +49,10 @@ import _OLSKSharedDiscard from '../../../_shared/__external/OLSKUIAssets/_OLSKSh
 
 <p>
 	<input class="KOMBrowseInfoFormFrontField OLSKMobileSafariRemoveDefaultInputStyle" placeholder="{ OLSKLocalized('KOMBrowseInfoFormFrontFieldText') }" type="text" bind:value={ KOMBrowseInfoItem.KOMCardFront } on:input={ KOMBrowseInfoDispatchUpdate } />
+</p>
+
+<p class="KOMBrowseInfoFormFrontAudio">
+	<KOMBrowseInfoAudio KOMBrowseInfoAudioItem={ KOMBrowseInfoItem } KOMBrowseInfoAudioItemProperty="KOMCardFrontAudio" KOMBrowseInfoAudioAvailable={ true } KOMBrowseInfoAudioDispatchCapture={ KOMBrowseInfoAudioDispatchCapture } KOMBrowseInfoAudioDispatchClear={ KOMBrowseInfoAudioDispatchClear } />
 </p>
 
 <p>

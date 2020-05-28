@@ -2,10 +2,6 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 describe('KOMBrowseInfoAudio_Misc', function () {
 
-	const item = {
-		KOMCardID: 'alfa',
-	};
-
 	const _log = [];
 	const uLog = function (inputData) {
 		_log.push(inputData);
@@ -15,7 +11,9 @@ describe('KOMBrowseInfoAudio_Misc', function () {
 
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute, {
-			KOMBrowseInfoAudioItem: JSON.stringify(item),
+			KOMBrowseInfoAudioItem: JSON.stringify({
+				KOMCardID: 'alfa',
+			}),
 			KOMBrowseInfoAudioItemProperty: 'KOMCardFrontAudio',
 		});
 	});
@@ -64,14 +62,12 @@ describe('KOMBrowseInfoAudio_Misc', function () {
 
 	context('KOMBrowseInfoAudioItemProperty', function () {
 		
-		const item = {
-			KOMCardID: 'alfa',
-			KOMCardFrontAudio: 'bravo',
-		};
-
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute, {
-				KOMBrowseInfoAudioItem: JSON.stringify(item),
+				KOMBrowseInfoAudioItem: JSON.stringify({
+					KOMCardID: 'alfa',
+					KOMCardFrontAudio: 'bravo',
+				}),
 				KOMBrowseInfoAudioItemProperty: 'KOMCardFrontAudio',
 			});
 		});

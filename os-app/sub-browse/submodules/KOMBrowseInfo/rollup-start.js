@@ -47,6 +47,12 @@ const KOMBrowseInfo = new RollupStart({
 
 			mod.ReactDetailItem(params.KOMBrowseInfoItem);
 		}),
+		KOMBrowseInfoAudioDispatchCapture: (function _KOMBrowseInfoAudioDispatchCapture () {
+			window.TestKOMBrowseInfoAudioDispatchCapture.innerHTML = parseInt(window.TestKOMBrowseInfoAudioDispatchCapture.innerHTML) + 1;
+		}),
+		KOMBrowseInfoAudioDispatchClear: (function _KOMBrowseInfoAudioDispatchClear () {
+			window.TestKOMBrowseInfoAudioDispatchClear.innerHTML = parseInt(window.TestKOMBrowseInfoAudioDispatchClear.innerHTML) + 1;
+		}),
 	}, params),
 });
 

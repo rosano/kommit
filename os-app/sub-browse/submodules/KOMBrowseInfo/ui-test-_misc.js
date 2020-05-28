@@ -199,6 +199,55 @@ describe('KOMBrowseInfo_Misc', function () {
 
 	});
 	
+	describe('KOMBrowseInfoFormFrontAudio', function test_KOMBrowseInfoFormFrontAudio() {
+		
+		context('record', function () {
+			
+			before(function () {
+				return browser.pressButton(`${ KOMBrowseInfoFormFrontAudio } .KOMBrowseInfoAudioRecordButton`);
+			});
+
+			before(function () {
+				browser.assert.text('#TestKOMBrowseInfoAudioDispatchCapture', '0');
+			});
+
+			before(function () {
+				return browser.pressButton(`${ KOMBrowseInfoFormFrontAudio } .KOMBrowseInfoAudioRecordButton`);
+			});
+
+			it.skip('passes KOMBrowseInfoAudioDispatchCapture', function () {
+				browser.assert.text('#TestKOMBrowseInfoAudioDispatchCapture', '1');
+			});
+		
+		});
+		
+		context('clear', function () {
+
+			before(function() {
+				return browser.OLSKVisit(kDefaultRoute, {
+					KOMBrowseInfoItem: JSON.stringify({
+						KOMCardFront: 'alfa',
+						KOMCardFrontAudio: 'bravo',
+					}),
+				});
+			});
+
+			before(function () {
+				browser.assert.text('#TestKOMBrowseInfoAudioDispatchClear', '0');
+			});
+			
+			before(function () {
+				return browser.pressButton(`${ KOMBrowseInfoFormFrontAudio } .KOMBrowseInfoAudioClearButton`);
+			});
+
+			it('passes KOMBrowseInfoAudioDispatchClear', function () {
+				browser.assert.text('#TestKOMBrowseInfoAudioDispatchClear', '1');
+			});
+		
+		});
+
+	});
+	
 	describe('KOMBrowseInfoFormRearField', function test_KOMBrowseInfoFormRearField() {
 		
 		before(function() {
