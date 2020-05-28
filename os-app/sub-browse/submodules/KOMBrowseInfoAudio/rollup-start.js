@@ -12,6 +12,10 @@ const KOMBrowseInfoAudio = new RollupStart({
 			window.TestKOMBrowseInfoAudioDispatchClear.innerHTML = parseInt(window.TestKOMBrowseInfoAudioDispatchClear.innerHTML) + 1;
 			window.TestKOMBrowseInfoAudioDispatchClearData.innerHTML = JSON.stringify(inputData);
 		}),
+		KOMBrowseInfoAudioDispatchFetch: (function _KOMBrowseInfoAudioDispatchFetch (inputData) {
+			window.TestKOMBrowseInfoAudioDispatchFetch.innerHTML = parseInt(window.TestKOMBrowseInfoAudioDispatchFetch.innerHTML) + 1;
+			window.TestKOMBrowseInfoAudioDispatchFetchData.innerHTML = JSON.stringify(inputData);
+		}),
 	}, Object.fromEntries(Array.from((new window.URLSearchParams(window.location.search)).entries()).map(function (e) {
 		if (['KOMBrowseInfoAudioItem', 'KOMBrowseInfoAudioAvailable'].includes(e[0])) {
 			e[1] = JSON.parse(e[1]);

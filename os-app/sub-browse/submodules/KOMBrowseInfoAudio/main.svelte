@@ -4,6 +4,7 @@ export let KOMBrowseInfoAudioItem;
 export let KOMBrowseInfoAudioItemProperty;
 export let KOMBrowseInfoAudioDispatchCapture;
 export let KOMBrowseInfoAudioDispatchClear;
+export let KOMBrowseInfoAudioDispatchFetch;
 
 import OLSKInternational from 'OLSKInternational';
 const OLSKLocalized = function(translationConstant) {
@@ -23,7 +24,8 @@ const mod = {
 
 	_ValueIsRecording: false,
 
-	_ValueIsPlaying: false,
+	_ValueAudio: undefined,
+	_ValueAudioIsPlaying: false,
 
 	// INTERFACE
 
@@ -32,7 +34,7 @@ const mod = {
 	},
 
 	InterfacePlaybackButtonDidClick () {
-		!mod._ValueIsPlaying ? mod.ControlPlaybackStart() : mod.ControlPlaybackStop();
+		!mod._ValueAudioIsPlaying ? mod.ControlPlaybackStart() : mod.ControlPlaybackStop();
 	},
 
 	// CONTROL
@@ -80,12 +82,20 @@ const mod = {
 		KOMBrowseInfoAudioDispatchCapture(KOMBrowseInfoAudioItemProperty, !mod._ValueSkipRecording && await mod._ValueRecorder.stopRecording());
 	},
 
-	ControlPlaybackStart () {
+	async ControlPlaybackStart () {
+		if (!mod._ValueAudio && OLSK_TESTING_BEHAVIOUR()) {
+			mod._ValueAudio = KOMBrowseInfoAudioDispatchFetch(KOMBrowseInfoAudioItemProperty) || true;
+		}
+		
+		if (!mod._ValueAudio) {
+			(mod._ValueAudio = new Audio()).src = URL.createObjectURL(await KOMBrowseInfoAudioDispatchFetch(KOMBrowseInfoAudioItemProperty));
+		}
+		
 		if (OLSK_TESTING_BEHAVIOUR()) {
 			mod.DebugLog('play');
 		}
 
-		mod._ValueIsPlaying = true;
+		mod._ValueAudioIsPlaying = true;
 	},
 
 	ControlPlaybackStop () {
@@ -93,7 +103,7 @@ const mod = {
 			mod.DebugLog('stop');
 		}
 
-		mod._ValueIsPlaying = false;
+		mod._ValueAudioIsPlaying = false;
 	},
 
 	// SETUP

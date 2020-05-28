@@ -86,11 +86,21 @@ describe('KOMBrowseInfoAudio_Misc', function () {
 				before(function () {
 					browser.assert.text('#TestKOMBrowseInfoAudioLog', '');
 				});
-				
+
+				before(function () {
+					browser.assert.text('#TestKOMBrowseInfoAudioDispatchFetch', '0');
+					browser.assert.text('#TestKOMBrowseInfoAudioDispatchFetchData', 'undefined');
+				});
+
 				before(function () {
 					return browser.pressButton(KOMBrowseInfoAudioPlaybackButton);
 				});
 
+				it('sends KOMBrowseInfoAudioDispatchFetch', function () {
+					browser.assert.text('#TestKOMBrowseInfoAudioDispatchFetch', '1');
+					browser.assert.text('#TestKOMBrowseInfoAudioDispatchFetchData', JSON.stringify('KOMCardFrontAudio'));
+				});
+				
 				it('starts play', function () {
 					browser.assert.text('#TestKOMBrowseInfoAudioLog', uLog('play'));
 				});
