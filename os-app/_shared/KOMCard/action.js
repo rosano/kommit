@@ -1,7 +1,9 @@
 import { factory, detectPrng } from 'ulid';
 const uniqueID = typeof require === 'undefined' && navigator.appName === 'Zombie' ? factory(detectPrng(true)) : factory();
 
+import KOMCardStorage from './storage.js';
 import KOMCardMetal from './metal.js';
+import KOMCardModel from './model.js';
 import KOMDeckModel from '../KOMDeck/model.js';
 
 const mod = {
@@ -45,6 +47,30 @@ const mod = {
 
 	async KOMCardActionList (storageClient, inputData) {
 		return Object.values(await KOMCardMetal.KOMCardMetalList(storageClient, inputData));
+	},
+
+	async KOMCardActionAudioCapture (storageClient, param1, param2, param3, param4) {
+		if (!KOMCardModel.KOMCardModelAudioFields().includes(param1)) {
+			return Promise.reject(new Error('KOMErrorInputNotValid'));
+		}
+
+		if (!(param2 instanceof Blob)) {
+			return Promise.reject(new Error('KOMErrorInputNotValid'));
+		}
+
+		if (KOMCardModel.KOMCardModelErrorsFor(param3)) {
+			return Promise.reject(new Error('KOMErrorInputNotValid'));
+		}
+		
+		if (KOMDeckModel.KOMDeckModelErrorsFor(param4)) {
+			return Promise.reject(new Error('KOMErrorInputNotValid'));
+		}
+
+		await KOMCardMetal.KOMCardMetalFileWrite(storageClient, param2, param1 === 'KOMCardFrontAudio' ? KOMCardStorage.KOMCardStorageAudioPathFront(param3, param4) : null);
+
+		param3[param1] = true;
+
+		return param3;		
 	},
 	
 };

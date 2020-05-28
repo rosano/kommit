@@ -1,7 +1,9 @@
 const { rejects, deepEqual } = require('assert');
 
 const mainModule = require('./action.js').default;
+const KOMCardStorage = require('./storage.js').default;
 const KOMSpacingMetal = require('../KOMSpacing/metal.js').default;
+const OLSKRemoteStorage = require('OLSKRemoteStorage');
 
 const kTesting = {
 	StubDeckObjectValid() {
@@ -16,6 +18,16 @@ const kTesting = {
 		return {
 			KOMCardFront: 'bravo',
 			KOMCardRear: 'charlie',
+		};
+	},
+	StubCardObjectValid() {
+		return {
+			KOMCardID: 'bravo',
+			KOMCardDeckID: 'alfa',
+			KOMCardFront: 'charlie',
+			KOMCardRear: 'delta',
+			KOMCardCreationDate: new Date('2019-02-23T13:56:36Z'),
+			KOMCardModificationDate: new Date('2019-02-23T13:56:36Z'),
 		};
 	},
 	StubSpacingObjectValid() {
@@ -190,3 +202,47 @@ describe('KOMCardActionList', function test_KOMCardActionList() {
 	});
 
 });
+
+describe('KOMCardActionAudioCapture', function test_KOMCardActionAudioCapture() {
+
+	const blob = new Blob(['alfa'], { type: 'text/plain' });
+
+	it('rejects if param1 not valid', async function() {
+		await rejects(mainModule.KOMCardActionAudioCapture(KOMTestingStorageClient, 'alfa', blob, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()), /KOMErrorInputNotValid/);
+	});
+
+	it('rejects if param2 not blob', async function() {
+		await rejects(mainModule.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardFrontAudio', null, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()), /KOMErrorInputNotValid/);
+	});
+
+	it('rejects if param3 not valid', async function() {
+		await rejects(mainModule.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardFrontAudio', blob, {}, kTesting.StubDeckObjectValid()), /KOMErrorInputNotValid/);
+	});
+
+	it('rejects if param4 not valid', async function() {
+		await rejects(mainModule.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardFrontAudio', blob, kTesting.StubCardObjectValid(), {}), /KOMErrorInputNotValid/);
+	});
+
+	it('returns param3', async function() {
+		let item = await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObjectValid());
+
+		deepEqual(await mainModule.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardFrontAudio', blob, item, kTesting.StubDeckObjectValid()) === item, true);
+	});
+
+	context('KOMCardFrontAudio', function () {
+
+		it('writes to front', async function () {
+			await mainModule.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardFrontAudio', blob, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid());
+			deepEqual(await OLSKRemoteStorage.OLSKRemoteStorageListObjectsRecursive(OLSKRemoteStorage._OLSKRemoteStoragePrivateClient(KOMTestingStorageClient.kommit), ''), [
+				KOMCardStorage.KOMCardStorageAudioPathFront(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()),
+				])
+		});
+		
+		it('sets KOMCardFrontAudio to true', async function() {
+			deepEqual((await mainModule.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardFrontAudio', blob, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid())).KOMCardFrontAudio, true);
+		});
+	
+	});
+
+});
+
