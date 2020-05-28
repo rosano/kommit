@@ -292,6 +292,36 @@ describe('KOMCardActionAudioClear', function test_KOMCardActionAudioClear() {
 
 });
 
+describe('KOMCardActionAudioFetch', function test_KOMCardActionAudioFetch() {
+
+	const blob = new Blob(['alfa'], { type: 'text/plain' });
+
+	it('rejects if param1 not valid', async function() {
+		await rejects(mainModule.KOMCardActionAudioFetch(KOMTestingStorageClient, 'alfa', kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()), /KOMErrorInputNotValid/);
+	});
+
+	it('rejects if param2 not valid', async function() {
+		await rejects(mainModule.KOMCardActionAudioFetch(KOMTestingStorageClient, 'KOMCardFrontAudio', {}, kTesting.StubDeckObjectValid()), /KOMErrorInputNotValid/);
+	});
+
+	it('rejects if param3 not valid', async function() {
+		await rejects(mainModule.KOMCardActionAudioFetch(KOMTestingStorageClient, 'KOMCardFrontAudio', kTesting.StubCardObjectValid(), {}), /KOMErrorInputNotValid/);
+	});
+
+	context('KOMCardFrontAudio', function () {
+
+		it('returns blob', async function() {
+			const item = kTesting.StubCardObjectValid();
+			
+			await mainModule.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardFrontAudio', blob, item, kTesting.StubDeckObjectValid());
+
+			deepEqual(await mainModule.KOMCardActionAudioFetch(KOMTestingStorageClient, 'KOMCardFrontAudio', item, kTesting.StubDeckObjectValid()), blob);
+		});
+	
+	});
+
+});
+
 describe('KOMCardActionAudioList', function test_KOMCardActionAudioList() {
 	
 	const blob = new Blob(['alfa'], { type: 'text/plain' });
