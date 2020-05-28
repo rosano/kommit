@@ -469,6 +469,38 @@ describe('KOMBrowse_Misc', function () {
 
 	});
 
+	describe.skip('front_audio', function test_front_audio() {
+		
+		context('record', function () {
+			
+			before(function () {
+				return browser.pressButton('.KOMBrowseInfoFormFrontAudio .KOMBrowseInfoAudioRecordButton');
+			});
+
+			before(function () {
+				return browser.pressButton('.KOMBrowseInfoFormFrontAudio .KOMBrowseInfoAudioRecordButton');
+			});
+
+			it('stores audio', function () {
+				browser.assert.elements('.KOMBrowseInfoFormFrontAudio .KOMBrowseInfoAudioClearButton', 1);
+			});
+		
+		});
+		
+		context('clear', function () {
+			
+			before(function () {
+				return browser.pressButton('.KOMBrowseInfoFormFrontAudio .KOMBrowseInfoAudioClearButton');
+			});
+
+			it('clears audio', function () {
+				browser.assert.elements('.KOMBrowseInfoFormFrontAudio .KOMBrowseInfoAudioRecordButton', 1);
+			});
+		
+		});
+
+	});
+
 	context('close', function test_close () {
 
 		before(function () {

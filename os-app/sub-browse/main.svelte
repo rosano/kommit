@@ -49,6 +49,16 @@ const mod = {
 		mod.ControlCardUpdate(mod._ValueCardSelected, KOMBrowseDeckSelected);
 	},
 
+	KOMBrowseInfoAudioDispatchCapture (param1, param2) {
+		mod.ControlCardAudioCapture(param1, param2, mod._ValueCardSelected, KOMBrowseDeckSelected);
+	},
+
+	KOMBrowseInfoAudioDispatchClear (inputData) {
+		mod.ControlCardAudioClear(inputData, mod._ValueCardSelected, KOMBrowseDeckSelected);
+		
+		mod._ValueCardSelected = mod._ValueCardSelected; // #purge-svelte-force-update
+	},
+
 	// VALUE
 
 	ValueCardsAll (inputData, shouldSort = true) {
@@ -144,6 +154,18 @@ const mod = {
 				return KOMCardAction.KOMCardActionUpdate(KOMBrowseStorageClient, param1, param2);
 			},
 		});
+	},
+
+	ControlCardAudioCapture(param1, param2, param3, param4) {
+		param3[param1] = true;
+
+		mod.ControlCardUpdate(param3, param4);
+	},
+
+	ControlCardAudioClear(param1, param2, param3) {
+		delete param2[param1];
+
+		mod.ControlCardUpdate(param2, param3);
 	},
 
 	async ControlCardDiscard (param1, param2) {
@@ -274,6 +296,8 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 		KOMBrowseInfoDispatchBack={ mod.KOMBrowseInfoDispatchBack }
 		KOMBrowseInfoDispatchDiscard={ mod.KOMBrowseInfoDispatchDiscard }
 		KOMBrowseInfoDispatchUpdate={ mod.KOMBrowseInfoDispatchUpdate }
+		KOMBrowseInfoAudioDispatchCapture={ mod.KOMBrowseInfoAudioDispatchCapture }
+		KOMBrowseInfoAudioDispatchClear={ mod.KOMBrowseInfoAudioDispatchClear }
 		OLSKMobileViewInactive={ !mod.OLSKMobileViewInactive }
 		/>
 </OLSKViewportContent>
