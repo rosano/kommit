@@ -112,10 +112,10 @@ describe('KOMPlay_Misc', function () {
 
 	});
 
-	describe('KOMPlayCardHint', function test_KOMPlayCardHint () {
+	describe('KOMPlayCardNotes', function test_KOMPlayCardNotes () {
 
 		it('sets text', function () {
-			browser.assert.text(KOMPlayCardHint, items[0].$KOMSpacingCard.KOMCardNotes);
+			browser.assert.text(KOMPlayCardNotes, items[0].$KOMSpacingCard.KOMCardNotes);
 		});
 
 	});

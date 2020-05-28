@@ -33,8 +33,8 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 				browser.assert.attribute(KOMBrowseInfoFormRearField, 'placeholder', uLocalized('KOMBrowseInfoFormRearFieldText'));
 			});
 
-			it('localizes KOMBrowseInfoFormHintField', function () {
-				browser.assert.attribute(KOMBrowseInfoFormHintField, 'placeholder', uLocalized('KOMBrowseInfoFormHintFieldText'));
+			it('localizes KOMBrowseInfoFormNotesField', function () {
+				browser.assert.attribute(KOMBrowseInfoFormNotesField, 'placeholder', uLocalized('KOMBrowseInfoFormNotesFieldText'));
 			});
 
 		});

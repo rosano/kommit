@@ -45,7 +45,7 @@ Object.entries({
 	KOMPlayCardQuestionRepeatButton: '.KOMPlayCardQuestionRepeatButton',
 	KOMPlayCardAnswer: '.KOMPlayCardAnswer',
 	KOMPlayCardAnswerRepeatButton: '.KOMPlayCardAnswerRepeatButton',
-	KOMPlayCardHint: '.KOMPlayCardHint',
+	KOMPlayCardNotes: '.KOMPlayCardNotes',
 
 	KOMPlayFlipButton: '.KOMPlayFlipButton',
 
@@ -106,8 +106,8 @@ describe('KOMPlay_Access', function () {
 		browser.assert.elements(KOMPlayCardAnswerRepeatButton, 0);
 	});
 
-	it('hides KOMPlayCardHint', function () {
-		browser.assert.elements(KOMPlayCardHint, 0);
+	it('hides KOMPlayCardNotes', function () {
+		browser.assert.elements(KOMPlayCardNotes, 0);
 	});
 
 	it('shows KOMPlayFlipButton', function () {
@@ -140,8 +140,8 @@ describe('KOMPlay_Access', function () {
 			browser.assert.elements(KOMPlayCardAnswer, 1);
 		});
 
-		it('shows KOMPlayCardHint', function () {
-			browser.assert.elements(KOMPlayCardHint, 1);
+		it('shows KOMPlayCardNotes', function () {
+			browser.assert.elements(KOMPlayCardNotes, 1);
 		});
 
 		it('hides KOMPlayFlipButton', function () {
@@ -176,8 +176,8 @@ describe('KOMPlay_Access', function () {
 			browser.assert.elements(KOMPlayCardAnswer, 0);
 		});
 
-		it('hides KOMPlayCardHint', function () {
-			browser.assert.elements(KOMPlayCardHint, 0);
+		it('hides KOMPlayCardNotes', function () {
+			browser.assert.elements(KOMPlayCardNotes, 0);
 		});
 
 		it('shows KOMPlayFlipButton', function () {
