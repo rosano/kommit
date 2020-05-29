@@ -47,7 +47,7 @@ describe('KOMBrowseInfoAudio_Bugs', function () {
 				return browser.pressButton(KOMBrowseInfoAudioPlaybackButton);
 			});
 
-			it('starts object 2', function () {
+			it('plays object 2', function () {
 				browser.assert.text('#TestKOMBrowseInfoAudioLog', uLog('stop,play:charlie'));
 			});
 		
