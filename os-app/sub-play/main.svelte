@@ -299,11 +299,11 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 	{#if mod.DataQuestionFrontShouldSound() || mod.DataQuestionRearShouldSound() || (mod._ValueIsFlipped && (mod.DataAnswerFrontShouldSound() || mod.DataAnswerRearShouldSound())) }
 		<div class="KOMPlayHear">
 			{#if mod.DataQuestionFrontShouldSound() || mod.DataQuestionRearShouldSound()}
-				<button class="KOMPlayHearQuestionButton" on:click={ mod.InterfaceHearQuestionButtonDidClick } tabindex="-1">{ OLSKLocalized('KOMPlayHearQuestionButtonText') }</button>
+				<button class="KOMPlayHearQuestionButton OLSKLayoutButtonNoStyle" on:click={ mod.InterfaceHearQuestionButtonDidClick } tabindex="-1">{ OLSKLocalized('KOMPlayHearQuestionButtonText') }</button>
 			{/if}
 
 			{#if mod._ValueIsFlipped && (mod.DataAnswerFrontShouldSound() || mod.DataAnswerRearShouldSound()) }
-				<button class="KOMPlayHearAnswerButton" on:click={ mod.InterfaceHearAnswerButtonDidClick } tabindex="-1">{ OLSKLocalized('KOMPlayHearAnswerButtonText') }</button>
+				<button class="KOMPlayHearAnswerButton OLSKLayoutButtonNoStyle" on:click={ mod.InterfaceHearAnswerButtonDidClick } tabindex="-1">{ OLSKLocalized('KOMPlayHearAnswerButtonText') }</button>
 			{/if}
 		</div>
 	{/if}

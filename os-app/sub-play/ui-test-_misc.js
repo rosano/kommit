@@ -977,6 +977,10 @@ describe('KOMPlay_Misc', function () {
 
 		context('KOMPlayHearQuestionButton', function () {
 
+			it('classes OLSKLayoutButtonNoStyle', function () {
+				browser.assert.hasClass(KOMPlayHearQuestionButton, 'OLSKLayoutButtonNoStyle');
+			});
+
 			it('sets tabindex', function () {
 				browser.assert.attribute(KOMPlayHearQuestionButton, 'tabindex', '-1');
 			});
@@ -1052,6 +1056,10 @@ describe('KOMPlay_Misc', function () {
 		});
 
 		context('KOMPlayHearAnswerButton', function () {
+
+			it('classes OLSKLayoutButtonNoStyle', function () {
+				browser.assert.hasClass(KOMPlayHearAnswerButton, 'OLSKLayoutButtonNoStyle');
+			});
 
 			it('sets tabindex', function () {
 				browser.assert.attribute(KOMPlayHearAnswerButton, 'tabindex', '-1');

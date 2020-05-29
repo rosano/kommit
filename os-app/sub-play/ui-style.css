@@ -29,6 +29,23 @@
 	align-items: stretch;
 }
 
+.KOMPlayBody button {
+	height: 60px;
+}
+
+.KOMPlayHear {
+	/* KOMPlayHearFlexbox:Parent */
+	display: flex;
+}
+
+.KOMPlayHear button {
+	background: rgba(0, 0, 0, 0.02);
+	color: rgba(0, 0, 0, 0.8);
+	
+	/* KOMPlayHearFlexbox:Child */
+	flex: 1;
+}
+
 .KOMPlayCard {
 	padding: var(--KOMCommonPadding);
 
@@ -60,10 +77,6 @@
 .KOMPlayCardNotes {
 	opacity: 0.5;
 	font-size: 20px;
-}
-
-.KOMPlayBody button {
-	height: 60px;
 }
 
 .KOMPlayFlipButton {
