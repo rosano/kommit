@@ -38,6 +38,14 @@ const mod = {
 		};
 	},
 
+	DataFakeAudio (inputData) {
+		return {
+			play () {},
+			pause () {},
+			src: inputData,
+		};
+	},
+
 	// INTERFACE
 
 	InterfaceRecordButtonDidClick () {
@@ -69,9 +77,9 @@ const mod = {
 		  	mod.DebugLog('record');
 		  }
 
-		  mod._ValueIsRecording = true;
+		  await mod._ValueRecorder.startRecording();
 
-		  mod._ValueRecorder.startRecording();
+		  mod._ValueIsRecording = true;
 
 		  setTimeout(function () {
 		  	mod._ValueIsRecording && mod.ControlRecordStop();
@@ -90,9 +98,9 @@ const mod = {
 			mod.DebugLog('stop');
 		}
 
-		mod._ValueIsRecording = false;
-
 		KOMBrowseInfoAudioDispatchCapture(KOMBrowseInfoAudioItemProperty, await mod._ValueRecorder.stopRecording());
+
+		mod._ValueIsRecording = false;
 	},
 
 	async ControlSetAudio () {
@@ -111,7 +119,7 @@ const mod = {
 
 	async ControlPlaybackStart () {
 		if (!mod._ValueAudio && OLSK_TESTING_BEHAVIOUR()) {
-			mod._ValueAudio = KOMBrowseInfoAudioDispatchFetch(KOMBrowseInfoAudioItemProperty) || KOMBrowseInfoAudioItem[KOMBrowseInfoAudioItemProperty];
+			mod._ValueAudio = mod.DataFakeAudio(await KOMBrowseInfoAudioDispatchFetch(KOMBrowseInfoAudioItemProperty) || KOMBrowseInfoAudioItem[KOMBrowseInfoAudioItemProperty]);
 		}
 
 		if (!mod._ValueAudio) {
@@ -119,19 +127,21 @@ const mod = {
 		}
 
 		if (OLSK_TESTING_BEHAVIOUR()) {
-			mod.DebugLog('play:' + mod._ValueAudio);
+			mod.DebugLog('play:' + mod._ValueAudio.src);
 		}
-
-		mod._ValueAudioIsPlaying = true;
 
 		mod._ValueAudio.currentTime = 0;
 		mod._ValueAudio.play();
+
+		mod._ValueAudioIsPlaying = true;
 	},
 
 	ControlPlaybackStop () {
 		if (OLSK_TESTING_BEHAVIOUR()) {
 			mod.DebugLog('stop');
 		}
+
+		mod._ValueAudio.pause();
 
 		mod._ValueAudioIsPlaying = false;
 	},
