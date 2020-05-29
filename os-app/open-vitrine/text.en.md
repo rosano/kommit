@@ -19,4 +19,4 @@ The project is freely accessible but if you are in a position to give, please [d
 - Simple interface
 - No complicated instructions
 - No ads, behavioural analytics, 3rd party trackers
-- Works on any device
+- Works on mobile, tablet, andn desktop devices
