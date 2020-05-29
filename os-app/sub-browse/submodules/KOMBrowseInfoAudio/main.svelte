@@ -21,13 +21,22 @@ const mod = {
 
 	// VALUE
 
-	_ValueSkipRecording: OLSK_TESTING_BEHAVIOUR(),
-
 	_ValueIsRecording: false,
 
 	_ValueAudioID: undefined,
 	_ValueAudio: undefined,
 	_ValueAudioIsPlaying: false,
+
+	// DATA
+
+	DataFakeRecorder () {
+		return {
+			initAudio () {},
+			initWorker () {},
+			startRecording () {},
+			stopRecording () {},
+		};
+	},
 
 	// INTERFACE
 
@@ -58,10 +67,6 @@ const mod = {
 
 		mod._ValueIsRecording = true;
 
-		if (mod._ValueSkipRecording) {
-			return;
-		}
-
 		try {
 		  await mod._ValueRecorder.initAudio();
 		  await mod._ValueRecorder.initWorker();
@@ -87,7 +92,7 @@ const mod = {
 
 		mod._ValueIsRecording = false;
 
-		KOMBrowseInfoAudioDispatchCapture(KOMBrowseInfoAudioItemProperty, !mod._ValueSkipRecording && await mod._ValueRecorder.stopRecording());
+		KOMBrowseInfoAudioDispatchCapture(KOMBrowseInfoAudioItemProperty, await mod._ValueRecorder.stopRecording());
 	},
 
 	async ControlSetAudio () {
@@ -119,10 +124,6 @@ const mod = {
 
 		mod._ValueAudioIsPlaying = true;
 
-		if (mod._ValueSkipRecording) {
-			return;
-		}
-
 		mod._ValueAudio.currentTime = 0;
 		mod._ValueAudio.play();
 	},
@@ -142,11 +143,7 @@ const mod = {
 	},
 
 	SetupRecorder() {
-		if (mod._ValueSkipRecording) {
-			return;
-		}
-
-		mod._ValueRecorder = new record.Recorder({
+		mod._ValueRecorder = OLSK_TESTING_BEHAVIOUR() ? mod.DataFakeRecorder() : new record.Recorder({
 		  wasmURL: '/_shared/__external/vmsg/vmsg.wasm',
 		});
 	},
