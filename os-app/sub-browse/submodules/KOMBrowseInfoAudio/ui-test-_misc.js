@@ -102,7 +102,7 @@ describe('KOMBrowseInfoAudio_Misc', function () {
 				});
 				
 				it('starts play', function () {
-					browser.assert.text('#TestKOMBrowseInfoAudioLog', uLog('play'));
+					browser.assert.text('#TestKOMBrowseInfoAudioLog', uLog('play:bravo'));
 				});
 			
 			});

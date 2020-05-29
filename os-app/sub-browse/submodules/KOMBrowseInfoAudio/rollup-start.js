@@ -17,7 +17,7 @@ const KOMBrowseInfoAudio = new RollupStart({
 			window.TestKOMBrowseInfoAudioDispatchClearData.innerHTML = JSON.stringify(inputData);
 		}),
 	}, Object.fromEntries(Array.from((new window.URLSearchParams(window.location.search)).entries()).map(function (e) {
-		if (['KOMBrowseInfoAudioItem', 'KOMBrowseInfoAudioAvailable'].includes(e[0])) {
+		if (['KOMBrowseInfoAudioItem', 'KOMBrowseInfoAudioAvailable', 'DebugFakeChangeObject'].includes(e[0])) {
 			e[1] = JSON.parse(e[1]);
 		}
 

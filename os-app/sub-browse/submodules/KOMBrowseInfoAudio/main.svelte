@@ -5,6 +5,7 @@ export let KOMBrowseInfoAudioItemProperty;
 export let KOMBrowseInfoAudioDispatchCapture;
 export let KOMBrowseInfoAudioDispatchFetch;
 export let KOMBrowseInfoAudioDispatchClear;
+export let DebugFakeChangeObject = null;
 
 import OLSKInternational from 'OLSKInternational';
 const OLSKLocalized = function(translationConstant) {
@@ -24,6 +25,7 @@ const mod = {
 
 	_ValueIsRecording: false,
 
+	_ValueAudioID: undefined,
 	_ValueAudio: undefined,
 	_ValueAudioIsPlaying: false,
 
@@ -34,6 +36,12 @@ const mod = {
 	},
 
 	InterfacePlaybackButtonDidClick () {
+		if (OLSK_TESTING_BEHAVIOUR() && DebugFakeChangeObject && mod._ValueAudioIsPlaying) {
+			KOMBrowseInfoAudioItem = DebugFakeChangeObject;
+		}
+
+		mod.ControlSetAudio();
+
 		!mod._ValueAudioIsPlaying ? mod.ControlPlaybackStart() : mod.ControlPlaybackStop();
 	},
 
@@ -82,9 +90,23 @@ const mod = {
 		KOMBrowseInfoAudioDispatchCapture(KOMBrowseInfoAudioItemProperty, !mod._ValueSkipRecording && await mod._ValueRecorder.stopRecording());
 	},
 
+	async ControlSetAudio () {
+		if (mod._ValueAudioID === KOMBrowseInfoAudioItem.KOMCardID) {
+			return;
+		}
+
+		mod._ValueAudioID = KOMBrowseInfoAudioItem.KOMCardID;
+
+		if (mod._ValueAudioIsPlaying) {
+			mod.ControlPlaybackStop();
+		};
+
+		delete mod._ValueAudio;
+	},
+
 	async ControlPlaybackStart () {
 		if (!mod._ValueAudio && OLSK_TESTING_BEHAVIOUR()) {
-			mod._ValueAudio = KOMBrowseInfoAudioDispatchFetch(KOMBrowseInfoAudioItemProperty) || true;
+			mod._ValueAudio = KOMBrowseInfoAudioDispatchFetch(KOMBrowseInfoAudioItemProperty) || KOMBrowseInfoAudioItem[KOMBrowseInfoAudioItemProperty];
 		}
 
 		if (!mod._ValueAudio) {
@@ -92,7 +114,7 @@ const mod = {
 		}
 
 		if (OLSK_TESTING_BEHAVIOUR()) {
-			mod.DebugLog('play');
+			mod.DebugLog('play:' + mod._ValueAudio);
 		}
 
 		mod._ValueAudioIsPlaying = true;
