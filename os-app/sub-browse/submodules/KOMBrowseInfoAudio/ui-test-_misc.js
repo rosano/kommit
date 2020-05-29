@@ -2,13 +2,6 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 describe('KOMBrowseInfoAudio_Misc', function () {
 
-	const _log = [];
-	const uLog = function (inputData) {
-		_log.push(inputData);
-
-		return _log.join(',');
-	};
-
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute, {
 			KOMBrowseInfoAudioItem: JSON.stringify({
@@ -19,6 +12,13 @@ describe('KOMBrowseInfoAudio_Misc', function () {
 	});
 
 	describe('KOMBrowseInfoAudioRecordButton', function test_KOMBrowseInfoAudioRecordButton () {
+
+		const _log = [];
+		const uLog = function (inputData) {
+			_log.push(inputData);
+
+			return _log.join(',');
+		};
 
 		context('click', function () {
 			
