@@ -61,15 +61,15 @@ const mod = {
 		  await mod.ControlRecordStop();
 		}
 		
-		if (OLSK_TESTING_BEHAVIOUR()) {
-			mod.DebugLog('record');
-		}
-
-		mod._ValueIsRecording = true;
-
 		try {
 		  await mod._ValueRecorder.initAudio();
 		  await mod._ValueRecorder.initWorker();
+
+		  if (OLSK_TESTING_BEHAVIOUR()) {
+		  	mod.DebugLog('record');
+		  }
+
+		  mod._ValueIsRecording = true;
 
 		  mod._ValueRecorder.startRecording();
 
@@ -82,12 +82,12 @@ const mod = {
 	},
 
 	async ControlRecordStop () {
-		if (OLSK_TESTING_BEHAVIOUR()) {
-			mod.DebugLog('stop');
-		}
-
 		if (!mod._ValueIsRecording) {
 			return;
+		}
+
+		if (OLSK_TESTING_BEHAVIOUR()) {
+			mod.DebugLog('stop');
 		}
 
 		mod._ValueIsRecording = false;
