@@ -210,4 +210,11 @@ mod.SetupEverything();
 	<span class="KOMBrowseInfoAudioNotAvailableAlert">{ OLSKLocalized('KOMBrowseInfoAudioNotAvailableAlertText') }</span>
 {/if}
 
+{#if OLSK_TESTING_BEHAVIOUR() }
+	<p>
+		<strong>TestKOMBrowseInfoAudioLog</strong>
+		<span id="TestKOMBrowseInfoAudioLog"></span>
+	</p>
+{/if}
+
 </div>
