@@ -48,7 +48,7 @@ describe('KOMBrowseInfoAudio_Bugs', function () {
 			});
 
 			it('plays object 2', function () {
-				browser.assert.text('#TestKOMBrowseInfoAudioLog', uLog('stop,play:charlie'));
+				browser.assert.text('#TestKOMBrowseInfoAudioLog', uLog('stop,clear,play:charlie'));
 			});
 		
 		});

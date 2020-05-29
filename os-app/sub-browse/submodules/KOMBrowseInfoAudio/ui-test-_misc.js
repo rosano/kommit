@@ -134,6 +134,10 @@ describe('KOMBrowseInfoAudio_Misc', function () {
 					return browser.pressButton(KOMBrowseInfoAudioClearButton);
 				});
 
+				before(function () {
+					browser.assert.text('#TestKOMBrowseInfoAudioLog', uLog('clear'));
+				});
+
 				it('sends KOMBrowseInfoAudioDispatchClear', function () {
 					browser.assert.text('#TestKOMBrowseInfoAudioDispatchClear', '1');
 					browser.assert.text('#TestKOMBrowseInfoAudioDispatchClearData', JSON.stringify('KOMCardFrontAudio'));
@@ -152,7 +156,7 @@ describe('KOMBrowseInfoAudio_Misc', function () {
 				});
 
 				it('stops playback', function () {
-					browser.assert.text('#TestKOMBrowseInfoAudioLog', uLog('play:bravo,stop'));
+					browser.assert.text('#TestKOMBrowseInfoAudioLog', uLog('play:bravo,stop,clear'));
 				});
 			
 			});

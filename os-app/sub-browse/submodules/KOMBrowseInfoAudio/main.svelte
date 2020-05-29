@@ -63,8 +63,8 @@ const mod = {
 	},
 
 	InterfaceClearButtonDidClick () {
-		mod._ValueAudioIsPlaying && mod.ControlPlaybackStop();
-		
+		mod.ControlAudioClear();
+
 		KOMBrowseInfoAudioDispatchClear(KOMBrowseInfoAudioItemProperty);
 	},
 
@@ -114,13 +114,24 @@ const mod = {
 			return;
 		}
 
-		mod._ValueAudioID = KOMBrowseInfoAudioItem.KOMCardID;
+		if (mod._ValueAudioID) {
+			mod.ControlAudioClear();
+		}
 
+		mod._ValueAudioID = KOMBrowseInfoAudioItem.KOMCardID;
+	},
+
+	async ControlAudioClear () {
 		if (mod._ValueAudioIsPlaying) {
 			mod.ControlPlaybackStop();
 		};
 
 		delete mod._ValueAudio;
+		delete mod._ValueAudioID;
+
+		if (OLSK_TESTING_BEHAVIOUR()) {
+			mod.DebugLog('clear');
+		}
 	},
 
 	async ControlPlaybackStart () {
