@@ -56,7 +56,7 @@ import KOMBrowseInfoAudio from '../KOMBrowseInfoAudio/main.svelte';
 	<KOMBrowseInfoAudio
 		KOMBrowseInfoAudioItem={ KOMBrowseInfoItem }
 		KOMBrowseInfoAudioItemProperty="KOMCardFrontAudio"
-		KOMBrowseInfoAudioAvailable={ true }
+		KOMBrowseInfoAudioAvailable={ 'WebAssembly' in window }
 		KOMBrowseInfoAudioDispatchCapture={ KOMBrowseInfoAudioDispatchCapture }
 		KOMBrowseInfoAudioDispatchFetch={ KOMBrowseInfoAudioDispatchFetch }
 		KOMBrowseInfoAudioDispatchClear={ KOMBrowseInfoAudioDispatchClear }
