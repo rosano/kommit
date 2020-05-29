@@ -39,6 +39,22 @@ const mod = {
 		return mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard[!KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent) ? 'KOMCardRear' : 'KOMCardFront'];
 	},
 
+	DataQuestionFrontShouldSound () {
+		return KOMPlayDeck.KOMDeckFrontIsOral && !KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent);
+	},
+
+	DataQuestionRearShouldSound () {
+		return KOMPlayDeck.KOMDeckRearIsOral && KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent);
+	},
+
+	DataAnswerFrontShouldSound () {
+		return KOMPlayDeck.KOMDeckFrontIsOral && KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent);
+	},
+
+	DataAnswerRearShouldSound () {
+		return KOMPlayDeck.KOMDeckRearIsOral && !KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent);
+	},
+
 	// INTERFACE
 
 	InterfaceUndoButtonDidClick () {
@@ -112,7 +128,7 @@ const mod = {
 
 		mod.SetupChronicle();
 
-		if (KOMPlayDeck.KOMDeckFrontIsOral && !KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent) || KOMPlayDeck.KOMDeckRearIsOral && KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent)) {
+		if (mod.DataQuestionFrontShouldSound() || mod.DataQuestionRearShouldSound()) {
 			mod.ControlQuestionRead();
 		}
 	},
@@ -189,17 +205,17 @@ const mod = {
 		mod._ValueState.KOMPlayStateCurrent.KOMSpacingFlipDate = mod._ValueChronicle.KOMChronicleFlipDate;
 		KOMPlayDispatchUpdate(mod._ValueState.KOMPlayStateCurrent);
 
-		if (KOMPlayDeck.KOMDeckFrontIsOral && !KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent)) {
+		if (mod.DataQuestionFrontShouldSound()) {
 			mod.ControlReadStop();
 		}
 
-		if (KOMPlayDeck.KOMDeckFrontIsOral && KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent) || KOMPlayDeck.KOMDeckRearIsOral && !KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent)) {
+		if (mod.DataAnswerFrontShouldSound() || mod.DataAnswerRearShouldSound()) {
 			mod.ControlAnswerRead();
 		}
 	},
 
 	ControlRespond (inputData) {
-		if (KOMPlayDeck.KOMDeckRearIsOral && !KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent)) {
+		if (mod.DataAnswerRearShouldSound()) {
 			mod.ControlReadStop();
 		}
 
@@ -280,8 +296,16 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 <div class="KOMPlayBody">
 
 {#if mod._ValueState.KOMPlayStateCurrent }
-	{#if KOMPlayDeck.KOMDeckFrontIsOral && !KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent) || KOMPlayDeck.KOMDeckRearIsOral && KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent)}
-		<button class="KOMPlayCardQuestionRepeatButton" on:click={ mod.InterfaceQuestionRepeatButtonDidClick } tabindex="-1">{ OLSKLocalized('KOMPlayCardQuestionRepeatButtonText') }</button>
+	{#if mod.DataQuestionFrontShouldSound() || mod.DataQuestionRearShouldSound() || (mod._ValueIsFlipped && (mod.DataAnswerFrontShouldSound() || mod.DataAnswerRearShouldSound())) }
+		<div class="KOMPlayHear">
+			{#if mod.DataQuestionFrontShouldSound() || mod.DataQuestionRearShouldSound()}
+				<button class="KOMPlayCardQuestionRepeatButton" on:click={ mod.InterfaceQuestionRepeatButtonDidClick } tabindex="-1">{ OLSKLocalized('KOMPlayCardQuestionRepeatButtonText') }</button>
+			{/if}
+
+			{#if mod._ValueIsFlipped && (mod.DataAnswerFrontShouldSound() || mod.DataAnswerRearShouldSound()) }
+				<button class="KOMPlayCardAnswerRepeatButton" on:click={ mod.InterfaceAnswerRepeatButtonDidClick } tabindex="-1">{ OLSKLocalized('KOMPlayCardAnswerRepeatButtonText') }</button>
+			{/if}
+		</div>
 	{/if}
 
 	<div class="KOMPlayCard OLSKLayoutElementTappable" on:click={ mod.InterfaceCardDidClick }>
@@ -297,10 +321,6 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 		{/if}
 		
 	</div>
-
-	{#if mod._ValueIsFlipped && (KOMPlayDeck.KOMDeckFrontIsOral && KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent) || KOMPlayDeck.KOMDeckRearIsOral && !KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent))}
-		<button class="KOMPlayCardAnswerRepeatButton" on:click={ mod.InterfaceAnswerRepeatButtonDidClick } tabindex="-1">{ OLSKLocalized('KOMPlayCardAnswerRepeatButtonText') }</button>
-	{/if}
 	
 	{#if !mod._ValueIsFlipped}
 		<button class="KOMPlayFlipButton OLSKLayoutButtonNoStyle" on:click={ mod.InterfaceFlipButtonDidClick }>{ OLSKLocalized('KOMPlayFlipButtonText') }</button>
