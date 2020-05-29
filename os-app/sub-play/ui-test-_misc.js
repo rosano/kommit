@@ -975,16 +975,16 @@ describe('KOMPlay_Misc', function () {
 			browser.assert.text('#TestKOMPlayOralLog', uLog(`read:${ deck.KOMDeckFrontLanguageCode }:${ items[0].$KOMSpacingCard.KOMCardFront }`));
 		});
 
-		context('KOMPlayCardQuestionRepeatButton', function () {
+		context('KOMPlayHearQuestionButton', function () {
 
 			it('sets tabindex', function () {
-				browser.assert.attribute(KOMPlayCardQuestionRepeatButton, 'tabindex', '-1');
+				browser.assert.attribute(KOMPlayHearQuestionButton, 'tabindex', '-1');
 			});
 
 			context('click', function () {
 				
 				before(function () {
-					return browser.pressButton(KOMPlayCardQuestionRepeatButton);
+					return browser.pressButton(KOMPlayHearQuestionButton);
 				});
 
 				it('starts read', function () {
@@ -1051,16 +1051,16 @@ describe('KOMPlay_Misc', function () {
 
 		});
 
-		context('KOMPlayCardAnswerRepeatButton', function () {
+		context('KOMPlayHearAnswerButton', function () {
 
 			it('sets tabindex', function () {
-				browser.assert.attribute(KOMPlayCardAnswerRepeatButton, 'tabindex', '-1');
+				browser.assert.attribute(KOMPlayHearAnswerButton, 'tabindex', '-1');
 			});
 
 			context('click', function () {
 				
 				before(function () {
-					return browser.pressButton(KOMPlayCardAnswerRepeatButton);
+					return browser.pressButton(KOMPlayHearAnswerButton);
 				});
 
 				it('starts read', function () {
@@ -1117,10 +1117,10 @@ describe('KOMPlay_Misc', function () {
 
 		});
 
-		context('KOMPlayCardAnswerRepeatButton', function () {
+		context('KOMPlayHearAnswerButton', function () {
 
 			before(function () {
-				return browser.pressButton(KOMPlayCardAnswerRepeatButton);
+				return browser.pressButton(KOMPlayHearAnswerButton);
 			});
 
 			it('starts read', function () {
@@ -1173,10 +1173,10 @@ describe('KOMPlay_Misc', function () {
 
 		});
 
-		context('KOMPlayCardQuestionRepeatButton', function () {
+		context('KOMPlayHearQuestionButton', function () {
 
 			before(function () {
-				return browser.pressButton(KOMPlayCardQuestionRepeatButton);
+				return browser.pressButton(KOMPlayHearQuestionButton);
 			});
 
 			it('starts read', function () {

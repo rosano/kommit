@@ -1,7 +1,7 @@
 KOMPlayToolbarUndoButtonText: Undo
 KOMPlayToolbarDoneButtonText: Done
-KOMPlayCardQuestionRepeatButtonText: Repeat question
-KOMPlayCardAnswerRepeatButtonText: Repeat answer
+KOMPlayHearQuestionButtonText: Hear question
+KOMPlayHearAnswerButtonText: Hear answer
 KOMPlayFlipButtonText: Flip
 KOMPlayResponseButtonAgainText: Again
 KOMPlayResponseButtonHardText: Hard

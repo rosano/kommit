@@ -61,11 +61,11 @@ const mod = {
 		mod.ControlUndo();
 	},
 
-	InterfaceQuestionRepeatButtonDidClick () {
+	InterfaceHearQuestionButtonDidClick () {
 		mod.ControlQuestionRead();
 	},
 
-	InterfaceAnswerRepeatButtonDidClick () {
+	InterfaceHearAnswerButtonDidClick () {
 		mod.ControlAnswerRead();
 	},
 
@@ -299,11 +299,11 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 	{#if mod.DataQuestionFrontShouldSound() || mod.DataQuestionRearShouldSound() || (mod._ValueIsFlipped && (mod.DataAnswerFrontShouldSound() || mod.DataAnswerRearShouldSound())) }
 		<div class="KOMPlayHear">
 			{#if mod.DataQuestionFrontShouldSound() || mod.DataQuestionRearShouldSound()}
-				<button class="KOMPlayCardQuestionRepeatButton" on:click={ mod.InterfaceQuestionRepeatButtonDidClick } tabindex="-1">{ OLSKLocalized('KOMPlayCardQuestionRepeatButtonText') }</button>
+				<button class="KOMPlayHearQuestionButton" on:click={ mod.InterfaceHearQuestionButtonDidClick } tabindex="-1">{ OLSKLocalized('KOMPlayHearQuestionButtonText') }</button>
 			{/if}
 
 			{#if mod._ValueIsFlipped && (mod.DataAnswerFrontShouldSound() || mod.DataAnswerRearShouldSound()) }
-				<button class="KOMPlayCardAnswerRepeatButton" on:click={ mod.InterfaceAnswerRepeatButtonDidClick } tabindex="-1">{ OLSKLocalized('KOMPlayCardAnswerRepeatButtonText') }</button>
+				<button class="KOMPlayHearAnswerButton" on:click={ mod.InterfaceHearAnswerButtonDidClick } tabindex="-1">{ OLSKLocalized('KOMPlayHearAnswerButtonText') }</button>
 			{/if}
 		</div>
 	{/if}

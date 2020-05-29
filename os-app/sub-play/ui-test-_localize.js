@@ -97,8 +97,8 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 				});
 			});
 
-			it('localizes KOMPlayCardQuestionRepeatButton', function () {
-				browser.assert.text(KOMPlayCardQuestionRepeatButton, uLocalized('KOMPlayCardQuestionRepeatButtonText'));
+			it('localizes KOMPlayHearQuestionButton', function () {
+				browser.assert.text(KOMPlayHearQuestionButton, uLocalized('KOMPlayHearQuestionButtonText'));
 			});
 
 			context('flip', function () {
@@ -107,8 +107,8 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 					return browser.pressButton(KOMPlayFlipButton);
 				});
 				
-				it('localizes KOMPlayCardAnswerRepeatButton', function () {
-					browser.assert.text(KOMPlayCardAnswerRepeatButton, uLocalized('KOMPlayCardAnswerRepeatButtonText'));
+				it('localizes KOMPlayHearAnswerButton', function () {
+					browser.assert.text(KOMPlayHearAnswerButton, uLocalized('KOMPlayHearAnswerButtonText'));
 				});
 			
 			});
