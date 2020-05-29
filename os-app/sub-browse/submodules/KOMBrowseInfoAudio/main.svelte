@@ -62,6 +62,12 @@ const mod = {
 		!mod._ValueAudioIsPlaying ? mod.ControlPlaybackStart() : mod.ControlPlaybackStop();
 	},
 
+	InterfaceClearButtonDidClick () {
+		mod._ValueAudioIsPlaying && mod.ControlPlaybackStop();
+		
+		KOMBrowseInfoAudioDispatchClear(KOMBrowseInfoAudioItemProperty);
+	},
+
 	// CONTROL
 
 	async ControlRecordStart () {
@@ -184,7 +190,7 @@ mod.SetupEverything();
 	{#if KOMBrowseInfoAudioItem[KOMBrowseInfoAudioItemProperty] }
 		<button class="KOMBrowseInfoAudioPlaybackButton" on:click={ mod.InterfacePlaybackButtonDidClick }>{ OLSKLocalized('KOMBrowseInfoAudioPlaybackButtonText') }</button>
 
-		<button class="KOMBrowseInfoAudioClearButton" on:click={ () => KOMBrowseInfoAudioDispatchClear(KOMBrowseInfoAudioItemProperty) }>{ OLSKLocalized('KOMBrowseInfoAudioClearButtonText') }</button>
+		<button class="KOMBrowseInfoAudioClearButton" on:click={ mod.InterfaceClearButtonDidClick }>{ OLSKLocalized('KOMBrowseInfoAudioClearButtonText') }</button>
 	{/if}
 
 {/if}

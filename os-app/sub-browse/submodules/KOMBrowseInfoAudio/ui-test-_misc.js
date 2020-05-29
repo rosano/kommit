@@ -141,6 +141,22 @@ describe('KOMBrowseInfoAudio_Misc', function () {
 			
 			});
 
+			context('click during playback', function () {
+				
+				before(function () {
+					return browser.pressButton(KOMBrowseInfoAudioPlaybackButton);
+				});
+
+				before(function () {
+					return browser.pressButton(KOMBrowseInfoAudioClearButton);
+				});
+
+				it('stops playback', function () {
+					browser.assert.text('#TestKOMBrowseInfoAudioLog', uLog('play:bravo,stop'));
+				});
+			
+			});
+
 		});
 
 	});
