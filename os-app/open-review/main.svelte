@@ -343,8 +343,6 @@ const mod = {
 	async SetupEverything () {
 		mod.SetupStorageClient();
 
-		mod.SetupStorageWidget();
-
 		mod.SetupStorageStatus();
 
 		await mod.SetupStorageNotifications();
@@ -384,10 +382,6 @@ const mod = {
 		mod._ValueStorageClient.access.claim(storageModule.name, 'rw');
 
 		mod._ValueStorageClient.caching.enable(`/${ storageModule.name }/`);
-	},
-
-	SetupStorageWidget () {
-		(new window.OLSKStorageWidget(mod._ValueStorageClient)).attach('KOMReviewStorageWidget').backend(document.querySelector('.OLSKAppToolbarStorageButton'));
 	},
 
 	SetupStorageStatus () {
@@ -498,6 +492,7 @@ import OLSKToolbar from 'OLSKToolbar';
 import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 import OLSKAppToolbar from 'OLSKAppToolbar';
 import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svelte';
+import OLSKStorageWidget from 'OLSKStorageWidget';
 </script>
 
 <div class="KOMReview OLSKViewport" class:OLSKIsLoading={ mod._ValueIsLoading }>
@@ -563,19 +558,22 @@ import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svel
 	</p>
 {/if}
 
-{#if !mod._ValuePlayVisible}
+{#if !mod._ValuePlayVisible }
 	<footer class="KOMReviewViewportFooter OLSKMobileViewFooter">
-		<div class="KOMReviewStorageToolbar OLSKStorageToolbar" class:KOMReviewStorageToolbarHidden={ mod._ValueStorageToolbarHidden }>
-			<OLSKToolbar OLSKToolbarJustify={ true }>
-				<OLSKToolbarElementGroup>
-					<div></div>
-				</OLSKToolbarElementGroup>
 
-				<OLSKToolbarElementGroup>
-					<div id="KOMReviewStorageWidget"></div>
-				</OLSKToolbarElementGroup>
-			</OLSKToolbar>
-		</div>
+		{#if !mod._ValueStorageToolbarHidden }
+			<div class="KOMReviewStorageToolbar OLSKStorageToolbar">
+				<OLSKToolbar OLSKToolbarJustify={ true }>
+					<OLSKToolbarElementGroup>
+						<div></div>
+					</OLSKToolbarElementGroup>
+
+					<OLSKToolbarElementGroup>
+						<OLSKStorageWidget StorageClient={ mod._ValueStorageClient } />
+					</OLSKToolbarElementGroup>
+				</OLSKToolbar>
+			</div>
+		{/if}
 
 		<OLSKAppToolbar
 			OLSKAppToolbarDonateURL={ window.OLSKPublicConstants('KOM_SHARED_DONATE_URL') }

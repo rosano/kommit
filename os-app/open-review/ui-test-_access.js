@@ -5,7 +5,7 @@ Object.entries({
 	KOMReviewViewportFooter: '.KOMReviewViewportFooter',
 
 	KOMReviewStorageToolbar: '.KOMReviewStorageToolbar',
-	KOMReviewStorageWidget: '#KOMReviewStorageWidget',
+	OLSK_STORAGE_WIDGET: '#OLSK_STORAGE_WIDGET',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
@@ -36,12 +36,8 @@ describe('KOMReview_Access', function () {
 		browser.assert.elements(KOMReviewViewportFooter, 1);
 	});
 
-	it('shows KOMReviewStorageToolbar', function () {
-		browser.assert.elements(KOMReviewStorageToolbar, 1);
-	});
-
-	it('shows KOMReviewStorageWidget', function () {
-		browser.assert.elements(KOMReviewStorageWidget, 1);
+	it('hides KOMReviewStorageToolbar', function () {
+		browser.assert.elements(KOMReviewStorageToolbar, 0);
 	});
 
 	it('shows OLSKAppToolbar', function () {
@@ -54,6 +50,22 @@ describe('KOMReview_Access', function () {
 
 	it('hides KOMPlay', function () {
 		browser.assert.elements('.KOMPlay', 0);
+	});
+
+	context('click OLSKAppToolbarStorageButton', function () {
+		
+		before(function () {
+			return browser.pressButton('.OLSKAppToolbarStorageButton');
+		});
+
+		it('shows KOMReviewStorageToolbar', function () {
+			browser.assert.elements(KOMReviewStorageToolbar, 1);
+		});
+
+		it('shows OLSK_STORAGE_WIDGET', function () {
+			browser.assert.elements(OLSK_STORAGE_WIDGET, 1);
+		});
+	
 	});
 
 	context('KOMReviewLauncherItemSelectDeck', function () {
