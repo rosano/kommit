@@ -59,7 +59,7 @@ import KOMReviewMasterListItem from '../KOMReviewMasterListItem/main.svelte';
 	border-bottom: var(--KOMBorderStyle);
 }
 
-.KOMReviewMasterToolbar :global(.OLSKToolbar) {
+.KOMReviewMasterToolbar.OLSKToolbar {
 	/* OLSKToolbarFlexbox:Parent */
 	justify-content: center;
 }
