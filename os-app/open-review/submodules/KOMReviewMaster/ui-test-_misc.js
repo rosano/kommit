@@ -2,12 +2,24 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 describe('KOMReviewMaster_Misc', function () {
 
+	before(function() {
+		return browser.OLSKVisit(kDefaultRoute);
+	});
+	
+	describe('KOMReviewMasterToolbar', function test_KOMReviewMasterToolbar () {
+
+		it('classes OLSKToolbar', function () {
+			browser.assert.hasClass(KOMReviewMasterToolbar, 'OLSKToolbar');
+		});
+
+		it('classes OLSKToolbarJustify', function () {
+			browser.assert.hasClass(KOMReviewMasterToolbar, 'OLSKToolbarJustify');
+		});
+	
+	});
+
 	describe('KOMReviewMasterCreateButton', function test_KOMReviewMasterCreateButton () {
 
-		before(function() {
-			return browser.OLSKVisit(kDefaultRoute);
-		});
-		
 		it('sets accesskey', function () {
 			browser.assert.attribute(KOMReviewMasterCreateButton, 'accesskey', 'n');
 		});

@@ -54,13 +54,13 @@ describe('KOMBrowseInfo_Misc', function () {
 		it('classes OLSKMobileViewHeader', function () {
 			browser.assert.hasClass(KOMBrowseInfoToolbar, 'OLSKMobileViewHeader');
 		});
+
+		it('classes OLSKToolbar', function () {
+			browser.assert.hasClass(KOMBrowseInfoToolbar, 'OLSKToolbar');
+		});
 	
-	});
-
-	describe('OLSKToolbar', function test_OLSKToolbar () {
-
 		it('classes OLSKToolbarJustify', function () {
-			browser.assert.hasClass('.OLSKToolbar', 'OLSKToolbarJustify');
+			browser.assert.hasClass(KOMBrowseInfoToolbar, 'OLSKToolbarJustify');
 		});
 	
 	});

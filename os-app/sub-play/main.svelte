@@ -274,23 +274,19 @@ import { onMount } from 'svelte';
 OLSK_TESTING_BEHAVIOUR() ? mod.LifecycleModuleWillMount() : onMount(mod.LifecycleModuleWillMount);
 
 import OLSKViewportContent from 'OLSKViewportContent';
-import OLSKToolbar from 'OLSKToolbar';
-import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 </script>
 <svelte:window on:keydown={ mod.InterfaceWindowDidKeydown } />
 
 <div class="KOMPlay">
 
-<header class="KOMPlayToolbar">
-	<OLSKToolbar OLSKToolbarJustify={ true }>
-		<OLSKToolbarElementGroup>
-		</OLSKToolbarElementGroup>
+<header class="KOMPlayToolbar OLSKToolbar OLSKToolbarJustify">
+	<div class="OLSKToolbarElementGroup">
+	</div>
 
-		<OLSKToolbarElementGroup>
-			<button class="KOMPlayToolbarUndoButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" disabled={ mod._ValueHistory.length ? null : true } on:click={ mod.InterfaceUndoButtonDidClick }>{ OLSKLocalized('KOMPlayToolbarUndoButtonText') }</button>
-			<button class="KOMPlayToolbarDoneButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ KOMPlayDispatchDone }>{ OLSKLocalized('KOMPlayToolbarDoneButtonText') }</button>
-		</OLSKToolbarElementGroup>
-	</OLSKToolbar>
+	<div class="OLSKToolbarElementGroup">
+		<button class="KOMPlayToolbarUndoButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" disabled={ mod._ValueHistory.length ? null : true } on:click={ mod.InterfaceUndoButtonDidClick }>{ OLSKLocalized('KOMPlayToolbarUndoButtonText') }</button>
+		<button class="KOMPlayToolbarDoneButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ KOMPlayDispatchDone }>{ OLSKLocalized('KOMPlayToolbarDoneButtonText') }</button>
+	</div>
 </header>
 
 <div class="KOMPlayBody">

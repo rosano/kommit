@@ -15,8 +15,6 @@ const OLSKLocalized = function(translationConstant) {
 
 import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting';
 
-import OLSKToolbar from 'OLSKToolbar';
-import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 import OLSKDetailPlaceholder from 'OLSKDetailPlaceholder';
 import _OLSKSharedBack from '../../../_shared/__external/OLSKUIAssets/_OLSKSharedBack.svg';
 import _OLSKSharedDiscard from '../../../_shared/__external/OLSKUIAssets/_OLSKSharedDiscard.svg';
@@ -30,20 +28,18 @@ import KOMBrowseInfoAudio from '../KOMBrowseInfoAudio/main.svelte';
 {/if}
 
 {#if KOMBrowseInfoItem}
-<header class="KOMBrowseInfoToolbar OLSKMobileViewHeader">
-	<OLSKToolbar OLSKToolbarJustify={ true }>
-		<OLSKToolbarElementGroup>
-			<button class="KOMBrowseInfoToolbarBackButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton" title={ OLSKLocalized('KOMBrowseInfoToolbarBackButtonText') } on:click={ KOMBrowseInfoDispatchBack }>
-				<div class="KOMBrowseInfoToolbarBackButtonImage">{@html _OLSKSharedBack }</div>
-			</button>
-		</OLSKToolbarElementGroup>
+<header class="KOMBrowseInfoToolbar OLSKMobileViewHeader OLSKToolbar OLSKToolbarJustify">
+	<div class="OLSKToolbarElementGroup">
+		<button class="KOMBrowseInfoToolbarBackButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton" title={ OLSKLocalized('KOMBrowseInfoToolbarBackButtonText') } on:click={ KOMBrowseInfoDispatchBack }>
+			<div class="KOMBrowseInfoToolbarBackButtonImage">{@html _OLSKSharedBack }</div>
+		</button>
+	</div>
 
-		<OLSKToolbarElementGroup>
-			<button class="KOMBrowseInfoToolbarDiscardButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton" title={ OLSKLocalized('KOMBrowseInfoToolbarDiscardButtonText') } on:click={ () => window.confirm(OLSKLocalized('KOMBrowseInfoDiscardPromptText')) && KOMBrowseInfoDispatchDiscard(KOMBrowseInfoItem) }>
-				<div class="KOMBrowseInfoToolbarDiscardButtonImage">{@html _OLSKSharedDiscard }</div>
-			</button>
-		</OLSKToolbarElementGroup>
-	</OLSKToolbar>
+	<div class="OLSKToolbarElementGroup">
+		<button class="KOMBrowseInfoToolbarDiscardButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton" title={ OLSKLocalized('KOMBrowseInfoToolbarDiscardButtonText') } on:click={ () => window.confirm(OLSKLocalized('KOMBrowseInfoDiscardPromptText')) && KOMBrowseInfoDispatchDiscard(KOMBrowseInfoItem) }>
+			<div class="KOMBrowseInfoToolbarDiscardButtonImage">{@html _OLSKSharedDiscard }</div>
+		</button>
+	</div>
 </header>
 
 <div class="KOMBrowseInfoForm">

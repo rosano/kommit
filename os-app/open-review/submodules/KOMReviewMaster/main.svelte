@@ -24,19 +24,15 @@ const mod = {
 
 };
 
-import OLSKToolbar from 'OLSKToolbar';
-import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 import KOMReviewMasterListItem from '../KOMReviewMasterListItem/main.svelte';
 </script>
 
 <div class="KOMReviewMaster">
 
-<header class="KOMReviewMasterToolbar">
-	<OLSKToolbar OLSKToolbarJustify={ true }>
-		<OLSKToolbarElementGroup>
-			<span class="KOMReviewMasterToolbarTitle">{ OLSKLocalized('KOMReviewMasterToolbarTitleText') }</span>
-		</OLSKToolbarElementGroup>
-	</OLSKToolbar>
+<header class="KOMReviewMasterToolbar OLSKToolbar OLSKToolbarJustify">
+	<div class="OLSKToolbarElementGroup">
+		<span class="KOMReviewMasterToolbarTitle">{ OLSKLocalized('KOMReviewMasterToolbarTitleText') }</span>
+	</div>
 </header>
 
 <div class="KOMReviewMasterBody">

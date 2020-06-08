@@ -488,8 +488,6 @@ import KOMReviewMaster from './submodules/KOMReviewMaster/main.svelte';
 import KOMReviewDetail from './submodules/KOMReviewDetail/main.svelte';
 import KOMBrowse from '../sub-browse/main.svelte';
 import KOMPlay from '../sub-play/main.svelte';
-import OLSKToolbar from 'OLSKToolbar';
-import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 import OLSKAppToolbar from 'OLSKAppToolbar';
 import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svelte';
 import OLSKStorageWidget from 'OLSKStorageWidget';
@@ -562,16 +560,14 @@ import OLSKStorageWidget from 'OLSKStorageWidget';
 	<footer class="KOMReviewViewportFooter OLSKMobileViewFooter">
 
 		{#if !mod._ValueStorageToolbarHidden }
-			<div class="KOMReviewStorageToolbar OLSKStorageToolbar">
-				<OLSKToolbar OLSKToolbarJustify={ true }>
-					<OLSKToolbarElementGroup>
-						<div></div>
-					</OLSKToolbarElementGroup>
+			<div class="KOMReviewStorageToolbar OLSKStorageToolbar OLSKToolbar OLSKToolbarJustify">
+				<div class="OLSKToolbarElementGroup">
+					<div></div>
+				</div>
 
-					<OLSKToolbarElementGroup>
-						<OLSKStorageWidget StorageClient={ mod._ValueStorageClient } />
-					</OLSKToolbarElementGroup>
-				</OLSKToolbar>
+				<div class="OLSKToolbarElementGroup">
+					<OLSKStorageWidget StorageClient={ mod._ValueStorageClient } />
+				</div>
 			</div>
 		{/if}
 

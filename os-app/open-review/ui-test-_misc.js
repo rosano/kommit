@@ -164,6 +164,14 @@ describe('KOMReview_Misc', function () {
 		it('classes OLSKStorageToolbar', function () {
 			browser.assert.hasClass(KOMReviewStorageToolbar, 'OLSKStorageToolbar');
 		});
+
+		it('classes OLSKToolbar', function () {
+			browser.assert.hasClass(KOMReviewStorageToolbar, 'OLSKToolbar');
+		});
+
+		it('classes OLSKToolbarJustify', function () {
+			browser.assert.hasClass(KOMReviewStorageToolbar, 'OLSKToolbarJustify');
+		});
 	
 	});
 

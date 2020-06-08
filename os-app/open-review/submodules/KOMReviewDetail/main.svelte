@@ -120,30 +120,26 @@ const mod = {
 
 $: mod.ReactDirection(KOMReviewDetailDeck.KOMDeckIsForwardOnly);
 
-import OLSKToolbar from 'OLSKToolbar';
-import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 import _OLSKSharedBack from '../../../_shared/__external/OLSKUIAssets/_OLSKSharedBack.svg';
 import KOMReviewDetailLanguageCode from '../KOMReviewDetailLanguageCode/main.svelte';
 </script>
 
 <div class="KOMReviewDetail">
 
-<header class="KOMReviewDetailToolbar">
-	<OLSKToolbar OLSKToolbarJustify={ true }>
-		<OLSKToolbarElementGroup>
-			<button class="KOMReviewDetailToolbarBackButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton" title={ OLSKLocalized('KOMReviewDetailToolbarBackButtonText') } on:click={ KOMReviewDetailDispatchBack }>
-				<div class="KOMReviewDetailToolbarBackButtonImage">{@html _OLSKSharedBack }</div>
-			</button>
-		</OLSKToolbarElementGroup>
+<header class="KOMReviewDetailToolbar OLSKToolbar OLSKToolbarJustify">
+	<div class="OLSKToolbarElementGroup">
+		<button class="KOMReviewDetailToolbarBackButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton" title={ OLSKLocalized('KOMReviewDetailToolbarBackButtonText') } on:click={ KOMReviewDetailDispatchBack }>
+			<div class="KOMReviewDetailToolbarBackButtonImage">{@html _OLSKSharedBack }</div>
+		</button>
+	</div>
 
-		<OLSKToolbarElementGroup>
-			<strong class="KOMReviewDetailToolbarTitle">{ KOMReviewDetailDeck.KOMDeckName }</strong>
-		</OLSKToolbarElementGroup>
+	<div class="OLSKToolbarElementGroup">
+		<strong class="KOMReviewDetailToolbarTitle">{ KOMReviewDetailDeck.KOMDeckName }</strong>
+	</div>
 
-		<OLSKToolbarElementGroup>
-			<button class="KOMReviewDetailToolbarCardsButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ KOMReviewDetailDispatchBrowse }>{ OLSKLocalized('KOMReviewDetailToolbarCardsButtonText') }</button>
-		</OLSKToolbarElementGroup>
-	</OLSKToolbar>
+	<div class="OLSKToolbarElementGroup">
+		<button class="KOMReviewDetailToolbarCardsButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ KOMReviewDetailDispatchBrowse }>{ OLSKLocalized('KOMReviewDetailToolbarCardsButtonText') }</button>
+	</div>
 </header>
 
 <div class="KOMReviewDetailBody">

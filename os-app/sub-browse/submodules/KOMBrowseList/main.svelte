@@ -27,7 +27,6 @@ const mod = {
 };
 
 import OLSKMasterList from 'OLSKMasterList';
-import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 import _OLSKSharedBack from '../../../_shared/__external/OLSKUIAssets/_OLSKSharedBack.svg';
 import _OLSKSharedCreate from '../../../_shared/__external/OLSKUIAssets/_OLSKSharedCreate.svg';
 import KOMBrowseListItem from '../KOMBrowseListItem/main.svelte';
@@ -46,19 +45,19 @@ import KOMBrowseListItem from '../KOMBrowseListItem/main.svelte';
 	OLSKMobileViewInactive={ OLSKMobileViewInactive }
 	>
 	<div slot="OLSKMasterListToolbarHead">
-		<OLSKToolbarElementGroup>
+		<div class="OLSKToolbarElementGroup">
 			<button class="KOMBrowseListToolbarCloseButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton" title={ OLSKLocalized('KOMBrowseListToolbarCloseButtonText') } on:click={ KOMBrowseListDispatchClose }>
 				<div class="KOMBrowseListToolbarCloseButtonImage">{@html _OLSKSharedBack }</div>
 			</button>
-		</OLSKToolbarElementGroup>
+		</div>
 	</div>
 
 	<div slot="OLSKMasterListToolbarTail">
-		<OLSKToolbarElementGroup>
+		<div class="OLSKToolbarElementGroup">
 			<button class="KOMBrowseListToolbarCreateButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton" title={ OLSKLocalized('KOMBrowseListToolbarCreateButtonText') } on:click={ mod.InterfaceCreateButtonDidClick } accesskey="n">
 				<div class="KOMBrowseListToolbarCreateButtonImage">{@html _OLSKSharedCreate }</div>
 			</button>
-		</OLSKToolbarElementGroup>
+		</div>
 	</div>
 
 	<KOMBrowseListItem

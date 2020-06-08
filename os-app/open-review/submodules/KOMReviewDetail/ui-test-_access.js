@@ -72,10 +72,6 @@ describe('KOMReviewDetail_Access', function () {
 		browser.assert.elements(KOMReviewDetail, 1);
 	});
 
-	it('shows OLSKToolbar', function () {
-		browser.assert.elements('.OLSKToolbar', 1);
-	});
-
 	it('shows KOMReviewDetailToolbar', function () {
 		browser.assert.elements(KOMReviewDetailToolbar, 1);
 	});

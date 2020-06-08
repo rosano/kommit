@@ -277,8 +277,6 @@ $: mod.ReactDeckSelected(KOMBrowseDeckSelected);
 import OLSKViewportContent from 'OLSKViewportContent';
 import KOMBrowseList from './submodules/KOMBrowseList/main.svelte';
 import KOMBrowseInfo from './submodules/KOMBrowseInfo/main.svelte';
-import OLSKToolbar from 'OLSKToolbar';
-import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 </script>
 <svelte:window on:keydown={ mod.InterfaceWindowDidKeydown } />
 

@@ -49,10 +49,14 @@ describe('KOMReviewDetail_Misc', function () {
 		});
 	});
 
-	describe('OLSKToolbar', function test_OLSKToolbar () {
+	describe('KOMReviewDetailToolbar', function test_KOMReviewDetailToolbar () {
+
+		it('classes OLSKToolbar', function () {
+			browser.assert.hasClass(KOMReviewDetailToolbar, 'OLSKToolbar');
+		});
 
 		it('classes OLSKToolbarJustify', function () {
-			browser.assert.hasClass('.OLSKToolbar', 'OLSKToolbarJustify');
+			browser.assert.hasClass(KOMReviewDetailToolbar, 'OLSKToolbarJustify');
 		});
 	
 	});

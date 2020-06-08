@@ -48,6 +48,18 @@ describe('KOMPlay_Misc', function () {
 		});
 	});
 
+	describe('KOMPlayToolbar', function test_KOMPlayToolbar () {
+		
+		it('classes OLSKToolbar', function () {
+			browser.assert.hasClass(KOMPlayToolbar, 'OLSKToolbar');
+		});
+
+		it('classes OLSKToolbarJustify', function () {
+			browser.assert.hasClass(KOMPlayToolbar, 'OLSKToolbarJustify');
+		});
+	
+	});
+
 	describe('KOMPlayToolbarDoneButton', function test_KOMPlayToolbarDoneButton () {
 		
 		it('classes OLSKLayoutButtonNoStyle', function () {
