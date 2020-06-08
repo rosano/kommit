@@ -1,4 +1,6 @@
 import KOMSpacingModel from './model.js';
+import * as OLSKRemoteStoragePackage from 'OLSKRemoteStorage';
+const OLSKRemoteStorage = OLSKRemoteStoragePackage.default || OLSKRemoteStoragePackage;
 
 const mod = {
 
@@ -27,7 +29,7 @@ const mod = {
 		let outputData = await storageClient.kommit.kom_spacings.KOMStorageList(param1, param2);
 
 		for (let key in outputData) {
-			KOMSpacingModel.KOMSpacingModelPostJSONParse(outputData[key]);
+			OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(outputData[key]);
 		}
 		
 		return outputData;

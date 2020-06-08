@@ -1,4 +1,6 @@
 import KOMDeckModel from './model.js';
+import * as OLSKRemoteStoragePackage from 'OLSKRemoteStorage';
+const OLSKRemoteStorage = OLSKRemoteStoragePackage.default || OLSKRemoteStoragePackage;
 
 const mod = {
 
@@ -27,7 +29,7 @@ const mod = {
 		let outputData = await storageClient.kommit.kom_decks.KOMStorageList();
 
 		for (let key in outputData) {
-			KOMDeckModel.KOMDeckModelPostJSONParse(outputData[key]);
+			OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(outputData[key]);
 		}
 		
 		return outputData;

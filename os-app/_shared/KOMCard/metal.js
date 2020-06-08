@@ -1,4 +1,6 @@
 import KOMCardModel from './model.js';
+import * as OLSKRemoteStoragePackage from 'OLSKRemoteStorage';
+const OLSKRemoteStorage = OLSKRemoteStoragePackage.default || OLSKRemoteStoragePackage;
 
 const mod = {
 
@@ -21,7 +23,7 @@ const mod = {
 		let outputData = await storageClient.kommit.kom_cards.KOMStorageList(inputData);
 
 		for (let key in outputData) {
-			KOMCardModel.KOMCardModelPostJSONParse(outputData[key]);
+			OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(outputData[key]);
 		}
 		
 		return outputData;

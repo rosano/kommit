@@ -73,8 +73,8 @@ const mod = {
 			},
 
 			async KOMStorageWrite (inputData) {
-				await privateClient.storeObject(kType, mod.KOMDeckStorageObjectPath(inputData.KOMDeckID), KOMDeckModel.KOMDeckModelPreJSONSchemaValidate(inputData));
-				return KOMDeckModel.KOMDeckModelPostJSONParse(inputData);
+				await privateClient.storeObject(kType, mod.KOMDeckStorageObjectPath(inputData.KOMDeckID), OLSKRemoteStorage.OLSKRemoteStoragePreJSONSchemaValidate(inputData));
+				return OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(inputData);
 			},
 			
 			KOMStorageDelete (inputData) {

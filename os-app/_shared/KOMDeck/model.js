@@ -102,34 +102,6 @@ const mod = {
 		return Object.entries(errors).length ? errors : null;
 	},
 
-	KOMDeckModelPreJSONSchemaValidate (inputData) {
-		if (inputData.KOMDeckCreationDate) {
-			inputData.KOMDeckCreationDate = inputData.KOMDeckCreationDate.toISOString();
-		}
-
-		if (inputData.KOMDeckModificationDate) {
-			inputData.KOMDeckModificationDate = inputData.KOMDeckModificationDate.toISOString();
-		}
-
-		return inputData;
-	},
-
-	KOMDeckModelPostJSONParse (inputData) {
-		if (!inputData) {
-			return inputData;
-		}
-
-		if (inputData.KOMDeckCreationDate) {
-			inputData.KOMDeckCreationDate = new Date(inputData.KOMDeckCreationDate);
-		}
-
-		if (inputData.KOMDeckModificationDate) {
-			inputData.KOMDeckModificationDate = new Date(inputData.KOMDeckModificationDate);
-		}
-
-		return inputData;
-	},
-
 };
 
 export default mod;

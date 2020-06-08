@@ -1,7 +1,7 @@
 import RollupStart from './main.svelte';
 
-import KOMCardModel from '../../../_shared/KOMCard/model.js';
-import KOMSpacingModel from '../../../_shared/KOMSpacing/model.js';
+import * as OLSKRemoteStoragePackage from 'OLSKRemoteStorage';
+const OLSKRemoteStorage = OLSKRemoteStoragePackage.default || OLSKRemoteStoragePackage;
 
 const KOMReviewDetail = new RollupStart({
 	target: document.body,
@@ -27,9 +27,9 @@ const KOMReviewDetail = new RollupStart({
 	}, Object.fromEntries(Array.from((new window.URLSearchParams(window.location.search)).entries()).map(function (e) {
 		if (['KOMReviewDetailDeck'].includes(e[0])) {
 			e[1] = JSON.parse(e[1]);
-			e[1].$KOMDeckSpacings = e[1].$KOMDeckSpacings.map(KOMSpacingModel.KOMSpacingModelPostJSONParse).map(function (e) {
+			e[1].$KOMDeckSpacings = e[1].$KOMDeckSpacings.map(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse).map(function (e) {
 				return Object.assign(e, {
-					$KOMSpacingCard: KOMCardModel.KOMCardModelPostJSONParse(e.$KOMSpacingCard),
+					$KOMSpacingCard: OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(e.$KOMSpacingCard),
 				});
 			});
 		}

@@ -140,42 +140,6 @@ const mod = {
 		return mod.KOMSpacingModelLabel(inputData.KOMSpacingID) === mod.KOMSpacingModelLabelBackward();
 	},
 
-	KOMSpacingModelPreJSONSchemaValidate (inputData) {
-		if (inputData.KOMSpacingDrawDate) {
-			inputData.KOMSpacingDrawDate = inputData.KOMSpacingDrawDate.toISOString();
-		}
-
-		if (inputData.KOMSpacingFlipDate) {
-			inputData.KOMSpacingFlipDate = inputData.KOMSpacingFlipDate.toISOString();
-		}
-
-		if (inputData.KOMSpacingDueDate) {
-			inputData.KOMSpacingDueDate = inputData.KOMSpacingDueDate.toISOString();
-		}
-
-		return inputData;
-	},
-
-	KOMSpacingModelPostJSONParse (inputData) {
-		if (!inputData) {
-			return inputData;
-		}
-
-		if (inputData.KOMSpacingDrawDate) {
-			inputData.KOMSpacingDrawDate = new Date(inputData.KOMSpacingDrawDate);
-		}
-
-		if (inputData.KOMSpacingFlipDate) {
-			inputData.KOMSpacingFlipDate = new Date(inputData.KOMSpacingFlipDate);
-		}
-
-		if (inputData.KOMSpacingDueDate) {
-			inputData.KOMSpacingDueDate = new Date(inputData.KOMSpacingDueDate);
-		}
-
-		return inputData;
-	},
-
 	KOMSpacingModelIsUnseen (inputData) {
 		if (mod.KOMSpacingModelErrorsFor(inputData)) {
 			throw new Error('KOMErrorInputNotValid');

@@ -76,34 +76,6 @@ const mod = {
 		];
 	},
 
-	KOMCardModelPreJSONSchemaValidate (inputData) {
-		if (inputData.KOMCardCreationDate) {
-			inputData.KOMCardCreationDate = inputData.KOMCardCreationDate.toISOString();
-		}
-
-		if (inputData.KOMCardModificationDate) {
-			inputData.KOMCardModificationDate = inputData.KOMCardModificationDate.toISOString();
-		}
-
-		return inputData;
-	},
-
-	KOMCardModelPostJSONParse (inputData) {
-		if (!inputData) {
-			return inputData;
-		}
-
-		if (inputData.KOMCardCreationDate) {
-			inputData.KOMCardCreationDate = new Date(inputData.KOMCardCreationDate);
-		}
-
-		if (inputData.KOMCardModificationDate) {
-			inputData.KOMCardModificationDate = new Date(inputData.KOMCardModificationDate);
-		}
-
-		return inputData;
-	},
-
 };
 
 export default mod;

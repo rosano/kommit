@@ -2,9 +2,10 @@ import RollupStart from './main.svelte';
 
 import KOM_Data from '../_shared/KOM_Data/main.js';
 import KOMCardStorage from '../_shared/KOMCard/storage.js';
-import KOMDeckModel from '../_shared/KOMDeck/model.js';
 import * as RemoteStoragePackage from 'remotestoragejs';
 const RemoteStorage = RemoteStoragePackage.default || RemoteStoragePackage;
+import * as OLSKRemoteStoragePackage from 'OLSKRemoteStorage';
+const OLSKRemoteStorage = OLSKRemoteStoragePackage.default || OLSKRemoteStoragePackage;
 
 const mod = {
 
@@ -53,7 +54,7 @@ const KOMBrowse = new RollupStart({
 		}
 
 		if (['KOMBrowseDeckSelected'].includes(e[0])) {
-			e[1] = KOMDeckModel.KOMDeckModelPostJSONParse(e[1]);
+			e[1] = OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(e[1]);
 		}
 
 		if (['KOMBrowseItemSelected'].includes(e[0]) && coll.length > 1) {

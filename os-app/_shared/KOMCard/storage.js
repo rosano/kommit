@@ -89,7 +89,7 @@ const mod = {
 				return console.warn(`${ delegateMethod } not function`);
 			}
 
-			changeDelegate[delegateMethod](KOMCardModel.KOMCardModelPostJSONParse(event[OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateInput(delegateMethod)]));
+			changeDelegate[delegateMethod](OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(event[OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateInput(delegateMethod)]));
 		});
 
 		const OLSKRemoteStorageCollectionExports = {
@@ -109,8 +109,8 @@ const mod = {
 			},
 			
 			async KOMStorageWrite (param1, param2) {
-				await privateClient.storeObject(kType, mod.KOMCardStorageObjectPath(param1, param2), KOMCardModel.KOMCardModelPreJSONSchemaValidate(param1));
-				return KOMCardModel.KOMCardModelPostJSONParse(param1);
+				await privateClient.storeObject(kType, mod.KOMCardStorageObjectPath(param1, param2), OLSKRemoteStorage.OLSKRemoteStoragePreJSONSchemaValidate(param1));
+				return OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(param1);
 			},
 			
 			async KOMStorageFileWrite (param1, param2) {

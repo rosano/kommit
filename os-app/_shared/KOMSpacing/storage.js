@@ -77,8 +77,8 @@ const mod = {
 			},
 			
 			async KOMStorageWrite (param1, param2, param3) {
-				await privateClient.storeObject(kType, (KOMSpacingModel.KOMSpacingModelIsBackward(param1) ? mod.KOMSpacingStoragePathBackward : mod.KOMSpacingStoragePathForward)(param2, param3), KOMSpacingModel.KOMSpacingModelPreJSONSchemaValidate(param1));
-				return KOMSpacingModel.KOMSpacingModelPostJSONParse(param1);
+				await privateClient.storeObject(kType, (KOMSpacingModel.KOMSpacingModelIsBackward(param1) ? mod.KOMSpacingStoragePathBackward : mod.KOMSpacingStoragePathForward)(param2, param3), OLSKRemoteStorage.OLSKRemoteStoragePreJSONSchemaValidate(param1));
+				return OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(param1);
 			},
 			
 			KOMStorageDelete (param1, param2, param3) {
