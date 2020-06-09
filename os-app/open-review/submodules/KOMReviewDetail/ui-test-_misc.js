@@ -222,7 +222,7 @@ describe('KOMReviewDetail_Misc', function () {
 		});
 		
 		it('binds KOMDeckFrontIsOral', function () {
-			browser.assert.evaluate(`document.querySelector('${ KOMReviewDetailFormFrontIsOralField }').checked`, false);
+			browser.assert.OLSKIsChecked(KOMReviewDetailFormRearIsOralField, false);
 		});
 
 		it('sets disabled', function () {
@@ -309,7 +309,7 @@ describe('KOMReviewDetail_Misc', function () {
 		});
 		
 		it('binds KOMDeckRearIsOral', function () {
-			browser.assert.evaluate(`document.querySelector('${ KOMReviewDetailFormRearIsOralField }').checked`, false);
+			browser.assert.OLSKIsChecked(KOMReviewDetailFormRearIsOralField, false);
 		});
 
 		it('sets disabled', function () {
@@ -394,7 +394,7 @@ describe('KOMReviewDetail_Misc', function () {
 		});
 		
 		it('binds KOMDeckIsForwardOnly', function () {
-			browser.assert.evaluate(`document.querySelector('${ KOMReviewDetailFormIsForwardOnlyField }').checked`, false);
+			browser.assert.OLSKIsChecked(KOMReviewDetailFormIsForwardOnlyField, false);
 		});
 		
 		context('click', function () {
