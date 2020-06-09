@@ -1,5 +1,3 @@
-import { deepEqual } from 'assert';
-
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
@@ -27,9 +25,9 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 		context('KOMReviewMasterCreateButton', function() {
 
 			it('localizes KOMReviewMasterCreateButtonPrompt', function() {
-				deepEqual(browser.OLSKPromptSync(function () {
+				browser.assert.OLSKPromptQuestion(function () {
 					return browser.pressButton(KOMReviewMasterCreateButton);
-				}).question, uLocalized('KOMReviewMasterCreateButtonPromptText'));
+				}, uLocalized('KOMReviewMasterCreateButtonPromptText'));
 			});
 		
 		});

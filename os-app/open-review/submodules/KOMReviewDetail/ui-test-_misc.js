@@ -1,5 +1,3 @@
-import { deepEqual } from 'assert';
-
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 const KOMReviewLogic = require('../../ui-logic.js').default;
 
@@ -157,9 +155,9 @@ describe('KOMReviewDetail_Misc', function () {
 			});
 			
 			it('sets KOMReviewDetailRenameButtonPrompt response', function() {
-				deepEqual(browser.OLSKPromptSync(function () {
+				browser.assert.OLSKPromptResponse(function () {
 					return browser.pressButton(KOMReviewDetailRenameButton);
-				}).response, kTesting.uDeck().KOMDeckName);
+				}, kTesting.uDeck().KOMDeckName);
 			});
 
 			context('edit', function () {

@@ -81,9 +81,9 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 		context('on rename', function () {
 		
 			it('localizes KOMReviewDetailRenameButtonPrompt', function() {
-				deepEqual(browser.OLSKPromptSync(function () {
+				browser.assert.OLSKPromptQuestion(function () {
 					return browser.pressButton(KOMReviewDetailRenameButton);
-				}).question, uLocalized('KOMReviewDetailRenameButtonPromptText'));
+				}, uLocalized('KOMReviewDetailRenameButtonPromptText'));
 			});
 		
 		});
