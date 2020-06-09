@@ -20,6 +20,8 @@ import KOMBrowseListLogic from './ui-logic.js';
 
 const mod = {
 
+	// INTERFACE
+
 	InterfaceCreateButtonDidClick () {
 		KOMBrowseListDispatchCreate();
 	},

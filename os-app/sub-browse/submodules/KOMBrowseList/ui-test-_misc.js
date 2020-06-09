@@ -65,7 +65,6 @@ describe('KOMBrowseList_Misc', function () {
 		});
 
 		it('sets OLSKMasterListItemAccessibilitySummaryFor', function () {
-
 			browser.assert.attribute('.OLSKResultsListItem:nth-child(1) .OLSKMasterListItem', 'aria-label', 'alfa');
 		});
 
