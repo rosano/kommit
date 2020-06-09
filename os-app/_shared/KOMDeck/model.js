@@ -5,7 +5,7 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		var errors = {};
+		const errors = {};
 
 		if (typeof inputData.KOMDeckID !== 'string') {
 			errors.KOMDeckID = [

@@ -39,7 +39,7 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		var errors = {};
+		const errors = {};
 
 		if (typeof inputData.KOMSpacingID !== 'string') {
 			errors.KOMSpacingID = [

@@ -43,7 +43,7 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		var errors = {};
+		const errors = {};
 
 		if (!mod.KOMReviewSchemes().includes(inputData.KOMReviewScheme)) {
 			errors.KOMReviewScheme = [
