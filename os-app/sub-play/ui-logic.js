@@ -392,7 +392,7 @@ const mod = {
 			return false;
 		}
 
-		if (mod.KOMPlayResponseTypes().indexOf(inputData.KOMChronicleResponseType) === -1) {
+		if (!mod.KOMPlayResponseTypes().includes(inputData.KOMChronicleResponseType)) {
 			return false;
 		}
 

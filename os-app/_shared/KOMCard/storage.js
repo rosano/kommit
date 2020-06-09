@@ -154,7 +154,7 @@ const mod = {
 			OLSKRemoteStorageCollectionModelErrors: Object.entries(KOMCardModel.KOMCardModelErrorsFor({}, {
 				KOMOptionValidateIfNotPresent: true,
 			})).map(function (e) {
-				if (Object.keys(KOMCardModel.KOMCardModelErrorsFor({})).indexOf(e[0]) === -1) {
+				if (!Object.keys(KOMCardModel.KOMCardModelErrorsFor({})).includes(e[0])) {
 					e[1].push('__RSOptional');
 				}
 

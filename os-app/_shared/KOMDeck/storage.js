@@ -89,7 +89,7 @@ const mod = {
 			OLSKRemoteStorageCollectionModelErrors: Object.entries(KOMDeckModel.KOMDeckModelErrorsFor({}, {
 				KOMOptionValidateIfNotPresent: true,
 			})).map(function (e) {
-				if (Object.keys(KOMDeckModel.KOMDeckModelErrorsFor({})).indexOf(e[0]) === -1) {
+				if (!Object.keys(KOMDeckModel.KOMDeckModelErrorsFor({})).includes(e[0])) {
 					e[1].push('__RSOptional');
 				}
 

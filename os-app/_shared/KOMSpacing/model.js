@@ -7,7 +7,7 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 		
-		if (inputData.indexOf('-') === -1) {
+		if (!inputData.includes('-')) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
@@ -19,7 +19,7 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 		
-		if (inputData.indexOf('-') === -1) {
+		if (!inputData.includes('-')) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
@@ -45,7 +45,7 @@ const mod = {
 			errors.KOMSpacingID = [
 				'KOMErrorNotString',
 			];
-		} else if (inputData.KOMSpacingID.indexOf('-') === -1) {
+		} else if (!inputData.KOMSpacingID.includes('-')) {
 			errors.KOMSpacingID = [
 				'KOMErrorNotSeparated',
 			];
@@ -53,7 +53,7 @@ const mod = {
 			errors.KOMSpacingID = [
 				'KOMErrorNotFilled',
 			];
-		} else if ([mod.KOMSpacingModelLabelForward(), mod.KOMSpacingModelLabelBackward()].indexOf(mod.KOMSpacingModelLabel(inputData.KOMSpacingID)) === -1) {
+		} else if (![mod.KOMSpacingModelLabelForward(), mod.KOMSpacingModelLabelBackward()].includes(mod.KOMSpacingModelLabel(inputData.KOMSpacingID))) {
 			errors.KOMSpacingID = [
 				'KOMErrorNotLabelled',
 			];
@@ -175,7 +175,7 @@ const mod = {
 
 		let cards = [];
 		return inputData.filter(function (e, i, coll) {
-			if (cards.indexOf(e.$KOMSpacingCard) !== -1) {
+			if (cards.includes(e.$KOMSpacingCard)) {
 				return false;
 			}
 
