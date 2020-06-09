@@ -1,5 +1,3 @@
-import { deepEqual } from 'assert';
-
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
@@ -34,7 +32,9 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 				'\n\n': '\n',
 				'KOMVitrineDescription': uLocalized('KOMVitrineDescription'),
 			});
-			deepEqual(browser.query(KOMVitrineContent).textContent.trim().slice(0, 20), item.slice(0, 20));
+			browser.assert.OLSKTextContent(KOMVitrineContent, item.slice(0, 20), function (inputData) {
+				return inputData.slice(0, 20);
+			});
 		});
 
 		it('localizes KOM_VITRINE_ANKI_URL', function() {
