@@ -586,7 +586,7 @@ import OLSKStorageWidget from 'OLSKStorageWidget';
 </div>
 
 {#if !OLSK_TESTING_BEHAVIOUR()}
-	<OLSKServiceWorker OLSKLocalized={ OLSKLocalized } registrationRoute={ window.OLSKCanonicalFor('KOMServiceWorkerRoute') } />
+	<OLSKServiceWorker OLSKServiceWorkerRegistrationRoute={ window.OLSKCanonicalFor('KOMServiceWorkerRoute') } />
 {/if}
 
 <style src="./ui-style.css"></style>
