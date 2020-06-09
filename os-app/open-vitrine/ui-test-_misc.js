@@ -6,12 +6,8 @@ describe('KOMVitrine_Misc', function () {
 		return browser.visit(kDefaultRoute.OLSKRoutePath);
 	});
 
-	context('meta viewport', function () {
-		
-		it('sets content', function () {
-			browser.assert.attribute('meta[name=viewport]', 'content', 'width=device-width');
-		});
-	
+	it('assigns meta:viewport', function () {
+		browser.assert.attribute('meta[name=viewport]', 'content', 'width=device-width');
 	});
 
 	describe('KOMVitrine', function () {
