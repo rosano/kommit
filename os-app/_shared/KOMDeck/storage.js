@@ -55,7 +55,7 @@ const mod = {
 				return console.warn(`${ delegateMethod } not function`);
 			}
 
-			changeDelegate[delegateMethod](KOMDeckModel.KOMDeckModelPostJSONParse(event[OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateInput(delegateMethod)]));
+			changeDelegate[delegateMethod](OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(event[OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateInput(delegateMethod)]));
 		});
 
 		const OLSKRemoteStorageCollectionExports = {

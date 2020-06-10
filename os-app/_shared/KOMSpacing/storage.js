@@ -1,5 +1,4 @@
 import KOMCardStorage from '../KOMCard/storage.js';
-import KOMCardModel from '../KOMCard/model.js';
 import KOMSpacingModel from './model.js';
 import * as OLSKRemoteStoragePackage from 'OLSKRemoteStorage';
 const OLSKRemoteStorage = OLSKRemoteStoragePackage.default || OLSKRemoteStoragePackage;
@@ -57,7 +56,7 @@ const mod = {
 				return console.warn(`${ delegateMethod } not function`);
 			}
 
-			changeDelegate[delegateMethod](KOMSpacingModel.KOMSpacingModelPostJSONParse(event[OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateInput(delegateMethod)]));
+			changeDelegate[delegateMethod](OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(event[OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateInput(delegateMethod)]));
 		});
 
 		const OLSKRemoteStorageCollectionExports = {
