@@ -52,7 +52,7 @@ const mod = {
 			return false;
 		}
 
-		if (KOMPlayDeck.KOMDeckAudioIsEnabled && mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard.KOMCardFrontAudio) {
+		if (mod.DataFrontHasAudio()) {
 			return true;
 		}
 
@@ -80,7 +80,7 @@ const mod = {
 			return false;
 		}
 
-		if (KOMPlayDeck.KOMDeckAudioIsEnabled && mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard.KOMCardFrontAudio) {
+		if (mod.DataFrontHasAudio()) {
 			return true;
 		}
 
@@ -97,6 +97,10 @@ const mod = {
 		}
 
 		return KOMPlayDeck.KOMDeckRearIsOral;
+	},
+
+	DataFrontHasAudio() {
+		return KOMPlayDeck.KOMDeckAudioIsEnabled && mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard.KOMCardFrontAudio;
 	},
 
 	// INTERFACE
@@ -178,7 +182,7 @@ const mod = {
 	},
 
 	ControlQuestionRead () {
-		if (KOMPlayDeck.KOMDeckAudioIsEnabled && mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard.KOMCardFrontAudio && !KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent)) {
+		if (mod.DataFrontHasAudio() && !KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent)) {
 			return mod.ControlAudioStart();
 		}
 		
@@ -190,7 +194,7 @@ const mod = {
 	},
 
 	ControlAnswerRead () {
-		if (KOMPlayDeck.KOMDeckAudioIsEnabled && mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard.KOMCardFrontAudio && KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent)) {
+		if (mod.DataFrontHasAudio() && KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent)) {
 			return mod.ControlAudioStart();
 		}
 		
