@@ -66,6 +66,22 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			browser.assert.text(KOMReviewDetailDiscardButton, uLocalized('KOMReviewDetailDiscardButtonText'));
 		});
 
+		it('localizes KOMReviewDetailFormAudioIsEnabledField', function () {
+			browser.assert.text(KOMReviewDetailFormAudioIsEnabledField, uLocalized('KOMReviewDetailFormAudioIsEnabledFieldLabelText'));
+		});
+
+		it('localizes KOMReviewDetailFormFrontIsOralFieldLabel', function () {
+			browser.assert.text(KOMReviewDetailFormFrontIsOralFieldLabel, uLocalized('KOMReviewDetailFormFrontIsOralFieldLabelText'));
+		});
+
+		it('localizes KOMReviewDetailFormRearIsOralFieldLabel', function () {
+			browser.assert.text(KOMReviewDetailFormRearIsOralFieldLabel, uLocalized('KOMReviewDetailFormRearIsOralFieldLabelText'));
+		});
+
+		it('localizes KOMReviewDetailFormIsForwardOnlyFieldLabel', function () {
+			browser.assert.text(KOMReviewDetailFormIsForwardOnlyFieldLabel, uLocalized('KOMReviewDetailFormIsForwardOnlyFieldLabelText'));
+		});
+
 		context('on discard', function () {
 		
 			it('localizes KOMReviewDetailDiscardPrompt', function() {
@@ -103,22 +119,6 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 						}),
 					}),
 				});
-			});
-
-			it('localizes KOMReviewDetailFormAudioIsEnabledField', function () {
-				browser.assert.text(KOMReviewDetailFormAudioIsEnabledField, uLocalized('KOMReviewDetailFormAudioIsEnabledFieldLabelText'));
-			});
-
-			it('localizes KOMReviewDetailFormFrontIsOralFieldLabel', function () {
-				browser.assert.text(KOMReviewDetailFormFrontIsOralFieldLabel, uLocalized('KOMReviewDetailFormFrontIsOralFieldLabelText'));
-			});
-
-			it('localizes KOMReviewDetailFormRearIsOralFieldLabel', function () {
-				browser.assert.text(KOMReviewDetailFormRearIsOralFieldLabel, uLocalized('KOMReviewDetailFormRearIsOralFieldLabelText'));
-			});
-
-			it('localizes KOMReviewDetailFormIsForwardOnlyFieldLabel', function () {
-				browser.assert.text(KOMReviewDetailFormIsForwardOnlyFieldLabel, uLocalized('KOMReviewDetailFormIsForwardOnlyFieldLabelText'));
 			});
 
 			it('localizes KOMReviewDetailPlayButtonReviewing', function () {
