@@ -35,14 +35,6 @@ const mod = {
 			];
 		}
 
-		if (inputData.KOMDeckIsForwardOnly !== undefined) {
-			if (typeof inputData.KOMDeckIsForwardOnly !== 'boolean') {
-				errors.KOMDeckIsForwardOnly = [
-					'KOMErrorNotBoolean',
-				];
-			}
-		}
-
 		if (inputData.KOMDeckAudioIsEnabled !== undefined) {
 			if (typeof inputData.KOMDeckAudioIsEnabled !== 'boolean') {
 				errors.KOMDeckAudioIsEnabled = [
@@ -87,6 +79,14 @@ const mod = {
 			} else if (inputData.KOMDeckRearLanguageCode.trim() === '') {
 				errors.KOMDeckRearLanguageCode = [
 					'KOMErrorNotFilled',
+				];
+			}
+		}
+
+		if (inputData.KOMDeckIsForwardOnly !== undefined) {
+			if (typeof inputData.KOMDeckIsForwardOnly !== 'boolean') {
+				errors.KOMDeckIsForwardOnly = [
+					'KOMErrorNotBoolean',
 				];
 			}
 		}
