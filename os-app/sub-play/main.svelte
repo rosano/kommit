@@ -60,7 +60,15 @@ const mod = {
 	},
 
 	_DataQuestionRearShouldSound () {
-		return KOMPlayDeck.KOMDeckRearIsOral && KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent);
+		if (!KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent)) {
+			return false;
+		}
+
+		if (KOMPlayDeck.KOMDeckAudioIsEnabled && mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard.KOMCardRearAudio) {
+			return true;
+		}
+
+		return KOMPlayDeck.KOMDeckRearIsOral;
 	},
 
 	DataAnswerShouldSound () {
@@ -80,7 +88,15 @@ const mod = {
 	},
 
 	_DataAnswerRearShouldSound () {
-		return KOMPlayDeck.KOMDeckRearIsOral && !KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent);
+		if (KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent)) {
+			return false;
+		}
+
+		if (KOMPlayDeck.KOMDeckAudioIsEnabled && mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard.KOMCardRearAudio) {
+			return true;
+		}
+
+		return KOMPlayDeck.KOMDeckRearIsOral;
 	},
 
 	// INTERFACE
@@ -166,11 +182,19 @@ const mod = {
 			return mod.ControlAudioStart();
 		}
 		
+		if (KOMPlayDeck.KOMDeckAudioIsEnabled && mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard.KOMCardRearAudio && KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent)) {
+			return mod.ControlAudioStart();
+		}
+		
 		mod.ControlReadStart(mod.DataQuestion(), !KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent) ? KOMPlayDeck.KOMDeckFrontLanguageCode : KOMPlayDeck.KOMDeckRearLanguageCode);
 	},
 
 	ControlAnswerRead () {
 		if (KOMPlayDeck.KOMDeckAudioIsEnabled && mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard.KOMCardFrontAudio && KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent)) {
+			return mod.ControlAudioStart();
+		}
+		
+		if (KOMPlayDeck.KOMDeckAudioIsEnabled && mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard.KOMCardRearAudio && !KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent)) {
 			return mod.ControlAudioStart();
 		}
 		
