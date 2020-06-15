@@ -63,7 +63,11 @@ const mod = {
 		return KOMPlayDeck.KOMDeckRearIsOral && KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent);
 	},
 
-	DataAnswerFrontShouldSound () {
+	DataAnswerShouldSound () {
+		return mod._DataAnswerFrontShouldSound() || mod._DataAnswerRearShouldSound();
+	},
+
+	_DataAnswerFrontShouldSound () {
 		if (!KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent)) {
 			return false;
 		}
@@ -75,7 +79,7 @@ const mod = {
 		return KOMPlayDeck.KOMDeckFrontIsOral;
 	},
 
-	DataAnswerRearShouldSound () {
+	_DataAnswerRearShouldSound () {
 		return KOMPlayDeck.KOMDeckRearIsOral && !KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent);
 	},
 
@@ -273,13 +277,13 @@ const mod = {
 			mod.ControlReadStop();
 		}
 
-		if (mod.DataAnswerFrontShouldSound() || mod.DataAnswerRearShouldSound()) {
+		if (mod.DataAnswerShouldSound()) {
 			mod.ControlAnswerRead();
 		}
 	},
 
 	ControlRespond (inputData) {
-		if (mod.DataAnswerFrontShouldSound() || mod.DataAnswerRearShouldSound()) {
+		if (mod.DataAnswerShouldSound()) {
 			mod.ControlReadStop();
 		}
 
@@ -356,13 +360,13 @@ import OLSKViewportContent from 'OLSKViewportContent';
 <div class="KOMPlayBody">
 
 {#if mod._ValueState.KOMPlayStateCurrent }
-	{#if mod.DataQuestionShouldSound() || (mod._ValueIsFlipped && (mod.DataAnswerFrontShouldSound() || mod.DataAnswerRearShouldSound())) }
+	{#if mod.DataQuestionShouldSound() || (mod._ValueIsFlipped && mod.DataAnswerShouldSound()) }
 		<div class="KOMPlayHear">
 			{#if mod.DataQuestionShouldSound()}
 				<button class="KOMPlayHearQuestionButton OLSKLayoutButtonNoStyle" on:click={ mod.InterfaceHearQuestionButtonDidClick } tabindex="-1">{ OLSKLocalized('KOMPlayHearQuestionButtonText') }</button>
 			{/if}
 
-			{#if mod._ValueIsFlipped && (mod.DataAnswerFrontShouldSound() || mod.DataAnswerRearShouldSound()) }
+			{#if mod._ValueIsFlipped && mod.DataAnswerShouldSound() }
 				<button class="KOMPlayHearAnswerButton OLSKLayoutButtonNoStyle" on:click={ mod.InterfaceHearAnswerButtonDidClick } tabindex="-1">{ OLSKLocalized('KOMPlayHearAnswerButtonText') }</button>
 			{/if}
 		</div>
