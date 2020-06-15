@@ -31,6 +31,7 @@ const mod = {
 
 	_ValueAudioFront: undefined,
 	_ValueAudioRear: undefined,
+	_ValueAudioPlaying: undefined,
 
 	// DATA
 
@@ -192,8 +193,10 @@ const mod = {
 
 	ControlReadStop () {
 		if (OLSK_TESTING_BEHAVIOUR()) {
-			mod.DebugOralLog('stop');
+			mod.DebugOralLog(mod._ValueAudioPlaying ? 'stop:audio' : 'stop');
 		}
+
+		delete mod._ValueAudioPlaying;
 
 		if (!mod._ValueSpeechAvailable) {
 			return;
@@ -215,6 +218,8 @@ const mod = {
 			mod.DebugOralLog('play:audio');
 		}
 
+		mod._ValueAudioPlaying = true;
+
 		// if (!mod._ValueSpeechAvailable) {
 		// 	return;
 		// }
@@ -230,20 +235,6 @@ const mod = {
 		// }).pop();
 
 		// speechSynthesis.speak(item);
-	},
-
-	ControlAudioStop () {
-		if (OLSK_TESTING_BEHAVIOUR()) {
-			mod.DebugOralLog('stop:audio');
-		}
-
-		// if (!mod._ValueSpeechAvailable) {
-		// 	return;
-		// }
-
-		// if (speechSynthesis.speaking) {
-		// 	speechSynthesis.cancel();
-		// }
 	},
 
 	ControlProgress() {
@@ -275,11 +266,7 @@ const mod = {
 		KOMPlayDispatchUpdate(mod._ValueState.KOMPlayStateCurrent);
 
 		if (mod.DataQuestionFrontShouldSound() || mod.DataQuestionRearShouldSound()) {
-			if (KOMPlayDeck.KOMDeckAudioIsEnabled && mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard.KOMCardFrontAudio) {
-				mod.ControlAudioStop();
-			} else {
-				mod.ControlReadStop();
-			}
+			mod.ControlReadStop();
 		}
 
 		if (mod.DataAnswerFrontShouldSound() || mod.DataAnswerRearShouldSound()) {
