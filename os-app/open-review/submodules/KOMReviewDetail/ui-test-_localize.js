@@ -67,7 +67,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 		});
 
 		it('localizes KOMReviewDetailFormAudioIsEnabledField', function () {
-			browser.assert.text(KOMReviewDetailFormAudioIsEnabledField, uLocalized('KOMReviewDetailFormAudioIsEnabledFieldLabelText'));
+			browser.assert.text(KOMReviewDetailFormAudioIsEnabledFieldLabel, uLocalized('KOMReviewDetailFormAudioIsEnabledFieldLabelText'));
 		});
 
 		it('localizes KOMReviewDetailFormFrontIsOralFieldLabel', function () {
