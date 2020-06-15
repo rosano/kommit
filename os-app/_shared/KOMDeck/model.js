@@ -43,6 +43,14 @@ const mod = {
 			}
 		}
 
+		if (inputData.KOMDeckAudioIsEnabled !== undefined) {
+			if (typeof inputData.KOMDeckAudioIsEnabled !== 'boolean') {
+				errors.KOMDeckAudioIsEnabled = [
+					'KOMErrorNotBoolean',
+				];
+			}
+		}
+
 		if (inputData.KOMDeckFrontIsOral !== undefined) {
 			if (typeof inputData.KOMDeckFrontIsOral !== 'boolean') {
 				errors.KOMDeckFrontIsOral = [

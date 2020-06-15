@@ -95,6 +95,26 @@ describe('KOMDeckModelErrorsFor', function test_KOMDeckModelErrorsFor() {
 
 	});
 
+	context('KOMDeckAudioIsEnabled', function() {
+
+		it('returns object if not boolean', function() {
+			deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
+				KOMDeckAudioIsEnabled: null,
+			})), {
+				KOMDeckAudioIsEnabled: [
+					'KOMErrorNotBoolean',
+				],
+			});
+		});
+
+		it('returns null', function() {
+			deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
+				KOMDeckAudioIsEnabled: true,
+			})), null);
+		});
+
+	});
+
 	context('KOMDeckFrontIsOral', function() {
 
 		it('returns object if not boolean', function() {
