@@ -1217,6 +1217,18 @@ describe('KOMPlay_Misc', function () {
 			
 		});
 
+		context('flip_reverse', function () {
+
+			before(function () {
+				return browser.pressButton(KOMPlayFlipButton);
+			});
+
+			it('starts read', function () {
+				browser.assert.text('#TestKOMPlayOralLog', uLog('stop'));
+			});
+
+		});
+
 	});
 
 	describe('audio_front', function test_audio_front () {

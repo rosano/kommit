@@ -274,7 +274,7 @@ const mod = {
 		mod._ValueState.KOMPlayStateCurrent.KOMSpacingFlipDate = mod._ValueChronicle.KOMChronicleFlipDate;
 		KOMPlayDispatchUpdate(mod._ValueState.KOMPlayStateCurrent);
 
-		if (mod.DataQuestionFrontShouldSound()) {
+		if (mod.DataQuestionFrontShouldSound() || mod.DataQuestionRearShouldSound()) {
 			if (KOMPlayDeck.KOMDeckAudioIsEnabled && mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard.KOMCardFrontAudio) {
 				mod.ControlAudioStop();
 			} else {
