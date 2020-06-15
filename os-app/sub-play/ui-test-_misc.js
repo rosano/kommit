@@ -1091,6 +1091,18 @@ describe('KOMPlay_Misc', function () {
 
 		});
 
+		context('respond_reverse', function () {
+
+			before(function () {
+				return browser.pressButton(KOMPlayResponseButtonEasy);
+			});
+
+			it('starts read', function () {
+				browser.assert.text('#TestKOMPlayOralLog', uLog('stop'));
+			});
+
+		});
+
 	});
 
 	describe('oral_rear', function test_oral_rear () {

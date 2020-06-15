@@ -288,7 +288,7 @@ const mod = {
 	},
 
 	ControlRespond (inputData) {
-		if (mod.DataAnswerRearShouldSound()) {
+		if (mod.DataAnswerFrontShouldSound() || mod.DataAnswerRearShouldSound()) {
 			mod.ControlReadStop();
 		}
 
