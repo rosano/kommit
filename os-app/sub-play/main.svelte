@@ -277,6 +277,15 @@ const mod = {
 		// speechSynthesis.speak(item);
 	},
 
+	ControlFlush() {
+		if (OLSK_TESTING_BEHAVIOUR()) {
+			mod.DebugOralLog('flush');
+		}
+
+		delete mod._ValueAudioFront;
+		delete mod._ValueAudioRear;
+	},
+
 	ControlProgress() {
 		if (mod._ValueIsFlipped) {
 			return mod.ControlRespond(KOMPlayLogic.KOMPlayResponseTypeGood());
@@ -289,6 +298,10 @@ const mod = {
 		mod._ValueState.KOMPlayStateQueue.unshift(mod._ValueState.KOMPlayStateCurrent);
 		
 		mod._ValueState.KOMPlayStateCurrent = KOMPlayLogic.KOMPlayUndo(mod._ValueHistory.pop());
+
+		if (mod.DataFrontHasAudio() || mod.DataRearHasAudio()) {
+			mod.ControlFlush();
+		}
 
 		mod.ControlDraw();
 	},
@@ -317,6 +330,10 @@ const mod = {
 	ControlRespond (inputData) {
 		if (mod.DataAnswerShouldSound()) {
 			mod.ControlReadStop();
+		}
+
+		if (mod.DataFrontHasAudio() || mod.DataRearHasAudio()) {
+			mod.ControlFlush();
 		}
 
 		const item = mod._ValueState.KOMPlayStateCurrent;

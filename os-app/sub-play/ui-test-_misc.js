@@ -1302,8 +1302,8 @@ describe('KOMPlay_Misc', function () {
 				return browser.pressButton(KOMPlayResponseButtonEasy);
 			});
 
-			it('does nothing', function () {
-				browser.assert.text('#TestKOMPlayOralLog', _log.join(','));
+			it('flushes audio', function () {
+				browser.assert.text('#TestKOMPlayOralLog', uLog('flush'));
 			});
 
 		});
@@ -1315,7 +1315,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('starts audio', function () {
-				browser.assert.text('#TestKOMPlayOralLog', uLog('play:audio'));
+				browser.assert.text('#TestKOMPlayOralLog', uLog('flush,fetch,play:audio'));
 			});
 			
 		});
@@ -1335,7 +1335,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('starts audio', function () {
-				browser.assert.text('#TestKOMPlayOralLog', uLog('stop:audio,play:audio'));
+				browser.assert.text('#TestKOMPlayOralLog', uLog('stop:audio,flush,fetch,play:audio'));
 			});
 
 		});
@@ -1363,7 +1363,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('starts read', function () {
-				browser.assert.text('#TestKOMPlayOralLog', uLog('stop:audio'));
+				browser.assert.text('#TestKOMPlayOralLog', uLog('stop:audio,flush'));
 			});
 
 		});
@@ -1440,7 +1440,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('starts read', function () {
-				browser.assert.text('#TestKOMPlayOralLog', uLog('stop:audio,play:audio'));
+				browser.assert.text('#TestKOMPlayOralLog', uLog('stop:audio,flush,fetch,play:audio'));
 			});
 
 		});
@@ -1451,8 +1451,8 @@ describe('KOMPlay_Misc', function () {
 				return browser.pressButton(KOMPlayToolbarUndoButton);
 			});
 
-			it('does nothing', function () {
-				browser.assert.text('#TestKOMPlayOralLog', _log.join(','));
+			it('flushes audio', function () {
+				browser.assert.text('#TestKOMPlayOralLog', uLog('flush'));
 			});
 			
 		});
@@ -1464,7 +1464,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			before(function () {
-				uLog('play:audio');
+				uLog('fetch,play:audio');
 			});
 
 			before(function () {
@@ -1472,7 +1472,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('starts read', function () {
-				browser.assert.text('#TestKOMPlayOralLog', uLog('stop:audio,play:audio'));
+				browser.assert.text('#TestKOMPlayOralLog', uLog('stop:audio,flush,fetch,play:audio'));
 			});
 
 		});
