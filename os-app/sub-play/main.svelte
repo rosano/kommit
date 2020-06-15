@@ -43,7 +43,11 @@ const mod = {
 		return mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard[!KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent) ? 'KOMCardRear' : 'KOMCardFront'];
 	},
 
-	DataQuestionFrontShouldSound () {
+	DataQuestionShouldSound () {
+		return mod._DataQuestionFrontShouldSound() || mod._DataQuestionRearShouldSound();
+	},
+
+	_DataQuestionFrontShouldSound () {
 		if (KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent)) {
 			return false;
 		}
@@ -55,7 +59,7 @@ const mod = {
 		return KOMPlayDeck.KOMDeckFrontIsOral;
 	},
 
-	DataQuestionRearShouldSound () {
+	_DataQuestionRearShouldSound () {
 		return KOMPlayDeck.KOMDeckRearIsOral && KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent);
 	},
 
@@ -148,7 +152,7 @@ const mod = {
 
 		mod.SetupChronicle();
 
-		if (mod.DataQuestionFrontShouldSound() || mod.DataQuestionRearShouldSound()) {
+		if (mod.DataQuestionShouldSound()) {
 			mod.ControlQuestionRead();
 		}
 	},
@@ -265,7 +269,7 @@ const mod = {
 		mod._ValueState.KOMPlayStateCurrent.KOMSpacingFlipDate = mod._ValueChronicle.KOMChronicleFlipDate;
 		KOMPlayDispatchUpdate(mod._ValueState.KOMPlayStateCurrent);
 
-		if (mod.DataQuestionFrontShouldSound() || mod.DataQuestionRearShouldSound()) {
+		if (mod.DataQuestionShouldSound()) {
 			mod.ControlReadStop();
 		}
 
@@ -352,9 +356,9 @@ import OLSKViewportContent from 'OLSKViewportContent';
 <div class="KOMPlayBody">
 
 {#if mod._ValueState.KOMPlayStateCurrent }
-	{#if mod.DataQuestionFrontShouldSound() || mod.DataQuestionRearShouldSound() || (mod._ValueIsFlipped && (mod.DataAnswerFrontShouldSound() || mod.DataAnswerRearShouldSound())) }
+	{#if mod.DataQuestionShouldSound() || (mod._ValueIsFlipped && (mod.DataAnswerFrontShouldSound() || mod.DataAnswerRearShouldSound())) }
 		<div class="KOMPlayHear">
-			{#if mod.DataQuestionFrontShouldSound() || mod.DataQuestionRearShouldSound()}
+			{#if mod.DataQuestionShouldSound()}
 				<button class="KOMPlayHearQuestionButton OLSKLayoutButtonNoStyle" on:click={ mod.InterfaceHearQuestionButtonDidClick } tabindex="-1">{ OLSKLocalized('KOMPlayHearQuestionButtonText') }</button>
 			{/if}
 
