@@ -52,7 +52,7 @@ const mod = {
 			return true;
 		}
 
-		return KOMPlayDeck.KOMDeckFrontIsOral && !KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent);
+		return KOMPlayDeck.KOMDeckFrontIsOral;
 	},
 
 	DataQuestionRearShouldSound () {
