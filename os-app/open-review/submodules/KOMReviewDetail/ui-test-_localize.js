@@ -105,6 +105,10 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 				});
 			});
 
+			it('localizes KOMReviewDetailFormAudioIsEnabledField', function () {
+				browser.assert.text(KOMReviewDetailFormAudioIsEnabledField, uLocalized('KOMReviewDetailFormAudioIsEnabledFieldLabelText'));
+			});
+
 			it('localizes KOMReviewDetailFormFrontIsOralFieldLabel', function () {
 				browser.assert.text(KOMReviewDetailFormFrontIsOralFieldLabel, uLocalized('KOMReviewDetailFormFrontIsOralFieldLabelText'));
 			});

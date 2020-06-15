@@ -185,6 +185,49 @@ describe('KOMReviewDetail_Misc', function () {
 	
 	});
 
+	describe('KOMReviewDetailFormAudioIsEnabledField', function test_KOMReviewDetailFormAudioIsEnabledField () {
+
+		const item = {
+			KOMDeckName: 'alfa',
+			$KOMDeckSpacings: kTesting.uSpacings(true),
+		};
+
+		before(function() {
+			return browser.OLSKVisit(kDefaultRoute, {
+				KOMReviewDetailDeck: JSON.stringify(item),
+			});
+		});
+
+		it('sets type', function () {
+			browser.assert.attribute(KOMReviewDetailFormAudioIsEnabledField, 'type', 'checkbox');
+		});
+		
+		it('binds KOMDeckIsForwardOnly', function () {
+			browser.assert.OLSKIsChecked(KOMReviewDetailFormAudioIsEnabledField, false);
+		});
+		
+		context('click', function () {
+			
+			before(function () {
+				browser.assert.text('#TestKOMReviewDetailDispatchUpdate', '0');
+				browser.assert.text('#TestKOMReviewDetailDispatchUpdateData', 'undefined');
+			});
+			
+			before(function () {
+				return browser.check(KOMReviewDetailFormAudioIsEnabledField);
+			});
+
+			it('sends KOMReviewDetailDispatchUpdate', function () {
+				browser.assert.text('#TestKOMReviewDetailDispatchUpdate', '1');
+				browser.assert.text('#TestKOMReviewDetailDispatchUpdateData', JSON.stringify(Object.assign(item, {
+					KOMDeckAudioIsEnabled: true,
+				})));
+			});
+		
+		});
+	
+	});
+
 	describe('KOMReviewDetailFormFrontLanguageCode', function test_KOMReviewDetailFormFrontLanguageCode () {
 
 		before(function() {

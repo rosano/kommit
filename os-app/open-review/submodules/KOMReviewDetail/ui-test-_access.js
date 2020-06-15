@@ -14,6 +14,8 @@ Object.entries({
 	KOMReviewDetailNoCards: '.KOMReviewDetailNoCards',
 	
 	KOMReviewDetailForm: '.KOMReviewDetailForm',
+	KOMReviewDetailFormAudioIsEnabledField: '.KOMReviewDetailFormAudioIsEnabledField',
+	KOMReviewDetailFormAudioIsEnabledFieldLabel: '.KOMReviewDetailFormAudioIsEnabledFieldLabel',
 	KOMReviewDetailFormFrontIsOralField: '.KOMReviewDetailFormFrontIsOralField',
 	KOMReviewDetailFormFrontIsOralFieldLabel: '.KOMReviewDetailFormFrontIsOralFieldLabel',
 	KOMReviewDetailFormFrontLanguageCode: '.KOMReviewDetailFormFrontLanguageCode .KOMReviewDetailLanguageCode',
@@ -102,6 +104,14 @@ describe('KOMReviewDetail_Access', function () {
 
 	it('shows KOMReviewDetailForm', function () {
 		browser.assert.elements(KOMReviewDetailForm, 1);
+	});
+
+	it('shows KOMReviewDetailFormAudioIsEnabledField', function () {
+		browser.assert.elements(KOMReviewDetailFormAudioIsEnabledField, 1);
+	});
+
+	it('shows KOMReviewDetailFormAudioIsEnabledFieldLabel', function () {
+		browser.assert.elements(KOMReviewDetailFormAudioIsEnabledFieldLabel, 1);
 	});
 
 	it('shows KOMReviewDetailFormFrontIsOralField', function () {
