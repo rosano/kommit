@@ -1398,8 +1398,6 @@ describe('KOMPlay_Misc', function () {
 
 	});
 
-
-
 	describe('audio_rear', function test_audio_rear () {
 
 		const items = kTesting.uSpacings(2).sort(function (a, b) {
