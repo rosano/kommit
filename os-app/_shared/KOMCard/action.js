@@ -86,7 +86,7 @@ const mod = {
 			return Promise.reject(new Error('KOMErrorInputNotValid'));
 		}
 
-		await KOMCardMetal.KOMCardMetalFileDelete(storageClient, param1 === 'KOMCardFrontAudio' ? KOMCardStorage.KOMCardStorageAudioPathFront(param2, param3) : null);
+		await KOMCardMetal.KOMCardMetalFileDelete(storageClient, param1 === 'KOMCardFrontAudio' ? KOMCardStorage.KOMCardStorageAudioPathFront(param2, param3) : KOMCardStorage.KOMCardStorageAudioPathRear(param2, param3));
 
 		delete param2[param1];
 
