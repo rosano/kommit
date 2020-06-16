@@ -82,6 +82,10 @@ const mod = {
 		mod.ControlSpacingSave(inputData);
 	},
 
+	async KOMPlayDispatchFetch (param1, param2) {
+		return await KOMCardAction.KOMCardActionAudioFetch(mod._ValueStorageClient, param1, param2, mod._ValueDeckSelected);
+	},
+
 	OLSKAppToolbarDispatchStorage () {
 		mod._ValueStorageToolbarHidden = !mod._ValueStorageToolbarHidden;
 	},
@@ -530,6 +534,7 @@ import OLSKStorageWidget from 'OLSKStorageWidget';
 			KOMPlayDeck={ mod._ValueDeckSelected }
 			KOMPlayDispatchDone={ mod.KOMPlayDispatchDone }
 			KOMPlayDispatchUpdate={ mod.KOMPlayDispatchUpdate }
+			KOMPlayDispatchFetch={ mod.KOMPlayDispatchFetch }
 			/>
 	{/if}
 </OLSKViewportContent>

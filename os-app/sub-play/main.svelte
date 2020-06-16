@@ -3,6 +3,7 @@ export let KOMPlaySpacings;
 export let KOMPlayDeck;
 export let KOMPlayDispatchDone;
 export let KOMPlayDispatchUpdate;
+export let KOMPlayDispatchFetch;
 
 import OLSKInternational from 'OLSKInternational';
 const OLSKLocalized = function(translationConstant) {
@@ -29,8 +30,7 @@ const mod = {
 
 	_ValueSpeechAvailable: 'speechSynthesis' in window,
 
-	_ValueAudioFront: undefined,
-	_ValueAudioRear: undefined,
+	_ValueAudio: undefined,
 	_ValueAudioPlaying: undefined,
 
 	// DATA
@@ -105,6 +105,14 @@ const mod = {
 
 	DataRearHasAudio() {
 		return KOMPlayDeck.KOMDeckAudioIsEnabled && mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard.KOMCardRearAudio;
+	},
+
+	DataFakeAudio (inputData) {
+		return {
+			play () {},
+			pause () {},
+			src: inputData,
+		};
 	},
 
 	// INTERFACE
@@ -187,11 +195,11 @@ const mod = {
 
 	ControlQuestionRead () {
 		if (mod.DataFrontHasAudio() && !KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent)) {
-			return mod.ControlAudioStart();
+			return mod.ControlAudioStart('KOMCardFrontAudio');
 		}
 		
 		if (mod.DataRearHasAudio() && KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent)) {
-			return mod.ControlAudioStart();
+			return mod.ControlAudioStart('KOMCardRearAudio');
 		}
 		
 		mod.ControlReadStart(mod.DataQuestion(), !KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent) ? KOMPlayDeck.KOMDeckFrontLanguageCode : KOMPlayDeck.KOMDeckRearLanguageCode);
@@ -199,11 +207,11 @@ const mod = {
 
 	ControlAnswerRead () {
 		if (mod.DataFrontHasAudio() && KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent)) {
-			return mod.ControlAudioStart();
+			return mod.ControlAudioStart('KOMCardFrontAudio');
 		}
 		
 		if (mod.DataRearHasAudio() && !KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent)) {
-			return mod.ControlAudioStart();
+			return mod.ControlAudioStart('KOMCardRearAudio');
 		}
 		
 		mod.ControlReadStart(mod.DataAnswer(), KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent) ? KOMPlayDeck.KOMDeckFrontLanguageCode : KOMPlayDeck.KOMDeckRearLanguageCode);
@@ -236,7 +244,10 @@ const mod = {
 			mod.DebugOralLog(mod._ValueAudioPlaying ? 'stop:audio' : 'stop');
 		}
 
-		delete mod._ValueAudioPlaying;
+		if (mod._ValueAudioIsPlaying) {
+			mod._ValueAudio.pause();
+			delete mod._ValueAudioPlaying;
+		};
 
 		if (!mod._ValueSpeechAvailable) {
 			return;
@@ -247,34 +258,25 @@ const mod = {
 		}
 	},
 
-	ControlAudioStart () {
-		if (OLSK_TESTING_BEHAVIOUR() && !mod._ValueAudioFront) {
+	async ControlAudioStart (inputData) {
+		if (!mod._ValueAudio && OLSK_TESTING_BEHAVIOUR()) {
 			mod.DebugOralLog('fetch');
 
-			mod._ValueAudioFront = true;
+			mod._ValueAudio = mod.DataFakeAudio(await KOMPlayDispatchFetch(inputData, mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard));
+		}
+
+		if (!mod._ValueAudio) {
+			(mod._ValueAudio = new Audio()).src = URL.createObjectURL(await KOMPlayDispatchFetch(inputData, mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard));
 		}
 
 		if (OLSK_TESTING_BEHAVIOUR()) {
 			mod.DebugOralLog('play:audio');
 		}
 
+		mod._ValueAudio.currentTime = 0;
+		mod._ValueAudio.play();
+
 		mod._ValueAudioPlaying = true;
-
-		// if (!mod._ValueSpeechAvailable) {
-		// 	return;
-		// }
-
-		// if (speechSynthesis.speaking) {
-		// 	speechSynthesis.cancel();
-		// }
-
-		// const item = new SpeechSynthesisUtterance(param1);
-		// item.lang = param2;
-		// item.voice = speechSynthesis.getVoices().filter(function (e) {
-		// 	return e.lang == item.lang;
-		// }).pop();
-
-		// speechSynthesis.speak(item);
 	},
 
 	ControlFlush() {
@@ -282,8 +284,7 @@ const mod = {
 			mod.DebugOralLog('flush');
 		}
 
-		delete mod._ValueAudioFront;
-		delete mod._ValueAudioRear;
+		delete mod._ValueAudio;
 	},
 
 	ControlProgress() {
