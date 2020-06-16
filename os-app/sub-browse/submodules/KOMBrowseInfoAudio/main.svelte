@@ -141,6 +141,10 @@ const mod = {
 
 		if (!mod._ValueAudio) {
 			(mod._ValueAudio = new Audio()).src = URL.createObjectURL(await KOMBrowseInfoAudioDispatchFetch(KOMBrowseInfoAudioItemProperty));
+			
+			mod._ValueAudio.onended = function () {
+				mod._ValueAudioIsPlaying = false;
+			}
 		}
 
 		if (OLSK_TESTING_BEHAVIOUR()) {
