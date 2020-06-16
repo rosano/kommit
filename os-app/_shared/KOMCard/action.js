@@ -126,6 +126,7 @@ const mod = {
 			return coll;
 		}, {
 			KOMCardFrontAudio: await KOMCardMetal.KOMCardMetalFileRead(storageClient, KOMCardStorage.KOMCardStorageAudioPathFront(param1, param2)),
+			KOMCardRearAudio: await KOMCardMetal.KOMCardMetalFileRead(storageClient, KOMCardStorage.KOMCardStorageAudioPathRear(param1, param2)),
 		});
 	},
 	

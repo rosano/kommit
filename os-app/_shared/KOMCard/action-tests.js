@@ -395,4 +395,14 @@ describe('KOMCardActionAudioList', function test_KOMCardActionAudioList() {
 		});
 	});
 
+	it('returns KOMCardRearAudio', async function() {
+		const item = kTesting.StubCardObjectValid();
+
+		await mainModule.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardRearAudio', blob, item, kTesting.StubDeckObjectValid());
+
+		deepEqual(await mainModule.KOMCardActionAudioList(KOMTestingStorageClient, item, kTesting.StubDeckObjectValid()), {
+			KOMCardRearAudio: blob,
+		});
+	});
+
 });
