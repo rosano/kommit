@@ -200,6 +200,46 @@ describe('KOMPlay_Access', function () {
 	
 	});
 
+	context('KOMPlayCard_click', function () {
+
+		before(function () {
+			return browser.pressButton(KOMPlayToolbarUndoButton);
+		});
+		
+		before(function () {
+			return browser.click(KOMPlayCard);
+		});
+		
+		it('shows KOMPlayCardAnswer', function () {
+			browser.assert.elements(KOMPlayCardAnswer, 1);
+		});
+
+		it('shows KOMPlayCardNotes', function () {
+			browser.assert.elements(KOMPlayCardNotes, 1);
+		});
+
+		it('hides KOMPlayFlipButton', function () {
+			browser.assert.elements(KOMPlayFlipButton, 0);
+		});
+
+		it('shows KOMPlayResponseButtonAgain', function () {
+			browser.assert.elements(KOMPlayResponseButtonAgain, 1);
+		});
+
+		it('shows KOMPlayResponseButtonHard', function () {
+			browser.assert.elements(KOMPlayResponseButtonHard, 1);
+		});
+
+		it('shows KOMPlayResponseButtonGood', function () {
+			browser.assert.elements(KOMPlayResponseButtonGood, 1);
+		});
+
+		it('shows KOMPlayResponseButtonEasy', function () {
+			browser.assert.elements(KOMPlayResponseButtonEasy, 1);
+		});
+	
+	});
+
 	describe('oral_front', function test_oral_front () {
 
 		const items = kTesting.uSpacings(1).map(function (e, i) {

@@ -117,7 +117,7 @@ describe('KOMReview_Misc', function () {
 		});
 
 		before(function () {
-			return browser.click('.KOMPlayCard');
+			return browser.pressButton('.KOMPlayFlipButton');
 		});
 
 		before(function () {
