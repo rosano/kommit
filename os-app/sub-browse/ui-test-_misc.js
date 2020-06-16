@@ -505,6 +505,38 @@ describe('KOMBrowse_Misc', function () {
 
 	});
 
+	describe.skip('rear_audio', function test_rear_audio() {
+		
+		context('record', function () {
+			
+			before(function () {
+				return browser.pressButton('.KOMBrowseInfoFormRearAudio .KOMBrowseInfoAudioRecordButton');
+			});
+
+			before(function () {
+				return browser.pressButton('.KOMBrowseInfoFormRearAudio .KOMBrowseInfoAudioRecordButton');
+			});
+
+			it('stores audio', function () {
+				browser.assert.elements('.KOMBrowseInfoFormRearAudio .KOMBrowseInfoAudioClearButton', 1);
+			});
+		
+		});
+		
+		context('clear', function () {
+			
+			before(function () {
+				return browser.pressButton('.KOMBrowseInfoFormRearAudio .KOMBrowseInfoAudioClearButton');
+			});
+
+			it('clears audio', function () {
+				browser.assert.elements('.KOMBrowseInfoFormRearAudio .KOMBrowseInfoAudioRecordButton', 1);
+			});
+		
+		});
+
+	});
+
 	context('close', function test_close () {
 
 		before(function () {
