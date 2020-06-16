@@ -316,6 +316,71 @@ describe('KOMBrowseInfo_Misc', function () {
 
 	});
 	
+	describe('KOMBrowseInfoFormRearAudio', function test_KOMBrowseInfoFormRearAudio() {
+		
+		context('record', function () {
+			
+			before(function () {
+				return browser.pressButton(`${ KOMBrowseInfoFormRearAudio } .KOMBrowseInfoAudioRecordButton`);
+			});
+
+			before(function () {
+				browser.assert.text('#TestKOMBrowseInfoAudioDispatchCapture', '0');
+			});
+
+			before(function () {
+				return browser.pressButton(`${ KOMBrowseInfoFormRearAudio } .KOMBrowseInfoAudioRecordButton`);
+			});
+
+			it.skip('passes KOMBrowseInfoAudioDispatchCapture', function () {
+				browser.assert.text('#TestKOMBrowseInfoAudioDispatchCapture', '1');
+			});
+		
+		});
+		
+		context('play', function () {
+
+			before(function() {
+				return browser.OLSKVisit(kDefaultRoute, {
+					KOMBrowseInfoItem: JSON.stringify({
+						KOMCardRear: 'alfa',
+						KOMCardRearAudio: 'bravo',
+					}),
+				});
+			});
+
+			before(function () {
+				browser.assert.text('#TestKOMBrowseInfoAudioDispatchFetch', '0');
+			});
+			
+			before(function () {
+				return browser.pressButton(`${ KOMBrowseInfoFormRearAudio } .KOMBrowseInfoAudioPlaybackButton`);
+			});
+
+			it('passes KOMBrowseInfoAudioDispatchFetch', function () {
+				browser.assert.text('#TestKOMBrowseInfoAudioDispatchFetch', '1');
+			});
+		
+		});
+		
+		context('clear', function () {
+
+			before(function () {
+				browser.assert.text('#TestKOMBrowseInfoAudioDispatchClear', '0');
+			});
+			
+			before(function () {
+				return browser.pressButton(`${ KOMBrowseInfoFormRearAudio } .KOMBrowseInfoAudioClearButton`);
+			});
+
+			it('passes KOMBrowseInfoAudioDispatchClear', function () {
+				browser.assert.text('#TestKOMBrowseInfoAudioDispatchClear', '1');
+			});
+		
+		});
+
+	});
+	
 	describe('KOMBrowseInfoFormNotesField', function test_KOMBrowseInfoFormNotesField() {
 		
 		before(function() {

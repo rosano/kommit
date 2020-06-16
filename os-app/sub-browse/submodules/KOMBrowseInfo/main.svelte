@@ -63,6 +63,17 @@ import KOMBrowseInfoAudio from '../KOMBrowseInfoAudio/main.svelte';
 	<input class="KOMBrowseInfoFormRearField OLSKMobileSafariRemoveDefaultInputStyle" placeholder="{ OLSKLocalized('KOMBrowseInfoFormRearFieldText') }" type="text" bind:value={ KOMBrowseInfoItem.KOMCardRear } on:input={ KOMBrowseInfoDispatchUpdate } />
 </p>
 
+<p class="KOMBrowseInfoFormRearAudio">
+	<KOMBrowseInfoAudio
+		KOMBrowseInfoAudioItem={ KOMBrowseInfoItem }
+		KOMBrowseInfoAudioItemProperty="KOMCardRearAudio"
+		KOMBrowseInfoAudioAvailable={ 'WebAssembly' in window }
+		KOMBrowseInfoAudioDispatchCapture={ KOMBrowseInfoAudioDispatchCapture }
+		KOMBrowseInfoAudioDispatchFetch={ KOMBrowseInfoAudioDispatchFetch }
+		KOMBrowseInfoAudioDispatchClear={ KOMBrowseInfoAudioDispatchClear }
+		/>
+</p>
+
 <p>
 	<input class="KOMBrowseInfoFormNotesField OLSKMobileSafariRemoveDefaultInputStyle" placeholder="{ OLSKLocalized('KOMBrowseInfoFormNotesFieldText') }" type="text" bind:value={ KOMBrowseInfoItem.KOMCardNotes } on:input={ KOMBrowseInfoDispatchUpdate } />
 </p>
