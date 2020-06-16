@@ -147,6 +147,26 @@ describe('KOMCardModelErrorsFor', function test_KOMCardModelErrorsFor() {
 
 	});
 
+	context('KOMCardRearAudio', function() {
+
+		it('returns object if not boolean', function() {
+			deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubCardObjectValid(), {
+				KOMCardRearAudio: 'true',
+			})), {
+				KOMCardRearAudio: [
+					'KOMErrorNotBoolean',
+				],
+			});
+		});
+
+		it('returns null', function() {
+			deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubCardObjectValid(), {
+				KOMCardRearAudio: true,
+			})), null);
+		});
+
+	});
+
 	context('KOMOptionValidateIfNotPresent', function() {
 
 		it('returns object if not valid', function() {
@@ -161,6 +181,7 @@ describe('KOMCardModelErrorsFor', function test_KOMCardModelErrorsFor() {
 				'KOMCardModificationDate',
 				'KOMCardNotes',
 				'KOMCardFrontAudio',
+				'KOMCardRearAudio',
 			]);
 		});
 
@@ -173,6 +194,7 @@ describe('KOMCardModelAudioFields', function test_KOMCardModelAudioFields() {
 	it('returns array', function() {
 		deepEqual(mainModule.KOMCardModelAudioFields(), [
 			'KOMCardFrontAudio',
+			'KOMCardRearAudio',
 		]);
 	});
 

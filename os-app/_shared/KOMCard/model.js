@@ -67,12 +67,21 @@ const mod = {
 			}
 		}
 
+		if (inputData.KOMCardRearAudio !== undefined || options.KOMOptionValidateIfNotPresent) {
+			if (typeof inputData.KOMCardRearAudio !== 'boolean') {
+				errors.KOMCardRearAudio = [
+					'KOMErrorNotBoolean',
+				];
+			}
+		}
+
 		return Object.entries(errors).length ? errors : null;
 	},
 
 	KOMCardModelAudioFields () {
 		return [
 			'KOMCardFrontAudio',
+			'KOMCardRearAudio',
 		];
 	},
 
