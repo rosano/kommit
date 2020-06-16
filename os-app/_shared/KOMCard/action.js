@@ -106,7 +106,7 @@ const mod = {
 			return Promise.reject(new Error('KOMErrorInputNotValid'));
 		}
 
-		return await KOMCardMetal.KOMCardMetalFileRead(storageClient, param1 === 'KOMCardFrontAudio' ? KOMCardStorage.KOMCardStorageAudioPathFront(param2, param3) : null);
+		return await KOMCardMetal.KOMCardMetalFileRead(storageClient, param1 === 'KOMCardFrontAudio' ? KOMCardStorage.KOMCardStorageAudioPathFront(param2, param3) : KOMCardStorage.KOMCardStorageAudioPathRear(param2, param3));
 	},
 
 	async KOMCardActionAudioList (storageClient, param1, param2) {

@@ -355,6 +355,18 @@ describe('KOMCardActionAudioFetch', function test_KOMCardActionAudioFetch() {
 	
 	});
 
+	context('KOMCardRearAudio', function () {
+
+		it('returns blob', async function() {
+			const item = kTesting.StubCardObjectValid();
+			
+			await mainModule.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardRearAudio', blob, item, kTesting.StubDeckObjectValid());
+
+			deepEqual(await mainModule.KOMCardActionAudioFetch(KOMTestingStorageClient, 'KOMCardRearAudio', item, kTesting.StubDeckObjectValid()), blob);
+		});
+	
+	});
+
 });
 
 describe('KOMCardActionAudioList', function test_KOMCardActionAudioList() {
