@@ -98,6 +98,26 @@ describe('KOMCardStorageAudioPathFront', function test_KOMCardStorageAudioPathFr
 
 });
 
+describe('KOMCardStorageAudioPathRear', function test_KOMCardStorageAudioPathRear() {
+
+	it('throws if param1 not valid', function () {
+		throws(function () {
+			mainModule.KOMCardStorageAudioPathRear({}, kTesting.StubDeckObjectValid());
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('throws if param2 not valid', function () {
+		throws(function () {
+			mainModule.KOMCardStorageAudioPathRear(kTesting.StubCardObjectValid(), {});
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns string', function() {
+		deepEqual(mainModule.KOMCardStorageAudioPathRear(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()), mainModule.KOMCardStorageFolderPath(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()) + 'rear/audio');
+	});
+
+});
+
 describe('KOMCardStorageMatch', function test_KOMCardStorageMatch() {
 
 	it('throws error if not string', function() {
