@@ -30,7 +30,7 @@ const mod = {
 
 	_ValueSpeechAvailable: 'speechSynthesis' in window,
 
-	_ValueAudio: undefined,
+	_ValueAudioCache: {},
 	_ValueAudioPlaying: undefined,
 
 	// DATA
@@ -245,7 +245,10 @@ const mod = {
 		}
 
 		if (mod._ValueAudioIsPlaying) {
-			mod._ValueAudio.pause();
+			for (let key in mod._ValueAudioCache) {
+				mod._ValueAudioCache[key].pause();
+			}
+
 			delete mod._ValueAudioPlaying;
 		};
 
@@ -259,22 +262,22 @@ const mod = {
 	},
 
 	async ControlAudioStart (inputData) {
-		if (!mod._ValueAudio && OLSK_TESTING_BEHAVIOUR()) {
+		if (!mod._ValueAudioCache[inputData] && OLSK_TESTING_BEHAVIOUR()) {
 			mod.DebugOralLog('fetch');
 
-			mod._ValueAudio = mod.DataFakeAudio(await KOMPlayDispatchFetch(inputData, mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard));
+			mod._ValueAudioCache[inputData] = mod.DataFakeAudio(await KOMPlayDispatchFetch(inputData, mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard));
 		}
 
-		if (!mod._ValueAudio) {
-			(mod._ValueAudio = new Audio()).src = URL.createObjectURL(await KOMPlayDispatchFetch(inputData, mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard));
+		if (!mod._ValueAudioCache[inputData]) {
+			(mod._ValueAudioCache[inputData] = new Audio()).src = URL.createObjectURL(await KOMPlayDispatchFetch(inputData, mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard));
 		}
 
 		if (OLSK_TESTING_BEHAVIOUR()) {
-			mod.DebugOralLog('play:audio');
+			mod.DebugOralLog('play:' + inputData);
 		}
 
-		mod._ValueAudio.currentTime = 0;
-		mod._ValueAudio.play();
+		mod._ValueAudioCache[inputData].currentTime = 0;
+		mod._ValueAudioCache[inputData].play();
 
 		mod._ValueAudioPlaying = true;
 	},
@@ -284,7 +287,7 @@ const mod = {
 			mod.DebugOralLog('flush');
 		}
 
-		delete mod._ValueAudio;
+		mod._ValueAudioCache = {};
 	},
 
 	ControlProgress() {

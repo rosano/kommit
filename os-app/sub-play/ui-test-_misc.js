@@ -1293,7 +1293,7 @@ describe('KOMPlay_Misc', function () {
 		});
 
 		it('starts audio', function () {
-			browser.assert.text('#TestKOMPlayOralLog', uLog('fetch,play:audio'));
+			browser.assert.text('#TestKOMPlayOralLog', uLog('fetch,play:KOMCardFrontAudio'));
 		});
 
 		context('KOMPlayHearQuestionButton', function () {
@@ -1305,7 +1305,7 @@ describe('KOMPlay_Misc', function () {
 				});
 
 				it('starts audio', function () {
-					browser.assert.text('#TestKOMPlayOralLog', uLog('play:audio'));
+					browser.assert.text('#TestKOMPlayOralLog', uLog('play:KOMCardFrontAudio'));
 				});
 			
 			});
@@ -1343,7 +1343,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('starts audio', function () {
-				browser.assert.text('#TestKOMPlayOralLog', uLog('flush,fetch,play:audio'));
+				browser.assert.text('#TestKOMPlayOralLog', uLog('flush,fetch,play:KOMCardFrontAudio'));
 			});
 			
 		});
@@ -1363,7 +1363,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('starts audio', function () {
-				browser.assert.text('#TestKOMPlayOralLog', uLog('stop:audio,flush,fetch,play:audio'));
+				browser.assert.text('#TestKOMPlayOralLog', uLog('stop:audio,flush,fetch,play:KOMCardFrontAudio'));
 			});
 
 		});
@@ -1377,7 +1377,7 @@ describe('KOMPlay_Misc', function () {
 				});
 
 				it('starts audio', function () {
-					browser.assert.text('#TestKOMPlayOralLog', uLog('play:audio'));
+					browser.assert.text('#TestKOMPlayOralLog', uLog('play:KOMCardFrontAudio'));
 				});
 			
 			});
@@ -1444,7 +1444,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('starts read', function () {
-				browser.assert.text('#TestKOMPlayOralLog', uLog('fetch,play:audio'));
+				browser.assert.text('#TestKOMPlayOralLog', uLog('fetch,play:KOMCardRearAudio'));
 			});
 
 		});
@@ -1456,7 +1456,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('starts read', function () {
-				browser.assert.text('#TestKOMPlayOralLog', uLog('play:audio'));
+				browser.assert.text('#TestKOMPlayOralLog', uLog('play:KOMCardRearAudio'));
 			});
 			
 		});
@@ -1468,7 +1468,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('starts read', function () {
-				browser.assert.text('#TestKOMPlayOralLog', uLog('stop:audio,flush,fetch,play:audio'));
+				browser.assert.text('#TestKOMPlayOralLog', uLog('stop:audio,flush,fetch,play:KOMCardRearAudio'));
 			});
 
 		});
@@ -1492,7 +1492,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			before(function () {
-				uLog('fetch,play:audio');
+				uLog('fetch,play:KOMCardRearAudio');
 			});
 
 			before(function () {
@@ -1500,7 +1500,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('starts read', function () {
-				browser.assert.text('#TestKOMPlayOralLog', uLog('stop:audio,flush,fetch,play:audio'));
+				browser.assert.text('#TestKOMPlayOralLog', uLog('stop:audio,flush,fetch,play:KOMCardRearAudio'));
 			});
 
 		});
@@ -1512,7 +1512,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('starts read', function () {
-				browser.assert.text('#TestKOMPlayOralLog', uLog('play:audio'));
+				browser.assert.text('#TestKOMPlayOralLog', uLog('play:KOMCardRearAudio'));
 			});
 			
 		});
