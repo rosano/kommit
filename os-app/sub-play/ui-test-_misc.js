@@ -1125,7 +1125,7 @@ describe('KOMPlay_Misc', function () {
 				return browser.pressButton(KOMPlayResponseButtonEasy);
 			});
 
-			it('starts read', function () {
+			it('stops read', function () {
 				browser.assert.text('#TestKOMPlayOralLog', uLog('stop'));
 			});
 
@@ -1251,7 +1251,7 @@ describe('KOMPlay_Misc', function () {
 				return browser.pressButton(KOMPlayFlipButton);
 			});
 
-			it('starts read', function () {
+			it('stopts read', function () {
 				browser.assert.text('#TestKOMPlayOralLog', uLog('stop'));
 			});
 
@@ -1390,7 +1390,7 @@ describe('KOMPlay_Misc', function () {
 				return browser.pressButton(KOMPlayResponseButtonEasy);
 			});
 
-			it('starts read', function () {
+			it('stops read', function () {
 				browser.assert.text('#TestKOMPlayOralLog', uLog('stop:audio,flush'));
 			});
 
@@ -1523,7 +1523,7 @@ describe('KOMPlay_Misc', function () {
 				return browser.pressButton(KOMPlayFlipButton);
 			});
 
-			it('starts read', function () {
+			it('stops read', function () {
 				browser.assert.text('#TestKOMPlayOralLog', uLog('stop:audio'));
 			});
 
