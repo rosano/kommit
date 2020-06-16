@@ -110,6 +110,10 @@ describe('KOMPlay_Misc', function () {
 			browser.assert.hasClass(KOMPlayFlipButton, 'OLSKLayoutButtonNoStyle');
 		});
 
+		it('classes OLSKLayoutElementTappable', function () {
+			browser.assert.hasClass(KOMPlayFlipButton, 'OLSKLayoutElementTappable');
+		});
+
 	});
 
 	describe('KOMPlayCardAnswer', function test_KOMPlayCardAnswer () {
@@ -136,6 +140,10 @@ describe('KOMPlay_Misc', function () {
 
 		it('classes OLSKLayoutButtonNoStyle', function () {
 			browser.assert.hasClass(KOMPlayResponseButtonAgain, 'OLSKLayoutButtonNoStyle');
+		});
+
+		it('classes OLSKLayoutElementTappable', function () {
+			browser.assert.hasClass(KOMPlayResponseButtonAgain, 'OLSKLayoutElementTappable');
 		});
 
 		context('click', function () {
@@ -188,6 +196,10 @@ describe('KOMPlay_Misc', function () {
 			browser.assert.hasClass(KOMPlayResponseButtonHard, 'OLSKLayoutButtonNoStyle');
 		});
 
+		it('classes OLSKLayoutElementTappable', function () {
+			browser.assert.hasClass(KOMPlayResponseButtonHard, 'OLSKLayoutElementTappable');
+		});
+
 		context('click', function () {
 			
 			before(function () {
@@ -229,6 +241,10 @@ describe('KOMPlay_Misc', function () {
 			browser.assert.hasClass(KOMPlayResponseButtonGood, 'OLSKLayoutButtonNoStyle');
 		});
 
+		it('classes OLSKLayoutElementTappable', function () {
+			browser.assert.hasClass(KOMPlayResponseButtonGood, 'OLSKLayoutElementTappable');
+		});
+
 		context('click', function () {
 			
 			before(function () {
@@ -268,6 +284,10 @@ describe('KOMPlay_Misc', function () {
 
 		it('classes OLSKLayoutButtonNoStyle', function () {
 			browser.assert.hasClass(KOMPlayResponseButtonEasy, 'OLSKLayoutButtonNoStyle');
+		});
+
+		it('classes OLSKLayoutElementTappable', function () {
+			browser.assert.hasClass(KOMPlayResponseButtonEasy, 'OLSKLayoutElementTappable');
 		});
 
 		context('click', function () {
@@ -993,6 +1013,10 @@ describe('KOMPlay_Misc', function () {
 				browser.assert.hasClass(KOMPlayHearQuestionButton, 'OLSKLayoutButtonNoStyle');
 			});
 
+			it('classes OLSKLayoutElementTappable', function () {
+				browser.assert.hasClass(KOMPlayHearQuestionButton, 'OLSKLayoutElementTappable');
+			});
+
 			it('sets tabindex', function () {
 				browser.assert.attribute(KOMPlayHearQuestionButton, 'tabindex', '-1');
 			});
@@ -1071,6 +1095,10 @@ describe('KOMPlay_Misc', function () {
 
 			it('classes OLSKLayoutButtonNoStyle', function () {
 				browser.assert.hasClass(KOMPlayHearAnswerButton, 'OLSKLayoutButtonNoStyle');
+			});
+
+			it('classes OLSKLayoutElementTappable', function () {
+				browser.assert.hasClass(KOMPlayHearAnswerButton, 'OLSKLayoutElementTappable');
 			});
 
 			it('sets tabindex', function () {
