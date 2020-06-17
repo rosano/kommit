@@ -6,6 +6,12 @@
 
 	background: var(--KOMCommonBackground);
 	color: var(--KOMCommonForeground);
+
+	/* OLSKViewport */
+	position: relative;
+
+	/* OLSKViewportContentFlexbox:Child */
+	flex-grow: 1;
 }
 
 .KOMBrowseTools {
