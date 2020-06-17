@@ -131,7 +131,7 @@ $: mod.ReactDirection(KOMReviewDetailDeck.KOMDeckIsForwardOnly);
 
 import _OLSKSharedBack from '../../../_shared/__external/OLSKUIAssets/_OLSKSharedBack.svg';
 import KOMReviewDetailLanguageCode from '../KOMReviewDetailLanguageCode/main.svelte';
-import KOMReviewDetailStats from '../KOMReviewDetailStats/main.svelte';
+import KOMReviewDetailFigures from '../KOMReviewDetailFigures/main.svelte';
 </script>
 
 <div class="KOMReviewDetail">
@@ -236,7 +236,7 @@ import KOMReviewDetailStats from '../KOMReviewDetailStats/main.svelte';
 		{/if}
 
 		{#if mod._ValueSpacingsStudied.length }
-			<KOMReviewDetailStats KOMReviewDetailStatsSpacings={ mod._ValueSpacingsStudied } />
+			<KOMReviewDetailFigures KOMReviewDetailFiguresSpacings={ mod._ValueSpacingsStudied } />
 		{/if}
 	</div>
 {/if}

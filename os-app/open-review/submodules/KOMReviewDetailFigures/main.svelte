@@ -22,3 +22,14 @@ import KOMReviewDetailFiguresLogic from './ui-logic.js';
 </tr>
 
 </table>
+
+<style>
+td:first-child {
+	font-style: oblique;
+}
+
+td:last-child {
+	font-style: oblique;
+	padding: 0 10px;
+}
+</style>
