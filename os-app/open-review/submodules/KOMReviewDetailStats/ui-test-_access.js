@@ -5,6 +5,9 @@ Object.entries({
 	
 	KOMReviewDetailStatsTotalCardsLabel: '.KOMReviewDetailStatsTotalCardsLabel',
 	KOMReviewDetailStatsTotalCardsValue: '.KOMReviewDetailStatsTotalCardsValue',
+	
+	KOMReviewDetailStatsTotalMinutesLabel: '.KOMReviewDetailStatsTotalMinutesLabel',
+	KOMReviewDetailStatsTotalMinutesValue: '.KOMReviewDetailStatsTotalMinutesValue',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
@@ -27,6 +30,14 @@ describe('KOMReviewDetailStats_Access', function () {
 
 	it('shows KOMReviewDetailStatsTotalCardsValue', function () {
 		browser.assert.elements(KOMReviewDetailStatsTotalCardsValue, 1);
+	});
+
+	it('shows KOMReviewDetailStatsTotalMinutesLabel', function () {
+		browser.assert.elements(KOMReviewDetailStatsTotalMinutesLabel, 1);
+	});
+
+	it('shows KOMReviewDetailStatsTotalMinutesValue', function () {
+		browser.assert.elements(KOMReviewDetailStatsTotalMinutesValue, 1);
 	});
 
 });

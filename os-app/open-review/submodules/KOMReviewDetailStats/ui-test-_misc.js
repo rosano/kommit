@@ -38,4 +38,12 @@ describe('KOMReviewDetailStats_Misc', function () {
 
 	});
 
+	describe('KOMReviewDetailStatsTotalMinutesValue', function test_KOMReviewDetailStatsTotalMinutesValue() {
+		
+		it('sets text', function () {
+			browser.assert.text(KOMReviewDetailStatsTotalMinutesValue, '0.2');
+		});
+
+	});
+
 });

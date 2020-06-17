@@ -16,4 +16,9 @@ import KOMReviewDetailStatsLogic from './ui-logic.js';
 	<td class="KOMReviewDetailStatsTotalCardsValue">{ KOMReviewDetailStatsLogic.KOMReviewDetailStatsTotalCards(KOMReviewDetailStatsSpacings) }</td>
 </tr>
 
+<tr>
+	<td class="KOMReviewDetailStatsTotalMinutesLabel">{ OLSKLocalized('KOMReviewDetailStatsTotalMinutesLabelText') }</td>
+	<td class="KOMReviewDetailStatsTotalMinutesValue">{ KOMReviewDetailStatsLogic.KOMReviewDetailStatsMinutes(KOMReviewDetailStatsLogic.KOMReviewDetailStatsTotalMilliseconds(KOMReviewDetailStatsSpacings)) }</td>
+</tr>
+
 </table>
