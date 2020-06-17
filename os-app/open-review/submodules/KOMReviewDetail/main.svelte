@@ -131,6 +131,7 @@ $: mod.ReactDirection(KOMReviewDetailDeck.KOMDeckIsForwardOnly);
 
 import _OLSKSharedBack from '../../../_shared/__external/OLSKUIAssets/_OLSKSharedBack.svg';
 import KOMReviewDetailLanguageCode from '../KOMReviewDetailLanguageCode/main.svelte';
+import KOMReviewDetailStats from '../KOMReviewDetailStats/main.svelte';
 </script>
 
 <div class="KOMReviewDetail">
@@ -232,6 +233,10 @@ import KOMReviewDetailLanguageCode from '../KOMReviewDetailLanguageCode/main.sve
 
 		{#if !mod._ValueSpacingsStudied.length }
 			<p class="KOMReviewDetailStatsUnavailable">{ OLSKLocalized('KOMReviewDetailStatsUnavailableText') }</p>
+		{/if}
+
+		{#if mod._ValueSpacingsStudied.length }
+			<KOMReviewDetailStats KOMReviewDetailStatsSpacings={ mod._ValueSpacingsStudied } />
 		{/if}
 	</div>
 {/if}

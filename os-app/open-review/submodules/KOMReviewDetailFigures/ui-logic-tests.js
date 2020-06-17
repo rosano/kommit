@@ -22,54 +22,54 @@ const kTesting = {
 	},
 };
 
-describe('KOMReviewDetailStatsTotalCards', function test_KOMReviewDetailStatsTotalCards() {
+describe('KOMReviewDetailFiguresTotalCards', function test_KOMReviewDetailFiguresTotalCards() {
 
 	it('throws if not array', function () {
 		throws(function () {
-			mainModule.KOMReviewDetailStatsTotalCards(null);
+			mainModule.KOMReviewDetailFiguresTotalCards(null);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns number', function() {
-		deepEqual(mainModule.KOMReviewDetailStatsTotalCards([]), 0);
+		deepEqual(mainModule.KOMReviewDetailFiguresTotalCards([]), 0);
 	});
 
 	it('counts spacing object', function() {
-		deepEqual(mainModule.KOMReviewDetailStatsTotalCards([kTesting.StubSpacingObjectValid(), Object.assign(kTesting.StubSpacingObjectValid(), {
+		deepEqual(mainModule.KOMReviewDetailFiguresTotalCards([kTesting.StubSpacingObjectValid(), Object.assign(kTesting.StubSpacingObjectValid(), {
 			KOMSpacingID: 'bravo-forward',
 		})]), 2);
 	});
 
 	it('counts siblings as one', function() {
-		deepEqual(mainModule.KOMReviewDetailStatsTotalCards([kTesting.StubSpacingObjectValid(), Object.assign(kTesting.StubSpacingObjectValid(), {
+		deepEqual(mainModule.KOMReviewDetailFiguresTotalCards([kTesting.StubSpacingObjectValid(), Object.assign(kTesting.StubSpacingObjectValid(), {
 			KOMSpacingID: 'alfa-backward',
 		})]), 1);
 	});
 
 });
 
-describe('KOMReviewDetailStatsTotalMilliseconds', function test_KOMReviewDetailStatsTotalMilliseconds() {
+describe('KOMReviewDetailFiguresTotalMilliseconds', function test_KOMReviewDetailFiguresTotalMilliseconds() {
 
 	it('throws if not array', function () {
 		throws(function () {
-			mainModule.KOMReviewDetailStatsTotalMilliseconds(null);
+			mainModule.KOMReviewDetailFiguresTotalMilliseconds(null);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns number', function() {
-		deepEqual(mainModule.KOMReviewDetailStatsTotalMilliseconds([]), 0);
+		deepEqual(mainModule.KOMReviewDetailFiguresTotalMilliseconds([]), 0);
 	});
 
 	it('counts time until response', function() {
-		deepEqual(mainModule.KOMReviewDetailStatsTotalMilliseconds([kTesting.StubSpacingObjectValid()]), 10000);
+		deepEqual(mainModule.KOMReviewDetailFiguresTotalMilliseconds([kTesting.StubSpacingObjectValid()]), 10000);
 	});
 
 	it('counts multiple spacings', function() {
-		deepEqual(mainModule.KOMReviewDetailStatsTotalMilliseconds([kTesting.StubSpacingObjectValid(), kTesting.StubSpacingObjectValid()]), 20000);
+		deepEqual(mainModule.KOMReviewDetailFiguresTotalMilliseconds([kTesting.StubSpacingObjectValid(), kTesting.StubSpacingObjectValid()]), 20000);
 	});
 
 	it('counts multiple chronicles from today', function() {
-		deepEqual(mainModule.KOMReviewDetailStatsTotalMilliseconds([Object.assign(kTesting.StubSpacingObjectValid(), {
+		deepEqual(mainModule.KOMReviewDetailFiguresTotalMilliseconds([Object.assign(kTesting.StubSpacingObjectValid(), {
 			KOMSpacingChronicles: [
 				kTesting.StubChronicleObjectValid(new Date()),
 				kTesting.StubChronicleObjectValid(new Date()),
@@ -78,7 +78,7 @@ describe('KOMReviewDetailStatsTotalMilliseconds', function test_KOMReviewDetailS
 	});
 
 	it('ignores chronicle from other days', function() {
-		deepEqual(mainModule.KOMReviewDetailStatsTotalMilliseconds([Object.assign(kTesting.StubSpacingObjectValid(), {
+		deepEqual(mainModule.KOMReviewDetailFiguresTotalMilliseconds([Object.assign(kTesting.StubSpacingObjectValid(), {
 			KOMSpacingChronicles: [
 				kTesting.StubChronicleObjectValid(new Date(Date.now() - 1000 * 60 * 60 * 24 * 3)),
 			],			
@@ -87,24 +87,24 @@ describe('KOMReviewDetailStatsTotalMilliseconds', function test_KOMReviewDetailS
 
 });
 
-describe('KOMReviewDetailStatsMinutes', function test_KOMReviewDetailStatsMinutes() {
+describe('KOMReviewDetailFiguresMinutes', function test_KOMReviewDetailFiguresMinutes() {
 
 	it('throws if not number', function () {
 		throws(function () {
-			mainModule.KOMReviewDetailStatsMinutes('10000');
+			mainModule.KOMReviewDetailFiguresMinutes('10000');
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns number', function() {
-		deepEqual(mainModule.KOMReviewDetailStatsMinutes(60000), 1);
+		deepEqual(mainModule.KOMReviewDetailFiguresMinutes(60000), 1);
 	});
 
 	it('calculates fraction', function() {
-		deepEqual(mainModule.KOMReviewDetailStatsMinutes(30000), 0.5);
+		deepEqual(mainModule.KOMReviewDetailFiguresMinutes(30000), 0.5);
 	});
 
 	it('rounds to first decimal', function() {
-		deepEqual(mainModule.KOMReviewDetailStatsMinutes(15000), 0.3);
+		deepEqual(mainModule.KOMReviewDetailFiguresMinutes(15000), 0.3);
 	});
 
 });

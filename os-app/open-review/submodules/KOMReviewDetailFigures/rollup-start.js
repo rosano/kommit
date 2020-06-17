@@ -3,10 +3,10 @@ import RollupStart from './main.svelte';
 import * as OLSKRemoteStoragePackage from 'OLSKRemoteStorage';
 const OLSKRemoteStorage = OLSKRemoteStoragePackage.default || OLSKRemoteStoragePackage;
 
-const KOMReviewDetailStats = new RollupStart({
+const KOMReviewDetailFigures = new RollupStart({
 	target: document.body,
 	props: Object.assign({}, Object.fromEntries(Array.from((new window.URLSearchParams(window.location.search)).entries()).map(function (e) {
-		if (['KOMReviewDetailStatsSpacings'].includes(e[0])) {
+		if (['KOMReviewDetailFiguresSpacings'].includes(e[0])) {
 			e[1] = JSON.parse(e[1]).map(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse).map(function (e) {
 				if (!e.KOMSpacingChronicles.length) {
 					return e;
@@ -22,4 +22,4 @@ const KOMReviewDetailStats = new RollupStart({
 	}))),
 });
 
-export default KOMReviewDetailStats;
+export default KOMReviewDetailFigures;
