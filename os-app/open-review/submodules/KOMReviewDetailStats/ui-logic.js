@@ -41,6 +41,14 @@ const mod = {
 		}, 0);
 	},
 
+	KOMReviewDetailStatsMinutes (inputData) {
+		if (typeof inputData !== 'number') {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		return Math.round(inputData / 1000 / 60 * 10) / 10;
+	},
+
 };
 
 export default mod;

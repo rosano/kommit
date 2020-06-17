@@ -86,3 +86,25 @@ describe('KOMReviewDetailStatsTotalMilliseconds', function test_KOMReviewDetailS
 	});
 
 });
+
+describe('KOMReviewDetailStatsMinutes', function test_KOMReviewDetailStatsMinutes() {
+
+	it('throws if not number', function () {
+		throws(function () {
+			mainModule.KOMReviewDetailStatsMinutes('10000');
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns number', function() {
+		deepEqual(mainModule.KOMReviewDetailStatsMinutes(60000), 1);
+	});
+
+	it('calculates fraction', function() {
+		deepEqual(mainModule.KOMReviewDetailStatsMinutes(30000), 0.5);
+	});
+
+	it('rounds to first decimal', function() {
+		deepEqual(mainModule.KOMReviewDetailStatsMinutes(15000), 0.3);
+	});
+
+});
