@@ -23,7 +23,7 @@ const mod = {
 		}, 0);
 	},
 
-	KOMReviewDetailStatsTotalTime (inputData) {
+	KOMReviewDetailStatsTotalMilliseconds (inputData) {
 		if (!Array.isArray(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
 		}

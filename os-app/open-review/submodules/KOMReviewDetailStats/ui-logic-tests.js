@@ -48,28 +48,28 @@ describe('KOMReviewDetailStatsTotalCards', function test_KOMReviewDetailStatsTot
 
 });
 
-describe('KOMReviewDetailStatsTotalTime', function test_KOMReviewDetailStatsTotalTime() {
+describe('KOMReviewDetailStatsTotalMilliseconds', function test_KOMReviewDetailStatsTotalMilliseconds() {
 
 	it('throws if not array', function () {
 		throws(function () {
-			mainModule.KOMReviewDetailStatsTotalTime(null);
+			mainModule.KOMReviewDetailStatsTotalMilliseconds(null);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns number', function() {
-		deepEqual(mainModule.KOMReviewDetailStatsTotalTime([]), 0);
+		deepEqual(mainModule.KOMReviewDetailStatsTotalMilliseconds([]), 0);
 	});
 
 	it('counts time until response', function() {
-		deepEqual(mainModule.KOMReviewDetailStatsTotalTime([kTesting.StubSpacingObjectValid()]), 10000);
+		deepEqual(mainModule.KOMReviewDetailStatsTotalMilliseconds([kTesting.StubSpacingObjectValid()]), 10000);
 	});
 
 	it('counts multiple spacings', function() {
-		deepEqual(mainModule.KOMReviewDetailStatsTotalTime([kTesting.StubSpacingObjectValid(), kTesting.StubSpacingObjectValid()]), 20000);
+		deepEqual(mainModule.KOMReviewDetailStatsTotalMilliseconds([kTesting.StubSpacingObjectValid(), kTesting.StubSpacingObjectValid()]), 20000);
 	});
 
 	it('counts multiple chronicles from today', function() {
-		deepEqual(mainModule.KOMReviewDetailStatsTotalTime([Object.assign(kTesting.StubSpacingObjectValid(), {
+		deepEqual(mainModule.KOMReviewDetailStatsTotalMilliseconds([Object.assign(kTesting.StubSpacingObjectValid(), {
 			KOMSpacingChronicles: [
 				kTesting.StubChronicleObjectValid(new Date()),
 				kTesting.StubChronicleObjectValid(new Date()),
@@ -78,7 +78,7 @@ describe('KOMReviewDetailStatsTotalTime', function test_KOMReviewDetailStatsTota
 	});
 
 	it('ignores chronicle from other days', function() {
-		deepEqual(mainModule.KOMReviewDetailStatsTotalTime([Object.assign(kTesting.StubSpacingObjectValid(), {
+		deepEqual(mainModule.KOMReviewDetailStatsTotalMilliseconds([Object.assign(kTesting.StubSpacingObjectValid(), {
 			KOMSpacingChronicles: [
 				kTesting.StubChronicleObjectValid(new Date(Date.now() - 1000 * 60 * 60 * 24 * 3)),
 			],			
