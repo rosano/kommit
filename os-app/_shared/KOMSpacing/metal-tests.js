@@ -143,7 +143,7 @@ describe('KOMSpacingMetalList', function test_KOMSpacingMetalList() {
 				KOMChronicleDrawDate: new Date('2019-02-23T12:00:00Z'),
 				KOMChronicleFlipDate: new Date('2019-02-23T12:00:00Z'),
 				KOMChronicleResponseDate: new Date('2019-02-23T12:00:00Z'),
-				KOMChronicleResponseType: 'test',
+				KOMChronicleResponseType: 'alfa',
 			}]
 		});
 		

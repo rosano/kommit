@@ -28,6 +28,8 @@ const KOMReviewDetail = new RollupStart({
 		if (['KOMReviewDetailDeck'].includes(e[0])) {
 			e[1] = JSON.parse(e[1]);
 			e[1].$KOMDeckSpacings = e[1].$KOMDeckSpacings.map(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse).map(function (e) {
+				e.KOMSpacingChronicles.map(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse);
+				
 				return Object.assign(e, {
 					$KOMSpacingCard: OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(e.$KOMSpacingCard),
 				});

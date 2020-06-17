@@ -13,6 +13,7 @@ const OLSKLocalized = function(translationConstant) {
 
 import KOMSpacingModel from '../../../_shared/KOMSpacing/model.js';
 import KOMReviewLogic from '../../ui-logic.js';
+import KOMPlayLogic from '../../../sub-play/ui-logic.js';
 
 const kMaxUnseenCards = 10;
 
@@ -23,6 +24,7 @@ const mod = {
 	_ValueSpacingsToday: [],
 	_ValueSpacingsReviewing: [],
 	_ValueSpacingsUnseen: [],
+	_ValueSpacingsStudied: [],
 
 	_ValueLanguages: 'speechSynthesis' in window ? speechSynthesis.getVoices().map(function (e) {
 		return e.lang
@@ -110,6 +112,13 @@ const mod = {
 			return !KOMSpacingModel.KOMSpacingModelIsUnseen(e);
 		});
 		mod._ValueSpacingsUnseen = items.filter(KOMSpacingModel.KOMSpacingModelIsUnseen);
+		mod._ValueSpacingsStudied = inputData.$KOMDeckSpacings.filter(function (e) {
+			if (!e.KOMSpacingChronicles.length) {
+				return false;
+			}
+			
+			return KOMPlayLogic.KOMPlayDayGrouping(e.KOMSpacingChronicles.slice(-1).pop().KOMChronicleResponseDate) === KOMPlayLogic.KOMPlayDayGrouping(new Date());
+		});
 	},
 
 	ReactDirection () {
@@ -215,9 +224,17 @@ import KOMReviewDetailLanguageCode from '../KOMReviewDetailLanguageCode/main.sve
 	<p class="KOMReviewDetailNoSpacings">{ OLSKLocalized('KOMReviewDetailNoSpacingsText') }</p>
 {/if}
 
-<hr>
+{#if KOMReviewDetailDeck.$KOMDeckSpacings.length }
+	<hr>
 
-<h1 class="KOMReviewDetailStatsHeading">{ OLSKLocalized('KOMReviewDetailStatsHeadingText') }</h1>
+	<div class="KOMReviewDetailStats">
+		<h1 class="KOMReviewDetailStatsHeading">{ OLSKLocalized('KOMReviewDetailStatsHeadingText') }</h1>
+
+		{#if !mod._ValueSpacingsStudied.length }
+			<p class="KOMReviewDetailStatsUnavailable">{ OLSKLocalized('KOMReviewDetailStatsUnavailableText') }</p>
+		{/if}
+	</div>
+{/if}
 
 <hr>
 

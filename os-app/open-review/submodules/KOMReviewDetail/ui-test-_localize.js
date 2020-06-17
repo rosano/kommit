@@ -54,10 +54,6 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			browser.assert.text(KOMReviewDetailNoCards, uLocalized('KOMReviewDetailNoCardsText'));
 		});
 
-		it('localizes KOMReviewDetailStatsHeading', function () {
-			browser.assert.text(KOMReviewDetailStatsHeading, uLocalized('KOMReviewDetailStatsHeadingText'));
-		});
-
 		it('localizes KOMReviewDetailDeckHeading', function () {
 			browser.assert.text(KOMReviewDetailDeckHeading, uLocalized('KOMReviewDetailDeckHeadingText'));
 		});
@@ -135,6 +131,14 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 
 			it('localizes KOMReviewDetailPlayButtonMixed', function () {
 				browser.assert.text(KOMReviewDetailPlayButtonMixed, uLocalized('KOMReviewDetailPlayButtonMixedText'));
+			});
+
+			it('localizes KOMReviewDetailStatsHeading', function () {
+				browser.assert.text(KOMReviewDetailStatsHeading, uLocalized('KOMReviewDetailStatsHeadingText'));
+			});
+
+			it('localizes KOMReviewDetailStatsUnavailable', function () {
+				browser.assert.text(KOMReviewDetailStatsUnavailable, uLocalized('KOMReviewDetailStatsUnavailableText'));
 			});
 
 		});

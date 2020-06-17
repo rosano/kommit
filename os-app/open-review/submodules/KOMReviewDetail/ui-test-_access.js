@@ -32,7 +32,10 @@ Object.entries({
 
 	KOMReviewDetailNoSpacings: '.KOMReviewDetailNoSpacings',
 
+	KOMReviewDetailStats: '.KOMReviewDetailStats',
 	KOMReviewDetailStatsHeading: '.KOMReviewDetailStatsHeading',
+	KOMReviewDetailStatsUnavailable: '.KOMReviewDetailStatsUnavailable',
+	KOMReviewDetailStatsChart: '.KOMReviewDetailStats .KOMReviewDetailStatsChart',
 
 	KOMReviewDetailDeckHeading: '.KOMReviewDetailDeckHeading',
 	KOMReviewDetailRenameButton: '.KOMReviewDetailRenameButton',
@@ -156,8 +159,8 @@ describe('KOMReviewDetail_Access', function () {
 		browser.assert.elements(KOMReviewDetailNoSpacings, 0);
 	});
 
-	it('shows KOMReviewDetailStatsHeading', function () {
-		browser.assert.elements(KOMReviewDetailStatsHeading, 1);
+	it('hides KOMReviewDetailStats', function () {
+		browser.assert.elements(KOMReviewDetailStats, 0);
 	});
 
 	it('shows KOMReviewDetailDeckHeading', function () {
@@ -193,6 +196,18 @@ describe('KOMReviewDetail_Access', function () {
 
 		it('shows KOMReviewDetailPlay', function () {
 			browser.assert.elements(KOMReviewDetailPlay, 1);
+		});
+
+		it('shows KOMReviewDetailStats', function () {
+			browser.assert.elements(KOMReviewDetailStats, 1);
+		});
+
+		it('shows KOMReviewDetailStatsHeading', function () {
+			browser.assert.elements(KOMReviewDetailStatsHeading, 1);
+		});
+
+		it('shows KOMReviewDetailStatsUnavailable', function () {
+			browser.assert.elements(KOMReviewDetailStatsUnavailable, 1);
 		});
 
 		context('reviewing', function test_reviewing () {
@@ -283,6 +298,12 @@ describe('KOMReviewDetail_Access', function () {
 							KOMSpacingDueDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3),
 						} : {
 							KOMSpacingID: e.KOMSpacingID.replace('forward', 'backward'),
+							KOMSpacingChronicles: [{
+								KOMChronicleDrawDate: new Date(),
+								KOMChronicleFlipDate: new Date(),
+								KOMChronicleResponseDate: new Date(),
+								KOMChronicleResponseType: 'alfa',
+							}],
 						});
 					}),
 				}),
@@ -299,6 +320,14 @@ describe('KOMReviewDetail_Access', function () {
 
 		it('shows KOMReviewDetailNoSpacings', function () {
 			browser.assert.elements(KOMReviewDetailNoSpacings, 1);
+		});
+
+		it('hides KOMReviewDetailStatsUnavailable', function () {
+			browser.assert.elements(KOMReviewDetailStatsUnavailable, 0);
+		});
+
+		it('shows KOMReviewDetailStatsChart', function () {
+			browser.assert.elements(KOMReviewDetailStatsChart, 1);
 		});
 
 		context('change direction', function () {
