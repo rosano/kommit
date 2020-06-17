@@ -217,6 +217,10 @@ import KOMReviewDetailLanguageCode from '../KOMReviewDetailLanguageCode/main.sve
 
 <hr>
 
+<h1 class="KOMReviewDetailStatsHeading">{ OLSKLocalized('KOMReviewDetailStatsHeadingText') }</h1>
+
+<hr>
+
 <h1 class="KOMReviewDetailDeckHeading">{ OLSKLocalized('KOMReviewDetailDeckHeadingText') }</h1>
 
 <p>

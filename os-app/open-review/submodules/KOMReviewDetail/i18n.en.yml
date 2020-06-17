@@ -10,6 +10,7 @@ KOMReviewDetailPlayButtonReviewingText: Study review cards
 KOMReviewDetailPlayButtonUnseenText: Study new cards
 KOMReviewDetailPlayButtonMixedText: Study all cards
 KOMReviewDetailNoSpacingsText: All cards for today have been reviewed.
+KOMReviewDetailStatsHeadingText: Statistics
 KOMReviewDetailDeckHeadingText: Deck
 KOMReviewDetailRenameButtonText: Rename
 KOMReviewDetailRenameButtonPromptText: Name

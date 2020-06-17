@@ -32,6 +32,8 @@ Object.entries({
 
 	KOMReviewDetailNoSpacings: '.KOMReviewDetailNoSpacings',
 
+	KOMReviewDetailStatsHeading: '.KOMReviewDetailStatsHeading',
+
 	KOMReviewDetailDeckHeading: '.KOMReviewDetailDeckHeading',
 	KOMReviewDetailRenameButton: '.KOMReviewDetailRenameButton',
 	KOMReviewDetailDiscardButton: '.KOMReviewDetailDiscardButton',
@@ -152,6 +154,10 @@ describe('KOMReviewDetail_Access', function () {
 
 	it('hides KOMReviewDetailNoSpacings', function () {
 		browser.assert.elements(KOMReviewDetailNoSpacings, 0);
+	});
+
+	it('shows KOMReviewDetailStatsHeading', function () {
+		browser.assert.elements(KOMReviewDetailStatsHeading, 1);
 	});
 
 	it('shows KOMReviewDetailDeckHeading', function () {
