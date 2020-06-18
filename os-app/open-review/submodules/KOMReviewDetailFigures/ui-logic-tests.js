@@ -110,28 +110,28 @@ describe('KOMReviewDetailFiguresMinutes', function test_KOMReviewDetailFiguresMi
 
 });
 
-describe('KOMReviewDetailFiguresPercentageCorrect', function test_KOMReviewDetailFiguresPercentageCorrect() {
+describe('KOMReviewDetailFiguresReviewAccuracy', function test_KOMReviewDetailFiguresReviewAccuracy() {
 
 	it('throws if not array', function () {
 		throws(function () {
-			mainModule.KOMReviewDetailFiguresPercentageCorrect(null);
+			mainModule.KOMReviewDetailFiguresReviewAccuracy(null);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns number', function() {
-		deepEqual(mainModule.KOMReviewDetailFiguresPercentageCorrect([]), 0);
+		deepEqual(mainModule.KOMReviewDetailFiguresReviewAccuracy([]), 0);
 	});
 
 	it('excludes if no KOMChronicleMultiplier', function() {
-		deepEqual(mainModule.KOMReviewDetailFiguresPercentageCorrect([kTesting.StubSpacingObjectValid()]), 0);
+		deepEqual(mainModule.KOMReviewDetailFiguresReviewAccuracy([kTesting.StubSpacingObjectValid()]), 0);
 	});
 
 	it('excludes if unseen today', function() {
-		deepEqual(mainModule.KOMReviewDetailFiguresPercentageCorrect([kTesting.StubSpacingObjectValid()]), 0);
+		deepEqual(mainModule.KOMReviewDetailFiguresReviewAccuracy([kTesting.StubSpacingObjectValid()]), 0);
 	});
 
 	it('excludes if not today', function() {
-		deepEqual(mainModule.KOMReviewDetailFiguresPercentageCorrect([Object.assign(kTesting.StubSpacingObjectValid(), {
+		deepEqual(mainModule.KOMReviewDetailFiguresReviewAccuracy([Object.assign(kTesting.StubSpacingObjectValid(), {
 			KOMSpacingChronicles: [
 			Object.assign(kTesting.StubChronicleObjectValid(new Date(Date.now() - 1000 * 60 * 60 * 24 * 3)), {
 				KOMChronicleMultiplier: 1,
@@ -142,7 +142,7 @@ describe('KOMReviewDetailFiguresPercentageCorrect', function test_KOMReviewDetai
 	});
 
 	it('excludes if not first error', function() {
-		deepEqual(mainModule.KOMReviewDetailFiguresPercentageCorrect([Object.assign(kTesting.StubSpacingObjectValid(), {
+		deepEqual(mainModule.KOMReviewDetailFiguresReviewAccuracy([Object.assign(kTesting.StubSpacingObjectValid(), {
 			KOMSpacingChronicles: [
 				Object.assign(kTesting.StubChronicleObjectValid(new Date()), {
 					KOMChronicleResponseType: KOMPlayLogic.KOMPlayResponseTypeAgain(),
@@ -152,7 +152,7 @@ describe('KOMReviewDetailFiguresPercentageCorrect', function test_KOMReviewDetai
 	});
 
 	it('calculates if correct', function() {
-		deepEqual(mainModule.KOMReviewDetailFiguresPercentageCorrect([Object.assign(kTesting.StubSpacingObjectValid(), {
+		deepEqual(mainModule.KOMReviewDetailFiguresReviewAccuracy([Object.assign(kTesting.StubSpacingObjectValid(), {
 			KOMSpacingChronicles: [
 				Object.assign(kTesting.StubChronicleObjectValid(new Date(Date.now() - 1000 * 60 * 60 * 24 * 3)), {
 					KOMChronicleMultiplier: 1,
@@ -163,7 +163,7 @@ describe('KOMReviewDetailFiguresPercentageCorrect', function test_KOMReviewDetai
 	});
 
 	it('calculates if not correct', function() {
-		deepEqual(mainModule.KOMReviewDetailFiguresPercentageCorrect([Object.assign(kTesting.StubSpacingObjectValid(), {
+		deepEqual(mainModule.KOMReviewDetailFiguresReviewAccuracy([Object.assign(kTesting.StubSpacingObjectValid(), {
 			KOMSpacingChronicles: [
 				Object.assign(kTesting.StubChronicleObjectValid(new Date(Date.now() - 1000 * 60 * 60 * 24 * 3)), {
 					KOMChronicleMultiplier: 1,
@@ -176,7 +176,7 @@ describe('KOMReviewDetailFiguresPercentageCorrect', function test_KOMReviewDetai
 	});
 
 	it('calculates if multiple', function() {
-		deepEqual(mainModule.KOMReviewDetailFiguresPercentageCorrect([Object.assign(kTesting.StubSpacingObjectValid(), {
+		deepEqual(mainModule.KOMReviewDetailFiguresReviewAccuracy([Object.assign(kTesting.StubSpacingObjectValid(), {
 			KOMSpacingChronicles: [
 				Object.assign(kTesting.StubChronicleObjectValid(new Date(Date.now() - 1000 * 60 * 60 * 24 * 3)), {
 					KOMChronicleMultiplier: 1,

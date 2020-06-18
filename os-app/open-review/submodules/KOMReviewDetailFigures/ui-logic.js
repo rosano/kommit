@@ -45,7 +45,7 @@ const mod = {
 		return Math.round(inputData / 1000 / 60 * 10) / 10;
 	},
 
-	KOMReviewDetailFiguresPercentageCorrect (inputData) {
+	KOMReviewDetailFiguresReviewAccuracy (inputData) {
 		if (!Array.isArray(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
