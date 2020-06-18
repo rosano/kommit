@@ -29,10 +29,6 @@ const mod = {
 		}
 
 		return inputData.reduce(function (coll, item) {
-			if (!item.KOMSpacingChronicles.length) {
-				return coll;
-			}
-
 			return coll + item.KOMSpacingChronicles.filter(function (e) {
 				return KOMPlayLogic.KOMPlayDayGrouping(e.KOMChronicleResponseDate) === KOMPlayLogic.KOMPlayDayGrouping(new Date());
 			}).reduce(function (responseTime, e) {
