@@ -1,6 +1,7 @@
 const { throws, deepEqual } = require('assert');
 
 const mainModule = require('./ui-logic.js').default;
+const KOMPlayLogic = require('../../../sub-play/ui-logic.js').default;
 
 const kTesting = {
 	StubChronicleObjectValid (inputData) {
@@ -8,7 +9,7 @@ const kTesting = {
 			KOMChronicleDrawDate: inputData,
 			KOMChronicleFlipDate: inputData,
 			KOMChronicleResponseDate: new Date(inputData.valueOf() + 10000),
-			KOMChronicleResponseType: 'alfa',
+			KOMChronicleResponseType: KOMPlayLogic.KOMPlayResponseTypeEasy(),
 			KOMChronicleDueDate: inputData,
 		};
 	},
@@ -105,6 +106,93 @@ describe('KOMReviewDetailFiguresMinutes', function test_KOMReviewDetailFiguresMi
 
 	it('rounds to first decimal', function() {
 		deepEqual(mainModule.KOMReviewDetailFiguresMinutes(15000), 0.3);
+	});
+
+});
+
+describe('KOMReviewDetailFiguresPercentageCorrect', function test_KOMReviewDetailFiguresPercentageCorrect() {
+
+	it('throws if not array', function () {
+		throws(function () {
+			mainModule.KOMReviewDetailFiguresPercentageCorrect(null);
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns number', function() {
+		deepEqual(mainModule.KOMReviewDetailFiguresPercentageCorrect([]), 0);
+	});
+
+	it('excludes if no KOMChronicleMultiplier', function() {
+		deepEqual(mainModule.KOMReviewDetailFiguresPercentageCorrect([kTesting.StubSpacingObjectValid()]), 0);
+	});
+
+	it('excludes if unseen today', function() {
+		deepEqual(mainModule.KOMReviewDetailFiguresPercentageCorrect([kTesting.StubSpacingObjectValid()]), 0);
+	});
+
+	it('excludes if not today', function() {
+		deepEqual(mainModule.KOMReviewDetailFiguresPercentageCorrect([Object.assign(kTesting.StubSpacingObjectValid(), {
+			KOMSpacingChronicles: [
+			Object.assign(kTesting.StubChronicleObjectValid(new Date(Date.now() - 1000 * 60 * 60 * 24 * 3)), {
+				KOMChronicleMultiplier: 1,
+			}),
+			kTesting.StubChronicleObjectValid(new Date(Date.now() - 1000 * 60 * 60 * 24 * 3)),
+			],			
+		})]), 0);
+	});
+
+	it('excludes if not first error', function() {
+		deepEqual(mainModule.KOMReviewDetailFiguresPercentageCorrect([Object.assign(kTesting.StubSpacingObjectValid(), {
+			KOMSpacingChronicles: [
+				Object.assign(kTesting.StubChronicleObjectValid(new Date()), {
+					KOMChronicleResponseType: KOMPlayLogic.KOMPlayResponseTypeAgain(),
+				}),
+			],			
+		})]), 0);
+	});
+
+	it('calculates if correct', function() {
+		deepEqual(mainModule.KOMReviewDetailFiguresPercentageCorrect([Object.assign(kTesting.StubSpacingObjectValid(), {
+			KOMSpacingChronicles: [
+				Object.assign(kTesting.StubChronicleObjectValid(new Date(Date.now() - 1000 * 60 * 60 * 24 * 3)), {
+					KOMChronicleMultiplier: 1,
+				}),
+				kTesting.StubChronicleObjectValid(new Date()),
+			],			
+		})]), 1);
+	});
+
+	it('calculates if not correct', function() {
+		deepEqual(mainModule.KOMReviewDetailFiguresPercentageCorrect([Object.assign(kTesting.StubSpacingObjectValid(), {
+			KOMSpacingChronicles: [
+				Object.assign(kTesting.StubChronicleObjectValid(new Date(Date.now() - 1000 * 60 * 60 * 24 * 3)), {
+					KOMChronicleMultiplier: 1,
+				}),
+				Object.assign(kTesting.StubChronicleObjectValid(new Date()), {
+					KOMChronicleResponseType: KOMPlayLogic.KOMPlayResponseTypeAgain(),
+				})
+			],			
+		})]), 0);
+	});
+
+	it('calculates if multiple', function() {
+		deepEqual(mainModule.KOMReviewDetailFiguresPercentageCorrect([Object.assign(kTesting.StubSpacingObjectValid(), {
+			KOMSpacingChronicles: [
+				Object.assign(kTesting.StubChronicleObjectValid(new Date(Date.now() - 1000 * 60 * 60 * 24 * 3)), {
+					KOMChronicleMultiplier: 1,
+				}),
+				kTesting.StubChronicleObjectValid(new Date()),
+			],			
+		}), Object.assign(kTesting.StubSpacingObjectValid(), {
+			KOMSpacingChronicles: [
+				Object.assign(kTesting.StubChronicleObjectValid(new Date(Date.now() - 1000 * 60 * 60 * 24 * 3)), {
+					KOMChronicleMultiplier: 1,
+				}),
+				Object.assign(kTesting.StubChronicleObjectValid(new Date()), {
+					KOMChronicleResponseType: KOMPlayLogic.KOMPlayResponseTypeAgain(),
+				})
+			],			
+		})]), 0.5);
 	});
 
 });
