@@ -38,10 +38,10 @@ describe('KOMReviewDetailFigures_Misc', function () {
 
 	});
 
-	describe('KOMReviewDetailFiguresTotalMinutesValue', function test_KOMReviewDetailFiguresTotalMinutesValue() {
+	describe('KOMReviewDetailFiguresTimeMinutesValue', function test_KOMReviewDetailFiguresTimeMinutesValue() {
 		
 		it('sets text', function () {
-			browser.assert.text(KOMReviewDetailFiguresTotalMinutesValue, '0.2');
+			browser.assert.text(KOMReviewDetailFiguresTimeMinutesValue, '0.2');
 		});
 
 	});

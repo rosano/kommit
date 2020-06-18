@@ -17,8 +17,8 @@ import KOMReviewDetailFiguresLogic from './ui-logic.js';
 </tr>
 
 <tr>
-	<td class="KOMReviewDetailFiguresTotalMinutesLabel">{ OLSKLocalized('KOMReviewDetailFiguresTotalMinutesLabelText') }</td>
-	<td class="KOMReviewDetailFiguresTotalMinutesValue">{ KOMReviewDetailFiguresLogic.KOMReviewDetailFiguresMinutes(KOMReviewDetailFiguresLogic.KOMReviewDetailFiguresTotalMilliseconds(KOMReviewDetailFiguresSpacings)) }</td>
+	<td class="KOMReviewDetailFiguresTimeMinutesLabel">{ OLSKLocalized('KOMReviewDetailFiguresTimeMinutesLabelText') }</td>
+	<td class="KOMReviewDetailFiguresTimeMinutesValue">{ KOMReviewDetailFiguresLogic.KOMReviewDetailFiguresMinutes(KOMReviewDetailFiguresLogic.KOMReviewDetailFiguresTotalMilliseconds(KOMReviewDetailFiguresSpacings)) }</td>
 </tr>
 
 </table>
