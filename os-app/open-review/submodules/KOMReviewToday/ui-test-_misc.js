@@ -70,4 +70,12 @@ describe('KOMReviewToday_Misc', function () {
 
 	});
 
+	describe('KOMReviewTodayReviewAccuracyValue', function test_KOMReviewTodayReviewAccuracyValue() {
+		
+		it('sets text', function () {
+			browser.assert.text(KOMReviewTodayReviewAccuracyValue, '33.3');
+		});
+
+	});
+
 });

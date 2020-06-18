@@ -23,7 +23,7 @@ import KOMReviewTodayLogic from './ui-logic.js';
 
 <tr>
 	<td class="KOMReviewTodayReviewAccuracyLabel">{ OLSKLocalized('KOMReviewTodayReviewAccuracyLabelText') }</td>
-	<td class="KOMReviewTodayReviewAccuracyValue">{ KOMReviewTodayLogic.KOMReviewTodayReviewAccuracy(KOMReviewTodaySpacings) }</td>
+	<td class="KOMReviewTodayReviewAccuracyValue">{ KOMReviewTodayLogic.KOMReviewTodayPercentage(KOMReviewTodayLogic.KOMReviewTodayReviewAccuracy(KOMReviewTodaySpacings)) }</td>
 </tr>
 
 </table>
