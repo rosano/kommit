@@ -23,54 +23,54 @@ const kTesting = {
 	},
 };
 
-describe('KOMReviewDetailFiguresTotalCards', function test_KOMReviewDetailFiguresTotalCards() {
+describe('KOMReviewTodayTotalCards', function test_KOMReviewTodayTotalCards() {
 
 	it('throws if not array', function () {
 		throws(function () {
-			mainModule.KOMReviewDetailFiguresTotalCards(null);
+			mainModule.KOMReviewTodayTotalCards(null);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns number', function() {
-		deepEqual(mainModule.KOMReviewDetailFiguresTotalCards([]), 0);
+		deepEqual(mainModule.KOMReviewTodayTotalCards([]), 0);
 	});
 
 	it('counts spacing object', function() {
-		deepEqual(mainModule.KOMReviewDetailFiguresTotalCards([kTesting.StubSpacingObjectValid(), Object.assign(kTesting.StubSpacingObjectValid(), {
+		deepEqual(mainModule.KOMReviewTodayTotalCards([kTesting.StubSpacingObjectValid(), Object.assign(kTesting.StubSpacingObjectValid(), {
 			KOMSpacingID: 'bravo-forward',
 		})]), 2);
 	});
 
 	it('counts siblings as one', function() {
-		deepEqual(mainModule.KOMReviewDetailFiguresTotalCards([kTesting.StubSpacingObjectValid(), Object.assign(kTesting.StubSpacingObjectValid(), {
+		deepEqual(mainModule.KOMReviewTodayTotalCards([kTesting.StubSpacingObjectValid(), Object.assign(kTesting.StubSpacingObjectValid(), {
 			KOMSpacingID: 'alfa-backward',
 		})]), 1);
 	});
 
 });
 
-describe('KOMReviewDetailFiguresTotalMilliseconds', function test_KOMReviewDetailFiguresTotalMilliseconds() {
+describe('KOMReviewTodayTotalMilliseconds', function test_KOMReviewTodayTotalMilliseconds() {
 
 	it('throws if not array', function () {
 		throws(function () {
-			mainModule.KOMReviewDetailFiguresTotalMilliseconds(null);
+			mainModule.KOMReviewTodayTotalMilliseconds(null);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns number', function() {
-		deepEqual(mainModule.KOMReviewDetailFiguresTotalMilliseconds([]), 0);
+		deepEqual(mainModule.KOMReviewTodayTotalMilliseconds([]), 0);
 	});
 
 	it('counts time until response', function() {
-		deepEqual(mainModule.KOMReviewDetailFiguresTotalMilliseconds([kTesting.StubSpacingObjectValid()]), 10000);
+		deepEqual(mainModule.KOMReviewTodayTotalMilliseconds([kTesting.StubSpacingObjectValid()]), 10000);
 	});
 
 	it('counts multiple spacings', function() {
-		deepEqual(mainModule.KOMReviewDetailFiguresTotalMilliseconds([kTesting.StubSpacingObjectValid(), kTesting.StubSpacingObjectValid()]), 20000);
+		deepEqual(mainModule.KOMReviewTodayTotalMilliseconds([kTesting.StubSpacingObjectValid(), kTesting.StubSpacingObjectValid()]), 20000);
 	});
 
 	it('counts multiple chronicles from today', function() {
-		deepEqual(mainModule.KOMReviewDetailFiguresTotalMilliseconds([Object.assign(kTesting.StubSpacingObjectValid(), {
+		deepEqual(mainModule.KOMReviewTodayTotalMilliseconds([Object.assign(kTesting.StubSpacingObjectValid(), {
 			KOMSpacingChronicles: [
 				kTesting.StubChronicleObjectValid(new Date()),
 				kTesting.StubChronicleObjectValid(new Date()),
@@ -79,7 +79,7 @@ describe('KOMReviewDetailFiguresTotalMilliseconds', function test_KOMReviewDetai
 	});
 
 	it('ignores chronicle from other days', function() {
-		deepEqual(mainModule.KOMReviewDetailFiguresTotalMilliseconds([Object.assign(kTesting.StubSpacingObjectValid(), {
+		deepEqual(mainModule.KOMReviewTodayTotalMilliseconds([Object.assign(kTesting.StubSpacingObjectValid(), {
 			KOMSpacingChronicles: [
 				kTesting.StubChronicleObjectValid(new Date(Date.now() - 1000 * 60 * 60 * 24 * 3)),
 			],			
@@ -88,50 +88,50 @@ describe('KOMReviewDetailFiguresTotalMilliseconds', function test_KOMReviewDetai
 
 });
 
-describe('KOMReviewDetailFiguresMinutes', function test_KOMReviewDetailFiguresMinutes() {
+describe('KOMReviewTodayMinutes', function test_KOMReviewTodayMinutes() {
 
 	it('throws if not number', function () {
 		throws(function () {
-			mainModule.KOMReviewDetailFiguresMinutes('10000');
+			mainModule.KOMReviewTodayMinutes('10000');
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns number', function() {
-		deepEqual(mainModule.KOMReviewDetailFiguresMinutes(60000), 1);
+		deepEqual(mainModule.KOMReviewTodayMinutes(60000), 1);
 	});
 
 	it('calculates fraction', function() {
-		deepEqual(mainModule.KOMReviewDetailFiguresMinutes(30000), 0.5);
+		deepEqual(mainModule.KOMReviewTodayMinutes(30000), 0.5);
 	});
 
 	it('rounds to first decimal', function() {
-		deepEqual(mainModule.KOMReviewDetailFiguresMinutes(15000), 0.3);
+		deepEqual(mainModule.KOMReviewTodayMinutes(15000), 0.3);
 	});
 
 });
 
-describe('KOMReviewDetailFiguresReviewAccuracy', function test_KOMReviewDetailFiguresReviewAccuracy() {
+describe('KOMReviewTodayReviewAccuracy', function test_KOMReviewTodayReviewAccuracy() {
 
 	it('throws if not array', function () {
 		throws(function () {
-			mainModule.KOMReviewDetailFiguresReviewAccuracy(null);
+			mainModule.KOMReviewTodayReviewAccuracy(null);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns number', function() {
-		deepEqual(mainModule.KOMReviewDetailFiguresReviewAccuracy([]), 0);
+		deepEqual(mainModule.KOMReviewTodayReviewAccuracy([]), 0);
 	});
 
 	it('excludes if no KOMChronicleMultiplier', function() {
-		deepEqual(mainModule.KOMReviewDetailFiguresReviewAccuracy([kTesting.StubSpacingObjectValid()]), 0);
+		deepEqual(mainModule.KOMReviewTodayReviewAccuracy([kTesting.StubSpacingObjectValid()]), 0);
 	});
 
 	it('excludes if unseen today', function() {
-		deepEqual(mainModule.KOMReviewDetailFiguresReviewAccuracy([kTesting.StubSpacingObjectValid()]), 0);
+		deepEqual(mainModule.KOMReviewTodayReviewAccuracy([kTesting.StubSpacingObjectValid()]), 0);
 	});
 
 	it('excludes if not today', function() {
-		deepEqual(mainModule.KOMReviewDetailFiguresReviewAccuracy([Object.assign(kTesting.StubSpacingObjectValid(), {
+		deepEqual(mainModule.KOMReviewTodayReviewAccuracy([Object.assign(kTesting.StubSpacingObjectValid(), {
 			KOMSpacingChronicles: [
 			Object.assign(kTesting.StubChronicleObjectValid(new Date(Date.now() - 1000 * 60 * 60 * 24 * 3)), {
 				KOMChronicleMultiplier: 1,
@@ -142,7 +142,7 @@ describe('KOMReviewDetailFiguresReviewAccuracy', function test_KOMReviewDetailFi
 	});
 
 	it('excludes if not first error', function() {
-		deepEqual(mainModule.KOMReviewDetailFiguresReviewAccuracy([Object.assign(kTesting.StubSpacingObjectValid(), {
+		deepEqual(mainModule.KOMReviewTodayReviewAccuracy([Object.assign(kTesting.StubSpacingObjectValid(), {
 			KOMSpacingChronicles: [
 				Object.assign(kTesting.StubChronicleObjectValid(new Date()), {
 					KOMChronicleResponseType: KOMPlayLogic.KOMPlayResponseTypeAgain(),
@@ -152,7 +152,7 @@ describe('KOMReviewDetailFiguresReviewAccuracy', function test_KOMReviewDetailFi
 	});
 
 	it('calculates if correct', function() {
-		deepEqual(mainModule.KOMReviewDetailFiguresReviewAccuracy([Object.assign(kTesting.StubSpacingObjectValid(), {
+		deepEqual(mainModule.KOMReviewTodayReviewAccuracy([Object.assign(kTesting.StubSpacingObjectValid(), {
 			KOMSpacingChronicles: [
 				Object.assign(kTesting.StubChronicleObjectValid(new Date(Date.now() - 1000 * 60 * 60 * 24 * 3)), {
 					KOMChronicleMultiplier: 1,
@@ -163,7 +163,7 @@ describe('KOMReviewDetailFiguresReviewAccuracy', function test_KOMReviewDetailFi
 	});
 
 	it('calculates if not correct', function() {
-		deepEqual(mainModule.KOMReviewDetailFiguresReviewAccuracy([Object.assign(kTesting.StubSpacingObjectValid(), {
+		deepEqual(mainModule.KOMReviewTodayReviewAccuracy([Object.assign(kTesting.StubSpacingObjectValid(), {
 			KOMSpacingChronicles: [
 				Object.assign(kTesting.StubChronicleObjectValid(new Date(Date.now() - 1000 * 60 * 60 * 24 * 3)), {
 					KOMChronicleMultiplier: 1,
@@ -176,7 +176,7 @@ describe('KOMReviewDetailFiguresReviewAccuracy', function test_KOMReviewDetailFi
 	});
 
 	it('calculates if multiple', function() {
-		deepEqual(mainModule.KOMReviewDetailFiguresReviewAccuracy([Object.assign(kTesting.StubSpacingObjectValid(), {
+		deepEqual(mainModule.KOMReviewTodayReviewAccuracy([Object.assign(kTesting.StubSpacingObjectValid(), {
 			KOMSpacingChronicles: [
 				Object.assign(kTesting.StubChronicleObjectValid(new Date(Date.now() - 1000 * 60 * 60 * 24 * 3)), {
 					KOMChronicleMultiplier: 1,

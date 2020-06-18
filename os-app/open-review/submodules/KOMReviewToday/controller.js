@@ -1,8 +1,8 @@
 exports.OLSKControllerRoutes = function() {
 	return [{
-		OLSKRoutePath: '/stub/KOMReviewDetailFigures',
+		OLSKRoutePath: '/stub/KOMReviewToday',
 		OLSKRouteMethod: 'get',
-		OLSKRouteSignature: 'KOMReviewDetailFiguresStubRoute',
+		OLSKRouteSignature: 'KOMReviewTodayStubRoute',
 		OLSKRouteFunction (req, res, next) {
 			return res.render(require('path').join(__dirname, 'stub-view'));
 		},

@@ -35,7 +35,7 @@ Object.entries({
 	KOMReviewDetailStats: '.KOMReviewDetailStats',
 	KOMReviewDetailStatsHeading: '.KOMReviewDetailStatsHeading',
 	KOMReviewDetailStatsUnavailable: '.KOMReviewDetailStatsUnavailable',
-	KOMReviewDetailStatsFigures: '.KOMReviewDetailStats .KOMReviewDetailFigures',
+	KOMReviewDetailStatsFigures: '.KOMReviewDetailStats .KOMReviewToday',
 
 	KOMReviewDetailDeckHeading: '.KOMReviewDetailDeckHeading',
 	KOMReviewDetailRenameButton: '.KOMReviewDetailRenameButton',

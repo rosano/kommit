@@ -3,7 +3,7 @@ import KOMPlayLogic from '../../../sub-play/ui-logic.js';
 
 const mod = {
 
-	KOMReviewDetailFiguresTotalCards (inputData) {
+	KOMReviewTodayTotalCards (inputData) {
 		if (!Array.isArray(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -23,7 +23,7 @@ const mod = {
 		}, 0);
 	},
 
-	KOMReviewDetailFiguresTotalMilliseconds (inputData) {
+	KOMReviewTodayTotalMilliseconds (inputData) {
 		if (!Array.isArray(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -37,7 +37,7 @@ const mod = {
 		}, 0);
 	},
 
-	KOMReviewDetailFiguresMinutes (inputData) {
+	KOMReviewTodayMinutes (inputData) {
 		if (typeof inputData !== 'number') {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -45,7 +45,7 @@ const mod = {
 		return Math.round(inputData / 1000 / 60 * 10) / 10;
 	},
 
-	KOMReviewDetailFiguresReviewAccuracy (inputData) {
+	KOMReviewTodayReviewAccuracy (inputData) {
 		if (!Array.isArray(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
 		}

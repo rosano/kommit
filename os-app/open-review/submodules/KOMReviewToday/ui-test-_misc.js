@@ -20,28 +20,28 @@ const kTesting = {
 	},
 };
 
-describe('KOMReviewDetailFigures_Misc', function () {
+describe('KOMReviewToday_Misc', function () {
 
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute, {
-			KOMReviewDetailFiguresSpacings: JSON.stringify([
+			KOMReviewTodaySpacings: JSON.stringify([
 				kTesting.StubSpacingObjectValid(),
 				]),
 		});
 	});
 
-	describe('KOMReviewDetailFiguresTotalCardsValue', function test_KOMReviewDetailFiguresTotalCardsValue() {
+	describe('KOMReviewTodayTotalCardsValue', function test_KOMReviewTodayTotalCardsValue() {
 		
 		it('sets text', function () {
-			browser.assert.text(KOMReviewDetailFiguresTotalCardsValue, '1');
+			browser.assert.text(KOMReviewTodayTotalCardsValue, '1');
 		});
 
 	});
 
-	describe('KOMReviewDetailFiguresTimeMinutesValue', function test_KOMReviewDetailFiguresTimeMinutesValue() {
+	describe('KOMReviewTodayTimeMinutesValue', function test_KOMReviewTodayTimeMinutesValue() {
 		
 		it('sets text', function () {
-			browser.assert.text(KOMReviewDetailFiguresTimeMinutesValue, '0.2');
+			browser.assert.text(KOMReviewTodayTimeMinutesValue, '0.2');
 		});
 
 	});
