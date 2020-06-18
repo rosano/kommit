@@ -87,6 +87,14 @@ const mod = {
 		}));
 	},
 
+	KOMReviewTodayPercentage (inputData) {
+		if (typeof inputData !== 'number') {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		return Math.round(inputData * 100 * 10) / 10;
+	},
+
 };
 
 export default mod;

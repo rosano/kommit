@@ -196,3 +196,25 @@ describe('KOMReviewTodayReviewAccuracy', function test_KOMReviewTodayReviewAccur
 	});
 
 });
+
+describe('KOMReviewTodayPercentage', function test_KOMReviewTodayPercentage() {
+
+	it('throws if not number', function () {
+		throws(function () {
+			mainModule.KOMReviewTodayPercentage('10000');
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns number', function() {
+		deepEqual(mainModule.KOMReviewTodayPercentage(1), 100);
+	});
+
+	it('calculates fraction', function() {
+		deepEqual(mainModule.KOMReviewTodayPercentage(0.5), 50);
+	});
+
+	it('rounds to first decimal', function() {
+		deepEqual(mainModule.KOMReviewTodayPercentage(1.0 / 3), 33.3);
+	});
+
+});
