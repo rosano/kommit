@@ -21,6 +21,11 @@ import KOMReviewDetailFiguresLogic from './ui-logic.js';
 	<td class="KOMReviewDetailFiguresTimeMinutesValue">{ KOMReviewDetailFiguresLogic.KOMReviewDetailFiguresMinutes(KOMReviewDetailFiguresLogic.KOMReviewDetailFiguresTotalMilliseconds(KOMReviewDetailFiguresSpacings)) }</td>
 </tr>
 
+<tr>
+	<td class="KOMReviewDetailFiguresReviewAccuracyLabel">{ OLSKLocalized('KOMReviewDetailFiguresReviewAccuracyLabelText') }</td>
+	<td class="KOMReviewDetailFiguresReviewAccuracyValue">{ KOMReviewDetailFiguresLogic.KOMReviewDetailFiguresReviewAccuracy(KOMReviewDetailFiguresSpacings) }</td>
+</tr>
+
 </table>
 
 <style>

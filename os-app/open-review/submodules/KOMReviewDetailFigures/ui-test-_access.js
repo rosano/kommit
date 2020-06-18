@@ -8,6 +8,9 @@ Object.entries({
 	
 	KOMReviewDetailFiguresTimeMinutesLabel: '.KOMReviewDetailFiguresTimeMinutesLabel',
 	KOMReviewDetailFiguresTimeMinutesValue: '.KOMReviewDetailFiguresTimeMinutesValue',
+	
+	KOMReviewDetailFiguresReviewAccuracyLabel: '.KOMReviewDetailFiguresReviewAccuracyLabel',
+	KOMReviewDetailFiguresReviewAccuracyValue: '.KOMReviewDetailFiguresReviewAccuracyValue',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
@@ -38,6 +41,14 @@ describe('KOMReviewDetailFigures_Access', function () {
 
 	it('shows KOMReviewDetailFiguresTimeMinutesValue', function () {
 		browser.assert.elements(KOMReviewDetailFiguresTimeMinutesValue, 1);
+	});
+
+	it('shows KOMReviewDetailFiguresReviewAccuracyLabel', function () {
+		browser.assert.elements(KOMReviewDetailFiguresReviewAccuracyLabel, 1);
+	});
+
+	it('shows KOMReviewDetailFiguresReviewAccuracyValue', function () {
+		browser.assert.elements(KOMReviewDetailFiguresReviewAccuracyValue, 1);
 	});
 
 });

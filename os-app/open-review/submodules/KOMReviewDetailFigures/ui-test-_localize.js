@@ -23,6 +23,10 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			browser.assert.text(KOMReviewDetailFiguresTimeMinutesLabel, uLocalized('KOMReviewDetailFiguresTimeMinutesLabelText'));
 		});
 
+		it('localizes KOMReviewDetailFiguresReviewAccuracyLabel', function () {
+			browser.assert.text(KOMReviewDetailFiguresReviewAccuracyLabel, uLocalized('KOMReviewDetailFiguresReviewAccuracyLabelText'));
+		});
+
 	});
 
 });
