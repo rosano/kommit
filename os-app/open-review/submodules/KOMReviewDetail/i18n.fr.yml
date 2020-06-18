@@ -1,0 +1,19 @@
+KOMReviewDetailToolbarBackButtonText: Back
+KOMReviewDetailToolbarCardsButtonText: Cartes
+KOMReviewDetailStudyHeadingText: Réviser
+KOMReviewDetailNoCardsText: Il n'y a pas de cartes dans ce paquet.
+KOMReviewDetailFormAudioIsEnabledFieldLabelText: Faire entendre audio
+KOMReviewDetailFormFrontIsOralFieldLabelText: Lire le recto
+KOMReviewDetailFormRearIsOralFieldLabelText: Lire le verso
+KOMReviewDetailFormIsForwardOnlyFieldLabelText: Sauter des cartes en arrières
+KOMReviewDetailPlayButtonReviewingText: Étudier des cartes à réviser
+KOMReviewDetailPlayButtonUnseenText: Étudier des cartes nouvelles
+KOMReviewDetailPlayButtonMixedText: Étudier toutes les cartes
+KOMReviewDetailNoSpacingsText: Toutes les cartes pour aujourd'hui ont été révisées.
+KOMReviewDetailStatsHeadingText: Statistiques
+KOMReviewDetailStatsUnavailableText: Réviser quelques cartes pour alimenter les statistiques.
+KOMReviewDetailDeckHeadingText: Paquet
+KOMReviewDetailRenameButtonText: Renommer
+KOMReviewDetailRenameButtonPromptText: Nom
+KOMReviewDetailDiscardButtonText: Jeter
+KOMReviewDetailDiscardPromptText: Êtes-vous sûr.e?

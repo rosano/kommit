@@ -38,6 +38,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			
 			before(function() {
 				return browser.OLSKVisit(kDefaultRoute, {
+					OLSKRoutingLanguage: languageCode,
 					KOMBrowseInfoAudioItem: JSON.stringify({
 						KOMCardID: 'alfa',
 						KOMCardFrontAudio: 'bravo',
@@ -60,6 +61,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			
 			before(function() {
 				return browser.OLSKVisit(kDefaultRoute, {
+					OLSKRoutingLanguage: languageCode,
 					KOMBrowseInfoAudioAvailable: false,
 					KOMBrowseInfoAudioItem: JSON.stringify({
 						KOMCardID: 'alfa',

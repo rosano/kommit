@@ -31,7 +31,7 @@ exports.OLSKControllerRoutes = function() {
 				OLSKStringReplaceTokens: require('OLSKString').OLSKStringReplaceTokens,
 			});
 		},
-		OLSKRouteLanguages: ['en'],
+		OLSKRouteLanguages: ['en', 'fr'],
 		OLSKRouteMiddlewares: [
 			'KOMVitrineRouteGuardMiddleware',
 			'KOMSharedGitHubLinkGuardMiddleware',
