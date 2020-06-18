@@ -4,7 +4,10 @@ const mainModule = require('./ui-logic.js').default;
 const KOMPlayLogic = require('../../../sub-play/ui-logic.js').default;
 
 const kTesting = {
-	StubChronicleObjectValid (inputData) {
+	StubPastDate () {
+		return new Date(Date.now() - 1000 * 60 * 60 * 24 * 3);
+	},
+	StubChronicleObjectValid (inputData = new Date()) {
 		return {
 			KOMChronicleDrawDate: inputData,
 			KOMChronicleFlipDate: inputData,
@@ -13,12 +16,10 @@ const kTesting = {
 			KOMChronicleDueDate: inputData,
 		};
 	},
-	StubSpacingObjectValid() {
+	StubSpacingObjectValid(inputData = [kTesting.StubChronicleObjectValid()]) {
 		return {
 			KOMSpacingID: 'alfa-forward',
-			KOMSpacingChronicles: [
-				kTesting.StubChronicleObjectValid(new Date()),
-			],
+			KOMSpacingChronicles: inputData,
 		};
 	},
 };
@@ -70,20 +71,16 @@ describe('KOMReviewTodayTotalMilliseconds', function test_KOMReviewTodayTotalMil
 	});
 
 	it('counts multiple chronicles from today', function() {
-		deepEqual(mainModule.KOMReviewTodayTotalMilliseconds([Object.assign(kTesting.StubSpacingObjectValid(), {
-			KOMSpacingChronicles: [
-				kTesting.StubChronicleObjectValid(new Date()),
-				kTesting.StubChronicleObjectValid(new Date()),
-			],			
-		})]), 20000);
+		deepEqual(mainModule.KOMReviewTodayTotalMilliseconds([kTesting.StubSpacingObjectValid([
+			kTesting.StubChronicleObjectValid(),
+			kTesting.StubChronicleObjectValid(),
+		])]), 20000);
 	});
 
 	it('ignores chronicle from other days', function() {
-		deepEqual(mainModule.KOMReviewTodayTotalMilliseconds([Object.assign(kTesting.StubSpacingObjectValid(), {
-			KOMSpacingChronicles: [
-				kTesting.StubChronicleObjectValid(new Date(Date.now() - 1000 * 60 * 60 * 24 * 3)),
-			],			
-		})]), 0);
+		deepEqual(mainModule.KOMReviewTodayTotalMilliseconds([kTesting.StubSpacingObjectValid([
+			kTesting.StubChronicleObjectValid(kTesting.StubPastDate()),
+		])]), 0);
 	});
 
 });
@@ -131,68 +128,56 @@ describe('KOMReviewTodayReviewAccuracy', function test_KOMReviewTodayReviewAccur
 	});
 
 	it('excludes if not today', function() {
-		deepEqual(mainModule.KOMReviewTodayReviewAccuracy([Object.assign(kTesting.StubSpacingObjectValid(), {
-			KOMSpacingChronicles: [
-			Object.assign(kTesting.StubChronicleObjectValid(new Date(Date.now() - 1000 * 60 * 60 * 24 * 3)), {
-				KOMChronicleMultiplier: 1,
-			}),
-			kTesting.StubChronicleObjectValid(new Date(Date.now() - 1000 * 60 * 60 * 24 * 3)),
-			],			
-		})]), 0);
+		deepEqual(mainModule.KOMReviewTodayReviewAccuracy([kTesting.StubSpacingObjectValid([
+		Object.assign(kTesting.StubChronicleObjectValid(kTesting.StubPastDate()), {
+			KOMChronicleMultiplier: 1,
+		}),
+		kTesting.StubChronicleObjectValid(kTesting.StubPastDate()),
+		])]), 0);
 	});
 
 	it('excludes if not first error', function() {
-		deepEqual(mainModule.KOMReviewTodayReviewAccuracy([Object.assign(kTesting.StubSpacingObjectValid(), {
-			KOMSpacingChronicles: [
-				Object.assign(kTesting.StubChronicleObjectValid(new Date()), {
-					KOMChronicleResponseType: KOMPlayLogic.KOMPlayResponseTypeAgain(),
-				}),
-			],			
-		})]), 0);
+		deepEqual(mainModule.KOMReviewTodayReviewAccuracy([kTesting.StubSpacingObjectValid([
+			Object.assign(kTesting.StubChronicleObjectValid(), {
+				KOMChronicleResponseType: KOMPlayLogic.KOMPlayResponseTypeAgain(),
+			}),
+		])]), 0);
 	});
 
 	it('calculates if correct', function() {
-		deepEqual(mainModule.KOMReviewTodayReviewAccuracy([Object.assign(kTesting.StubSpacingObjectValid(), {
-			KOMSpacingChronicles: [
-				Object.assign(kTesting.StubChronicleObjectValid(new Date(Date.now() - 1000 * 60 * 60 * 24 * 3)), {
-					KOMChronicleMultiplier: 1,
-				}),
-				kTesting.StubChronicleObjectValid(new Date()),
-			],			
-		})]), 1);
+		deepEqual(mainModule.KOMReviewTodayReviewAccuracy([kTesting.StubSpacingObjectValid([
+			Object.assign(kTesting.StubChronicleObjectValid(kTesting.StubPastDate()), {
+				KOMChronicleMultiplier: 1,
+			}),
+			kTesting.StubChronicleObjectValid(),
+		])]), 1);
 	});
 
 	it('calculates if not correct', function() {
-		deepEqual(mainModule.KOMReviewTodayReviewAccuracy([Object.assign(kTesting.StubSpacingObjectValid(), {
-			KOMSpacingChronicles: [
-				Object.assign(kTesting.StubChronicleObjectValid(new Date(Date.now() - 1000 * 60 * 60 * 24 * 3)), {
-					KOMChronicleMultiplier: 1,
-				}),
-				Object.assign(kTesting.StubChronicleObjectValid(new Date()), {
-					KOMChronicleResponseType: KOMPlayLogic.KOMPlayResponseTypeAgain(),
-				})
-			],			
-		})]), 0);
+		deepEqual(mainModule.KOMReviewTodayReviewAccuracy([kTesting.StubSpacingObjectValid([
+			Object.assign(kTesting.StubChronicleObjectValid(kTesting.StubPastDate()), {
+				KOMChronicleMultiplier: 1,
+			}),
+			Object.assign(kTesting.StubChronicleObjectValid(), {
+				KOMChronicleResponseType: KOMPlayLogic.KOMPlayResponseTypeAgain(),
+			}),
+		])]), 0);
 	});
 
 	it('calculates if multiple', function() {
-		deepEqual(mainModule.KOMReviewTodayReviewAccuracy([Object.assign(kTesting.StubSpacingObjectValid(), {
-			KOMSpacingChronicles: [
-				Object.assign(kTesting.StubChronicleObjectValid(new Date(Date.now() - 1000 * 60 * 60 * 24 * 3)), {
-					KOMChronicleMultiplier: 1,
-				}),
-				kTesting.StubChronicleObjectValid(new Date()),
-			],			
-		}), Object.assign(kTesting.StubSpacingObjectValid(), {
-			KOMSpacingChronicles: [
-				Object.assign(kTesting.StubChronicleObjectValid(new Date(Date.now() - 1000 * 60 * 60 * 24 * 3)), {
-					KOMChronicleMultiplier: 1,
-				}),
-				Object.assign(kTesting.StubChronicleObjectValid(new Date()), {
-					KOMChronicleResponseType: KOMPlayLogic.KOMPlayResponseTypeAgain(),
-				})
-			],			
-		})]), 0.5);
+		deepEqual(mainModule.KOMReviewTodayReviewAccuracy([kTesting.StubSpacingObjectValid([
+			Object.assign(kTesting.StubChronicleObjectValid(kTesting.StubPastDate()), {
+				KOMChronicleMultiplier: 1,
+			}),
+			kTesting.StubChronicleObjectValid(),
+		]), kTesting.StubSpacingObjectValid([
+			Object.assign(kTesting.StubChronicleObjectValid(kTesting.StubPastDate()), {
+				KOMChronicleMultiplier: 1,
+			}),
+			Object.assign(kTesting.StubChronicleObjectValid(), {
+				KOMChronicleResponseType: KOMPlayLogic.KOMPlayResponseTypeAgain(),
+			}),
+		])]), 0.5);
 	});
 
 });
