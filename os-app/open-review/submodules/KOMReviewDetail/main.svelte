@@ -165,8 +165,8 @@ import KOMReviewToday from '../KOMReviewToday/main.svelte';
 	</p>
 	<p>
 		<label>
-			<input class="KOMReviewDetailFormFrontIsOralField" type="checkbox" bind:checked={ KOMReviewDetailDeck.KOMDeckFrontSpeechIsEnabled } disabled={ KOMReviewDetailDeck.KOMDeckFrontLanguageCode ? null : true } on:input={ mod.InterfaceFormDidUpdate } />
-			<span class="KOMReviewDetailFormFrontIsOralFieldLabel">{ OLSKLocalized('KOMReviewDetailFormFrontIsOralFieldLabelText') }</span>
+			<input class="KOMReviewDetailFormFrontSpeechIsEnabledField" type="checkbox" bind:checked={ KOMReviewDetailDeck.KOMDeckFrontSpeechIsEnabled } disabled={ KOMReviewDetailDeck.KOMDeckFrontLanguageCode ? null : true } on:input={ mod.InterfaceFormDidUpdate } />
+			<span class="KOMReviewDetailFormFrontSpeechIsEnabledFieldLabel">{ OLSKLocalized('KOMReviewDetailFormFrontSpeechIsEnabledFieldLabelText') }</span>
 		</label>
 
 		<span class="KOMReviewDetailFormFrontLanguageCode">
@@ -180,8 +180,8 @@ import KOMReviewToday from '../KOMReviewToday/main.svelte';
 	</p>
 	<p>
 		<label>
-			<input class="KOMReviewDetailFormRearIsOralField" type="checkbox" bind:checked={ KOMReviewDetailDeck.KOMDeckRearSpeechIsEnabled } disabled={ KOMReviewDetailDeck.KOMDeckRearLanguageCode ? null : true } on:input={ mod.InterfaceFormDidUpdate } />
-			<span class="KOMReviewDetailFormRearIsOralFieldLabel">{ OLSKLocalized('KOMReviewDetailFormRearIsOralFieldLabelText') }</span>
+			<input class="KOMReviewDetailFormRearSpeechIsEnabledField" type="checkbox" bind:checked={ KOMReviewDetailDeck.KOMDeckRearSpeechIsEnabled } disabled={ KOMReviewDetailDeck.KOMDeckRearLanguageCode ? null : true } on:input={ mod.InterfaceFormDidUpdate } />
+			<span class="KOMReviewDetailFormRearSpeechIsEnabledFieldLabel">{ OLSKLocalized('KOMReviewDetailFormRearSpeechIsEnabledFieldLabelText') }</span>
 		</label>
 
 		<span class="KOMReviewDetailFormRearLanguageCode">

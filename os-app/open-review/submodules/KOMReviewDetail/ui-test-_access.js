@@ -16,11 +16,11 @@ Object.entries({
 	KOMReviewDetailForm: '.KOMReviewDetailForm',
 	KOMReviewDetailFormAudioIsEnabledField: '.KOMReviewDetailFormAudioIsEnabledField',
 	KOMReviewDetailFormAudioIsEnabledFieldLabel: '.KOMReviewDetailFormAudioIsEnabledFieldLabel',
-	KOMReviewDetailFormFrontIsOralField: '.KOMReviewDetailFormFrontIsOralField',
-	KOMReviewDetailFormFrontIsOralFieldLabel: '.KOMReviewDetailFormFrontIsOralFieldLabel',
+	KOMReviewDetailFormFrontSpeechIsEnabledField: '.KOMReviewDetailFormFrontSpeechIsEnabledField',
+	KOMReviewDetailFormFrontSpeechIsEnabledFieldLabel: '.KOMReviewDetailFormFrontSpeechIsEnabledFieldLabel',
 	KOMReviewDetailFormFrontLanguageCode: '.KOMReviewDetailFormFrontLanguageCode .KOMReviewDetailLanguageCode',
-	KOMReviewDetailFormRearIsOralField: '.KOMReviewDetailFormRearIsOralField',
-	KOMReviewDetailFormRearIsOralFieldLabel: '.KOMReviewDetailFormRearIsOralFieldLabel',
+	KOMReviewDetailFormRearSpeechIsEnabledField: '.KOMReviewDetailFormRearSpeechIsEnabledField',
+	KOMReviewDetailFormRearSpeechIsEnabledFieldLabel: '.KOMReviewDetailFormRearSpeechIsEnabledFieldLabel',
 	KOMReviewDetailFormRearLanguageCode: '.KOMReviewDetailFormRearLanguageCode .KOMReviewDetailLanguageCode',
 	KOMReviewDetailFormIsForwardOnlyField: '.KOMReviewDetailFormIsForwardOnlyField',
 	KOMReviewDetailFormIsForwardOnlyFieldLabel: '.KOMReviewDetailFormIsForwardOnlyFieldLabel',
@@ -119,24 +119,24 @@ describe('KOMReviewDetail_Access', function () {
 		browser.assert.elements(KOMReviewDetailFormAudioIsEnabledFieldLabel, 1);
 	});
 
-	it('shows KOMReviewDetailFormFrontIsOralField', function () {
-		browser.assert.elements(KOMReviewDetailFormFrontIsOralField, 1);
+	it('shows KOMReviewDetailFormFrontSpeechIsEnabledField', function () {
+		browser.assert.elements(KOMReviewDetailFormFrontSpeechIsEnabledField, 1);
 	});
 
-	it('shows KOMReviewDetailFormFrontIsOralFieldLabel', function () {
-		browser.assert.elements(KOMReviewDetailFormFrontIsOralFieldLabel, 1);
+	it('shows KOMReviewDetailFormFrontSpeechIsEnabledFieldLabel', function () {
+		browser.assert.elements(KOMReviewDetailFormFrontSpeechIsEnabledFieldLabel, 1);
 	});
 
 	it('shows KOMReviewDetailFormFrontLanguageCode', function () {
 		browser.assert.elements(KOMReviewDetailFormFrontLanguageCode, 1);
 	});
 
-	it('shows KOMReviewDetailFormRearIsOralField', function () {
-		browser.assert.elements(KOMReviewDetailFormRearIsOralField, 1);
+	it('shows KOMReviewDetailFormRearSpeechIsEnabledField', function () {
+		browser.assert.elements(KOMReviewDetailFormRearSpeechIsEnabledField, 1);
 	});
 
-	it('shows KOMReviewDetailFormRearIsOralFieldLabel', function () {
-		browser.assert.elements(KOMReviewDetailFormRearIsOralFieldLabel, 1);
+	it('shows KOMReviewDetailFormRearSpeechIsEnabledFieldLabel', function () {
+		browser.assert.elements(KOMReviewDetailFormRearSpeechIsEnabledFieldLabel, 1);
 	});
 
 	it('shows KOMReviewDetailFormRearLanguageCode', function () {

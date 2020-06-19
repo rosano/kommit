@@ -70,12 +70,12 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			browser.assert.text(KOMReviewDetailFormAudioIsEnabledFieldLabel, uLocalized('KOMReviewDetailFormAudioIsEnabledFieldLabelText'));
 		});
 
-		it('localizes KOMReviewDetailFormFrontIsOralFieldLabel', function () {
-			browser.assert.text(KOMReviewDetailFormFrontIsOralFieldLabel, uLocalized('KOMReviewDetailFormFrontIsOralFieldLabelText'));
+		it('localizes KOMReviewDetailFormFrontSpeechIsEnabledFieldLabel', function () {
+			browser.assert.text(KOMReviewDetailFormFrontSpeechIsEnabledFieldLabel, uLocalized('KOMReviewDetailFormFrontSpeechIsEnabledFieldLabelText'));
 		});
 
-		it('localizes KOMReviewDetailFormRearIsOralFieldLabel', function () {
-			browser.assert.text(KOMReviewDetailFormRearIsOralFieldLabel, uLocalized('KOMReviewDetailFormRearIsOralFieldLabelText'));
+		it('localizes KOMReviewDetailFormRearSpeechIsEnabledFieldLabel', function () {
+			browser.assert.text(KOMReviewDetailFormRearSpeechIsEnabledFieldLabel, uLocalized('KOMReviewDetailFormRearSpeechIsEnabledFieldLabelText'));
 		});
 
 		it('localizes KOMReviewDetailFormIsForwardOnlyFieldLabel', function () {

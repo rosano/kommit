@@ -3,8 +3,8 @@ KOMReviewDetailToolbarCardsButtonText: Cartes
 KOMReviewDetailStudyHeadingText: Réviser
 KOMReviewDetailNoCardsText: Il n'y a pas de cartes dans ce paquet.
 KOMReviewDetailFormAudioIsEnabledFieldLabelText: Faire entendre audio
-KOMReviewDetailFormFrontIsOralFieldLabelText: Lire le recto
-KOMReviewDetailFormRearIsOralFieldLabelText: Lire le verso
+KOMReviewDetailFormFrontSpeechIsEnabledFieldLabelText: Lire le recto
+KOMReviewDetailFormRearSpeechIsEnabledFieldLabelText: Lire le verso
 KOMReviewDetailFormIsForwardOnlyFieldLabelText: Sauter des cartes en arrières
 KOMReviewDetailPlayButtonReviewingText: Étudier des cartes à réviser
 KOMReviewDetailPlayButtonUnseenText: Étudier des cartes nouvelles

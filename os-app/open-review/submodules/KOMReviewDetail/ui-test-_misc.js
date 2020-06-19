@@ -245,7 +245,7 @@ describe('KOMReviewDetail_Misc', function () {
 	
 	});
 
-	describe('KOMReviewDetailFormFrontIsOralField', function test_KOMReviewDetailFormFrontIsOralField () {
+	describe('KOMReviewDetailFormFrontSpeechIsEnabledField', function test_KOMReviewDetailFormFrontSpeechIsEnabledField () {
 
 		const uItem = function () {
 			return kTesting.uDeck({
@@ -261,16 +261,16 @@ describe('KOMReviewDetail_Misc', function () {
 		});
 
 		it('sets type', function () {
-			browser.assert.attribute(KOMReviewDetailFormFrontIsOralField, 'type', 'checkbox');
+			browser.assert.attribute(KOMReviewDetailFormFrontSpeechIsEnabledField, 'type', 'checkbox');
 		});
 		
 		it('binds KOMDeckFrontSpeechIsEnabled', function () {
-			browser.assert.OLSKIsChecked(KOMReviewDetailFormRearIsOralField, false);
+			browser.assert.OLSKIsChecked(KOMReviewDetailFormRearSpeechIsEnabledField, false);
 		});
 
 		it('sets disabled', function () {
-			browser.assert.attribute(KOMReviewDetailFormFrontIsOralField, 'disabled', null);
-			// browser.assert.attribute(KOMReviewDetailFormFrontIsOralField, 'disabled', '');
+			browser.assert.attribute(KOMReviewDetailFormFrontSpeechIsEnabledField, 'disabled', null);
+			// browser.assert.attribute(KOMReviewDetailFormFrontSpeechIsEnabledField, 'disabled', '');
 		});
 
 		context('select language', function () {
@@ -285,7 +285,7 @@ describe('KOMReviewDetail_Misc', function () {
 			});
 
 			it.skip('sets disabled', function () {
-				browser.assert.attribute(KOMReviewDetailFormFrontIsOralField, 'disabled', null);
+				browser.assert.attribute(KOMReviewDetailFormFrontSpeechIsEnabledField, 'disabled', null);
 			});
 
 		});
@@ -298,7 +298,7 @@ describe('KOMReviewDetail_Misc', function () {
 			});
 			
 			before(function () {
-				return browser.check(KOMReviewDetailFormFrontIsOralField);
+				return browser.check(KOMReviewDetailFormFrontSpeechIsEnabledField);
 			});
 
 			it('sends KOMReviewDetailDispatchUpdate', function () {
@@ -317,7 +317,7 @@ describe('KOMReviewDetail_Misc', function () {
 			});
 
 			it('sets disabled', function () {
-				browser.assert.attribute(KOMReviewDetailFormFrontIsOralField, 'disabled', '');
+				browser.assert.attribute(KOMReviewDetailFormFrontSpeechIsEnabledField, 'disabled', '');
 			});
 
 			it('sends KOMReviewDetailDispatchUpdate', function () {
@@ -332,7 +332,7 @@ describe('KOMReviewDetail_Misc', function () {
 	
 	});
 
-	describe('KOMReviewDetailFormRearIsOralField', function test_KOMReviewDetailFormRearIsOralField () {
+	describe('KOMReviewDetailFormRearSpeechIsEnabledField', function test_KOMReviewDetailFormRearSpeechIsEnabledField () {
 
 		const uItem = function () {
 			return kTesting.uDeck({
@@ -348,16 +348,16 @@ describe('KOMReviewDetail_Misc', function () {
 		});
 
 		it('sets type', function () {
-			browser.assert.attribute(KOMReviewDetailFormRearIsOralField, 'type', 'checkbox');
+			browser.assert.attribute(KOMReviewDetailFormRearSpeechIsEnabledField, 'type', 'checkbox');
 		});
 		
 		it('binds KOMDeckRearSpeechIsEnabled', function () {
-			browser.assert.OLSKIsChecked(KOMReviewDetailFormRearIsOralField, false);
+			browser.assert.OLSKIsChecked(KOMReviewDetailFormRearSpeechIsEnabledField, false);
 		});
 
 		it('sets disabled', function () {
-			browser.assert.attribute(KOMReviewDetailFormRearIsOralField, 'disabled', null);
-			// browser.assert.attribute(KOMReviewDetailFormRearIsOralField, 'disabled', '');
+			browser.assert.attribute(KOMReviewDetailFormRearSpeechIsEnabledField, 'disabled', null);
+			// browser.assert.attribute(KOMReviewDetailFormRearSpeechIsEnabledField, 'disabled', '');
 		});
 
 		context('select language', function () {
@@ -372,7 +372,7 @@ describe('KOMReviewDetail_Misc', function () {
 			});
 
 			it.skip('sets disabled', function () {
-				browser.assert.attribute(KOMReviewDetailFormRearIsOralField, 'disabled', null);
+				browser.assert.attribute(KOMReviewDetailFormRearSpeechIsEnabledField, 'disabled', null);
 			});
 
 		});
@@ -385,7 +385,7 @@ describe('KOMReviewDetail_Misc', function () {
 			});
 			
 			before(function () {
-				return browser.check(KOMReviewDetailFormRearIsOralField);
+				return browser.check(KOMReviewDetailFormRearSpeechIsEnabledField);
 			});
 
 			it('sends KOMReviewDetailDispatchUpdate', function () {
@@ -404,7 +404,7 @@ describe('KOMReviewDetail_Misc', function () {
 			});
 
 			it('sets disabled', function () {
-				browser.assert.attribute(KOMReviewDetailFormRearIsOralField, 'disabled', '');
+				browser.assert.attribute(KOMReviewDetailFormRearSpeechIsEnabledField, 'disabled', '');
 			});
 
 			it('sends KOMReviewDetailDispatchUpdate', function () {

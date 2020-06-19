@@ -3,8 +3,8 @@ KOMReviewDetailToolbarCardsButtonText: Cards
 KOMReviewDetailStudyHeadingText: Review
 KOMReviewDetailNoCardsText: There are no cards in this deck.
 KOMReviewDetailFormAudioIsEnabledFieldLabelText: Play audio
-KOMReviewDetailFormFrontIsOralFieldLabelText: Read front
-KOMReviewDetailFormRearIsOralFieldLabelText: Read back
+KOMReviewDetailFormFrontSpeechIsEnabledFieldLabelText: Read front
+KOMReviewDetailFormRearSpeechIsEnabledFieldLabelText: Read back
 KOMReviewDetailFormIsForwardOnlyFieldLabelText: Skip reversed cards
 KOMReviewDetailPlayButtonReviewingText: Study review cards
 KOMReviewDetailPlayButtonUnseenText: Study new cards
