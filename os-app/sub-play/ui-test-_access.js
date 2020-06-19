@@ -315,7 +315,7 @@ describe('KOMPlay_Access', function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMPlaySpacings: JSON.stringify(items),
 				KOMPlayDeck: JSON.stringify(Object.assign(kTesting.uDeck(), {
-					KOMDeckRearIsOral: true,
+					KOMDeckRearSpeechIsEnabled: true,
 				})),
 			});
 		});

@@ -40,9 +40,9 @@ const mod = {
 			delete KOMReviewDetailDeck.KOMDeckFrontSpeechIsEnabled;
 		}
 
-		if (!KOMReviewDetailDeck.KOMDeckRearLanguageCode && KOMReviewDetailDeck.KOMDeckRearIsOral) {
-			KOMReviewDetailDeck.KOMDeckRearIsOral = false;
-			delete KOMReviewDetailDeck.KOMDeckRearIsOral;
+		if (!KOMReviewDetailDeck.KOMDeckRearLanguageCode && KOMReviewDetailDeck.KOMDeckRearSpeechIsEnabled) {
+			KOMReviewDetailDeck.KOMDeckRearSpeechIsEnabled = false;
+			delete KOMReviewDetailDeck.KOMDeckRearSpeechIsEnabled;
 		}
 
 		window.setTimeout(function () {
@@ -180,7 +180,7 @@ import KOMReviewToday from '../KOMReviewToday/main.svelte';
 	</p>
 	<p>
 		<label>
-			<input class="KOMReviewDetailFormRearIsOralField" type="checkbox" bind:checked={ KOMReviewDetailDeck.KOMDeckRearIsOral } disabled={ KOMReviewDetailDeck.KOMDeckRearLanguageCode ? null : true } on:input={ mod.InterfaceFormDidUpdate } />
+			<input class="KOMReviewDetailFormRearIsOralField" type="checkbox" bind:checked={ KOMReviewDetailDeck.KOMDeckRearSpeechIsEnabled } disabled={ KOMReviewDetailDeck.KOMDeckRearLanguageCode ? null : true } on:input={ mod.InterfaceFormDidUpdate } />
 			<span class="KOMReviewDetailFormRearIsOralFieldLabel">{ OLSKLocalized('KOMReviewDetailFormRearIsOralFieldLabelText') }</span>
 		</label>
 

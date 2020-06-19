@@ -68,7 +68,7 @@ const mod = {
 			return true;
 		}
 
-		return KOMPlayDeck.KOMDeckRearIsOral;
+		return KOMPlayDeck.KOMDeckRearSpeechIsEnabled;
 	},
 
 	DataAnswerShouldSound () {
@@ -96,7 +96,7 @@ const mod = {
 			return true;
 		}
 
-		return KOMPlayDeck.KOMDeckRearIsOral;
+		return KOMPlayDeck.KOMDeckRearSpeechIsEnabled;
 	},
 
 	DataFrontHasAudio() {

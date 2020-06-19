@@ -1144,7 +1144,7 @@ describe('KOMPlay_Misc', function () {
 		});
 
 		const deck = Object.assign(kTesting.uDeck(), {
-			KOMDeckRearIsOral: true,
+			KOMDeckRearSpeechIsEnabled: true,
 			KOMDeckRearLanguageCode: 'en',
 		});
 
@@ -1414,7 +1414,7 @@ describe('KOMPlay_Misc', function () {
 
 		const deck = Object.assign(kTesting.uDeck(), {
 			KOMDeckAudioIsEnabled: true,
-			KOMDeckRearIsOral: true,
+			KOMDeckRearSpeechIsEnabled: true,
 			KOMDeckRearLanguageCode: 'en',
 		});
 
