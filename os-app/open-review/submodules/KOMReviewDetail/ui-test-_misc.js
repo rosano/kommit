@@ -528,6 +528,36 @@ describe('KOMReviewDetail_Misc', function () {
 		
 		});
 
+	});	
+
+	describe('KOMReviewDetailStatsToday', function test_KOMReviewDetailStatsToday () {
+
+		before(function() {
+			return browser.OLSKVisit(kDefaultRoute, {
+				KOMReviewDetailDeck: JSON.stringify({
+					KOMDeckName: 'alfa',
+					KOMDeckIsForwardOnly: true,
+					$KOMDeckSpacings: kTesting.uSpacings().map(function (e, i) {
+						return Object.assign(e, i ? {
+							KOMSpacingDueDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3),
+						} : {
+							KOMSpacingID: e.KOMSpacingID.replace('forward', 'backward'),
+							KOMSpacingChronicles: [{
+								KOMChronicleDrawDate: new Date(),
+								KOMChronicleFlipDate: new Date(),
+								KOMChronicleResponseDate: new Date(),
+								KOMChronicleResponseType: 'alfa',
+							}],
+						});
+					}),
+				}),
+			});
+		});
+
+		it('sets KOMReviewTodaySpacings', function () {
+			browser.assert.text(`${ KOMReviewDetailStatsToday } .KOMReviewTodayTotalCardsValue`, '1');
+		});
+
 	});
 
 });
