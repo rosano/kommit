@@ -131,7 +131,7 @@ describe('KOMDeckActionDelete', function test_KOMDeckActionDelete() {
 		
 		await KOMCardAction.KOMCardActionCreate(KOMTestingStorageClient, {
 			KOMCardFrontText: 'alfa',
-			KOMCardRear: 'bravo',
+			KOMCardRearText: 'bravo',
 		}, item);
 
 		await mainModule.KOMDeckActionDelete(KOMTestingStorageClient, item);

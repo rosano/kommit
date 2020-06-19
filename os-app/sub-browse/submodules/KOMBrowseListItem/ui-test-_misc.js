@@ -6,7 +6,7 @@ describe('KOMBrowseListItem_Misc', function () {
 		return browser.OLSKVisit(kDefaultRoute, {
 			KOMBrowseListItemObject: JSON.stringify({
 				KOMCardFrontText: 'alfa',
-				KOMCardRear: 'bravo',
+				KOMCardRearText: 'bravo',
 			}),
 		});
 	});
@@ -29,7 +29,7 @@ describe('KOMBrowseListItem_Misc', function () {
 			browser.assert.attribute(KOMBrowseListItemRear, 'aria-hidden', 'true');
 		});
 
-		it('binds KOMCardRear', function () {
+		it('binds KOMCardRearText', function () {
 			browser.assert.text(KOMBrowseListItemRear, 'bravo');
 		});
 	

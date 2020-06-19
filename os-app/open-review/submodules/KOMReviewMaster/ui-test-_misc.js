@@ -75,7 +75,7 @@ describe('KOMReviewMaster_Misc', function () {
 							KOMCardID: (i + 1).toString(),
 							KOMCardDeckID: 'alfa',
 							KOMCardFrontText: (i + 1).toString(),
-							KOMCardRear: 'charlie',
+							KOMCardRearText: 'charlie',
 							KOMCardNotes: 'delta',
 							KOMCardCreationDate: new Date('2019-02-23T13:56:36Z'),
 							KOMCardModificationDate: new Date('2019-02-23T13:56:36Z'),

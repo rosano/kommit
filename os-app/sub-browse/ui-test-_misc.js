@@ -81,7 +81,7 @@ describe('KOMBrowse_Misc', function () {
 				'KOMCardCreationDate',
 				'KOMCardModificationDate',
 				'KOMCardFrontText',
-				'KOMCardRear',
+				'KOMCardRearText',
 				'KOMCardNotes',
 				'@context',
 			]));

@@ -33,8 +33,8 @@ const mod = {
 			];
 		}
 
-		if (typeof inputData.KOMCardRear !== 'string') {
-			errors.KOMCardRear = [
+		if (typeof inputData.KOMCardRearText !== 'string') {
+			errors.KOMCardRearText = [
 				'KOMErrorNotString',
 			];
 		}

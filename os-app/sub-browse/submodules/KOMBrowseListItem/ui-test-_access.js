@@ -15,7 +15,7 @@ describe('KOMBrowseListItem_Access', function () {
 		return browser.OLSKVisit(kDefaultRoute, {
 			KOMBrowseListItemObject: JSON.stringify({
 				KOMCardFrontText: 'alfa',
-				KOMCardRear: 'bravo',
+				KOMCardRearText: 'bravo',
 			}),
 		});
 	});

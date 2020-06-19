@@ -4,7 +4,7 @@ const uItem = function (inputData = 'alfa') {
 	return {
 		KOMCardID: inputData,
 		KOMCardFrontText: inputData,
-		KOMCardRear: inputData,
+		KOMCardRearText: inputData,
 	};
 };
 

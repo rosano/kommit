@@ -142,7 +142,7 @@ const mod = {
 	async ControlCardCreate(inputData) {
 		const item = await KOMCardAction.KOMCardActionCreate(KOMBrowseStorageClient, {
 			KOMCardFrontText: '',
-			KOMCardRear: '',
+			KOMCardRearText: '',
 			KOMCardNotes: '',
 		}, inputData);
 

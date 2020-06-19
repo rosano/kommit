@@ -36,11 +36,11 @@ const mod = {
 	// DATA
 
 	DataQuestion () {
-		return mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard[KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent) ? 'KOMCardRear' : 'KOMCardFrontText'];
+		return mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard[KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent) ? 'KOMCardRearText' : 'KOMCardFrontText'];
 	},
 
 	DataAnswer () {
-		return mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard[!KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent) ? 'KOMCardRear' : 'KOMCardFrontText'];
+		return mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard[!KOMSpacingModel.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent) ? 'KOMCardRearText' : 'KOMCardFrontText'];
 	},
 
 	DataQuestionShouldSound () {

@@ -59,9 +59,9 @@ describe('KOMBrowseFilterFunction', function test_KOMBrowseFilterFunction() {
 			}), true);
 		});
 
-		it('matches KOMCardRear', function() {
+		it('matches KOMCardRearText', function() {
 			deepEqual(mainModule.KOMBrowseFilterFunction('alfa')({
-				KOMCardRear: 'alfa',
+				KOMCardRearText: 'alfa',
 			}), true);
 		});
 		
