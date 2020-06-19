@@ -982,7 +982,7 @@ describe('KOMPlay_Misc', function () {
 		});
 
 		const deck = Object.assign(kTesting.uDeck(), {
-			KOMDeckFrontIsOral: true,
+			KOMDeckFrontSpeechIsEnabled: true,
 			KOMDeckFrontLanguageCode: 'en',
 		});
 
@@ -1275,7 +1275,7 @@ describe('KOMPlay_Misc', function () {
 
 		const deck = Object.assign(kTesting.uDeck(), {
 			KOMDeckAudioIsEnabled: true,
-			KOMDeckFrontIsOral: true,
+			KOMDeckFrontSpeechIsEnabled: true,
 			KOMDeckFrontLanguageCode: 'en',
 		});
 

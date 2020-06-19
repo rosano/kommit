@@ -264,7 +264,7 @@ describe('KOMReviewDetail_Misc', function () {
 			browser.assert.attribute(KOMReviewDetailFormFrontIsOralField, 'type', 'checkbox');
 		});
 		
-		it('binds KOMDeckFrontIsOral', function () {
+		it('binds KOMDeckFrontSpeechIsEnabled', function () {
 			browser.assert.OLSKIsChecked(KOMReviewDetailFormRearIsOralField, false);
 		});
 
@@ -304,7 +304,7 @@ describe('KOMReviewDetail_Misc', function () {
 			it('sends KOMReviewDetailDispatchUpdate', function () {
 				browser.assert.text('#TestKOMReviewDetailDispatchUpdate', '1');
 				browser.assert.text('#TestKOMReviewDetailDispatchUpdateData', JSON.stringify(Object.assign(uItem(), {
-					KOMDeckFrontIsOral: true,
+					KOMDeckFrontSpeechIsEnabled: true,
 				})));
 			});
 		

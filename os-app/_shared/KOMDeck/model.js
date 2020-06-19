@@ -43,9 +43,9 @@ const mod = {
 			}
 		}
 
-		if (inputData.KOMDeckFrontIsOral !== undefined) {
-			if (typeof inputData.KOMDeckFrontIsOral !== 'boolean') {
-				errors.KOMDeckFrontIsOral = [
+		if (inputData.KOMDeckFrontSpeechIsEnabled !== undefined) {
+			if (typeof inputData.KOMDeckFrontSpeechIsEnabled !== 'boolean') {
+				errors.KOMDeckFrontSpeechIsEnabled = [
 					'KOMErrorNotBoolean',
 				];
 			}

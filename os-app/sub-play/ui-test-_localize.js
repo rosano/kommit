@@ -92,7 +92,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 					OLSKRoutingLanguage: languageCode,
 					KOMPlaySpacings: JSON.stringify(items),
 					KOMPlayDeck: JSON.stringify(Object.assign(kTesting.uDeck(), {
-						KOMDeckFrontIsOral: true,
+						KOMDeckFrontSpeechIsEnabled: true,
 						KOMDeckRearIsOral: true,
 					})),
 				});

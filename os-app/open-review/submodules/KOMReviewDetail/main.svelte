@@ -35,9 +35,9 @@ const mod = {
 	// INTERFACE
 
 	InterfaceFormDidUpdate () {
-		if (!KOMReviewDetailDeck.KOMDeckFrontLanguageCode && KOMReviewDetailDeck.KOMDeckFrontIsOral) {
-			KOMReviewDetailDeck.KOMDeckFrontIsOral = false;
-			delete KOMReviewDetailDeck.KOMDeckFrontIsOral;
+		if (!KOMReviewDetailDeck.KOMDeckFrontLanguageCode && KOMReviewDetailDeck.KOMDeckFrontSpeechIsEnabled) {
+			KOMReviewDetailDeck.KOMDeckFrontSpeechIsEnabled = false;
+			delete KOMReviewDetailDeck.KOMDeckFrontSpeechIsEnabled;
 		}
 
 		if (!KOMReviewDetailDeck.KOMDeckRearLanguageCode && KOMReviewDetailDeck.KOMDeckRearIsOral) {
@@ -165,7 +165,7 @@ import KOMReviewToday from '../KOMReviewToday/main.svelte';
 	</p>
 	<p>
 		<label>
-			<input class="KOMReviewDetailFormFrontIsOralField" type="checkbox" bind:checked={ KOMReviewDetailDeck.KOMDeckFrontIsOral } disabled={ KOMReviewDetailDeck.KOMDeckFrontLanguageCode ? null : true } on:input={ mod.InterfaceFormDidUpdate } />
+			<input class="KOMReviewDetailFormFrontIsOralField" type="checkbox" bind:checked={ KOMReviewDetailDeck.KOMDeckFrontSpeechIsEnabled } disabled={ KOMReviewDetailDeck.KOMDeckFrontLanguageCode ? null : true } on:input={ mod.InterfaceFormDidUpdate } />
 			<span class="KOMReviewDetailFormFrontIsOralFieldLabel">{ OLSKLocalized('KOMReviewDetailFormFrontIsOralFieldLabelText') }</span>
 		</label>
 
