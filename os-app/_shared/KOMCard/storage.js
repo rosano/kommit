@@ -54,11 +54,11 @@ const mod = {
 	},
 
 	KOMCardStorageAudioPathFront (param1, param2) {
-		return mod.KOMCardStorageFolderPath(param1, param2) + 'front/audio';
+		return mod.KOMCardStorageFolderPath(param1, param2) + 'side-front/audio';
 	},
 
 	KOMCardStorageAudioPathRear (param1, param2) {
-		return mod.KOMCardStorageFolderPath(param1, param2) + 'rear/audio';
+		return mod.KOMCardStorageFolderPath(param1, param2) + 'side-rear/audio';
 	},
 
 	KOMCardStorageMatch (inputData) {

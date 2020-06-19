@@ -93,7 +93,7 @@ describe('KOMCardStorageAudioPathFront', function test_KOMCardStorageAudioPathFr
 	});
 
 	it('returns string', function() {
-		deepEqual(mainModule.KOMCardStorageAudioPathFront(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()), mainModule.KOMCardStorageFolderPath(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()) + 'front/audio');
+		deepEqual(mainModule.KOMCardStorageAudioPathFront(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()), mainModule.KOMCardStorageFolderPath(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()) + 'side-front/audio');
 	});
 
 });
@@ -113,7 +113,7 @@ describe('KOMCardStorageAudioPathRear', function test_KOMCardStorageAudioPathRea
 	});
 
 	it('returns string', function() {
-		deepEqual(mainModule.KOMCardStorageAudioPathRear(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()), mainModule.KOMCardStorageFolderPath(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()) + 'rear/audio');
+		deepEqual(mainModule.KOMCardStorageAudioPathRear(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()), mainModule.KOMCardStorageFolderPath(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()) + 'side-rear/audio');
 	});
 
 });
