@@ -256,7 +256,7 @@ const mod = {
 		return {
 			KOMCardID: 'FakeCardID',
 			KOMCardDeckID: 'FakeDeckID',
-			KOMCardFront: inputData || '',
+			KOMCardFrontText: inputData || '',
 			KOMCardRear: '',
 			KOMCardCreationDate: new Date(),
 			KOMCardModificationDate: new Date(),

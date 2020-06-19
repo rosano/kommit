@@ -74,7 +74,7 @@ const mod = {
 	_ValueCardsVisible: [],
 	ValueCardsVisible (inputData, shouldSort = true) {
 		const items = !mod._ValueFilterText ? inputData : inputData.filter(function (e) {
-			return e.KOMCardFront.toLowerCase().match(mod._ValueFilterText.toLowerCase());
+			return e.KOMCardFrontText.toLowerCase().match(mod._ValueFilterText.toLowerCase());
 		});
 		mod._ValueCardsVisible = shouldSort ? items.sort(KOMBrowseLogic.KOMBrowseSort) : items;
 	},
@@ -141,7 +141,7 @@ const mod = {
 
 	async ControlCardCreate(inputData) {
 		const item = await KOMCardAction.KOMCardActionCreate(KOMBrowseStorageClient, {
-			KOMCardFront: '',
+			KOMCardFrontText: '',
 			KOMCardRear: '',
 			KOMCardNotes: '',
 		}, inputData);
@@ -220,9 +220,9 @@ const mod = {
 		}
 
 		mod.ValueCardSelected(mod._ValueCardsVisible.filter(function (e) {
-			return e.KOMCardFront.toLowerCase() === inputData.toLowerCase();
+			return e.KOMCardFrontText.toLowerCase() === inputData.toLowerCase();
 		}).concat(mod._ValueCardsVisible.filter(function (e) {
-			return e.KOMCardFront.toLowerCase().includes(inputData.toLowerCase());
+			return e.KOMCardFrontText.toLowerCase().includes(inputData.toLowerCase());
 		})).shift());
 	},
 

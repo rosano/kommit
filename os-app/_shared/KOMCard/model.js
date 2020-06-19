@@ -27,8 +27,8 @@ const mod = {
 			];
 		}
 
-		if (typeof inputData.KOMCardFront !== 'string') {
-			errors.KOMCardFront = [
+		if (typeof inputData.KOMCardFrontText !== 'string') {
+			errors.KOMCardFrontText = [
 				'KOMErrorNotString',
 			];
 		}

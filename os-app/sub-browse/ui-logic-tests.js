@@ -37,25 +37,25 @@ describe('KOMBrowseFilterFunction', function test_KOMBrowseFilterFunction() {
 
 		it('returns false if no match', function() {
 			deepEqual(mainModule.KOMBrowseFilterFunction('bravo')({
-				KOMCardFront: 'alfa',
+				KOMCardFrontText: 'alfa',
 			}), false);
 		});
 
 		it('returns true', function() {
 			deepEqual(mainModule.KOMBrowseFilterFunction('alfa')({
-				KOMCardFront: 'alfa',
+				KOMCardFrontText: 'alfa',
 			}), true);
 		});
 
 		it('matches partial', function() {
 			deepEqual(mainModule.KOMBrowseFilterFunction('alf')({
-				KOMCardFront: 'alfa',
+				KOMCardFrontText: 'alfa',
 			}), true);
 		});
 
 		it('matches case insensitive', function() {
 			deepEqual(mainModule.KOMBrowseFilterFunction('ALF')({
-				KOMCardFront: 'alfa',
+				KOMCardFrontText: 'alfa',
 			}), true);
 		});
 

@@ -80,7 +80,7 @@ describe('KOMBrowse_Misc', function () {
 				'KOMCardDeckID',
 				'KOMCardCreationDate',
 				'KOMCardModificationDate',
-				'KOMCardFront',
+				'KOMCardFrontText',
 				'KOMCardRear',
 				'KOMCardNotes',
 				'@context',

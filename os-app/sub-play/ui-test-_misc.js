@@ -20,7 +20,7 @@ const kTesting = {
 				$KOMSpacingCard: {
 					KOMCardID: (i + 1).toString(),
 					KOMCardDeckID: 'alfa',
-					KOMCardFront: (i + 1).toString(),
+					KOMCardFrontText: (i + 1).toString(),
 					KOMCardRear: 'charlie',
 					KOMCardNotes: 'delta',
 					KOMCardCreationDate: new Date('2019-02-23T13:56:36Z'),
@@ -99,7 +99,7 @@ describe('KOMPlay_Misc', function () {
 	describe('KOMPlayCardQuestion', function test_KOMPlayCardQuestion () {
 
 		it('sets text', function () {
-			browser.assert.text(KOMPlayCardQuestion, items[0].$KOMSpacingCard.KOMCardFront);
+			browser.assert.text(KOMPlayCardQuestion, items[0].$KOMSpacingCard.KOMCardFrontText);
 		});
 
 	});
@@ -179,7 +179,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('updates KOMPlayStateCurrent', function () {
-				browser.assert.text(KOMPlayCardQuestion, items[1].$KOMSpacingCard.KOMCardFront);
+				browser.assert.text(KOMPlayCardQuestion, items[1].$KOMSpacingCard.KOMCardFrontText);
 			});
 		
 		});
@@ -224,7 +224,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('updates KOMPlayStateCurrent', function () {
-				browser.assert.text(KOMPlayCardQuestion, items[2].$KOMSpacingCard.KOMCardFront);
+				browser.assert.text(KOMPlayCardQuestion, items[2].$KOMSpacingCard.KOMCardFrontText);
 			});
 		
 		});
@@ -269,7 +269,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('updates KOMPlayStateCurrent', function () {
-				browser.assert.text(KOMPlayCardQuestion, items[3].$KOMSpacingCard.KOMCardFront);
+				browser.assert.text(KOMPlayCardQuestion, items[3].$KOMSpacingCard.KOMCardFrontText);
 			});
 		
 		});
@@ -314,7 +314,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('updates KOMPlayStateCurrent', function () {
-				browser.assert.text(KOMPlayCardQuestion, items[4].$KOMSpacingCard.KOMCardFront);
+				browser.assert.text(KOMPlayCardQuestion, items[4].$KOMSpacingCard.KOMCardFrontText);
 			});
 		
 		});
@@ -359,7 +359,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('updates KOMPlayStateCurrent', function () {
-				browser.assert.text(KOMPlayCardQuestion, items[0].$KOMSpacingCard.KOMCardFront);
+				browser.assert.text(KOMPlayCardQuestion, items[0].$KOMSpacingCard.KOMCardFrontText);
 			});
 		
 		});
@@ -419,7 +419,7 @@ describe('KOMPlay_Misc', function () {
 				});
 
 				it('updates KOMPlayStateCurrent', function () {
-					browser.assert.text(KOMPlayCardQuestion, items[1].$KOMSpacingCard.KOMCardFront);
+					browser.assert.text(KOMPlayCardQuestion, items[1].$KOMSpacingCard.KOMCardFrontText);
 				});
 			
 			});
@@ -468,7 +468,7 @@ describe('KOMPlay_Misc', function () {
 				});
 
 				it('updates KOMPlayStateCurrent', function () {
-					browser.assert.text(KOMPlayCardQuestion, items[2].$KOMSpacingCard.KOMCardFront);
+					browser.assert.text(KOMPlayCardQuestion, items[2].$KOMSpacingCard.KOMCardFrontText);
 				});
 			
 			});
@@ -517,7 +517,7 @@ describe('KOMPlay_Misc', function () {
 				});
 
 				it('updates KOMPlayStateCurrent', function () {
-					browser.assert.text(KOMPlayCardQuestion, items[3].$KOMSpacingCard.KOMCardFront);
+					browser.assert.text(KOMPlayCardQuestion, items[3].$KOMSpacingCard.KOMCardFrontText);
 				});
 			
 			});
@@ -601,7 +601,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('sets text', function () {
-				browser.assert.text(KOMPlayCardAnswer, items[0].$KOMSpacingCard.KOMCardFront);
+				browser.assert.text(KOMPlayCardAnswer, items[0].$KOMSpacingCard.KOMCardFrontText);
 			});
 
 		});
@@ -652,7 +652,7 @@ describe('KOMPlay_Misc', function () {
 		});
 
 		it('updates KOMPlayStateCurrent', function () {
-			browser.assert.text(KOMPlayCardQuestion, items[0].$KOMSpacingCard.KOMCardFront);
+			browser.assert.text(KOMPlayCardQuestion, items[0].$KOMSpacingCard.KOMCardFrontText);
 		});
 
 	});
@@ -958,7 +958,7 @@ describe('KOMPlay_Misc', function () {
 				});
 
 				it('updates KOMPlayStateCurrent', function () {
-					browser.assert.text(KOMPlayCardQuestion, items[0].$KOMSpacingCard.KOMCardFront);
+					browser.assert.text(KOMPlayCardQuestion, items[0].$KOMSpacingCard.KOMCardFrontText);
 				});
 
 				it('sets disabled', function () {
@@ -1004,7 +1004,7 @@ describe('KOMPlay_Misc', function () {
 		});
 
 		it('starts read', function () {
-			browser.assert.text('#TestKOMPlayOralLog', uLog(`read:${ deck.KOMDeckFrontLanguageCode }:${ items[0].$KOMSpacingCard.KOMCardFront }`));
+			browser.assert.text('#TestKOMPlayOralLog', uLog(`read:${ deck.KOMDeckFrontLanguageCode }:${ items[0].$KOMSpacingCard.KOMCardFrontText }`));
 		});
 
 		context('KOMPlayHearQuestionButton', function () {
@@ -1028,7 +1028,7 @@ describe('KOMPlay_Misc', function () {
 				});
 
 				it('starts read', function () {
-					browser.assert.text('#TestKOMPlayOralLog', uLog(`read:${ deck.KOMDeckFrontLanguageCode }:${ items[0].$KOMSpacingCard.KOMCardFront }`));
+					browser.assert.text('#TestKOMPlayOralLog', uLog(`read:${ deck.KOMDeckFrontLanguageCode }:${ items[0].$KOMSpacingCard.KOMCardFrontText }`));
 				});
 			
 			});
@@ -1066,7 +1066,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('starts read', function () {
-				browser.assert.text('#TestKOMPlayOralLog', uLog(`read:${ deck.KOMDeckFrontLanguageCode }:${ items[0].$KOMSpacingCard.KOMCardFront }`));
+				browser.assert.text('#TestKOMPlayOralLog', uLog(`read:${ deck.KOMDeckFrontLanguageCode }:${ items[0].$KOMSpacingCard.KOMCardFrontText }`));
 			});
 			
 		});
@@ -1086,7 +1086,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('starts read', function () {
-				browser.assert.text('#TestKOMPlayOralLog', uLog(`stop,read:${ deck.KOMDeckFrontLanguageCode }:${ items[1].$KOMSpacingCard.KOMCardFront }`));
+				browser.assert.text('#TestKOMPlayOralLog', uLog(`stop,read:${ deck.KOMDeckFrontLanguageCode }:${ items[1].$KOMSpacingCard.KOMCardFrontText }`));
 			});
 
 		});
@@ -1112,7 +1112,7 @@ describe('KOMPlay_Misc', function () {
 				});
 
 				it('starts read', function () {
-					browser.assert.text('#TestKOMPlayOralLog', uLog(`read:${ deck.KOMDeckFrontLanguageCode }:${ items[1].$KOMSpacingCard.KOMCardFront }`));
+					browser.assert.text('#TestKOMPlayOralLog', uLog(`read:${ deck.KOMDeckFrontLanguageCode }:${ items[1].$KOMSpacingCard.KOMCardFrontText }`));
 				});
 			
 			});

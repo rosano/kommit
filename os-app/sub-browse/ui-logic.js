@@ -14,7 +14,7 @@ const mod = {
 		}
 
 		return function (e) {
-			return [e.KOMCardFront, e.KOMCardRear].filter(function (e) {
+			return [e.KOMCardFrontText, e.KOMCardRear].filter(function (e) {
 				if (!e) {
 					return false;
 				}

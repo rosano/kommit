@@ -45,7 +45,7 @@ import KOMBrowseInfoAudio from '../KOMBrowseInfoAudio/main.svelte';
 <div class="KOMBrowseInfoForm">
 
 <p>
-	<input class="KOMBrowseInfoFormFrontField OLSKMobileSafariRemoveDefaultInputStyle" placeholder="{ OLSKLocalized('KOMBrowseInfoFormFrontFieldText') }" type="text" bind:value={ KOMBrowseInfoItem.KOMCardFront } on:input={ KOMBrowseInfoDispatchUpdate } />
+	<input class="KOMBrowseInfoFormFrontField OLSKMobileSafariRemoveDefaultInputStyle" placeholder="{ OLSKLocalized('KOMBrowseInfoFormFrontFieldText') }" type="text" bind:value={ KOMBrowseInfoItem.KOMCardFrontText } on:input={ KOMBrowseInfoDispatchUpdate } />
 </p>
 
 <p class="KOMBrowseInfoFormFrontAudio">

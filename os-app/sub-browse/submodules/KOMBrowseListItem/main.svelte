@@ -9,7 +9,7 @@ const OLSKLocalized = function(translationConstant) {
 
 <div class="KOMBrowseListItem">
 
-<strong class="KOMBrowseListItemFront" aria-hidden="true">{ KOMBrowseListItemObject.KOMCardFront }</strong><br>
+<strong class="KOMBrowseListItemFront" aria-hidden="true">{ KOMBrowseListItemObject.KOMCardFrontText }</strong><br>
 <span class="KOMBrowseListItemRear" aria-hidden="true">{ KOMBrowseListItemObject.KOMCardRear }</span>
 
 </div>

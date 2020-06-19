@@ -26,7 +26,7 @@ const mod = {
 		return {
 			KOMCardID: inputData.split('/')[4],
 			KOMCardDeckID: inputData.split('/')[1],
-			KOMCardFront: '',
+			KOMCardFrontText: '',
 			KOMCardRear: '',
 			KOMCardCreationDate: new Date(inputData.split('/')[3]),
 			KOMCardModificationDate: new Date(),

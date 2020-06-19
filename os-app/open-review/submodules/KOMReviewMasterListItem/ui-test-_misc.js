@@ -31,7 +31,7 @@ const item = {
 				$KOMSpacingCard: {
 					KOMCardID: (i + 1).toString(),
 					KOMCardDeckID: 'bravo',
-					KOMCardFront: (i + 1).toString(),
+					KOMCardFrontText: (i + 1).toString(),
 					KOMCardRear: 'charlie',
 					KOMCardNotes: 'delta',
 					KOMCardCreationDate: new Date('2019-02-23T13:56:36Z'),

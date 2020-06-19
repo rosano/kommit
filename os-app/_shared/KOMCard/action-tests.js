@@ -16,7 +16,7 @@ const kTesting = {
 	},
 	StubCardObject() {
 		return {
-			KOMCardFront: 'bravo',
+			KOMCardFrontText: 'bravo',
 			KOMCardRear: 'charlie',
 		};
 	},
@@ -24,7 +24,7 @@ const kTesting = {
 		return {
 			KOMCardID: 'bravo',
 			KOMCardDeckID: 'alfa',
-			KOMCardFront: 'charlie',
+			KOMCardFrontText: 'charlie',
 			KOMCardRear: 'delta',
 			KOMCardCreationDate: new Date('2019-02-23T13:56:36Z'),
 			KOMCardModificationDate: new Date('2019-02-23T13:56:36Z'),
@@ -59,9 +59,9 @@ describe('KOMCardActionCreate', function test_KOMCardActionCreate() {
 
 	it('returns object with KOMErrors if param1 not valid', async function() {
 		deepEqual((await mainModule.KOMCardActionCreate(KOMTestingStorageClient, Object.assign(kTesting.StubCardObject(), {
-			KOMCardFront: null,
+			KOMCardFrontText: null,
 		}), kTesting.StubDeckObjectValid())).KOMErrors, {
-			KOMCardFront: [
+			KOMCardFrontText: [
 				'KOMErrorNotString',
 			],
 		});
