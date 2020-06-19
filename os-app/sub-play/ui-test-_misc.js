@@ -971,7 +971,7 @@ describe('KOMPlay_Misc', function () {
 
 	});
 
-	describe('oral_front', function test_oral_front () {
+	describe('speech_front', function test_speech_front () {
 
 		const items = kTesting.uSpacings(2).sort(function (a, b) {
 			return a.KOMSpacingID > b.KOMSpacingID;
@@ -993,7 +993,7 @@ describe('KOMPlay_Misc', function () {
 		};
 
 		before(function () {
-			browser.assert.text('#TestKOMPlayOralLog', '');
+			browser.assert.text('#TestKOMPlayAudioLog', '');
 		});
 		
 		before(function() {
@@ -1004,7 +1004,7 @@ describe('KOMPlay_Misc', function () {
 		});
 
 		it('starts read', function () {
-			browser.assert.text('#TestKOMPlayOralLog', uLog(`read:${ deck.KOMDeckFrontLanguageCode }:${ items[0].$KOMSpacingCard.KOMCardFrontText }`));
+			browser.assert.text('#TestKOMPlayAudioLog', uLog(`read:${ deck.KOMDeckFrontLanguageCode }:${ items[0].$KOMSpacingCard.KOMCardFrontText }`));
 		});
 
 		context('KOMPlayHearQuestionButton', function () {
@@ -1028,7 +1028,7 @@ describe('KOMPlay_Misc', function () {
 				});
 
 				it('starts read', function () {
-					browser.assert.text('#TestKOMPlayOralLog', uLog(`read:${ deck.KOMDeckFrontLanguageCode }:${ items[0].$KOMSpacingCard.KOMCardFrontText }`));
+					browser.assert.text('#TestKOMPlayAudioLog', uLog(`read:${ deck.KOMDeckFrontLanguageCode }:${ items[0].$KOMSpacingCard.KOMCardFrontText }`));
 				});
 			
 			});
@@ -1042,7 +1042,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('stops read', function () {
-				browser.assert.text('#TestKOMPlayOralLog', uLog('stop'));
+				browser.assert.text('#TestKOMPlayAudioLog', uLog('stop'));
 			});
 
 		});
@@ -1054,7 +1054,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('does nothing', function () {
-				browser.assert.text('#TestKOMPlayOralLog', _log.join(','));
+				browser.assert.text('#TestKOMPlayAudioLog', _log.join(','));
 			});
 
 		});
@@ -1066,7 +1066,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('starts read', function () {
-				browser.assert.text('#TestKOMPlayOralLog', uLog(`read:${ deck.KOMDeckFrontLanguageCode }:${ items[0].$KOMSpacingCard.KOMCardFrontText }`));
+				browser.assert.text('#TestKOMPlayAudioLog', uLog(`read:${ deck.KOMDeckFrontLanguageCode }:${ items[0].$KOMSpacingCard.KOMCardFrontText }`));
 			});
 			
 		});
@@ -1086,7 +1086,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('starts read', function () {
-				browser.assert.text('#TestKOMPlayOralLog', uLog(`stop,read:${ deck.KOMDeckFrontLanguageCode }:${ items[1].$KOMSpacingCard.KOMCardFrontText }`));
+				browser.assert.text('#TestKOMPlayAudioLog', uLog(`stop,read:${ deck.KOMDeckFrontLanguageCode }:${ items[1].$KOMSpacingCard.KOMCardFrontText }`));
 			});
 
 		});
@@ -1112,7 +1112,7 @@ describe('KOMPlay_Misc', function () {
 				});
 
 				it('starts read', function () {
-					browser.assert.text('#TestKOMPlayOralLog', uLog(`read:${ deck.KOMDeckFrontLanguageCode }:${ items[1].$KOMSpacingCard.KOMCardFrontText }`));
+					browser.assert.text('#TestKOMPlayAudioLog', uLog(`read:${ deck.KOMDeckFrontLanguageCode }:${ items[1].$KOMSpacingCard.KOMCardFrontText }`));
 				});
 			
 			});
@@ -1126,14 +1126,14 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('stops read', function () {
-				browser.assert.text('#TestKOMPlayOralLog', uLog('stop'));
+				browser.assert.text('#TestKOMPlayAudioLog', uLog('stop'));
 			});
 
 		});
 
 	});
 
-	describe('oral_rear', function test_oral_rear () {
+	describe('speech_rear', function test_speech_rear () {
 
 		const items = kTesting.uSpacings(2).sort(function (a, b) {
 			return a.KOMSpacingID > b.KOMSpacingID;
@@ -1162,7 +1162,7 @@ describe('KOMPlay_Misc', function () {
 		});
 
 		it('skips read', function () {
-			browser.assert.text('#TestKOMPlayOralLog', '');
+			browser.assert.text('#TestKOMPlayAudioLog', '');
 		});
 
 		context('flip', function () {
@@ -1172,7 +1172,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('starts read', function () {
-				browser.assert.text('#TestKOMPlayOralLog', uLog(`read:${ deck.KOMDeckRearLanguageCode }:${ items[0].$KOMSpacingCard.KOMCardRearText }`));
+				browser.assert.text('#TestKOMPlayAudioLog', uLog(`read:${ deck.KOMDeckRearLanguageCode }:${ items[0].$KOMSpacingCard.KOMCardRearText }`));
 			});
 
 		});
@@ -1184,7 +1184,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('starts read', function () {
-				browser.assert.text('#TestKOMPlayOralLog', uLog(`read:${ deck.KOMDeckRearLanguageCode }:${ items[0].$KOMSpacingCard.KOMCardRearText }`));
+				browser.assert.text('#TestKOMPlayAudioLog', uLog(`read:${ deck.KOMDeckRearLanguageCode }:${ items[0].$KOMSpacingCard.KOMCardRearText }`));
 			});
 			
 		});
@@ -1196,7 +1196,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('starts read', function () {
-				browser.assert.text('#TestKOMPlayOralLog', uLog(`stop,read:${ deck.KOMDeckRearLanguageCode }:${ items[1].$KOMSpacingCard.KOMCardRearText }`));
+				browser.assert.text('#TestKOMPlayAudioLog', uLog(`stop,read:${ deck.KOMDeckRearLanguageCode }:${ items[1].$KOMSpacingCard.KOMCardRearText }`));
 			});
 
 		});
@@ -1208,7 +1208,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('does nothing', function () {
-				browser.assert.text('#TestKOMPlayOralLog', _log.join(','));
+				browser.assert.text('#TestKOMPlayAudioLog', _log.join(','));
 			});
 			
 		});
@@ -1228,7 +1228,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('starts read', function () {
-				browser.assert.text('#TestKOMPlayOralLog', uLog(`stop,read:${ deck.KOMDeckRearLanguageCode }:${ items[1].$KOMSpacingCard.KOMCardRearText }`));
+				browser.assert.text('#TestKOMPlayAudioLog', uLog(`stop,read:${ deck.KOMDeckRearLanguageCode }:${ items[1].$KOMSpacingCard.KOMCardRearText }`));
 			});
 
 		});
@@ -1240,7 +1240,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('starts read', function () {
-				browser.assert.text('#TestKOMPlayOralLog', uLog(`read:${ deck.KOMDeckRearLanguageCode }:${ items[1].$KOMSpacingCard.KOMCardRearText }`));
+				browser.assert.text('#TestKOMPlayAudioLog', uLog(`read:${ deck.KOMDeckRearLanguageCode }:${ items[1].$KOMSpacingCard.KOMCardRearText }`));
 			});
 			
 		});
@@ -1252,7 +1252,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('stopts read', function () {
-				browser.assert.text('#TestKOMPlayOralLog', uLog('stop'));
+				browser.assert.text('#TestKOMPlayAudioLog', uLog('stop'));
 			});
 
 		});
@@ -1293,7 +1293,7 @@ describe('KOMPlay_Misc', function () {
 		});
 
 		it('starts audio', function () {
-			browser.assert.text('#TestKOMPlayOralLog', uLog('fetch,play:KOMCardFrontAudio'));
+			browser.assert.text('#TestKOMPlayAudioLog', uLog('fetch,play:KOMCardFrontAudio'));
 		});
 
 		context('KOMPlayHearQuestionButton', function () {
@@ -1305,7 +1305,7 @@ describe('KOMPlay_Misc', function () {
 				});
 
 				it('starts audio', function () {
-					browser.assert.text('#TestKOMPlayOralLog', uLog('play:KOMCardFrontAudio'));
+					browser.assert.text('#TestKOMPlayAudioLog', uLog('play:KOMCardFrontAudio'));
 				});
 			
 			});
@@ -1319,7 +1319,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('stops audio', function () {
-				browser.assert.text('#TestKOMPlayOralLog', uLog('stop:audio'));
+				browser.assert.text('#TestKOMPlayAudioLog', uLog('stop:audio'));
 			});
 
 		});
@@ -1331,7 +1331,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('flushes audio', function () {
-				browser.assert.text('#TestKOMPlayOralLog', uLog('flush'));
+				browser.assert.text('#TestKOMPlayAudioLog', uLog('flush'));
 			});
 
 		});
@@ -1343,7 +1343,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('starts audio', function () {
-				browser.assert.text('#TestKOMPlayOralLog', uLog('flush,fetch,play:KOMCardFrontAudio'));
+				browser.assert.text('#TestKOMPlayAudioLog', uLog('flush,fetch,play:KOMCardFrontAudio'));
 			});
 			
 		});
@@ -1363,7 +1363,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('starts audio', function () {
-				browser.assert.text('#TestKOMPlayOralLog', uLog('stop:audio,flush,fetch,play:KOMCardFrontAudio'));
+				browser.assert.text('#TestKOMPlayAudioLog', uLog('stop:audio,flush,fetch,play:KOMCardFrontAudio'));
 			});
 
 		});
@@ -1377,7 +1377,7 @@ describe('KOMPlay_Misc', function () {
 				});
 
 				it('starts audio', function () {
-					browser.assert.text('#TestKOMPlayOralLog', uLog('play:KOMCardFrontAudio'));
+					browser.assert.text('#TestKOMPlayAudioLog', uLog('play:KOMCardFrontAudio'));
 				});
 			
 			});
@@ -1391,7 +1391,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('stops read', function () {
-				browser.assert.text('#TestKOMPlayOralLog', uLog('stop:audio,flush'));
+				browser.assert.text('#TestKOMPlayAudioLog', uLog('stop:audio,flush'));
 			});
 
 		});
@@ -1432,7 +1432,7 @@ describe('KOMPlay_Misc', function () {
 		});
 
 		it('skips read', function () {
-			browser.assert.text('#TestKOMPlayOralLog', '');
+			browser.assert.text('#TestKOMPlayAudioLog', '');
 		});
 
 		context('flip', function () {
@@ -1442,7 +1442,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('starts read', function () {
-				browser.assert.text('#TestKOMPlayOralLog', uLog('fetch,play:KOMCardRearAudio'));
+				browser.assert.text('#TestKOMPlayAudioLog', uLog('fetch,play:KOMCardRearAudio'));
 			});
 
 		});
@@ -1454,7 +1454,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('starts read', function () {
-				browser.assert.text('#TestKOMPlayOralLog', uLog('play:KOMCardRearAudio'));
+				browser.assert.text('#TestKOMPlayAudioLog', uLog('play:KOMCardRearAudio'));
 			});
 			
 		});
@@ -1466,7 +1466,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('starts read', function () {
-				browser.assert.text('#TestKOMPlayOralLog', uLog('stop:audio,flush,fetch,play:KOMCardRearAudio'));
+				browser.assert.text('#TestKOMPlayAudioLog', uLog('stop:audio,flush,fetch,play:KOMCardRearAudio'));
 			});
 
 		});
@@ -1478,7 +1478,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('flushes audio', function () {
-				browser.assert.text('#TestKOMPlayOralLog', uLog('flush'));
+				browser.assert.text('#TestKOMPlayAudioLog', uLog('flush'));
 			});
 			
 		});
@@ -1498,7 +1498,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('starts read', function () {
-				browser.assert.text('#TestKOMPlayOralLog', uLog('stop:audio,flush,fetch,play:KOMCardRearAudio'));
+				browser.assert.text('#TestKOMPlayAudioLog', uLog('stop:audio,flush,fetch,play:KOMCardRearAudio'));
 			});
 
 		});
@@ -1510,7 +1510,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('starts read', function () {
-				browser.assert.text('#TestKOMPlayOralLog', uLog('play:KOMCardRearAudio'));
+				browser.assert.text('#TestKOMPlayAudioLog', uLog('play:KOMCardRearAudio'));
 			});
 			
 		});
@@ -1522,7 +1522,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			it('stops read', function () {
-				browser.assert.text('#TestKOMPlayOralLog', uLog('stop:audio'));
+				browser.assert.text('#TestKOMPlayAudioLog', uLog('stop:audio'));
 			});
 
 		});

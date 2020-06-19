@@ -240,7 +240,7 @@ describe('KOMPlay_Access', function () {
 	
 	});
 
-	describe('oral_front', function test_oral_front () {
+	describe('speech_front', function test_speech_front () {
 
 		const items = kTesting.uSpacings(1).map(function (e, i) {
 			return Object.assign(e, i ? {
@@ -303,7 +303,7 @@ describe('KOMPlay_Access', function () {
 
 	});
 
-	describe('oral_rear', function test_oral_rear () {
+	describe('speech_rear', function test_speech_rear () {
 
 		const items = kTesting.uSpacings(1).map(function (e, i) {
 			return Object.assign(e, i ? {

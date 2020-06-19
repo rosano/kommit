@@ -219,7 +219,7 @@ const mod = {
 
 	ControlReadStart (param1, param2) {
 		if (OLSK_TESTING_BEHAVIOUR()) {
-			mod.DebugOralLog(`read:${ param2 }:${ param1 }`);
+			mod.DebugAudioLog(`read:${ param2 }:${ param1 }`);
 		}
 
 		if (!mod._ValueSpeechAvailable) {
@@ -241,7 +241,7 @@ const mod = {
 
 	ControlReadStop () {
 		if (OLSK_TESTING_BEHAVIOUR()) {
-			mod.DebugOralLog(mod._ValueAudioPlaying ? 'stop:audio' : 'stop');
+			mod.DebugAudioLog(mod._ValueAudioPlaying ? 'stop:audio' : 'stop');
 		}
 
 		if (mod._ValueAudioIsPlaying) {
@@ -263,7 +263,7 @@ const mod = {
 
 	async ControlAudioStart (inputData) {
 		if (!mod._ValueAudioCache[inputData] && OLSK_TESTING_BEHAVIOUR()) {
-			mod.DebugOralLog('fetch');
+			mod.DebugAudioLog('fetch');
 
 			mod._ValueAudioCache[inputData] = mod.DataFakeAudio(await KOMPlayDispatchFetch(inputData, mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard));
 		}
@@ -273,7 +273,7 @@ const mod = {
 		}
 
 		if (OLSK_TESTING_BEHAVIOUR()) {
-			mod.DebugOralLog('play:' + inputData);
+			mod.DebugAudioLog('play:' + inputData);
 		}
 
 		mod._ValueAudioCache[inputData].currentTime = 0;
@@ -284,7 +284,7 @@ const mod = {
 
 	ControlFlush() {
 		if (OLSK_TESTING_BEHAVIOUR()) {
-			mod.DebugOralLog('flush');
+			mod.DebugAudioLog('flush');
 		}
 
 		mod._ValueAudioCache = {};
@@ -360,8 +360,8 @@ const mod = {
 
 	// DEBUG
 
-	DebugOralLog (inputData) {
-		window.TestKOMPlayOralLog.innerHTML = window.TestKOMPlayOralLog.innerHTML ? window.TestKOMPlayOralLog.innerHTML.split(',').concat(inputData).join(',') : inputData;
+	DebugAudioLog (inputData) {
+		window.TestKOMPlayAudioLog.innerHTML = window.TestKOMPlayAudioLog.innerHTML ? window.TestKOMPlayAudioLog.innerHTML.split(',').concat(inputData).join(',') : inputData;
 	},
 
 	// SETUP

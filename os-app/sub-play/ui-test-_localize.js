@@ -83,7 +83,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 
 		});
 
-		describe('oral', function test_oral () {
+		describe('speech', function test_speech () {
 
 			const items = kTesting.uSpacings(2);
 
