@@ -35,7 +35,7 @@ Object.entries({
 	KOMReviewDetailStats: '.KOMReviewDetailStats',
 	KOMReviewDetailStatsHeading: '.KOMReviewDetailStatsHeading',
 	KOMReviewDetailStatsUnavailable: '.KOMReviewDetailStatsUnavailable',
-	KOMReviewDetailStatsFigures: '.KOMReviewDetailStats .KOMReviewToday',
+	KOMReviewDetailStatsToday: '.KOMReviewDetailStats .KOMReviewToday',
 
 	KOMReviewDetailDeckHeading: '.KOMReviewDetailDeckHeading',
 	KOMReviewDetailRenameButton: '.KOMReviewDetailRenameButton',
@@ -210,8 +210,8 @@ describe('KOMReviewDetail_Access', function () {
 			browser.assert.elements(KOMReviewDetailStatsUnavailable, 1);
 		});
 
-		it('hides KOMReviewDetailStatsFigures', function () {
-			browser.assert.elements(KOMReviewDetailStatsFigures, 0);
+		it('hides KOMReviewDetailStatsToday', function () {
+			browser.assert.elements(KOMReviewDetailStatsToday, 0);
 		});
 
 		context('reviewing', function test_reviewing () {
@@ -330,8 +330,8 @@ describe('KOMReviewDetail_Access', function () {
 			browser.assert.elements(KOMReviewDetailStatsUnavailable, 0);
 		});
 
-		it('shows KOMReviewDetailStatsFigures', function () {
-			browser.assert.elements(KOMReviewDetailStatsFigures, 1);
+		it('shows KOMReviewDetailStatsToday', function () {
+			browser.assert.elements(KOMReviewDetailStatsToday, 1);
 		});
 
 		context('change direction', function () {
