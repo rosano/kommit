@@ -15,5 +15,5 @@ KOMReviewDetailStatsUnavailableText: Review some cards to populate statistics.
 KOMReviewDetailDeckHeadingText: Deck
 KOMReviewDetailRenameButtonText: Rename
 KOMReviewDetailRenameButtonPromptText: Name
-KOMReviewDetailDiscardButtonText: Discard
+KOMReviewDetailDiscardButtonText: Delete deck and all cards inside
 KOMReviewDetailDiscardPromptText: Are you sure?
