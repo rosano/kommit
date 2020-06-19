@@ -332,4 +332,44 @@ describe('KOMReview_Access', function () {
 
 	});
 
+	context('KOMReviewLauncherItemSendLoginLink', function test_KOMReviewLauncherItemSendLoginLink() {
+		
+		before(function () {
+			return browser.pressButton('.OLSKAppToolbarLauncherButton');
+		});
+
+		before(function () {
+			return browser.fill('.LCHLauncherFilterInput', 'KOMReviewLauncherItemSendLoginLink');
+		});
+
+		it('hides LCHLauncherResultListItem', function () {
+			browser.assert.elements('.LCHLauncherResultListItem', 0);
+		});
+
+		context('connected', function () {
+
+			before(function () {
+				return browser.fill('.LCHLauncherFilterInput', 'FakeOLSKConnected');
+			});
+
+			before(function () {
+				return browser.click('.LCHLauncherResultListItem');
+			});
+
+			before(function () {
+				return browser.pressButton('.OLSKAppToolbarLauncherButton');
+			});
+
+			before(function () {
+				return browser.fill('.LCHLauncherFilterInput', 'KOMReviewLauncherItemSendLoginLink');
+			});
+
+			it('shows LCHLauncherResultListItem', function () {
+				browser.assert.elements('.LCHLauncherResultListItem', 1);
+			});
+		
+		});
+
+	});
+
 });

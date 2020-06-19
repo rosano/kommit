@@ -203,4 +203,37 @@ describe('KOMReview_Misc', function () {
 
 	});	
 
+	describe('KOMReviewLauncherItemSendLoginLink', function test_KOMReviewLauncherItemSendLoginLink () {
+		
+		before(function () {
+			return browser.pressButton('.OLSKAppToolbarLauncherButton');
+		});
+
+		before(function () {
+			return browser.fill('.LCHLauncherFilterInput', 'FakeOLSKConnected');
+		});
+
+		before(function () {
+			return browser.click('.LCHLauncherResultListItem');
+		});
+
+		before(function () {
+			return browser.pressButton('.OLSKAppToolbarLauncherButton');
+		});
+
+		before(function () {
+			return browser.fill('.LCHLauncherFilterInput', 'KOMReviewLauncherItemSendLoginLink');
+		});
+
+		before(function () {
+			return browser.click('.LCHLauncherResultListItem');
+		});
+
+		it('sets mailto', function () {
+			browser.assert.evaluate('window.FakeOLSKConnected', 'mailto:?subject=Kommit Login Link&body=http%3A%2F%2Floc.tests%2Freview%23remotestorage%3Dalfa%26access_token%3Dbravo'
+);
+		});
+
+	});
+
 });

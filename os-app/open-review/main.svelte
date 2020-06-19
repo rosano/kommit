@@ -100,8 +100,39 @@ const mod = {
 			}
 		});
 
+		if (mod._ValueStorageClient.connected) {
+			items.push({
+				LCHRecipeSignature: 'KOMReviewLauncherItemSendLoginLink',
+				LCHRecipeName: OLSKLocalized('KOMReviewLauncherItemSendLoginLinkText'),
+				LCHRecipeCallback () {
+					const url = `mailto:?subject=${ OLSKLocalized('KOMReviewLauncherItemSendLoginLinkSubject') }&body=${ encodeURIComponent(`${ window.location.href }#remotestorage=${ mod._ValueStorageClient.remote.userAddress }&access_token=${ mod._ValueStorageClient.remote.token }`) }`;
+					
+
+					if (OLSK_TESTING_BEHAVIOUR() && window.FakeOLSKConnected) {
+						window.FakeOLSKConnected = url;
+						return;
+					}
+
+					window.location.href = url;
+				},
+			});
+		}
+
 		if (OLSK_TESTING_BEHAVIOUR()) {
 			items.push(...[
+				{
+					LCHRecipeName: 'FakeOLSKConnected',
+					LCHRecipeCallback () {
+						mod._ValueStorageClient = Object.assign({}, mod._ValueStorageClient);
+						mod._ValueStorageClient.connected = true;
+						mod._ValueStorageClient.remote = Object.assign(mod._ValueStorageClient.remote, {
+							userAddress: 'alfa',
+							token: 'bravo',
+						});
+
+						window.FakeOLSKConnected = true;
+					},
+				},
 				{
 					LCHRecipeName: 'FakeOLSKChangeDelegateCreateDeck',
 					LCHRecipeCallback: async function FakeOLSKChangeDelegateCreateDeck () {
