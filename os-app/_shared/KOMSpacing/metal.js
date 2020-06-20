@@ -30,8 +30,6 @@ const mod = {
 
 		for (let key in outputData) {
 			OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(outputData[key]);
-			
-			outputData[key].KOMSpacingChronicles.map(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse);
 		}
 		
 		return outputData;
