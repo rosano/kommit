@@ -596,7 +596,7 @@ import OLSKStorageWidget from 'OLSKStorageWidget';
 	<footer class="KOMReviewViewportFooter OLSKMobileViewFooter">
 
 		{#if !mod._ValueStorageToolbarHidden }
-			<div class="KOMReviewStorageToolbar OLSKStorageToolbar OLSKToolbar OLSKToolbarJustify">
+			<div class="KOMReviewStorageToolbar OLSKToolbar OLSKToolbarJustify OLSKStorageToolbar">
 				<div class="OLSKToolbarElementGroup">
 					<div></div>
 				</div>

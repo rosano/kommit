@@ -160,10 +160,6 @@ describe('KOMReview_Misc', function () {
 		before(function () {
 			return browser.pressButton('.OLSKAppToolbarStorageButton');
 		});
-		
-		it('classes OLSKStorageToolbar', function () {
-			browser.assert.hasClass(KOMReviewStorageToolbar, 'OLSKStorageToolbar');
-		});
 
 		it('classes OLSKToolbar', function () {
 			browser.assert.hasClass(KOMReviewStorageToolbar, 'OLSKToolbar');
@@ -171,6 +167,10 @@ describe('KOMReview_Misc', function () {
 
 		it('classes OLSKToolbarJustify', function () {
 			browser.assert.hasClass(KOMReviewStorageToolbar, 'OLSKToolbarJustify');
+		});
+		
+		it('classes OLSKStorageToolbar', function () {
+			browser.assert.hasClass(KOMReviewStorageToolbar, 'OLSKStorageToolbar');
 		});
 	
 	});
