@@ -15,7 +15,3 @@
 .KOMReviewStorageToolbar {
 	border-top: var(--KOMBorderStyle)
 }
-
-.KOMReviewStorageToolbarHidden {
-	display: none;
-}
