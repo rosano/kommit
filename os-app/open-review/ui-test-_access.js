@@ -5,7 +5,6 @@ Object.entries({
 	KOMReviewViewportFooter: '.KOMReviewViewportFooter',
 
 	KOMReviewStorageToolbar: '.KOMReviewStorageToolbar',
-	OLSKStorageWidget: '.OLSKStorageWidget',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
@@ -63,7 +62,7 @@ describe('KOMReview_Access', function () {
 		});
 
 		it('shows OLSKStorageWidget', function () {
-			browser.assert.elements(OLSKStorageWidget, 1);
+			browser.assert.elements('.OLSKStorageWidget', 1);
 		});
 	
 	});
