@@ -62,7 +62,7 @@ const mod = {
 		const OLSKRemoteStorageCollectionExports = {
 
 			async KOMStorageList (param1, param2) {
-				const result = await privateClient.getAll(KOMCardStorage.KOMCardStorageFolderPath(param1, param2));
+				const result = await privateClient.getAll(KOMCardStorage.KOMCardStorageFolderPath(param1, param2), false);
 				return {
 					KOMCardSpacingForward: result['spacing-forward'] || {
 						KOMSpacingID: `${ param1.KOMCardID }-forward`,
