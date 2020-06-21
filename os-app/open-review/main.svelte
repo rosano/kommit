@@ -609,12 +609,12 @@ import OLSKStorageWidget from 'OLSKStorageWidget';
 
 		<OLSKAppToolbar
 			OLSKAppToolbarDonateURL={ window.OLSKPublicConstants('KOM_SHARED_DONATE_URL') }
-			OLSKAppToolbarLauncherVisible={ true }
-			OLSKAppToolbarDispatchLauncher={ mod.OLSKAppToolbarDispatchLauncher }
 			OLSKAppToolbarStorageStatus={ mod._ValueFooterStorageStatus }
+			OLSKAppToolbarLauncherVisible={ true }
 			OLSKAppToolbarDispatchStorage={ mod.OLSKAppToolbarDispatchStorage }
 			_OLSKAppToolbarDispatchExport={ mod._OLSKAppToolbarDispatchExport }
 			_OLSKAppToolbarDispatchImport={ mod._OLSKAppToolbarDispatchImport }
+			OLSKAppToolbarDispatchLauncher={ mod.OLSKAppToolbarDispatchLauncher }
 			/>
 	</footer>
 {/if}
