@@ -42,7 +42,7 @@ import KOMBrowseInfoAudio from '../KOMBrowseInfoAudio/main.svelte';
 			<div class="KOMBrowseInfoToolbarDiscardButtonImage">{@html _OLSKSharedDiscard }</div>
 		</button>
 		
-		<button class="KOMBrowseInfoToolbarCreateButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton" title={ OLSKLocalized('KOMBrowseInfoToolbarCreateButtonText') } on:click={ KOMBrowseInfoDispatchCreate }>
+		<button class="KOMBrowseInfoToolbarCreateButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton OLSKVisibilityMobile" title={ OLSKLocalized('KOMBrowseInfoToolbarCreateButtonText') } on:click={ KOMBrowseInfoDispatchCreate }>
 			<div class="KOMBrowseInfoToolbarCreateButtonImage">{@html _OLSKSharedCreate }</div>
 		</button>
 	</div>

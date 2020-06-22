@@ -165,6 +165,10 @@ describe('KOMBrowseInfo_Misc', function () {
 			browser.assert.hasClass(KOMBrowseInfoToolbarCreateButton, 'OLSKToolbarButton');
 		});
 
+		it('classes OLSKVisibilityMobile', function () {
+			browser.assert.hasClass(KOMBrowseInfoToolbarCreateButton, 'OLSKVisibilityMobile');
+		});
+
 		context('click', function () {
 			
 			before(function () {
