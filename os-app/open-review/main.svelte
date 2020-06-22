@@ -249,7 +249,7 @@ const mod = {
 
 	_ValueDecksAll: [],
 	ValueDecksAll (inputData) {
-		mod._ValueDecksAll = inputData;
+		mod._ValueDecksAll = KOMReviewLogic.KOMReviewDeckSort(inputData);
 	},
 	
 	_ValueDeckSelected: undefined,
