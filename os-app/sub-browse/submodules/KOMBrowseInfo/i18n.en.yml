@@ -2,6 +2,6 @@ KOMBrowseInfoToolbarBackButtonText: Back
 KOMBrowseInfoToolbarDiscardButtonText: Discard
 KOMBrowseInfoDiscardPromptText: Are you sure?
 KOMBrowseInfoToolbarCreateButtonText: Create
-KOMBrowseInfoFormFrontFieldText: Front text
+KOMBrowseInfoFormFrontTextFieldText: Front text
 KOMBrowseInfoFormRearFieldText: Back text
 KOMBrowseInfoFormNotesFieldText: Notes

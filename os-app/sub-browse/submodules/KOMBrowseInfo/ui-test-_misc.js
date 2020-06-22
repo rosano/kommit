@@ -195,7 +195,7 @@ describe('KOMBrowseInfo_Misc', function () {
 	
 	});
 	
-	describe('KOMBrowseInfoFormFrontField', function test_KOMBrowseInfoFormFrontField() {
+	describe('KOMBrowseInfoFormFrontTextField', function test_KOMBrowseInfoFormFrontTextField() {
 		
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute, {
@@ -206,15 +206,15 @@ describe('KOMBrowseInfo_Misc', function () {
 		});
 
 		it('classes OLSKMobileSafariRemoveDefaultInputStyle', function () {
-			browser.assert.hasClass(KOMBrowseInfoFormFrontField, 'OLSKMobileSafariRemoveDefaultInputStyle');
+			browser.assert.hasClass(KOMBrowseInfoFormFrontTextField, 'OLSKMobileSafariRemoveDefaultInputStyle');
 		});
 
 		it('sets type', function () {
-			browser.assert.attribute(KOMBrowseInfoFormFrontField, 'type', 'text');
+			browser.assert.attribute(KOMBrowseInfoFormFrontTextField, 'type', 'text');
 		});
 
 		it('binds KOMCardFrontText', function () {
-			browser.assert.input(KOMBrowseInfoFormFrontField, 'alfa');
+			browser.assert.input(KOMBrowseInfoFormFrontTextField, 'alfa');
 		});
 
 		context('input', function () {
@@ -230,7 +230,7 @@ describe('KOMBrowseInfo_Misc', function () {
 			});
 
 			before(function () {
-				browser.fill(KOMBrowseInfoFormFrontField, 'bravo');
+				browser.fill(KOMBrowseInfoFormFrontTextField, 'bravo');
 			});
 
 			it('updates KOMBrowseInfoItem', function () {
