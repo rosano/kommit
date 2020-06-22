@@ -1,6 +1,6 @@
 KOMBrowseInfoToolbarBackButtonText: Back
 KOMBrowseInfoToolbarDiscardButtonText: Jeter
 KOMBrowseInfoDiscardPromptText: Êtes-vous sûr.e?
-KOMBrowseInfoFormFrontFieldText: Recto
-KOMBrowseInfoFormRearFieldText: Verso
+KOMBrowseInfoFormFrontFieldText: Texte du recto
+KOMBrowseInfoFormRearFieldText: Texte du verso
 KOMBrowseInfoFormNotesFieldText: Notes

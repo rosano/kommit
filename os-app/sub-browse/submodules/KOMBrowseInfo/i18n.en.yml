@@ -1,6 +1,6 @@
 KOMBrowseInfoToolbarBackButtonText: Back
 KOMBrowseInfoToolbarDiscardButtonText: Discard
 KOMBrowseInfoDiscardPromptText: Are you sure?
-KOMBrowseInfoFormFrontFieldText: Front side
-KOMBrowseInfoFormRearFieldText: Back side
+KOMBrowseInfoFormFrontFieldText: Front text
+KOMBrowseInfoFormRearFieldText: Back text
 KOMBrowseInfoFormNotesFieldText: Notes
