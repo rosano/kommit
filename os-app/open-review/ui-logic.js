@@ -85,7 +85,7 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		let cards = [];
+		const cardsNew = [];
 		return param1.filter(function (e, i) {
 			if (param2.KOMReviewScheme === mod.KOMReviewSchemeReviewing() && KOMSpacingModel.KOMSpacingModelIsUnseen(e)) {
 				return false;
@@ -99,11 +99,11 @@ const mod = {
 				return false;
 			}
 
-			if (!cards.includes(e.$KOMSpacingCard)) {
-				cards.push(e.$KOMSpacingCard);
+			if (param2.KOMReviewScheme !== mod.KOMReviewSchemeReviewing() && KOMSpacingModel.KOMSpacingModelIsUnseen(e) && !cardsNew.includes(e.$KOMSpacingCard)) {
+				cardsNew.push(e.$KOMSpacingCard);
 			}
 
-			if (param2.KOMReviewScheme !== mod.KOMReviewSchemeReviewing() && cards.length > param2.KOMReviewMaxUnseenCards) {
+			if (param2.KOMReviewScheme !== mod.KOMReviewSchemeReviewing() && KOMSpacingModel.KOMSpacingModelIsUnseen(e) && cardsNew.length > param2.KOMReviewMaxUnseenCards) {
 				return false;
 			}
 
