@@ -205,10 +205,6 @@ const mod = {
 
 		mod.OLSKMobileViewInactive = true;
 
-		if (mod.DataIsMobile()) {
-			return;
-		}
-		
 		setTimeout(mod.ControlFocusDetail);
 	},
 	
