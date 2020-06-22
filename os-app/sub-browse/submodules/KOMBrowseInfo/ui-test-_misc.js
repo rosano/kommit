@@ -79,6 +79,10 @@ describe('KOMBrowseInfo_Misc', function () {
 			browser.assert.hasClass(KOMBrowseInfoToolbarBackButton, 'OLSKToolbarButton');
 		});
 
+		it('classes OLSKVisibilityMobile', function () {
+			browser.assert.hasClass(KOMBrowseInfoToolbarBackButton, 'OLSKVisibilityMobile');
+		});
+
 		context('click', function () {
 			
 			before(function () {
