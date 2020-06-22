@@ -111,6 +111,16 @@ const mod = {
 		});
 	},
 
+	KOMReviewDeckSort (inputData) {
+		if (!Array.isArray(inputData)) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		return inputData.sort(function (a, b) {
+			return a.KOMDeckName.localeCompare(b.KOMDeckName);
+		})
+	},
+
 };
 
 export default mod;

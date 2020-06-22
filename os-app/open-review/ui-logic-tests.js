@@ -342,3 +342,29 @@ describe('KOMReviewFilter', function test_KOMReviewFilter() {
 	});
 
 });
+
+describe('KOMReviewDeckSort', function test_KOMReviewDeckSort() {
+
+	it('throws if not array', function () {
+		throws(function () {
+			mainModule.KOMReviewDeckSort(null);
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns array', function() {
+		deepEqual(mainModule.KOMReviewDeckSort([]), []);
+	});
+
+	it('returns array', function() {
+		const items = [
+			Object.assign(kTesting.StubDeckObjectValid(), {
+				KOMDeckName: 'bravo',
+			}),
+			Object.assign(kTesting.StubDeckObjectValid(), {
+				KOMDeckName: 'alfa',
+			}),
+		];
+		deepEqual(mainModule.KOMReviewDeckSort(items), items.reverse());
+	});
+
+});
