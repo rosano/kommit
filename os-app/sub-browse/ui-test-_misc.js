@@ -176,7 +176,7 @@ describe('KOMBrowse_Misc', function () {
 			});
 
 			it.skip('focuses other field', function() {
-				browser.assert.hasFocus('.KOMBrowseInfoFormRearField');
+				browser.assert.hasFocus('.KOMBrowseInfoFormRearTextField');
 			});
 		
 		});
@@ -186,7 +186,7 @@ describe('KOMBrowse_Misc', function () {
 			context.skip('other field focused', function () {
 
 				before(function() {
-					browser.assert.hasFocus('.KOMBrowseInfoFormRearField');
+					browser.assert.hasFocus('.KOMBrowseInfoFormRearTextField');
 				});
 
 				before(function () {
