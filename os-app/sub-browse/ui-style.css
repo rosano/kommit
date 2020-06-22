@@ -14,31 +14,6 @@
 	flex-grow: 1;
 }
 
-.KOMBrowseTools {
-	border-top: var(--KOMBorderStyle);
-}
-
-@media screen and (max-width: 760px) {
-
-.KOMBrowseTools :last-child {
-	display: none;
-}
-
-}
-
-#KOMBrowseStorageWidget {
-	border-top: var(--KOMBorderStyle);
-	
-	background: var(--KOMCommonBackground);
-
-	/* AppContainerFlexbox:Child */
-	flex-shrink: 0;
-}
-
-.KOMBrowseStorageWidgetHidden {
-	display: none;
-}
-
 @media screen and (max-width: 760px) {
 
 .KOMBrowse :global(.OLSKAppToolbar) {
