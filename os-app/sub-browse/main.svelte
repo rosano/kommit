@@ -43,6 +43,10 @@ const mod = {
 		mod.ControlCardDiscard(mod._ValueCardSelected, KOMBrowseDeckSelected);
 	},
 
+	KOMBrowseInfoDispatchCreate () {
+		mod.ControlCardCreate(KOMBrowseDeckSelected);
+	},
+
 	KOMBrowseInfoDispatchUpdate () {
 		mod._ValueCardSelected = mod._ValueCardSelected; // #purge-svelte-force-update
 
@@ -299,6 +303,7 @@ import KOMBrowseInfo from './submodules/KOMBrowseInfo/main.svelte';
 		KOMBrowseInfoItem={ mod._ValueCardSelected }
 		KOMBrowseInfoDispatchBack={ mod.KOMBrowseInfoDispatchBack }
 		KOMBrowseInfoDispatchDiscard={ mod.KOMBrowseInfoDispatchDiscard }
+		KOMBrowseInfoDispatchCreate={ mod.KOMBrowseInfoDispatchCreate }
 		KOMBrowseInfoDispatchUpdate={ mod.KOMBrowseInfoDispatchUpdate }
 		KOMBrowseInfoAudioDispatchCapture={ mod.KOMBrowseInfoAudioDispatchCapture }
 		KOMBrowseInfoAudioDispatchFetch={ mod.KOMBrowseInfoAudioDispatchFetch }

@@ -3,6 +3,7 @@ export let KOMBrowseInfoItem;
 export let KOMBrowseInfoDispatchBack;
 export let KOMBrowseInfoDispatchUpdate;
 export let KOMBrowseInfoDispatchDiscard;
+export let KOMBrowseInfoDispatchCreate;
 export let KOMBrowseInfoAudioDispatchCapture;
 export let KOMBrowseInfoAudioDispatchFetch;
 export let KOMBrowseInfoAudioDispatchClear;
@@ -18,6 +19,7 @@ import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting';
 import OLSKDetailPlaceholder from 'OLSKDetailPlaceholder';
 import _OLSKSharedBack from '../../../_shared/__external/OLSKUIAssets/_OLSKSharedBack.svg';
 import _OLSKSharedDiscard from '../../../_shared/__external/OLSKUIAssets/_OLSKSharedDiscard.svg';
+import _OLSKSharedCreate from '../../../_shared/__external/OLSKUIAssets/_OLSKSharedCreate.svg';
 import KOMBrowseInfoAudio from '../KOMBrowseInfoAudio/main.svelte';
 </script>
 
@@ -38,6 +40,10 @@ import KOMBrowseInfoAudio from '../KOMBrowseInfoAudio/main.svelte';
 	<div class="OLSKToolbarElementGroup">
 		<button class="KOMBrowseInfoToolbarDiscardButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton" title={ OLSKLocalized('KOMBrowseInfoToolbarDiscardButtonText') } on:click={ () => window.confirm(OLSKLocalized('KOMBrowseInfoDiscardPromptText')) && KOMBrowseInfoDispatchDiscard(KOMBrowseInfoItem) }>
 			<div class="KOMBrowseInfoToolbarDiscardButtonImage">{@html _OLSKSharedDiscard }</div>
+		</button>
+		
+		<button class="KOMBrowseInfoToolbarCreateButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton" title={ OLSKLocalized('KOMBrowseInfoToolbarCreateButtonText') } on:click={ KOMBrowseInfoDispatchCreate }>
+			<div class="KOMBrowseInfoToolbarCreateButtonImage">{@html _OLSKSharedCreate }</div>
 		</button>
 	</div>
 </header>

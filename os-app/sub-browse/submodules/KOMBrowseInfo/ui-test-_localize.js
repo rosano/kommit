@@ -25,6 +25,10 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 				browser.assert.attribute(KOMBrowseInfoToolbarDiscardButton, 'title', uLocalized('KOMBrowseInfoToolbarDiscardButtonText'));
 			});
 
+			it('localizes KOMBrowseInfoToolbarCreateButton', function () {
+				browser.assert.attribute(KOMBrowseInfoToolbarCreateButton, 'title', uLocalized('KOMBrowseInfoToolbarCreateButtonText'));
+			});
+
 			it('localizes KOMBrowseInfoFormFrontField', function () {
 				browser.assert.attribute(KOMBrowseInfoFormFrontField, 'placeholder', uLocalized('KOMBrowseInfoFormFrontFieldText'));
 			});

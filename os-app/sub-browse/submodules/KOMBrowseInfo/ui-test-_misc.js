@@ -147,6 +147,46 @@ describe('KOMBrowseInfo_Misc', function () {
 	
 	});
 	
+	describe('KOMBrowseInfoToolbarCreateButton', function test_KOMBrowseInfoToolbarCreateButton () {
+		
+		it('classes OLSKLayoutButtonNoStyle', function () {
+			browser.assert.hasClass(KOMBrowseInfoToolbarCreateButton, 'OLSKLayoutButtonNoStyle');
+		});
+
+		it('classes OLSKLayoutElementTappable', function () {
+			browser.assert.hasClass(KOMBrowseInfoToolbarCreateButton, 'OLSKLayoutElementTappable');
+		});
+
+		it('classes OLSKToolbarButton', function () {
+			browser.assert.hasClass(KOMBrowseInfoToolbarCreateButton, 'OLSKToolbarButton');
+		});
+
+		context('click', function () {
+			
+			before(function () {
+				browser.assert.text('#TestKOMBrowseInfoDispatchCreate', '0');
+			});
+			
+			before(function () {
+				return browser.pressButton(KOMBrowseInfoToolbarCreateButton);
+			});
+
+			it('sends KOMBrowseInfoDispatchCreate', function () {
+				browser.assert.text('#TestKOMBrowseInfoDispatchCreate', '1');
+			});
+
+		});
+	
+	});
+
+	describe('KOMBrowseInfoToolbarCreateButtonImage', function test_KOMBrowseInfoToolbarCreateButtonImage () {
+
+		it('sets src', function () {
+			browser.assert.elements(`${ KOMBrowseInfoToolbarCreateButtonImage } #_OLSKSharedCreate`, 1);
+		});
+	
+	});
+	
 	describe('KOMBrowseInfoFormFrontField', function test_KOMBrowseInfoFormFrontField() {
 		
 		before(function() {
