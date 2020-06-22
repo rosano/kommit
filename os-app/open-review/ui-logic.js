@@ -91,7 +91,7 @@ const mod = {
 				return false;
 			}
 
-			if (param2.KOMReviewScheme !== mod.KOMReviewSchemeReviewing() && !KOMSpacingModel.KOMSpacingModelIsUnseen(e)) {
+			if (param2.KOMReviewScheme === mod.KOMReviewSchemeUnseen() && !KOMSpacingModel.KOMSpacingModelIsUnseen(e)) {
 				return false;
 			}
 
