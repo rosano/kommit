@@ -131,7 +131,7 @@ const mod = {
 				}
 
 				if (document.activeElement === document.querySelector('.KOMBrowseInfoFormFrontTextField') && event.shiftKey) {
-					document.querySelector('.OLSKMasterListFilterField').focus();
+					mod.ControlFocusMaster();
 
 					return event.preventDefault();
 				}
@@ -188,17 +188,19 @@ const mod = {
 		mod.ControlCardSelect(null);
 	},
 
+	ControlFocusMaster () {
+		document.querySelector('.OLSKMasterListFilterField').focus();
+	},
+
 	ControlFocusDetail () {
-		setTimeout(function () {
-			document.querySelector('.KOMBrowseInfoFormFrontTextField').focus();
-		});
+		document.querySelector('.KOMBrowseInfoFormFrontTextField').focus();
 	},
 
 	ControlCardSelect(inputData) {
 		mod.ValueCardSelected(inputData);
 
 		if (!inputData) {
-			return !mod.DataIsMobile() && document.querySelector('.OLSKMasterListFilterField').focus();
+			return !mod.DataIsMobile() && mod.ControlFocusMaster();
 		}
 
 		mod.OLSKMobileViewInactive = true;
@@ -261,7 +263,7 @@ const mod = {
 
 	SetupFocus() {
 		setTimeout(function () {
-			document.querySelector('.OLSKMasterListFilterField').focus();
+			mod.ControlFocusMaster();
 		});
 	},
 
