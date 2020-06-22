@@ -278,6 +278,22 @@ describe('KOMReviewFilter', function test_KOMReviewFilter() {
 			}), kTesting.StubDeckObjectValid()), items);
 		});
 
+		it('includes reviewing if KOMReviewSchemeMixed', function() {
+			const items = uItems(true);
+			deepEqual(mainModule.KOMReviewFilter(items, Object.assign(kTesting.StubReviewObjectValid(), {
+				KOMReviewScheme: mainModule.KOMReviewSchemeMixed(),
+				KOMReviewMaxUnseenCards: Infinity,
+			}), kTesting.StubDeckObjectValid()), items);
+		});
+
+		it('includes unseen if KOMReviewSchemeMixed', function() {
+			const items = uItems();
+			deepEqual(mainModule.KOMReviewFilter(items, Object.assign(kTesting.StubReviewObjectValid(), {
+				KOMReviewScheme: mainModule.KOMReviewSchemeMixed(),
+				KOMReviewMaxUnseenCards: Infinity,
+			}), kTesting.StubDeckObjectValid()), items);
+		});
+
 	});
 
 	context('KOMReviewMaxUnseenCards', function () {
