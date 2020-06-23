@@ -413,18 +413,6 @@ import OLSKViewportContent from 'OLSKViewportContent';
 <div class="KOMPlayBody">
 
 {#if mod._ValueState.KOMPlayStateCurrent }
-	{#if mod.DataQuestionShouldSound() || (mod._ValueIsFlipped && mod.DataAnswerShouldSound()) }
-		<div class="KOMPlayHear">
-			{#if mod.DataQuestionShouldSound()}
-				<button class="KOMPlayHearQuestionButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceHearQuestionButtonDidClick } tabindex="-1">{ OLSKLocalized('KOMPlayHearQuestionButtonText') }</button>
-			{/if}
-
-			{#if mod._ValueIsFlipped && mod.DataAnswerShouldSound() }
-				<button class="KOMPlayHearAnswerButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceHearAnswerButtonDidClick } tabindex="-1">{ OLSKLocalized('KOMPlayHearAnswerButtonText') }</button>
-			{/if}
-		</div>
-	{/if}
-
 	<div class="KOMPlayCard OLSKLayoutElementTappable" on:click={ mod.InterfaceCardDidClick }>
 
 		<div class="KOMPlayCardQuestion">{ mod.DataQuestion() }</div>
@@ -439,6 +427,18 @@ import OLSKViewportContent from 'OLSKViewportContent';
 		
 	</div>
 	
+	{#if mod.DataQuestionShouldSound() || (mod._ValueIsFlipped && mod.DataAnswerShouldSound()) }
+		<div class="KOMPlayHear">
+			{#if mod.DataQuestionShouldSound()}
+				<button class="KOMPlayHearQuestionButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceHearQuestionButtonDidClick } tabindex="-1">{ OLSKLocalized('KOMPlayHearQuestionButtonText') }</button>
+			{/if}
+
+			{#if mod._ValueIsFlipped && mod.DataAnswerShouldSound() }
+				<button class="KOMPlayHearAnswerButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceHearAnswerButtonDidClick } tabindex="-1">{ OLSKLocalized('KOMPlayHearAnswerButtonText') }</button>
+			{/if}
+		</div>
+	{/if}
+
 	{#if !mod._ValueIsFlipped}
 		<button class="KOMPlayFlipButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceFlipButtonDidClick }>{ OLSKLocalized('KOMPlayFlipButtonText') }</button>
 	{/if}
