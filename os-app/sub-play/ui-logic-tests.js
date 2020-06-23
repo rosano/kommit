@@ -772,7 +772,7 @@ describe('KOMChronicleGenerateDraw', function test_KOMChronicleGenerateDraw() {
 		it('sets true if KOMSpacingDrawDate today and reviewing', function () {
 			deepEqual(mainModule.KOMChronicleGenerateDraw(new Date(), Object.assign(kTesting.StubSpacingObjectValid(), {
 				KOMSpacingDrawDate: new Date(),
-				KOMSpacingInterval: 1,
+				KOMSpacingInterval: mainModule.KOMPlayResponseIntervalGraduateEasy(),
 			})).KOMChronicleDidDrawMultipleTimes, true);
 		});
 	
@@ -828,7 +828,7 @@ describe('KOMChronicleGenerateFlip', function test_KOMChronicleGenerateFlip() {
 		it('sets true if KOMSpacingFlipDate today and reviewing', function () {
 			deepEqual(mainModule.KOMChronicleGenerateFlip(new Date(), Object.assign(kTesting.StubSpacingObjectValid(), {
 				KOMSpacingFlipDate: new Date(),
-				KOMSpacingInterval: 1,
+				KOMSpacingInterval: mainModule.KOMPlayResponseIntervalGraduateEasy(),
 			})).KOMChronicleDidFlipMultipleTimes, true);
 		});
 	
