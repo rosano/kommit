@@ -724,6 +724,62 @@ describe('KOMChronicleIsValid', function test_KOMChronicleIsValid() {
 
 });
 
+describe('KOMChronicleGenerate', function test_KOMChronicleGenerate() {
+	
+	it('throws if param1 not date', function () {
+		throws(function () {
+			mainModule.KOMChronicleGenerate(new Date('alfa'), kTesting.StubSpacingObjectValid());
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('throws if param2 not valid', function () {
+		throws(function () {
+			mainModule.KOMChronicleGenerate(new Date(), {});
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns object', function() {
+		const item = new Date();
+		deepEqual(mainModule.KOMChronicleGenerate(item, kTesting.StubSpacingObjectValid()), {
+			KOMChronicleDrawDate: item,
+		});
+	});
+
+	context('KOMChronicleDidDrawMultipleTimes', function () {
+		
+		it('sets undefined if KOMSpacingDrawDate undefined', function () {
+			deepEqual(mainModule.KOMChronicleGenerate(new Date(), kTesting.StubSpacingObjectValid()).KOMChronicleDidDrawMultipleTimes, undefined);
+		});
+		
+		it('sets undefined if KOMSpacingDrawDate past', function () {
+			deepEqual(mainModule.KOMChronicleGenerate(new Date(), Object.assign(kTesting.StubSpacingObjectValid(), {
+				KOMSpacingDrawDate: new Date(Date.now() - 1000 * 60 * 60 * 24 * 3),
+			})).KOMChronicleDidDrawMultipleTimes, undefined);
+		});
+		
+		it('sets undefined if KOMSpacingDrawDate today and unseen', function () {
+			deepEqual(mainModule.KOMChronicleGenerate(new Date(), Object.assign(kTesting.StubSpacingObjectValid(), {
+				KOMSpacingDrawDate: new Date(),
+			})).KOMChronicleDidDrawMultipleTimes, undefined);
+		});
+		
+		it('sets undefined if KOMSpacingDrawDate today and learning', function () {
+			deepEqual(mainModule.KOMChronicleGenerate(new Date(), Object.assign(kTesting.StubSpacingObjectValid(), {
+				KOMSpacingDrawDate: new Date(),
+			})).KOMChronicleDidDrawMultipleTimes, undefined);
+		});
+		
+		it('sets true', function () {
+			deepEqual(mainModule.KOMChronicleGenerate(new Date(), Object.assign(kTesting.StubSpacingObjectValid(), {
+				KOMSpacingDrawDate: new Date(),
+				KOMSpacingInterval: 1,
+			})).KOMChronicleDidDrawMultipleTimes, true);
+		});
+	
+	});
+
+});
+
 describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 	const uState = function (param1, param2 = []) {

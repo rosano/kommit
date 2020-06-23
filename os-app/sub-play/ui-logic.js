@@ -447,6 +447,22 @@ const mod = {
 		return true;
 	},
 
+	KOMChronicleGenerate (param1, param2) {
+		if (!(param1 instanceof Date) || Number.isNaN(param1.getTime())) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		if (KOMSpacingModel.KOMSpacingModelErrorsFor(param2)) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		return Object.assign({
+			KOMChronicleDrawDate: param1,
+		}, param2.KOMSpacingDrawDate && KOMSpacingModel.KOMSpacingModelIsReviewing(param2) && mod.KOMPlayDayGrouping(param1) === mod.KOMPlayDayGrouping(param2.KOMSpacingDrawDate) ? {
+			KOMChronicleDidDrawMultipleTimes: true,
+		} : {})
+	},
+
 	KOMPlayUndo (inputData) {
 		if (KOMSpacingModel.KOMSpacingModelErrorsFor(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
