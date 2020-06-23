@@ -91,7 +91,9 @@ const mod = {
 	},
 
 	OLSKAppToolbarDispatchLauncher () {
-		const items = mod._ValueDecksAll.map(function (e) {
+		const items = mod._ValueDecksAll.filter(function (e) {
+			return e !== mod._ValueDeckSelected;
+		}).map(function (e) {
 			return {
 				LCHRecipeName: OLSKFormatted(OLSKLocalized('KOMReviewLauncherItemSelectDeckTextFormat'), e.KOMDeckName),
 				LCHRecipeCallback () {

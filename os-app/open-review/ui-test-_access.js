@@ -306,6 +306,10 @@ describe('KOMReview_Access', function () {
 	context('KOMReviewLauncherItemSelectDeck', function test_KOMReviewLauncherItemSelectDeck() {
 		
 		before(function () {
+			return browser.pressButton('.KOMReviewDetailToolbarBackButton');
+		});
+
+		before(function () {
 			return browser.pressButton('.OLSKAppToolbarLauncherButton');
 		});
 
@@ -327,6 +331,22 @@ describe('KOMReview_Access', function () {
 
 		it('hides KOMBrowse', function () {
 			browser.assert.elements('.KOMBrowse', 0);
+		});
+
+		context('selected', function () {
+			
+			before(function () {
+				return browser.pressButton('.OLSKAppToolbarLauncherButton');
+			});
+
+			before(function () {
+				return browser.fill('.LCHLauncherFilterInput', 'alfa');
+			});
+
+			it('hides LCHLauncherResultListItem', function () {
+				browser.assert.elements('.LCHLauncherResultListItem', 0);
+			});
+		
 		});
 
 	});
