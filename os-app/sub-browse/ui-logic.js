@@ -15,10 +15,6 @@ const mod = {
 
 		return function (e) {
 			return [e.KOMCardFrontText, e.KOMCardRearText].filter(function (e) {
-				if (!e) {
-					return false;
-				}
-
 				return e.toLowerCase().match(inputData.toLowerCase());
 			}).length;
 		};

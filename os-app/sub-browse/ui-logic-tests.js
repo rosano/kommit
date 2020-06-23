@@ -51,27 +51,27 @@ describe('KOMBrowseFilterFunction', function test_KOMBrowseFilterFunction() {
 		context('KOMCardFrontText', function () {
 			
 			it('returns false if no match', function() {
-				deepEqual(mainModule.KOMBrowseFilterFunction('bravo')({
+				deepEqual(mainModule.KOMBrowseFilterFunction('bravo')(kTesting.uCard({
 					KOMCardFrontText: 'alfa',
-				}), false);
+				})), false);
 			});
 
 			it('returns true', function() {
-				deepEqual(mainModule.KOMBrowseFilterFunction('alfa')({
+				deepEqual(mainModule.KOMBrowseFilterFunction('alfa')(kTesting.uCard({
 					KOMCardFrontText: 'alfa',
-				}), true);
+				})), true);
 			});
 
 			it('matches partial', function() {
-				deepEqual(mainModule.KOMBrowseFilterFunction('alf')({
+				deepEqual(mainModule.KOMBrowseFilterFunction('alf')(kTesting.uCard({
 					KOMCardFrontText: 'alfa',
-				}), true);
+				})), true);
 			});
 
 			it('matches case insensitive', function() {
-				deepEqual(mainModule.KOMBrowseFilterFunction('ALF')({
+				deepEqual(mainModule.KOMBrowseFilterFunction('ALF')(kTesting.uCard({
 					KOMCardFrontText: 'alfa',
-				}), true);
+				})), true);
 			});
 		
 		});
@@ -79,27 +79,27 @@ describe('KOMBrowseFilterFunction', function test_KOMBrowseFilterFunction() {
 		context('KOMCardRearText', function () {
 			
 			it('returns false if no match', function() {
-				deepEqual(mainModule.KOMBrowseFilterFunction('bravo')({
+				deepEqual(mainModule.KOMBrowseFilterFunction('bravo')(kTesting.uCard({
 					KOMCardRearText: 'alfa',
-				}), false);
+				})), false);
 			});
 
 			it('returns true', function() {
-				deepEqual(mainModule.KOMBrowseFilterFunction('alfa')({
+				deepEqual(mainModule.KOMBrowseFilterFunction('alfa')(kTesting.uCard({
 					KOMCardRearText: 'alfa',
-				}), true);
+				})), true);
 			});
 
 			it('matches partial', function() {
-				deepEqual(mainModule.KOMBrowseFilterFunction('alf')({
+				deepEqual(mainModule.KOMBrowseFilterFunction('alf')(kTesting.uCard({
 					KOMCardRearText: 'alfa',
-				}), true);
+				})), true);
 			});
 
 			it('matches case insensitive', function() {
-				deepEqual(mainModule.KOMBrowseFilterFunction('ALF')({
+				deepEqual(mainModule.KOMBrowseFilterFunction('ALF')(kTesting.uCard({
 					KOMCardRearText: 'alfa',
-				}), true);
+				})), true);
 			});
 		
 		});
