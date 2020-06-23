@@ -29,6 +29,9 @@ const kTesting = {
 			KOMSpacingChronicles: [],
 		};
 	},
+	uRepeat(param1, param2) {
+		return Array.from(new Array(param1)).map(param2);
+	},
 };
 
 const offset = (function(inputData) {
@@ -62,13 +65,13 @@ describe('KOMPlayDayGrouping', function test_KOMPlayDayGrouping() {
 describe('KOMPlaySort', function test_KOMPlaySort() {
 	
 	const uItems = function (param1 = 4, param2 = Infinity, param3 = false) {
-		return Array.from(new Array(param1)).map(function (e, i) {
+		return kTesting.uRepeat(param1, function (e, i) {
 			return Object.assign(kTesting.StubSpacingObjectValid(), {
 				KOMSpacingID: (i + 1).toString() + '-forward',
 				KOMSpacingDueDate: i >= param2 ? new Date() : undefined,
 				KOMSpacingChronicles: [],
 			});
-		}).concat(param3 ? Array.from(new Array(param1)).map(function (e, i) {
+		}).concat(param3 ? kTesting.uRepeat(param1, function (e, i) {
 			return Object.assign(kTesting.StubSpacingObjectValid(), {
 				KOMSpacingID: (i + 1).toString() + '-backward',
 				KOMSpacingDueDate: i >= param2 ? new Date() : undefined,
@@ -99,7 +102,7 @@ describe('KOMPlaySort', function test_KOMPlaySort() {
 	});
 
 	it('randomizes', function() {
-		deepEqual(Array.from(new Array(10)).map(function (e) {
+		deepEqual(kTesting.uRepeat(10, function (e) {
 			return uSlug(mainModule.KOMPlaySort(uItems()));
 		}).filter(function (value, index, self) {
 			return self.indexOf(value) === index;
@@ -125,7 +128,7 @@ describe('KOMPlaySort', function test_KOMPlaySort() {
 		});
 
 		it('randomizes', function() {
-			deepEqual(Array.from(new Array(10)).map(function (e) {
+			deepEqual(kTesting.uRepeat(10, function (e) {
 				return uSlug(mainModule.KOMPlaySort(uItems(10, 4)).filter(function (e) {
 					return !e.KOMSpacingDueDate;
 				}));
@@ -163,7 +166,7 @@ describe('KOMPlaySort', function test_KOMPlaySort() {
 		});
 
 		it('spaces apart from sibling', function() {
-			deepEqual(Array.from(new Array(10)).map(function (e) {
+			deepEqual(kTesting.uRepeat(10, function (e) {
 				return mainModule.KOMPlaySort(uItems(10, Infinity, true)).filter(function (e, i, coll) {
 					return i && KOMSpacingModel.KOMSpacingModelIsBackward(e) && KOMSpacingModel.KOMSpacingModelIdentifier(e.KOMSpacingID) === KOMSpacingModel.KOMSpacingModelIdentifier(coll[i - 1].KOMSpacingID);
 				});
@@ -173,7 +176,7 @@ describe('KOMPlaySort', function test_KOMPlaySort() {
 		});
 
 		it('randomizes', function() {
-			deepEqual(Array.from(new Array(10)).map(function (e) {
+			deepEqual(kTesting.uRepeat(10, function (e) {
 				return uSlug(mainModule.KOMPlaySort(uItems(10, Infinity, true)).filter(KOMSpacingModel.KOMSpacingModelIsBackward));
 			}).filter(function (value, index, self) {
 				return self.indexOf(value) === index;
@@ -190,7 +193,7 @@ describe('KOMPlaySort', function test_KOMPlaySort() {
 	context('siblings_review', function () {
 
 		it('spaces apart from sibling', function() {
-			deepEqual(Array.from(new Array(10)).map(function (e) {
+			deepEqual(kTesting.uRepeat(10, function (e) {
 				return mainModule.KOMPlaySort(uItems(10, 0, true)).filter(function (e, i, coll) {
 					return i && KOMSpacingModel.KOMSpacingModelIsBackward(e) && KOMSpacingModel.KOMSpacingModelIdentifier(e.KOMSpacingID) === KOMSpacingModel.KOMSpacingModelIdentifier(coll[i - 1].KOMSpacingID);
 				});
@@ -200,7 +203,7 @@ describe('KOMPlaySort', function test_KOMPlaySort() {
 		});
 
 		it('randomizes', function() {
-			deepEqual(Array.from(new Array(10)).map(function (e) {
+			deepEqual(kTesting.uRepeat(10, function (e) {
 				return uSlug(mainModule.KOMPlaySort(uItems(10, 0, true)).filter(KOMSpacingModel.KOMSpacingModelIsBackward));
 			}).filter(function (value, index, self) {
 				return self.indexOf(value) === index;
@@ -810,7 +813,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 	context('KOMPlayStateShouldRandomize', function () {
 
 		const uIntervals = function (param1, param2 = 0) {
-			return Array.from(new Array(10)).map(function () {
+			return kTesting.uRepeat(10, function () {
 				const date = new Date();
 				const spacing = kTesting.StubSpacingObjectValid();
 				const state = Object.assign(uState(spacing), {
