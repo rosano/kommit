@@ -24,6 +24,28 @@ const mod = {
 		};
 	},
 
+	KOMBrowseMatchFunction (inputData) {
+		if (typeof inputData !== 'string') {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		return function (array) {
+			if (!Array.isArray(array)) {
+				throw new Error('KOMErrorInputNotValid');
+			}
+
+			const matches = array.filter(mod.KOMBrowseFilterFunction(inputData));
+
+			return matches.filter(function (e) {
+				return [e.KOMCardFrontText, e.KOMCardRearText].filter(function (e) {
+					return e.toLowerCase() === inputData.toLowerCase();
+				}).length
+			}).map(function (e) {
+				return matches.splice(matches.indexOf(e), 1).pop();
+			}).concat(matches);
+		};
+	},
+
 };
 
 Object.assign(exports, mod);
