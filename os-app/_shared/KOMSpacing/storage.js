@@ -63,6 +63,13 @@ const mod = {
 
 			async KOMStorageList (param1, param2) {
 				const result = await privateClient.getAll(KOMCardStorage.KOMCardStorageFolderPath(param1, param2), false);
+
+				for (let key in result) {
+					if (result[key] === true) { // #remotestorage-cache-true
+						delete result[key]
+					}
+				}
+
 				return {
 					KOMCardSpacingForward: result['spacing-forward'] || {
 						KOMSpacingID: `${ param1.KOMCardID }-forward`,
