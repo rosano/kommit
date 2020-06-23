@@ -219,11 +219,7 @@ const mod = {
 			return mod.ControlCardSelect(null);
 		}
 
-		mod.ValueCardSelected(mod._ValueCardsVisible.filter(function (e) {
-			return e.KOMCardFrontText.toLowerCase() === inputData.toLowerCase();
-		}).concat(mod._ValueCardsVisible.filter(function (e) {
-			return e.KOMCardFrontText.toLowerCase().includes(inputData.toLowerCase());
-		})).shift());
+		mod.ValueCardSelected(KOMBrowseLogic.KOMBrowseMatchFunction(inputData)(mod._ValueCardsVisible).shift());
 	},
 
 	// REACT
