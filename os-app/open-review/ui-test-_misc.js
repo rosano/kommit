@@ -178,6 +178,10 @@ describe('KOMReview_Misc', function () {
 	describe('KOMReviewLauncherItemSelectDeck', function test_KOMReviewLauncherItemSelectDeck() {
 		
 		before(function () {
+			return browser.pressButton('.OLSKAppToolbarLauncherButton');
+		});
+
+		before(function () {
 			return browser.fill('.LCHLauncherFilterInput', 'bravo');
 		});
 
