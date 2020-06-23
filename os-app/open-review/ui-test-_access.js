@@ -67,6 +67,18 @@ describe('KOMReview_Access', function () {
 	
 	});
 
+	describe('OLSKAppToolbarLauncherButton', function test_OLSKAppToolbarLauncherButton () {
+
+		before(function () {
+			return browser.pressButton('.OLSKAppToolbarLauncherButton');
+		});
+
+		it('shows LCHLauncher', function() {
+			browser.assert.elements('.LCHLauncher', 1);
+		});
+
+	});
+
 	context('KOMReviewLauncherItemSelectDeck', function () {
 		
 		before(function () {
