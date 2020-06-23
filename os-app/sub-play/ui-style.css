@@ -20,6 +20,8 @@
 }
 
 .KOMPlayBody {
+	--KOMPlayBodyButtonHeight: 100px;
+	
 	/* KOMPlayFlexbox:Parent */
 	flex-grow: 1;
 
@@ -30,7 +32,7 @@
 }
 
 .KOMPlayBody button {
-	height: 100px;
+	height: var(--KOMPlayBodyButtonHeight);
 }
 
 .KOMPlayHear {
