@@ -32,13 +32,13 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		const outputData = [];
+		let reviewAll = [];
 
 		const reviewForward = mod._KOMPlaySortShuffle(inputData.filter(function (e) {
 			return !KOMSpacingModel.KOMSpacingModelIsBackward(e) && e.KOMSpacingDueDate;
 		}));
 
-		outputData.push(...reviewForward);
+		reviewAll.push(...reviewForward);
 
 		let reviewBackward = mod._KOMPlaySortShuffle(inputData.filter(function (e) {
 			return KOMSpacingModel.KOMSpacingModelIsBackward(e) && e.KOMSpacingDueDate;
@@ -51,9 +51,9 @@ const mod = {
 			reviewTrialCount++;
 		}
 
-		outputData.push(...reviewBackward);
+		reviewAll.push(...reviewBackward);
 
-		const unseenForward = mod._KOMPlaySortShuffle(inputData.filter(function (e) {
+		const unseenAll = mod._KOMPlaySortShuffle(inputData.filter(function (e) {
 			return !KOMSpacingModel.KOMSpacingModelIsBackward(e) && !e.KOMSpacingDueDate;
 		}));
 
@@ -62,26 +62,26 @@ const mod = {
 		}));
 
 		let unseenTrialCount = 0;
-		while (unseenForward.length && unseenBackward.length && KOMSpacingModel.KOMSpacingModelIdentifier(unseenForward.slice(-1).pop().KOMSpacingID) === KOMSpacingModel.KOMSpacingModelIdentifier(unseenBackward[0].KOMSpacingID) && unseenTrialCount < inputData.length) {
+		while (unseenAll.length && unseenBackward.length && KOMSpacingModel.KOMSpacingModelIdentifier(unseenAll.slice(-1).pop().KOMSpacingID) === KOMSpacingModel.KOMSpacingModelIdentifier(unseenBackward[0].KOMSpacingID) && unseenTrialCount < inputData.length) {
 			unseenBackward = mod._KOMPlaySortShuffle(unseenBackward);
 
 			unseenTrialCount++;
 		}
 
-		unseenForward.push(...unseenBackward);
+		unseenAll.push(...unseenBackward);
 
-		if (!outputData.length) {
-			return unseenForward;
+		if (!reviewAll.length) {
+			return unseenAll;
 		}
 
-		const lastIndex = outputData.length - 1;
-		const slots = Math.floor(outputData.length / (unseenForward.length + 1));
+		const lastIndex = reviewAll.length - 1;
+		const width = Math.floor(reviewAll.length / (unseenAll.length + 1));
 
-		unseenForward.map(function (e, i) {
-			return outputData.splice(lastIndex - slots * (i + 1), 0, e);
-		});
+		return unseenAll.reduce(function (coll, item, index) {
+			coll.splice(lastIndex - width * (index + 1), 0, item);
 
-		return outputData;
+			return coll;
+		}, reviewAll);
 	},
 
 	//How to randomize (shuffle) a JavaScript array? - Stack Overflow https://stackoverflow.com/a/12646864
