@@ -313,11 +313,7 @@ const mod = {
 	ControlFlip () {
 		mod._ValueIsFlipped = true;
 
-		mod._ValueChronicle.KOMChronicleFlipDate = new Date();
-
-		if (mod._ValueState.KOMPlayStateCurrent.KOMSpacingFlipDate && KOMPlayLogic.KOMPlayDayGrouping(mod._ValueChronicle.KOMChronicleFlipDate) === KOMPlayLogic.KOMPlayDayGrouping(mod._ValueState.KOMPlayStateCurrent.KOMSpacingFlipDate)) {
-			mod._ValueChronicle.KOMChronicleDidFlipMultipleTimes = true;
-		}
+		Object.assign(mod._ValueChronicle, KOMPlayLogic.KOMChronicleGenerateFlip(new Date(), mod._ValueState.KOMPlayStateCurrent))
 
 		mod._ValueState.KOMPlayStateCurrent.KOMSpacingFlipDate = mod._ValueChronicle.KOMChronicleFlipDate;
 		KOMPlayDispatchUpdate(mod._ValueState.KOMPlayStateCurrent);
@@ -371,10 +367,10 @@ const mod = {
 	},
 
 	SetupChronicle () {
-		mod._ValueChronicle = KOMPlayLogic.KOMChronicleGenerate(new Date(), mod._ValueState.KOMPlayStateCurrent);
+		mod._ValueChronicle = KOMPlayLogic.KOMChronicleGenerateDraw(new Date(), mod._ValueState.KOMPlayStateCurrent);
 
 		mod._ValueState.KOMPlayStateCurrent.KOMSpacingDrawDate = mod._ValueChronicle.KOMChronicleDrawDate;
-		
+
 		KOMPlayDispatchUpdate(mod._ValueState.KOMPlayStateCurrent);
 	},
 
