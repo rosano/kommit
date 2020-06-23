@@ -1356,6 +1356,53 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 	
 	});
 
+	context('learning_after_Again', function test_learning_after_Again () {
+		
+		const spacing = kTesting.StubSpacingObjectValid();
+		const state = uState(spacing, [kTesting.StubSpacingObjectValid()]);
+		let chronicle = uChronicle({
+			KOMChronicleResponseType: mainModule.KOMPlayResponseTypeAgain(),
+		});
+		const events = [];
+
+		before(function () {
+			mainModule.KOMPlayRespond(state, chronicle);
+
+			events.push(uChronicle(chronicle));
+		});
+		
+		before(function () {
+			state.KOMPlayStateQueue.unshift(state.KOMPlayStateCurrent);
+			state.KOMPlayStateCurrent = state.KOMPlayStateWait.pop();
+
+			mainModule.KOMPlayRespond(state, chronicle = uChronicle({
+				KOMChronicleResponseDate: state.KOMPlayStateCurrent.KOMSpacingDueDate,
+				KOMChronicleResponseType: mainModule.KOMPlayResponseTypeGood(),
+			}));	
+		});
+		
+		it('updates spacing', function() {
+			deepEqual(spacing, Object.assign(kTesting.StubSpacingObjectValid(), {
+				KOMSpacingIsLearning: true,
+				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + mainModule.KOMPlayResponseIntervalLearn1()),
+				KOMSpacingChronicles: events.concat(uChronicle({
+					KOMChronicleResponseDate: chronicle.KOMChronicleResponseDate,
+					KOMChronicleResponseType: chronicle.KOMChronicleResponseType,
+					KOMChronicleDueDate: spacing.KOMSpacingDueDate,
+					KOMChronicleIsLearning: true,
+				})),
+			}));
+		});
+		
+		it('updates state', function() {
+			deepEqual(state, Object.assign(uState(), {
+				KOMPlayStateCurrent: kTesting.StubSpacingObjectValid(),
+				KOMPlayStateWait: [spacing],
+			}));
+		});
+	
+	});
+
 	context('graduate_Hard', function test_graduate_Hard () {
 		
 		const spacing = kTesting.StubSpacingObjectValid();

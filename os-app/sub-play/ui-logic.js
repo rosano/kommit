@@ -326,19 +326,24 @@ const mod = {
 
 			// LEARN
 			let interval = mod.KOMPlayResponseIntervalAgain();
+			const lastResponseWasAgain = KOMSpacingModel.KOMSpacingModelIsLearning(spacing) && spacing.KOMSpacingChronicles.slice(-1).pop().KOMChronicleResponseType === mod.KOMPlayResponseTypeAgain();
 			
 			if (chronicle.KOMChronicleResponseType !== mod.KOMPlayResponseTypeAgain() && KOMSpacingModel.KOMSpacingModelIsUnseen(spacing)) {
 				interval = mod.KOMPlayResponseIntervalLearn1();
 			}
 
-			if (chronicle.KOMChronicleResponseType !== mod.KOMPlayResponseTypeAgain() && KOMSpacingModel.KOMSpacingModelIsLearning(spacing)) {
+			if (chronicle.KOMChronicleResponseType !== mod.KOMPlayResponseTypeAgain() && lastResponseWasAgain) {
+				interval = mod.KOMPlayResponseIntervalLearn1();
+			}
+
+			if (chronicle.KOMChronicleResponseType !== mod.KOMPlayResponseTypeAgain() && KOMSpacingModel.KOMSpacingModelIsLearning(spacing) && !lastResponseWasAgain) {
 				interval = mod.KOMPlayResponseIntervalLearn2();
 			}
 
 			return Object.assign({
 				KOMSpacingIsLearning: true,
 				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + interval),
-			}, KOMSpacingModel.KOMSpacingModelIsLearning(spacing) && chronicle.KOMChronicleResponseType !== mod.KOMPlayResponseTypeAgain() ? {
+			}, KOMSpacingModel.KOMSpacingModelIsLearning(spacing) && chronicle.KOMChronicleResponseType !== mod.KOMPlayResponseTypeAgain() && !lastResponseWasAgain ? {
 				KOMSpacingIsReadyToGraduate: true,
 			} : {});
 		})());
