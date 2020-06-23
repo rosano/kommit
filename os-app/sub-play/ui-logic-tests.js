@@ -116,7 +116,7 @@ describe('KOMPlaySort', function test_KOMPlaySort() {
 				if (!e.KOMSpacingDueDate) {
 					return i;
 				}
-			}).join(''), '4');
+			}).join(''), '5');
 		});
 		
 		it('spaces multiple', function() {
@@ -146,7 +146,7 @@ describe('KOMPlaySort', function test_KOMPlaySort() {
 				if (!e.KOMSpacingDueDate) {
 					return i;
 				}
-			}).join(''), '1357');
+			}).join(''), '2468');
 		});
 
 		it('sorts forward before backward', function() {
@@ -213,6 +213,26 @@ describe('KOMPlaySort', function test_KOMPlaySort() {
 		it('terminates if impossible to space apart from sibling', function() {
 			const items = uItems(1, 0, true);
 			deepEqual(mainModule.KOMPlaySort(items), items);
+		});
+	
+	});
+
+	context('bug_mixed_forwards_not_first', function () {
+
+		it('sorts forward before backward', function() {
+			deepEqual(mainModule.KOMPlaySort(uItems(5, 2, true)).filter(function (e, i, coll) {
+				return coll.filter(function (item, index) {
+					if (KOMSpacingModel.KOMSpacingModelIdentifier(item.KOMSpacingID) !== KOMSpacingModel.KOMSpacingModelIdentifier(e.KOMSpacingID)) {
+						return false;
+					}
+
+					if (KOMSpacingModel.KOMSpacingModelLabel(item.KOMSpacingID) !== KOMSpacingModel.KOMSpacingModelLabelBackward()) {
+						return false;
+					}
+
+					return index < i;
+				}).length;
+			}), []);
 		});
 		
 	});

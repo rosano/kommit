@@ -79,9 +79,9 @@ const mod = {
 
 		return unseenAll.reduce(function (coll, item, index) {
 			coll.splice(lastIndex - width * (index + 1), 0, item);
-
+			
 			return coll;
-		}, reviewAll);
+		}, reviewAll.reverse()).reverse();
 	},
 
 	//How to randomize (shuffle) a JavaScript array? - Stack Overflow https://stackoverflow.com/a/12646864
