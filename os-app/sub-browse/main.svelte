@@ -77,9 +77,7 @@ const mod = {
 
 	_ValueCardsVisible: [],
 	ValueCardsVisible (inputData, shouldSort = true) {
-		const items = !mod._ValueFilterText ? inputData : inputData.filter(function (e) {
-			return e.KOMCardFrontText.toLowerCase().match(mod._ValueFilterText.toLowerCase());
-		});
+		const items = !mod._ValueFilterText ? inputData : inputData.filter(KOMBrowseLogic.KOMBrowseFilterFunction(mod._ValueFilterText));
 		mod._ValueCardsVisible = shouldSort ? items.sort(KOMBrowseLogic.KOMBrowseSort) : items;
 	},
 	
