@@ -769,11 +769,44 @@ describe('KOMChronicleGenerate', function test_KOMChronicleGenerate() {
 			})).KOMChronicleDidDrawMultipleTimes, undefined);
 		});
 		
-		it('sets true', function () {
+		it('sets true if KOMSpacingDrawDate today and reviewing', function () {
 			deepEqual(mainModule.KOMChronicleGenerate(new Date(), Object.assign(kTesting.StubSpacingObjectValid(), {
 				KOMSpacingDrawDate: new Date(),
 				KOMSpacingInterval: 1,
 			})).KOMChronicleDidDrawMultipleTimes, true);
+		});
+	
+	});
+
+	context('KOMChronicleDidFlipMultipleTimes', function () {
+		
+		it('sets undefined if KOMSpacingFlipDate undefined', function () {
+			deepEqual(mainModule.KOMChronicleGenerate(new Date(), kTesting.StubSpacingObjectValid()).KOMChronicleDidFlipMultipleTimes, undefined);
+		});
+		
+		it('sets undefined if KOMSpacingFlipDate past', function () {
+			deepEqual(mainModule.KOMChronicleGenerate(new Date(), Object.assign(kTesting.StubSpacingObjectValid(), {
+				KOMSpacingFlipDate: new Date(Date.now() - 1000 * 60 * 60 * 24 * 3),
+			})).KOMChronicleDidFlipMultipleTimes, undefined);
+		});
+		
+		it('sets undefined if KOMSpacingFlipDate today and unseen', function () {
+			deepEqual(mainModule.KOMChronicleGenerate(new Date(), Object.assign(kTesting.StubSpacingObjectValid(), {
+				KOMSpacingFlipDate: new Date(),
+			})).KOMChronicleDidFlipMultipleTimes, undefined);
+		});
+		
+		it('sets undefined if KOMSpacingFlipDate today and learning', function () {
+			deepEqual(mainModule.KOMChronicleGenerate(new Date(), Object.assign(kTesting.StubSpacingObjectValid(), {
+				KOMSpacingFlipDate: new Date(),
+			})).KOMChronicleDidFlipMultipleTimes, undefined);
+		});
+		
+		it('sets true if KOMSpacingFlipDate today and reviewing', function () {
+			deepEqual(mainModule.KOMChronicleGenerate(new Date(), Object.assign(kTesting.StubSpacingObjectValid(), {
+				KOMSpacingFlipDate: new Date(),
+				KOMSpacingInterval: 1,
+			})).KOMChronicleDidFlipMultipleTimes, true);
 		});
 	
 	});

@@ -460,6 +460,8 @@ const mod = {
 			KOMChronicleDrawDate: param1,
 		}, param2.KOMSpacingDrawDate && KOMSpacingModel.KOMSpacingModelIsReviewing(param2) && mod.KOMPlayDayGrouping(param1) === mod.KOMPlayDayGrouping(param2.KOMSpacingDrawDate) ? {
 			KOMChronicleDidDrawMultipleTimes: true,
+		} : {}, param2.KOMSpacingFlipDate && KOMSpacingModel.KOMSpacingModelIsReviewing(param2) && mod.KOMPlayDayGrouping(param1) === mod.KOMPlayDayGrouping(param2.KOMSpacingFlipDate) ? {
+			KOMChronicleDidFlipMultipleTimes: true,
 		} : {})
 	},
 

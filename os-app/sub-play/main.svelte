@@ -371,15 +371,10 @@ const mod = {
 	},
 
 	SetupChronicle () {
-		mod._ValueChronicle = {
-			KOMChronicleDrawDate: new Date(),
-		};
-
-		if (mod._ValueState.KOMPlayStateCurrent.KOMSpacingDrawDate && KOMPlayLogic.KOMPlayDayGrouping(mod._ValueChronicle.KOMChronicleDrawDate) === KOMPlayLogic.KOMPlayDayGrouping(mod._ValueState.KOMPlayStateCurrent.KOMSpacingDrawDate)) {
-			mod._ValueChronicle.KOMChronicleDidDrawMultipleTimes = true;
-		}
+		mod._ValueChronicle = KOMPlayLogic.KOMChronicleGenerate(new Date(), mod._ValueState.KOMPlayStateCurrent);
 
 		mod._ValueState.KOMPlayStateCurrent.KOMSpacingDrawDate = mod._ValueChronicle.KOMChronicleDrawDate;
+		
 		KOMPlayDispatchUpdate(mod._ValueState.KOMPlayStateCurrent);
 	},
 
