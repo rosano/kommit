@@ -149,7 +149,7 @@ describe('KOMPlaySort', function test_KOMPlaySort() {
 			}).join(''), '1357');
 		});
 
-		it('sorts backward after forward', function() {
+		it('sorts forward before backward', function() {
 			deepEqual(mainModule.KOMPlaySort(uItems(10, Infinity, true)).filter(function (e, i, coll) {
 				return coll.filter(function (item, index) {
 					if (KOMSpacingModel.KOMSpacingModelIdentifier(item.KOMSpacingID) !== KOMSpacingModel.KOMSpacingModelIdentifier(e.KOMSpacingID)) {
