@@ -350,18 +350,10 @@ describe('KOMPlayResponseIntervalAgain', function test_KOMPlayResponseIntervalAg
 
 });
 
-describe('KOMPlayResponseIntervalLearn1', function test_KOMPlayResponseIntervalLearn1() {
+describe('KOMPlayResponseIntervalLearn', function test_KOMPlayResponseIntervalLearn() {
 
 	it('returns number', function () {
-		deepEqual(mainModule.KOMPlayResponseIntervalLearn1(), 1000 * 60);
-	});
-
-});
-
-describe('KOMPlayResponseIntervalLearn2', function test_KOMPlayResponseIntervalLearn2() {
-
-	it('returns number', function () {
-		deepEqual(mainModule.KOMPlayResponseIntervalLearn2(), 1000 * 60 * 10);
+		deepEqual(mainModule.KOMPlayResponseIntervalLearn(), 1000 * 60 * 10);
 	});
 
 });
@@ -1079,7 +1071,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		it('updates spacing', function() {
 			deepEqual(spacing, Object.assign(kTesting.StubSpacingObjectValid(), {
 				KOMSpacingIsLearning: true,
-				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + mainModule.KOMPlayResponseIntervalLearn1()),
+				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + mainModule.KOMPlayResponseIntervalLearn()),
 				KOMSpacingChronicles: [uChronicle({
 					KOMChronicleResponseType: mainModule.KOMPlayResponseTypeHard(),
 					KOMChronicleDueDate: spacing.KOMSpacingDueDate,
@@ -1112,7 +1104,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		it('updates spacing', function() {
 			deepEqual(spacing, Object.assign(kTesting.StubSpacingObjectValid(), {
 				KOMSpacingIsLearning: true,
-				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + mainModule.KOMPlayResponseIntervalLearn1()),
+				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + mainModule.KOMPlayResponseIntervalLearn()),
 				KOMSpacingChronicles: [uChronicle({
 					KOMChronicleResponseType: mainModule.KOMPlayResponseTypeGood(),
 					KOMChronicleDueDate: spacing.KOMSpacingDueDate,
@@ -1239,7 +1231,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 			deepEqual(spacing, Object.assign(kTesting.StubSpacingObjectValid(), {
 				KOMSpacingIsLearning: true,
 				KOMSpacingIsReadyToGraduate: true,
-				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + mainModule.KOMPlayResponseIntervalLearn2()),
+				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + mainModule.KOMPlayResponseIntervalLearn()),
 				KOMSpacingChronicles: events.concat(uChronicle({
 					KOMChronicleResponseDate: chronicle.KOMChronicleResponseDate,
 					KOMChronicleResponseType: chronicle.KOMChronicleResponseType,
@@ -1288,7 +1280,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 			deepEqual(spacing, Object.assign(kTesting.StubSpacingObjectValid(), {
 				KOMSpacingIsLearning: true,
 				KOMSpacingIsReadyToGraduate: true,
-				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + mainModule.KOMPlayResponseIntervalLearn2()),
+				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + mainModule.KOMPlayResponseIntervalLearn()),
 				KOMSpacingChronicles: events.concat(uChronicle({
 					KOMChronicleResponseDate: chronicle.KOMChronicleResponseDate,
 					KOMChronicleResponseType: chronicle.KOMChronicleResponseType,
@@ -1384,7 +1376,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		it('updates spacing', function() {
 			deepEqual(spacing, Object.assign(kTesting.StubSpacingObjectValid(), {
 				KOMSpacingIsLearning: true,
-				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + mainModule.KOMPlayResponseIntervalLearn1()),
+				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + mainModule.KOMPlayResponseIntervalLearn()),
 				KOMSpacingChronicles: events.concat(uChronicle({
 					KOMChronicleResponseDate: chronicle.KOMChronicleResponseDate,
 					KOMChronicleResponseType: chronicle.KOMChronicleResponseType,

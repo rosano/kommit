@@ -1,8 +1,7 @@
 import KOMSpacingModel from '../_shared/KOMSpacing/model.js';
 
 const kIntervalAgainSeconds = 50;
-const kIntervalLearn1Minutes = 1;
-const kIntervalLearn2Minutes = 10;
+const kIntervalLearnMinutes = 10;
 const kIntervalDefaultDays = 1;
 const kIntervalEasyDays = 4;
 const kIntervalOverdueDivisorHard = 4;
@@ -149,12 +148,8 @@ const mod = {
 		return 1000 * kIntervalAgainSeconds;
 	},
 
-	KOMPlayResponseIntervalLearn1 () {
-		return 1000 * 60 * kIntervalLearn1Minutes;
-	},
-
-	KOMPlayResponseIntervalLearn2 () {
-		return 1000 * 60 * kIntervalLearn2Minutes;
+	KOMPlayResponseIntervalLearn () {
+		return 1000 * 60 * kIntervalLearnMinutes;
 	},
 
 	KOMPlayResponseIntervalGraduateDefault () {
@@ -329,15 +324,15 @@ const mod = {
 			const lastResponseWasAgain = KOMSpacingModel.KOMSpacingModelIsLearning(spacing) && spacing.KOMSpacingChronicles.slice(-1).pop().KOMChronicleResponseType === mod.KOMPlayResponseTypeAgain();
 			
 			if (chronicle.KOMChronicleResponseType !== mod.KOMPlayResponseTypeAgain() && KOMSpacingModel.KOMSpacingModelIsUnseen(spacing)) {
-				interval = mod.KOMPlayResponseIntervalLearn1();
+				interval = mod.KOMPlayResponseIntervalLearn();
 			}
 
 			if (chronicle.KOMChronicleResponseType !== mod.KOMPlayResponseTypeAgain() && lastResponseWasAgain) {
-				interval = mod.KOMPlayResponseIntervalLearn1();
+				interval = mod.KOMPlayResponseIntervalLearn();
 			}
 
 			if (chronicle.KOMChronicleResponseType !== mod.KOMPlayResponseTypeAgain() && KOMSpacingModel.KOMSpacingModelIsLearning(spacing) && !lastResponseWasAgain) {
-				interval = mod.KOMPlayResponseIntervalLearn2();
+				interval = mod.KOMPlayResponseIntervalLearn();
 			}
 
 			return Object.assign({
