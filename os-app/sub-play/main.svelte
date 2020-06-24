@@ -24,6 +24,7 @@ const mod = {
 		KOMPlayStateCurrent: KOMPlaySpacings[0],
 		KOMPlayStateQueue: KOMPlaySpacings.slice(1),
 		KOMPlayStateWait: [],
+		KOMPlayStateShouldRandomize: true,
 	},
 
 	_ValueHistory: [],
