@@ -1202,152 +1202,6 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 	
 	});
 
-	context('learning_and_Hard', function test_learning_and_Hard () {
-		
-		const spacing = kTesting.StubSpacingObjectValid();
-		const state = uState(spacing, [kTesting.StubSpacingObjectValid()]);
-		let chronicle = uChronicle({
-			KOMChronicleResponseType: mainModule.KOMPlayResponseTypeHard(),
-		});
-		const events = [];
-
-		before(function () {
-			mainModule.KOMPlayRespond(state, chronicle);
-
-			events.push(uChronicle(chronicle));
-		});
-		
-		before(function () {
-			state.KOMPlayStateQueue.unshift(state.KOMPlayStateCurrent);
-			state.KOMPlayStateCurrent = state.KOMPlayStateWait.pop();
-
-			mainModule.KOMPlayRespond(state, chronicle = uChronicle({
-				KOMChronicleResponseDate: state.KOMPlayStateCurrent.KOMSpacingDueDate,
-				KOMChronicleResponseType: mainModule.KOMPlayResponseTypeHard(),
-			}));	
-		});
-		
-		it('updates spacing', function() {
-			deepEqual(spacing, Object.assign(kTesting.StubSpacingObjectValid(), {
-				KOMSpacingIsLearning: true,
-				KOMSpacingIsReadyToGraduate: true,
-				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + mainModule.KOMPlayResponseIntervalLearn()),
-				KOMSpacingChronicles: events.concat(uChronicle({
-					KOMChronicleResponseDate: chronicle.KOMChronicleResponseDate,
-					KOMChronicleResponseType: chronicle.KOMChronicleResponseType,
-					KOMChronicleDueDate: spacing.KOMSpacingDueDate,
-					KOMChronicleIsLearning: true,
-					KOMChronicleIsReadyToGraduate: true,
-				})),
-			}));
-		});
-		
-		it('updates state', function() {
-			deepEqual(state, Object.assign(uState(), {
-				KOMPlayStateCurrent: kTesting.StubSpacingObjectValid(),
-				KOMPlayStateWait: [spacing],
-			}));
-		});
-	
-	});
-
-	context('learning_and_Good', function test_learning_and_Good () {
-		
-		const spacing = kTesting.StubSpacingObjectValid();
-		const state = uState(spacing, [kTesting.StubSpacingObjectValid()]);
-		let chronicle = uChronicle({
-			KOMChronicleResponseType: mainModule.KOMPlayResponseTypeGood(),
-		});
-		const events = [];
-
-		before(function () {
-			mainModule.KOMPlayRespond(state, chronicle);
-
-			events.push(uChronicle(chronicle));
-		});
-		
-		before(function () {
-			state.KOMPlayStateQueue.unshift(state.KOMPlayStateCurrent);
-			state.KOMPlayStateCurrent = state.KOMPlayStateWait.pop();
-
-			mainModule.KOMPlayRespond(state, chronicle = uChronicle({
-				KOMChronicleResponseDate: state.KOMPlayStateCurrent.KOMSpacingDueDate,
-				KOMChronicleResponseType: mainModule.KOMPlayResponseTypeGood(),
-			}));	
-		});
-		
-		it('updates spacing', function() {
-			deepEqual(spacing, Object.assign(kTesting.StubSpacingObjectValid(), {
-				KOMSpacingIsLearning: true,
-				KOMSpacingIsReadyToGraduate: true,
-				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + mainModule.KOMPlayResponseIntervalLearn()),
-				KOMSpacingChronicles: events.concat(uChronicle({
-					KOMChronicleResponseDate: chronicle.KOMChronicleResponseDate,
-					KOMChronicleResponseType: chronicle.KOMChronicleResponseType,
-					KOMChronicleDueDate: spacing.KOMSpacingDueDate,
-					KOMChronicleIsLearning: true,
-					KOMChronicleIsReadyToGraduate: true,
-				})),
-			}));
-		});
-		
-		it('updates state', function() {
-			deepEqual(state, Object.assign(uState(), {
-				KOMPlayStateCurrent: kTesting.StubSpacingObjectValid(),
-				KOMPlayStateWait: [spacing],
-			}));
-		});
-	
-	});
-
-	context('learning_and_Easy', function test_learning_and_Easy () {
-		
-		const spacing = kTesting.StubSpacingObjectValid();
-		const state = uState(spacing, [kTesting.StubSpacingObjectValid()]);
-		let chronicle = uChronicle({
-			KOMChronicleResponseType: mainModule.KOMPlayResponseTypeGood(),
-		});
-		const events = [];
-
-		before(function () {
-			mainModule.KOMPlayRespond(state, chronicle);
-
-			events.push(uChronicle(chronicle));
-		});
-		
-		before(function () {
-			state.KOMPlayStateQueue.unshift(state.KOMPlayStateCurrent);
-			state.KOMPlayStateCurrent = state.KOMPlayStateWait.pop();
-
-			mainModule.KOMPlayRespond(state, chronicle = uChronicle({
-				KOMChronicleResponseDate: state.KOMPlayStateCurrent.KOMSpacingDueDate,
-				KOMChronicleResponseType: mainModule.KOMPlayResponseTypeEasy(),
-			}));	
-		});
-		
-		it('updates spacing', function() {
-			deepEqual(spacing, Object.assign(kTesting.StubSpacingObjectValid(), {
-				KOMSpacingInterval: mainModule.KOMPlayResponseIntervalGraduateEasy(),
-				KOMSpacingMultiplier: mainModule.KOMPlayResponseMultiplierDefault(),
-				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + 1000 * 60 * 60 * 24 * mainModule.KOMPlayResponseIntervalGraduateEasy()),
-				KOMSpacingChronicles: events.concat(uChronicle({
-					KOMChronicleResponseDate: chronicle.KOMChronicleResponseDate,
-					KOMChronicleResponseType: chronicle.KOMChronicleResponseType,
-					KOMChronicleDueDate: spacing.KOMSpacingDueDate,
-					KOMChronicleInterval: spacing.KOMSpacingInterval,
-					KOMChronicleMultiplier: spacing.KOMSpacingMultiplier,
-				})),
-			}));
-		});
-		
-		it('updates state', function() {
-			deepEqual(state, Object.assign(uState(), {
-				KOMPlayStateCurrent: kTesting.StubSpacingObjectValid(),
-			}));
-		});
-	
-	});
-
 	context('learning_after_Again', function test_learning_after_Again () {
 		
 		const spacing = kTesting.StubSpacingObjectValid();
@@ -1415,18 +1269,6 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 			state.KOMPlayStateCurrent = state.KOMPlayStateWait.pop();
 
 			mainModule.KOMPlayRespond(state, chronicle = uChronicle({
-				KOMChronicleResponseDate: state.KOMPlayStateCurrent.KOMSpacingDueDate,
-				KOMChronicleResponseType: mainModule.KOMPlayResponseTypeHard(),
-			}));
-
-			events.push(uChronicle(chronicle));
-		});
-		
-		before(function () {
-			state.KOMPlayStateQueue.unshift(state.KOMPlayStateCurrent);
-			state.KOMPlayStateCurrent = state.KOMPlayStateWait.pop();
-
-			mainModule.KOMPlayRespond(state, chronicle = uChronicle({
 				KOMChronicleResponseType: mainModule.KOMPlayResponseTypeHard(),
 				KOMChronicleResponseDate: state.KOMPlayStateCurrent.KOMSpacingDueDate,
 			}));	
@@ -1477,18 +1319,6 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 			mainModule.KOMPlayRespond(state, chronicle = uChronicle({
 				KOMChronicleResponseDate: state.KOMPlayStateCurrent.KOMSpacingDueDate,
 				KOMChronicleResponseType: mainModule.KOMPlayResponseTypeGood(),
-			}));
-
-			events.push(uChronicle(chronicle));
-		});
-		
-		before(function () {
-			state.KOMPlayStateQueue.unshift(state.KOMPlayStateCurrent);
-			state.KOMPlayStateCurrent = state.KOMPlayStateWait.pop();
-
-			mainModule.KOMPlayRespond(state, chronicle = uChronicle({
-				KOMChronicleResponseDate: state.KOMPlayStateCurrent.KOMSpacingDueDate,
-				KOMChronicleResponseType: mainModule.KOMPlayResponseTypeGood(),
 			}));	
 		});
 		
@@ -1526,18 +1356,6 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 		before(function () {
 			mainModule.KOMPlayRespond(state, chronicle);
-
-			events.push(uChronicle(chronicle));
-		});
-		
-		before(function () {
-			state.KOMPlayStateQueue.unshift(state.KOMPlayStateCurrent);
-			state.KOMPlayStateCurrent = state.KOMPlayStateWait.pop();
-
-			mainModule.KOMPlayRespond(state, chronicle = uChronicle({
-				KOMChronicleResponseDate: state.KOMPlayStateCurrent.KOMSpacingDueDate,
-				KOMChronicleResponseType: mainModule.KOMPlayResponseTypeGood(),
-			}));
 
 			events.push(uChronicle(chronicle));
 		});
@@ -1977,7 +1795,6 @@ describe('KOMPlayUndo', function test_KOMPlayUndo() {
 		it('removes existing properties', function () {
 			deepEqual(mainModule.KOMPlayUndo(Object.assign(kTesting.StubSpacingObjectValid(), {
 				KOMSpacingIsLearning: true,
-				KOMSpacingIsReadyToGraduate: true,
 				KOMSpacingChronicles: [kTesting.StubChronicleObjectValid()],
 			})), kTesting.StubSpacingObjectValid());
 		});
@@ -2007,7 +1824,6 @@ describe('KOMPlayUndo', function test_KOMPlayUndo() {
 			});
 			deepEqual(mainModule.KOMPlayUndo(Object.assign(kTesting.StubSpacingObjectValid(), {
 				KOMSpacingIsLearning: true,
-				KOMSpacingIsReadyToGraduate: true,
 				KOMSpacingChronicles: [item, kTesting.StubChronicleObjectValid()],
 			})), Object.assign(kTesting.StubSpacingObjectValid(), {
 				KOMSpacingChronicles: [item],

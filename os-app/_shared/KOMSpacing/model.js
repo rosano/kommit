@@ -97,14 +97,6 @@ const mod = {
 			}
 		}
 
-		if (inputData.KOMSpacingIsReadyToGraduate !== undefined || options.KOMOptionValidateIfNotPresent) {
-			if (typeof inputData.KOMSpacingIsReadyToGraduate !== 'boolean') {
-				errors.KOMSpacingIsReadyToGraduate = [
-					'KOMErrorNotBoolean',
-				];
-			}
-		}
-
 		if (inputData.KOMSpacingInterval !== undefined || options.KOMOptionValidateIfNotPresent) {
 			if (typeof inputData.KOMSpacingInterval !== 'number') {
 				errors.KOMSpacingInterval = [

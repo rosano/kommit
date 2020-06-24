@@ -212,26 +212,6 @@ describe('KOMSpacingModelErrorsFor', function test_KOMSpacingModelErrorsFor() {
 
 	});
 
-	context('KOMSpacingIsReadyToGraduate', function() {
-
-		it('returns object if not boolean', function() {
-			deepEqual(mainModule.KOMSpacingModelErrorsFor(Object.assign(kTesting.StubSpacingObjectValid(), {
-				KOMSpacingIsReadyToGraduate: null,
-			})), {
-				KOMSpacingIsReadyToGraduate: [
-					'KOMErrorNotBoolean',
-				],
-			});
-		});
-
-		it('returns null', function() {
-			deepEqual(mainModule.KOMSpacingModelErrorsFor(Object.assign(kTesting.StubSpacingObjectValid(), {
-				KOMSpacingIsReadyToGraduate: true,
-			})), null);
-		});
-
-	});
-
 	context('KOMSpacingInterval', function() {
 
 		it('returns object if not number', function() {
@@ -324,7 +304,6 @@ describe('KOMSpacingModelErrorsFor', function test_KOMSpacingModelErrorsFor() {
 				'KOMSpacingFlipDate',
 				'KOMSpacingDueDate',
 				'KOMSpacingIsLearning',
-				'KOMSpacingIsReadyToGraduate',
 				'KOMSpacingInterval',
 				'KOMSpacingMultiplier',
 			]);

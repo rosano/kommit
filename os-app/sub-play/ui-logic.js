@@ -265,15 +265,11 @@ const mod = {
 		const spacing = state.KOMPlayStateCurrent;
 
 		Object.assign(spacing, (function update_spacing() {
-			// FAIL
-			if (chronicle.KOMChronicleResponseType === mod.KOMPlayResponseTypeAgain()) {
-				delete spacing.KOMSpacingIsReadyToGraduate;
-			}
-			
+			const lastResponseWasAgain = KOMSpacingModel.KOMSpacingModelIsLearning(spacing) && spacing.KOMSpacingChronicles.slice(-1).pop().KOMChronicleResponseType === mod.KOMPlayResponseTypeAgain();
+
 			// GRADUATE
-			if (!KOMSpacingModel.KOMSpacingModelIsReviewing(spacing) && (chronicle.KOMChronicleResponseType === mod.KOMPlayResponseTypeEasy() || spacing.KOMSpacingIsReadyToGraduate)) {
+			if (!KOMSpacingModel.KOMSpacingModelIsReviewing(spacing) && (chronicle.KOMChronicleResponseType === mod.KOMPlayResponseTypeEasy() || (KOMSpacingModel.KOMSpacingModelIsLearning(spacing) && chronicle.KOMChronicleResponseType !== mod.KOMPlayResponseTypeAgain() && !lastResponseWasAgain))) {
 				delete spacing.KOMSpacingIsLearning;
-				delete spacing.KOMSpacingIsReadyToGraduate;
 
 				const interval = chronicle.KOMChronicleResponseType === mod.KOMPlayResponseTypeEasy() ? mod.KOMPlayResponseIntervalGraduateEasy() : mod.KOMPlayResponseIntervalGraduateDefault();
 				return {
@@ -320,35 +316,16 @@ const mod = {
 			}
 
 			// LEARN
-			let interval = mod.KOMPlayResponseIntervalAgain();
-			const lastResponseWasAgain = KOMSpacingModel.KOMSpacingModelIsLearning(spacing) && spacing.KOMSpacingChronicles.slice(-1).pop().KOMChronicleResponseType === mod.KOMPlayResponseTypeAgain();
-			
-			if (chronicle.KOMChronicleResponseType !== mod.KOMPlayResponseTypeAgain() && KOMSpacingModel.KOMSpacingModelIsUnseen(spacing)) {
-				interval = mod.KOMPlayResponseIntervalLearn();
-			}
-
-			if (chronicle.KOMChronicleResponseType !== mod.KOMPlayResponseTypeAgain() && lastResponseWasAgain) {
-				interval = mod.KOMPlayResponseIntervalLearn();
-			}
-
-			if (chronicle.KOMChronicleResponseType !== mod.KOMPlayResponseTypeAgain() && KOMSpacingModel.KOMSpacingModelIsLearning(spacing) && !lastResponseWasAgain) {
-				interval = mod.KOMPlayResponseIntervalLearn();
-			}
-
-			return Object.assign({
+			return {
 				KOMSpacingIsLearning: true,
-				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + interval),
-			}, KOMSpacingModel.KOMSpacingModelIsLearning(spacing) && chronicle.KOMChronicleResponseType !== mod.KOMPlayResponseTypeAgain() && !lastResponseWasAgain ? {
-				KOMSpacingIsReadyToGraduate: true,
-			} : {});
+				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + (chronicle.KOMChronicleResponseType === mod.KOMPlayResponseTypeAgain() ? mod.KOMPlayResponseIntervalAgain() : mod.KOMPlayResponseIntervalLearn())),
+			};
 		})());
 
 		spacing.KOMSpacingChronicles.push(Object.assign(chronicle, {
 			KOMChronicleDueDate: spacing.KOMSpacingDueDate,
 		}, spacing.KOMSpacingIsLearning ? {
 			KOMChronicleIsLearning: true,
-		} : {}, spacing.KOMSpacingIsReadyToGraduate ? {
-			KOMChronicleIsReadyToGraduate: true,
 		} : {}, spacing.KOMSpacingIsLearning ? {} : {
 			KOMChronicleInterval: spacing.KOMSpacingInterval,
 			KOMChronicleMultiplier: spacing.KOMSpacingMultiplier,
