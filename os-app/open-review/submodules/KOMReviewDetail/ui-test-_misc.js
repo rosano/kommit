@@ -233,14 +233,14 @@ describe('KOMReviewDetail_Misc', function () {
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMReviewDetailDeck: JSON.stringify(kTesting.uDeck({
-					KOMDeckFrontLanguageCode: 'DEFAULT_LANGUAGE',
+					KOMDeckFrontLanguageCode: '',
 					$KOMDeckSpacings: kTesting.uSpacings(true),
 				})),
 			});
 		});
 
 		it('binds KOMDeckFrontLanguageCode', function () {
-			browser.assert.input(`${ KOMReviewDetailFormFrontLanguageCode } .KOMReviewDetailLanguageCodeField`, 'DEFAULT_LANGUAGE');
+			browser.assert.input(`${ KOMReviewDetailFormFrontLanguageCode } .KOMReviewDetailLanguageCodeField`, '');
 		});
 	
 	});
@@ -249,7 +249,7 @@ describe('KOMReviewDetail_Misc', function () {
 
 		const uItem = function () {
 			return kTesting.uDeck({
-				KOMDeckFrontLanguageCode: 'DEFAULT_LANGUAGE',
+				KOMDeckFrontLanguageCode: '',
 				$KOMDeckSpacings: kTesting.uSpacings(true),
 			})
 		};
@@ -268,28 +268,6 @@ describe('KOMReviewDetail_Misc', function () {
 			browser.assert.OLSKIsChecked(KOMReviewDetailFormRearSpeechIsEnabledField, false);
 		});
 
-		it('sets disabled', function () {
-			browser.assert.attribute(KOMReviewDetailFormFrontSpeechIsEnabledField, 'disabled', null);
-			// browser.assert.attribute(KOMReviewDetailFormFrontSpeechIsEnabledField, 'disabled', '');
-		});
-
-		context('select language', function () {
-
-			before(function () {
-				browser.assert.text('#TestKOMReviewDetailDispatchUpdate', '0');
-				browser.assert.text('#TestKOMReviewDetailDispatchUpdateData', 'undefined');
-			});
-			
-			before(function () {
-				// return browser.select(`${ KOMReviewDetailFormFrontLanguageCode } .KOMReviewDetailLanguageCodeField`, 'DEFAULT_LANGUAGE');
-			});
-
-			it.skip('sets disabled', function () {
-				browser.assert.attribute(KOMReviewDetailFormFrontSpeechIsEnabledField, 'disabled', null);
-			});
-
-		});
-		
 		context('check', function () {
 			
 			before(function () {
@@ -310,33 +288,13 @@ describe('KOMReviewDetail_Misc', function () {
 		
 		});
 
-		context('select language unspecified', function () {
-
-			before(function () {
-				return browser.select(`${ KOMReviewDetailFormFrontLanguageCode } .KOMReviewDetailLanguageCodeField`, '');
-			});
-
-			it('sets disabled', function () {
-				browser.assert.attribute(KOMReviewDetailFormFrontSpeechIsEnabledField, 'disabled', '');
-			});
-
-			it('sends KOMReviewDetailDispatchUpdate', function () {
-				const item = uItem();
-				delete item.KOMDeckFrontLanguageCode;
-
-				browser.assert.text('#TestKOMReviewDetailDispatchUpdate', '2');
-				browser.assert.text('#TestKOMReviewDetailDispatchUpdateData', JSON.stringify(item));
-			});
-
-		});
-	
 	});
 
 	describe('KOMReviewDetailFormRearSpeechIsEnabledField', function test_KOMReviewDetailFormRearSpeechIsEnabledField () {
 
 		const uItem = function () {
 			return kTesting.uDeck({
-				KOMDeckRearLanguageCode: 'DEFAULT_LANGUAGE',
+				KOMDeckRearLanguageCode: '',
 				$KOMDeckSpacings: kTesting.uSpacings(true),
 			})
 		};
@@ -355,28 +313,6 @@ describe('KOMReviewDetail_Misc', function () {
 			browser.assert.OLSKIsChecked(KOMReviewDetailFormRearSpeechIsEnabledField, false);
 		});
 
-		it('sets disabled', function () {
-			browser.assert.attribute(KOMReviewDetailFormRearSpeechIsEnabledField, 'disabled', null);
-			// browser.assert.attribute(KOMReviewDetailFormRearSpeechIsEnabledField, 'disabled', '');
-		});
-
-		context('select language', function () {
-
-			before(function () {
-				browser.assert.text('#TestKOMReviewDetailDispatchUpdate', '0');
-				browser.assert.text('#TestKOMReviewDetailDispatchUpdateData', 'undefined');
-			});
-			
-			before(function () {
-				// return browser.select(`${ KOMReviewDetailFormRearLanguageCode } .KOMReviewDetailLanguageCodeField`, 'DEFAULT_LANGUAGE');
-			});
-
-			it.skip('sets disabled', function () {
-				browser.assert.attribute(KOMReviewDetailFormRearSpeechIsEnabledField, 'disabled', null);
-			});
-
-		});
-		
 		context('check', function () {
 			
 			before(function () {
@@ -397,26 +333,6 @@ describe('KOMReviewDetail_Misc', function () {
 		
 		});
 
-		context('select language unspecified', function () {
-
-			before(function () {
-				return browser.select(`${ KOMReviewDetailFormRearLanguageCode } .KOMReviewDetailLanguageCodeField`, '');
-			});
-
-			it('sets disabled', function () {
-				browser.assert.attribute(KOMReviewDetailFormRearSpeechIsEnabledField, 'disabled', '');
-			});
-
-			it('sends KOMReviewDetailDispatchUpdate', function () {
-				const item = uItem();
-				delete item.KOMDeckRearLanguageCode;
-
-				browser.assert.text('#TestKOMReviewDetailDispatchUpdate', '2');
-				browser.assert.text('#TestKOMReviewDetailDispatchUpdateData', JSON.stringify(item));
-			});
-
-		});
-	
 	});
 
 	describe('KOMReviewDetailFormIsForwardOnlyField', function test_KOMReviewDetailFormIsForwardOnlyField () {

@@ -35,8 +35,7 @@ const mod = {
 <label class="KOMReviewDetailLanguageCode">
 	<span class="KOMReviewDetailLanguageCodeFieldLabel">{ OLSKLocalized('KOMReviewDetailLanguageCodeFieldLabelText') }</span>
 	<select class="KOMReviewDetailLanguageCodeField" bind:value={ mod._ValueLanguageCode } tabindex={ KOMReviewDetailLanguageCodeItem[KOMReviewDetailLanguageCodeItemProperty] ? -1 : null } on:change={ mod.InterfaceFieldDidChange }>
-		<option class="KOMReviewDetailLanguageCodeFieldOptionPlaceholder" value="">{ OLSKLocalized('KOMReviewDetailLanguageCodeFieldOptionPlaceholderText') }</option>
-		<option class="KOMReviewDetailLanguageCodeFieldOptionDefault" value="DEFAULT_LANGUAGE">{ OLSKLocalized('KOMReviewDetailLanguageCodeFieldOptionDefaultText') }</option>
+		<option class="KOMReviewDetailLanguageCodeFieldOptionDefault" value="">{ OLSKLocalized('KOMReviewDetailLanguageCodeFieldOptionDefaultText') }</option>
 		{#each KOMReviewDetailLanguageCodeOptions as item}
 			<option value={ item }>{ item }</option>
 		{/each}

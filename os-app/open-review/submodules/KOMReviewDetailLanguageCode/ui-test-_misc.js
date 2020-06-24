@@ -12,18 +12,10 @@ describe('KOMReviewDetailLanguageCode_Misc', function () {
 		});
 	});
 
-	describe('KOMReviewDetailLanguageCodeFieldOptionPlaceholder', function test_KOMReviewDetailLanguageCodeFieldOptionPlaceholder () {
+describe('KOMReviewDetailLanguageCodeFieldOptionDefault', function test_KOMReviewDetailLanguageCodeFieldOptionDefault () {
 		
 		it('sets value', function () {
-			browser.assert.attribute(KOMReviewDetailLanguageCodeFieldOptionPlaceholder, 'value', '');
-		});
-
-	});
-
-	describe('KOMReviewDetailLanguageCodeFieldOptionDefault', function test_KOMReviewDetailLanguageCodeFieldOptionDefault () {
-		
-		it('sets value', function () {
-			browser.assert.attribute(KOMReviewDetailLanguageCodeFieldOptionDefault, 'value', 'DEFAULT_LANGUAGE');
+			browser.assert.attribute(KOMReviewDetailLanguageCodeFieldOptionDefault, 'value', '');
 		});
 
 	});
@@ -63,28 +55,13 @@ describe('KOMReviewDetailLanguageCode_Misc', function () {
 		
 		});
 
-		context('select KOMReviewDetailLanguageCodeFieldOptionPlaceholder', function () {
-			
-			before(function () {
-				return browser.select(KOMReviewDetailLanguageCodeField, '');
-			});
-
-			it('sends KOMReviewDetailDispatchUpdate', function () {
-				browser.assert.text('#TestKOMReviewDetailLanguageCodeDispatchUpdate', '2');
-				browser.assert.text('#TestKOMReviewDetailLanguageCodeDispatchUpdateData', JSON.stringify({
-					KOMDeckName: 'alfa',
-				}));
-			});
-		
-		});
-
 		context('KOMReviewDetailLanguageCodeItemProperty', function () {
 			
 			before(function() {
 				return browser.OLSKVisit(kDefaultRoute, {
 					KOMReviewDetailLanguageCodeItem: JSON.stringify({
 						KOMDeckName: 'alfa',
-						KOMDeckFrontLanguageCode: 'DEFAULT_LANGUAGE',
+						KOMDeckFrontLanguageCode: '',
 					}),
 					KOMReviewDetailLanguageCodeItemProperty: 'KOMDeckFrontLanguageCode',
 					KOMReviewDetailLanguageCodeOptions: JSON.stringify([]),
@@ -92,10 +69,10 @@ describe('KOMReviewDetailLanguageCode_Misc', function () {
 			});
 
 			it('sets value', function () {
-				browser.assert.input(KOMReviewDetailLanguageCodeField, 'DEFAULT_LANGUAGE');
+				browser.assert.input(KOMReviewDetailLanguageCodeField, '');
 			});
 
-			it('sets tabindex', function () {
+			it.skip('sets tabindex', function () {
 				browser.assert.attribute(KOMReviewDetailLanguageCodeField, 'tabindex', '-1');
 			});
 		
