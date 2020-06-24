@@ -12,10 +12,10 @@ describe('KOMReviewDetailLanguageCode_Misc', function () {
 		});
 	});
 
-describe('KOMReviewDetailLanguageCodeFieldOptionDefault', function test_KOMReviewDetailLanguageCodeFieldOptionDefault () {
+describe('KOMReviewDetailLanguageCodeFieldOptionUnspecified', function test_KOMReviewDetailLanguageCodeFieldOptionUnspecified () {
 		
 		it('sets value', function () {
-			browser.assert.attribute(KOMReviewDetailLanguageCodeFieldOptionDefault, 'value', '');
+			browser.assert.attribute(KOMReviewDetailLanguageCodeFieldOptionUnspecified, 'value', '');
 		});
 
 	});

@@ -23,8 +23,8 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			browser.assert.text(KOMReviewDetailLanguageCodeFieldLabel, uLocalized('KOMReviewDetailLanguageCodeFieldLabelText'));
 		});
 
-		it('localizes KOMReviewDetailLanguageCodeFieldOptionDefault', function () {
-			browser.assert.text(KOMReviewDetailLanguageCodeFieldOptionDefault, uLocalized('KOMReviewDetailLanguageCodeFieldOptionDefaultText'));
+		it('localizes KOMReviewDetailLanguageCodeFieldOptionUnspecified', function () {
+			browser.assert.text(KOMReviewDetailLanguageCodeFieldOptionUnspecified, uLocalized('KOMReviewDetailLanguageCodeFieldOptionUnspecifiedText'));
 		});
 
 	});

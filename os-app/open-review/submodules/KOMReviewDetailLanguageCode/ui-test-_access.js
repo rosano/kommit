@@ -6,7 +6,7 @@ Object.entries({
 	KOMReviewDetailLanguageCodeFieldLabel: '.KOMReviewDetailLanguageCodeFieldLabel',
 	KOMReviewDetailLanguageCodeField: '.KOMReviewDetailLanguageCodeField',
 	
-	KOMReviewDetailLanguageCodeFieldOptionDefault: '.KOMReviewDetailLanguageCodeFieldOptionDefault',
+	KOMReviewDetailLanguageCodeFieldOptionUnspecified: '.KOMReviewDetailLanguageCodeFieldOptionUnspecified',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
@@ -35,8 +35,8 @@ describe('KOMReviewDetailLanguageCode_Access', function () {
 		browser.assert.elements(KOMReviewDetailLanguageCodeField, 1);
 	});
 
-	it('shows KOMReviewDetailLanguageCodeFieldOptionDefault', function () {
-		browser.assert.elements(KOMReviewDetailLanguageCodeFieldOptionDefault, 1);
+	it('shows KOMReviewDetailLanguageCodeFieldOptionUnspecified', function () {
+		browser.assert.elements(KOMReviewDetailLanguageCodeFieldOptionUnspecified, 1);
 	});
 
 });
