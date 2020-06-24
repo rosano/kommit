@@ -422,11 +422,11 @@ import OLSKViewportContent from 'OLSKViewportContent';
 	{#if mod.DataQuestionShouldSound() || (mod._ValueIsFlipped && mod.DataAnswerShouldSound()) }
 		<div class="KOMPlayHear">
 			{#if mod.DataQuestionShouldSound()}
-				<button class="KOMPlayHearQuestionButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceHearQuestionButtonDidClick } tabindex="-1">{ OLSKLocalized('KOMPlayHearQuestionButtonText') }</button>
+				<button class="KOMPlayHearQuestionButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceHearQuestionButtonDidClick }>{ OLSKLocalized('KOMPlayHearQuestionButtonText') }</button>
 			{/if}
 
 			{#if mod._ValueIsFlipped && mod.DataAnswerShouldSound() }
-				<button class="KOMPlayHearAnswerButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceHearAnswerButtonDidClick } tabindex="-1">{ OLSKLocalized('KOMPlayHearAnswerButtonText') }</button>
+				<button class="KOMPlayHearAnswerButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceHearAnswerButtonDidClick }>{ OLSKLocalized('KOMPlayHearAnswerButtonText') }</button>
 			{/if}
 		</div>
 	{/if}
