@@ -147,16 +147,6 @@ describe('KOMDeckModelErrorsFor', function test_KOMDeckModelErrorsFor() {
 			});
 		});
 
-		it.skip('returns object if not filled', function() {
-			deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
-				KOMDeckFrontLanguageCode: ' ',
-			})), {
-				KOMDeckFrontLanguageCode: [
-					'KOMErrorNotFilled',
-				],
-			});
-		});
-
 		it('returns null', function() {
 			deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
 				KOMDeckFrontLanguageCode: 'en',
@@ -173,16 +163,6 @@ describe('KOMDeckModelErrorsFor', function test_KOMDeckModelErrorsFor() {
 			})), {
 				KOMDeckRearLanguageCode: [
 					'KOMErrorNotString',
-				],
-			});
-		});
-
-		it('returns object if not filled', function() {
-			deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
-				KOMDeckRearLanguageCode: ' ',
-			})), {
-				KOMDeckRearLanguageCode: [
-					'KOMErrorNotFilled',
 				],
 			});
 		});
