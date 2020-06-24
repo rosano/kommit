@@ -345,7 +345,7 @@ describe('KOMPlayResponseTypes', function test_KOMPlayResponseTypes() {
 describe('KOMPlayResponseIntervalAgain', function test_KOMPlayResponseIntervalAgain() {
 
 	it('returns number', function () {
-		deepEqual(mainModule.KOMPlayResponseIntervalAgain(), 1000 * 50);
+		deepEqual(mainModule.KOMPlayResponseIntervalAgain(), 1000 * 60);
 	});
 
 });

@@ -1,6 +1,6 @@
 import KOMSpacingModel from '../_shared/KOMSpacing/model.js';
 
-const kIntervalAgainSeconds = 50;
+const kIntervalAgainSeconds = 60;
 const kIntervalLearnMinutes = 10;
 const kIntervalDefaultDays = 1;
 const kIntervalEasyDays = 4;
