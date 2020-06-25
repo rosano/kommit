@@ -39,7 +39,7 @@ describe('KOMBrowse_Misc', function () {
   		browser.assert.hasFocus('.OLSKMasterListFilterField');
   	});  
   
-  });  
+	});  
     
 	context('create', function test_create () {
 

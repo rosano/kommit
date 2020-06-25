@@ -33,7 +33,7 @@ const mod = {
 		return [
 			mod.KOMSpacingStoragePathForward(KOMCardStorage.uFakeCard(inputData), KOMCardStorage.uFakeDeck(inputData)),
 			mod.KOMSpacingStoragePathBackward(KOMCardStorage.uFakeCard(inputData), KOMCardStorage.uFakeDeck(inputData)),
-			].includes(inputData);
+		].includes(inputData);
 	},
 
 	KOMSpacingStorageBuild (privateClient, publicClient, changeDelegate) {
@@ -66,7 +66,7 @@ const mod = {
 
 				for (let key in result) {
 					if (result[key] === true) { // #remotestorage-cache-true
-						delete result[key]
+						delete result[key];
 					}
 				}
 

@@ -21,7 +21,7 @@ const mod = {
 				coll[item] = inputData[item];
 			}
 
-			return coll
+			return coll;
 		}, {})));
 	},
 

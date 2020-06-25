@@ -21,7 +21,7 @@ const mod = {
 				coll[item] = param1[item];
 			}
 
-			return coll
+			return coll;
 		}, {}), param2, param3));
 	},
 

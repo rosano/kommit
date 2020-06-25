@@ -299,7 +299,7 @@ describe('KOMReviewFilter', function test_KOMReviewFilter() {
 	context('KOMReviewMaxUnseenCards', function () {
 
 		it('includes all if KOMReviewSchemeReviewing', function() {
-			const items = uItems(true)
+			const items = uItems(true);
 			deepEqual(mainModule.KOMReviewFilter(items, Object.assign(kTesting.StubReviewObjectValid(), {
 				KOMReviewScheme: mainModule.KOMReviewSchemeReviewing(),
 				KOMReviewMaxUnseenCards: Infinity,
@@ -307,7 +307,7 @@ describe('KOMReviewFilter', function test_KOMReviewFilter() {
 		});
 
 		it('excludes unseen beyond KOMReviewMaxUnseenCards if KOMReviewSchemeUnseen', function() {
-			const items = uItems()
+			const items = uItems();
 			deepEqual(mainModule.KOMReviewFilter(items, Object.assign(kTesting.StubReviewObjectValid(), {
 				KOMReviewScheme: mainModule.KOMReviewSchemeUnseen(),
 				KOMReviewMaxUnseenCards: 5,
@@ -315,7 +315,7 @@ describe('KOMReviewFilter', function test_KOMReviewFilter() {
 		});
 
 		it('excludes unseen beyond KOMReviewMaxUnseenCards if and KOMReviewSchemeMixed', function() {
-			const items = uItems(true).concat(uItems())
+			const items = uItems(true).concat(uItems());
 			deepEqual(mainModule.KOMReviewFilter(items, Object.assign(kTesting.StubReviewObjectValid(), {
 				KOMReviewScheme: mainModule.KOMReviewSchemeMixed(),
 				KOMReviewMaxUnseenCards: 5,

@@ -1,7 +1,7 @@
 const RemoteStorage = require('remotestoragejs');
 
-global.Blob = require("cross-blob");
-global.FileReader = require("filereader");
+global.Blob = require('cross-blob');
+global.FileReader = require('filereader');
 
 const KOM_Data = require('./os-app/_shared/KOM_Data/main.js').default;
 const KOMDeckStorage = require('./os-app/_shared/KOMDeck/storage.js').default;

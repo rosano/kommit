@@ -251,7 +251,7 @@ describe('KOMReviewDetail_Misc', function () {
 			return kTesting.uDeck({
 				KOMDeckFrontLanguageCode: '',
 				$KOMDeckSpacings: kTesting.uSpacings(true),
-			})
+			});
 		};
 
 		before(function() {
@@ -296,7 +296,7 @@ describe('KOMReviewDetail_Misc', function () {
 			return kTesting.uDeck({
 				KOMDeckRearLanguageCode: '',
 				$KOMDeckSpacings: kTesting.uSpacings(true),
-			})
+			});
 		};
 
 		before(function() {

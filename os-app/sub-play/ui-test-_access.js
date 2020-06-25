@@ -245,7 +245,7 @@ describe('KOMPlay_Access', function () {
 		const items = kTesting.uSpacings(1).map(function (e, i) {
 			return Object.assign(e, i ? {
 				KOMSpacingID: e.KOMSpacingID.replace('forward', 'backward')
-			} : {})
+			} : {});
 		});
 
 		before(function() {
@@ -308,7 +308,7 @@ describe('KOMPlay_Access', function () {
 		const items = kTesting.uSpacings(1).map(function (e, i) {
 			return Object.assign(e, i ? {
 				KOMSpacingID: e.KOMSpacingID.replace('forward', 'backward')
-			} : {})
+			} : {});
 		});
 
 		before(function() {

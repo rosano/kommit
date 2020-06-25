@@ -32,7 +32,7 @@ const mod = {
 			return coll + item.KOMSpacingChronicles.filter(function (e) {
 				return KOMPlayLogic.KOMPlayDayGrouping(e.KOMChronicleResponseDate) === KOMPlayLogic.KOMPlayDayGrouping(new Date());
 			}).reduce(function (responseTime, e) {
-				return responseTime + (e.KOMChronicleResponseDate - e.KOMChronicleDrawDate)
+				return responseTime + (e.KOMChronicleResponseDate - e.KOMChronicleDrawDate);
 			}, 0);
 		}, 0);
 	},
@@ -56,7 +56,7 @@ const mod = {
 			}
 
 			return scores.reduce(function (coll, item) {
-				return coll + item
+				return coll + item;
 			}, 0) * 1.0 / scores.length;
 		})(inputData.filter(function (e) {
 			const items = e.KOMSpacingChronicles.filter(function (e) {

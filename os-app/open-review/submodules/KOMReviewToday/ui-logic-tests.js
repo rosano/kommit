@@ -129,10 +129,10 @@ describe('KOMReviewTodayReviewAccuracy', function test_KOMReviewTodayReviewAccur
 
 	it('excludes if not today', function() {
 		deepEqual(mainModule.KOMReviewTodayReviewAccuracy([kTesting.StubSpacingObjectValid([
-		Object.assign(kTesting.StubChronicleObjectValid(kTesting.StubPastDate()), {
-			KOMChronicleMultiplier: 1,
-		}),
-		kTesting.StubChronicleObjectValid(kTesting.StubPastDate()),
+			Object.assign(kTesting.StubChronicleObjectValid(kTesting.StubPastDate()), {
+				KOMChronicleMultiplier: 1,
+			}),
+			kTesting.StubChronicleObjectValid(kTesting.StubPastDate()),
 		])]), 0);
 	});
 

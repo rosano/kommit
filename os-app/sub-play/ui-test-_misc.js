@@ -831,7 +831,7 @@ describe('KOMPlay_Misc', function () {
 		}).map(function (e, i) {
 			return Object.assign(e, i ? {
 				KOMSpacingID: e.KOMSpacingID.replace('forward', 'backward')
-			} : {})
+			} : {});
 		});
 
 		const deck = Object.assign(kTesting.uDeck(), {
@@ -985,7 +985,7 @@ describe('KOMPlay_Misc', function () {
 		}).map(function (e, i) {
 			return Object.assign(e, i ? {
 				KOMSpacingID: e.KOMSpacingID.replace('forward', 'backward')
-			} : {})
+			} : {});
 		});
 
 		const deck = Object.assign(kTesting.uDeck(), {
@@ -1115,7 +1115,7 @@ describe('KOMPlay_Misc', function () {
 				}),
 			}, i ? {
 				KOMSpacingID: e.KOMSpacingID.replace('forward', 'backward'),
-			} : {})
+			} : {});
 		});
 
 		const deck = Object.assign(kTesting.uDeck(), {
@@ -1254,7 +1254,7 @@ describe('KOMPlay_Misc', function () {
 				}),
 			}, i ? {
 				KOMSpacingID: e.KOMSpacingID.replace('forward', 'backward')
-			} : {})
+			} : {});
 		});
 
 		const deck = Object.assign(kTesting.uDeck(), {

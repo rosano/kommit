@@ -118,7 +118,7 @@ const mod = {
 
 		return inputData.sort(function (a, b) {
 			return a.KOMDeckName.localeCompare(b.KOMDeckName);
-		})
+		});
 	},
 
 };

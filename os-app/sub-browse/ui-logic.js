@@ -35,7 +35,7 @@ const mod = {
 			return matches.filter(function (e) {
 				return [e.KOMCardFrontText, e.KOMCardRearText].filter(function (e) {
 					return e.toLowerCase() === inputData.toLowerCase();
-				}).length
+				}).length;
 			}).map(function (e) {
 				return matches.splice(matches.indexOf(e), 1).pop();
 			}).concat(matches);

@@ -12,7 +12,7 @@ describe('KOMReviewDetailLanguageCode_Misc', function () {
 		});
 	});
 
-describe('KOMReviewDetailLanguageCodeFieldOptionUnspecified', function test_KOMReviewDetailLanguageCodeFieldOptionUnspecified () {
+	describe('KOMReviewDetailLanguageCodeFieldOptionUnspecified', function test_KOMReviewDetailLanguageCodeFieldOptionUnspecified () {
 		
 		it('sets value', function () {
 			browser.assert.attribute(KOMReviewDetailLanguageCodeFieldOptionUnspecified, 'value', '');
