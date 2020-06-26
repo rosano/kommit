@@ -14,8 +14,8 @@ Le projet est librement accessible, mais si vous êtes en mesure de donner, veui
 - Créer un nombre illimité de paquets
 - Créer des cartes illimitées
 - Écouter des cartes oralement avec synthèse vocale
-- Enregistrer et écouter d'audio pour le recto et le verso de la carte
-- Synchroniser avec plusieurs appareils
+- Enregistrer d'audio
+- Synchroniser avec plusieurs appareils avec remoteStorage
 - Travailler hors ligne sans accès à l'Internet
 - Interface simple
 - Pas d'instructions compliquées
