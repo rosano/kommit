@@ -20,25 +20,17 @@ describe('KOMBrowse_Misc', function () {
 		});
 	});
 	
-	context('KOMBrowse', function () {
-	  	
-  	it('classes OLSKViewport', function () {
-  		browser.assert.hasClass(KOMBrowse, 'OLSKViewport');
-  	});
-  	
-  	it('classes OLSKMobileViewInactive', function () {
-  		browser.assert.hasNoClass('.KOMBrowseList', 'OLSKMobileViewInactive');
-  		browser.assert.hasClass('.KOMBrowseInfo', 'OLSKMobileViewInactive');
-  	});
+	it('classes OLSKMobileViewInactive', function () {
+		browser.assert.hasNoClass('.KOMBrowseList', 'OLSKMobileViewInactive');
+		browser.assert.hasClass('.KOMBrowseInfo', 'OLSKMobileViewInactive');
+	});
 
-  	it('sets OLSKResultsListItemSelected', function () {
-  		browser.assert.elements('.OLSKResultsListItemSelected', 0);
-  	});
+	it('sets OLSKResultsListItemSelected', function () {
+		browser.assert.elements('.OLSKResultsListItemSelected', 0);
+	});
 
-  	it('focuses OLSKMasterListFilterField', function() {
-  		browser.assert.hasFocus('.OLSKMasterListFilterField');
-  	});  
-  
+	it('focuses OLSKMasterListFilterField', function() {
+		browser.assert.hasFocus('.OLSKMasterListFilterField');
 	});  
     
 	context('create', function test_create () {

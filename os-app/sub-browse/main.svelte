@@ -351,38 +351,32 @@ import KOMBrowseInfo from './submodules/KOMBrowseInfo/main.svelte';
 </script>
 <svelte:window on:keydown={ mod.InterfaceWindowDidKeydown } />
 
-<div class="KOMBrowse OLSKViewport">
+<KOMBrowseList
+	KOMBrowseListItems={ mod._ValueCardsVisible }
+	KOMBrowseListItemSelected={ mod._ValueCardSelected }
+	KOMBrowseListFilterText={ mod._ValueFilterText }
+	KOMBrowseListDispatchClose={ KOMBrowseListDispatchClose }
+	KOMBrowseListDispatchCreate={ mod.KOMBrowseListDispatchCreate }
+	KOMBrowseListDispatchClick={ mod.KOMBrowseListDispatchClick }
+	KOMBrowseListDispatchArrow={ mod.KOMBrowseListDispatchArrow }
+	KOMBrowseListDispatchFilter={ mod.KOMBrowseListDispatchFilter }
+	OLSKMobileViewInactive={ !!mod.OLSKMobileViewInactive }
+	/>
 
-<OLSKViewportContent>
-	<KOMBrowseList
-		KOMBrowseListItems={ mod._ValueCardsVisible }
-		KOMBrowseListItemSelected={ mod._ValueCardSelected }
-		KOMBrowseListFilterText={ mod._ValueFilterText }
-		KOMBrowseListDispatchClose={ KOMBrowseListDispatchClose }
-		KOMBrowseListDispatchCreate={ mod.KOMBrowseListDispatchCreate }
-		KOMBrowseListDispatchClick={ mod.KOMBrowseListDispatchClick }
-		KOMBrowseListDispatchArrow={ mod.KOMBrowseListDispatchArrow }
-		KOMBrowseListDispatchFilter={ mod.KOMBrowseListDispatchFilter }
-		OLSKMobileViewInactive={ !!mod.OLSKMobileViewInactive }
-		/>
-
-	<KOMBrowseInfo
-		KOMBrowseInfoItem={ mod._ValueCardSelected }
-		KOMBrowseInfoDispatchBack={ mod.KOMBrowseInfoDispatchBack }
-		KOMBrowseInfoDispatchDiscard={ mod.KOMBrowseInfoDispatchDiscard }
-		KOMBrowseInfoDispatchCreate={ mod.KOMBrowseInfoDispatchCreate }
-		KOMBrowseInfoDispatchUpdate={ mod.KOMBrowseInfoDispatchUpdate }
-		KOMBrowseInfoAudioDispatchCapture={ mod.KOMBrowseInfoAudioDispatchCapture }
-		KOMBrowseInfoAudioDispatchFetch={ mod.KOMBrowseInfoAudioDispatchFetch }
-		KOMBrowseInfoAudioDispatchClear={ mod.KOMBrowseInfoAudioDispatchClear }
-		OLSKMobileViewInactive={ !mod.OLSKMobileViewInactive }
-		/>
-</OLSKViewportContent>
+<KOMBrowseInfo
+	KOMBrowseInfoItem={ mod._ValueCardSelected }
+	KOMBrowseInfoDispatchBack={ mod.KOMBrowseInfoDispatchBack }
+	KOMBrowseInfoDispatchDiscard={ mod.KOMBrowseInfoDispatchDiscard }
+	KOMBrowseInfoDispatchCreate={ mod.KOMBrowseInfoDispatchCreate }
+	KOMBrowseInfoDispatchUpdate={ mod.KOMBrowseInfoDispatchUpdate }
+	KOMBrowseInfoAudioDispatchCapture={ mod.KOMBrowseInfoAudioDispatchCapture }
+	KOMBrowseInfoAudioDispatchFetch={ mod.KOMBrowseInfoAudioDispatchFetch }
+	KOMBrowseInfoAudioDispatchClear={ mod.KOMBrowseInfoAudioDispatchClear }
+	OLSKMobileViewInactive={ !mod.OLSKMobileViewInactive }
+	/>
 
 {#if OLSK_TESTING_BEHAVIOUR() && KOMBrowseStorageClient.FakeStorageClient }
 	 <button class="OLSKAppToolbarLauncherButton" on:click={ mod._OLSKAppToolbarDispatchLauncher }></button>
 {/if}
-
-</div>
 
 <style src="./ui-style.css"></style>

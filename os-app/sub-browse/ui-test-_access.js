@@ -1,8 +1,6 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-Object.entries({
-	KOMBrowse: '.KOMBrowse',
-}).map(function (e) {
+Object.entries({}).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
 
@@ -24,10 +22,6 @@ describe('KOMBrowse_Access', function () {
 		return browser.OLSKVisit(kDefaultRoute, {
 			KOMBrowseDeckSelected: JSON.stringify(kTesting.StubDeckObjectValid()),
 		});
-	});
-
-	it('shows KOMBrowse', function () {
-		browser.assert.elements(KOMBrowse, 1);
 	});
 
 	it('shows KOMBrowseList', function () {
