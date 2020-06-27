@@ -179,7 +179,7 @@ const mod = {
 	async ControlCardDiscard (param1, param2) {
 		mod.ValueCardsAll(KOMBrowseDeckSelected.$KOMDeckCards.filter(function (e) {
 			return e !== param1;
-		}))
+		}), false);
 
 		await KOMCardAction.KOMCardActionDelete(KOMBrowseStorageClient, param1, param2);
 
@@ -225,7 +225,7 @@ const mod = {
 	// REACT
 
 	ReactDeckSelected (inputData) {
-		mod.ValueCardsVisible(inputData.$KOMDeckCards);
+		mod.ValueCardsVisible(inputData.$KOMDeckCards, false);
 
 		mod.ReactCardSelected();
 	},
