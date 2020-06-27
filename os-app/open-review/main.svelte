@@ -224,14 +224,26 @@ const mod = {
 		mod.ReactThrottle();
 	},
 	OLSKChangeDelegateCreateCard (inputData) {
+		if (mod.KOMBrowse && mod._ValueDeckSelected && inputData.KOMCardDeckID === mod._ValueDeckSelected.KOMDeckID) {
+			mod.KOMBrowse.KOMBrowseChangeDelegateCreateCard(inputData);
+		}
+
 		mod.ReactThrottle();
 	},
 
 	OLSKChangeDelegateUpdateCard (inputData) {
+		if (mod.KOMBrowse && mod._ValueDeckSelected && inputData.KOMCardDeckID === mod._ValueDeckSelected.KOMDeckID) {
+			mod.KOMBrowse.KOMBrowseChangeDelegateUpdateCard(inputData);
+		}
+		
 		mod.ReactThrottle();
 	},
 
 	OLSKChangeDelegateDeleteCard (inputData) {
+		if (mod.KOMBrowse && mod._ValueDeckSelected && inputData.KOMCardDeckID === mod._ValueDeckSelected.KOMDeckID) {
+			mod.KOMBrowse.KOMBrowseChangeDelegateDeleteCard(inputData);
+		}
+		
 		mod.ReactThrottle();
 	},
 
@@ -558,6 +570,7 @@ import OLSKStorageWidget from 'OLSKStorageWidget';
 			KOMBrowseDeckSelected={ mod._ValueDeckSelected }
 			KOMBrowseDispatchCreate={ mod.KOMBrowseDispatchCreate }
 			KOMBrowseListDispatchClose={ mod.KOMBrowseListDispatchClose }
+			bind:this={ mod.KOMBrowse }
 			/>
 	{/if}
 

@@ -5,6 +5,18 @@ export let KOMBrowseDeckSelected;
 export let KOMBrowseDispatchCreate;
 export let KOMBrowseListDispatchClose;
 
+export const KOMBrowseChangeDelegateCreateCard = function () {
+	mod.ChangeDelegateCreateCard(...arguments);
+};
+
+export const KOMBrowseChangeDelegateUpdateCard = function () {
+	mod.ChangeDelegateUpdateCard(...arguments);
+};
+
+export const KOMBrowseChangeDelegateDeleteCard = function () {
+	mod.ChangeDelegateDeleteCard(...arguments);
+};
+
 import OLSKInternational from 'OLSKInternational';
 const OLSKLocalized = function(translationConstant) {
 	return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, JSON.parse(`{"OLSK_I18N_SEARCH_REPLACE":"OLSK_I18N_SEARCH_REPLACE"}`)[window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage')]);
@@ -75,31 +87,31 @@ const mod = {
 		if (OLSK_TESTING_BEHAVIOUR()) {
 			items.push(...[
 				{
-					LCHRecipeName: 'FakeOLSKChangeDelegateCreateCard',
-					LCHRecipeCallback: async function FakeOLSKChangeDelegateCreateCard () {
-						return mod.OLSKChangeDelegateCreateCard(await KOMCardAction.KOMCardActionCreate(KOMBrowseStorageClient, mod.DataCardObjectTemplate('FakeOLSKChangeDelegateCreateCard'), KOMBrowseDeckSelected));
+					LCHRecipeName: 'FakeChangeDelegateCreateCard',
+					LCHRecipeCallback: async function FakeChangeDelegateCreateCard () {
+						return mod.ChangeDelegateCreateCard(await KOMCardAction.KOMCardActionCreate(KOMBrowseStorageClient, mod.DataCardObjectTemplate('FakeChangeDelegateCreateCard'), KOMBrowseDeckSelected));
 					},
 				},
 				{
-					LCHRecipeName: 'FakeOLSKChangeDelegateUpdateCard',
-					LCHRecipeCallback: async function FakeOLSKChangeDelegateUpdateCard () {
-						return mod.OLSKChangeDelegateUpdateCard(await KOMCardAction.KOMCardActionUpdate(KOMBrowseStorageClient, Object.assign(KOMBrowseDeckSelected.$KOMDeckCards.filter(function (e) {
-							return e.KOMCardFrontText.match('FakeOLSKChangeDelegate');
+					LCHRecipeName: 'FakeChangeDelegateUpdateCard',
+					LCHRecipeCallback: async function FakeChangeDelegateUpdateCard () {
+						return mod.ChangeDelegateUpdateCard(await KOMCardAction.KOMCardActionUpdate(KOMBrowseStorageClient, Object.assign(mod._ValueCardsAll.filter(function (e) {
+							return e.KOMCardFrontText.match('FakeChangeDelegate');
 						}).pop(), {
-							KOMCardFrontText: 'FakeOLSKChangeDelegateUpdateCard',
+							KOMCardFrontText: 'FakeChangeDelegateUpdateCard',
 						}), KOMBrowseDeckSelected));
 					},
 				},
 				{
-					LCHRecipeName: 'FakeOLSKChangeDelegateDeleteCard',
-					LCHRecipeCallback: async function FakeOLSKChangeDelegateDeleteCard () {
-						const item = KOMBrowseDeckSelected.$KOMDeckCards.filter(function (e) {
-							return e.KOMCardFrontText.match('FakeOLSKChangeDelegate');
+					LCHRecipeName: 'FakeChangeDelegateDeleteCard',
+					LCHRecipeCallback: async function FakeChangeDelegateDeleteCard () {
+						const item = mod._ValueCardsAll.filter(function (e) {
+							return e.KOMCardFrontText.match('FakeChangeDelegate');
 						}).pop();
 						
 						await KOMCardAction.KOMCardActionDelete(KOMBrowseStorageClient, item, KOMBrowseDeckSelected);
 						
-						return mod.OLSKChangeDelegateDeleteCard(item);
+						return mod.ChangeDelegateDeleteCard(item);
 					},
 				},
 				{
@@ -116,34 +128,35 @@ const mod = {
 		});
 	},
 
-	OLSKChangeDelegateCreateCard (inputData) {
-		mod.ValueCardsAll([inputData].concat(KOMBrowseDeckSelected.$KOMDeckCards), !mod._ValueCardSelected);
+	ChangeDelegateCreateCard (inputData) {
+		mod.ValueCardsAll([inputData].concat(mod._ValueCardsAll), !mod._ValueCardSelected);
 	},
 
-	OLSKChangeDelegateUpdateCard (inputData) {
+	ChangeDelegateUpdateCard (inputData) {
 		if (mod._ValueCardSelected && mod._ValueCardSelected.KOMCardID === inputData.KOMCardID) {
 			mod.ControlCardSelect(inputData);
 		}
 
-		mod.ValueCardsAll(KOMBrowseDeckSelected.$KOMDeckCards.map(function (e) {
+		mod.ValueCardsAll(mod._ValueCardsAll.map(function (e) {
 			return e.KOMCardID === inputData.KOMCardID ? inputData : e;
 		}), !mod._ValueCardSelected);
 	},
 
-	OLSKChangeDelegateDeleteCard (inputData) {
+	ChangeDelegateDeleteCard (inputData) {
 		if (mod._ValueCardSelected && (mod._ValueCardSelected.KOMCardID === inputData.KOMCardID)) {
 			mod.ControlCardSelect(null);
 		}
 
-		mod.ValueCardsAll(KOMBrowseDeckSelected.$KOMDeckCards.filter(function (e) {
+		mod.ValueCardsAll(mod._ValueCardsAll.filter(function (e) {
 			return e.KOMCardID !== inputData.KOMCardID;
 		}), false);
 	},
 
 	// VALUE
 
+	_ValueCardsAll: KOMBrowseDeckSelected.$KOMDeckCards,
 	ValueCardsAll (inputData, shouldSort = true) {
-		mod.ValueCardsVisible(KOMBrowseDeckSelected.$KOMDeckCards = inputData, shouldSort);
+		mod.ValueCardsVisible(mod._ValueCardsAll = inputData, shouldSort);
 	},
 
 	_ValueCardsVisible: [],
@@ -223,7 +236,7 @@ const mod = {
 	async ControlCardCreate(inputData) {
 		const item = await KOMCardAction.KOMCardActionCreate(KOMBrowseStorageClient, mod.DataCardObjectTemplate(), inputData);
 
-		mod.ValueCardsAll(KOMBrowseDeckSelected.$KOMDeckCards.concat(item));
+		mod.ValueCardsAll(mod._ValueCardsAll.concat(item));
 
 		mod.ControlCardSelect(item);
 
@@ -252,7 +265,7 @@ const mod = {
 	},
 
 	async ControlCardDiscard (param1, param2) {
-		mod.ValueCardsAll(KOMBrowseDeckSelected.$KOMDeckCards.filter(function (e) {
+		mod.ValueCardsAll(mod._ValueCardsAll.filter(function (e) {
 			return e !== param1;
 		}), false);
 
@@ -284,7 +297,7 @@ const mod = {
 	ControlFilter(inputData) {
 		mod._ValueFilterText = inputData;
 
-		mod.ValueCardsVisible(KOMBrowseDeckSelected.$KOMDeckCards);
+		mod.ValueCardsVisible(mod._ValueCardsAll);
 
 		if (!inputData) {
 			return mod.ControlCardSelect(null);
@@ -298,12 +311,6 @@ const mod = {
 	},
 
 	// REACT
-
-	ReactDeckSelected (inputData) {
-		mod.ValueCardsVisible(inputData.$KOMDeckCards, false);
-
-		mod.ReactCardSelected();
-	},
 
 	ReactCardSelected () {
 		if (!mod._ValueCardSelected) {
@@ -342,8 +349,6 @@ const mod = {
 
 import { onMount } from 'svelte';
 onMount(mod.LifecycleModuleWillMount);
-
-$: mod.ReactDeckSelected(KOMBrowseDeckSelected);
 
 import OLSKViewportContent from 'OLSKViewportContent';
 import KOMBrowseList from './submodules/KOMBrowseList/main.svelte';
