@@ -276,20 +276,20 @@ const mod = {
 	
 	// DATA
 
-	FakeDeckObjectValid(inputData) {
+	FakeDeckObjectValid (inputData = '') {
 		return {
 			KOMDeckID: 'FakeDeckID',
-			KOMDeckName: inputData || '',
+			KOMDeckName: inputData,
 			KOMDeckCreationDate: new Date(),
 			KOMDeckModificationDate: new Date(),
 		};
 	},
 
-	FakeCardObjectValid(inputData) {
+	FakeCardObjectValid(inputData = '') {
 		return {
 			KOMCardID: 'FakeCardID',
 			KOMCardDeckID: 'FakeDeckID',
-			KOMCardFrontText: inputData || '',
+			KOMCardFrontText: inputData,
 			KOMCardRearText: '',
 			KOMCardCreationDate: new Date(),
 			KOMCardModificationDate: new Date(),
