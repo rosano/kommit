@@ -69,6 +69,10 @@ const mod = {
 	},
 
 	KOMBrowseListDispatchClose () {
+		if (!window.location.search.match('DebugHotfixThrottleCount')) {
+			mod.ReactThrottle(true);
+		}
+
 		mod._ValueBrowseVisible = false;
 	},
 
@@ -355,9 +359,9 @@ const mod = {
 
 	// REACT
 
-	ReactThrottle () {
+	ReactThrottle (inputData) {
 		OLSKThrottle.OLSKThrottleMappedTimeout(mod._ValueCountThrottleMap, 'mod._ValueDecksAll', {
-			OLSKThrottleDuration: OLSK_TESTING_BEHAVIOUR () ? 0 : 500,
+			OLSKThrottleDuration: inputData || OLSK_TESTING_BEHAVIOUR () ? 0 : 500,
 			async OLSKThrottleCallback () {
 				await mod.SetupValueDecksAll();
 

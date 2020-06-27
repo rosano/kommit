@@ -33,7 +33,9 @@ describe('KOMReview_Sync', function () {
 	};
 
 	before(function() {
-		return browser.OLSKVisit(kDefaultRoute);
+		return browser.OLSKVisit(kDefaultRoute, {
+			DebugHotfixThrottleCount: true,
+		});
 	});
 
 	describe('OLSKChangeDelegateCreateDeck', function test_OLSKChangeDelegateCreateDeck () {

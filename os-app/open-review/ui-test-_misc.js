@@ -84,20 +84,32 @@ describe('KOMReview_Misc', function () {
 			browser.assert.elements('.KOMBrowseListItem', 1);
 		});
 
-		after(function () {
-			browser.fill('.KOMBrowseInfoFormFrontTextField', 'alfa');
-		});
+		context('close', function () {
+			
+			before(function () {
+				browser.fill('.KOMBrowseInfoFormFrontTextField', 'alfa');
+			});
 
-		after(function () {
-			return browser.pressButton('.KOMBrowseListToolbarCreateButton');
-		});
+			before(function () {
+				return browser.pressButton('.KOMBrowseListToolbarCreateButton');
+			});
 
-		after(function () {
-			browser.fill('.KOMBrowseInfoFormFrontTextField', 'bravo');
-		});
+			before(function () {
+				browser.fill('.KOMBrowseInfoFormFrontTextField', 'bravo');
+			});
 
-		after(function () {
-			return browser.pressButton('.KOMBrowseListToolbarCloseButton');
+			before(function () {
+				browser.assert.text('#TestCallReactThrottle', '0');
+			});
+
+			before(function () {
+				return browser.pressButton('.KOMBrowseListToolbarCloseButton');
+			});
+
+			it('calls ReactThrottle', function () {
+				browser.assert.text('#TestCallReactThrottle', '1');
+			});
+		
 		});
 				
 	});	

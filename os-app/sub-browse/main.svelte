@@ -330,7 +330,7 @@ const mod = {
 	},
 
 	async SetupValueCardsAll() {
-		mod.ValueCardsAll(KOMBrowseDeckSelected.$KOMDeckCards);
+		mod.ValueCardsAll(mod._ValueCardsAll);
 	},
 
 	SetupFocus() {
