@@ -25,6 +25,8 @@ const mod = {
 		mod._ValueStorageClient = new RemoteStorage({ modules: [ storageModule ] });
 
 		mod._ValueStorageClient.access.claim(storageModule.name, 'rw');
+
+		mod._ValueStorageClient.FakeStorageClient = true;
 	},
 
 	// LIFECYCLE

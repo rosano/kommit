@@ -69,6 +69,77 @@ const mod = {
 		return await KOMCardAction.KOMCardActionAudioFetch(KOMBrowseStorageClient, inputData, mod._ValueCardSelected, KOMBrowseDeckSelected);
 	},
 
+	_OLSKAppToolbarDispatchLauncher () {
+		const items = [];
+
+		if (OLSK_TESTING_BEHAVIOUR()) {
+			items.push(...[
+				{
+					LCHRecipeName: 'FakeOLSKChangeDelegateCreateCard',
+					LCHRecipeCallback: async function FakeOLSKChangeDelegateCreateCard () {
+						return mod.OLSKChangeDelegateCreateCard(await KOMCardAction.KOMCardActionCreate(KOMBrowseStorageClient, mod.DataCardObjectTemplate('FakeOLSKChangeDelegateCreateCard'), KOMBrowseDeckSelected));
+					},
+				},
+				{
+					LCHRecipeName: 'FakeOLSKChangeDelegateUpdateCard',
+					LCHRecipeCallback: async function FakeOLSKChangeDelegateUpdateCard () {
+						return mod.OLSKChangeDelegateUpdateCard(await KOMCardAction.KOMCardActionUpdate(KOMBrowseStorageClient, Object.assign(KOMBrowseDeckSelected.$KOMDeckCards.filter(function (e) {
+							return e.KOMCardFrontText.match('FakeOLSKChangeDelegate');
+						}).pop(), {
+							KOMCardFrontText: 'FakeOLSKChangeDelegateUpdateCard',
+						}), KOMBrowseDeckSelected));
+					},
+				},
+				{
+					LCHRecipeName: 'FakeOLSKChangeDelegateDeleteCard',
+					LCHRecipeCallback: async function FakeOLSKChangeDelegateDeleteCard () {
+						const item = KOMBrowseDeckSelected.$KOMDeckCards.filter(function (e) {
+							return e.KOMCardFrontText.match('FakeOLSKChangeDelegate');
+						}).pop();
+						
+						await KOMCardAction.KOMCardActionDelete(KOMBrowseStorageClient, item, KOMBrowseDeckSelected);
+						
+						return mod.OLSKChangeDelegateDeleteCard(item);
+					},
+				},
+				{
+					LCHRecipeName: 'FakeEscapeWithoutSort',
+					LCHRecipeCallback: function FakeEscapeWithoutSort () {
+						mod.ControlCardSelect(null);
+					},
+				},
+			]);
+		}
+		
+		window.Launchlet.LCHSingletonCreate({
+			LCHOptionRecipes: items,
+		});
+	},
+
+	OLSKChangeDelegateCreateCard (inputData) {
+		mod.ValueCardsAll([inputData].concat(KOMBrowseDeckSelected.$KOMDeckCards), !mod._ValueCardSelected);
+	},
+
+	OLSKChangeDelegateUpdateCard (inputData) {
+		if (mod._ValueCardSelected && mod._ValueCardSelected.KOMCardID === inputData.KOMCardID) {
+			mod.ControlCardSelect(inputData);
+		}
+
+		mod.ValueCardsAll(KOMBrowseDeckSelected.$KOMDeckCards.map(function (e) {
+			return e.KOMCardID === inputData.KOMCardID ? inputData : e;
+		}), !mod._ValueCardSelected);
+	},
+
+	OLSKChangeDelegateDeleteCard (inputData) {
+		if (mod._ValueCardSelected && (mod._ValueCardSelected.KOMCardID === inputData.KOMCardID)) {
+			mod.ControlCardSelect(null);
+		}
+
+		mod.ValueCardsAll(KOMBrowseDeckSelected.$KOMDeckCards.filter(function (e) {
+			return e.KOMCardID !== inputData.KOMCardID;
+		}), false);
+	},
+
 	// VALUE
 
 	ValueCardsAll (inputData, shouldSort = true) {
@@ -100,6 +171,14 @@ const mod = {
 
 	DataIsMobile () {
 		return window.innerWidth <= 760;
+	},
+
+	DataCardObjectTemplate (inputData = '') {
+		return {
+			KOMCardFrontText: inputData,
+			KOMCardRearText: '',
+			KOMCardNotes: '',
+		}
 	},
 
 	// INTERFACE	
@@ -142,11 +221,7 @@ const mod = {
 	// CONTROL
 
 	async ControlCardCreate(inputData) {
-		const item = await KOMCardAction.KOMCardActionCreate(KOMBrowseStorageClient, {
-			KOMCardFrontText: '',
-			KOMCardRearText: '',
-			KOMCardNotes: '',
-		}, inputData);
+		const item = await KOMCardAction.KOMCardActionCreate(KOMBrowseStorageClient, mod.DataCardObjectTemplate(), inputData);
 
 		mod.ValueCardsAll(KOMBrowseDeckSelected.$KOMDeckCards.concat(item));
 
@@ -303,6 +378,10 @@ import KOMBrowseInfo from './submodules/KOMBrowseInfo/main.svelte';
 		OLSKMobileViewInactive={ !mod.OLSKMobileViewInactive }
 		/>
 </OLSKViewportContent>
+
+{#if OLSK_TESTING_BEHAVIOUR() && KOMBrowseStorageClient.FakeStorageClient }
+	 <button class="OLSKAppToolbarLauncherButton" on:click={ mod._OLSKAppToolbarDispatchLauncher }></button>
+{/if}
 
 </div>
 
