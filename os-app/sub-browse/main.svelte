@@ -378,5 +378,3 @@ import KOMBrowseInfo from './submodules/KOMBrowseInfo/main.svelte';
 {#if OLSK_TESTING_BEHAVIOUR() && KOMBrowseStorageClient.FakeStorageClient }
 	 <button class="OLSKAppToolbarLauncherButton" on:click={ mod._OLSKAppToolbarDispatchLauncher }></button>
 {/if}
-
-<style src="./ui-style.css"></style>
