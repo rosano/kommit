@@ -46,7 +46,7 @@ Install mocha and supervisor
 npm install -g mocha supervisor
 ```
 
-### Run unit tests
+### Run logic tests
 
 ```
 olsk-spec
