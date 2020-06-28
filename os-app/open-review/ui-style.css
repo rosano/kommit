@@ -8,7 +8,7 @@
 	color: var(--KOMCommonForeground);
 }
 
-.KOMReview .OLSKToolbar {
+.KOMReview :global(.OLSKToolbar) {
 	--OLSKToolbarBackground: var(--KOMCommonBackground);
 }
 
