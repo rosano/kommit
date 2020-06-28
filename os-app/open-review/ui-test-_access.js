@@ -94,7 +94,7 @@ describe('KOMReview_Access', function () {
 		});
 
 		it('hides KOMReviewLauncherItemSelectDeck', function () {
-			browser.assert.elements('.LCHLauncherResultListItem', 0);
+			browser.assert.elements('.LCHLauncherPipeItem', 0);
 		});
 
 	});
@@ -126,7 +126,7 @@ describe('KOMReview_Access', function () {
 			});
 
 			it('shows KOMReviewLauncherItemSelectDeck', function () {
-				browser.assert.elements('.LCHLauncherResultListItem', 1);
+				browser.assert.elements('.LCHLauncherPipeItem', 1);
 			});
 
 		});
@@ -354,7 +354,7 @@ describe('KOMReview_Access', function () {
 		});
 
 		before(function () {
-			return browser.click('.LCHLauncherResultListItem');
+			return browser.click('.LCHLauncherPipeItem');
 		});
 
 		it('hides KOMReviewMaster', function () {
@@ -383,8 +383,8 @@ describe('KOMReview_Access', function () {
 				return browser.fill('.LCHLauncherFilterInput', 'alfa');
 			});
 
-			it('hides LCHLauncherResultListItem', function () {
-				browser.assert.elements('.LCHLauncherResultListItem', 0);
+			it('hides LCHLauncherPipeItem', function () {
+				browser.assert.elements('.LCHLauncherPipeItem', 0);
 			});
 		
 		});
@@ -401,8 +401,8 @@ describe('KOMReview_Access', function () {
 			return browser.fill('.LCHLauncherFilterInput', 'KOMReviewLauncherItemSendLoginLink');
 		});
 
-		it('hides LCHLauncherResultListItem', function () {
-			browser.assert.elements('.LCHLauncherResultListItem', 0);
+		it('hides LCHLauncherPipeItem', function () {
+			browser.assert.elements('.LCHLauncherPipeItem', 0);
 		});
 
 		context('connected', function () {
@@ -412,7 +412,7 @@ describe('KOMReview_Access', function () {
 			});
 
 			before(function () {
-				return browser.click('.LCHLauncherResultListItem');
+				return browser.click('.LCHLauncherPipeItem');
 			});
 
 			before(function () {
@@ -423,8 +423,8 @@ describe('KOMReview_Access', function () {
 				return browser.fill('.LCHLauncherFilterInput', 'KOMReviewLauncherItemSendLoginLink');
 			});
 
-			it('shows LCHLauncherResultListItem', function () {
-				browser.assert.elements('.LCHLauncherResultListItem', 1);
+			it('shows LCHLauncherPipeItem', function () {
+				browser.assert.elements('.LCHLauncherPipeItem', 1);
 			});
 		
 		});

@@ -41,7 +41,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			});
 
 			it.skip('localizes KOMReviewLauncherItemSelectDeck', function () {
-				browser.assert.text('.LCHLauncherResultListItem', uStringWithFormat(uLocalized('KOMReviewLauncherItemSelectDeckTextFormat'), 'alfa'));
+				browser.assert.text('.LCHLauncherPipeItem', uStringWithFormat(uLocalized('KOMReviewLauncherItemSelectDeckTextFormat'), 'alfa'));
 			});
 		
 		});
@@ -57,7 +57,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			});
 
 			before(function () {
-				return browser.click('.LCHLauncherResultListItem');
+				return browser.click('.LCHLauncherPipeItem');
 			});
 
 			before(function () {
@@ -69,7 +69,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			});
 
 			it('localizes KOMReviewLauncherItemSendLoginLink', function () {
-				browser.assert.text('.LCHLauncherResultListItem', uLocalized('KOMReviewLauncherItemSendLoginLinkText'));
+				browser.assert.text('.LCHLauncherPipeItem', uLocalized('KOMReviewLauncherItemSendLoginLinkText'));
 			});
 		
 		});

@@ -198,7 +198,7 @@ describe('KOMReview_Misc', function () {
 		});
 
 		before(function () {
-			return browser.click('.LCHLauncherResultListItem');
+			return browser.click('.LCHLauncherPipeItem');
 		});
 
 		it('selects deck', function () {
@@ -218,7 +218,7 @@ describe('KOMReview_Misc', function () {
 		});
 
 		before(function () {
-			return browser.click('.LCHLauncherResultListItem');
+			return browser.click('.LCHLauncherPipeItem');
 		});
 
 		before(function () {
@@ -230,7 +230,7 @@ describe('KOMReview_Misc', function () {
 		});
 
 		before(function () {
-			return browser.click('.LCHLauncherResultListItem');
+			return browser.click('.LCHLauncherPipeItem');
 		});
 
 		it('sets mailto', function () {
