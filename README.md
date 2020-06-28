@@ -52,7 +52,7 @@ npm install -g mocha supervisor
 olsk-spec
 ```
 
-### Run UI tests
+### Run interface tests
 
 ```
 olsk-spec-ui
