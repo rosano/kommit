@@ -115,7 +115,7 @@ const mod = {
 					
 
 					if (OLSK_TESTING_BEHAVIOUR() && window.FakeOLSKConnected) {
-						window.FakeOLSKConnected = url;
+						window.FakeWindowLocationHref = url;
 						return;
 					}
 
