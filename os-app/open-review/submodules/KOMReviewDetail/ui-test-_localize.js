@@ -85,7 +85,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 		context('on discard', function () {
 		
 			it('localizes KOMReviewDetailDiscardPrompt', function() {
-				browser.assert.OLSKConfirmQuestion(function () {
+				browser.assert.OLSKPromptQuestion(function () {
 					return browser.pressButton(KOMReviewDetailDiscardButton);
 				}, uLocalized('KOMReviewDetailDiscardPromptText'));
 			});

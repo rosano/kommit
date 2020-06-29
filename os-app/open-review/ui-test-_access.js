@@ -236,7 +236,13 @@ describe('KOMReview_Access', function () {
 		});
 
 		before(function () {
-			return browser.pressButton('.KOMReviewDetailDiscardButton');
+			return browser.OLSKPrompt(function () {
+				return browser.pressButton('.KOMReviewDetailDiscardButton');
+			}, function (dialog) {
+				dialog.response = 'alfa';
+				
+				return dialog;
+			});
 		});
 
 		it('shows KOMReviewMaster', function () {

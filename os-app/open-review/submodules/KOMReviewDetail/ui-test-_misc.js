@@ -126,19 +126,43 @@ describe('KOMReviewDetail_Misc', function () {
 	describe('KOMReviewDetailDiscardButton', function test_KOMReviewDetailDiscardButton () {
 		
 		context('click', function () {
-			
-			before(function () {
-				browser.assert.text('#TestKOMReviewDetailDispatchDiscard', '0');
-				browser.assert.text('#TestKOMReviewDetailDispatchDiscardData', 'undefined');
-			});
-			
-			before(function () {
-				return browser.pressButton(KOMReviewDetailDiscardButton);
-			});
 
-			it('sends KOMReviewDetailDispatchDiscard', function () {
-				browser.assert.text('#TestKOMReviewDetailDispatchDiscard', '1');
-				browser.assert.text('#TestKOMReviewDetailDispatchDiscardData', JSON.stringify(kTesting.uDeck()));
+			context('response invalid', function () {
+				
+				before(function () {
+					return browser.OLSKPrompt(function () {
+						return browser.pressButton(KOMReviewDetailDiscardButton);
+					}, function (dialog) {
+						dialog.response = 'bravo';
+
+						return dialog;
+					});
+				});
+
+				before(function () {
+					browser.assert.text('#TestKOMReviewDetailDispatchDiscard', '0');
+					browser.assert.text('#TestKOMReviewDetailDispatchDiscardData', 'undefined');
+				});
+			
+			});
+			
+			context('response invalid', function () {
+				
+				before(function () {
+					return browser.OLSKPrompt(function () {
+						return browser.pressButton(KOMReviewDetailDiscardButton);
+					}, function (dialog) {
+						dialog.response = 'alfa';
+
+						return dialog;
+					});
+				});
+
+				it('sends KOMReviewDetailDispatchDiscard', function () {
+					browser.assert.text('#TestKOMReviewDetailDispatchDiscard', '1');
+					browser.assert.text('#TestKOMReviewDetailDispatchDiscardData', JSON.stringify(kTesting.uDeck()));
+				});
+			
 			});
 		
 		});

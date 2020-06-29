@@ -16,4 +16,4 @@ KOMReviewDetailDeckHeadingText: Paquet
 KOMReviewDetailRenameButtonText: Renommer
 KOMReviewDetailRenameButtonPromptText: Nom
 KOMReviewDetailDiscardButtonText: Supprimer le paquet et toutes les cartes dedans
-KOMReviewDetailDiscardPromptText: Êtes-vous sûr.e?
+KOMReviewDetailDiscardPromptText: Êtes-vous sûr.e? Veuillez entrer le nom du paquet pour confirmer et supprimer.

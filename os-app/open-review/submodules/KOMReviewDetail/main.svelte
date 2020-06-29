@@ -256,7 +256,7 @@ import KOMReviewToday from '../KOMReviewToday/main.svelte';
 </p>
 
 <p>
-	<button class="KOMReviewDetailDiscardButton" on:click={ () => window.confirm(OLSKLocalized('KOMReviewDetailDiscardPromptText')) && KOMReviewDetailDispatchDiscard(KOMReviewDetailDeck) }>{ OLSKLocalized('KOMReviewDetailDiscardButtonText') }</button>
+	<button class="KOMReviewDetailDiscardButton" on:click={ () => (window.prompt(OLSKLocalized('KOMReviewDetailDiscardPromptText')) === KOMReviewDetailDeck.KOMDeckName) && KOMReviewDetailDispatchDiscard(KOMReviewDetailDeck) }>{ OLSKLocalized('KOMReviewDetailDiscardButtonText') }</button>
 </p>
 
 </div>
