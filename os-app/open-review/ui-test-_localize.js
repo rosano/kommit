@@ -74,6 +74,30 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 		
 		});
 
+		context.skip('KOMReviewLauncherItemDebugCard', function test_KOMReviewLauncherItemDebugCard() {
+			
+			before(function () {
+				return browser.pressButton('.KOMReviewDetailToolbarCardsButton');
+			});
+
+			before(function () {
+				return browser.click('.KOMBrowseListItem');
+			});
+
+			before(function () {
+				return browser.pressButton('.OLSKAppToolbarLauncherButton');
+			});
+
+			before(function () {
+				return browser.fill('.LCHLauncherFilterInput', 'KOMReviewLauncherItemDebugCard');
+			});
+
+			it('localizes KOMReviewLauncherItemSendLoginLink', function () {
+				browser.assert.text('.LCHLauncherPipeItem', uLocalized('KOMReviewLauncherItemSendLoginLinkText'));
+			});
+
+		});
+
 	});
 
 });

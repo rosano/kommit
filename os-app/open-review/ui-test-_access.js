@@ -431,4 +431,44 @@ describe('KOMReview_Access', function () {
 
 	});
 
+	context('KOMReviewLauncherItemDebugCard', function test_KOMReviewLauncherItemDebugCard() {
+		
+		before(function () {
+			return browser.pressButton('.OLSKAppToolbarLauncherButton');
+		});
+
+		before(function () {
+			return browser.fill('.LCHLauncherFilterInput', 'KOMReviewLauncherItemDebugCard');
+		});
+
+		it('hides LCHLauncherPipeItem', function () {
+			browser.assert.elements('.LCHLauncherPipeItem', 0);
+		});
+
+		context('KOMBrowseInfo', function () {
+
+			before(function () {
+				return browser.pressButton('.KOMReviewDetailToolbarCardsButton');
+			});
+
+			before(function () {
+				return browser.click('.KOMBrowseListItem');
+			});
+
+			before(function () {
+				return browser.pressButton('.OLSKAppToolbarLauncherButton');
+			});
+
+			before(function () {
+				return browser.fill('.LCHLauncherFilterInput', 'KOMReviewLauncherItemDebugCard');
+			});
+
+			it('shows LCHLauncherPipeItem', function () {
+				browser.assert.elements('.LCHLauncherPipeItem', 1);
+			});
+		
+		});
+
+	});
+
 });

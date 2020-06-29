@@ -123,6 +123,10 @@ const mod = {
 			});
 		}
 
+		if (mod._KOMBrowse) {
+			items.push(...mod._KOMBrowse.KOMBrowseRecipes());
+		}
+
 		if (OLSK_TESTING_BEHAVIOUR()) {
 			items.push(...[
 				{

@@ -17,6 +17,10 @@ export const KOMBrowseChangeDelegateDeleteCard = function () {
 	mod.ChangeDelegateDeleteCard(...arguments);
 };
 
+export const KOMBrowseRecipes = function () {
+	return mod.DataRecipes();
+};
+
 import OLSKInternational from 'OLSKInternational';
 const OLSKLocalized = function(translationConstant) {
 	return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, JSON.parse(`{"OLSK_I18N_SEARCH_REPLACE":"OLSK_I18N_SEARCH_REPLACE"}`)[window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage')]);
@@ -26,6 +30,7 @@ import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting';
 import OLSKThrottle from 'OLSKThrottle';
 import KOMBrowseLogic from './ui-logic.js';
 import KOMCardAction from '../_shared/KOMCard/action.js';
+import KOMCardStorage from '../_shared/KOMCard/storage.js';
 
 const mod = {
 
@@ -191,7 +196,30 @@ const mod = {
 			KOMCardFrontText: inputData,
 			KOMCardRearText: '',
 			KOMCardNotes: '',
+		};
+	},
+
+	DataRecipes () {
+		const items = [];
+
+		if (OLSK_TESTING_BEHAVIOUR() && mod._ValueCardSelected) {
+			items.push({
+				LCHRecipeSignature: 'KOMReviewLauncherItemDebugCard',
+				LCHRecipeName: OLSKLocalized('KOMReviewLauncherItemDebugCardText'),
+				LCHRecipeCallback () {
+					const url = `https://inspektor.5apps.com/?path=kommit%2F${ encodeURIComponent(KOMCardStorage.KOMCardStorageFolderPath(mod._ValueCardSelected, KOMBrowseDeckSelected)) }`;
+
+					if (OLSK_TESTING_BEHAVIOUR()) {
+						window.FakeWindowOpen = url;
+						return;
+					}
+
+					window.open(url)
+				},
+			});
 		}
+		
+		return items;
 	},
 
 	// INTERFACE	
