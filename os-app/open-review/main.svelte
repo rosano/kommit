@@ -112,7 +112,6 @@ const mod = {
 				LCHRecipeName: OLSKLocalized('KOMReviewLauncherItemSendLoginLinkText'),
 				LCHRecipeCallback () {
 					const url = `mailto:?subject=${ OLSKLocalized('KOMReviewLauncherItemSendLoginLinkSubject') }&body=${ encodeURIComponent(`${ window.location.href }#remotestorage=${ mod._ValueStorageClient.remote.userAddress }&access_token=${ mod._ValueStorageClient.remote.token }`) }`;
-					
 
 					if (OLSK_TESTING_BEHAVIOUR() && window.FakeOLSKConnected) {
 						window.FakeWindowLocationHref = url;
