@@ -183,6 +183,24 @@ const mod = {
 					},
 				},
 				{
+					LCHRecipeName: 'FakeOLSKChangeDelegateConflictCard',
+					LCHRecipeCallback: async function FakeOLSKChangeDelegateConflictCard () {
+						const item = mod._ValueDeckSelected.$KOMDeckCards.filter(function (e) {
+							return e.KOMCardFrontText.match('FakeOLSKChangeDelegateConflictCard');
+						}).pop();
+						
+						return mod.OLSKChangeDelegateConflictCard({
+							origin: 'conflict',
+							oldValue: await KOMCardAction.KOMCardActionUpdate(mod._ValueStorageClient, Object.assign({}, item, {
+								KOMCardFrontText: item.KOMCardFrontText + '-local',
+							})),
+							newValue: Object.assign({}, item, {
+								KOMCardFrontText: item.KOMCardFrontText + '-remote',
+							}),
+						});
+					},
+				},
+				{
 					LCHRecipeName: 'FakeOLSKChangeDelegateCreateSpacing',
 					LCHRecipeCallback: async function FakeOLSKChangeDelegateCreateSpacing () {
 						return mod.OLSKChangeDelegateCreateSpacing(await KOMSpacingMetal.KOMSpacingMetalWrite(mod._ValueStorageClient, mod.FakeSpacingObjectValid(), mod.FakeCardObjectValid(), mod.FakeDeckObjectValid()));
@@ -252,6 +270,10 @@ const mod = {
 		}
 		
 		mod.ReactThrottle();
+	},
+
+	async OLSKChangeDelegateConflictCard (inputData) {
+		return mod.OLSKChangeDelegateUpdateCard(await KOMCardAction.KOMCardActionUpdate(mod._ValueStorageClient, OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateConflictSelectRecent(inputData)));
 	},
 
 	OLSKChangeDelegateCreateSpacing (inputData) {
@@ -422,6 +444,7 @@ const mod = {
 					OLSKChangeDelegateCreate: mod.OLSKChangeDelegateCreateCard,
 					OLSKChangeDelegateUpdate: mod.OLSKChangeDelegateUpdateCard,
 					OLSKChangeDelegateDelete: mod.OLSKChangeDelegateDeleteCard,
+					OLSKChangeDelegateConflict: mod.OLSKChangeDelegateConflictCard,
 				},
 			}),
 			Object.assign(KOMSpacingStorage.KOMSpacingStorageBuild, {

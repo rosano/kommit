@@ -554,6 +554,46 @@ describe('KOMReview_Sync', function () {
 
 		});
 
+		describe('OLSKChangeDelegateConflictCard', function () {
+
+			before(function () {
+				return browser.pressButton('.KOMBrowseListToolbarCreateButton');
+			});
+
+			before(function () {
+				return browser.fill('.KOMBrowseInfoFormFrontTextField', 'FakeOLSKChangeDelegateConflictCard');
+			});
+
+			before(function () {
+				return browser.pressButton('.KOMBrowseListToolbarCloseButton');
+			});
+
+			before(function () {
+				return browser.pressButton('.KOMReviewDetailToolbarBackButton');
+			});
+
+			before(function () {
+				return browser.click('.KOMReviewMasterListItemContainer:last-of-type .KOMReviewMasterListItem');
+			});
+
+			before(function () {
+				return browser.click('.KOMReviewDetailToolbarCardsButton');
+			});			
+
+			before(function () {
+				return browser.wait({ element: '.KOMBrowseListItem'});
+			});
+
+			before(function () {
+				return kTesting.uLaunch('FakeOLSKChangeDelegateConflictCard');
+			});
+
+			it.skip('selects local', function () {
+				browser.assert.text('.KOMBrowseListItem', 'FakeOLSKChangeDelegateConflictCard-local');
+			});
+
+		});
+
 		describe('OLSKChangeDelegateDeleteDeck', function () {
 
 			before(function () {
@@ -569,7 +609,7 @@ describe('KOMReview_Sync', function () {
 			});
 
 			it('deletes deck', function () {
-				browser.assert.elements('.KOMReviewBrowse', 0);
+				browser.assert.elements('.KOMBrowse', 0);
 			});
 
 		});	
