@@ -27,22 +27,18 @@ const mod = {
 		}, param1), param2);
 	},
 
-	async KOMCardActionUpdate (storageClient, param1, param2) {
-		if (typeof param1 !== 'object' || param1 === null) {
+	async KOMCardActionUpdate (storageClient, inputData) {
+		if (typeof inputData !== 'object' || inputData === null) {
 			return Promise.reject(new Error('KOMErrorInputNotValid'));
 		}
 
-		if (KOMDeckModel.KOMDeckModelErrorsFor(param2)) {
-			return Promise.reject(new Error('KOMErrorInputNotValid'));
-		}
-
-		return await KOMCardMetal.KOMCardMetalWrite(storageClient, Object.assign(param1, {
+		return await KOMCardMetal.KOMCardMetalWrite(storageClient, Object.assign(inputData, {
 			KOMCardModificationDate: new Date(),
-		}), param2);
+		}));
 	},
 
-	async KOMCardActionDelete (storageClient, param1, param2) {
-		return await KOMCardMetal.KOMCardMetalDelete(storageClient, param1, param2);
+	async KOMCardActionDelete (storageClient, inputData) {
+		return await KOMCardMetal.KOMCardMetalDelete(storageClient, inputData);
 	},
 
 	async KOMCardActionList (storageClient, inputData) {
