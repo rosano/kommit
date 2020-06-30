@@ -500,14 +500,8 @@ const mod = {
 		});
 
 		return new Promise(function (res, rej) {
-			mod._ValueStorageClient.on('ready', () => {
-				if (!OLSK_TESTING_BEHAVIOUR()) {
-					console.debug('ready', arguments);
-				}
-
-				res();
-			});
-		})
+			return mod._ValueStorageClient.on('ready', res);
+		});
 	},
 
 	async SetupValueDecksAll() {
