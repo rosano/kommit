@@ -99,6 +99,7 @@ const mod = {
 			return e !== mod._ValueDeckSelected;
 		}).map(function (e) {
 			return {
+				LCHRecipeSignature: 'KOMReviewLauncherItemSelectDeck',
 				LCHRecipeName: OLSKFormatted(OLSKLocalized('KOMReviewLauncherItemSelectDeckTextFormat'), e.KOMDeckName),
 				LCHRecipeCallback () {
 					return mod.ControlDeckSelect(e);

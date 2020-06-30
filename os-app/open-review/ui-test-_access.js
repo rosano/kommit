@@ -90,7 +90,7 @@ describe('KOMReview_Access', function () {
 		});
 
 		before(function () {
-			return browser.fill('.LCHLauncherFilterInput', 'alfa');
+			return browser.fill('.LCHLauncherFilterInput', 'KOMReviewLauncherItemSelectDeck');
 		});
 
 		it('hides KOMReviewLauncherItemSelectDeck', function () {
@@ -122,7 +122,7 @@ describe('KOMReview_Access', function () {
 			});
 
 			before(function () {
-				return browser.fill('.LCHLauncherFilterInput', 'alfa');
+				return browser.fill('.LCHLauncherFilterInput', 'KOMReviewLauncherItemSelectDeck');
 			});
 
 			it('shows KOMReviewLauncherItemSelectDeck', function () {
@@ -356,7 +356,7 @@ describe('KOMReview_Access', function () {
 		});
 
 		before(function () {
-			return browser.fill('.LCHLauncherFilterInput', 'alfa');
+			return browser.fill('.LCHLauncherFilterInput', 'KOMReviewLauncherItemSelectDeck');
 		});
 
 		before(function () {
@@ -386,7 +386,7 @@ describe('KOMReview_Access', function () {
 			});
 
 			before(function () {
-				return browser.fill('.LCHLauncherFilterInput', 'alfa');
+				return browser.fill('.LCHLauncherFilterInput', 'KOMReviewLauncherItemSelectDeck');
 			});
 
 			it('hides LCHLauncherPipeItem', function () {
