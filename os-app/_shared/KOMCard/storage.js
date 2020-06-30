@@ -1,5 +1,4 @@
 import KOMDeckStorage from '../KOMDeck/storage.js';
-import KOMDeckModel from '../KOMDeck/model.js';
 import KOMCardModel from './model.js';
 import * as OLSKRemoteStoragePackage from 'OLSKRemoteStorage';
 const OLSKRemoteStorage = OLSKRemoteStoragePackage.default || OLSKRemoteStoragePackage;
@@ -34,31 +33,27 @@ const mod = {
 	},
 
 	KOMCardStorageCollectionPath (inputData) {
-		if (KOMDeckModel.KOMDeckModelErrorsFor(inputData)) {
+		return KOMDeckStorage.KOMDeckStorageFolderPath(inputData) + kCollection + '/';
+	},
+
+	KOMCardStorageFolderPath (inputData) {
+		if (KOMCardModel.KOMCardModelErrorsFor(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		return KOMDeckStorage.KOMDeckStorageFolderPath(inputData.KOMDeckID) + kCollection + '/';
+		return mod.KOMCardStorageCollectionPath(inputData.KOMCardDeckID) + inputData.KOMCardCreationDate.toJSON().split('T').shift() + '/' + inputData.KOMCardID + '/';
 	},
 
-	KOMCardStorageFolderPath (param1, param2) {
-		if (KOMCardModel.KOMCardModelErrorsFor(param1)) {
-			throw new Error('KOMErrorInputNotValid');
-		}
-
-		return mod.KOMCardStorageCollectionPath(param2) + param1.KOMCardCreationDate.toJSON().split('T').shift() + '/' + param1.KOMCardID + '/';
+	KOMCardStorageObjectPath (inputData) {
+		return mod.KOMCardStorageFolderPath(inputData) + 'main';
 	},
 
-	KOMCardStorageObjectPath (param1, param2) {
-		return mod.KOMCardStorageFolderPath(param1, param2) + 'main';
+	KOMCardStorageAudioPathFront (inputData) {
+		return mod.KOMCardStorageFolderPath(inputData) + 'side-front/audio';
 	},
 
-	KOMCardStorageAudioPathFront (param1, param2) {
-		return mod.KOMCardStorageFolderPath(param1, param2) + 'side-front/audio';
-	},
-
-	KOMCardStorageAudioPathRear (param1, param2) {
-		return mod.KOMCardStorageFolderPath(param1, param2) + 'side-rear/audio';
+	KOMCardStorageAudioPathRear (inputData) {
+		return mod.KOMCardStorageFolderPath(inputData) + 'side-rear/audio';
 	},
 
 	KOMCardStorageMatch (inputData) {
@@ -93,13 +88,13 @@ const mod = {
 				return console.warn(`${ delegateMethod } not function`);
 			}
 
-			changeDelegate[delegateMethod](OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(event[OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateInput(delegateMethod)]));
+			changeDelegate[delegateMethod](OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateData(delegateMethod, event)));
 		});
 
 		const OLSKRemoteStorageCollectionExports = {
 
 			async KOMStorageList (inputData) {
-				let storagePath = mod.KOMCardStorageCollectionPath(inputData);
+				let storagePath = mod.KOMCardStorageCollectionPath(inputData.KOMDeckID);
 
 				return (await Promise.all((await OLSKRemoteStorage.OLSKRemoteStorageListObjectsRecursive(privateClient, storagePath)).filter(mod.KOMCardStorageMatch).map(function (e) {
 					return privateClient.getObject(e, false);
@@ -112,8 +107,8 @@ const mod = {
 				}, {});
 			},
 			
-			async KOMStorageWrite (param1, param2) {
-				await privateClient.storeObject(kType, mod.KOMCardStorageObjectPath(param1, param2), OLSKRemoteStorage.OLSKRemoteStoragePreJSONSchemaValidate(param1));
+			async KOMStorageWrite (param1) {
+				await privateClient.storeObject(kType, mod.KOMCardStorageObjectPath(param1), OLSKRemoteStorage.OLSKRemoteStoragePreJSONSchemaValidate(param1));
 				return OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(param1);
 			},
 			
@@ -144,8 +139,8 @@ const mod = {
 				return privateClient.remove(inputData);
 			},
 			
-			async KOMStorageDelete (param1, param2) {
-				return (await Promise.all((await OLSKRemoteStorage.OLSKRemoteStorageListObjectsRecursive(privateClient, mod.KOMCardStorageFolderPath(param1, param2))).map(function (path) {
+			async KOMStorageDelete (inputData) {
+				return (await Promise.all((await OLSKRemoteStorage.OLSKRemoteStorageListObjectsRecursive(privateClient, mod.KOMCardStorageFolderPath(inputData))).map(function (path) {
 					return privateClient.remove(path);
 				}))).pop();
 			},

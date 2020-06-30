@@ -4,19 +4,19 @@ const OLSKRemoteStorage = OLSKRemoteStoragePackage.default || OLSKRemoteStorageP
 
 const mod = {
 
-	async KOMCardMetalWrite (storageClient, param1, param2) {
-		if (typeof param1 !== 'object' || param1 === null) {
+	async KOMCardMetalWrite (storageClient, inputData) {
+		if (typeof inputData !== 'object' || inputData === null) {
 			return Promise.reject(new Error('KOMErrorInputNotValid'));
 		}
 
-		let errors = KOMCardModel.KOMCardModelErrorsFor(param1);
+		let errors = KOMCardModel.KOMCardModelErrorsFor(inputData);
 		if (errors) {
 			return Promise.resolve({
 				KOMErrors: errors,
 			});
 		}
 
-		return await storageClient.kommit.kom_cards.KOMStorageWrite(param1, param2);
+		return await storageClient.kommit.kom_cards.KOMStorageWrite(inputData);
 	},
 
 	async KOMCardMetalList (storageClient, inputData) {
@@ -29,12 +29,12 @@ const mod = {
 		return outputData;
 	},
 
-	async KOMCardMetalDelete (storageClient, param1, param2) {
-		if (KOMCardModel.KOMCardModelErrorsFor(param1)) {
+	async KOMCardMetalDelete (storageClient, inputData) {
+		if (KOMCardModel.KOMCardModelErrorsFor(inputData)) {
 			return Promise.reject(new Error('KOMErrorInputNotValid'));
 		}
 
-		return await storageClient.kommit.kom_cards.KOMStorageDelete(param1, param2);
+		return await storageClient.kommit.kom_cards.KOMStorageDelete(inputData);
 	},
 
 	async KOMCardMetalFileWrite (storageClient, param1, param2) {

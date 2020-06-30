@@ -28,92 +28,68 @@ describe('KOMCardStorageCollectionPath', function test_KOMCardStorageCollectionP
 
 	it('throws if not valid', function () {
 		throws(function () {
-			mainModule.KOMCardStorageCollectionPath({});
+			mainModule.KOMCardStorageCollectionPath('');
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns string', function() {
-		deepEqual(mainModule.KOMCardStorageCollectionPath(kTesting.StubDeckObjectValid()), KOMDeckStorage.KOMDeckStorageFolderPath('alfa') + 'kom_cards/');
+		deepEqual(mainModule.KOMCardStorageCollectionPath('alfa'), KOMDeckStorage.KOMDeckStorageFolderPath('alfa') + 'kom_cards/');
 	});
 
 });
 
 describe('KOMCardStorageFolderPath', function test_KOMCardStorageFolderPath() {
 
-	it('throws if param1 not valid', function () {
-		throws(function () {
-			mainModule.KOMCardStorageFolderPath({}, kTesting.StubDeckObjectValid());
-		}, /KOMErrorInputNotValid/);
-	});
-
 	it('throws if param2 not valid', function () {
 		throws(function () {
-			mainModule.KOMCardStorageFolderPath(kTesting.StubCardObjectValid(), {});
+			mainModule.KOMCardStorageFolderPath({});
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns string', function() {
-		deepEqual(mainModule.KOMCardStorageFolderPath(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()), mainModule.KOMCardStorageCollectionPath(kTesting.StubDeckObjectValid()) + kTesting.StubCardObjectValid().KOMCardCreationDate.toJSON().split('T').shift() + '/charlie/');
+		deepEqual(mainModule.KOMCardStorageFolderPath(kTesting.StubCardObjectValid()), mainModule.KOMCardStorageCollectionPath(kTesting.StubDeckObjectValid().KOMDeckID) + kTesting.StubCardObjectValid().KOMCardCreationDate.toJSON().split('T').shift() + '/charlie/');
 	});
 
 });
 
 describe('KOMCardStorageObjectPath', function test_KOMCardStorageObjectPath() {
 
-	it('throws if param1 not valid', function () {
+	it('throws if not valid', function () {
 		throws(function () {
-			mainModule.KOMCardStorageObjectPath({}, kTesting.StubDeckObjectValid());
-		}, /KOMErrorInputNotValid/);
-	});
-
-	it('throws if param2 not valid', function () {
-		throws(function () {
-			mainModule.KOMCardStorageObjectPath(kTesting.StubCardObjectValid(), {});
+			mainModule.KOMCardStorageObjectPath({});
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns string', function() {
-		deepEqual(mainModule.KOMCardStorageObjectPath(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()), mainModule.KOMCardStorageFolderPath(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()) + 'main');
+		deepEqual(mainModule.KOMCardStorageObjectPath(kTesting.StubCardObjectValid()), mainModule.KOMCardStorageFolderPath(kTesting.StubCardObjectValid()) + 'main');
 	});
 
 });
 
 describe('KOMCardStorageAudioPathFront', function test_KOMCardStorageAudioPathFront() {
 
-	it('throws if param1 not valid', function () {
+	it('throws if not valid', function () {
 		throws(function () {
-			mainModule.KOMCardStorageAudioPathFront({}, kTesting.StubDeckObjectValid());
-		}, /KOMErrorInputNotValid/);
-	});
-
-	it('throws if param2 not valid', function () {
-		throws(function () {
-			mainModule.KOMCardStorageAudioPathFront(kTesting.StubCardObjectValid(), {});
+			mainModule.KOMCardStorageAudioPathFront({});
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns string', function() {
-		deepEqual(mainModule.KOMCardStorageAudioPathFront(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()), mainModule.KOMCardStorageFolderPath(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()) + 'side-front/audio');
+		deepEqual(mainModule.KOMCardStorageAudioPathFront(kTesting.StubCardObjectValid()), mainModule.KOMCardStorageFolderPath(kTesting.StubCardObjectValid()) + 'side-front/audio');
 	});
 
 });
 
 describe('KOMCardStorageAudioPathRear', function test_KOMCardStorageAudioPathRear() {
 
-	it('throws if param1 not valid', function () {
+	it('throws if not valid', function () {
 		throws(function () {
-			mainModule.KOMCardStorageAudioPathRear({}, kTesting.StubDeckObjectValid());
-		}, /KOMErrorInputNotValid/);
-	});
-
-	it('throws if param2 not valid', function () {
-		throws(function () {
-			mainModule.KOMCardStorageAudioPathRear(kTesting.StubCardObjectValid(), {});
+			mainModule.KOMCardStorageAudioPathRear({});
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns string', function() {
-		deepEqual(mainModule.KOMCardStorageAudioPathRear(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()), mainModule.KOMCardStorageFolderPath(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()) + 'side-rear/audio');
+		deepEqual(mainModule.KOMCardStorageAudioPathRear(kTesting.StubCardObjectValid()), mainModule.KOMCardStorageFolderPath(kTesting.StubCardObjectValid()) + 'side-rear/audio');
 	});
 
 });
@@ -131,16 +107,16 @@ describe('KOMCardStorageMatch', function test_KOMCardStorageMatch() {
 	});
 
 	it('returns false if no KOMCardStorageCollectionPath', function() {
-		const item = mainModule.KOMCardStorageCollectionPath(kTesting.StubDeckObjectValid());
-		deepEqual(mainModule.KOMCardStorageMatch(mainModule.KOMCardStorageObjectPath(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()).replace(item, item.slice(0, -2) + '/')), false);
+		const item = mainModule.KOMCardStorageCollectionPath(kTesting.StubDeckObjectValid().KOMDeckID);
+		deepEqual(mainModule.KOMCardStorageMatch(mainModule.KOMCardStorageObjectPath(kTesting.StubCardObjectValid()).replace(item, item.slice(0, -2) + '/')), false);
 	});
 
 	it('returns false if no KOMCardStorageObjectPath', function() {
-		deepEqual(mainModule.KOMCardStorageMatch(mainModule.KOMCardStorageObjectPath(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()).slice(0, -1)), false);
+		deepEqual(mainModule.KOMCardStorageMatch(mainModule.KOMCardStorageObjectPath(kTesting.StubCardObjectValid()).slice(0, -1)), false);
 	});
 
 	it('returns true', function() {
-		deepEqual(mainModule.KOMCardStorageMatch(mainModule.KOMCardStorageObjectPath(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid())), true);
+		deepEqual(mainModule.KOMCardStorageMatch(mainModule.KOMCardStorageObjectPath(kTesting.StubCardObjectValid())), true);
 	});
 
 });

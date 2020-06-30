@@ -3,6 +3,7 @@ import KOMSpacingModel from './model.js';
 import * as OLSKRemoteStoragePackage from 'OLSKRemoteStorage';
 const OLSKRemoteStorage = OLSKRemoteStoragePackage.default || OLSKRemoteStoragePackage;
 import KOMDeckStorage from '../KOMDeck/storage.js';
+import KOMDeckModel from '../KOMDeck/model.js';
 
 const kType = 'kom_spacing';
 const kCollection = 'kom_spacings';
@@ -10,10 +11,18 @@ const kCollection = 'kom_spacings';
 const mod = {
 
 	KOMSpacingStoragePathForward (param1, param2) {
+		if (KOMDeckModel.KOMDeckModelErrorsFor(param2)) {
+			throw new Error('KOMErrorInputNotValid');
+		};
+
 		return KOMCardStorage.KOMCardStorageObjectPath(param1, param2).replace('main', 'spacing-forward');
 	},
 
 	KOMSpacingStoragePathBackward (param1, param2) {
+		if (KOMDeckModel.KOMDeckModelErrorsFor(param2)) {
+			throw new Error('KOMErrorInputNotValid');
+		};
+
 		return KOMCardStorage.KOMCardStorageObjectPath(param1, param2).replace('main', 'spacing-backward');
 	},
 
@@ -62,6 +71,10 @@ const mod = {
 		const OLSKRemoteStorageCollectionExports = {
 
 			async KOMStorageList (param1, param2) {
+				if (KOMDeckModel.KOMDeckModelErrorsFor(param2)) {
+					throw new Error('KOMErrorInputNotValid');
+				};
+
 				const result = await privateClient.getAll(KOMCardStorage.KOMCardStorageFolderPath(param1, param2), false);
 
 				for (let key in result) {
