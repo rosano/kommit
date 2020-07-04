@@ -61,7 +61,7 @@ olsk-spec-ui
 To filter test paths by string:
 
 ```
-olsk-spec-ui -olsk-match=browse
+olsk-spec-ui -os-match=browse
 ```
 
 ## License
