@@ -8,6 +8,10 @@ const mod = {
 		if (!(inputData.KOM_VITRINE_ANKI_URL || '').trim()) {
 			return new Error('KOM_VITRINE_ANKI_URL not defined');
 		}
+
+		if (!(inputData.KOM_VITRINE_VIDEO_URL || '').trim()) {
+			return new Error('KOM_VITRINE_VIDEO_URL not defined');
+		}
 	},
 
 };

@@ -55,6 +55,10 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			browser.assert.element(`a[href="${ process.env.KOM_SHARED_DONATE_URL }"]`);
 		});
 
+		it('localizes KOMVitrineVideoHeading', function () {
+			browser.assert.text(KOMVitrineVideoHeading, uLocalized('KOMVitrineVideoHeadingText'));
+		});
+
 	});
 
 });

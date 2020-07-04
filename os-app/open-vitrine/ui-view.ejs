@@ -33,6 +33,10 @@ locals.OLSKPageMetaTags = {
 
 <%- OLSKStringReplaceTokens(KOMVitrineContent, {}) %>
 
+<h2 class="KOMVitrineVideoHeading"><%= OLSKLocalized('KOMVitrineVideoHeadingText') %></h2>
+
+<iframe class="KOMVitrineVideoFrame" <%= IsTestingBehaviour ? 'fake-' : '' %>src="<%= process.env.KOM_VITRINE_VIDEO_URL %>" width="400" height="380" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
 </article>
 
 <hr />

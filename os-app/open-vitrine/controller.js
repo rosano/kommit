@@ -29,6 +29,7 @@ exports.OLSKControllerRoutes = function() {
 					KOM_SHARED_GITHUB_URL: process.env.KOM_SHARED_GITHUB_URL,
 				}),
 				OLSKStringReplaceTokens: require('OLSKString').OLSKStringReplaceTokens,
+				IsTestingBehaviour: req.hostname.match('loc.tests'),
 			});
 		},
 		OLSKRouteLanguages: ['en', 'fr'],
