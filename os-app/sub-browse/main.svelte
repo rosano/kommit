@@ -34,129 +34,6 @@ import KOMCardStorage from '../_shared/KOMCard/storage.js';
 
 const mod = {
 
-	// MESSAGE
-
-	KOMBrowseListDispatchCreate () {
-		mod.ControlCardCreate(KOMBrowseDeckSelected);
-	},
-
-	KOMBrowseListDispatchClick (inputData) {
-		mod.ControlCardSelect(inputData);
-	},
-
-	KOMBrowseListDispatchArrow (inputData) {
-		mod.ValueCardSelected(inputData);
-	},
-
-	KOMBrowseListDispatchFilter (inputData) {
-		mod.ControlFilter(inputData);
-	},
-
-	KOMBrowseInfoDispatchBack () {
-		mod.OLSKMobileViewInactive = false;
-	},
-
-	KOMBrowseInfoDispatchDiscard () {
-		mod.ControlCardDiscard(mod._ValueCardSelected, KOMBrowseDeckSelected);
-	},
-
-	KOMBrowseInfoDispatchCreate () {
-		mod.ControlCardCreate(KOMBrowseDeckSelected);
-	},
-
-	KOMBrowseInfoDispatchUpdate () {
-		mod._ValueCardSelected = mod._ValueCardSelected; // #purge-svelte-force-update
-
-		mod.ControlCardUpdate(mod._ValueCardSelected, KOMBrowseDeckSelected);
-	},
-
-	async KOMBrowseInfoAudioDispatchCapture (param1, param2) {
-		await mod.ControlCardAudioCapture(param1, param2, mod._ValueCardSelected, KOMBrowseDeckSelected);
-
-		mod._ValueCardSelected = mod._ValueCardSelected; // #purge-svelte-force-update
-	},
-
-	async KOMBrowseInfoAudioDispatchClear (inputData) {
-		await mod.ControlCardAudioClear(inputData, mod._ValueCardSelected, KOMBrowseDeckSelected);
-
-		mod._ValueCardSelected = mod._ValueCardSelected; // #purge-svelte-force-update
-	},
-
-	async KOMBrowseInfoAudioDispatchFetch (inputData) {
-		return await KOMCardAction.KOMCardActionAudioFetch(KOMBrowseStorageClient, inputData, mod._ValueCardSelected, KOMBrowseDeckSelected);
-	},
-
-	_OLSKAppToolbarDispatchLauncher () {
-		const items = [];
-
-		if (OLSK_TESTING_BEHAVIOUR()) {
-			items.push(...[
-				{
-					LCHRecipeName: 'FakeChangeDelegateCreateCard',
-					LCHRecipeCallback: async function FakeChangeDelegateCreateCard () {
-						return mod.ChangeDelegateCreateCard(await KOMCardAction.KOMCardActionCreate(KOMBrowseStorageClient, mod.DataCardObjectTemplate('FakeChangeDelegateCreateCard'), KOMBrowseDeckSelected));
-					},
-				},
-				{
-					LCHRecipeName: 'FakeChangeDelegateUpdateCard',
-					LCHRecipeCallback: async function FakeChangeDelegateUpdateCard () {
-						return mod.ChangeDelegateUpdateCard(await KOMCardAction.KOMCardActionUpdate(KOMBrowseStorageClient, Object.assign(mod._ValueCardsAll.filter(function (e) {
-							return e.KOMCardFrontText.match('FakeChangeDelegate');
-						}).pop(), {
-							KOMCardFrontText: 'FakeChangeDelegateUpdateCard',
-						}), KOMBrowseDeckSelected));
-					},
-				},
-				{
-					LCHRecipeName: 'FakeChangeDelegateDeleteCard',
-					LCHRecipeCallback: async function FakeChangeDelegateDeleteCard () {
-						const item = mod._ValueCardsAll.filter(function (e) {
-							return e.KOMCardFrontText.match('FakeChangeDelegate');
-						}).pop();
-						
-						await KOMCardAction.KOMCardActionDelete(KOMBrowseStorageClient, item, KOMBrowseDeckSelected);
-						
-						return mod.ChangeDelegateDeleteCard(item);
-					},
-				},
-				{
-					LCHRecipeName: 'FakeEscapeWithoutSort',
-					LCHRecipeCallback: function FakeEscapeWithoutSort () {
-						mod.ControlCardSelect(null);
-					},
-				},
-			]);
-		}
-		
-		window.Launchlet.LCHSingletonCreate({
-			LCHOptionRecipes: items,
-		});
-	},
-
-	ChangeDelegateCreateCard (inputData) {
-		mod.ValueCardsAll([inputData].concat(mod._ValueCardsAll), !mod._ValueCardSelected);
-	},
-
-	ChangeDelegateUpdateCard (inputData) {
-		if (mod._ValueCardSelected && mod._ValueCardSelected.KOMCardID === inputData.KOMCardID) {
-			mod.ControlCardSelect(inputData);
-		}
-
-		mod.ValueCardsAll(mod._ValueCardsAll.map(function (e) {
-			return e.KOMCardID === inputData.KOMCardID ? inputData : e;
-		}), !mod._ValueCardSelected);
-	},
-
-	ChangeDelegateDeleteCard (inputData) {
-		if (mod._ValueCardSelected && (mod._ValueCardSelected.KOMCardID === inputData.KOMCardID)) {
-			mod.ControlCardSelect(null);
-		}
-
-		mod.ValueCardsAll(mod._ValueCardsAll.filter(function (e) {
-			return e.KOMCardID !== inputData.KOMCardID;
-		}), false);
-	},
-
 	// VALUE
 
 	_ValueCardsAll: KOMBrowseDeckSelected.$KOMDeckCards,
@@ -336,6 +213,129 @@ const mod = {
 		}
 
 		mod.ValueCardSelected(KOMBrowseLogic.KOMBrowseMatchFunction(inputData)(mod._ValueCardsVisible).shift());
+	},
+
+	// MESSAGE
+
+	KOMBrowseListDispatchCreate () {
+		mod.ControlCardCreate(KOMBrowseDeckSelected);
+	},
+
+	KOMBrowseListDispatchClick (inputData) {
+		mod.ControlCardSelect(inputData);
+	},
+
+	KOMBrowseListDispatchArrow (inputData) {
+		mod.ValueCardSelected(inputData);
+	},
+
+	KOMBrowseListDispatchFilter (inputData) {
+		mod.ControlFilter(inputData);
+	},
+
+	KOMBrowseInfoDispatchBack () {
+		mod.OLSKMobileViewInactive = false;
+	},
+
+	KOMBrowseInfoDispatchDiscard () {
+		mod.ControlCardDiscard(mod._ValueCardSelected, KOMBrowseDeckSelected);
+	},
+
+	KOMBrowseInfoDispatchCreate () {
+		mod.ControlCardCreate(KOMBrowseDeckSelected);
+	},
+
+	KOMBrowseInfoDispatchUpdate () {
+		mod._ValueCardSelected = mod._ValueCardSelected; // #purge-svelte-force-update
+
+		mod.ControlCardUpdate(mod._ValueCardSelected, KOMBrowseDeckSelected);
+	},
+
+	async KOMBrowseInfoAudioDispatchCapture (param1, param2) {
+		await mod.ControlCardAudioCapture(param1, param2, mod._ValueCardSelected, KOMBrowseDeckSelected);
+
+		mod._ValueCardSelected = mod._ValueCardSelected; // #purge-svelte-force-update
+	},
+
+	async KOMBrowseInfoAudioDispatchClear (inputData) {
+		await mod.ControlCardAudioClear(inputData, mod._ValueCardSelected, KOMBrowseDeckSelected);
+
+		mod._ValueCardSelected = mod._ValueCardSelected; // #purge-svelte-force-update
+	},
+
+	async KOMBrowseInfoAudioDispatchFetch (inputData) {
+		return await KOMCardAction.KOMCardActionAudioFetch(KOMBrowseStorageClient, inputData, mod._ValueCardSelected, KOMBrowseDeckSelected);
+	},
+
+	_OLSKAppToolbarDispatchLauncher () {
+		const items = [];
+
+		if (OLSK_TESTING_BEHAVIOUR()) {
+			items.push(...[
+				{
+					LCHRecipeName: 'FakeChangeDelegateCreateCard',
+					LCHRecipeCallback: async function FakeChangeDelegateCreateCard () {
+						return mod.ChangeDelegateCreateCard(await KOMCardAction.KOMCardActionCreate(KOMBrowseStorageClient, mod.DataCardObjectTemplate('FakeChangeDelegateCreateCard'), KOMBrowseDeckSelected));
+					},
+				},
+				{
+					LCHRecipeName: 'FakeChangeDelegateUpdateCard',
+					LCHRecipeCallback: async function FakeChangeDelegateUpdateCard () {
+						return mod.ChangeDelegateUpdateCard(await KOMCardAction.KOMCardActionUpdate(KOMBrowseStorageClient, Object.assign(mod._ValueCardsAll.filter(function (e) {
+							return e.KOMCardFrontText.match('FakeChangeDelegate');
+						}).pop(), {
+							KOMCardFrontText: 'FakeChangeDelegateUpdateCard',
+						}), KOMBrowseDeckSelected));
+					},
+				},
+				{
+					LCHRecipeName: 'FakeChangeDelegateDeleteCard',
+					LCHRecipeCallback: async function FakeChangeDelegateDeleteCard () {
+						const item = mod._ValueCardsAll.filter(function (e) {
+							return e.KOMCardFrontText.match('FakeChangeDelegate');
+						}).pop();
+						
+						await KOMCardAction.KOMCardActionDelete(KOMBrowseStorageClient, item, KOMBrowseDeckSelected);
+						
+						return mod.ChangeDelegateDeleteCard(item);
+					},
+				},
+				{
+					LCHRecipeName: 'FakeEscapeWithoutSort',
+					LCHRecipeCallback: function FakeEscapeWithoutSort () {
+						mod.ControlCardSelect(null);
+					},
+				},
+			]);
+		}
+		
+		window.Launchlet.LCHSingletonCreate({
+			LCHOptionRecipes: items,
+		});
+	},
+
+	ChangeDelegateCreateCard (inputData) {
+		mod.ValueCardsAll([inputData].concat(mod._ValueCardsAll), !mod._ValueCardSelected);
+	},
+
+	ChangeDelegateUpdateCard (inputData) {
+		if (mod._ValueCardSelected && mod._ValueCardSelected.KOMCardID === inputData.KOMCardID) {
+			mod.ControlCardSelect(inputData);
+		}
+
+		mod.ValueCardsAll(mod._ValueCardsAll.map(function (e) {
+			return e.KOMCardID === inputData.KOMCardID ? inputData : e;
+		}), !mod._ValueCardSelected);
+	},
+
+	ChangeDelegateDeleteCard (inputData) {
+		if (mod._ValueCardSelected && (mod._ValueCardSelected.KOMCardID === inputData.KOMCardID)) {
+			mod.ControlCardSelect(null);
+		}
+
+		mod.ValueCardsAll(mod._ValueCardsAll.filter(function (e) {
+			return e.KOMCardID !== inputData.KOMCardID;
+		}), false);
 	},
 
 	// REACT

@@ -25,6 +25,102 @@ import OLSKThrottle from 'OLSKThrottle';
 
 const mod = {
 
+	// VALUE
+
+	_ValueIsLoading: true,
+
+	_ValueDecksAll: [],
+	ValueDecksAll (inputData) {
+		mod._ValueDecksAll = KOMReviewLogic.KOMReviewDeckSort(inputData);
+	},
+	
+	_ValueDeckSelected: undefined,
+	ValueDeckSelected (inputData) {
+		mod._ValueDeckSelected = inputData
+	},
+
+	_ValueBrowseVisible: false,
+
+	_ValuePlayVisible: false,
+	_ValuePlaySpacings: [],
+
+	_ValueHoldCards: [],
+	_ValueHoldSpacings: [],
+	
+	_ValueStorageToolbarHidden: true,
+
+	_ValueFooterStorageStatus: '',
+
+	_ValueSpacingUpdateThrottleMap: {},
+	_ValueCountThrottleMap: {},
+	
+	// DATA
+
+	FakeDeckObjectValid (inputData = '') {
+		return {
+			KOMDeckID: 'FakeDeckID',
+			KOMDeckName: inputData,
+			KOMDeckCreationDate: new Date(),
+			KOMDeckModificationDate: new Date(),
+		};
+	},
+
+	FakeCardObjectValid(inputData = '') {
+		return {
+			KOMCardID: 'FakeCardID',
+			KOMCardDeckID: 'FakeDeckID',
+			KOMCardFrontText: inputData,
+			KOMCardRearText: '',
+			KOMCardCreationDate: new Date(),
+			KOMCardModificationDate: new Date(),
+		};
+	},
+
+	FakeSpacingObjectValid(inputData) {
+		return {
+			KOMSpacingID: 'FakeCardID-' + (inputData ? 'backward' : 'forward'),
+			KOMSpacingChronicles: [],
+		};
+	},
+
+	// CONTROL
+
+	async ControlDeckCreate(inputData) {
+		const item = await KOMDeckAction.KOMDeckActionCreate(mod._ValueStorageClient, {
+			KOMDeckName: inputData,
+			$KOMDeckCards: [],
+			$KOMDeckSpacings: [],
+		});
+
+		mod.ValueDecksAll(mod._ValueDecksAll.concat(item));
+	},
+	
+	async ControlDeckSave(inputData) {
+		await KOMDeckAction.KOMDeckActionUpdate(mod._ValueStorageClient, inputData);
+	},
+
+	async ControlDeckDiscard (inputData) {
+		mod.ValueDecksAll(mod._ValueDecksAll.filter(function (e) {
+			return e !== inputData;
+		}))
+
+		await KOMDeckAction.KOMDeckActionDelete(mod._ValueStorageClient, inputData);
+	},
+
+	ControlDeckSelect(inputData) {
+		mod.ValueDeckSelected(inputData);
+	},
+
+	ControlSpacingSave(inputData) {
+		const deck = mod._ValueDeckSelected;
+		OLSKThrottle.OLSKThrottleMappedTimeout(mod._ValueSpacingUpdateThrottleMap, inputData.KOMSpacingID, {
+			OLSKThrottleDuration: OLSK_TESTING_BEHAVIOUR () ? 0 : 500,
+			OLSKThrottleCallback () {
+				return KOMSpacingMetal.KOMSpacingMetalWrite(mod._ValueStorageClient, inputData, inputData.$KOMSpacingCard, deck);
+			},
+		});
+	},
+
 	// MESSAGE
 
 	KOMReviewMasterDispatchCreate (inputData) {
@@ -286,102 +382,6 @@ const mod = {
 	},
 
 	OLSKChangeDelegateDeleteSpacing (inputData) {},
-
-	// VALUE
-
-	_ValueIsLoading: true,
-
-	_ValueDecksAll: [],
-	ValueDecksAll (inputData) {
-		mod._ValueDecksAll = KOMReviewLogic.KOMReviewDeckSort(inputData);
-	},
-	
-	_ValueDeckSelected: undefined,
-	ValueDeckSelected (inputData) {
-		mod._ValueDeckSelected = inputData
-	},
-
-	_ValueBrowseVisible: false,
-
-	_ValuePlayVisible: false,
-	_ValuePlaySpacings: [],
-
-	_ValueHoldCards: [],
-	_ValueHoldSpacings: [],
-	
-	_ValueStorageToolbarHidden: true,
-
-	_ValueFooterStorageStatus: '',
-
-	_ValueSpacingUpdateThrottleMap: {},
-	_ValueCountThrottleMap: {},
-	
-	// DATA
-
-	FakeDeckObjectValid (inputData = '') {
-		return {
-			KOMDeckID: 'FakeDeckID',
-			KOMDeckName: inputData,
-			KOMDeckCreationDate: new Date(),
-			KOMDeckModificationDate: new Date(),
-		};
-	},
-
-	FakeCardObjectValid(inputData = '') {
-		return {
-			KOMCardID: 'FakeCardID',
-			KOMCardDeckID: 'FakeDeckID',
-			KOMCardFrontText: inputData,
-			KOMCardRearText: '',
-			KOMCardCreationDate: new Date(),
-			KOMCardModificationDate: new Date(),
-		};
-	},
-
-	FakeSpacingObjectValid(inputData) {
-		return {
-			KOMSpacingID: 'FakeCardID-' + (inputData ? 'backward' : 'forward'),
-			KOMSpacingChronicles: [],
-		};
-	},
-
-	// CONTROL
-
-	async ControlDeckCreate(inputData) {
-		const item = await KOMDeckAction.KOMDeckActionCreate(mod._ValueStorageClient, {
-			KOMDeckName: inputData,
-			$KOMDeckCards: [],
-			$KOMDeckSpacings: [],
-		});
-
-		mod.ValueDecksAll(mod._ValueDecksAll.concat(item));
-	},
-	
-	async ControlDeckSave(inputData) {
-		await KOMDeckAction.KOMDeckActionUpdate(mod._ValueStorageClient, inputData);
-	},
-
-	async ControlDeckDiscard (inputData) {
-		mod.ValueDecksAll(mod._ValueDecksAll.filter(function (e) {
-			return e !== inputData;
-		}))
-
-		await KOMDeckAction.KOMDeckActionDelete(mod._ValueStorageClient, inputData);
-	},
-
-	ControlDeckSelect(inputData) {
-		mod.ValueDeckSelected(inputData);
-	},
-
-	ControlSpacingSave(inputData) {
-		const deck = mod._ValueDeckSelected;
-		OLSKThrottle.OLSKThrottleMappedTimeout(mod._ValueSpacingUpdateThrottleMap, inputData.KOMSpacingID, {
-			OLSKThrottleDuration: OLSK_TESTING_BEHAVIOUR () ? 0 : 500,
-			OLSKThrottleCallback () {
-				return KOMSpacingMetal.KOMSpacingMetalWrite(mod._ValueStorageClient, inputData, inputData.$KOMSpacingCard, deck);
-			},
-		});
-	},
 
 	// REACT
 
