@@ -249,6 +249,18 @@ describe('KOMBrowseInfo_Misc', function () {
 	
 	describe('KOMBrowseInfoFormFrontReadButton', function test_KOMBrowseInfoFormFrontReadButton() {
 
+		before(function() {
+			return browser.OLSKVisit(kDefaultRoute, {
+				KOMBrowseInfoItem: JSON.stringify({
+					KOMCardFrontText: 'alfa',
+				}),
+				KOMBrowseInfoDeck: JSON.stringify({
+					KOMDeckFrontLanguageCode: 'en',
+				}),
+				KOMBrowseInfoSpeechAvailable: false,
+			});
+		});
+
 		it('sets disabled', function () {
 			browser.assert.attribute(KOMBrowseInfoFormFrontReadButton, 'disabled', '');
 		});
@@ -263,6 +275,7 @@ describe('KOMBrowseInfo_Misc', function () {
 					KOMBrowseInfoDeck: JSON.stringify({
 						KOMDeckFrontLanguageCode: 'en',
 					}),
+					KOMBrowseInfoSpeechAvailable: true,
 				});
 			});
 

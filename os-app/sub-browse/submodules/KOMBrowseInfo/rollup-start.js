@@ -1,7 +1,7 @@
 import RollupStart from './main.svelte';
 
 const params = Object.fromEntries(Array.from((new window.URLSearchParams(window.location.search)).entries()).map(function (e) {
-	if (['KOMBrowseInfoItem', 'KOMBrowseInfoDeck'].includes(e[0])) {
+	if (['KOMBrowseInfoItem', 'KOMBrowseInfoDeck', 'KOMBrowseInfoSpeechAvailable'].includes(e[0])) {
 		e[1] = JSON.parse(e[1]);
 	}
 
@@ -64,6 +64,7 @@ const KOMBrowseInfo = new RollupStart({
 		KOMBrowseInfoAudioDispatchClear: (function _KOMBrowseInfoAudioDispatchClear () {
 			window.TestKOMBrowseInfoAudioDispatchClear.innerHTML = parseInt(window.TestKOMBrowseInfoAudioDispatchClear.innerHTML) + 1;
 		}),
+		KOMBrowseInfoSpeechAvailable: false,
 	}, params),
 });
 
