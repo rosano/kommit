@@ -1,7 +1,7 @@
 import RollupStart from './main.svelte';
 
 const params = Object.fromEntries(Array.from((new window.URLSearchParams(window.location.search)).entries()).map(function (e) {
-	if (['KOMBrowseInfoItem'].includes(e[0])) {
+	if (['KOMBrowseInfoItem', 'KOMBrowseInfoDeck'].includes(e[0])) {
 		e[1] = JSON.parse(e[1]);
 	}
 
@@ -35,6 +35,7 @@ mod.LifecycleModuleDidLoad();
 const KOMBrowseInfo = new RollupStart({
 	target: document.body,
 	props: Object.assign({
+		KOMBrowseInfoDeck: {},
 		KOMBrowseInfoDispatchBack: (function _KOMBrowseInfoDispatchBack () {
 			window.TestKOMBrowseInfoDispatchBack.innerHTML = parseInt(window.TestKOMBrowseInfoDispatchBack.innerHTML) + 1;
 		}),
@@ -42,13 +43,17 @@ const KOMBrowseInfo = new RollupStart({
 			window.TestKOMBrowseInfoDispatchDiscard.innerHTML = parseInt(window.TestKOMBrowseInfoDispatchDiscard.innerHTML) + 1;
 			window.TestKOMBrowseInfoDispatchDiscardData.innerHTML = JSON.stringify(inputData);
 		}),
-		KOMBrowseInfoDispatchCreate: (function _KOMBrowseInfoDispatchCreate () {
-			window.TestKOMBrowseInfoDispatchCreate.innerHTML = parseInt(window.TestKOMBrowseInfoDispatchCreate.innerHTML) + 1;
-		}),
 		KOMBrowseInfoDispatchUpdate: (function _KOMBrowseInfoDispatchUpdate () {
 			window.TestKOMBrowseInfoDispatchUpdate.innerHTML = parseInt(window.TestKOMBrowseInfoDispatchUpdate.innerHTML) + 1;
 
 			mod.ReactDetailItem(params.KOMBrowseInfoItem);
+		}),
+		KOMBrowseInfoDispatchCreate: (function _KOMBrowseInfoDispatchCreate () {
+			window.TestKOMBrowseInfoDispatchCreate.innerHTML = parseInt(window.TestKOMBrowseInfoDispatchCreate.innerHTML) + 1;
+		}),
+		KOMBrowseInfoDispatchRead: (function _KOMBrowseInfoDispatchRead () {
+			window.TestKOMBrowseInfoDispatchRead.innerHTML = parseInt(window.TestKOMBrowseInfoDispatchRead.innerHTML) + 1;
+			window.TestKOMBrowseInfoDispatchReadData.innerHTML = Array.from(arguments).join(',');
 		}),
 		KOMBrowseInfoAudioDispatchCapture: (function _KOMBrowseInfoAudioDispatchCapture () {
 			window.TestKOMBrowseInfoAudioDispatchCapture.innerHTML = parseInt(window.TestKOMBrowseInfoAudioDispatchCapture.innerHTML) + 1;

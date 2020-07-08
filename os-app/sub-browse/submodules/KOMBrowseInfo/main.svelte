@@ -1,9 +1,11 @@
 <script>
 export let KOMBrowseInfoItem;
+export let KOMBrowseInfoDeck;
 export let KOMBrowseInfoDispatchBack;
 export let KOMBrowseInfoDispatchUpdate;
 export let KOMBrowseInfoDispatchDiscard;
 export let KOMBrowseInfoDispatchCreate;
+export let KOMBrowseInfoDispatchRead;
 export let KOMBrowseInfoAudioDispatchCapture;
 export let KOMBrowseInfoAudioDispatchFetch;
 export let KOMBrowseInfoAudioDispatchClear;
@@ -55,6 +57,8 @@ import KOMBrowseInfoAudio from '../KOMBrowseInfoAudio/main.svelte';
 </p>
 
 <p class="KOMBrowseInfoFormFrontAudio">
+	<button class="KOMBrowseInfoFormFrontReadButton" on:click={ () => KOMBrowseInfoDispatchRead(KOMBrowseInfoDeck.KOMDeckFrontLanguageCode, KOMBrowseInfoItem.KOMCardFrontText) } disabled={ !KOMBrowseInfoDeck.KOMDeckFrontLanguageCode }>{ OLSKLocalized('KOMBrowseInfoFormFrontReadButtonText') }</button>
+
 	<KOMBrowseInfoAudio
 		KOMBrowseInfoAudioItem={ KOMBrowseInfoItem }
 		KOMBrowseInfoAudioItemProperty="KOMCardFrontAudio"

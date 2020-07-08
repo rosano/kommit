@@ -247,6 +247,51 @@ describe('KOMBrowseInfo_Misc', function () {
 
 	});
 	
+	describe('KOMBrowseInfoFormFrontReadButton', function test_KOMBrowseInfoFormFrontReadButton() {
+
+		it('sets disabled', function () {
+			browser.assert.attribute(KOMBrowseInfoFormFrontReadButton, 'disabled', '');
+		});
+		
+		context('play', function () {
+
+			before(function() {
+				return browser.OLSKVisit(kDefaultRoute, {
+					KOMBrowseInfoItem: JSON.stringify({
+						KOMCardFrontText: 'alfa',
+					}),
+					KOMBrowseInfoDeck: JSON.stringify({
+						KOMDeckFrontLanguageCode: 'en',
+					}),
+				});
+			});
+
+			it('sets disabled', function () {
+				browser.assert.attribute(KOMBrowseInfoFormFrontReadButton, 'disabled', null);
+			});
+
+			context('click', function () {
+
+				before(function () {
+					browser.assert.text('#TestKOMBrowseInfoDispatchRead', '0');
+					browser.assert.text('#TestKOMBrowseInfoDispatchReadData', 'undefined');
+				});
+				
+				before(function () {
+					return browser.pressButton(KOMBrowseInfoFormFrontReadButton);
+				});
+
+				it('passes KOMBrowseInfoDispatchRead', function () {
+					browser.assert.text('#TestKOMBrowseInfoDispatchRead', '1');
+					browser.assert.text('#TestKOMBrowseInfoDispatchReadData', 'en,alfa');
+				});
+			
+			});
+		
+		});
+
+	});
+	
 	describe('KOMBrowseInfoFormFrontAudio', function test_KOMBrowseInfoFormFrontAudio() {
 		
 		context('record', function () {
