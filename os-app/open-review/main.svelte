@@ -53,6 +53,8 @@ const mod = {
 
 	_ValueSpacingUpdateThrottleMap: {},
 	_ValueCountThrottleMap: {},
+
+	_ValueSpeechAvailable: 'speechSynthesis' in window,
 	
 	// DATA
 
@@ -121,6 +123,28 @@ const mod = {
 		});
 	},
 
+	ControlReadStart (param1, param2) {
+		if (OLSK_TESTING_BEHAVIOUR()) {
+			mod.DebugAudioLog(`read:${ param2 }:${ param1 }`);
+		}
+
+		if (!mod._ValueSpeechAvailable) {
+			return;
+		}
+
+		if (speechSynthesis.speaking) {
+			speechSynthesis.cancel();
+		}
+
+		const item = new SpeechSynthesisUtterance(param1);
+		item.lang = param2;
+		item.voice = speechSynthesis.getVoices().filter(function (e) {
+			return e.lang == item.lang;
+		}).pop();
+
+		speechSynthesis.speak(item);
+	},
+
 	// MESSAGE
 
 	KOMReviewMasterDispatchCreate (inputData) {
@@ -170,6 +194,10 @@ const mod = {
 		}
 
 		mod._ValueBrowseVisible = false;
+	},
+
+	KOMBrowseInfoDispatchRead () {
+		mod.ControlReadStart(...arguments);
 	},
 
 	KOMPlayDispatchDone () {
@@ -577,6 +605,8 @@ import OLSKStorageWidget from 'OLSKStorageWidget';
 			KOMBrowseDeckSelected={ mod._ValueDeckSelected }
 			KOMBrowseDispatchCreate={ mod.KOMBrowseDispatchCreate }
 			KOMBrowseListDispatchClose={ mod.KOMBrowseListDispatchClose }
+			KOMBrowseInfoSpeechAvailable={ mod._ValueSpeechAvailable }
+			KOMBrowseInfoDispatchRead={ mod.KOMBrowseInfoDispatchRead }
 			bind:this={ mod._KOMBrowse }
 			/>
 	{/if}

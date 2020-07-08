@@ -50,6 +50,8 @@ const KOMBrowse = new RollupStart({
 		KOMBrowseListDispatchClose: (function _KOMBrowseListDispatchClose () {
 			window.TestKOMBrowseListDispatchClose.innerHTML = parseInt(window.TestKOMBrowseListDispatchClose.innerHTML) + 1;
 		}),
+		KOMBrowseInfoDispatchRead: (function () {}),
+		KOMBrowseInfoSpeechAvailable: false,
 	}, Object.fromEntries(Array.from((new window.URLSearchParams(window.location.search)).entries()).map(function (e, index, coll) {
 		if (['KOMBrowseDeckSelected', 'KOMBrowseItemSelected'].includes(e[0])) {
 			e[1] = JSON.parse(e[1]);

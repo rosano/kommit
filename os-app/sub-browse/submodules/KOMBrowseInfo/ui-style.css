@@ -70,3 +70,7 @@
 	}
 
 }
+
+.KOMBrowseInfoForm :global(.KOMBrowseInfoAudio) {
+	display: inline-block;
+}

@@ -296,7 +296,7 @@ describe('KOMBrowseInfo_Misc', function () {
 
 				it('passes KOMBrowseInfoDispatchRead', function () {
 					browser.assert.text('#TestKOMBrowseInfoDispatchRead', '1');
-					browser.assert.text('#TestKOMBrowseInfoDispatchReadData', 'en,alfa');
+					browser.assert.text('#TestKOMBrowseInfoDispatchReadData', 'alfa,en');
 				});
 			
 			});

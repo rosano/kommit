@@ -4,6 +4,8 @@ export let KOMBrowseStorageClient;
 export let KOMBrowseDeckSelected;
 export let KOMBrowseDispatchCreate;
 export let KOMBrowseListDispatchClose;
+export let KOMBrowseInfoSpeechAvailable;
+export let KOMBrowseInfoDispatchRead;
 
 export const KOMBrowseChangeDelegateCreateCard = function () {
 	mod.ChangeDelegateCreateCard(...arguments);
@@ -398,10 +400,13 @@ import KOMBrowseInfo from './submodules/KOMBrowseInfo/main.svelte';
 
 <KOMBrowseInfo
 	KOMBrowseInfoItem={ mod._ValueCardSelected }
+	KOMBrowseInfoDeck={ KOMBrowseDeckSelected }
+	KOMBrowseInfoSpeechAvailable={ KOMBrowseInfoSpeechAvailable }
 	KOMBrowseInfoDispatchBack={ mod.KOMBrowseInfoDispatchBack }
 	KOMBrowseInfoDispatchDiscard={ mod.KOMBrowseInfoDispatchDiscard }
-	KOMBrowseInfoDispatchCreate={ mod.KOMBrowseInfoDispatchCreate }
 	KOMBrowseInfoDispatchUpdate={ mod.KOMBrowseInfoDispatchUpdate }
+	KOMBrowseInfoDispatchCreate={ mod.KOMBrowseInfoDispatchCreate }
+	KOMBrowseInfoDispatchRead={ KOMBrowseInfoDispatchRead }
 	KOMBrowseInfoAudioDispatchCapture={ mod.KOMBrowseInfoAudioDispatchCapture }
 	KOMBrowseInfoAudioDispatchFetch={ mod.KOMBrowseInfoAudioDispatchFetch }
 	KOMBrowseInfoAudioDispatchClear={ mod.KOMBrowseInfoAudioDispatchClear }

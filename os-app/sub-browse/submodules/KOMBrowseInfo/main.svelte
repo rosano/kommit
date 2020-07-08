@@ -58,7 +58,7 @@ import KOMBrowseInfoAudio from '../KOMBrowseInfoAudio/main.svelte';
 </p>
 
 <p class="KOMBrowseInfoFormFrontAudio">
-	<button class="KOMBrowseInfoFormFrontReadButton" on:click={ () => KOMBrowseInfoDispatchRead(KOMBrowseInfoDeck.KOMDeckFrontLanguageCode, KOMBrowseInfoItem.KOMCardFrontText) } disabled={ !KOMBrowseInfoSpeechAvailable || !KOMBrowseInfoDeck.KOMDeckFrontLanguageCode }>{ OLSKLocalized('KOMBrowseInfoFormFrontReadButtonText') }</button>
+	<button class="KOMBrowseInfoFormFrontReadButton" on:click={ () => KOMBrowseInfoDispatchRead(KOMBrowseInfoItem.KOMCardFrontText, KOMBrowseInfoDeck.KOMDeckFrontLanguageCode) } disabled={ !KOMBrowseInfoSpeechAvailable || !KOMBrowseInfoDeck.KOMDeckFrontLanguageCode }>{ OLSKLocalized('KOMBrowseInfoFormFrontReadButtonText') }</button>
 
 	<KOMBrowseInfoAudio
 		KOMBrowseInfoAudioItem={ KOMBrowseInfoItem }
