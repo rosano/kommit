@@ -7,20 +7,24 @@ export let KOMBrowseListDispatchClose;
 export let KOMBrowseInfoSpeechAvailable;
 export let KOMBrowseInfoDispatchRead;
 
-export const KOMBrowseChangeDelegateCreateCard = function () {
-	mod.ChangeDelegateCreateCard(...arguments);
-};
+export const modPublic = {
 
-export const KOMBrowseChangeDelegateUpdateCard = function () {
-	mod.ChangeDelegateUpdateCard(...arguments);
-};
+	KOMBrowseChangeDelegateCreateCard () {
+		mod.ChangeDelegateCreateCard(...arguments);
+	},
 
-export const KOMBrowseChangeDelegateDeleteCard = function () {
-	mod.ChangeDelegateDeleteCard(...arguments);
-};
+	KOMBrowseChangeDelegateUpdateCard () {
+		mod.ChangeDelegateUpdateCard(...arguments);
+	},
 
-export const KOMBrowseRecipes = function () {
-	return mod.DataRecipes();
+	KOMBrowseChangeDelegateDeleteCard () {
+		mod.ChangeDelegateDeleteCard(...arguments);
+	},
+
+	KOMBrowseRecipes () {
+		return mod.DataRecipes();
+	},
+
 };
 
 import OLSKInternational from 'OLSKInternational';

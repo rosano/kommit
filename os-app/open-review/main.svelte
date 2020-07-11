@@ -249,7 +249,7 @@ const mod = {
 		}
 
 		if (mod._KOMBrowse) {
-			items.push(...mod._KOMBrowse.KOMBrowseRecipes());
+			items.push(...mod._KOMBrowse.modPublic.KOMBrowseRecipes());
 		}
 
 		if (OLSK_TESTING_BEHAVIOUR()) {
@@ -375,7 +375,7 @@ const mod = {
 	},
 	OLSKChangeDelegateCreateCard (inputData) {
 		if (mod._KOMBrowse && mod._ValueDeckSelected && inputData.KOMCardDeckID === mod._ValueDeckSelected.KOMDeckID) {
-			mod._KOMBrowse.KOMBrowseChangeDelegateCreateCard(inputData);
+			mod._KOMBrowse.modPublic.KOMBrowseChangeDelegateCreateCard(inputData);
 		}
 
 		mod.ReactThrottle();
@@ -383,7 +383,7 @@ const mod = {
 
 	OLSKChangeDelegateUpdateCard (inputData) {
 		if (mod._KOMBrowse && mod._ValueDeckSelected && inputData.KOMCardDeckID === mod._ValueDeckSelected.KOMDeckID) {
-			mod._KOMBrowse.KOMBrowseChangeDelegateUpdateCard(inputData);
+			mod._KOMBrowse.modPublic.KOMBrowseChangeDelegateUpdateCard(inputData);
 		}
 		
 		mod.ReactThrottle();
@@ -391,7 +391,7 @@ const mod = {
 
 	OLSKChangeDelegateDeleteCard (inputData) {
 		if (mod._KOMBrowse && mod._ValueDeckSelected && inputData.KOMCardDeckID === mod._ValueDeckSelected.KOMDeckID) {
-			mod._KOMBrowse.KOMBrowseChangeDelegateDeleteCard(inputData);
+			mod._KOMBrowse.modPublic.KOMBrowseChangeDelegateDeleteCard(inputData);
 		}
 		
 		mod.ReactThrottle();
