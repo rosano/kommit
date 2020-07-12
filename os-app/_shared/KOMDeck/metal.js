@@ -16,13 +16,7 @@ const mod = {
 			});
 		}
 
-		return Object.assign(inputData, await storageClient.kommit.kom_decks.KOMStorageWrite(Object.keys(inputData).reduce(function (coll, item) {
-			if (item[0] !== '$') {
-				coll[item] = inputData[item];
-			}
-
-			return coll;
-		}, {})));
+		return Object.assign(inputData, await storageClient.kommit.kom_decks.KOMStorageWrite(OLSKRemoteStorage.OLSKRemoteStorageSafeCopy(inputData)));
 	},
 
 	async KOMDeckMetalList (storageClient) {

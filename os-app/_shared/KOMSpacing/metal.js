@@ -16,13 +16,7 @@ const mod = {
 			});
 		}
 
-		return Object.assign(param1, await storageClient.kommit.kom_spacings.KOMStorageWrite(Object.keys(param1).reduce(function (coll, item) {
-			if (item[0] !== '$') {
-				coll[item] = param1[item];
-			}
-
-			return coll;
-		}, {}), param2, param3));
+		return Object.assign(param1, await storageClient.kommit.kom_spacings.KOMStorageWrite(OLSKRemoteStorage.OLSKRemoteStorageSafeCopy(param1), param2, param3));
 	},
 
 	async KOMSpacingMetalList (storageClient, param1, param2) {
