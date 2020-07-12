@@ -39,27 +39,31 @@ describe('KOMDeckMetalWrite', function test_KOMDeckMetalWrite() {
 
 	context('relations', function () {
 
-		const memory = Object.assign(kTesting.StubDeckObjectValid(), {
+		const item = Object.assign(kTesting.StubDeckObjectValid(), {
 			$alfa: 'bravo',
 		});
-		let storage = [];
+		let outputData, storage;
 
 		before(async function () {
-			await mainModule.KOMDeckMetalWrite(KOMTestingStorageClient, memory);
+			outputData = await mainModule.KOMDeckMetalWrite(KOMTestingStorageClient, item);
 		});
 		
 		before(async function () {
 			storage = Object.values(await mainModule.KOMDeckMetalList(KOMTestingStorageClient));
 		});
 		
-		it('ignores property', function () {
+		it('excludes from storage', function () {
 			deepEqual(storage, [Object.assign(kTesting.StubDeckObjectValid(), {
-				'@context': memory['@context'],
+				'@context': item['@context'],
 			})]);
 		});
+		
+		it('includes in outputData', function () {
+			deepEqual(outputData, item);
+		});
 
-		it('clones object', function () {
-			deepEqual(memory.$alfa, 'bravo');
+		it('updates inputData', function () {
+			deepEqual(outputData === item, true);
 		});
 	
 	});

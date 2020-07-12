@@ -66,26 +66,30 @@ describe('KOMSpacingMetalWrite', function test_KOMSpacingMetalWrite() {
 		const memory = Object.assign(kTesting.StubSpacingObjectValid(), {
 			$alfa: 'bravo',
 		});
-		let storage;
+		let outputData, storage;
 
 		before(async function () {
-			await mainModule.KOMSpacingMetalWrite(KOMTestingStorageClient, memory, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid());
+			outputData = await mainModule.KOMSpacingMetalWrite(KOMTestingStorageClient, memory, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid());
 		});
 		
 		before(async function () {
 			storage = (await mainModule.KOMSpacingMetalList(KOMTestingStorageClient, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid())).KOMCardSpacingForward;
 		});
 		
-		it('ignores property', function () {
+		it('excludes from storage', function () {
 			deepEqual(storage, Object.assign(kTesting.StubSpacingObjectValid(), {
 				'@context': memory['@context'],
 			}));
 		});
-
-		it('clones object', function () {
-			deepEqual(memory.$alfa, 'bravo');
+		
+		it('includes in outputData', function () {
+			deepEqual(outputData, memory);
 		});
-	
+
+		it('updates inputData', function () {
+			deepEqual(outputData === memory, true);
+		});
+
 	});
 
 });
