@@ -27,7 +27,7 @@ const KOMSpacingStorage = require('./os-app/_shared/KOMSpacing/storage.js').defa
 		global.KOMTestingStorageClient.access.claim(storageModule.name, 'rw');
 	});
 
-	beforeEach(async function() {
-		return await global.KOMTestingStorageClient[storageModule.name].__DEBUG._OLSKRemoteStorageReset();
+	beforeEach(function() {
+		return global.KOMTestingStorageClient[storageModule.name].__DEBUG.__OLSKRemoteStorageReset();
 	});
 })();
