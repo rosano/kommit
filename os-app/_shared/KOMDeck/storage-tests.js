@@ -2,10 +2,26 @@ const { throws, deepEqual } = require('assert');
 
 const mainModule = require('./storage.js').default;
 
+describe('KOMDeckStorageCollectionName', function test_KOMDeckStorageCollectionName() {
+
+	it('returns string', function() {
+		deepEqual(mainModule.KOMDeckStorageCollectionName(), 'kom_decks');
+	});
+
+});
+
+describe('KOMDeckStorageCollectionType', function test_KOMDeckStorageCollectionType() {
+
+	it('returns string', function() {
+		deepEqual(mainModule.KOMDeckStorageCollectionType(), 'kom_deck');
+	});
+
+});
+
 describe('KOMDeckStorageCollectionPath', function test_KOMDeckStorageCollectionPath() {
 
 	it('returns string', function() {
-		deepEqual(mainModule.KOMDeckStorageCollectionPath(), 'kom_decks/');
+		deepEqual(mainModule.KOMDeckStorageCollectionPath(), mainModule.KOMDeckStorageCollectionName() + '/');
 	});
 
 });

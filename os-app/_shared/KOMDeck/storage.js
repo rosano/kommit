@@ -2,13 +2,18 @@ import KOMDeckModel from './model.js';
 import * as OLSKRemoteStoragePackage from 'OLSKRemoteStorage';
 const OLSKRemoteStorage = OLSKRemoteStoragePackage.default || OLSKRemoteStoragePackage;
 
-const kType = 'kom_deck';
-const kCollection = 'kom_decks';
-
 const mod = {
 
+	KOMDeckStorageCollectionName () {
+		return 'kom_decks';
+	},
+
+	KOMDeckStorageCollectionType () {
+		return 'kom_deck';
+	},
+
 	KOMDeckStorageCollectionPath () {
-		return kCollection + '/';
+		return mod.KOMDeckStorageCollectionName() + '/';
 	},
 
 	KOMDeckStorageFolderPath (inputData) {
@@ -73,7 +78,7 @@ const mod = {
 			},
 
 			async KOMStorageWrite (inputData) {
-				await privateClient.storeObject(kType, mod.KOMDeckStorageObjectPath(inputData.KOMDeckID), OLSKRemoteStorage.OLSKRemoteStoragePreJSONSchemaValidate(inputData));
+				await privateClient.storeObject(mod.KOMDeckStorageCollectionType(), mod.KOMDeckStorageObjectPath(inputData.KOMDeckID), OLSKRemoteStorage.OLSKRemoteStoragePreJSONSchemaValidate(inputData));
 				return OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(inputData);
 			},
 			
@@ -84,8 +89,8 @@ const mod = {
 		};
 
 		return {
-			OLSKRemoteStorageCollectionName: kCollection,
-			OLSKRemoteStorageCollectionType: kType,
+			OLSKRemoteStorageCollectionName: mod.KOMDeckStorageCollectionName(),
+			OLSKRemoteStorageCollectionType: mod.KOMDeckStorageCollectionType(),
 			OLSKRemoteStorageCollectionModelErrors: Object.entries(KOMDeckModel.KOMDeckModelErrorsFor({}, {
 				KOMOptionValidateIfNotPresent: true,
 			})).map(function (e) {
