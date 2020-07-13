@@ -31,3 +31,20 @@ const KOMSpacingStorage = require('./os-app/_shared/KOMSpacing/storage.js').defa
 		return global.KOMTestingStorageClient[storageModule.name].__DEBUG.__OLSKRemoteStorageReset();
 	});
 })();
+
+(function KVCMochaStubs() {
+	Object.entries({
+
+		StubDeckObjectValid() {
+			return {
+				KOMDeckID: 'alfa',
+				KOMDeckName: 'bravo',
+				KOMDeckCreationDate: new Date('2019-02-23T13:56:36Z'),
+				KOMDeckModificationDate: new Date('2019-02-23T13:56:36Z'),
+			};
+		},
+		
+	}).map(function (e) {
+		return global[e.shift()]  = e.pop();
+	});
+})();

@@ -1,7 +1,7 @@
 import { factory, detectPrng } from 'ulid';
 const uniqueID = typeof require === 'undefined' && navigator.appName === 'Zombie' ? factory(detectPrng(true)) : factory();
 
-import KOMDeckMetal from './metal.js';
+import KOMDeckStorage from './storage.js';
 import KOMCardAction from '../KOMCard/action.js';
 
 const mod = {
@@ -13,7 +13,7 @@ const mod = {
 
 		const creationDate = new Date();
 
-		return await KOMDeckMetal.KOMDeckMetalWrite(storageClient, Object.assign({
+		return await KOMDeckStorage.KOMDeckStorageWrite(storageClient, Object.assign({
 			KOMDeckID: uniqueID(),
 			KOMDeckCreationDate: creationDate,
 			KOMDeckModificationDate: creationDate,
@@ -25,7 +25,7 @@ const mod = {
 			return Promise.reject(new Error('KOMErrorInputNotValid'));
 		}
 
-		return await KOMDeckMetal.KOMDeckMetalWrite(storageClient, Object.assign(inputData, {
+		return await KOMDeckStorage.KOMDeckStorageWrite(storageClient, Object.assign(inputData, {
 			KOMDeckModificationDate: new Date(),
 		}));
 	},
@@ -35,11 +35,11 @@ const mod = {
 			return KOMCardAction.KOMCardActionDelete(storageClient, e, inputData);
 		}));
 
-		return await KOMDeckMetal.KOMDeckMetalDelete(storageClient, inputData);
+		return await KOMDeckStorage.KOMDeckStorageDelete(storageClient, inputData);
 	},
 
 	async KOMDeckActionList (storageClient) {
-		return Object.values(await KOMDeckMetal.KOMDeckMetalList(storageClient));
+		return Object.values(await KOMDeckStorage.KOMDeckStorageList(storageClient));
 	},
 	
 };

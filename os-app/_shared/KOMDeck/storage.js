@@ -65,24 +65,42 @@ const mod = {
 
 		const OLSKRemoteStorageCollectionExports = {
 
-			async KOMStorageList () {
+			async _KOMDeckStorageWrite (inputData) {
+				if (typeof inputData !== 'object' || inputData === null) {
+					return Promise.reject(new Error('KOMErrorInputNotValid'));
+				}
+
+				let errors = KOMDeckModel.KOMDeckModelErrorsFor(inputData);
+				if (errors) {
+					return Promise.resolve({
+						KOMErrors: errors,
+					});
+				}
+
+				const inputCopy = OLSKRemoteStorage.OLSKRemoteStorageSafeCopy(inputData);
+
+				await privateClient.storeObject(mod.KOMDeckStorageCollectionType(), mod.KOMDeckStorageObjectPath(inputCopy.KOMDeckID), OLSKRemoteStorage.OLSKRemoteStoragePreJSONSchemaValidate(inputCopy));
+
+				return Object.assign(inputData, OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(inputCopy));
+			},
+
+			async _KOMDeckStorageList () {
 				return (await Promise.all(Object.keys(await privateClient.getAll(mod.KOMDeckStorageCollectionPath(), false)).map(function (e) {
 					return privateClient.getObject(mod.KOMDeckStorageObjectPath(e.slice(0, -1)), false);
 				}))).reduce(function (coll, item) {
 					if (item) {
-						coll[item.KOMDeckID] = item;
+						coll[item.KOMDeckID] = OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(item);
 					}
 
 					return coll;
 				}, {});
 			},
 
-			async KOMStorageWrite (inputData) {
-				await privateClient.storeObject(mod.KOMDeckStorageCollectionType(), mod.KOMDeckStorageObjectPath(inputData.KOMDeckID), OLSKRemoteStorage.OLSKRemoteStoragePreJSONSchemaValidate(inputData));
-				return OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(inputData);
-			},
-			
-			KOMStorageDelete (inputData) {
+			_KOMDeckStorageDelete (inputData) {
+				if (KOMDeckModel.KOMDeckModelErrorsFor(inputData)) {
+					throw new Error('KOMErrorInputNotValid');
+				}
+
 				return privateClient.remove(mod.KOMDeckStorageObjectPath(inputData.KOMDeckID));
 			},
 			
@@ -106,6 +124,18 @@ const mod = {
 			}, {}),
 			OLSKRemoteStorageCollectionExports,
 		};
+	},
+
+	KOMDeckStorageWrite (storageClient, inputData) {
+		return storageClient.kommit[mod.KOMDeckStorageCollectionName()]._KOMDeckStorageWrite(inputData);
+	},
+
+	KOMDeckStorageList (storageClient) {
+		return storageClient.kommit[mod.KOMDeckStorageCollectionName()]._KOMDeckStorageList();
+	},
+
+	KOMDeckStorageDelete (storageClient, inputData) {
+		return storageClient.kommit[mod.KOMDeckStorageCollectionName()]._KOMDeckStorageDelete(inputData);
 	},
 
 };
