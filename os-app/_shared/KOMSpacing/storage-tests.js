@@ -4,27 +4,6 @@ const mainModule = require('./storage.js').default;
 const KOMCardStorage = require('../KOMCard/storage.js').default;
 const KOMDeckStorage = require('../KOMDeck/storage.js').default;
 
-const kTesting = {
-	StubDeckObjectValid() {
-		return {
-			KOMDeckID: 'alfa',
-			KOMDeckName: 'bravo',
-			KOMDeckCreationDate: new Date('2019-02-23T13:56:36Z'),
-			KOMDeckModificationDate: new Date('2019-02-23T13:56:36Z'),
-		};
-	},
-	StubCardObjectValid() {
-		return {
-			KOMCardID: 'charlie',
-			KOMCardDeckID: 'delta',
-			KOMCardFrontText: 'echo',
-			KOMCardRearText: 'foxtrot',
-			KOMCardCreationDate: new Date('2019-04-13T10:52:36Z'),
-			KOMCardModificationDate: new Date('2019-04-13T10:52:36Z'),
-		};
-	},
-};
-
 describe('KOMSpacingStorageCollectionType', function test_KOMSpacingStorageCollectionType() {
 
 	it('returns string', function() {
@@ -37,18 +16,18 @@ describe('KOMSpacingStoragePathForward', function test_KOMSpacingStoragePathForw
 
 	it('throws if param1 not valid', function () {
 		throws(function () {
-			mainModule.KOMSpacingStoragePathForward({}, kTesting.StubDeckObjectValid());
+			mainModule.KOMSpacingStoragePathForward({}, StubDeckObjectValid());
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('throws if param2 not valid', function () {
 		throws(function () {
-			mainModule.KOMSpacingStoragePathForward(kTesting.StubCardObjectValid(), {});
+			mainModule.KOMSpacingStoragePathForward(StubCardObjectValid(), {});
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns string', function() {
-		deepEqual(mainModule.KOMSpacingStoragePathForward(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()), KOMCardStorage.KOMCardStorageObjectPath(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()).replace('main', 'spacing-forward'));
+		deepEqual(mainModule.KOMSpacingStoragePathForward(StubCardObjectValid(), StubDeckObjectValid()), KOMCardStorage.KOMCardStorageObjectPath(StubCardObjectValid(), StubDeckObjectValid()).replace('main', 'spacing-forward'));
 	});
 
 });
@@ -57,18 +36,18 @@ describe('KOMSpacingStoragePathBackward', function test_KOMSpacingStoragePathBac
 
 	it('throws if param1 not valid', function () {
 		throws(function () {
-			mainModule.KOMSpacingStoragePathBackward({}, kTesting.StubDeckObjectValid());
+			mainModule.KOMSpacingStoragePathBackward({}, StubDeckObjectValid());
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('throws if param2 not valid', function () {
 		throws(function () {
-			mainModule.KOMSpacingStoragePathBackward(kTesting.StubCardObjectValid(), {});
+			mainModule.KOMSpacingStoragePathBackward(StubCardObjectValid(), {});
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns string', function() {
-		deepEqual(mainModule.KOMSpacingStoragePathBackward(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()), KOMCardStorage.KOMCardStorageObjectPath(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()).replace('main', 'spacing-backward'));
+		deepEqual(mainModule.KOMSpacingStoragePathBackward(StubCardObjectValid(), StubDeckObjectValid()), KOMCardStorage.KOMCardStorageObjectPath(StubCardObjectValid(), StubDeckObjectValid()).replace('main', 'spacing-backward'));
 	});
 
 });
@@ -86,19 +65,19 @@ describe('KOMSpacingStorageMatch', function test_KOMSpacingStorageMatch() {
 	});
 
 	it('returns false if KOMCardStorageObjectPath', function() {
-		deepEqual(mainModule.KOMSpacingStorageMatch(KOMCardStorage.KOMCardStorageObjectPath(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid())), false);
+		deepEqual(mainModule.KOMSpacingStorageMatch(KOMCardStorage.KOMCardStorageObjectPath(StubCardObjectValid(), StubDeckObjectValid())), false);
 	});
 
 	it('returns true if KOMSpacingStoragePathForward', function() {
-		deepEqual(mainModule.KOMSpacingStorageMatch(mainModule.KOMSpacingStoragePathForward(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid())), true);
+		deepEqual(mainModule.KOMSpacingStorageMatch(mainModule.KOMSpacingStoragePathForward(StubCardObjectValid(), StubDeckObjectValid())), true);
 	});
 
 	it('returns true if KOMSpacingStoragePathBackward', function() {
-		deepEqual(mainModule.KOMSpacingStorageMatch(mainModule.KOMSpacingStoragePathBackward(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid())), true);
+		deepEqual(mainModule.KOMSpacingStorageMatch(mainModule.KOMSpacingStoragePathBackward(StubCardObjectValid(), StubDeckObjectValid())), true);
 	});
 
 	it('returns false', function() {
-		deepEqual(mainModule.KOMSpacingStorageMatch(mainModule.KOMSpacingStoragePathBackward(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()).slice(0, -1)), false);
+		deepEqual(mainModule.KOMSpacingStorageMatch(mainModule.KOMSpacingStoragePathBackward(StubCardObjectValid(), StubDeckObjectValid()).slice(0, -1)), false);
 	});
 
 });
