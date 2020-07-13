@@ -2,7 +2,7 @@ const { rejects, deepEqual } = require('assert');
 
 const mainModule = require('./action.js').default;
 const KOMCardStorage = require('./storage.js').default;
-const KOMSpacingMetal = require('../KOMSpacing/metal.js').default;
+const KOMSpacingStorage = require('../KOMSpacing/storage.js').default;
 const OLSKRemoteStorage = require('OLSKRemoteStorage');
 
 const kTesting = {
@@ -167,13 +167,13 @@ describe('KOMCardActionDelete', function test_KOMCardActionDelete() {
 	it('deletes KOMSpacings', async function() {
 		const item = await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObjectValid());
 		
-		await KOMSpacingMetal.KOMSpacingMetalWrite(KOMTestingStorageClient, {
+		await KOMSpacingStorage.KOMSpacingStorageWrite(KOMTestingStorageClient, {
 			KOMSpacingID: `${ item.KOMCardID }-forward`,
 			KOMSpacingDueDate: new Date(),
 		}, item, kTesting.StubDeckObjectValid());
 
 		await mainModule.KOMCardActionDelete(KOMTestingStorageClient, item);
-		deepEqual(await KOMSpacingMetal.KOMSpacingMetalList(KOMTestingStorageClient, item, kTesting.StubDeckObjectValid()), {
+		deepEqual(await KOMSpacingStorage.KOMSpacingStorageList(KOMTestingStorageClient, item, kTesting.StubDeckObjectValid()), {
 			KOMCardSpacingForward: Object.assign(kTesting.StubSpacingObjectValid(), {
 				KOMSpacingID: `${ item.KOMCardID }-forward`,
 			}),

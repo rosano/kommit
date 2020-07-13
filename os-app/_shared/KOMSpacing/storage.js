@@ -5,9 +5,11 @@ const OLSKRemoteStorage = OLSKRemoteStoragePackage.default || OLSKRemoteStorageP
 import KOMDeckStorage from '../KOMDeck/storage.js';
 import KOMDeckModel from '../KOMDeck/model.js';
 
-const kCollection = 'kom_spacings';
-
 const mod = {
+
+	KOMSpacingStorageCollectionName () {
+		return 'kom_spacings';
+	},
 
 	KOMSpacingStorageCollectionType () {
 		return 'kom_spacing';
@@ -73,7 +75,26 @@ const mod = {
 
 		const OLSKRemoteStorageCollectionExports = {
 
-			async KOMStorageList (param1, param2) {
+			async _KOMSpacingStorageWrite (param1, param2, param3) {
+				if (typeof param1 !== 'object' || param1 === null) {
+					return Promise.reject(new Error('KOMErrorInputNotValid'));
+				}
+
+				let errors = KOMSpacingModel.KOMSpacingModelErrorsFor(param1);
+				if (errors) {
+					return Promise.resolve({
+						KOMErrors: errors,
+					});
+				}
+
+				const param1Copy = OLSKRemoteStorage.OLSKRemoteStorageSafeCopy(param1);
+
+				await privateClient.storeObject(mod.KOMSpacingStorageCollectionType(), (KOMSpacingModel.KOMSpacingModelIsBackward(param1Copy) ? mod.KOMSpacingStoragePathBackward : mod.KOMSpacingStoragePathForward)(param2, param3), OLSKRemoteStorage.OLSKRemoteStoragePreJSONSchemaValidate(param1Copy));
+
+				return Object.assign(param1, OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(param1Copy));
+			},
+
+			async _KOMSpacingStorageList (param1, param2) {
 				if (KOMDeckModel.KOMDeckModelErrorsFor(param2)) {
 					throw new Error('KOMErrorInputNotValid');
 				};
@@ -87,30 +108,29 @@ const mod = {
 				}
 
 				return {
-					KOMCardSpacingForward: result['spacing-forward'] || {
+					KOMCardSpacingForward: OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(result['spacing-forward'] || {
 						KOMSpacingID: `${ param1.KOMCardID }-forward`,
 						KOMSpacingChronicles: [],
-					},
-					KOMCardSpacingBackward: result['spacing-backward'] || {
+					}),
+					KOMCardSpacingBackward: OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(result['spacing-backward'] || {
 						KOMSpacingID: `${ param1.KOMCardID }-backward`,
 						KOMSpacingChronicles: [],
-					},
+					}),
 				};
 			},
-			
-			async KOMStorageWrite (param1, param2, param3) {
-				await privateClient.storeObject(mod.KOMSpacingStorageCollectionType(), (KOMSpacingModel.KOMSpacingModelIsBackward(param1) ? mod.KOMSpacingStoragePathBackward : mod.KOMSpacingStoragePathForward)(param2, param3), OLSKRemoteStorage.OLSKRemoteStoragePreJSONSchemaValidate(param1));
-				return OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(param1);
-			},
-			
-			KOMStorageDelete (param1, param2, param3) {
+
+			_KOMSpacingStorageDelete (param1, param2, param3) {
+				if (KOMSpacingModel.KOMSpacingModelErrorsFor(param1)) {
+					throw new Error('KOMErrorInputNotValid');
+				}
+
 				return privateClient.remove((KOMSpacingModel.KOMSpacingModelIsBackward(param1) ? mod.KOMSpacingStoragePathBackward : mod.KOMSpacingStoragePathForward)(param2, param3));
 			},
 			
 		};
 
 		return {
-			OLSKRemoteStorageCollectionName: kCollection,
+			OLSKRemoteStorageCollectionName: mod.KOMSpacingStorageCollectionName(),
 			OLSKRemoteStorageCollectionType: mod.KOMSpacingStorageCollectionType(),
 			OLSKRemoteStorageCollectionModelErrors: Object.entries(KOMSpacingModel.KOMSpacingModelErrorsFor({}, {
 				KOMOptionValidateIfNotPresent: true,
@@ -127,6 +147,18 @@ const mod = {
 			}, {}),
 			OLSKRemoteStorageCollectionExports,
 		};
+	},
+
+	KOMSpacingStorageWrite (storageClient, param1, param2, param3) {
+		return storageClient.kommit[mod.KOMSpacingStorageCollectionName()]._KOMSpacingStorageWrite(param1, param2, param3);
+	},
+
+	KOMSpacingStorageList (storageClient, param1, param2) {
+		return storageClient.kommit[mod.KOMSpacingStorageCollectionName()]._KOMSpacingStorageList(param1, param2);
+	},
+
+	KOMSpacingStorageDelete (storageClient, param1, param2, param3) {
+		return storageClient.kommit[mod.KOMSpacingStorageCollectionName()]._KOMSpacingStorageDelete(param1, param2, param3);
 	},
 
 };

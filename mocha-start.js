@@ -54,6 +54,13 @@ const KOMSpacingStorage = require('./os-app/_shared/KOMSpacing/storage.js').defa
 				KOMCardModificationDate: new Date('2019-04-13T10:52:36Z'),
 			};
 		},
+
+		StubSpacingObjectValid() {
+			return {
+				KOMSpacingID: 'bravo-forward',
+				KOMSpacingChronicles: [],
+			};
+		},
 		
 	}).map(function (e) {
 		return global[e.shift()]  = e.pop();
