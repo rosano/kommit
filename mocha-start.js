@@ -43,6 +43,17 @@ const KOMSpacingStorage = require('./os-app/_shared/KOMSpacing/storage.js').defa
 				KOMDeckModificationDate: new Date('2019-02-23T13:56:36Z'),
 			};
 		},
+
+		StubCardObjectValid() {
+			return {
+				KOMCardID: 'charlie',
+				KOMCardDeckID: 'alfa',
+				KOMCardFrontText: 'delta',
+				KOMCardRearText: 'echo',
+				KOMCardCreationDate: new Date('2019-04-13T10:52:36Z'),
+				KOMCardModificationDate: new Date('2019-04-13T10:52:36Z'),
+			};
+		},
 		
 	}).map(function (e) {
 		return global[e.shift()]  = e.pop();

@@ -3,26 +3,21 @@ const { throws, deepEqual } = require('assert');
 const mainModule = require('./storage.js').default;
 const KOMDeckStorage = require('../KOMDeck/storage.js').default;
 
-const kTesting = {
-	StubDeckObjectValid() {
-		return {
-			KOMDeckID: 'alfa',
-			KOMDeckName: 'bravo',
-			KOMDeckCreationDate: new Date('2019-02-23T13:56:36Z'),
-			KOMDeckModificationDate: new Date('2019-02-23T13:56:36Z'),
-		};
-	},
-	StubCardObjectValid() {
-		return {
-			KOMCardID: 'charlie',
-			KOMCardDeckID: 'alfa',
-			KOMCardFrontText: 'delta',
-			KOMCardRearText: 'echo',
-			KOMCardCreationDate: new Date('2019-04-13T10:52:36Z'),
-			KOMCardModificationDate: new Date('2019-04-13T10:52:36Z'),
-		};
-	},
-};
+describe('KOMCardStorageCollectionName', function test_KOMCardStorageCollectionName() {
+
+	it('returns string', function() {
+		deepEqual(mainModule.KOMCardStorageCollectionName(), 'kom_cards');
+	});
+
+});
+
+describe('KOMCardStorageCollectionType', function test_KOMCardStorageCollectionType() {
+
+	it('returns string', function() {
+		deepEqual(mainModule.KOMCardStorageCollectionType(), 'kom_card');
+	});
+
+});
 
 describe('KOMCardStorageCollectionPath', function test_KOMCardStorageCollectionPath() {
 
@@ -33,7 +28,7 @@ describe('KOMCardStorageCollectionPath', function test_KOMCardStorageCollectionP
 	});
 
 	it('returns string', function() {
-		deepEqual(mainModule.KOMCardStorageCollectionPath('alfa'), KOMDeckStorage.KOMDeckStorageFolderPath('alfa') + 'kom_cards/');
+		deepEqual(mainModule.KOMCardStorageCollectionPath('alfa'), KOMDeckStorage.KOMDeckStorageFolderPath('alfa') +  mainModule.KOMCardStorageCollectionName() + '/');
 	});
 
 });
@@ -47,7 +42,7 @@ describe('KOMCardStorageFolderPath', function test_KOMCardStorageFolderPath() {
 	});
 
 	it('returns string', function() {
-		deepEqual(mainModule.KOMCardStorageFolderPath(kTesting.StubCardObjectValid()), mainModule.KOMCardStorageCollectionPath(kTesting.StubDeckObjectValid().KOMDeckID) + kTesting.StubCardObjectValid().KOMCardCreationDate.toJSON().split('T').shift() + '/charlie/');
+		deepEqual(mainModule.KOMCardStorageFolderPath(StubCardObjectValid()), mainModule.KOMCardStorageCollectionPath(StubDeckObjectValid().KOMDeckID) + StubCardObjectValid().KOMCardCreationDate.toJSON().split('T').shift() + '/charlie/');
 	});
 
 });
@@ -61,7 +56,7 @@ describe('KOMCardStorageObjectPath', function test_KOMCardStorageObjectPath() {
 	});
 
 	it('returns string', function() {
-		deepEqual(mainModule.KOMCardStorageObjectPath(kTesting.StubCardObjectValid()), mainModule.KOMCardStorageFolderPath(kTesting.StubCardObjectValid()) + 'main');
+		deepEqual(mainModule.KOMCardStorageObjectPath(StubCardObjectValid()), mainModule.KOMCardStorageFolderPath(StubCardObjectValid()) + 'main');
 	});
 
 });
@@ -75,7 +70,7 @@ describe('KOMCardStorageAudioPathFront', function test_KOMCardStorageAudioPathFr
 	});
 
 	it('returns string', function() {
-		deepEqual(mainModule.KOMCardStorageAudioPathFront(kTesting.StubCardObjectValid()), mainModule.KOMCardStorageFolderPath(kTesting.StubCardObjectValid()) + 'side-front/audio');
+		deepEqual(mainModule.KOMCardStorageAudioPathFront(StubCardObjectValid()), mainModule.KOMCardStorageFolderPath(StubCardObjectValid()) + 'side-front/audio');
 	});
 
 });
@@ -89,7 +84,7 @@ describe('KOMCardStorageAudioPathRear', function test_KOMCardStorageAudioPathRea
 	});
 
 	it('returns string', function() {
-		deepEqual(mainModule.KOMCardStorageAudioPathRear(kTesting.StubCardObjectValid()), mainModule.KOMCardStorageFolderPath(kTesting.StubCardObjectValid()) + 'side-rear/audio');
+		deepEqual(mainModule.KOMCardStorageAudioPathRear(StubCardObjectValid()), mainModule.KOMCardStorageFolderPath(StubCardObjectValid()) + 'side-rear/audio');
 	});
 
 });
@@ -107,16 +102,16 @@ describe('KOMCardStorageMatch', function test_KOMCardStorageMatch() {
 	});
 
 	it('returns false if no KOMCardStorageCollectionPath', function() {
-		const item = mainModule.KOMCardStorageCollectionPath(kTesting.StubDeckObjectValid().KOMDeckID);
-		deepEqual(mainModule.KOMCardStorageMatch(mainModule.KOMCardStorageObjectPath(kTesting.StubCardObjectValid()).replace(item, item.slice(0, -2) + '/')), false);
+		const item = mainModule.KOMCardStorageCollectionPath(StubDeckObjectValid().KOMDeckID);
+		deepEqual(mainModule.KOMCardStorageMatch(mainModule.KOMCardStorageObjectPath(StubCardObjectValid()).replace(item, item.slice(0, -2) + '/')), false);
 	});
 
 	it('returns false if no KOMCardStorageObjectPath', function() {
-		deepEqual(mainModule.KOMCardStorageMatch(mainModule.KOMCardStorageObjectPath(kTesting.StubCardObjectValid()).slice(0, -1)), false);
+		deepEqual(mainModule.KOMCardStorageMatch(mainModule.KOMCardStorageObjectPath(StubCardObjectValid()).slice(0, -1)), false);
 	});
 
 	it('returns true', function() {
-		deepEqual(mainModule.KOMCardStorageMatch(mainModule.KOMCardStorageObjectPath(kTesting.StubCardObjectValid())), true);
+		deepEqual(mainModule.KOMCardStorageMatch(mainModule.KOMCardStorageObjectPath(StubCardObjectValid())), true);
 	});
 
 });

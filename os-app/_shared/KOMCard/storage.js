@@ -3,9 +3,6 @@ import KOMCardModel from './model.js';
 import * as OLSKRemoteStoragePackage from 'OLSKRemoteStorage';
 const OLSKRemoteStorage = OLSKRemoteStoragePackage.default || OLSKRemoteStoragePackage;
 
-const kType = 'kom_card';
-const kCollection = 'kom_cards';
-
 const uFlatten = function (inputData) {
 	return [].concat.apply([], inputData);
 };
@@ -32,8 +29,16 @@ const mod = {
 		};
 	},
 
+	KOMCardStorageCollectionName () {
+		return 'kom_cards';
+	},
+
+	KOMCardStorageCollectionType () {
+		return 'kom_card';
+	},
+
 	KOMCardStorageCollectionPath (inputData) {
-		return KOMDeckStorage.KOMDeckStorageFolderPath(inputData) + kCollection + '/';
+		return KOMDeckStorage.KOMDeckStorageFolderPath(inputData) + mod.KOMCardStorageCollectionName() + '/';
 	},
 
 	KOMCardStorageFolderPath (inputData) {
@@ -108,7 +113,7 @@ const mod = {
 			},
 			
 			async KOMStorageWrite (param1) {
-				await privateClient.storeObject(kType, mod.KOMCardStorageObjectPath(param1), OLSKRemoteStorage.OLSKRemoteStoragePreJSONSchemaValidate(param1));
+				await privateClient.storeObject(mod.KOMCardStorageCollectionType(), mod.KOMCardStorageObjectPath(param1), OLSKRemoteStorage.OLSKRemoteStoragePreJSONSchemaValidate(param1));
 				return OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(param1);
 			},
 			
@@ -148,8 +153,8 @@ const mod = {
 		};
 
 		return {
-			OLSKRemoteStorageCollectionName: kCollection,
-			OLSKRemoteStorageCollectionType: kType,
+			OLSKRemoteStorageCollectionName: mod.KOMCardStorageCollectionName(),
+			OLSKRemoteStorageCollectionType: mod.KOMCardStorageCollectionType(),
 			OLSKRemoteStorageCollectionModelErrors: Object.entries(KOMCardModel.KOMCardModelErrorsFor({}, {
 				KOMOptionValidateIfNotPresent: true,
 			})).map(function (e) {

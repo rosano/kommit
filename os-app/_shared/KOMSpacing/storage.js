@@ -5,10 +5,13 @@ const OLSKRemoteStorage = OLSKRemoteStoragePackage.default || OLSKRemoteStorageP
 import KOMDeckStorage from '../KOMDeck/storage.js';
 import KOMDeckModel from '../KOMDeck/model.js';
 
-const kType = 'kom_spacing';
 const kCollection = 'kom_spacings';
 
 const mod = {
+
+	KOMSpacingStorageCollectionType () {
+		return 'kom_spacing';
+	},
 
 	KOMSpacingStoragePathForward (param1, param2) {
 		if (KOMDeckModel.KOMDeckModelErrorsFor(param2)) {
@@ -96,7 +99,7 @@ const mod = {
 			},
 			
 			async KOMStorageWrite (param1, param2, param3) {
-				await privateClient.storeObject(kType, (KOMSpacingModel.KOMSpacingModelIsBackward(param1) ? mod.KOMSpacingStoragePathBackward : mod.KOMSpacingStoragePathForward)(param2, param3), OLSKRemoteStorage.OLSKRemoteStoragePreJSONSchemaValidate(param1));
+				await privateClient.storeObject(mod.KOMSpacingStorageCollectionType(), (KOMSpacingModel.KOMSpacingModelIsBackward(param1) ? mod.KOMSpacingStoragePathBackward : mod.KOMSpacingStoragePathForward)(param2, param3), OLSKRemoteStorage.OLSKRemoteStoragePreJSONSchemaValidate(param1));
 				return OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(param1);
 			},
 			
@@ -108,7 +111,7 @@ const mod = {
 
 		return {
 			OLSKRemoteStorageCollectionName: kCollection,
-			OLSKRemoteStorageCollectionType: kType,
+			OLSKRemoteStorageCollectionType: mod.KOMSpacingStorageCollectionType(),
 			OLSKRemoteStorageCollectionModelErrors: Object.entries(KOMSpacingModel.KOMSpacingModelErrorsFor({}, {
 				KOMOptionValidateIfNotPresent: true,
 			})).map(function (e) {
