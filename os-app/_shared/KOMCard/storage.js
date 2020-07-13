@@ -98,26 +98,54 @@ const mod = {
 
 		const OLSKRemoteStorageCollectionExports = {
 
-			async KOMStorageList (inputData) {
-				let storagePath = mod.KOMCardStorageCollectionPath(inputData.KOMDeckID);
+			async _KOMCardStorageWrite (inputData) {
+				if (typeof inputData !== 'object' || inputData === null) {
+					return Promise.reject(new Error('KOMErrorInputNotValid'));
+				}
 
-				return (await Promise.all((await OLSKRemoteStorage.OLSKRemoteStorageListObjectsRecursive(privateClient, storagePath)).filter(mod.KOMCardStorageMatch).map(function (e) {
+				let errors = KOMCardModel.KOMCardModelErrorsFor(inputData);
+				if (errors) {
+					return Promise.resolve({
+						KOMErrors: errors,
+					});
+				}
+
+				await privateClient.storeObject(mod.KOMCardStorageCollectionType(), mod.KOMCardStorageObjectPath(inputData), OLSKRemoteStorage.OLSKRemoteStoragePreJSONSchemaValidate(inputData));
+
+				return OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(inputData);
+			},
+
+			async _KOMCardStorageList (inputData) {
+				return (await Promise.all((await OLSKRemoteStorage.OLSKRemoteStorageListObjectsRecursive(privateClient, mod.KOMCardStorageCollectionPath(inputData.KOMDeckID))).filter(mod.KOMCardStorageMatch).map(function (e) {
 					return privateClient.getObject(e, false);
 				}))).reduce(function (coll, item) {
 					if (item) {
-						coll[item.KOMCardID] = item;
+						coll[item.KOMCardID] = OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(item);
 					}
 
 					return coll;
 				}, {});
 			},
-			
-			async KOMStorageWrite (param1) {
-				await privateClient.storeObject(mod.KOMCardStorageCollectionType(), mod.KOMCardStorageObjectPath(param1), OLSKRemoteStorage.OLSKRemoteStoragePreJSONSchemaValidate(param1));
-				return OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(param1);
+
+			async _KOMCardStorageDelete (inputData) {
+				if (KOMCardModel.KOMCardModelErrorsFor(inputData)) {
+					return Promise.reject(new Error('KOMErrorInputNotValid'));
+				}
+
+				return (await Promise.all((await OLSKRemoteStorage.OLSKRemoteStorageListObjectsRecursive(privateClient, mod.KOMCardStorageFolderPath(inputData))).map(function (path) {
+					return privateClient.remove(path);
+				}))).pop();
 			},
-			
-			async KOMStorageFileWrite (param1, param2) {
+
+			async _KOMCardStorageFileWrite (param1, param2) {
+				if (!(param1 instanceof Blob)) {
+					return Promise.reject(new Error('KOMErrorInputNotValid'));
+				}
+
+				if (typeof param2 !== 'string') {
+					return Promise.reject(new Error('KOMErrorInputNotValid'));
+				}
+
 				await privateClient.storeFile(param1.type, param2, typeof global !== 'undefined' && global.KOMTestingStorageClient ? param1 : await new Promise(function (res, rej) {
 					const reader = new FileReader();
 
@@ -127,10 +155,15 @@ const mod = {
 
 					reader.readAsArrayBuffer(param1);
 				}));
+
 				return param1;
 			},
-			
-			async KOMStorageFileRead (inputData) {
+
+			async _KOMCardStorageFileRead (inputData) {
+				if (typeof inputData !== 'string') {
+					return Promise.reject(new Error('KOMErrorInputNotValid'));
+				}
+
 				const file = await privateClient.getFile(inputData);
 				
 				if (!file.data) {
@@ -139,15 +172,13 @@ const mod = {
 
 				return new Blob([file.data], { type: file.contentType });
 			},
-			
-			KOMStorageFileDelete (inputData) {
+
+			_KOMCardStorageFileDelete (inputData) {
+				if (typeof inputData !== 'string') {
+					return Promise.reject(new Error('KOMErrorInputNotValid'));
+				}
+
 				return privateClient.remove(inputData);
-			},
-			
-			async KOMStorageDelete (inputData) {
-				return (await Promise.all((await OLSKRemoteStorage.OLSKRemoteStorageListObjectsRecursive(privateClient, mod.KOMCardStorageFolderPath(inputData))).map(function (path) {
-					return privateClient.remove(path);
-				}))).pop();
 			},
 			
 		};
@@ -170,6 +201,30 @@ const mod = {
 			}, {}),
 			OLSKRemoteStorageCollectionExports,
 		};
+	},
+
+	KOMCardStorageWrite (storageClient, inputData) {
+		return storageClient.kommit[mod.KOMCardStorageCollectionName()]._KOMCardStorageWrite(inputData);
+	},
+
+	KOMCardStorageList (storageClient, inputData) {
+		return storageClient.kommit[mod.KOMCardStorageCollectionName()]._KOMCardStorageList(inputData);
+	},
+
+	KOMCardStorageDelete (storageClient, inputData) {
+		return storageClient.kommit[mod.KOMCardStorageCollectionName()]._KOMCardStorageDelete(inputData);
+	},
+
+	KOMCardStorageFileWrite (storageClient, param1, param2) {
+		return storageClient.kommit[mod.KOMCardStorageCollectionName()]._KOMCardStorageFileWrite(param1, param2);
+	},
+
+	KOMCardStorageFileRead (storageClient, inputData) {
+		return storageClient.kommit[mod.KOMCardStorageCollectionName()]._KOMCardStorageFileRead(inputData);
+	},
+
+	KOMCardStorageFileDelete (storageClient, inputData) {
+		return storageClient.kommit[mod.KOMCardStorageCollectionName()]._KOMCardStorageFileDelete(inputData);
 	},
 
 };

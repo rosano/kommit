@@ -2,7 +2,6 @@ import { factory, detectPrng } from 'ulid';
 const uniqueID = typeof require === 'undefined' && navigator.appName === 'Zombie' ? factory(detectPrng(true)) : factory();
 
 import KOMCardStorage from './storage.js';
-import KOMCardMetal from './metal.js';
 import KOMCardModel from './model.js';
 import KOMDeckModel from '../KOMDeck/model.js';
 
@@ -19,7 +18,7 @@ const mod = {
 
 		const creationDate = new Date();
 
-		return await KOMCardMetal.KOMCardMetalWrite(storageClient, Object.assign({
+		return await KOMCardStorage.KOMCardStorageWrite(storageClient, Object.assign({
 			KOMCardID: uniqueID(),
 			KOMCardDeckID: param2.KOMDeckID,
 			KOMCardCreationDate: creationDate,
@@ -32,17 +31,17 @@ const mod = {
 			return Promise.reject(new Error('KOMErrorInputNotValid'));
 		}
 
-		return await KOMCardMetal.KOMCardMetalWrite(storageClient, Object.assign(inputData, {
+		return await KOMCardStorage.KOMCardStorageWrite(storageClient, Object.assign(inputData, {
 			KOMCardModificationDate: new Date(),
 		}));
 	},
 
 	async KOMCardActionDelete (storageClient, inputData) {
-		return await KOMCardMetal.KOMCardMetalDelete(storageClient, inputData);
+		return await KOMCardStorage.KOMCardStorageDelete(storageClient, inputData);
 	},
 
 	async KOMCardActionList (storageClient, inputData) {
-		return Object.values(await KOMCardMetal.KOMCardMetalList(storageClient, inputData));
+		return Object.values(await KOMCardStorage.KOMCardStorageList(storageClient, inputData));
 	},
 
 	async KOMCardActionAudioCapture (storageClient, param1, param2, param3, param4) {
@@ -62,7 +61,7 @@ const mod = {
 			return Promise.reject(new Error('KOMErrorInputNotValid'));
 		}
 
-		await KOMCardMetal.KOMCardMetalFileWrite(storageClient, param2, param1 === 'KOMCardFrontAudio' ? KOMCardStorage.KOMCardStorageAudioPathFront(param3, param4) : KOMCardStorage.KOMCardStorageAudioPathRear(param3, param4));
+		await KOMCardStorage.KOMCardStorageFileWrite(storageClient, param2, param1 === 'KOMCardFrontAudio' ? KOMCardStorage.KOMCardStorageAudioPathFront(param3, param4) : KOMCardStorage.KOMCardStorageAudioPathRear(param3, param4));
 
 		param3[param1] = true;
 
@@ -82,7 +81,7 @@ const mod = {
 			return Promise.reject(new Error('KOMErrorInputNotValid'));
 		}
 
-		await KOMCardMetal.KOMCardMetalFileDelete(storageClient, param1 === 'KOMCardFrontAudio' ? KOMCardStorage.KOMCardStorageAudioPathFront(param2, param3) : KOMCardStorage.KOMCardStorageAudioPathRear(param2, param3));
+		await KOMCardStorage.KOMCardStorageFileDelete(storageClient, param1 === 'KOMCardFrontAudio' ? KOMCardStorage.KOMCardStorageAudioPathFront(param2, param3) : KOMCardStorage.KOMCardStorageAudioPathRear(param2, param3));
 
 		delete param2[param1];
 
@@ -102,7 +101,7 @@ const mod = {
 			return Promise.reject(new Error('KOMErrorInputNotValid'));
 		}
 
-		return await KOMCardMetal.KOMCardMetalFileRead(storageClient, param1 === 'KOMCardFrontAudio' ? KOMCardStorage.KOMCardStorageAudioPathFront(param2, param3) : KOMCardStorage.KOMCardStorageAudioPathRear(param2, param3));
+		return await KOMCardStorage.KOMCardStorageFileRead(storageClient, param1 === 'KOMCardFrontAudio' ? KOMCardStorage.KOMCardStorageAudioPathFront(param2, param3) : KOMCardStorage.KOMCardStorageAudioPathRear(param2, param3));
 	},
 
 	async KOMCardActionAudioList (storageClient, param1, param2) {
@@ -121,8 +120,8 @@ const mod = {
 
 			return coll;
 		}, {
-			KOMCardFrontAudio: await KOMCardMetal.KOMCardMetalFileRead(storageClient, KOMCardStorage.KOMCardStorageAudioPathFront(param1, param2)),
-			KOMCardRearAudio: await KOMCardMetal.KOMCardMetalFileRead(storageClient, KOMCardStorage.KOMCardStorageAudioPathRear(param1, param2)),
+			KOMCardFrontAudio: await KOMCardStorage.KOMCardStorageFileRead(storageClient, KOMCardStorage.KOMCardStorageAudioPathFront(param1, param2)),
+			KOMCardRearAudio: await KOMCardStorage.KOMCardStorageFileRead(storageClient, KOMCardStorage.KOMCardStorageAudioPathRear(param1, param2)),
 		});
 	},
 	
