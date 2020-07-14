@@ -7,6 +7,7 @@ describe('KOMVitrineRouteGuard', function test_KOMVitrineRouteGuard() {
 	const StubEnvValid = function () {
 		return {
 			KOM_VITRINE_ANKI_URL: 'alfa',
+			KOM_VITRINE_VIDEO_URL: 'bravo',
 		};
 	};
 
