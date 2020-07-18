@@ -20,7 +20,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			browser.assert.text('title', uLocalized('KOMReviewTitle'));
 		});
 
-		context('KOMReviewLauncherItemSelectDeck', function () {
+		context('select_deck', function test_select_deck () {
 			
 			before(function () {
 				return browser.OLSKPrompt(function () {
@@ -32,52 +32,24 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 				});
 			});
 
-			before(function () {
-				return browser.pressButton('.OLSKAppToolbarLauncherButton');
-			});
-
-			before(function () {
-				return browser.fill('.LCHLauncherFilterInput', 'alfa');
-			});
-
-			it.skip('localizes KOMReviewLauncherItemSelectDeck', function () {
-				browser.assert.text('.LCHLauncherPipeItem', uStringWithFormat(uLocalized('KOMReviewLauncherItemSelectDeckTextFormat'), 'alfa'));
+			it('localizes KOMReviewLauncherItemSelectDeck', function () {
+				return browser.assert.OLSKLauncherItemText('KOMReviewLauncherItemSelectDeck', uStringWithFormat(uLocalized('KOMReviewLauncherItemSelectDeckTextFormat'), 'alfa'));
 			});
 		
 		});
 
-		context('KOMReviewLauncherItemSendLoginLink', function () {
+		context('select_card', function test_select_card() {
 			
 			before(function () {
-				return browser.pressButton('.OLSKAppToolbarLauncherButton');
+				return browser.click('.KOMReviewMasterListItem');
 			});
 
-			before(function () {
-				return browser.fill('.LCHLauncherFilterInput', 'FakeOLSKConnected');
-			});
-
-			before(function () {
-				return browser.click('.LCHLauncherPipeItem');
-			});
-
-			before(function () {
-				return browser.pressButton('.OLSKAppToolbarLauncherButton');
-			});
-
-			before(function () {
-				return browser.fill('.LCHLauncherFilterInput', 'KOMReviewLauncherItemSendLoginLink');
-			});
-
-			it('localizes KOMReviewLauncherItemSendLoginLink', function () {
-				browser.assert.text('.LCHLauncherPipeItem', uLocalized('KOMReviewLauncherItemSendLoginLinkText'));
-			});
-		
-		});
-
-		context.skip('KOMReviewLauncherItemDebugCard', function test_KOMReviewLauncherItemDebugCard() {
-			
 			before(function () {
 				return browser.pressButton('.KOMReviewDetailToolbarCardsButton');
+			});
+
+			before(function () {
+				return browser.pressButton('.KOMBrowseListToolbarCreateButton');
 			});
 
 			before(function () {
@@ -85,17 +57,25 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			});
 
 			before(function () {
-				return browser.pressButton('.OLSKAppToolbarLauncherButton');
+				return uLaunch('KOMReviewLauncherItemDebugCard');
 			});
 
+			it('localizes KOMReviewLauncherItemDebugCard', function () {
+				return browser.assert.OLSKLauncherItemText('KOMReviewLauncherItemDebugCard', uLocalized('KOMReviewLauncherItemDebugCardText'));
+			});
+
+		});
+
+		context('KOMReviewLauncherItemSendLoginLink', function () {
+			
 			before(function () {
-				return browser.fill('.LCHLauncherFilterInput', 'KOMReviewLauncherItemDebugCard');
+				return uLaunch('FakeOLSKConnected');
 			});
 
 			it('localizes KOMReviewLauncherItemSendLoginLink', function () {
-				browser.assert.text('.LCHLauncherPipeItem', uLocalized('KOMReviewLauncherItemSendLoginLinkText'));
+				return browser.assert.OLSKLauncherItemText('KOMReviewLauncherItemSendLoginLink', uLocalized('KOMReviewLauncherItemSendLoginLinkText'));
 			});
-
+		
 		});
 
 	});
