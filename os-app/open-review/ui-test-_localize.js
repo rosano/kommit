@@ -57,7 +57,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			});
 
 			before(function () {
-				return uLaunch('KOMReviewLauncherItemDebugCard');
+				return browser.OLSKLauncherRun('KOMReviewLauncherItemDebugCard');
 			});
 
 			it('localizes KOMReviewLauncherItemDebugCard', function () {
@@ -69,7 +69,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 		context('KOMReviewLauncherItemSendLoginLink', function () {
 			
 			before(function () {
-				return uLaunch('FakeOLSKConnected');
+				return browser.OLSKLauncherRun('FakeOLSKConnected');
 			});
 
 			it('localizes KOMReviewLauncherItemSendLoginLink', function () {

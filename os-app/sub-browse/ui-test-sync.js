@@ -1,40 +1,12 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-const kTesting = {
-	StubDeckObjectValid() {
-		return {
-			KOMDeckID: 'alfa',
-			KOMDeckName: '',
-			KOMDeckCreationDate: new Date('2019-02-23T13:56:36Z'),
-			KOMDeckModificationDate: new Date('2019-02-23T13:56:36Z'),
-			$KOMDeckCards: [],
-		};
-	},
-	uSerial (inputData) {
-		return inputData.reduce(function (coll, e) {
-			return coll.then(e);
-		}, Promise.resolve());
-	},
-	uLaunch (inputData) {
-		return kTesting.uSerial([
-			function () {
-				return browser.pressButton('.OLSKAppToolbarLauncherButton');
-			},
-			function () {
-				return browser.fill('.LCHLauncherFilterInput', inputData);
-			},
-			function () {
-				return browser.click('.LCHLauncherPipeItem');
-			},
-		]);
-	},
-};
-
 describe('KOMBrowse_Sync', function () {
 
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute, {
-			KOMBrowseDeckSelected: JSON.stringify(kTesting.StubDeckObjectValid()),
+			KOMBrowseDeckSelected: JSON.stringify(Object.assign(StubDeckObjectValid(), {
+				$KOMDeckCards: [],
+			})),
 		});
 	});
 
@@ -57,7 +29,7 @@ describe('KOMBrowse_Sync', function () {
 		});
 
 		before(function () {
-			return kTesting.uLaunch('FakeChangeDelegateCreateCard');
+			return browser.OLSKLauncherRun('FakeChangeDelegateCreateCard');
 		});
 
 		it('adds item', function () {
@@ -79,7 +51,7 @@ describe('KOMBrowse_Sync', function () {
 			});
 
 			before(function () {
-				return kTesting.uLaunch('FakeChangeDelegateCreateCard');
+				return browser.OLSKLauncherRun('FakeChangeDelegateCreateCard');
 			});
 
 			it('adds item', function () {
@@ -105,7 +77,7 @@ describe('KOMBrowse_Sync', function () {
 		});
 
 		before(function () {
-			return kTesting.uLaunch('FakeChangeDelegateUpdateCard');
+			return browser.OLSKLauncherRun('FakeChangeDelegateUpdateCard');
 		});
 
 		it('updates item', function () {
@@ -131,7 +103,7 @@ describe('KOMBrowse_Sync', function () {
 			});
 
 			before(function () {
-				return kTesting.uLaunch('FakeChangeDelegateUpdateCard');
+				return browser.OLSKLauncherRun('FakeChangeDelegateUpdateCard');
 			});
 
 			it('updates item', function () {
@@ -155,7 +127,7 @@ describe('KOMBrowse_Sync', function () {
 			});
 
 			before(function () {
-				return kTesting.uLaunch('FakeChangeDelegateUpdateCard');
+				return browser.OLSKLauncherRun('FakeChangeDelegateUpdateCard');
 			});
 
 			it('updates detail', function () {
@@ -177,7 +149,7 @@ describe('KOMBrowse_Sync', function () {
 		});
 
 		before(function () {
-			return kTesting.uLaunch('FakeEscapeWithoutSort');
+			return browser.OLSKLauncherRun('FakeEscapeWithoutSort');
 		});
 
 		before(function () {
@@ -189,7 +161,7 @@ describe('KOMBrowse_Sync', function () {
 		});
 
 		before(function () {
-			return kTesting.uLaunch('FakeChangeDelegateDeleteCard');
+			return browser.OLSKLauncherRun('FakeChangeDelegateDeleteCard');
 		});
 
 		it('removes item', function () {
@@ -211,7 +183,7 @@ describe('KOMBrowse_Sync', function () {
 			});
 
 			before(function () {
-				return kTesting.uLaunch('FakeChangeDelegateCreateCard');
+				return browser.OLSKLauncherRun('FakeChangeDelegateCreateCard');
 			});
 
 			before(function () {
@@ -219,7 +191,7 @@ describe('KOMBrowse_Sync', function () {
 			});
 
 			before(function () {
-				return kTesting.uLaunch('FakeChangeDelegateDeleteCard');
+				return browser.OLSKLauncherRun('FakeChangeDelegateDeleteCard');
 			});
 
 			it('removes item', function () {
@@ -235,7 +207,7 @@ describe('KOMBrowse_Sync', function () {
 		context('selected same', function () {
 			
 			before(function () {
-				return kTesting.uLaunch('FakeChangeDelegateCreateCard');
+				return browser.OLSKLauncherRun('FakeChangeDelegateCreateCard');
 			});
 
 			before(function () {
@@ -251,7 +223,7 @@ describe('KOMBrowse_Sync', function () {
 			});
 
 			before(function () {
-				return kTesting.uLaunch('FakeChangeDelegateDeleteCard');
+				return browser.OLSKLauncherRun('FakeChangeDelegateDeleteCard');
 			});
 
 			it('removes item', function () {

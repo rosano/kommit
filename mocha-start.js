@@ -61,26 +61,6 @@ const KOMSpacingStorage = require('./os-app/_shared/KOMSpacing/storage.js').defa
 				KOMSpacingChronicles: [],
 			};
 		},
-
-		uSerial2 (inputData) {
-			return inputData.reduce(function (coll, e) {
-				return coll.then(e);
-			}, Promise.resolve());
-		},
-
-		uLaunch (inputData) {
-			return uSerial2([
-				function () {
-					return browser.pressButton('.OLSKAppToolbarLauncherButton');
-				},
-				function () {
-					return browser.fill('.LCHLauncherFilterInput', inputData);
-				},
-				function () {
-					return browser.click('.LCHLauncherPipeItem');
-				},
-			]);
-		},
 		
 	}).map(function (e) {
 		return global[e.shift()]  = e.pop();

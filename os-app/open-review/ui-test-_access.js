@@ -336,7 +336,7 @@ describe('KOMReview_Access', function () {
 		});
 
 		before(function () {
-			return uLaunch('KOMReviewLauncherItemSelectDeck');
+			return browser.OLSKLauncherRun('KOMReviewLauncherItemSelectDeck');
 		});
 
 		it('hides KOMReviewMaster', function () {
@@ -380,7 +380,7 @@ describe('KOMReview_Access', function () {
 	context('connected', function () {
 
 		before(function () {
-			return uLaunch('FakeOLSKConnected');
+			return browser.OLSKLauncherRun('FakeOLSKConnected');
 		});
 		
 		it('shows KOMReviewLauncherItemSendLoginLink', function () {

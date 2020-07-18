@@ -1,26 +1,5 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-const kTesting = {
-	uSerial (inputData) {
-		return inputData.reduce(function (coll, e) {
-			return coll.then(e);
-		}, Promise.resolve());
-	},
-	uLaunch (inputData) {
-		return kTesting.uSerial([
-			function () {
-				return browser.pressButton('.OLSKAppToolbarLauncherButton');
-			},
-			function () {
-				return browser.fill('.LCHLauncherFilterInput', inputData);
-			},
-			function () {
-				return browser.click('.LCHLauncherPipeItem');
-			},
-		]);
-	},
-};
-
 describe('KOMReview_Sync', function () {	
 
 	let _ThrottleCount = 0;
@@ -45,7 +24,7 @@ describe('KOMReview_Sync', function () {
 		});
 
 		before(function () {
-			return kTesting.uLaunch('FakeOLSKChangeDelegateCreateDeck');
+			return browser.OLSKLauncherRun('FakeOLSKChangeDelegateCreateDeck');
 		});
 
 		it('calls ReactThrottle', function () {
@@ -73,7 +52,7 @@ describe('KOMReview_Sync', function () {
 		});
 
 		before(function () {
-			return kTesting.uLaunch('FakeOLSKChangeDelegateCreateCard');
+			return browser.OLSKLauncherRun('FakeOLSKChangeDelegateCreateCard');
 		});
 
 		it('adds card object', function () {
@@ -97,7 +76,7 @@ describe('KOMReview_Sync', function () {
 	describe('OLSKChangeDelegateCreateSpacing', function test_OLSKChangeDelegateCreateSpacing () {
 
 		before(function () {
-			return kTesting.uLaunch('FakeOLSKChangeDelegateCreateSpacing');
+			return browser.OLSKLauncherRun('FakeOLSKChangeDelegateCreateSpacing');
 		});
 
 		it('updates spacing object', function () {
@@ -125,7 +104,7 @@ describe('KOMReview_Sync', function () {
 		});
 
 		before(function () {
-			return kTesting.uLaunch('FakeOLSKChangeDelegateUpdateSpacing');
+			return browser.OLSKLauncherRun('FakeOLSKChangeDelegateUpdateSpacing');
 		});
 
 		it('updates spacing object', function () {
@@ -149,7 +128,7 @@ describe('KOMReview_Sync', function () {
 	describe('OLSKChangeDelegateDeleteSpacing', function test_OLSKChangeDelegateDeleteSpacing () {
 
 		before(function () {
-			return kTesting.uLaunch('FakeOLSKChangeDelegateDeleteSpacing');
+			return browser.OLSKLauncherRun('FakeOLSKChangeDelegateDeleteSpacing');
 		});
 
 		it('skips react', function () {
@@ -161,7 +140,7 @@ describe('KOMReview_Sync', function () {
 	describe('OLSKChangeDelegateUpdateCard', function test_OLSKChangeDelegateUpdateCard () {
 
 		before(function () {
-			return kTesting.uLaunch('FakeOLSKChangeDelegateUpdateCard');
+			return browser.OLSKLauncherRun('FakeOLSKChangeDelegateUpdateCard');
 		});
 
 		it('calls ReactThrottle', function () {
@@ -181,7 +160,7 @@ describe('KOMReview_Sync', function () {
 		});
 
 		before(function () {
-			return kTesting.uLaunch('FakeOLSKChangeDelegateDeleteCard');
+			return browser.OLSKLauncherRun('FakeOLSKChangeDelegateDeleteCard');
 		});
 
 		it('updates spacing objects', function () {
@@ -205,7 +184,7 @@ describe('KOMReview_Sync', function () {
 	describe('OLSKChangeDelegateUpdateDeck', function test_OLSKChangeDelegateUpdateDeck () {
 
 		before(function () {
-			return kTesting.uLaunch('FakeOLSKChangeDelegateUpdateDeck');
+			return browser.OLSKLauncherRun('FakeOLSKChangeDelegateUpdateDeck');
 		});
 
 		it('calls ReactThrottle', function () {
@@ -221,7 +200,7 @@ describe('KOMReview_Sync', function () {
 	describe('OLSKChangeDelegateDeleteDeck', function test_OLSKChangeDelegateDeleteDeck () {
 
 		before(function () {
-			return kTesting.uLaunch('FakeOLSKChangeDelegateDeleteDeck');
+			return browser.OLSKLauncherRun('FakeOLSKChangeDelegateDeleteDeck');
 		});
 
 		it('calls ReactThrottle', function () {
@@ -239,7 +218,7 @@ describe('KOMReview_Sync', function () {
 		describe('OLSKChangeDelegateCreateSpacing', function () {
 
 			before(function () {
-				return kTesting.uLaunch('FakeOLSKChangeDelegateCreateSpacing');
+				return browser.OLSKLauncherRun('FakeOLSKChangeDelegateCreateSpacing');
 			});
 
 			it('calls ReactThrottle', function () {
@@ -251,7 +230,7 @@ describe('KOMReview_Sync', function () {
 		describe('OLSKChangeDelegateCreateCard', function () {
 
 			before(function () {
-				return kTesting.uLaunch('FakeOLSKChangeDelegateCreateCard');
+				return browser.OLSKLauncherRun('FakeOLSKChangeDelegateCreateCard');
 			});
 
 			it('calls ReactThrottle', function () {
@@ -271,7 +250,7 @@ describe('KOMReview_Sync', function () {
 			});
 
 			before(function () {
-				return kTesting.uLaunch('FakeOLSKChangeDelegateCreateDeck');
+				return browser.OLSKLauncherRun('FakeOLSKChangeDelegateCreateDeck');
 			});
 
 			it('adds card object', function () {
@@ -303,7 +282,7 @@ describe('KOMReview_Sync', function () {
 			});
 
 			before(function () {
-				return kTesting.uLaunch('FakeOLSKChangeDelegateUpdateDeck');
+				return browser.OLSKLauncherRun('FakeOLSKChangeDelegateUpdateDeck');
 			});
 
 			it('calls ReactThrottle', function () {
@@ -327,7 +306,7 @@ describe('KOMReview_Sync', function () {
 			});
 
 			before(function () {
-				return kTesting.uLaunch('FakeOLSKChangeDelegateDeleteCard');
+				return browser.OLSKLauncherRun('FakeOLSKChangeDelegateDeleteCard');
 			});
 
 			it('calls ReactThrottle', function () {
@@ -347,7 +326,7 @@ describe('KOMReview_Sync', function () {
 		describe('OLSKChangeDelegateDeleteDeck', function () {
 
 			before(function () {
-				return kTesting.uLaunch('FakeOLSKChangeDelegateDeleteDeck');
+				return browser.OLSKLauncherRun('FakeOLSKChangeDelegateDeleteDeck');
 			});
 
 			it('calls ReactThrottle', function () {
@@ -379,7 +358,7 @@ describe('KOMReview_Sync', function () {
 		});
 
 		before(function () {
-			return kTesting.uLaunch('FakeOLSKChangeDelegateCreateDeck');
+			return browser.OLSKLauncherRun('FakeOLSKChangeDelegateCreateDeck');
 		});
 
 		context('different_deck', function () {
@@ -403,7 +382,7 @@ describe('KOMReview_Sync', function () {
 				});
 
 				before(function () {
-					return kTesting.uLaunch('FakeOLSKChangeDelegateCreateCard');
+					return browser.OLSKLauncherRun('FakeOLSKChangeDelegateCreateCard');
 				});
 
 				it('calls ReactThrottle', function () {
@@ -423,7 +402,7 @@ describe('KOMReview_Sync', function () {
 			describe('OLSKChangeDelegateUpdateCard', function () {
 
 				before(function () {
-					return kTesting.uLaunch('FakeOLSKChangeDelegateUpdateCard');
+					return browser.OLSKLauncherRun('FakeOLSKChangeDelegateUpdateCard');
 				});
 
 				it('calls ReactThrottle', function () {
@@ -443,7 +422,7 @@ describe('KOMReview_Sync', function () {
 			describe('OLSKChangeDelegateDeleteCard', function () {
 
 				before(function () {
-					return kTesting.uLaunch('FakeOLSKChangeDelegateDeleteCard');
+					return browser.OLSKLauncherRun('FakeOLSKChangeDelegateDeleteCard');
 				});
 
 				it('calls ReactThrottle', function () {
@@ -475,7 +454,7 @@ describe('KOMReview_Sync', function () {
 			});
 
 			before(function () {
-				return kTesting.uLaunch('FakeOLSKChangeDelegateCreateDeck');
+				return browser.OLSKLauncherRun('FakeOLSKChangeDelegateCreateDeck');
 			});
 
 			before(function () {
@@ -497,7 +476,7 @@ describe('KOMReview_Sync', function () {
 				});
 
 				before(function () {
-					return kTesting.uLaunch('FakeOLSKChangeDelegateCreateCard');
+					return browser.OLSKLauncherRun('FakeOLSKChangeDelegateCreateCard');
 				});
 
 				it('calls ReactThrottle', function () {
@@ -517,7 +496,7 @@ describe('KOMReview_Sync', function () {
 			describe('OLSKChangeDelegateUpdateCard', function () {
 
 				before(function () {
-					return kTesting.uLaunch('FakeOLSKChangeDelegateUpdateCard');
+					return browser.OLSKLauncherRun('FakeOLSKChangeDelegateUpdateCard');
 				});
 
 				it('calls ReactThrottle', function () {
@@ -537,7 +516,7 @@ describe('KOMReview_Sync', function () {
 			describe('OLSKChangeDelegateDeleteCard', function () {
 
 				before(function () {
-					return kTesting.uLaunch('FakeOLSKChangeDelegateDeleteCard');
+					return browser.OLSKLauncherRun('FakeOLSKChangeDelegateDeleteCard');
 				});
 
 				it('calls ReactThrottle', function () {
@@ -585,7 +564,7 @@ describe('KOMReview_Sync', function () {
 				});
 
 				before(function () {
-					return kTesting.uLaunch('FakeOLSKChangeDelegateConflictCard');
+					return browser.OLSKLauncherRun('FakeOLSKChangeDelegateConflictCard');
 				});
 
 				it.skip('selects local', function () {
@@ -597,7 +576,7 @@ describe('KOMReview_Sync', function () {
 			describe('OLSKChangeDelegateDeleteDeck', function () {
 
 				before(function () {
-					return kTesting.uLaunch('FakeOLSKChangeDelegateDeleteDeck');
+					return browser.OLSKLauncherRun('FakeOLSKChangeDelegateDeleteDeck');
 				});
 
 				it('calls ReactThrottle', function () {
