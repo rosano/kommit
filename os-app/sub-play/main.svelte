@@ -385,8 +385,6 @@ const mod = {
 
 import { onMount } from 'svelte';
 OLSK_TESTING_BEHAVIOUR() ? mod.LifecycleModuleWillMount() : onMount(mod.LifecycleModuleWillMount);
-
-import OLSKViewportContent from 'OLSKViewportContent';
 </script>
 <svelte:window on:keydown={ mod.InterfaceWindowDidKeydown } />
 

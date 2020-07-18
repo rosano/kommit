@@ -384,7 +384,6 @@ const mod = {
 import { onMount } from 'svelte';
 onMount(mod.LifecycleModuleWillMount);
 
-import OLSKViewportContent from 'OLSKViewportContent';
 import KOMBrowseList from './submodules/KOMBrowseList/main.svelte';
 import KOMBrowseInfo from './submodules/KOMBrowseInfo/main.svelte';
 </script>

@@ -566,7 +566,6 @@ const mod = {
 import { onMount } from 'svelte';
 onMount(mod.LifecycleModuleWillMount);
 
-import OLSKViewportContent from 'OLSKViewportContent';
 import KOMReviewMaster from './submodules/KOMReviewMaster/main.svelte';
 import KOMReviewDetail from './submodules/KOMReviewDetail/main.svelte';
 import KOMBrowse from '../sub-browse/main.svelte';
@@ -578,7 +577,7 @@ import OLSKStorageWidget from 'OLSKStorageWidget';
 
 <div class="KOMReview OLSKViewport" class:OLSKIsLoading={ mod._ValueIsLoading }>
 
-<OLSKViewportContent>
+<div class="OLSKViewportContent">
 	{#if !mod._ValueDeckSelected }
 		<KOMReviewMaster
 			KOMReviewMasterItems={ mod._ValueDecksAll }
@@ -619,7 +618,7 @@ import OLSKStorageWidget from 'OLSKStorageWidget';
 			KOMPlayDispatchFetch={ mod.KOMPlayDispatchFetch }
 			/>
 	{/if}
-</OLSKViewportContent>
+</div>
 
 {#if OLSK_TESTING_BEHAVIOUR()}
 	<p>
