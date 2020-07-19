@@ -8,7 +8,7 @@ Object.entries({
 	return global[e.shift()] = e.pop();
 });
 
-describe('KOMReview_Access', function () {
+describe.only('KOMReview_Access', function () {
 
 	before(function () {
 		return browser.OLSKVisit(kDefaultRoute);
@@ -90,6 +90,20 @@ describe('KOMReview_Access', function () {
 
 		it('shows LCHLauncher', function () {
 			browser.assert.elements('.LCHLauncher', 1);
+		});
+
+		context('AltSpace', function () {
+			
+			before(function () {
+				return browser.OLSKFireKeyboardEvent(browser.window, 'Space', {
+					altKey: true,
+				});
+			});
+			
+			it('hides LCHLauncher', function () {
+				browser.assert.elements('.LCHLauncher', 0);
+			});
+
 		});
 
 	});
