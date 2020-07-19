@@ -77,7 +77,6 @@
     "OLSKTesting": "olsk/OLSKTesting",
 
     "// SVELTE": null,
-    "svelte": "latest",
     "OLSKRollupScaffold": "olsk/OLSKRollupScaffold",
 
     "// LIVERELOAD": null,
