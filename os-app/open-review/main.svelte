@@ -57,6 +57,148 @@ const mod = {
 	
 	// DATA
 
+	DataRecipes () {
+		const items = mod._ValueDecksAll.filter(function (e) {
+			return e !== mod._ValueDeckSelected;
+		}).map(function (e) {
+			return {
+				LCHRecipeSignature: 'KOMReviewLauncherItemSelectDeck',
+				LCHRecipeName: OLSKFormatted(OLSKLocalized('KOMReviewLauncherItemSelectDeckTextFormat'), e.KOMDeckName),
+				LCHRecipeCallback () {
+					return mod.ControlDeckSelect(e);
+				},
+			}
+		});
+
+		if (mod._ValueStorageClient.connected) {
+			items.push({
+				LCHRecipeSignature: 'KOMReviewLauncherItemSendLoginLink',
+				LCHRecipeName: OLSKLocalized('KOMReviewLauncherItemSendLoginLinkText'),
+				LCHRecipeCallback () {
+					const url = `mailto:?subject=${ OLSKLocalized('KOMReviewLauncherItemSendLoginLinkSubject') }&body=${ encodeURIComponent(`${ window.location.href }#remotestorage=${ mod._ValueStorageClient.remote.userAddress }&access_token=${ mod._ValueStorageClient.remote.token }`) }`;
+
+					if (OLSK_TESTING_BEHAVIOUR() && window.FakeOLSKConnected) {
+						window.FakeWindowLocationHref = url;
+						return;
+					}
+
+					window.location.href = url;
+				},
+			});
+		}
+
+		if (mod._KOMBrowse) {
+			items.push(...mod._KOMBrowse.modPublic.KOMBrowseRecipes());
+		}
+
+		if (OLSK_TESTING_BEHAVIOUR()) {
+			items.push(...[
+				{
+					LCHRecipeName: 'FakeOLSKConnected',
+					LCHRecipeCallback () {
+						mod._ValueStorageClient = Object.assign({}, mod._ValueStorageClient);
+						mod._ValueStorageClient.connected = true;
+						mod._ValueStorageClient.remote = Object.assign(mod._ValueStorageClient.remote, {
+							userAddress: 'alfa',
+							token: 'bravo',
+						});
+
+						window.FakeOLSKConnected = true;
+					},
+				},
+				{
+					LCHRecipeName: 'FakeOLSKChangeDelegateCreateDeck',
+					LCHRecipeCallback: async function FakeOLSKChangeDelegateCreateDeck () {
+						return mod.OLSKChangeDelegateCreateDeck(await KOMDeckAction.KOMDeckActionCreate(mod._ValueStorageClient, mod.FakeDeckObjectValid('FakeOLSKChangeDelegateCreateDeck')));
+					},
+				},
+				{
+					LCHRecipeName: 'FakeOLSKChangeDelegateUpdateDeck',
+					LCHRecipeCallback: async function FakeOLSKChangeDelegateUpdateDeck () {
+						return mod.OLSKChangeDelegateUpdateDeck(await KOMDeckAction.KOMDeckActionUpdate(mod._ValueStorageClient, mod.FakeDeckObjectValid('FakeOLSKChangeDelegateUpdateDeck')));
+					},
+				},
+				{
+					LCHRecipeName: 'FakeOLSKChangeDelegateDeleteDeck',
+					LCHRecipeCallback: async function FakeOLSKChangeDelegateDeleteDeck () {
+						const deck = mod.FakeDeckObjectValid();
+						await KOMDeckAction.KOMDeckActionDelete(mod._ValueStorageClient, deck)
+						return mod.OLSKChangeDelegateDeleteDeck(deck);
+					},
+				},
+				{
+					LCHRecipeName: 'FakeOLSKChangeDelegateCreateCard',
+					LCHRecipeCallback: async function FakeOLSKChangeDelegateCreateCard () {
+						return mod.OLSKChangeDelegateCreateCard(await KOMCardAction.KOMCardActionCreate(mod._ValueStorageClient, mod.FakeCardObjectValid('FakeOLSKChangeDelegateCreateCard'), mod.FakeDeckObjectValid()));
+					},
+				},
+				{
+					LCHRecipeName: 'FakeOLSKChangeDelegateUpdateCard',
+					LCHRecipeCallback: async function FakeOLSKChangeDelegateUpdateCard () {
+						return mod.OLSKChangeDelegateUpdateCard(await KOMCardAction.KOMCardActionUpdate(mod._ValueStorageClient, mod.FakeCardObjectValid('FakeOLSKChangeDelegateUpdateCard'), mod.FakeDeckObjectValid()));
+					},
+				},
+				{
+					LCHRecipeName: 'FakeOLSKChangeDelegateDeleteCard',
+					LCHRecipeCallback: async function FakeOLSKChangeDelegateDeleteCard () {
+						const card = mod.FakeCardObjectValid();
+						await KOMCardAction.KOMCardActionDelete(mod._ValueStorageClient, card, mod.FakeDeckObjectValid());
+						return mod.OLSKChangeDelegateDeleteCard(card);
+					},
+				},
+				{
+					LCHRecipeName: 'FakeOLSKChangeDelegateConflictCard',
+					LCHRecipeCallback: async function FakeOLSKChangeDelegateConflictCard () {
+						const item = mod._ValueDeckSelected.$KOMDeckCards.filter(function (e) {
+							return e.KOMCardFrontText.match('FakeOLSKChangeDelegateConflictCard');
+						}).pop();
+						
+						return mod.OLSKChangeDelegateConflictCard({
+							origin: 'conflict',
+							oldValue: await KOMCardAction.KOMCardActionUpdate(mod._ValueStorageClient, Object.assign({}, item, {
+								KOMCardFrontText: item.KOMCardFrontText + '-local',
+							})),
+							newValue: Object.assign({}, item, {
+								KOMCardFrontText: item.KOMCardFrontText + '-remote',
+							}),
+						});
+					},
+				},
+				{
+					LCHRecipeName: 'FakeOLSKChangeDelegateCreateSpacing',
+					LCHRecipeCallback: async function FakeOLSKChangeDelegateCreateSpacing () {
+						return mod.OLSKChangeDelegateCreateSpacing(await KOMSpacingStorage.KOMSpacingStorageWrite(mod._ValueStorageClient, mod.FakeSpacingObjectValid(), mod.FakeCardObjectValid(), mod.FakeDeckObjectValid()));
+					},
+				},
+				{
+					LCHRecipeName: 'FakeOLSKChangeDelegateUpdateSpacing',
+					LCHRecipeCallback: function FakeOLSKChangeDelegateUpdateSpacing () {
+						[false, true].map(async function (backward) {
+							const spacing = await KOMSpacingStorage.KOMSpacingStorageWrite(mod._ValueStorageClient, Object.assign(mod.FakeSpacingObjectValid(backward), {
+								KOMSpacingIsLearning: true,
+								KOMSpacingDueDate: new Date(),
+							}), mod.FakeCardObjectValid(), mod.FakeDeckObjectValid());
+
+							if (!backward) {
+								return;
+							}
+
+							mod.OLSKChangeDelegateUpdateSpacing(spacing);
+						});
+					},
+				},
+				{
+					LCHRecipeName: 'FakeOLSKChangeDelegateDeleteSpacing',
+					LCHRecipeCallback: function FakeOLSKChangeDelegateDeleteSpacing () {
+						return mod.OLSKChangeDelegateDeleteSpacing(mod.FakeSpacingObjectValid());
+					},
+				},
+			]);
+		}
+
+		return items;
+	},
+
 	FakeDeckObjectValid (inputData = '') {
 		return {
 			KOMDeckID: 'FakeDeckID',
@@ -218,146 +360,8 @@ const mod = {
 	},
 
 	OLSKAppToolbarDispatchLauncher () {
-		const items = mod._ValueDecksAll.filter(function (e) {
-			return e !== mod._ValueDeckSelected;
-		}).map(function (e) {
-			return {
-				LCHRecipeSignature: 'KOMReviewLauncherItemSelectDeck',
-				LCHRecipeName: OLSKFormatted(OLSKLocalized('KOMReviewLauncherItemSelectDeckTextFormat'), e.KOMDeckName),
-				LCHRecipeCallback () {
-					return mod.ControlDeckSelect(e);
-				},
-			}
-		});
-
-		if (mod._ValueStorageClient.connected) {
-			items.push({
-				LCHRecipeSignature: 'KOMReviewLauncherItemSendLoginLink',
-				LCHRecipeName: OLSKLocalized('KOMReviewLauncherItemSendLoginLinkText'),
-				LCHRecipeCallback () {
-					const url = `mailto:?subject=${ OLSKLocalized('KOMReviewLauncherItemSendLoginLinkSubject') }&body=${ encodeURIComponent(`${ window.location.href }#remotestorage=${ mod._ValueStorageClient.remote.userAddress }&access_token=${ mod._ValueStorageClient.remote.token }`) }`;
-
-					if (OLSK_TESTING_BEHAVIOUR() && window.FakeOLSKConnected) {
-						window.FakeWindowLocationHref = url;
-						return;
-					}
-
-					window.location.href = url;
-				},
-			});
-		}
-
-		if (mod._KOMBrowse) {
-			items.push(...mod._KOMBrowse.modPublic.KOMBrowseRecipes());
-		}
-
-		if (OLSK_TESTING_BEHAVIOUR()) {
-			items.push(...[
-				{
-					LCHRecipeName: 'FakeOLSKConnected',
-					LCHRecipeCallback () {
-						mod._ValueStorageClient = Object.assign({}, mod._ValueStorageClient);
-						mod._ValueStorageClient.connected = true;
-						mod._ValueStorageClient.remote = Object.assign(mod._ValueStorageClient.remote, {
-							userAddress: 'alfa',
-							token: 'bravo',
-						});
-
-						window.FakeOLSKConnected = true;
-					},
-				},
-				{
-					LCHRecipeName: 'FakeOLSKChangeDelegateCreateDeck',
-					LCHRecipeCallback: async function FakeOLSKChangeDelegateCreateDeck () {
-						return mod.OLSKChangeDelegateCreateDeck(await KOMDeckAction.KOMDeckActionCreate(mod._ValueStorageClient, mod.FakeDeckObjectValid('FakeOLSKChangeDelegateCreateDeck')));
-					},
-				},
-				{
-					LCHRecipeName: 'FakeOLSKChangeDelegateUpdateDeck',
-					LCHRecipeCallback: async function FakeOLSKChangeDelegateUpdateDeck () {
-						return mod.OLSKChangeDelegateUpdateDeck(await KOMDeckAction.KOMDeckActionUpdate(mod._ValueStorageClient, mod.FakeDeckObjectValid('FakeOLSKChangeDelegateUpdateDeck')));
-					},
-				},
-				{
-					LCHRecipeName: 'FakeOLSKChangeDelegateDeleteDeck',
-					LCHRecipeCallback: async function FakeOLSKChangeDelegateDeleteDeck () {
-						const deck = mod.FakeDeckObjectValid();
-						await KOMDeckAction.KOMDeckActionDelete(mod._ValueStorageClient, deck)
-						return mod.OLSKChangeDelegateDeleteDeck(deck);
-					},
-				},
-				{
-					LCHRecipeName: 'FakeOLSKChangeDelegateCreateCard',
-					LCHRecipeCallback: async function FakeOLSKChangeDelegateCreateCard () {
-						return mod.OLSKChangeDelegateCreateCard(await KOMCardAction.KOMCardActionCreate(mod._ValueStorageClient, mod.FakeCardObjectValid('FakeOLSKChangeDelegateCreateCard'), mod.FakeDeckObjectValid()));
-					},
-				},
-				{
-					LCHRecipeName: 'FakeOLSKChangeDelegateUpdateCard',
-					LCHRecipeCallback: async function FakeOLSKChangeDelegateUpdateCard () {
-						return mod.OLSKChangeDelegateUpdateCard(await KOMCardAction.KOMCardActionUpdate(mod._ValueStorageClient, mod.FakeCardObjectValid('FakeOLSKChangeDelegateUpdateCard'), mod.FakeDeckObjectValid()));
-					},
-				},
-				{
-					LCHRecipeName: 'FakeOLSKChangeDelegateDeleteCard',
-					LCHRecipeCallback: async function FakeOLSKChangeDelegateDeleteCard () {
-						const card = mod.FakeCardObjectValid();
-						await KOMCardAction.KOMCardActionDelete(mod._ValueStorageClient, card, mod.FakeDeckObjectValid());
-						return mod.OLSKChangeDelegateDeleteCard(card);
-					},
-				},
-				{
-					LCHRecipeName: 'FakeOLSKChangeDelegateConflictCard',
-					LCHRecipeCallback: async function FakeOLSKChangeDelegateConflictCard () {
-						const item = mod._ValueDeckSelected.$KOMDeckCards.filter(function (e) {
-							return e.KOMCardFrontText.match('FakeOLSKChangeDelegateConflictCard');
-						}).pop();
-						
-						return mod.OLSKChangeDelegateConflictCard({
-							origin: 'conflict',
-							oldValue: await KOMCardAction.KOMCardActionUpdate(mod._ValueStorageClient, Object.assign({}, item, {
-								KOMCardFrontText: item.KOMCardFrontText + '-local',
-							})),
-							newValue: Object.assign({}, item, {
-								KOMCardFrontText: item.KOMCardFrontText + '-remote',
-							}),
-						});
-					},
-				},
-				{
-					LCHRecipeName: 'FakeOLSKChangeDelegateCreateSpacing',
-					LCHRecipeCallback: async function FakeOLSKChangeDelegateCreateSpacing () {
-						return mod.OLSKChangeDelegateCreateSpacing(await KOMSpacingStorage.KOMSpacingStorageWrite(mod._ValueStorageClient, mod.FakeSpacingObjectValid(), mod.FakeCardObjectValid(), mod.FakeDeckObjectValid()));
-					},
-				},
-				{
-					LCHRecipeName: 'FakeOLSKChangeDelegateUpdateSpacing',
-					LCHRecipeCallback: function FakeOLSKChangeDelegateUpdateSpacing () {
-						[false, true].map(async function (backward) {
-							const spacing = await KOMSpacingStorage.KOMSpacingStorageWrite(mod._ValueStorageClient, Object.assign(mod.FakeSpacingObjectValid(backward), {
-								KOMSpacingIsLearning: true,
-								KOMSpacingDueDate: new Date(),
-							}), mod.FakeCardObjectValid(), mod.FakeDeckObjectValid());
-
-							if (!backward) {
-								return;
-							}
-
-							mod.OLSKChangeDelegateUpdateSpacing(spacing);
-						});
-					},
-				},
-				{
-					LCHRecipeName: 'FakeOLSKChangeDelegateDeleteSpacing',
-					LCHRecipeCallback: function FakeOLSKChangeDelegateDeleteSpacing () {
-						return mod.OLSKChangeDelegateDeleteSpacing(mod.FakeSpacingObjectValid());
-					},
-				},
-			]);
-		}
-		
 		window.Launchlet.LCHSingletonCreate({
-			LCHOptionRecipes: items,
+			LCHOptionRecipes: mod.DataRecipes(),
 		});
 	},
 
