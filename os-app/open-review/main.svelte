@@ -490,13 +490,19 @@ const mod = {
 					OLSKChangeDelegateDelete: mod.OLSKChangeDelegateDeleteSpacing,
 				},
 			}),
-			]);
+			], {
+			OLSKOptionIncludeDebug: OLSK_TESTING_BEHAVIOUR() || window.OLSKPublicConstants('OLSKDebugRemoteStorage'),
+		});
 		
 		mod._ValueStorageClient = new RemoteStorage({ modules: [ storageModule ] });
 
 		mod._ValueStorageClient.access.claim(storageModule.name, 'rw');
 
 		mod._ValueStorageClient.caching.enable(`/${ storageModule.name }/`);
+
+		if (window.OLSKPublicConstants('OLSKDebugRemoteStorage')) {
+			window.OLSKDebugRemoteStorage = mod._ValueStorageClient;
+		}
 	},
 
 	SetupStorageStatus () {

@@ -20,6 +20,9 @@ locals.OLSKPagePublicConstants = {
 	OLSKSharedPageLanguagesAvailable,
 	OLSKSharedPageCurrentLanguage,
 };
+if (process.env.OLSKDebugRemoteStorage === 'true') {
+	locals.OLSKPagePublicConstants.OLSKDebugRemoteStorage = true;
+}
 locals.OLSKPageMetaTags = {
 	viewport: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0',
 	'mobile-web-app-capable': 'yes',
