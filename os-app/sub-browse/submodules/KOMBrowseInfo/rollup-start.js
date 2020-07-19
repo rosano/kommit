@@ -12,7 +12,7 @@ const mod = {
 
 	// REACT
 
-	ReactDetailItem (inputData) {
+	ReactDetailItem(inputData) {
 		window.TestKOMBrowseInfoItem.innerHTML = JSON.stringify(inputData);
 	},
 
@@ -27,41 +27,41 @@ const mod = {
 	LifecycleModuleDidLoad() {
 		mod.SetupEverything();
 	},
-	
+
 };
-	
+
 mod.LifecycleModuleDidLoad();
 
 const KOMBrowseInfo = new RollupStart({
 	target: document.body,
 	props: Object.assign({
 		KOMBrowseInfoDeck: {},
-		KOMBrowseInfoDispatchBack: (function _KOMBrowseInfoDispatchBack () {
+		KOMBrowseInfoDispatchBack: (function _KOMBrowseInfoDispatchBack() {
 			window.TestKOMBrowseInfoDispatchBack.innerHTML = parseInt(window.TestKOMBrowseInfoDispatchBack.innerHTML) + 1;
 		}),
-		KOMBrowseInfoDispatchDiscard: (function _KOMBrowseInfoDispatchDiscard (inputData) {
+		KOMBrowseInfoDispatchDiscard: (function _KOMBrowseInfoDispatchDiscard(inputData) {
 			window.TestKOMBrowseInfoDispatchDiscard.innerHTML = parseInt(window.TestKOMBrowseInfoDispatchDiscard.innerHTML) + 1;
 			window.TestKOMBrowseInfoDispatchDiscardData.innerHTML = JSON.stringify(inputData);
 		}),
-		KOMBrowseInfoDispatchUpdate: (function _KOMBrowseInfoDispatchUpdate () {
+		KOMBrowseInfoDispatchUpdate: (function _KOMBrowseInfoDispatchUpdate() {
 			window.TestKOMBrowseInfoDispatchUpdate.innerHTML = parseInt(window.TestKOMBrowseInfoDispatchUpdate.innerHTML) + 1;
 
 			mod.ReactDetailItem(params.KOMBrowseInfoItem);
 		}),
-		KOMBrowseInfoDispatchCreate: (function _KOMBrowseInfoDispatchCreate () {
+		KOMBrowseInfoDispatchCreate: (function _KOMBrowseInfoDispatchCreate() {
 			window.TestKOMBrowseInfoDispatchCreate.innerHTML = parseInt(window.TestKOMBrowseInfoDispatchCreate.innerHTML) + 1;
 		}),
-		KOMBrowseInfoDispatchRead: (function _KOMBrowseInfoDispatchRead () {
+		KOMBrowseInfoDispatchRead: (function _KOMBrowseInfoDispatchRead() {
 			window.TestKOMBrowseInfoDispatchRead.innerHTML = parseInt(window.TestKOMBrowseInfoDispatchRead.innerHTML) + 1;
 			window.TestKOMBrowseInfoDispatchReadData.innerHTML = Array.from(arguments).join(',');
 		}),
-		KOMBrowseInfoAudioDispatchCapture: (function _KOMBrowseInfoAudioDispatchCapture () {
+		KOMBrowseInfoAudioDispatchCapture: (function _KOMBrowseInfoAudioDispatchCapture() {
 			window.TestKOMBrowseInfoAudioDispatchCapture.innerHTML = parseInt(window.TestKOMBrowseInfoAudioDispatchCapture.innerHTML) + 1;
 		}),
-		KOMBrowseInfoAudioDispatchFetch: (function _KOMBrowseInfoAudioDispatchFetch () {
+		KOMBrowseInfoAudioDispatchFetch: (function _KOMBrowseInfoAudioDispatchFetch() {
 			window.TestKOMBrowseInfoAudioDispatchFetch.innerHTML = parseInt(window.TestKOMBrowseInfoAudioDispatchFetch.innerHTML) + 1;
 		}),
-		KOMBrowseInfoAudioDispatchClear: (function _KOMBrowseInfoAudioDispatchClear () {
+		KOMBrowseInfoAudioDispatchClear: (function _KOMBrowseInfoAudioDispatchClear() {
 			window.TestKOMBrowseInfoAudioDispatchClear.innerHTML = parseInt(window.TestKOMBrowseInfoAudioDispatchClear.innerHTML) + 1;
 		}),
 		KOMBrowseInfoSpeechAvailable: false,

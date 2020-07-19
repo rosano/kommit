@@ -2,7 +2,7 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 describe('KOMBrowseListItem_Misc', function () {
 
-	before(function() {
+	before(function () {
 		return browser.OLSKVisit(kDefaultRoute, {
 			KOMBrowseListItemObject: JSON.stringify({
 				KOMCardFrontText: 'alfa',
@@ -11,8 +11,8 @@ describe('KOMBrowseListItem_Misc', function () {
 		});
 	});
 
-	describe('KOMBrowseListItemFront', function test_KOMBrowseListItemFront () {
-		
+	describe('KOMBrowseListItemFront', function test_KOMBrowseListItemFront() {
+
 		it('sets aria-hidden', function () {
 			browser.assert.attribute(KOMBrowseListItemFront, 'aria-hidden', 'true');
 		});
@@ -20,11 +20,11 @@ describe('KOMBrowseListItem_Misc', function () {
 		it('binds KOMCardFrontText', function () {
 			browser.assert.text(KOMBrowseListItemFront, 'alfa');
 		});
-	
+
 	});
 
-	describe('KOMBrowseListItemRear', function test_KOMBrowseListItemRear () {
-		
+	describe('KOMBrowseListItemRear', function test_KOMBrowseListItemRear() {
+
 		it('sets aria-hidden', function () {
 			browser.assert.attribute(KOMBrowseListItemRear, 'aria-hidden', 'true');
 		});
@@ -32,7 +32,7 @@ describe('KOMBrowseListItem_Misc', function () {
 		it('binds KOMCardRearText', function () {
 			browser.assert.text(KOMBrowseListItemRear, 'bravo');
 		});
-	
+
 	});
 
 });

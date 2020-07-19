@@ -2,11 +2,11 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 describe('KOMReviewMaster_Misc', function () {
 
-	before(function() {
+	before(function () {
 		return browser.OLSKVisit(kDefaultRoute);
 	});
-	
-	describe('KOMReviewMasterToolbar', function test_KOMReviewMasterToolbar () {
+
+	describe('KOMReviewMasterToolbar', function test_KOMReviewMasterToolbar() {
 
 		it('classes OLSKToolbar', function () {
 			browser.assert.hasClass(KOMReviewMasterToolbar, 'OLSKToolbar');
@@ -15,10 +15,10 @@ describe('KOMReviewMaster_Misc', function () {
 		it('classes OLSKToolbarJustify', function () {
 			browser.assert.hasClass(KOMReviewMasterToolbar, 'OLSKToolbarJustify');
 		});
-	
+
 	});
 
-	describe('KOMReviewMasterCreateButton', function test_KOMReviewMasterCreateButton () {
+	describe('KOMReviewMasterCreateButton', function test_KOMReviewMasterCreateButton() {
 
 		it('sets accesskey', function () {
 			browser.assert.attribute(KOMReviewMasterCreateButton, 'accesskey', 'n');
@@ -27,22 +27,22 @@ describe('KOMReviewMaster_Misc', function () {
 		context('click', function () {
 
 			context('response empty', function () {
-				
-				before(function() {
+
+				before(function () {
 					return browser.OLSKPromptSync(function () {
 						browser.pressButton(KOMReviewMasterCreateButton);
 					});
 				});
-				
+
 				it('does nothing', function () {
 					browser.assert.text('#TestKOMReviewMasterDispatchCreate', '0');
 					browser.assert.text('#TestKOMReviewMasterDispatchCreateData', 'undefined');
 				});
-			
+
 			});
-			
+
 			context('response not empty', function () {
-				
+
 				before(function () {
 					return browser.OLSKPrompt(function () {
 						return browser.pressButton(KOMReviewMasterCreateButton);
@@ -57,11 +57,11 @@ describe('KOMReviewMaster_Misc', function () {
 					browser.assert.text('#TestKOMReviewMasterDispatchCreate', '1');
 					browser.assert.text('#TestKOMReviewMasterDispatchCreateData', 'alfa');
 				});
-			
+
 			});
-		
+
 		});
-	
+
 	});
 
 	describe('KOMReviewMasterListItem', function test_KOMReviewMasterListItem() {
@@ -92,20 +92,20 @@ describe('KOMReviewMaster_Misc', function () {
 				});
 			})),
 		};
-		
-		before(function() {
+
+		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMReviewMasterItems: JSON.stringify([item]),
 			});
 		});
-		
+
 		context('click', function () {
-			
+
 			before(function () {
 				browser.assert.text('#TestKOMReviewMasterDispatchSelect', '0');
 				browser.assert.text('#TestKOMReviewMasterDispatchSelectData', 'undefined');
 			});
-			
+
 			before(function () {
 				return browser.click('.KOMReviewMasterListItem');
 			});
@@ -114,11 +114,11 @@ describe('KOMReviewMaster_Misc', function () {
 				browser.assert.text('#TestKOMReviewMasterDispatchSelect', '1');
 				browser.assert.text('#TestKOMReviewMasterDispatchSelectData', JSON.stringify(item));
 			});
-		
+
 		});
 
 		context('Enter', function () {
-			
+
 			before(function () {
 				return browser.query('.KOMReviewMasterListItem').focus();
 			});
@@ -130,11 +130,11 @@ describe('KOMReviewMaster_Misc', function () {
 			it.skip('sends KOMReviewMasterDispatchSelect', function () {
 				browser.assert.text('#TestKOMReviewMasterDispatchSelect', '2');
 			});
-		
+
 		});
 
 		context('Space', function () {
-			
+
 			before(function () {
 				return browser.OLSKFireKeyboardEvent(browser.window, 'Space');
 			});
@@ -142,9 +142,9 @@ describe('KOMReviewMaster_Misc', function () {
 			it.skip('sends KOMReviewMasterDispatchSelect', function () {
 				browser.assert.text('#TestKOMReviewMasterDispatchSelect', '3');
 			});
-		
+
 		});
-		
+
 	});
 
 });

@@ -2,11 +2,11 @@ import KOMCardModel from '../KOMCard/model.js';
 
 const mod = {
 
-	KOMSpacingModelIdentifier (inputData) {
+	KOMSpacingModelIdentifier(inputData) {
 		if (typeof inputData !== 'string') {
 			throw new Error('KOMErrorInputNotValid');
 		}
-		
+
 		if (!inputData.includes('-')) {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -14,11 +14,11 @@ const mod = {
 		return inputData.split('-').shift();
 	},
 
-	KOMSpacingModelLabel (inputData) {
+	KOMSpacingModelLabel(inputData) {
 		if (typeof inputData !== 'string') {
 			throw new Error('KOMErrorInputNotValid');
 		}
-		
+
 		if (!inputData.includes('-')) {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -26,15 +26,15 @@ const mod = {
 		return inputData.split('-').pop();
 	},
 
-	KOMSpacingModelLabelForward () {
+	KOMSpacingModelLabelForward() {
 		return 'forward';
 	},
 
-	KOMSpacingModelLabelBackward () {
+	KOMSpacingModelLabelBackward() {
 		return 'backward';
 	},
 
-	KOMSpacingModelErrorsFor (inputData, options = {}) {
+	KOMSpacingModelErrorsFor(inputData, options = {}) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -124,7 +124,7 @@ const mod = {
 		return Object.entries(errors).length ? errors : null;
 	},
 
-	KOMSpacingModelIsBackward (inputData) {
+	KOMSpacingModelIsBackward(inputData) {
 		if (mod.KOMSpacingModelErrorsFor(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -132,7 +132,7 @@ const mod = {
 		return mod.KOMSpacingModelLabel(inputData.KOMSpacingID) === mod.KOMSpacingModelLabelBackward();
 	},
 
-	KOMSpacingModelIsUnseen (inputData) {
+	KOMSpacingModelIsUnseen(inputData) {
 		if (mod.KOMSpacingModelErrorsFor(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -140,7 +140,7 @@ const mod = {
 		return !inputData.KOMSpacingDueDate;
 	},
 
-	KOMSpacingModelIsLearning (inputData) {
+	KOMSpacingModelIsLearning(inputData) {
 		if (mod.KOMSpacingModelErrorsFor(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -148,7 +148,7 @@ const mod = {
 		return !!inputData.KOMSpacingIsLearning;
 	},
 
-	KOMSpacingModelIsReviewing (inputData) {
+	KOMSpacingModelIsReviewing(inputData) {
 		if (mod.KOMSpacingModelErrorsFor(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -160,7 +160,7 @@ const mod = {
 		return !!inputData.KOMSpacingInterval;
 	},
 
-	KOMSpacingModelFilterUnique (inputData) {
+	KOMSpacingModelFilterUnique(inputData) {
 		if (!Array.isArray(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
 		}

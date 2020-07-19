@@ -15,13 +15,13 @@ const kTesting = {
 
 describe('KOMDeckModelErrorsFor', function test_KOMDeckModelErrorsFor() {
 
-	it('throws error if not object', function() {
-		throws(function() {
+	it('throws error if not object', function () {
+		throws(function () {
 			mainModule.KOMDeckModelErrorsFor(null);
 		}, /KOMErrorInputNotValid/);
 	});
 
-	it('returns object if KOMDeckID not string', function() {
+	it('returns object if KOMDeckID not string', function () {
 		deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
 			KOMDeckID: null,
 		})), {
@@ -31,7 +31,7 @@ describe('KOMDeckModelErrorsFor', function test_KOMDeckModelErrorsFor() {
 		});
 	});
 
-	it('returns object if KOMDeckID not filled', function() {
+	it('returns object if KOMDeckID not filled', function () {
 		deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
 			KOMDeckID: ' ',
 		})), {
@@ -41,7 +41,7 @@ describe('KOMDeckModelErrorsFor', function test_KOMDeckModelErrorsFor() {
 		});
 	});
 
-	it('returns object if KOMDeckName not string', function() {
+	it('returns object if KOMDeckName not string', function () {
 		deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
 			KOMDeckName: null,
 		})), {
@@ -51,7 +51,7 @@ describe('KOMDeckModelErrorsFor', function test_KOMDeckModelErrorsFor() {
 		});
 	});
 
-	it('returns object if KOMDeckCreationDate not date', function() {
+	it('returns object if KOMDeckCreationDate not date', function () {
 		deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
 			KOMDeckCreationDate: new Date('alfa'),
 		})), {
@@ -61,7 +61,7 @@ describe('KOMDeckModelErrorsFor', function test_KOMDeckModelErrorsFor() {
 		});
 	});
 
-	it('returns object if KOMDeckModificationDate not date', function() {
+	it('returns object if KOMDeckModificationDate not date', function () {
 		deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
 			KOMDeckModificationDate: new Date('alfa'),
 		})), {
@@ -71,13 +71,13 @@ describe('KOMDeckModelErrorsFor', function test_KOMDeckModelErrorsFor() {
 		});
 	});
 
-	it('returns null', function() {
+	it('returns null', function () {
 		deepEqual(mainModule.KOMDeckModelErrorsFor(kTesting.StubDeckObjectValid()), null);
 	});
 
-	context('KOMDeckAudioIsEnabled', function() {
+	context('KOMDeckAudioIsEnabled', function () {
 
-		it('returns object if not boolean', function() {
+		it('returns object if not boolean', function () {
 			deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
 				KOMDeckAudioIsEnabled: null,
 			})), {
@@ -87,7 +87,7 @@ describe('KOMDeckModelErrorsFor', function test_KOMDeckModelErrorsFor() {
 			});
 		});
 
-		it('returns null', function() {
+		it('returns null', function () {
 			deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
 				KOMDeckAudioIsEnabled: true,
 			})), null);
@@ -95,9 +95,9 @@ describe('KOMDeckModelErrorsFor', function test_KOMDeckModelErrorsFor() {
 
 	});
 
-	context('KOMDeckFrontSpeechIsEnabled', function() {
+	context('KOMDeckFrontSpeechIsEnabled', function () {
 
-		it('returns object if not boolean', function() {
+		it('returns object if not boolean', function () {
 			deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
 				KOMDeckFrontSpeechIsEnabled: null,
 			})), {
@@ -107,7 +107,7 @@ describe('KOMDeckModelErrorsFor', function test_KOMDeckModelErrorsFor() {
 			});
 		});
 
-		it('returns null', function() {
+		it('returns null', function () {
 			deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
 				KOMDeckFrontSpeechIsEnabled: true,
 			})), null);
@@ -115,9 +115,9 @@ describe('KOMDeckModelErrorsFor', function test_KOMDeckModelErrorsFor() {
 
 	});
 
-	context('KOMDeckRearSpeechIsEnabled', function() {
+	context('KOMDeckRearSpeechIsEnabled', function () {
 
-		it('returns object if not boolean', function() {
+		it('returns object if not boolean', function () {
 			deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
 				KOMDeckRearSpeechIsEnabled: null,
 			})), {
@@ -127,7 +127,7 @@ describe('KOMDeckModelErrorsFor', function test_KOMDeckModelErrorsFor() {
 			});
 		});
 
-		it('returns null', function() {
+		it('returns null', function () {
 			deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
 				KOMDeckFrontSpeechIsEnabled: true,
 			})), null);
@@ -135,9 +135,9 @@ describe('KOMDeckModelErrorsFor', function test_KOMDeckModelErrorsFor() {
 
 	});
 
-	context('KOMDeckFrontLanguageCode', function() {
+	context('KOMDeckFrontLanguageCode', function () {
 
-		it('returns object if not string', function() {
+		it('returns object if not string', function () {
 			deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
 				KOMDeckFrontLanguageCode: null,
 			})), {
@@ -147,7 +147,7 @@ describe('KOMDeckModelErrorsFor', function test_KOMDeckModelErrorsFor() {
 			});
 		});
 
-		it('returns null', function() {
+		it('returns null', function () {
 			deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
 				KOMDeckFrontLanguageCode: 'en',
 			})), null);
@@ -155,9 +155,9 @@ describe('KOMDeckModelErrorsFor', function test_KOMDeckModelErrorsFor() {
 
 	});
 
-	context('KOMDeckRearLanguageCode', function() {
+	context('KOMDeckRearLanguageCode', function () {
 
-		it('returns object if not string', function() {
+		it('returns object if not string', function () {
 			deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
 				KOMDeckRearLanguageCode: null,
 			})), {
@@ -167,7 +167,7 @@ describe('KOMDeckModelErrorsFor', function test_KOMDeckModelErrorsFor() {
 			});
 		});
 
-		it('returns null', function() {
+		it('returns null', function () {
 			deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
 				KOMDeckRearLanguageCode: 'en',
 			})), null);
@@ -175,9 +175,9 @@ describe('KOMDeckModelErrorsFor', function test_KOMDeckModelErrorsFor() {
 
 	});
 
-	context('KOMDeckIsForwardOnly', function() {
+	context('KOMDeckIsForwardOnly', function () {
 
-		it('returns object if not boolean', function() {
+		it('returns object if not boolean', function () {
 			deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
 				KOMDeckIsForwardOnly: null,
 			})), {
@@ -187,7 +187,7 @@ describe('KOMDeckModelErrorsFor', function test_KOMDeckModelErrorsFor() {
 			});
 		});
 
-		it('returns null', function() {
+		it('returns null', function () {
 			deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
 				KOMDeckIsForwardOnly: true,
 			})), null);
@@ -195,9 +195,9 @@ describe('KOMDeckModelErrorsFor', function test_KOMDeckModelErrorsFor() {
 
 	});
 
-	context('$KOMDeckCards', function() {
+	context('$KOMDeckCards', function () {
 
-		it('returns object if not array', function() {
+		it('returns object if not array', function () {
 			deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
 				$KOMDeckCards: {},
 			})), {
@@ -207,7 +207,7 @@ describe('KOMDeckModelErrorsFor', function test_KOMDeckModelErrorsFor() {
 			});
 		});
 
-		it('returns null', function() {
+		it('returns null', function () {
 			deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
 				$KOMDeckCards: [],
 			})), null);
@@ -215,9 +215,9 @@ describe('KOMDeckModelErrorsFor', function test_KOMDeckModelErrorsFor() {
 
 	});
 
-	context('$KOMDeckSpacings', function() {
+	context('$KOMDeckSpacings', function () {
 
-		it('returns object if not array', function() {
+		it('returns object if not array', function () {
 			deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
 				$KOMDeckSpacings: {},
 			})), {
@@ -227,7 +227,7 @@ describe('KOMDeckModelErrorsFor', function test_KOMDeckModelErrorsFor() {
 			});
 		});
 
-		it('returns null', function() {
+		it('returns null', function () {
 			deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
 				$KOMDeckSpacings: [],
 			})), null);
@@ -235,9 +235,9 @@ describe('KOMDeckModelErrorsFor', function test_KOMDeckModelErrorsFor() {
 
 	});
 
-	context('KOMOptionValidateIfNotPresent', function() {
+	context('KOMOptionValidateIfNotPresent', function () {
 
-		it('returns object if not valid', function() {
+		it('returns object if not valid', function () {
 			deepEqual(Object.keys(mainModule.KOMDeckModelErrorsFor({}, {
 				KOMOptionValidateIfNotPresent: true,
 			})), [

@@ -1,7 +1,7 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 const kTesting = {
-	uSpacings () {
+	uSpacings() {
 		return Array.from(new Array(2)).map(function (e, i) {
 			return {
 				KOMSpacingID: (i + 1).toString() + '-forward',
@@ -28,7 +28,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 
 	describe(`KOMReviewDetail_Localize-${ languageCode }`, function () {
 
-		before(function() {
+		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				OLSKRoutingLanguage: languageCode,
 				KOMReviewDetailDeck: JSON.stringify({
@@ -83,28 +83,28 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 		});
 
 		context('on discard', function () {
-		
-			it('localizes KOMReviewDetailDiscardPrompt', function() {
+
+			it('localizes KOMReviewDetailDiscardPrompt', function () {
 				browser.assert.OLSKPromptQuestion(function () {
 					return browser.pressButton(KOMReviewDetailDiscardButton);
 				}, uLocalized('KOMReviewDetailDiscardPromptText'));
 			});
-		
+
 		});
 
 		context('on rename', function () {
-		
-			it('localizes KOMReviewDetailRenameButtonPrompt', function() {
+
+			it('localizes KOMReviewDetailRenameButtonPrompt', function () {
 				browser.assert.OLSKPromptQuestion(function () {
 					return browser.pressButton(KOMReviewDetailRenameButton);
 				}, uLocalized('KOMReviewDetailRenameButtonPromptText'));
 			});
-		
+
 		});
 
-		context('$KOMDeckSpacings', function test_$KOMDeckSpacings () {
+		context('$KOMDeckSpacings', function test_$KOMDeckSpacings() {
 
-			before(function() {
+			before(function () {
 				return browser.OLSKVisit(kDefaultRoute, {
 					OLSKRoutingLanguage: languageCode,
 					KOMReviewDetailDeck: JSON.stringify({
@@ -144,9 +144,9 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 
 		});
 
-		context('finished', function test_finished () {
+		context('finished', function test_finished() {
 
-			before(function() {
+			before(function () {
 				return browser.OLSKVisit(kDefaultRoute, {
 					OLSKRoutingLanguage: languageCode,
 					KOMReviewDetailDeck: JSON.stringify({

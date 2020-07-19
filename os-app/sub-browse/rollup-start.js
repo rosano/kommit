@@ -43,11 +43,11 @@ const KOMBrowse = new RollupStart({
 	target: document.body,
 	props: Object.assign({
 		KOMBrowseStorageClient: mod._ValueStorageClient,
-		KOMBrowseDispatchCreate: (function _KOMBrowseDispatchCreate (inputData) {
+		KOMBrowseDispatchCreate: (function _KOMBrowseDispatchCreate(inputData) {
 			window.TestKOMBrowseDispatchCreate.innerHTML = parseInt(window.TestKOMBrowseDispatchCreate.innerHTML) + 1;
 			window.TestKOMBrowseDispatchCreateData.innerHTML = JSON.stringify(Object.keys(inputData));
 		}),
-		KOMBrowseListDispatchClose: (function _KOMBrowseListDispatchClose () {
+		KOMBrowseListDispatchClose: (function _KOMBrowseListDispatchClose() {
 			window.TestKOMBrowseListDispatchClose.innerHTML = parseInt(window.TestKOMBrowseListDispatchClose.innerHTML) + 1;
 		}),
 		KOMBrowseInfoDispatchRead: (function () {}),

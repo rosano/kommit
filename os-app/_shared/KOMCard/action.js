@@ -7,7 +7,7 @@ import KOMDeckModel from '../KOMDeck/model.js';
 
 const mod = {
 
-	async KOMCardActionCreate (storageClient, param1, param2) {
+	async KOMCardActionCreate(storageClient, param1, param2) {
 		if (typeof param1 !== 'object' || param1 === null) {
 			return Promise.reject(new Error('KOMErrorInputNotValid'));
 		}
@@ -26,7 +26,7 @@ const mod = {
 		}, param1), param2);
 	},
 
-	async KOMCardActionUpdate (storageClient, inputData) {
+	async KOMCardActionUpdate(storageClient, inputData) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			return Promise.reject(new Error('KOMErrorInputNotValid'));
 		}
@@ -36,15 +36,15 @@ const mod = {
 		}));
 	},
 
-	async KOMCardActionDelete (storageClient, inputData) {
+	async KOMCardActionDelete(storageClient, inputData) {
 		return await KOMCardStorage.KOMCardStorageDelete(storageClient, inputData);
 	},
 
-	async KOMCardActionList (storageClient, inputData) {
+	async KOMCardActionList(storageClient, inputData) {
 		return Object.values(await KOMCardStorage.KOMCardStorageList(storageClient, inputData));
 	},
 
-	async KOMCardActionAudioCapture (storageClient, param1, param2, param3, param4) {
+	async KOMCardActionAudioCapture(storageClient, param1, param2, param3, param4) {
 		if (!KOMCardModel.KOMCardModelAudioFields().includes(param1)) {
 			return Promise.reject(new Error('KOMErrorInputNotValid'));
 		}
@@ -56,7 +56,7 @@ const mod = {
 		if (KOMCardModel.KOMCardModelErrorsFor(param3)) {
 			return Promise.reject(new Error('KOMErrorInputNotValid'));
 		}
-		
+
 		if (KOMDeckModel.KOMDeckModelErrorsFor(param4)) {
 			return Promise.reject(new Error('KOMErrorInputNotValid'));
 		}
@@ -65,10 +65,10 @@ const mod = {
 
 		param3[param1] = true;
 
-		return param3;		
+		return param3;
 	},
 
-	async KOMCardActionAudioClear (storageClient, param1, param2, param3) {
+	async KOMCardActionAudioClear(storageClient, param1, param2, param3) {
 		if (!KOMCardModel.KOMCardModelAudioFields().includes(param1)) {
 			return Promise.reject(new Error('KOMErrorInputNotValid'));
 		}
@@ -76,7 +76,7 @@ const mod = {
 		if (KOMCardModel.KOMCardModelErrorsFor(param2)) {
 			return Promise.reject(new Error('KOMErrorInputNotValid'));
 		}
-		
+
 		if (KOMDeckModel.KOMDeckModelErrorsFor(param3)) {
 			return Promise.reject(new Error('KOMErrorInputNotValid'));
 		}
@@ -85,10 +85,10 @@ const mod = {
 
 		delete param2[param1];
 
-		return param2;		
+		return param2;
 	},
 
-	async KOMCardActionAudioFetch (storageClient, param1, param2, param3) {
+	async KOMCardActionAudioFetch(storageClient, param1, param2, param3) {
 		if (!KOMCardModel.KOMCardModelAudioFields().includes(param1)) {
 			return Promise.reject(new Error('KOMErrorInputNotValid'));
 		}
@@ -96,7 +96,7 @@ const mod = {
 		if (KOMCardModel.KOMCardModelErrorsFor(param2)) {
 			return Promise.reject(new Error('KOMErrorInputNotValid'));
 		}
-		
+
 		if (KOMDeckModel.KOMDeckModelErrorsFor(param3)) {
 			return Promise.reject(new Error('KOMErrorInputNotValid'));
 		}
@@ -104,11 +104,11 @@ const mod = {
 		return await KOMCardStorage.KOMCardStorageFileRead(storageClient, param1 === 'KOMCardFrontAudio' ? KOMCardStorage.KOMCardStorageAudioPathFront(param2, param3) : KOMCardStorage.KOMCardStorageAudioPathRear(param2, param3));
 	},
 
-	async KOMCardActionAudioList (storageClient, param1, param2) {
+	async KOMCardActionAudioList(storageClient, param1, param2) {
 		if (KOMCardModel.KOMCardModelErrorsFor(param1)) {
 			return Promise.reject(new Error('KOMErrorInputNotValid'));
 		}
-		
+
 		if (KOMDeckModel.KOMDeckModelErrorsFor(param2)) {
 			return Promise.reject(new Error('KOMErrorInputNotValid'));
 		}
@@ -124,7 +124,7 @@ const mod = {
 			KOMCardRearAudio: await KOMCardStorage.KOMCardStorageFileRead(storageClient, KOMCardStorage.KOMCardStorageAudioPathRear(param1, param2)),
 		});
 	},
-	
+
 };
-	
+
 export default mod;

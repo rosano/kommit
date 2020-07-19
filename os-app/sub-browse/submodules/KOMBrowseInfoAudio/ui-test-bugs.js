@@ -2,7 +2,7 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 describe('KOMBrowseInfoAudio_Bugs', function () {
 
-	before(function() {
+	before(function () {
 		return browser.OLSKVisit(kDefaultRoute, {
 			KOMBrowseInfoAudioItem: JSON.stringify({
 				KOMCardID: 'alfa',
@@ -23,10 +23,10 @@ describe('KOMBrowseInfoAudio_Bugs', function () {
 		return _log.join(',');
 	};
 
-	describe('KOMBrowseInfoAudioPlaybackButton', function test_KOMBrowseInfoAudioPlaybackButton () {
+	describe('KOMBrowseInfoAudioPlaybackButton', function test_KOMBrowseInfoAudioPlaybackButton() {
 
 		context('click', function () {
-			
+
 			before(function () {
 				browser.assert.text('#TestKOMBrowseInfoAudioLog', '');
 			});
@@ -42,7 +42,7 @@ describe('KOMBrowseInfoAudio_Bugs', function () {
 		});
 
 		context('object change', function () {
-			
+
 			before(function () {
 				return browser.pressButton(KOMBrowseInfoAudioPlaybackButton);
 			});
@@ -50,7 +50,7 @@ describe('KOMBrowseInfoAudio_Bugs', function () {
 			it('plays object 2', function () {
 				browser.assert.text('#TestKOMBrowseInfoAudioLog', uLog('stop,clear,play:charlie'));
 			});
-		
+
 		});
 
 	});

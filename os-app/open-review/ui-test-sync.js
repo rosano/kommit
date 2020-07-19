@@ -1,6 +1,6 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-describe('KOMReview_Sync', function () {	
+describe('KOMReview_Sync', function () {
 
 	let _ThrottleCount = 0;
 	const uThrottleCount = function (inputData) {
@@ -11,13 +11,13 @@ describe('KOMReview_Sync', function () {
 		return _ThrottleCount.toString();
 	};
 
-	before(function() {
+	before(function () {
 		return browser.OLSKVisit(kDefaultRoute, {
 			DebugHotfixThrottleCount: true,
 		});
 	});
 
-	describe('OLSKChangeDelegateCreateDeck', function test_OLSKChangeDelegateCreateDeck () {
+	describe('OLSKChangeDelegateCreateDeck', function test_OLSKChangeDelegateCreateDeck() {
 
 		before(function () {
 			browser.assert.text('#TestCallReactThrottle', uThrottleCount());
@@ -37,7 +37,7 @@ describe('KOMReview_Sync', function () {
 
 	});
 
-	describe('OLSKChangeDelegateCreateCard', function test_OLSKChangeDelegateCreateCard () {
+	describe('OLSKChangeDelegateCreateCard', function test_OLSKChangeDelegateCreateCard() {
 
 		before(function () {
 			browser.assert.text('#TestCardCount', '0');
@@ -73,7 +73,7 @@ describe('KOMReview_Sync', function () {
 
 	});
 
-	describe('OLSKChangeDelegateCreateSpacing', function test_OLSKChangeDelegateCreateSpacing () {
+	describe('OLSKChangeDelegateCreateSpacing', function test_OLSKChangeDelegateCreateSpacing() {
 
 		before(function () {
 			return browser.OLSKLauncherRun('FakeOLSKChangeDelegateCreateSpacing');
@@ -93,7 +93,7 @@ describe('KOMReview_Sync', function () {
 
 	});
 
-	describe('OLSKChangeDelegateUpdateSpacing', function test_OLSKChangeDelegateUpdateSpacing () {
+	describe('OLSKChangeDelegateUpdateSpacing', function test_OLSKChangeDelegateUpdateSpacing() {
 
 		before(function () {
 			browser.assert.text('.KOMReviewMasterListItemUnseenValue', '1');
@@ -125,7 +125,7 @@ describe('KOMReview_Sync', function () {
 
 	});
 
-	describe('OLSKChangeDelegateDeleteSpacing', function test_OLSKChangeDelegateDeleteSpacing () {
+	describe('OLSKChangeDelegateDeleteSpacing', function test_OLSKChangeDelegateDeleteSpacing() {
 
 		before(function () {
 			return browser.OLSKLauncherRun('FakeOLSKChangeDelegateDeleteSpacing');
@@ -137,7 +137,7 @@ describe('KOMReview_Sync', function () {
 
 	});
 
-	describe('OLSKChangeDelegateUpdateCard', function test_OLSKChangeDelegateUpdateCard () {
+	describe('OLSKChangeDelegateUpdateCard', function test_OLSKChangeDelegateUpdateCard() {
 
 		before(function () {
 			return browser.OLSKLauncherRun('FakeOLSKChangeDelegateUpdateCard');
@@ -149,7 +149,7 @@ describe('KOMReview_Sync', function () {
 
 	});
 
-	describe('OLSKChangeDelegateDeleteCard', function test_OLSKChangeDelegateDeleteCard () {
+	describe('OLSKChangeDelegateDeleteCard', function test_OLSKChangeDelegateDeleteCard() {
 
 		before(function () {
 			browser.assert.text('.KOMReviewMasterListItemUnseenValue', '0');
@@ -181,7 +181,7 @@ describe('KOMReview_Sync', function () {
 
 	});
 
-	describe('OLSKChangeDelegateUpdateDeck', function test_OLSKChangeDelegateUpdateDeck () {
+	describe('OLSKChangeDelegateUpdateDeck', function test_OLSKChangeDelegateUpdateDeck() {
 
 		before(function () {
 			return browser.OLSKLauncherRun('FakeOLSKChangeDelegateUpdateDeck');
@@ -197,7 +197,7 @@ describe('KOMReview_Sync', function () {
 
 	});
 
-	describe('OLSKChangeDelegateDeleteDeck', function test_OLSKChangeDelegateDeleteDeck () {
+	describe('OLSKChangeDelegateDeleteDeck', function test_OLSKChangeDelegateDeleteDeck() {
 
 		before(function () {
 			return browser.OLSKLauncherRun('FakeOLSKChangeDelegateDeleteDeck');
@@ -213,7 +213,7 @@ describe('KOMReview_Sync', function () {
 
 	});
 
-	context('asynchronous', function test_asynchronous () {
+	context('asynchronous', function test_asynchronous() {
 
 		describe('OLSKChangeDelegateCreateSpacing', function () {
 
@@ -238,7 +238,7 @@ describe('KOMReview_Sync', function () {
 			});
 
 		});
-		
+
 		describe('OLSKChangeDelegateCreateDeck', function () {
 
 			before(function () {
@@ -266,10 +266,10 @@ describe('KOMReview_Sync', function () {
 			});
 
 		});
-	
+
 	});
 
-	context('KOMReviewDetail', function test_KOMReviewDetail () {
+	context('KOMReviewDetail', function test_KOMReviewDetail() {
 
 		before(function () {
 			return browser.click('.KOMReviewMasterListItem');
@@ -345,14 +345,14 @@ describe('KOMReview_Sync', function () {
 
 	});
 
-	context('KOMBrowse', function test_KOMBrowse () {
+	context('KOMBrowse', function test_KOMBrowse() {
 
 		before(function () {
 			return browser.OLSKPrompt(function () {
 				return browser.pressButton('.KOMReviewMasterCreateButton');
 			}, function (dialog) {
 				dialog.response = 'alfa';
-				
+
 				return dialog;
 			});
 		});
@@ -438,13 +438,13 @@ describe('KOMReview_Sync', function () {
 				});
 
 			});
-		
+
 		});
 
-		
+
 
 		context('same_deck', function () {
-			
+
 			before(function () {
 				return browser.pressButton('.KOMBrowseListToolbarCloseButton');
 			});
@@ -557,7 +557,7 @@ describe('KOMReview_Sync', function () {
 
 				before(function () {
 					return browser.click('.KOMReviewDetailToolbarCardsButton');
-				});			
+				});
 
 				before(function () {
 					return browser.wait({ element: '.KOMBrowseListItem'});
@@ -591,8 +591,8 @@ describe('KOMReview_Sync', function () {
 					browser.assert.elements('.KOMBrowse', 0);
 				});
 
-			});	
-		
+			});
+
 		});
 
 	});

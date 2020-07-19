@@ -1,12 +1,13 @@
 const mod = {
 
-	KOMBrowseListItemAccessibilitySummary (inputData, OLSKLocalized) {
+	KOMBrowseListItemAccessibilitySummary(inputData, OLSKLocalized) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
 		return [
-			inputData.KOMCardFrontText || OLSKLocalized('KOMBrowseListItemUntitledText')].join('\n');
+			inputData.KOMCardFrontText || OLSKLocalized('KOMBrowseListItemUntitledText')
+		].join('\n');
 	},
 
 };

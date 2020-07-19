@@ -6,7 +6,7 @@ const KOMDeckStorage = require('../KOMDeck/storage.js').default;
 
 describe('KOMSpacingStorageCollectionName', function test_KOMSpacingStorageCollectionName() {
 
-	it('returns string', function() {
+	it('returns string', function () {
 		deepEqual(mainModule.KOMSpacingStorageCollectionName(), 'kom_spacings');
 	});
 
@@ -14,7 +14,7 @@ describe('KOMSpacingStorageCollectionName', function test_KOMSpacingStorageColle
 
 describe('KOMSpacingStorageCollectionType', function test_KOMSpacingStorageCollectionType() {
 
-	it('returns string', function() {
+	it('returns string', function () {
 		deepEqual(mainModule.KOMSpacingStorageCollectionType(), 'kom_spacing');
 	});
 
@@ -34,7 +34,7 @@ describe('KOMSpacingStoragePathForward', function test_KOMSpacingStoragePathForw
 		}, /KOMErrorInputNotValid/);
 	});
 
-	it('returns string', function() {
+	it('returns string', function () {
 		deepEqual(mainModule.KOMSpacingStoragePathForward(StubCardObjectValid(), StubDeckObjectValid()), KOMCardStorage.KOMCardStorageObjectPath(StubCardObjectValid(), StubDeckObjectValid()).replace('main', 'spacing-forward'));
 	});
 
@@ -54,7 +54,7 @@ describe('KOMSpacingStoragePathBackward', function test_KOMSpacingStoragePathBac
 		}, /KOMErrorInputNotValid/);
 	});
 
-	it('returns string', function() {
+	it('returns string', function () {
 		deepEqual(mainModule.KOMSpacingStoragePathBackward(StubCardObjectValid(), StubDeckObjectValid()), KOMCardStorage.KOMCardStorageObjectPath(StubCardObjectValid(), StubDeckObjectValid()).replace('main', 'spacing-backward'));
 	});
 
@@ -62,29 +62,29 @@ describe('KOMSpacingStoragePathBackward', function test_KOMSpacingStoragePathBac
 
 describe('KOMSpacingStorageMatch', function test_KOMSpacingStorageMatch() {
 
-	it('throws error if not string', function() {
-		throws(function() {
+	it('throws error if not string', function () {
+		throws(function () {
 			mainModule.KOMSpacingStorageMatch(null);
 		}, /KOMErrorInputNotValid/);
 	});
 
-	it('returns false if KOMDeckStorageObjectPath', function() {
+	it('returns false if KOMDeckStorageObjectPath', function () {
 		deepEqual(mainModule.KOMSpacingStorageMatch(KOMDeckStorage.KOMDeckStorageObjectPath('alfa')), false);
 	});
 
-	it('returns false if KOMCardStorageObjectPath', function() {
+	it('returns false if KOMCardStorageObjectPath', function () {
 		deepEqual(mainModule.KOMSpacingStorageMatch(KOMCardStorage.KOMCardStorageObjectPath(StubCardObjectValid(), StubDeckObjectValid())), false);
 	});
 
-	it('returns true if KOMSpacingStoragePathForward', function() {
+	it('returns true if KOMSpacingStoragePathForward', function () {
 		deepEqual(mainModule.KOMSpacingStorageMatch(mainModule.KOMSpacingStoragePathForward(StubCardObjectValid(), StubDeckObjectValid())), true);
 	});
 
-	it('returns true if KOMSpacingStoragePathBackward', function() {
+	it('returns true if KOMSpacingStoragePathBackward', function () {
 		deepEqual(mainModule.KOMSpacingStorageMatch(mainModule.KOMSpacingStoragePathBackward(StubCardObjectValid(), StubDeckObjectValid())), true);
 	});
 
-	it('returns false', function() {
+	it('returns false', function () {
 		deepEqual(mainModule.KOMSpacingStorageMatch(mainModule.KOMSpacingStoragePathBackward(StubCardObjectValid(), StubDeckObjectValid()).slice(0, -1)), false);
 	});
 
@@ -92,19 +92,19 @@ describe('KOMSpacingStorageMatch', function test_KOMSpacingStorageMatch() {
 
 describe('KOMSpacingStorageWrite', function test_KOMSpacingStorageWrite() {
 
-	it('rejects if param1 not object', async function() {
+	it('rejects if param1 not object', async function () {
 		await rejects(mainModule.KOMSpacingStorageWrite(KOMTestingStorageClient, null, StubCardObjectValid(), StubDeckObjectValid()), /KOMErrorInputNotValid/);
 	});
 
-	it('rejects if param2 not valid', async function() {
+	it('rejects if param2 not valid', async function () {
 		await rejects(mainModule.KOMSpacingStorageWrite(KOMTestingStorageClient, StubSpacingObjectValid(), {}, StubDeckObjectValid()), /KOMErrorInputNotValid/);
 	});
 
-	it('rejects if param3 not valid', async function() {
+	it('rejects if param3 not valid', async function () {
 		await rejects(mainModule.KOMSpacingStorageWrite(KOMTestingStorageClient, StubSpacingObjectValid(), StubCardObjectValid(), {}), /KOMErrorInputNotValid/);
 	});
 
-	it('returns object with KOMErrors if not valid', async function() {
+	it('returns object with KOMErrors if not valid', async function () {
 		deepEqual((await mainModule.KOMSpacingStorageWrite(KOMTestingStorageClient, Object.assign(StubSpacingObjectValid(), {
 			KOMSpacingID: null,
 		}), StubCardObjectValid(), StubDeckObjectValid())).KOMErrors, {
@@ -114,7 +114,7 @@ describe('KOMSpacingStorageWrite', function test_KOMSpacingStorageWrite() {
 		});
 	});
 
-	it('returns KOMSpacing', async function() {
+	it('returns KOMSpacing', async function () {
 		let item = await mainModule.KOMSpacingStorageWrite(KOMTestingStorageClient, StubSpacingObjectValid(), StubCardObjectValid(), StubDeckObjectValid());
 
 		deepEqual(item, Object.assign(StubSpacingObjectValid(), {
@@ -132,17 +132,17 @@ describe('KOMSpacingStorageWrite', function test_KOMSpacingStorageWrite() {
 		before(async function () {
 			outputData = await mainModule.KOMSpacingStorageWrite(KOMTestingStorageClient, memory, StubCardObjectValid(), StubDeckObjectValid());
 		});
-		
+
 		before(async function () {
 			storage = (await mainModule.KOMSpacingStorageList(KOMTestingStorageClient, StubCardObjectValid(), StubDeckObjectValid())).KOMCardSpacingForward;
 		});
-		
+
 		it('excludes from storage', function () {
 			deepEqual(storage, Object.assign(StubSpacingObjectValid(), {
 				'@context': memory['@context'],
 			}));
 		});
-		
+
 		it('includes in outputData', function () {
 			deepEqual(outputData, memory);
 		});
@@ -157,15 +157,15 @@ describe('KOMSpacingStorageWrite', function test_KOMSpacingStorageWrite() {
 
 describe('KOMSpacingStorageList', function test_KOMSpacingStorageList() {
 
-	it('rejects if param1 not valid', async function() {
+	it('rejects if param1 not valid', async function () {
 		await rejects(mainModule.KOMSpacingStorageList(KOMTestingStorageClient, {}, StubDeckObjectValid()), /KOMErrorInputNotValid/);
 	});
 
-	it('rejects if param2 not valid', async function() {
+	it('rejects if param2 not valid', async function () {
 		await rejects(mainModule.KOMSpacingStorageList(KOMTestingStorageClient, StubCardObjectValid(), {}), /KOMErrorInputNotValid/);
 	});
 
-	it('returns object', async function() {
+	it('returns object', async function () {
 		const item = Object.assign(StubCardObjectValid(), {
 			KOMCardID: Date.now().toString(),
 		});
@@ -179,28 +179,28 @@ describe('KOMSpacingStorageList', function test_KOMSpacingStorageList() {
 		});
 	});
 
-	it('returns existing KOMSpacings forward', async function() {
+	it('returns existing KOMSpacings forward', async function () {
 		const item = Object.assign(StubSpacingObjectValid(), {
 			KOMSpacingDueDate: new Date(),
 		});
-		
+
 		await mainModule.KOMSpacingStorageWrite(KOMTestingStorageClient, item, StubCardObjectValid(), StubDeckObjectValid());
 
 		deepEqual((await mainModule.KOMSpacingStorageList(KOMTestingStorageClient, StubCardObjectValid(), StubDeckObjectValid())).KOMCardSpacingForward, item);
 	});
 
-	it('returns existing KOMSpacings backward', async function() {
+	it('returns existing KOMSpacings backward', async function () {
 		const item = Object.assign(StubSpacingObjectValid(), {
 			KOMSpacingID: 'alfa-backward',
 			KOMSpacingDueDate: new Date(),
 		});
-		
+
 		await mainModule.KOMSpacingStorageWrite(KOMTestingStorageClient, item, StubCardObjectValid(), StubDeckObjectValid());
 
 		deepEqual((await mainModule.KOMSpacingStorageList(KOMTestingStorageClient, StubCardObjectValid(), StubDeckObjectValid())).KOMCardSpacingBackward, item);
 	});
 
-	it('parses KOMSpacingChronicles dates', async function() {
+	it('parses KOMSpacingChronicles dates', async function () {
 		const item = Object.assign(StubSpacingObjectValid(), {
 			KOMSpacingID: 'alfa-backward',
 			KOMSpacingDueDate: new Date(),
@@ -211,7 +211,7 @@ describe('KOMSpacingStorageList', function test_KOMSpacingStorageList() {
 				KOMChronicleResponseType: 'alfa',
 			}]
 		});
-		
+
 		await mainModule.KOMSpacingStorageWrite(KOMTestingStorageClient, item, StubCardObjectValid(), StubDeckObjectValid());
 
 		deepEqual((await mainModule.KOMSpacingStorageList(KOMTestingStorageClient, StubCardObjectValid(), StubDeckObjectValid())).KOMCardSpacingBackward, item);
@@ -239,13 +239,13 @@ describe('KOMSpacingStorageDelete', function test_KOMSpacingStorageDelete() {
 		}, /KOMErrorInputNotValid/);
 	});
 
-	it('returns statusCode', async function() {
+	it('returns statusCode', async function () {
 		deepEqual(await mainModule.KOMSpacingStorageDelete(KOMTestingStorageClient, await mainModule.KOMSpacingStorageWrite(KOMTestingStorageClient, StubSpacingObjectValid(), StubCardObjectValid(), StubDeckObjectValid()), StubCardObjectValid(), StubDeckObjectValid()), {
 			statusCode: 200,
 		});
 	});
 
-	it('deletes KOMCard', async function() {
+	it('deletes KOMCard', async function () {
 		const item = Object.assign(StubCardObjectValid(), {
 			KOMCardID: Date.now().toString(),
 		});

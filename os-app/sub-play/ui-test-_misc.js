@@ -4,7 +4,7 @@ const KOMPlayLogic = require('./ui-logic.js').default;
 const KOMSpacingModel = require('../_shared/KOMSpacing/model.js').default;
 
 const kTesting = {
-	uDeck () {
+	uDeck() {
 		return {
 			KOMDeckID: 'alfa',
 			KOMDeckName: '',
@@ -12,7 +12,7 @@ const kTesting = {
 			KOMDeckModificationDate: new Date('2019-02-23T13:56:36Z'),
 		};
 	},
-	uSpacings (inputData) {
+	uSpacings(inputData) {
 		return KOMPlayLogic._KOMPlaySortShuffle(Array.from(new Array(inputData)).map(function (e, i) {
 			return {
 				KOMSpacingID: (i + 1).toString() + '-forward',
@@ -41,15 +41,15 @@ describe('KOMPlay_Misc', function () {
 		} : {});
 	});
 
-	before(function() {
+	before(function () {
 		return browser.OLSKVisit(kDefaultRoute, {
 			KOMPlaySpacings: JSON.stringify(items),
 			KOMPlayDeck: JSON.stringify(kTesting.uDeck()),
 		});
 	});
 
-	describe('KOMPlayToolbar', function test_KOMPlayToolbar () {
-		
+	describe('KOMPlayToolbar', function test_KOMPlayToolbar() {
+
 		it('classes OLSKToolbar', function () {
 			browser.assert.hasClass(KOMPlayToolbar, 'OLSKToolbar');
 		});
@@ -57,11 +57,11 @@ describe('KOMPlay_Misc', function () {
 		it('classes OLSKToolbarJustify', function () {
 			browser.assert.hasClass(KOMPlayToolbar, 'OLSKToolbarJustify');
 		});
-	
+
 	});
 
-	describe('KOMPlayToolbarDoneButton', function test_KOMPlayToolbarDoneButton () {
-		
+	describe('KOMPlayToolbarDoneButton', function test_KOMPlayToolbarDoneButton() {
+
 		it('classes OLSKLayoutButtonNoStyle', function () {
 			browser.assert.hasClass(KOMPlayToolbarDoneButton, 'OLSKLayoutButtonNoStyle');
 		});
@@ -71,11 +71,11 @@ describe('KOMPlay_Misc', function () {
 		});
 
 		context('click', function () {
-			
+
 			before(function () {
 				browser.assert.text('#TestKOMPlayDispatchDone', '0');
 			});
-			
+
 			before(function () {
 				return browser.pressButton(KOMPlayToolbarDoneButton);
 			});
@@ -85,10 +85,10 @@ describe('KOMPlay_Misc', function () {
 			});
 
 		});
-	
+
 	});
 
-	describe('KOMPlayCard', function test_KOMPlayCard () {
+	describe('KOMPlayCard', function test_KOMPlayCard() {
 
 		it('classes OLSKLayoutElementTappable', function () {
 			browser.assert.hasClass(KOMPlayCard, 'OLSKLayoutElementTappable');
@@ -96,7 +96,7 @@ describe('KOMPlay_Misc', function () {
 
 	});
 
-	describe('KOMPlayCardQuestion', function test_KOMPlayCardQuestion () {
+	describe('KOMPlayCardQuestion', function test_KOMPlayCardQuestion() {
 
 		it('sets text', function () {
 			browser.assert.text(KOMPlayCardQuestion, items[0].$KOMSpacingCard.KOMCardFrontText);
@@ -104,7 +104,7 @@ describe('KOMPlay_Misc', function () {
 
 	});
 
-	describe('KOMPlayFlipButton', function test_KOMPlayFlipButton () {
+	describe('KOMPlayFlipButton', function test_KOMPlayFlipButton() {
 
 		it('classes OLSKLayoutButtonNoStyle', function () {
 			browser.assert.hasClass(KOMPlayFlipButton, 'OLSKLayoutButtonNoStyle');
@@ -116,7 +116,7 @@ describe('KOMPlay_Misc', function () {
 
 	});
 
-	describe('KOMPlayCardAnswer', function test_KOMPlayCardAnswer () {
+	describe('KOMPlayCardAnswer', function test_KOMPlayCardAnswer() {
 
 		before(function () {
 			return browser.pressButton(KOMPlayFlipButton);
@@ -128,7 +128,7 @@ describe('KOMPlay_Misc', function () {
 
 	});
 
-	describe('KOMPlayCardNotes', function test_KOMPlayCardNotes () {
+	describe('KOMPlayCardNotes', function test_KOMPlayCardNotes() {
 
 		it('sets text', function () {
 			browser.assert.text(KOMPlayCardNotes, items[0].$KOMSpacingCard.KOMCardNotes);
@@ -136,7 +136,7 @@ describe('KOMPlay_Misc', function () {
 
 	});
 
-	describe('KOMPlayResponseButtonAgain', function test_KOMPlayResponseButtonAgain () {
+	describe('KOMPlayResponseButtonAgain', function test_KOMPlayResponseButtonAgain() {
 
 		it('classes OLSKLayoutButtonNoStyle', function () {
 			browser.assert.hasClass(KOMPlayResponseButtonAgain, 'OLSKLayoutButtonNoStyle');
@@ -164,7 +164,7 @@ describe('KOMPlay_Misc', function () {
 			before(function () {
 				return browser.pressButton(KOMPlayResponseButtonAgain);
 			});
-			
+
 			it('updates KOMPlayStateQueue', function () {
 				browser.assert.text('#TestKOMPlayStateQueueCount', '3');
 			});
@@ -181,12 +181,12 @@ describe('KOMPlay_Misc', function () {
 			it('updates KOMPlayStateCurrent', function () {
 				browser.assert.text(KOMPlayCardQuestion, items[1].$KOMSpacingCard.KOMCardFrontText);
 			});
-		
+
 		});
 
 	});
 
-	describe('KOMPlayResponseButtonHard', function test_KOMPlayResponseButtonHard () {
+	describe('KOMPlayResponseButtonHard', function test_KOMPlayResponseButtonHard() {
 
 		before(function () {
 			return browser.pressButton(KOMPlayFlipButton);
@@ -201,7 +201,7 @@ describe('KOMPlay_Misc', function () {
 		});
 
 		context('click', function () {
-			
+
 			before(function () {
 				browser.assert.text('#TestKOMPlayDispatchUpdate', '5');
 			});
@@ -226,12 +226,12 @@ describe('KOMPlay_Misc', function () {
 			it('updates KOMPlayStateCurrent', function () {
 				browser.assert.text(KOMPlayCardQuestion, items[2].$KOMSpacingCard.KOMCardFrontText);
 			});
-		
+
 		});
 
 	});
 
-	describe('KOMPlayResponseButtonGood', function test_KOMPlayResponseButtonGood () {
+	describe('KOMPlayResponseButtonGood', function test_KOMPlayResponseButtonGood() {
 
 		before(function () {
 			return browser.pressButton(KOMPlayFlipButton);
@@ -246,7 +246,7 @@ describe('KOMPlay_Misc', function () {
 		});
 
 		context('click', function () {
-			
+
 			before(function () {
 				browser.assert.text('#TestKOMPlayDispatchUpdate', '8');
 			});
@@ -265,18 +265,18 @@ describe('KOMPlay_Misc', function () {
 
 			it('sends KOMPlayDispatchUpdate', function () {
 				browser.assert.text('#TestKOMPlayDispatchUpdate', '10');
-			// 	browser.assert.text('#TestKOMPlayDispatchUpdateData', JSON.stringify(Object.keys(items[2]).concat(['KOMSpacingDrawDate', 'KOMSpacingFlipDate', 'KOMSpacingIsLearning', 'KOMSpacingDueDate'])));
+				// 	browser.assert.text('#TestKOMPlayDispatchUpdateData', JSON.stringify(Object.keys(items[2]).concat(['KOMSpacingDrawDate', 'KOMSpacingFlipDate', 'KOMSpacingIsLearning', 'KOMSpacingDueDate'])));
 			});
 
 			it('updates KOMPlayStateCurrent', function () {
 				browser.assert.text(KOMPlayCardQuestion, items[3].$KOMSpacingCard.KOMCardFrontText);
 			});
-		
+
 		});
 
 	});
 
-	describe('KOMPlayResponseButtonEasy', function test_KOMPlayResponseButtonEasy () {
+	describe('KOMPlayResponseButtonEasy', function test_KOMPlayResponseButtonEasy() {
 
 		before(function () {
 			return browser.pressButton(KOMPlayFlipButton);
@@ -291,7 +291,7 @@ describe('KOMPlay_Misc', function () {
 		});
 
 		context('click', function () {
-			
+
 			before(function () {
 				browser.assert.text('#TestKOMPlayDispatchUpdate', '11');
 			});
@@ -316,12 +316,12 @@ describe('KOMPlay_Misc', function () {
 			it('updates KOMPlayStateCurrent', function () {
 				browser.assert.text(KOMPlayCardQuestion, items[4].$KOMSpacingCard.KOMCardFrontText);
 			});
-		
+
 		});
 
 	});
 
-	describe('Space', function test_Space () {
+	describe('Space', function test_Space() {
 
 		before(function () {
 			browser.assert.elements(KOMPlayResponseButtonAgain, 0);
@@ -336,7 +336,7 @@ describe('KOMPlay_Misc', function () {
 		});
 
 		context('flipped', function () {
-			
+
 			before(function () {
 				browser.assert.text('#TestKOMPlayDispatchUpdate', '14');
 			});
@@ -361,23 +361,23 @@ describe('KOMPlay_Misc', function () {
 			it('updates KOMPlayStateCurrent', function () {
 				browser.assert.text(KOMPlayCardQuestion, items[0].$KOMSpacingCard.KOMCardFrontText);
 			});
-		
+
 		});
 
 	});
 
 	context('digits', function () {
-		
+
 		const items = kTesting.uSpacings(4);
 
-		before(function() {
+		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMPlaySpacings: JSON.stringify(items),
 				KOMPlayDeck: JSON.stringify(kTesting.uDeck()),
 			});
 		});
 
-		describe('Digit1', function test_Digit1 () {
+		describe('Digit1', function test_Digit1() {
 
 			before(function () {
 				browser.assert.elements(KOMPlayResponseButtonAgain, 0);
@@ -392,7 +392,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			context('flipped', function () {
-				
+
 				before(function () {
 					return browser.pressButton(KOMPlayFlipButton);
 				});
@@ -421,12 +421,12 @@ describe('KOMPlay_Misc', function () {
 				it('updates KOMPlayStateCurrent', function () {
 					browser.assert.text(KOMPlayCardQuestion, items[1].$KOMSpacingCard.KOMCardFrontText);
 				});
-			
+
 			});
 
 		});
 
-		describe('Digit2', function test_Digit2 () {
+		describe('Digit2', function test_Digit2() {
 
 			before(function () {
 				browser.assert.elements(KOMPlayResponseButtonAgain, 0);
@@ -441,7 +441,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			context('flipped', function () {
-				
+
 				before(function () {
 					return browser.pressButton(KOMPlayFlipButton);
 				});
@@ -470,12 +470,12 @@ describe('KOMPlay_Misc', function () {
 				it('updates KOMPlayStateCurrent', function () {
 					browser.assert.text(KOMPlayCardQuestion, items[2].$KOMSpacingCard.KOMCardFrontText);
 				});
-			
+
 			});
 
 		});
 
-		describe('Digit3', function test_Digit3 () {
+		describe('Digit3', function test_Digit3() {
 
 			before(function () {
 				browser.assert.elements(KOMPlayResponseButtonAgain, 0);
@@ -490,7 +490,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			context('flipped', function () {
-				
+
 				before(function () {
 					return browser.pressButton(KOMPlayFlipButton);
 				});
@@ -519,12 +519,12 @@ describe('KOMPlay_Misc', function () {
 				it('updates KOMPlayStateCurrent', function () {
 					browser.assert.text(KOMPlayCardQuestion, items[3].$KOMSpacingCard.KOMCardFrontText);
 				});
-			
+
 			});
 
 		});
 
-		describe('Digit4', function test_Digit4 () {
+		describe('Digit4', function test_Digit4() {
 
 			before(function () {
 				browser.assert.elements(KOMPlayResponseButtonAgain, 0);
@@ -539,7 +539,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			context('flipped', function () {
-				
+
 				before(function () {
 					return browser.pressButton(KOMPlayFlipButton);
 				});
@@ -564,14 +564,14 @@ describe('KOMPlay_Misc', function () {
 					browser.assert.text('#TestKOMPlayDispatchUpdate', '13');
 					// browser.assert.text('#TestKOMPlayDispatchUpdateData', JSON.stringify(Object.keys(items[0]).concat(['KOMSpacingDrawDate', 'KOMSpacingFlipDate', 'KOMSpacingInterval', 'KOMSpacingMultiplier', 'KOMSpacingDueDate'])));
 				});
-			
+
 			});
 
 		});
-	
+
 	});
 
-	describe('backwards', function test_backwards () {
+	describe('backwards', function test_backwards() {
 
 		const items = kTesting.uSpacings(1).map(function (e, i) {
 			return Object.assign(e, {
@@ -579,7 +579,7 @@ describe('KOMPlay_Misc', function () {
 			});
 		});
 
-		before(function() {
+		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMPlaySpacings: JSON.stringify(items),
 				KOMPlayDeck: JSON.stringify(kTesting.uDeck()),
@@ -608,11 +608,11 @@ describe('KOMPlay_Misc', function () {
 
 	});
 
-	describe('review', function test_review () {
+	describe('review', function test_review() {
 
 		const items = kTesting.uSpacings(2);
 
-		before(function() {
+		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMPlaySpacings: JSON.stringify(items),
 				KOMPlayDeck: JSON.stringify(kTesting.uDeck()),
@@ -657,9 +657,9 @@ describe('KOMPlay_Misc', function () {
 
 	});
 
-	describe('conclusion', function test_conclusion () {
+	describe('conclusion', function test_conclusion() {
 
-		before(function() {
+		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMPlaySpacings: JSON.stringify(kTesting.uSpacings(1)),
 				KOMPlayDeck: JSON.stringify(kTesting.uDeck()),
@@ -677,18 +677,18 @@ describe('KOMPlay_Misc', function () {
 		before(function () {
 			return browser.pressButton(KOMPlayResponseButtonEasy);
 		});
-		
+
 		it('sends KOMPlayDispatchDone', function () {
 			browser.assert.text('#TestKOMPlayDispatchDone', '1');
 		});
 
 	});
 
-	describe('KOMSpacingDrawDate', function test_KOMSpacingDrawDate () {
+	describe('KOMSpacingDrawDate', function test_KOMSpacingDrawDate() {
 
 		const items = kTesting.uSpacings(2);
 
-		before(function() {
+		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMPlaySpacings: JSON.stringify(items),
 				KOMPlayDeck: JSON.stringify(kTesting.uDeck()),
@@ -703,7 +703,7 @@ describe('KOMPlay_Misc', function () {
 		it('sets KOMSpacingDrawDate', function () {
 			browser.assert.text('#TestKOMSpacingDrawDate', KOMPlayLogic.KOMPlayDayGrouping(new Date()));
 		});
-		
+
 		it('sends KOMPlayDispatchUpdate', function () {
 			browser.assert.text('#TestKOMPlayDispatchUpdate', '1');
 			browser.assert.text('#TestKOMPlayDispatchUpdateData', JSON.stringify(Object.keys(items[0]).concat(['KOMSpacingDrawDate'])));
@@ -711,7 +711,7 @@ describe('KOMPlay_Misc', function () {
 
 	});
 
-	describe('KOMSpacingFlipDate', function test_KOMSpacingFlipDate () {
+	describe('KOMSpacingFlipDate', function test_KOMSpacingFlipDate() {
 
 		before(function () {
 			browser.assert.text('#TestKOMSpacingFlipDate', 'undefined');
@@ -729,7 +729,7 @@ describe('KOMPlay_Misc', function () {
 		it('sets KOMSpacingFlipDate', function () {
 			browser.assert.text('#TestKOMSpacingFlipDate', KOMPlayLogic.KOMPlayDayGrouping(new Date()));
 		});
-		
+
 		it('sets no KOMChronicleDidFlipMultipleTimes', function () {
 			browser.assert.text('#TestKOMChronicleDidFlipMultipleTimes', 'undefined');
 		});
@@ -737,15 +737,15 @@ describe('KOMPlay_Misc', function () {
 		it('sends KOMPlayDispatchUpdate', function () {
 			browser.assert.text('#TestKOMPlayDispatchUpdate', '2');
 			browser.assert.text('#TestKOMPlayDispatchUpdateData', JSON.stringify(Object.keys(items[0]).concat(['KOMSpacingDrawDate', 'KOMSpacingFlipDate'])));
-		});	
+		});
 
 	});
 
-	describe('KOMPlayToolbarUndoButton', function test_KOMPlayToolbarUndoButton () {
-	
+	describe('KOMPlayToolbarUndoButton', function test_KOMPlayToolbarUndoButton() {
+
 		const items = kTesting.uSpacings(3);
 
-		before(function() {
+		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMPlaySpacings: JSON.stringify(items),
 				KOMPlayDeck: JSON.stringify(kTesting.uDeck()),
@@ -792,7 +792,7 @@ describe('KOMPlay_Misc', function () {
 					browser.assert.text('#TestKOMPlayDispatchUpdate', '4');
 					// browser.assert.text('#TestKOMPlayDispatchUpdateData', 'undefined');
 				});
-				
+
 				before(function () {
 					return browser.pressButton(KOMPlayToolbarUndoButton);
 				});
@@ -817,14 +817,14 @@ describe('KOMPlay_Misc', function () {
 				it('sets disabled', function () {
 					browser.assert.attribute(KOMPlayToolbarUndoButton, 'disabled', '');
 				});
-				
+
 			});
 
 		});
 
 	});
 
-	describe('speech_front', function test_speech_front () {
+	describe('speech_front', function test_speech_front() {
 
 		const items = kTesting.uSpacings(2).sort(function (a, b) {
 			return a.KOMSpacingID > b.KOMSpacingID;
@@ -848,8 +848,8 @@ describe('KOMPlay_Misc', function () {
 		before(function () {
 			browser.assert.text('#TestKOMPlayAudioLog', '');
 		});
-		
-		before(function() {
+
+		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMPlaySpacings: JSON.stringify(items),
 				KOMPlayDeck: JSON.stringify(deck),
@@ -871,7 +871,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			context('click', function () {
-				
+
 				before(function () {
 					return browser.pressButton(KOMPlayHearQuestionButton);
 				});
@@ -879,7 +879,7 @@ describe('KOMPlay_Misc', function () {
 				it('starts read', function () {
 					browser.assert.text('#TestKOMPlayAudioLog', uLog(`read:${ deck.KOMDeckFrontLanguageCode }:${ items[0].$KOMSpacingCard.KOMCardFrontText }`));
 				});
-			
+
 			});
 
 		});
@@ -917,7 +917,7 @@ describe('KOMPlay_Misc', function () {
 			it('starts read', function () {
 				browser.assert.text('#TestKOMPlayAudioLog', uLog(`read:${ deck.KOMDeckFrontLanguageCode }:${ items[0].$KOMSpacingCard.KOMCardFrontText }`));
 			});
-			
+
 		});
 
 		context('reverse', function () {
@@ -951,7 +951,7 @@ describe('KOMPlay_Misc', function () {
 			});
 
 			context('click', function () {
-				
+
 				before(function () {
 					return browser.pressButton(KOMPlayHearAnswerButton);
 				});
@@ -959,7 +959,7 @@ describe('KOMPlay_Misc', function () {
 				it('starts read', function () {
 					browser.assert.text('#TestKOMPlayAudioLog', uLog(`read:${ deck.KOMDeckFrontLanguageCode }:${ items[1].$KOMSpacingCard.KOMCardFrontText }`));
 				});
-			
+
 			});
 
 		});
@@ -978,7 +978,7 @@ describe('KOMPlay_Misc', function () {
 
 	});
 
-	describe('speech_rear', function test_speech_rear () {
+	describe('speech_rear', function test_speech_rear() {
 
 		const items = kTesting.uSpacings(2).sort(function (a, b) {
 			return a.KOMSpacingID > b.KOMSpacingID;
@@ -999,7 +999,7 @@ describe('KOMPlay_Misc', function () {
 			return _log.join(',');
 		};
 
-		before(function() {
+		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMPlaySpacings: JSON.stringify(items),
 				KOMPlayDeck: JSON.stringify(deck),
@@ -1031,7 +1031,7 @@ describe('KOMPlay_Misc', function () {
 			it('starts read', function () {
 				browser.assert.text('#TestKOMPlayAudioLog', uLog(`read:${ deck.KOMDeckRearLanguageCode }:${ items[0].$KOMSpacingCard.KOMCardRearText }`));
 			});
-			
+
 		});
 
 		context('respond', function () {
@@ -1055,7 +1055,7 @@ describe('KOMPlay_Misc', function () {
 			it('does nothing', function () {
 				browser.assert.text('#TestKOMPlayAudioLog', _log.join(','));
 			});
-			
+
 		});
 
 		context('reverse', function () {
@@ -1087,7 +1087,7 @@ describe('KOMPlay_Misc', function () {
 			it('starts read', function () {
 				browser.assert.text('#TestKOMPlayAudioLog', uLog(`read:${ deck.KOMDeckRearLanguageCode }:${ items[1].$KOMSpacingCard.KOMCardRearText }`));
 			});
-			
+
 		});
 
 		context('flip_reverse', function () {
@@ -1104,7 +1104,7 @@ describe('KOMPlay_Misc', function () {
 
 	});
 
-	describe('audio_front', function test_audio_front () {
+	describe('audio_front', function test_audio_front() {
 
 		const items = kTesting.uSpacings(2).sort(function (a, b) {
 			return a.KOMSpacingID > b.KOMSpacingID;
@@ -1129,8 +1129,8 @@ describe('KOMPlay_Misc', function () {
 			_log.push(inputData);
 			return _log.join(',');
 		};
-		
-		before(function() {
+
+		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMPlaySpacings: JSON.stringify(items),
 				KOMPlayDeck: JSON.stringify(deck),
@@ -1144,7 +1144,7 @@ describe('KOMPlay_Misc', function () {
 		context('KOMPlayHearQuestionButton', function () {
 
 			context('click', function () {
-				
+
 				before(function () {
 					return browser.pressButton(KOMPlayHearQuestionButton);
 				});
@@ -1152,7 +1152,7 @@ describe('KOMPlay_Misc', function () {
 				it('starts audio', function () {
 					browser.assert.text('#TestKOMPlayAudioLog', uLog('play:KOMCardFrontAudio'));
 				});
-			
+
 			});
 
 		});
@@ -1190,7 +1190,7 @@ describe('KOMPlay_Misc', function () {
 			it('starts audio', function () {
 				browser.assert.text('#TestKOMPlayAudioLog', uLog('flush,fetch,play:KOMCardFrontAudio'));
 			});
-			
+
 		});
 
 		context('reverse', function () {
@@ -1216,7 +1216,7 @@ describe('KOMPlay_Misc', function () {
 		context('KOMPlayHearAnswerButton', function () {
 
 			context('click', function () {
-				
+
 				before(function () {
 					return browser.pressButton(KOMPlayHearAnswerButton);
 				});
@@ -1224,7 +1224,7 @@ describe('KOMPlay_Misc', function () {
 				it('starts audio', function () {
 					browser.assert.text('#TestKOMPlayAudioLog', uLog('play:KOMCardFrontAudio'));
 				});
-			
+
 			});
 
 		});
@@ -1243,7 +1243,7 @@ describe('KOMPlay_Misc', function () {
 
 	});
 
-	describe('audio_rear', function test_audio_rear () {
+	describe('audio_rear', function test_audio_rear() {
 
 		const items = kTesting.uSpacings(2).sort(function (a, b) {
 			return a.KOMSpacingID > b.KOMSpacingID;
@@ -1269,7 +1269,7 @@ describe('KOMPlay_Misc', function () {
 			return _log.join(',');
 		};
 
-		before(function() {
+		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMPlaySpacings: JSON.stringify(items),
 				KOMPlayDeck: JSON.stringify(deck),
@@ -1301,7 +1301,7 @@ describe('KOMPlay_Misc', function () {
 			it('starts read', function () {
 				browser.assert.text('#TestKOMPlayAudioLog', uLog('play:KOMCardRearAudio'));
 			});
-			
+
 		});
 
 		context('respond', function () {
@@ -1325,7 +1325,7 @@ describe('KOMPlay_Misc', function () {
 			it('flushes audio', function () {
 				browser.assert.text('#TestKOMPlayAudioLog', uLog('flush'));
 			});
-			
+
 		});
 
 		context('reverse', function () {
@@ -1357,7 +1357,7 @@ describe('KOMPlay_Misc', function () {
 			it('starts read', function () {
 				browser.assert.text('#TestKOMPlayAudioLog', uLog('play:KOMCardRearAudio'));
 			});
-			
+
 		});
 
 		context('flip_reverse', function () {

@@ -3,7 +3,7 @@ const OLSKRemoteStorage = OLSKRemoteStoragePackage.default || OLSKRemoteStorageP
 
 const mod = {
 
-	KOM_DataModule (inputData, options) {
+	KOM_DataModule(inputData, options) {
 		return OLSKRemoteStorage.OLSKRemoteStorageDataModuleGenerator('kommit', options)(inputData);
 	},
 

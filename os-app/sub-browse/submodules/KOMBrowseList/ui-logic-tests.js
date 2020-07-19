@@ -14,12 +14,12 @@ describe('KOMBrowseListItemAccessibilitySummary', function test_KOMBrowseListIte
 			mainModule.KOMBrowseListItemAccessibilitySummary(null);
 		}, /KOMErrorInputNotValid/);
 	});
-	
-	it('returns KOMCardFrontText', function() {
+
+	it('returns KOMCardFrontText', function () {
 		deepEqual(mainModule.KOMBrowseListItemAccessibilitySummary(item), 'bravo');
 	});
-	
-	it('returns KOMBrowseListItemUntitledText if no KOMCardFrontText', function() {
+
+	it('returns KOMBrowseListItemUntitledText if no KOMCardFrontText', function () {
 		deepEqual(mainModule.KOMBrowseListItemAccessibilitySummary(Object.assign(item, {
 			KOMCardFrontText: undefined,
 		}), function (inputData) {

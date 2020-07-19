@@ -12,9 +12,9 @@ const kTesting = {
 	},
 };
 
-describe('KOMBrowse_Sort', function () {	
+describe('KOMBrowse_Sort', function () {
 
-	before(function() {
+	before(function () {
 		return browser.OLSKVisit(kDefaultRoute, {
 			KOMBrowseDeckSelected: JSON.stringify(kTesting.StubDeckObjectValid()),
 		});
@@ -44,7 +44,7 @@ describe('KOMBrowse_Sort', function () {
 		return browser.fill('.KOMBrowseInfoFormFrontTextField', 'charlie');
 	});
 
-	describe('update', function test_update () {
+	describe('update', function test_update() {
 
 		before(function () {
 			return browser.click('.OLSKResultsListItem:nth-child(3) .KOMBrowseListItem');
@@ -60,7 +60,7 @@ describe('KOMBrowse_Sort', function () {
 
 	});
 
-	describe('deselect', function test_deselect () {
+	describe('deselect', function test_deselect() {
 
 		before(function () {
 			return browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
@@ -72,7 +72,7 @@ describe('KOMBrowse_Sort', function () {
 
 	});
 
-	describe('delete', function test_delete () {
+	describe('delete', function test_delete() {
 
 		before(function () {
 			return browser.click('.OLSKResultsListItem:nth-child(3) .KOMBrowseListItem');

@@ -5,22 +5,22 @@ const KOMBrowseList = new RollupStart({
 	props: Object.assign({
 		KOMBrowseListItems: [],
 		KOMBrowseListFilterText: '',
-		KOMBrowseListDispatchClose: (function _KOMBrowseListDispatchClose (inputData) {
+		KOMBrowseListDispatchClose: (function _KOMBrowseListDispatchClose(inputData) {
 			window.TestKOMBrowseListDispatchClose.innerHTML = parseInt(window.TestKOMBrowseListDispatchCreate.innerHTML) + 1;
 		}),
-		KOMBrowseListDispatchCreate: (function _KOMBrowseListDispatchCreate (inputData) {
+		KOMBrowseListDispatchCreate: (function _KOMBrowseListDispatchCreate(inputData) {
 			window.TestKOMBrowseListDispatchCreate.innerHTML = parseInt(window.TestKOMBrowseListDispatchCreate.innerHTML) + 1;
 			window.TestKOMBrowseListDispatchCreateData.innerHTML = inputData;
 		}),
-		KOMBrowseListDispatchClick: (function _KOMBrowseListDispatchClick (inputData) {
+		KOMBrowseListDispatchClick: (function _KOMBrowseListDispatchClick(inputData) {
 			window.TestKOMBrowseListDispatchClick.innerHTML = parseInt(window.TestKOMBrowseListDispatchClick.innerHTML) + 1;
 			window.TestKOMBrowseListDispatchClickData.innerHTML = JSON.stringify(inputData);
 		}),
-		KOMBrowseListDispatchArrow: (function _KOMBrowseListDispatchArrow (inputData) {
+		KOMBrowseListDispatchArrow: (function _KOMBrowseListDispatchArrow(inputData) {
 			window.TestKOMBrowseListDispatchArrow.innerHTML = parseInt(window.TestKOMBrowseListDispatchArrow.innerHTML) + 1;
 			window.TestKOMBrowseListDispatchArrowData.innerHTML = JSON.stringify(inputData);
 		}),
-		KOMBrowseListDispatchFilter: (function _KOMBrowseListDispatchFilter (inputData) {
+		KOMBrowseListDispatchFilter: (function _KOMBrowseListDispatchFilter(inputData) {
 			window.TestKOMBrowseListDispatchFilter.innerHTML = parseInt(window.TestKOMBrowseListDispatchFilter.innerHTML) + 1;
 			window.TestKOMBrowseListDispatchFilterData.innerHTML = inputData;
 		}),

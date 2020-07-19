@@ -2,13 +2,13 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 Object.entries({
 	KOMBrowseInfo: '.KOMBrowseInfo',
-	
+
 	KOMBrowseInfoToolbar: '.KOMBrowseInfoToolbar',
 	KOMBrowseInfoToolbarBackButton: '.KOMBrowseInfoToolbarBackButton',
 	KOMBrowseInfoToolbarBackButtonImage: '.KOMBrowseInfoToolbarBackButtonImage',
-	KOMBrowseInfoToolbarDiscardButton: '.KOMBrowseInfoToolbarDiscardButton',	
+	KOMBrowseInfoToolbarDiscardButton: '.KOMBrowseInfoToolbarDiscardButton',
 	KOMBrowseInfoToolbarDiscardButtonImage: '.KOMBrowseInfoToolbarDiscardButtonImage',
-	KOMBrowseInfoToolbarCreateButton: '.KOMBrowseInfoToolbarCreateButton',	
+	KOMBrowseInfoToolbarCreateButton: '.KOMBrowseInfoToolbarCreateButton',
 	KOMBrowseInfoToolbarCreateButtonImage: '.KOMBrowseInfoToolbarCreateButtonImage',
 
 	KOMBrowseInfoForm: '.KOMBrowseInfoForm',
@@ -20,12 +20,12 @@ Object.entries({
 	KOMBrowseInfoFormRearAudio: '.KOMBrowseInfoFormRearAudio .KOMBrowseInfoAudio',
 	KOMBrowseInfoFormNotesField: '.KOMBrowseInfoFormNotesField',
 }).map(function (e) {
-	return global[e.shift()]  = e.pop();
+	return global[e.shift()] = e.pop();
 });
 
 describe('KOMBrowseInfo_Access', function () {
-	
-	before(function() {
+
+	before(function () {
 		return browser.OLSKVisit(kDefaultRoute, {
 			KOMBrowseInfoItem: null,
 		});
@@ -47,9 +47,9 @@ describe('KOMBrowseInfo_Access', function () {
 		browser.assert.elements(KOMBrowseInfoForm, 0);
 	});
 
-	context('KOMBrowseInfoItem', function() {
+	context('KOMBrowseInfoItem', function () {
 
-		before(function() {
+		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMBrowseInfoItem: JSON.stringify({}),
 			});

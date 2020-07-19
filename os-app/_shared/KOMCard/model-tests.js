@@ -17,13 +17,13 @@ const kTesting = {
 
 describe('KOMCardModelErrorsFor', function test_KOMCardModelErrorsFor() {
 
-	it('throws error if not object', function() {
-		throws(function() {
+	it('throws error if not object', function () {
+		throws(function () {
 			mainModule.KOMCardModelErrorsFor(null);
 		}, /KOMErrorInputNotValid/);
 	});
 
-	it('returns object if KOMCardID not string', function() {
+	it('returns object if KOMCardID not string', function () {
 		deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubCardObjectValid(), {
 			KOMCardID: null,
 		})), {
@@ -33,7 +33,7 @@ describe('KOMCardModelErrorsFor', function test_KOMCardModelErrorsFor() {
 		});
 	});
 
-	it('returns object if KOMCardID not filled', function() {
+	it('returns object if KOMCardID not filled', function () {
 		deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubCardObjectValid(), {
 			KOMCardID: ' ',
 		})), {
@@ -43,7 +43,7 @@ describe('KOMCardModelErrorsFor', function test_KOMCardModelErrorsFor() {
 		});
 	});
 
-	it('returns object if KOMCardDeckID not string', function() {
+	it('returns object if KOMCardDeckID not string', function () {
 		deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubCardObjectValid(), {
 			KOMCardDeckID: null,
 		})), {
@@ -53,7 +53,7 @@ describe('KOMCardModelErrorsFor', function test_KOMCardModelErrorsFor() {
 		});
 	});
 
-	it('returns object if KOMCardDeckID not filled', function() {
+	it('returns object if KOMCardDeckID not filled', function () {
 		deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubCardObjectValid(), {
 			KOMCardDeckID: ' ',
 		})), {
@@ -63,7 +63,7 @@ describe('KOMCardModelErrorsFor', function test_KOMCardModelErrorsFor() {
 		});
 	});
 
-	it('returns object if KOMCardFrontText not string', function() {
+	it('returns object if KOMCardFrontText not string', function () {
 		deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubCardObjectValid(), {
 			KOMCardFrontText: null,
 		})), {
@@ -73,7 +73,7 @@ describe('KOMCardModelErrorsFor', function test_KOMCardModelErrorsFor() {
 		});
 	});
 
-	it('returns object if KOMCardRearText not string', function() {
+	it('returns object if KOMCardRearText not string', function () {
 		deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubCardObjectValid(), {
 			KOMCardRearText: null,
 		})), {
@@ -83,7 +83,7 @@ describe('KOMCardModelErrorsFor', function test_KOMCardModelErrorsFor() {
 		});
 	});
 
-	it('returns object if KOMCardCreationDate not date', function() {
+	it('returns object if KOMCardCreationDate not date', function () {
 		deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubCardObjectValid(), {
 			KOMCardCreationDate: new Date('alfa'),
 		})), {
@@ -93,7 +93,7 @@ describe('KOMCardModelErrorsFor', function test_KOMCardModelErrorsFor() {
 		});
 	});
 
-	it('returns object if KOMCardModificationDate not date', function() {
+	it('returns object if KOMCardModificationDate not date', function () {
 		deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubCardObjectValid(), {
 			KOMCardModificationDate: new Date('alfa'),
 		})), {
@@ -103,13 +103,13 @@ describe('KOMCardModelErrorsFor', function test_KOMCardModelErrorsFor() {
 		});
 	});
 
-	it('returns null', function() {
+	it('returns null', function () {
 		deepEqual(mainModule.KOMCardModelErrorsFor(kTesting.StubCardObjectValid()), null);
 	});
 
-	context('KOMCardNotes', function() {
+	context('KOMCardNotes', function () {
 
-		it('returns object if not string', function() {
+		it('returns object if not string', function () {
 			deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubCardObjectValid(), {
 				KOMCardNotes: null,
 			})), {
@@ -119,7 +119,7 @@ describe('KOMCardModelErrorsFor', function test_KOMCardModelErrorsFor() {
 			});
 		});
 
-		it('returns null', function() {
+		it('returns null', function () {
 			deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubCardObjectValid(), {
 				KOMCardNotes: 'alfa',
 			})), null);
@@ -127,9 +127,9 @@ describe('KOMCardModelErrorsFor', function test_KOMCardModelErrorsFor() {
 
 	});
 
-	context('KOMCardFrontAudio', function() {
+	context('KOMCardFrontAudio', function () {
 
-		it('returns object if not boolean', function() {
+		it('returns object if not boolean', function () {
 			deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubCardObjectValid(), {
 				KOMCardFrontAudio: 'true',
 			})), {
@@ -139,7 +139,7 @@ describe('KOMCardModelErrorsFor', function test_KOMCardModelErrorsFor() {
 			});
 		});
 
-		it('returns null', function() {
+		it('returns null', function () {
 			deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubCardObjectValid(), {
 				KOMCardFrontAudio: true,
 			})), null);
@@ -147,9 +147,9 @@ describe('KOMCardModelErrorsFor', function test_KOMCardModelErrorsFor() {
 
 	});
 
-	context('KOMCardRearAudio', function() {
+	context('KOMCardRearAudio', function () {
 
-		it('returns object if not boolean', function() {
+		it('returns object if not boolean', function () {
 			deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubCardObjectValid(), {
 				KOMCardRearAudio: 'true',
 			})), {
@@ -159,7 +159,7 @@ describe('KOMCardModelErrorsFor', function test_KOMCardModelErrorsFor() {
 			});
 		});
 
-		it('returns null', function() {
+		it('returns null', function () {
 			deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubCardObjectValid(), {
 				KOMCardRearAudio: true,
 			})), null);
@@ -167,9 +167,9 @@ describe('KOMCardModelErrorsFor', function test_KOMCardModelErrorsFor() {
 
 	});
 
-	context('KOMOptionValidateIfNotPresent', function() {
+	context('KOMOptionValidateIfNotPresent', function () {
 
-		it('returns object if not valid', function() {
+		it('returns object if not valid', function () {
 			deepEqual(Object.keys(mainModule.KOMCardModelErrorsFor({}, {
 				KOMOptionValidateIfNotPresent: true,
 			})), [
@@ -191,7 +191,7 @@ describe('KOMCardModelErrorsFor', function test_KOMCardModelErrorsFor() {
 
 describe('KOMCardModelAudioFields', function test_KOMCardModelAudioFields() {
 
-	it('returns array', function() {
+	it('returns array', function () {
 		deepEqual(mainModule.KOMCardModelAudioFields(), [
 			'KOMCardFrontAudio',
 			'KOMCardRearAudio',

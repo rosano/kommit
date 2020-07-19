@@ -9,7 +9,7 @@ const uFlatten = function (inputData) {
 
 const mod = {
 
-	uFakeDeck (inputData) {
+	uFakeDeck(inputData) {
 		return {
 			KOMDeckID: inputData.split('/')[1],
 			KOMDeckName: '',
@@ -18,7 +18,7 @@ const mod = {
 		};
 	},
 
-	uFakeCard (inputData) {
+	uFakeCard(inputData) {
 		return {
 			KOMCardID: inputData.split('/')[4],
 			KOMCardDeckID: inputData.split('/')[1],
@@ -29,19 +29,19 @@ const mod = {
 		};
 	},
 
-	KOMCardStorageCollectionName () {
+	KOMCardStorageCollectionName() {
 		return 'kom_cards';
 	},
 
-	KOMCardStorageCollectionType () {
+	KOMCardStorageCollectionType() {
 		return 'kom_card';
 	},
 
-	KOMCardStorageCollectionPath (inputData) {
+	KOMCardStorageCollectionPath(inputData) {
 		return KOMDeckStorage.KOMDeckStorageFolderPath(inputData) + mod.KOMCardStorageCollectionName() + '/';
 	},
 
-	KOMCardStorageFolderPath (inputData) {
+	KOMCardStorageFolderPath(inputData) {
 		if (KOMCardModel.KOMCardModelErrorsFor(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -49,19 +49,19 @@ const mod = {
 		return mod.KOMCardStorageCollectionPath(inputData.KOMCardDeckID) + inputData.KOMCardCreationDate.toJSON().split('T').shift() + '/' + inputData.KOMCardID + '/';
 	},
 
-	KOMCardStorageObjectPath (inputData) {
+	KOMCardStorageObjectPath(inputData) {
 		return mod.KOMCardStorageFolderPath(inputData) + 'main';
 	},
 
-	KOMCardStorageAudioPathFront (inputData) {
+	KOMCardStorageAudioPathFront(inputData) {
 		return mod.KOMCardStorageFolderPath(inputData) + 'side-front/audio';
 	},
 
-	KOMCardStorageAudioPathRear (inputData) {
+	KOMCardStorageAudioPathRear(inputData) {
 		return mod.KOMCardStorageFolderPath(inputData) + 'side-rear/audio';
 	},
 
-	KOMCardStorageMatch (inputData) {
+	KOMCardStorageMatch(inputData) {
 		if (typeof inputData !== 'string') {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -73,12 +73,12 @@ const mod = {
 		return inputData === mod.KOMCardStorageObjectPath(mod.uFakeCard(inputData), mod.uFakeDeck(inputData));
 	},
 
-	KOMCardStorageBuild (privateClient, publicClient, changeDelegate) {
+	KOMCardStorageBuild(privateClient, publicClient, changeDelegate) {
 		privateClient.on('change', function (event) {
 			if (!changeDelegate) {
 				return;
 			}
-			
+
 			if (!mod.KOMCardStorageMatch(event.relativePath)) {
 				return;
 			}
@@ -98,7 +98,7 @@ const mod = {
 
 		const OLSKRemoteStorageCollectionExports = {
 
-			async _KOMCardStorageWrite (inputData) {
+			async _KOMCardStorageWrite(inputData) {
 				if (typeof inputData !== 'object' || inputData === null) {
 					return Promise.reject(new Error('KOMErrorInputNotValid'));
 				}
@@ -115,7 +115,7 @@ const mod = {
 				return OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(inputData);
 			},
 
-			async _KOMCardStorageList (inputData) {
+			async _KOMCardStorageList(inputData) {
 				return (await Promise.all((await OLSKRemoteStorage.OLSKRemoteStorageListObjectsRecursive(privateClient, mod.KOMCardStorageCollectionPath(inputData.KOMDeckID))).filter(mod.KOMCardStorageMatch).map(function (e) {
 					return privateClient.getObject(e, false);
 				}))).reduce(function (coll, item) {
@@ -127,7 +127,7 @@ const mod = {
 				}, {});
 			},
 
-			async _KOMCardStorageDelete (inputData) {
+			async _KOMCardStorageDelete(inputData) {
 				if (KOMCardModel.KOMCardModelErrorsFor(inputData)) {
 					return Promise.reject(new Error('KOMErrorInputNotValid'));
 				}
@@ -137,7 +137,7 @@ const mod = {
 				}))).pop();
 			},
 
-			async _KOMCardStorageFileWrite (param1, param2) {
+			async _KOMCardStorageFileWrite(param1, param2) {
 				if (!(param1 instanceof Blob)) {
 					return Promise.reject(new Error('KOMErrorInputNotValid'));
 				}
@@ -149,8 +149,8 @@ const mod = {
 				await privateClient.storeFile(param1.type, param2, typeof global !== 'undefined' && global.KOMTestingStorageClient ? param1 : await new Promise(function (res, rej) {
 					const reader = new FileReader();
 
-					reader.onload = function() {
-					  res(reader.result);
+					reader.onload = function () {
+						res(reader.result);
 					};
 
 					reader.readAsArrayBuffer(param1);
@@ -159,28 +159,30 @@ const mod = {
 				return param1;
 			},
 
-			async _KOMCardStorageFileRead (inputData) {
+			async _KOMCardStorageFileRead(inputData) {
 				if (typeof inputData !== 'string') {
 					return Promise.reject(new Error('KOMErrorInputNotValid'));
 				}
 
 				const file = await privateClient.getFile(inputData);
-				
+
 				if (!file.data) {
 					return null;
 				}
 
-				return new Blob([file.data], { type: file.contentType });
+				return new Blob([file.data], {
+					type: file.contentType
+				});
 			},
 
-			_KOMCardStorageFileDelete (inputData) {
+			_KOMCardStorageFileDelete(inputData) {
 				if (typeof inputData !== 'string') {
 					return Promise.reject(new Error('KOMErrorInputNotValid'));
 				}
 
 				return privateClient.remove(inputData);
 			},
-			
+
 		};
 
 		return {
@@ -203,27 +205,27 @@ const mod = {
 		};
 	},
 
-	KOMCardStorageWrite (storageClient, inputData) {
+	KOMCardStorageWrite(storageClient, inputData) {
 		return storageClient.kommit[mod.KOMCardStorageCollectionName()]._KOMCardStorageWrite(inputData);
 	},
 
-	KOMCardStorageList (storageClient, inputData) {
+	KOMCardStorageList(storageClient, inputData) {
 		return storageClient.kommit[mod.KOMCardStorageCollectionName()]._KOMCardStorageList(inputData);
 	},
 
-	KOMCardStorageDelete (storageClient, inputData) {
+	KOMCardStorageDelete(storageClient, inputData) {
 		return storageClient.kommit[mod.KOMCardStorageCollectionName()]._KOMCardStorageDelete(inputData);
 	},
 
-	KOMCardStorageFileWrite (storageClient, param1, param2) {
+	KOMCardStorageFileWrite(storageClient, param1, param2) {
 		return storageClient.kommit[mod.KOMCardStorageCollectionName()]._KOMCardStorageFileWrite(param1, param2);
 	},
 
-	KOMCardStorageFileRead (storageClient, inputData) {
+	KOMCardStorageFileRead(storageClient, inputData) {
 		return storageClient.kommit[mod.KOMCardStorageCollectionName()]._KOMCardStorageFileRead(inputData);
 	},
 
-	KOMCardStorageFileDelete (storageClient, inputData) {
+	KOMCardStorageFileDelete(storageClient, inputData) {
 		return storageClient.kommit[mod.KOMCardStorageCollectionName()]._KOMCardStorageFileDelete(inputData);
 	},
 

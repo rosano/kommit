@@ -4,7 +4,7 @@ const mainModule = require('./storage.js').default;
 
 describe('KOMDeckStorageCollectionName', function test_KOMDeckStorageCollectionName() {
 
-	it('returns string', function() {
+	it('returns string', function () {
 		deepEqual(mainModule.KOMDeckStorageCollectionName(), 'kom_decks');
 	});
 
@@ -12,7 +12,7 @@ describe('KOMDeckStorageCollectionName', function test_KOMDeckStorageCollectionN
 
 describe('KOMDeckStorageCollectionType', function test_KOMDeckStorageCollectionType() {
 
-	it('returns string', function() {
+	it('returns string', function () {
 		deepEqual(mainModule.KOMDeckStorageCollectionType(), 'kom_deck');
 	});
 
@@ -20,7 +20,7 @@ describe('KOMDeckStorageCollectionType', function test_KOMDeckStorageCollectionT
 
 describe('KOMDeckStorageCollectionPath', function test_KOMDeckStorageCollectionPath() {
 
-	it('returns string', function() {
+	it('returns string', function () {
 		deepEqual(mainModule.KOMDeckStorageCollectionPath(), mainModule.KOMDeckStorageCollectionName() + '/');
 	});
 
@@ -28,13 +28,13 @@ describe('KOMDeckStorageCollectionPath', function test_KOMDeckStorageCollectionP
 
 describe('KOMDeckStorageFolderPath', function test_KOMDeckStorageFolderPath() {
 
-	it('throws error if blank', function() {
-		throws(function() {
+	it('throws error if blank', function () {
+		throws(function () {
 			mainModule.KOMDeckStorageFolderPath('');
 		}, /KOMErrorInputNotValid/);
 	});
 
-	it('returns string', function() {
+	it('returns string', function () {
 		deepEqual(mainModule.KOMDeckStorageFolderPath('alfa'), mainModule.KOMDeckStorageCollectionPath() + 'alfa/');
 	});
 
@@ -42,13 +42,13 @@ describe('KOMDeckStorageFolderPath', function test_KOMDeckStorageFolderPath() {
 
 describe('KOMDeckStorageObjectPath', function test_KOMDeckStorageObjectPath() {
 
-	it('throws error if blank', function() {
-		throws(function() {
+	it('throws error if blank', function () {
+		throws(function () {
 			mainModule.KOMDeckStorageObjectPath('');
 		}, /KOMErrorInputNotValid/);
 	});
 
-	it('returns string', function() {
+	it('returns string', function () {
 		deepEqual(mainModule.KOMDeckStorageObjectPath('alfa'), mainModule.KOMDeckStorageFolderPath('alfa') + 'main');
 	});
 
@@ -56,21 +56,21 @@ describe('KOMDeckStorageObjectPath', function test_KOMDeckStorageObjectPath() {
 
 describe('KOMDeckStorageMatch', function test_KOMDeckStorageMatch() {
 
-	it('throws error if not string', function() {
-		throws(function() {
+	it('throws error if not string', function () {
+		throws(function () {
 			mainModule.KOMDeckStorageMatch(null);
 		}, /KOMErrorInputNotValid/);
 	});
 
-	it('returns false if no KOMDeckStorageCollectionPath', function() {
+	it('returns false if no KOMDeckStorageCollectionPath', function () {
 		deepEqual(mainModule.KOMDeckStorageMatch(mainModule.KOMDeckStorageObjectPath('alfa').replace(mainModule.KOMDeckStorageCollectionPath(), mainModule.KOMDeckStorageCollectionPath().slice(1))), false);
 	});
 
-	it('returns false if no KOMDeckStorageObjectPath', function() {
+	it('returns false if no KOMDeckStorageObjectPath', function () {
 		deepEqual(mainModule.KOMDeckStorageMatch(mainModule.KOMDeckStorageObjectPath('alfa').slice(0, -1)), false);
 	});
 
-	it('returns true', function() {
+	it('returns true', function () {
 		deepEqual(mainModule.KOMDeckStorageMatch(mainModule.KOMDeckStorageObjectPath('alfa')), true);
 	});
 
@@ -78,11 +78,11 @@ describe('KOMDeckStorageMatch', function test_KOMDeckStorageMatch() {
 
 describe('KOMDeckStorageWrite', function test_KOMDeckStorageWrite() {
 
-	it('rejects if not object', async function() {
+	it('rejects if not object', async function () {
 		await rejects(mainModule.KOMDeckStorageWrite(KOMTestingStorageClient, null), /KOMErrorInputNotValid/);
 	});
 
-	it('returns object with KOMErrors if not valid', async function() {
+	it('returns object with KOMErrors if not valid', async function () {
 		deepEqual((await mainModule.KOMDeckStorageWrite(KOMTestingStorageClient, Object.assign(StubDeckObjectValid(), {
 			KOMDeckID: null,
 		}))).KOMErrors, {
@@ -92,7 +92,7 @@ describe('KOMDeckStorageWrite', function test_KOMDeckStorageWrite() {
 		});
 	});
 
-	it('returns KOMDeck', async function() {
+	it('returns KOMDeck', async function () {
 		let item = await mainModule.KOMDeckStorageWrite(KOMTestingStorageClient, StubDeckObjectValid());
 
 		deepEqual(item, Object.assign(StubDeckObjectValid(), {
@@ -110,17 +110,17 @@ describe('KOMDeckStorageWrite', function test_KOMDeckStorageWrite() {
 		before(async function () {
 			outputData = await mainModule.KOMDeckStorageWrite(KOMTestingStorageClient, item);
 		});
-		
+
 		before(async function () {
 			storage = Object.values(await mainModule.KOMDeckStorageList(KOMTestingStorageClient));
 		});
-		
+
 		it('excludes from storage', function () {
 			deepEqual(storage, [Object.assign(StubDeckObjectValid(), {
 				'@context': item['@context'],
 			})]);
 		});
-		
+
 		it('includes in outputData', function () {
 			deepEqual(outputData, item);
 		});
@@ -128,18 +128,18 @@ describe('KOMDeckStorageWrite', function test_KOMDeckStorageWrite() {
 		it('updates inputData', function () {
 			deepEqual(outputData === item, true);
 		});
-	
+
 	});
 
 });
 
 describe('KOMDeckStorageList', function test_KOMDeckStorageList() {
 
-	it('returns empty array if none', async function() {
+	it('returns empty array if none', async function () {
 		deepEqual(await mainModule.KOMDeckStorageList(KOMTestingStorageClient), {});
 	});
 
-	it('returns existing KOMDecks', async function() {
+	it('returns existing KOMDecks', async function () {
 		let item = await mainModule.KOMDeckStorageWrite(KOMTestingStorageClient, StubDeckObjectValid());
 		deepEqual(Object.values(await mainModule.KOMDeckStorageList(KOMTestingStorageClient)), [item]);
 		deepEqual(Object.keys(await mainModule.KOMDeckStorageList(KOMTestingStorageClient)), [item.KOMDeckID]);
@@ -155,16 +155,15 @@ describe('KOMDeckStorageDelete', function test_KOMDeckStorageDelete() {
 		}, /KOMErrorInputNotValid/);
 	});
 
-	it('returns statusCode', async function() {
+	it('returns statusCode', async function () {
 		deepEqual(await mainModule.KOMDeckStorageDelete(KOMTestingStorageClient, await mainModule.KOMDeckStorageWrite(KOMTestingStorageClient, StubDeckObjectValid())), {
 			statusCode: 200,
 		});
 	});
 
-	it('deletes KOMDeck', async function() {
+	it('deletes KOMDeck', async function () {
 		await mainModule.KOMDeckStorageDelete(KOMTestingStorageClient, await mainModule.KOMDeckStorageWrite(KOMTestingStorageClient, StubDeckObjectValid()));
 		deepEqual(await mainModule.KOMDeckStorageList(KOMTestingStorageClient), {});
 	});
 
 });
-

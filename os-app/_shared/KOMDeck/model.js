@@ -1,6 +1,6 @@
 const mod = {
 
-	KOMDeckModelErrorsFor (inputData, options = {}) {
+	KOMDeckModelErrorsFor(inputData, options = {}) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			throw new Error('KOMErrorInputNotValid');
 		}

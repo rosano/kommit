@@ -10,24 +10,24 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 
 	describe(`KOMReview_Localize-${ languageCode }`, function () {
 
-		before(function() {
+		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				OLSKRoutingLanguage: languageCode,
 			});
 		});
 
-		it('localizes title', function() {
+		it('localizes title', function () {
 			browser.assert.text('title', uLocalized('KOMReviewTitle'));
 		});
 
-		context('select_deck', function test_select_deck () {
-			
+		context('select_deck', function test_select_deck() {
+
 			before(function () {
 				return browser.OLSKPrompt(function () {
 					return browser.pressButton('.KOMReviewMasterCreateButton');
 				}, function (dialog) {
 					dialog.response = 'alfa';
-					
+
 					return dialog;
 				});
 			});
@@ -35,11 +35,11 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			it('localizes KOMReviewLauncherItemSelectDeck', function () {
 				return browser.assert.OLSKLauncherItemText('KOMReviewLauncherItemSelectDeck', uStringWithFormat(uLocalized('KOMReviewLauncherItemSelectDeckTextFormat'), 'alfa'));
 			});
-		
+
 		});
 
 		context('select_card', function test_select_card() {
-			
+
 			before(function () {
 				return browser.click('.KOMReviewMasterListItem');
 			});
@@ -67,7 +67,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 		});
 
 		context('KOMReviewLauncherItemSendLoginLink', function () {
-			
+
 			before(function () {
 				return browser.OLSKLauncherRun('FakeOLSKConnected');
 			});
@@ -75,7 +75,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			it('localizes KOMReviewLauncherItemSendLoginLink', function () {
 				return browser.assert.OLSKLauncherItemText('KOMReviewLauncherItemSendLoginLink', uLocalized('KOMReviewLauncherItemSendLoginLinkText'));
 			});
-		
+
 		});
 
 	});

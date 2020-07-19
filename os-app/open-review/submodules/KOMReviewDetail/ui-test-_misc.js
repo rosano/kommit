@@ -2,7 +2,7 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 const KOMReviewLogic = require('../../ui-logic.js').default;
 
 const kTesting = {
-	uSpacings (inputData) {
+	uSpacings(inputData) {
 		return Array.from(new Array(2)).map(function (e, i) {
 			return {
 				KOMSpacingID: (i + 1).toString() + '-forward',
@@ -31,7 +31,7 @@ const kTesting = {
 			});
 		});
 	},
-	uDeck (inputData = {}) {
+	uDeck(inputData = {}) {
 		return Object.assign({
 			KOMDeckName: 'alfa',
 			$KOMDeckSpacings: [],
@@ -41,13 +41,13 @@ const kTesting = {
 
 describe('KOMReviewDetail_Misc', function () {
 
-	before(function() {
+	before(function () {
 		return browser.OLSKVisit(kDefaultRoute, {
 			KOMReviewDetailDeck: JSON.stringify(kTesting.uDeck()),
 		});
 	});
 
-	describe('KOMReviewDetailToolbar', function test_KOMReviewDetailToolbar () {
+	describe('KOMReviewDetailToolbar', function test_KOMReviewDetailToolbar() {
 
 		it('classes OLSKToolbar', function () {
 			browser.assert.hasClass(KOMReviewDetailToolbar, 'OLSKToolbar');
@@ -56,11 +56,11 @@ describe('KOMReviewDetail_Misc', function () {
 		it('classes OLSKToolbarJustify', function () {
 			browser.assert.hasClass(KOMReviewDetailToolbar, 'OLSKToolbarJustify');
 		});
-	
+
 	});
 
-	describe('KOMReviewDetailToolbarBackButton', function test_KOMReviewDetailToolbarBackButton () {
-		
+	describe('KOMReviewDetailToolbarBackButton', function test_KOMReviewDetailToolbarBackButton() {
+
 		it('classes OLSKLayoutButtonNoStyle', function () {
 			browser.assert.hasClass(KOMReviewDetailToolbarBackButton, 'OLSKLayoutButtonNoStyle');
 		});
@@ -70,11 +70,11 @@ describe('KOMReviewDetail_Misc', function () {
 		});
 
 		context('click', function () {
-			
+
 			before(function () {
 				browser.assert.text('#TestKOMReviewDetailDispatchBack', '0');
 			});
-			
+
 			before(function () {
 				return browser.pressButton(KOMReviewDetailToolbarBackButton);
 			});
@@ -82,35 +82,35 @@ describe('KOMReviewDetail_Misc', function () {
 			it('sends KOMReviewDetailDispatchBack', function () {
 				browser.assert.text('#TestKOMReviewDetailDispatchBack', '1');
 			});
-		
+
 		});
-	
+
 	});
 
-	describe('KOMReviewDetailToolbarBackButtonImage', function test_KOMReviewDetailToolbarBackButtonImage () {
+	describe('KOMReviewDetailToolbarBackButtonImage', function test_KOMReviewDetailToolbarBackButtonImage() {
 
 		it('sets src', function () {
 			browser.assert.elements(`${ KOMReviewDetailToolbarBackButtonImage } #_OLSKSharedBack`, 1);
 		});
-	
+
 	});
 
-	describe('KOMReviewDetailToolbarTitle', function test_KOMReviewDetailToolbarTitle () {
-		
+	describe('KOMReviewDetailToolbarTitle', function test_KOMReviewDetailToolbarTitle() {
+
 		it('sets text', function () {
 			browser.assert.text(KOMReviewDetailToolbarTitle, kTesting.uDeck().KOMDeckName);
 		});
-	
+
 	});
 
-	describe('KOMReviewDetailToolbarCardsButton', function test_KOMReviewDetailToolbarCardsButton () {
-		
+	describe('KOMReviewDetailToolbarCardsButton', function test_KOMReviewDetailToolbarCardsButton() {
+
 		context('click', function () {
-			
+
 			before(function () {
 				browser.assert.text('#TestKOMReviewDetailDispatchBrowse', '0');
 			});
-			
+
 			before(function () {
 				return browser.pressButton(KOMReviewDetailToolbarCardsButton);
 			});
@@ -118,17 +118,17 @@ describe('KOMReviewDetail_Misc', function () {
 			it('sends KOMReviewDetailDispatchBrowse', function () {
 				browser.assert.text('#TestKOMReviewDetailDispatchBrowse', '1');
 			});
-		
+
 		});
-	
+
 	});
 
-	describe('KOMReviewDetailDiscardButton', function test_KOMReviewDetailDiscardButton () {
-		
+	describe('KOMReviewDetailDiscardButton', function test_KOMReviewDetailDiscardButton() {
+
 		context('click', function () {
 
 			context('response invalid', function () {
-				
+
 				before(function () {
 					return browser.OLSKPrompt(function () {
 						return browser.pressButton(KOMReviewDetailDiscardButton);
@@ -143,11 +143,11 @@ describe('KOMReviewDetail_Misc', function () {
 					browser.assert.text('#TestKOMReviewDetailDispatchDiscard', '0');
 					browser.assert.text('#TestKOMReviewDetailDispatchDiscardData', 'undefined');
 				});
-			
+
 			});
-			
+
 			context('response invalid', function () {
-				
+
 				before(function () {
 					return browser.OLSKPrompt(function () {
 						return browser.pressButton(KOMReviewDetailDiscardButton);
@@ -162,30 +162,30 @@ describe('KOMReviewDetail_Misc', function () {
 					browser.assert.text('#TestKOMReviewDetailDispatchDiscard', '1');
 					browser.assert.text('#TestKOMReviewDetailDispatchDiscardData', JSON.stringify(kTesting.uDeck()));
 				});
-			
+
 			});
-		
+
 		});
-	
+
 	});
 
-	describe('KOMReviewDetailRenameButton', function test_KOMReviewDetailRenameButton () {
-		
+	describe('KOMReviewDetailRenameButton', function test_KOMReviewDetailRenameButton() {
+
 		context('click', function () {
-			
+
 			before(function () {
 				browser.assert.text('#TestKOMReviewDetailDispatchUpdate', '0');
 				browser.assert.text('#TestKOMReviewDetailDispatchUpdateData', 'undefined');
 			});
-			
-			it('sets KOMReviewDetailRenameButtonPrompt response', function() {
+
+			it('sets KOMReviewDetailRenameButtonPrompt response', function () {
 				browser.assert.OLSKPromptResponse(function () {
 					return browser.pressButton(KOMReviewDetailRenameButton);
 				}, kTesting.uDeck().KOMDeckName);
 			});
 
 			context('edit', function () {
-				
+
 				before(function () {
 					return browser.OLSKPrompt(function () {
 						return browser.pressButton(KOMReviewDetailRenameButton);
@@ -202,21 +202,21 @@ describe('KOMReviewDetail_Misc', function () {
 						KOMDeckName: 'bravo',
 					})));
 				});
-			
+
 			});
-		
+
 		});
-	
+
 	});
 
-	describe('KOMReviewDetailFormAudioIsEnabledField', function test_KOMReviewDetailFormAudioIsEnabledField () {
+	describe('KOMReviewDetailFormAudioIsEnabledField', function test_KOMReviewDetailFormAudioIsEnabledField() {
 
 		const item = {
 			KOMDeckName: 'alfa',
 			$KOMDeckSpacings: kTesting.uSpacings(true),
 		};
 
-		before(function() {
+		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMReviewDetailDeck: JSON.stringify(item),
 			});
@@ -225,18 +225,18 @@ describe('KOMReviewDetail_Misc', function () {
 		it('sets type', function () {
 			browser.assert.attribute(KOMReviewDetailFormAudioIsEnabledField, 'type', 'checkbox');
 		});
-		
+
 		it('binds KOMDeckIsForwardOnly', function () {
 			browser.assert.OLSKIsChecked(KOMReviewDetailFormAudioIsEnabledField, false);
 		});
-		
+
 		context('click', function () {
-			
+
 			before(function () {
 				browser.assert.text('#TestKOMReviewDetailDispatchUpdate', '0');
 				browser.assert.text('#TestKOMReviewDetailDispatchUpdateData', 'undefined');
 			});
-			
+
 			before(function () {
 				return browser.check(KOMReviewDetailFormAudioIsEnabledField);
 			});
@@ -247,14 +247,14 @@ describe('KOMReviewDetail_Misc', function () {
 					KOMDeckAudioIsEnabled: true,
 				})));
 			});
-		
+
 		});
-	
+
 	});
 
-	describe('KOMReviewDetailFormFrontLanguageCode', function test_KOMReviewDetailFormFrontLanguageCode () {
+	describe('KOMReviewDetailFormFrontLanguageCode', function test_KOMReviewDetailFormFrontLanguageCode() {
 
-		before(function() {
+		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMReviewDetailDeck: JSON.stringify(kTesting.uDeck({
 					KOMDeckFrontLanguageCode: '',
@@ -266,10 +266,10 @@ describe('KOMReviewDetail_Misc', function () {
 		it('binds KOMDeckFrontLanguageCode', function () {
 			browser.assert.input(`${ KOMReviewDetailFormFrontLanguageCode } .KOMReviewDetailLanguageCodeField`, '');
 		});
-	
+
 	});
 
-	describe('KOMReviewDetailFormFrontSpeechIsEnabledField', function test_KOMReviewDetailFormFrontSpeechIsEnabledField () {
+	describe('KOMReviewDetailFormFrontSpeechIsEnabledField', function test_KOMReviewDetailFormFrontSpeechIsEnabledField() {
 
 		const uItem = function () {
 			return kTesting.uDeck({
@@ -278,7 +278,7 @@ describe('KOMReviewDetail_Misc', function () {
 			});
 		};
 
-		before(function() {
+		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMReviewDetailDeck: JSON.stringify(uItem()),
 			});
@@ -287,18 +287,18 @@ describe('KOMReviewDetail_Misc', function () {
 		it('sets type', function () {
 			browser.assert.attribute(KOMReviewDetailFormFrontSpeechIsEnabledField, 'type', 'checkbox');
 		});
-		
+
 		it('binds KOMDeckFrontSpeechIsEnabled', function () {
 			browser.assert.OLSKIsChecked(KOMReviewDetailFormRearSpeechIsEnabledField, false);
 		});
 
 		context('check', function () {
-			
+
 			before(function () {
 				browser.assert.text('#TestKOMReviewDetailDispatchUpdate', '0');
 				browser.assert.text('#TestKOMReviewDetailDispatchUpdateData', 'undefined');
 			});
-			
+
 			before(function () {
 				return browser.check(KOMReviewDetailFormFrontSpeechIsEnabledField);
 			});
@@ -309,12 +309,12 @@ describe('KOMReviewDetail_Misc', function () {
 					KOMDeckFrontSpeechIsEnabled: true,
 				})));
 			});
-		
+
 		});
 
 	});
 
-	describe('KOMReviewDetailFormRearSpeechIsEnabledField', function test_KOMReviewDetailFormRearSpeechIsEnabledField () {
+	describe('KOMReviewDetailFormRearSpeechIsEnabledField', function test_KOMReviewDetailFormRearSpeechIsEnabledField() {
 
 		const uItem = function () {
 			return kTesting.uDeck({
@@ -323,7 +323,7 @@ describe('KOMReviewDetail_Misc', function () {
 			});
 		};
 
-		before(function() {
+		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMReviewDetailDeck: JSON.stringify(uItem()),
 			});
@@ -332,18 +332,18 @@ describe('KOMReviewDetail_Misc', function () {
 		it('sets type', function () {
 			browser.assert.attribute(KOMReviewDetailFormRearSpeechIsEnabledField, 'type', 'checkbox');
 		});
-		
+
 		it('binds KOMDeckRearSpeechIsEnabled', function () {
 			browser.assert.OLSKIsChecked(KOMReviewDetailFormRearSpeechIsEnabledField, false);
 		});
 
 		context('check', function () {
-			
+
 			before(function () {
 				browser.assert.text('#TestKOMReviewDetailDispatchUpdate', '0');
 				browser.assert.text('#TestKOMReviewDetailDispatchUpdateData', 'undefined');
 			});
-			
+
 			before(function () {
 				return browser.check(KOMReviewDetailFormRearSpeechIsEnabledField);
 			});
@@ -354,19 +354,19 @@ describe('KOMReviewDetail_Misc', function () {
 					KOMDeckRearSpeechIsEnabled: true,
 				})));
 			});
-		
+
 		});
 
 	});
 
-	describe('KOMReviewDetailFormIsForwardOnlyField', function test_KOMReviewDetailFormIsForwardOnlyField () {
+	describe('KOMReviewDetailFormIsForwardOnlyField', function test_KOMReviewDetailFormIsForwardOnlyField() {
 
 		const item = {
 			KOMDeckName: 'alfa',
 			$KOMDeckSpacings: kTesting.uSpacings(true),
 		};
 
-		before(function() {
+		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMReviewDetailDeck: JSON.stringify(item),
 			});
@@ -375,18 +375,18 @@ describe('KOMReviewDetail_Misc', function () {
 		it('sets type', function () {
 			browser.assert.attribute(KOMReviewDetailFormIsForwardOnlyField, 'type', 'checkbox');
 		});
-		
+
 		it('binds KOMDeckIsForwardOnly', function () {
 			browser.assert.OLSKIsChecked(KOMReviewDetailFormIsForwardOnlyField, false);
 		});
-		
+
 		context('click', function () {
-			
+
 			before(function () {
 				browser.assert.text('#TestKOMReviewDetailDispatchUpdate', '0');
 				browser.assert.text('#TestKOMReviewDetailDispatchUpdateData', 'undefined');
 			});
-			
+
 			before(function () {
 				return browser.check(KOMReviewDetailFormIsForwardOnlyField);
 			});
@@ -397,24 +397,24 @@ describe('KOMReviewDetail_Misc', function () {
 					KOMDeckIsForwardOnly: true,
 				})));
 			});
-		
+
 		});
 
 		after(function () {
 			return browser.uncheck(KOMReviewDetailFormIsForwardOnlyField);
 		});
-	
+
 	});
 
-	describe('KOMReviewDetailPlayButtonReviewing', function test_KOMReviewDetailPlayButtonReviewing () {
+	describe('KOMReviewDetailPlayButtonReviewing', function test_KOMReviewDetailPlayButtonReviewing() {
 
 		context('click', function () {
-			
+
 			before(function () {
 				browser.assert.text('#TestKOMReviewDetailDispatchPlay', '0');
 				browser.assert.text('#TestKOMReviewDetailDispatchPlayData', 'undefined');
 			});
-			
+
 			before(function () {
 				return browser.pressButton(KOMReviewDetailPlayButtonReviewing);
 			});
@@ -425,15 +425,15 @@ describe('KOMReviewDetail_Misc', function () {
 					KOMReviewScheme: KOMReviewLogic.KOMReviewSchemeReviewing(),
 				}));
 			});
-		
+
 		});
 
 	});
 
-	describe('KOMReviewDetailPlayButtonUnseen', function test_KOMReviewDetailPlayButtonUnseen () {
+	describe('KOMReviewDetailPlayButtonUnseen', function test_KOMReviewDetailPlayButtonUnseen() {
 
 		context('click', function () {
-			
+
 			before(function () {
 				return browser.pressButton(KOMReviewDetailPlayButtonUnseen);
 			});
@@ -445,15 +445,15 @@ describe('KOMReviewDetail_Misc', function () {
 					KOMReviewMaxUnseenCards: 10,
 				}));
 			});
-		
+
 		});
 
 	});
 
-	describe('KOMReviewDetailPlayButtonMixed', function test_KOMReviewDetailPlayButtonMixed () {
+	describe('KOMReviewDetailPlayButtonMixed', function test_KOMReviewDetailPlayButtonMixed() {
 
 		context('click', function () {
-			
+
 			before(function () {
 				return browser.pressButton(KOMReviewDetailPlayButtonMixed);
 			});
@@ -465,14 +465,14 @@ describe('KOMReviewDetail_Misc', function () {
 					KOMReviewMaxUnseenCards: 10,
 				}));
 			});
-		
+
 		});
 
-	});	
+	});
 
-	describe('KOMReviewDetailStatsToday', function test_KOMReviewDetailStatsToday () {
+	describe('KOMReviewDetailStatsToday', function test_KOMReviewDetailStatsToday() {
 
-		before(function() {
+		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMReviewDetailDeck: JSON.stringify({
 					KOMDeckName: 'alfa',

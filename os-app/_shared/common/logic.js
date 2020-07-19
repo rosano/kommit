@@ -1,6 +1,6 @@
 const mod = {
 
-	KOMSharedDonateLinkGuard (inputData) {
+	KOMSharedDonateLinkGuard(inputData) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -10,7 +10,7 @@ const mod = {
 		}
 	},
 
-	KOMSharedGitHubLinkGuard (inputData) {
+	KOMSharedGitHubLinkGuard(inputData) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			throw new Error('KOMErrorInputNotValid');
 		}

@@ -1,7 +1,7 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 Object.entries({}).map(function (e) {
-	return global[e.shift()]  = e.pop();
+	return global[e.shift()] = e.pop();
 });
 
 const kTesting = {
@@ -18,7 +18,7 @@ const kTesting = {
 
 describe('KOMBrowse_Access', function () {
 
-	before(function() {
+	before(function () {
 		return browser.OLSKVisit(kDefaultRoute, {
 			KOMBrowseDeckSelected: JSON.stringify(kTesting.StubDeckObjectValid()),
 		});
@@ -45,7 +45,7 @@ describe('KOMBrowse_Access', function () {
 	});
 
 	context('create', function test_create() {
-		
+
 		before(function () {
 			return browser.pressButton('.KOMBrowseListToolbarCreateButton');
 		});
@@ -61,10 +61,10 @@ describe('KOMBrowse_Access', function () {
 		it('shows KOMBrowseInfoForm', function () {
 			browser.assert.elements('.KOMBrowseInfoForm', 1);
 		});
-	
+
 	});
 
-	context('discard', function test_discard () {
+	context('discard', function test_discard() {
 
 		before(function () {
 			return browser.pressButton('.KOMBrowseInfoToolbarDiscardButton');
@@ -81,7 +81,7 @@ describe('KOMBrowse_Access', function () {
 		it('hides KOMBrowseInfoForm', function () {
 			browser.assert.elements('.KOMBrowseInfoForm', 0);
 		});
-	
+
 	});
 
 });

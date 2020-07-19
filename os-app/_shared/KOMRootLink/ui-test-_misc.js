@@ -7,10 +7,6 @@ require('./controller.js').OLSKControllerRoutes().forEach(function (kDefaultRout
 		});
 
 		describe('OLSKRootLink', function () {
-			
-			it('sets OLSKRootLinkImageURL', function () {
-				browser.assert.attribute('.OLSKRootLinkImage', 'src', '/_shared/KOMRootLink/ui-assets/identity.svg');
-			});
 
 			it('sets OLSKRootLinkImageURL', function () {
 				browser.assert.attribute('.OLSKRootLinkImage', 'src', '/_shared/KOMRootLink/ui-assets/identity.svg');
@@ -19,9 +15,13 @@ require('./controller.js').OLSKControllerRoutes().forEach(function (kDefaultRout
 			it('sets OLSKRootLinkImageURL', function () {
 				browser.assert.attribute('.OLSKRootLinkImage', 'src', '/_shared/KOMRootLink/ui-assets/identity.svg');
 			});
-		
+
+			it('sets OLSKRootLinkImageURL', function () {
+				browser.assert.attribute('.OLSKRootLinkImage', 'src', '/_shared/KOMRootLink/ui-assets/identity.svg');
+			});
+
 		});
 
 	});
-	
+
 });

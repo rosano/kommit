@@ -1,6 +1,6 @@
 const mod = {
 
-	KOMBrowseSort (a, b) {
+	KOMBrowseSort(a, b) {
 		if (a.KOMCardModificationDate && b.KOMCardModificationDate) {
 			return b.KOMCardModificationDate - a.KOMCardModificationDate;
 		}
@@ -8,7 +8,7 @@ const mod = {
 		return b.KOMCardCreationDate - a.KOMCardCreationDate;
 	},
 
-	KOMBrowseFilterFunction (inputData) {
+	KOMBrowseFilterFunction(inputData) {
 		if (typeof inputData !== 'string') {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -20,7 +20,7 @@ const mod = {
 		};
 	},
 
-	KOMBrowseMatchFunction (inputData) {
+	KOMBrowseMatchFunction(inputData) {
 		if (typeof inputData !== 'string') {
 			throw new Error('KOMErrorInputNotValid');
 		}

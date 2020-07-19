@@ -18,7 +18,7 @@ const kMultiplierMultiplicandEasy = 1.3;
 
 const mod = {
 
-	KOMPlayDayGrouping (inputData) {
+	KOMPlayDayGrouping(inputData) {
 		if (!(inputData instanceof Date) || Number.isNaN(inputData.getTime())) {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -26,7 +26,7 @@ const mod = {
 		return (new Date(inputData.valueOf() - (inputData.getTimezoneOffset() / 60 + 4) * 1000 * 60 * 60)).toJSON().slice(0, 10);
 	},
 
-	KOMPlaySort (inputData) {
+	KOMPlaySort(inputData) {
 		if (!Array.isArray(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -78,7 +78,7 @@ const mod = {
 
 		return unseenAll.reduce(function (coll, item, index) {
 			coll.splice(lastIndex - width * (index + 1), 0, item);
-			
+
 			return coll;
 		}, reviewAll.reverse()).reverse();
 	},
@@ -93,7 +93,7 @@ const mod = {
 		return inputData;
 	},
 
-	KOMPlayStateIsValid (inputData) {
+	KOMPlayStateIsValid(inputData) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -119,23 +119,23 @@ const mod = {
 		return true;
 	},
 
-	KOMPlayResponseTypeAgain () {
+	KOMPlayResponseTypeAgain() {
 		return 'RESPONSE_AGAIN';
 	},
 
-	KOMPlayResponseTypeHard () {
+	KOMPlayResponseTypeHard() {
 		return 'RESPONSE_HARD';
 	},
 
-	KOMPlayResponseTypeGood () {
+	KOMPlayResponseTypeGood() {
 		return 'RESPONSE_GOOD';
 	},
 
-	KOMPlayResponseTypeEasy () {
+	KOMPlayResponseTypeEasy() {
 		return 'RESPONSE_EASY';
 	},
 
-	KOMPlayResponseTypes () {
+	KOMPlayResponseTypes() {
 		return [
 			mod.KOMPlayResponseTypeAgain(),
 			mod.KOMPlayResponseTypeHard(),
@@ -144,35 +144,35 @@ const mod = {
 		];
 	},
 
-	KOMPlayResponseIntervalAgain () {
+	KOMPlayResponseIntervalAgain() {
 		return 1000 * kIntervalAgainSeconds;
 	},
 
-	KOMPlayResponseIntervalLearn () {
+	KOMPlayResponseIntervalLearn() {
 		return 1000 * 60 * kIntervalLearnMinutes;
 	},
 
-	KOMPlayResponseIntervalGraduateDefault () {
+	KOMPlayResponseIntervalGraduateDefault() {
 		return kIntervalDefaultDays;
 	},
 
-	KOMPlayResponseIntervalGraduateEasy () {
+	KOMPlayResponseIntervalGraduateEasy() {
 		return kIntervalEasyDays;
 	},
 
-	KOMPlayResponseIntervalOverdueDivisorHard () {
+	KOMPlayResponseIntervalOverdueDivisorHard() {
 		return kIntervalOverdueDivisorHard;
 	},
 
-	KOMPlayResponseIntervalOverdueDivisorGood () {
+	KOMPlayResponseIntervalOverdueDivisorGood() {
 		return kIntervalOverdueDivisorGood;
 	},
 
-	KOMPlayResponseIntervalOverdueDivisorEasy () {
+	KOMPlayResponseIntervalOverdueDivisorEasy() {
 		return kIntervalOverdueDivisorEasy;
 	},
 
-	KOMPlayResponseIntervalOverdueDays (spacing, chronicle) {
+	KOMPlayResponseIntervalOverdueDays(spacing, chronicle) {
 		if (KOMSpacingModel.KOMSpacingModelErrorsFor(spacing)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -195,7 +195,7 @@ const mod = {
 		return (date - due) / 1000 / 60 / 60 / 24;
 	},
 
-	KOMPlayResponseIntervalOverdueBonus (spacing, chronicle) {
+	KOMPlayResponseIntervalOverdueBonus(spacing, chronicle) {
 		if (KOMSpacingModel.KOMSpacingModelErrorsFor(spacing)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -221,39 +221,39 @@ const mod = {
 		return 0;
 	},
 
-	KOMPlayResponseMultiplierDefault () {
+	KOMPlayResponseMultiplierDefault() {
 		return kMultiplierDefault;
 	},
 
-	KOMPlayResponseMultiplierMin () {
+	KOMPlayResponseMultiplierMin() {
 		return kMultiplierMin;
 	},
 
-	KOMPlayResponseMultiplierHard () {
+	KOMPlayResponseMultiplierHard() {
 		return kMultiplierHard;
 	},
 
-	KOMPlayResponseMultiplierSummandFail () {
+	KOMPlayResponseMultiplierSummandFail() {
 		return kMultiplierSummandFail;
 	},
 
-	KOMPlayResponseMultiplierSummandGood () {
+	KOMPlayResponseMultiplierSummandGood() {
 		return kMultiplierSummandGood;
 	},
 
-	KOMPlayResponseMultiplierSummandHard () {
+	KOMPlayResponseMultiplierSummandHard() {
 		return kMultiplierSummandHard;
 	},
 
-	KOMPlayResponseMultiplierSummandEasy () {
+	KOMPlayResponseMultiplierSummandEasy() {
 		return kMultiplierSummandEasy;
 	},
 
-	KOMPlayResponseMultiplierMultiplicandEasy () {
+	KOMPlayResponseMultiplierMultiplicandEasy() {
 		return kMultiplierMultiplicandEasy;
 	},
 
-	KOMPlayRespond (state, chronicle) {
+	KOMPlayRespond(state, chronicle) {
 		if (!mod.KOMPlayStateIsValid(state)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -352,7 +352,7 @@ const mod = {
 		return state;
 	},
 
-	KOMChronicleIsPrepared (inputData) {
+	KOMChronicleIsPrepared(inputData) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -376,7 +376,7 @@ const mod = {
 		return true;
 	},
 
-	KOMChronicleIsValid (inputData) {
+	KOMChronicleIsValid(inputData) {
 		if (!mod.KOMChronicleIsPrepared(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -424,7 +424,7 @@ const mod = {
 		return true;
 	},
 
-	KOMChronicleGenerateDraw (param1, param2) {
+	KOMChronicleGenerateDraw(param1, param2) {
 		if (!(param1 instanceof Date) || Number.isNaN(param1.getTime())) {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -440,7 +440,7 @@ const mod = {
 		} : {});
 	},
 
-	KOMChronicleGenerateFlip (param1, param2) {
+	KOMChronicleGenerateFlip(param1, param2) {
 		if (!(param1 instanceof Date) || Number.isNaN(param1.getTime())) {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -456,7 +456,7 @@ const mod = {
 		} : {});
 	},
 
-	KOMPlayUndo (inputData) {
+	KOMPlayUndo(inputData) {
 		if (KOMSpacingModel.KOMSpacingModelErrorsFor(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
 		}

@@ -2,19 +2,19 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 Object.entries({
 	KOMBrowseList: '.KOMBrowseList',
-	
+
 	KOMBrowseListToolbarCloseButton: '.KOMBrowseListToolbarCloseButton',
 	KOMBrowseListToolbarCloseButtonImage: '.KOMBrowseListToolbarCloseButtonImage',
-	
+
 	KOMBrowseListToolbarCreateButton: '.KOMBrowseListToolbarCreateButton',
 	KOMBrowseListToolbarCreateButtonImage: '.KOMBrowseListToolbarCreateButtonImage',
 }).map(function (e) {
-	return global[e.shift()]  = e.pop();
+	return global[e.shift()] = e.pop();
 });
 
 describe('KOMBrowseList_Access', function () {
 
-	before(function() {
+	before(function () {
 		return browser.OLSKVisit(kDefaultRoute);
 	});
 
@@ -46,9 +46,9 @@ describe('KOMBrowseList_Access', function () {
 		browser.assert.elements('.KOMBrowseListItem', 0);
 	});
 
-	context('KOMBrowseListItems', function() {
-		
-		before(function() {
+	context('KOMBrowseListItems', function () {
+
+		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMBrowseListItems: JSON.stringify([{
 					KOMCardFrontText: 'alfa',
@@ -59,7 +59,7 @@ describe('KOMBrowseList_Access', function () {
 		it('shows KOMBrowseListItem', function () {
 			browser.assert.elements('.KOMBrowseListItem', 1);
 		});
-		
+
 	});
 
 });

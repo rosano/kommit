@@ -3,10 +3,10 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 const KOMPlayLogic = require('../../../sub-play/ui-logic.js').default;
 
 const kTesting = {
-	StubPastDate () {
+	StubPastDate() {
 		return new Date(Date.now() - 1000 * 60 * 60 * 24 * 3);
 	},
-	StubChronicleObjectValid (inputData = new Date()) {
+	StubChronicleObjectValid(inputData = new Date()) {
 		return {
 			KOMChronicleDrawDate: inputData,
 			KOMChronicleFlipDate: inputData,
@@ -25,7 +25,7 @@ const kTesting = {
 
 describe('KOMReviewToday_Misc', function () {
 
-	before(function() {
+	before(function () {
 		return browser.OLSKVisit(kDefaultRoute, {
 			KOMReviewTodaySpacings: JSON.stringify([
 				kTesting.StubSpacingObjectValid([
@@ -55,7 +55,7 @@ describe('KOMReviewToday_Misc', function () {
 	});
 
 	describe('KOMReviewTodayTotalCardsValue', function test_KOMReviewTodayTotalCardsValue() {
-		
+
 		it('sets text', function () {
 			browser.assert.text(KOMReviewTodayTotalCardsValue, '3');
 		});
@@ -63,7 +63,7 @@ describe('KOMReviewToday_Misc', function () {
 	});
 
 	describe('KOMReviewTodayTimeMinutesValue', function test_KOMReviewTodayTimeMinutesValue() {
-		
+
 		it('sets text', function () {
 			browser.assert.text(KOMReviewTodayTimeMinutesValue, '0.5');
 		});
@@ -71,7 +71,7 @@ describe('KOMReviewToday_Misc', function () {
 	});
 
 	describe('KOMReviewTodayReviewAccuracyValue', function test_KOMReviewTodayReviewAccuracyValue() {
-		
+
 		it('sets text', function () {
 			browser.assert.text(KOMReviewTodayReviewAccuracyValue, '33.3');
 		});

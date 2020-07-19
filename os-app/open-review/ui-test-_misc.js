@@ -1,35 +1,35 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-describe('KOMReview_Misc', function () {	
+describe('KOMReview_Misc', function () {
 
-	before(function() {
+	before(function () {
 		return browser.OLSKVisit(kDefaultRoute);
 	});
 
 	it('assigns link:apple-touch-icon', function () {
 		browser.assert.attribute('link[rel=apple-touch-icon]', 'href', process.env.KOM_TOUCH_ICON_URL);
 	});
-	
+
 	it('assigns meta:viewport', function () {
 		browser.assert.attribute('meta[name=viewport]', 'content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0');
 	});
-	
+
 	it('assigns meta:mobile-web-app-capable', function () {
 		browser.assert.attribute('meta[name=mobile-web-app-capable]', 'content', 'yes');
 	});
-	
+
 	it('assigns meta:apple-mobile-web-app-capable', function () {
 		browser.assert.attribute('meta[name=apple-mobile-web-app-capable]', 'content', 'yes');
 	});
-	
+
 	context('create', function () {
-		
+
 		before(function () {
 			return browser.OLSKPrompt(function () {
 				return browser.pressButton('.KOMReviewMasterCreateButton');
 			}, function (dialog) {
 				dialog.response = 'alfa';
-				
+
 				return dialog;
 			});
 		});
@@ -37,11 +37,11 @@ describe('KOMReview_Misc', function () {
 		it('sets KOMDeckName', function () {
 			browser.assert.text('.KOMReviewMasterListItemName', 'alfa');
 		});
-	
+
 	});
 
 	context('rename', function () {
-		
+
 		before(function () {
 			return browser.click('.KOMReviewMasterListItem');
 		});
@@ -51,7 +51,7 @@ describe('KOMReview_Misc', function () {
 				return browser.pressButton('.KOMReviewDetailRenameButton');
 			}, function (dialog) {
 				dialog.response = 'bravo';
-				
+
 				return dialog;
 			});
 		});
@@ -63,11 +63,11 @@ describe('KOMReview_Misc', function () {
 		it('sets KOMDeckName', function () {
 			browser.assert.text('.KOMReviewMasterListItemName', 'bravo');
 		});
-	
+
 	});
 
 	describe('KOMBrowse', function test_KOMBrowse() {
-		
+
 		before(function () {
 			return browser.click('.KOMReviewMasterListItem');
 		});
@@ -85,7 +85,7 @@ describe('KOMReview_Misc', function () {
 		});
 
 		context('close', function () {
-			
+
 			before(function () {
 				browser.fill('.KOMBrowseInfoFormFrontTextField', 'alfa');
 			});
@@ -109,13 +109,13 @@ describe('KOMReview_Misc', function () {
 			it('calls ReactThrottle', function () {
 				browser.assert.text('#TestCallReactThrottle', '1');
 			});
-		
+
 		});
-				
-	});	
+
+	});
 
 	describe('KOMPlay', function test_KOMPlay() {
-		
+
 		before(function () {
 			return browser.pressButton('.KOMReviewDetailPlayButtonUnseen');
 		});
@@ -156,10 +156,10 @@ describe('KOMReview_Misc', function () {
 		after(function () {
 			return browser.pressButton('.KOMReviewDetailToolbarBackButton');
 		});
-				
+
 	});
 
-	describe('KOMReviewViewportFooter', function test_KOMReviewViewportFooter () {
+	describe('KOMReviewViewportFooter', function test_KOMReviewViewportFooter() {
 
 		it('classes OLSKMobileViewFooter', function () {
 			browser.assert.hasClass(KOMReviewViewportFooter, 'OLSKMobileViewFooter');
@@ -167,7 +167,7 @@ describe('KOMReview_Misc', function () {
 
 	});
 
-	describe('KOMReviewStorageToolbar', function test_KOMReviewStorageToolbar () {
+	describe('KOMReviewStorageToolbar', function test_KOMReviewStorageToolbar() {
 
 		before(function () {
 			return browser.pressButton('.OLSKAppToolbarStorageButton');
@@ -180,15 +180,15 @@ describe('KOMReview_Misc', function () {
 		it('classes OLSKToolbarJustify', function () {
 			browser.assert.hasClass(KOMReviewStorageToolbar, 'OLSKToolbarJustify');
 		});
-		
+
 		it('classes OLSKStorageToolbar', function () {
 			browser.assert.hasClass(KOMReviewStorageToolbar, 'OLSKStorageToolbar');
 		});
-	
+
 	});
 
 	describe('KOMReviewLauncherItemSelectDeck', function test_KOMReviewLauncherItemSelectDeck() {
-		
+
 		before(function () {
 			return browser.pressButton('.OLSKAppToolbarLauncherButton');
 		});
@@ -205,10 +205,10 @@ describe('KOMReview_Misc', function () {
 			browser.assert.text('.KOMReviewDetailToolbarTitle', 'bravo');
 		});
 
-	});	
+	});
 
-	describe('KOMReviewLauncherItemSendLoginLink', function test_KOMReviewLauncherItemSendLoginLink () {
-		
+	describe('KOMReviewLauncherItemSendLoginLink', function test_KOMReviewLauncherItemSendLoginLink() {
+
 		before(function () {
 			return browser.pressButton('.OLSKAppToolbarLauncherButton');
 		});
@@ -240,7 +240,7 @@ describe('KOMReview_Misc', function () {
 	});
 
 	describe('KOMReviewLauncherItemDebugCard', function test_KOMReviewLauncherItemDebugCard() {
-		
+
 		before(function () {
 			return browser.pressButton('.KOMReviewDetailToolbarCardsButton');
 		});

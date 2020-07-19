@@ -1,4 +1,4 @@
-exports.OLSKControllerRoutes = function() {
+exports.OLSKControllerRoutes = function () {
 	return {
 		KOMCommonIdentityRedirect: {
 			OLSKRoutePath: '/identity.svg',
@@ -8,18 +8,18 @@ exports.OLSKControllerRoutes = function() {
 	};
 };
 
-exports.OLSKControllerSharedMiddlewares = function() {
+exports.OLSKControllerSharedMiddlewares = function () {
 	return {
-		KOMSharedDonateLinkGuardMiddleware (req, res, next) {
+		KOMSharedDonateLinkGuardMiddleware(req, res, next) {
 			return next(require('./logic.js').KOMSharedDonateLinkGuard(process.env));
 		},
-		KOMSharedGitHubLinkGuardMiddleware (req, res, next) {
+		KOMSharedGitHubLinkGuardMiddleware(req, res, next) {
 			return next(require('./logic.js').KOMSharedGitHubLinkGuard(process.env));
 		},
 	};
 };
 
-exports.OLSKControllerSharedStaticAssetFolders = function() {
+exports.OLSKControllerSharedStaticAssetFolders = function () {
 	return [
 		'_shared/__external',
 	];

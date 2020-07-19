@@ -6,21 +6,21 @@ const OLSKRemoteStorage = OLSKRemoteStoragePackage.default || OLSKRemoteStorageP
 const KOMReviewDetail = new RollupStart({
 	target: document.body,
 	props: Object.assign({
-		KOMReviewDetailDispatchBack: (function _KOMReviewDetailDispatchBack () {
+		KOMReviewDetailDispatchBack: (function _KOMReviewDetailDispatchBack() {
 			window.TestKOMReviewDetailDispatchBack.innerHTML = parseInt(window.TestKOMReviewDetailDispatchBack.innerHTML) + 1;
 		}),
-		KOMReviewDetailDispatchBrowse: (function _KOMReviewDetailDispatchBrowse () {
+		KOMReviewDetailDispatchBrowse: (function _KOMReviewDetailDispatchBrowse() {
 			window.TestKOMReviewDetailDispatchBrowse.innerHTML = parseInt(window.TestKOMReviewDetailDispatchBrowse.innerHTML) + 1;
 		}),
-		KOMReviewDetailDispatchUpdate: (function _KOMReviewDetailDispatchUpdate (inputData) {
+		KOMReviewDetailDispatchUpdate: (function _KOMReviewDetailDispatchUpdate(inputData) {
 			window.TestKOMReviewDetailDispatchUpdate.innerHTML = parseInt(window.TestKOMReviewDetailDispatchUpdate.innerHTML) + 1;
 			window.TestKOMReviewDetailDispatchUpdateData.innerHTML = JSON.stringify(inputData);
 		}),
-		KOMReviewDetailDispatchPlay: (function _KOMReviewDetailDispatchPlay (inputData) {
+		KOMReviewDetailDispatchPlay: (function _KOMReviewDetailDispatchPlay(inputData) {
 			window.TestKOMReviewDetailDispatchPlay.innerHTML = parseInt(window.TestKOMReviewDetailDispatchPlay.innerHTML) + 1;
 			window.TestKOMReviewDetailDispatchPlayData.innerHTML = JSON.stringify(inputData);
 		}),
-		KOMReviewDetailDispatchDiscard: (function _KOMReviewDetailDispatchDiscard (inputData) {
+		KOMReviewDetailDispatchDiscard: (function _KOMReviewDetailDispatchDiscard(inputData) {
 			window.TestKOMReviewDetailDispatchDiscard.innerHTML = parseInt(window.TestKOMReviewDetailDispatchDiscard.innerHTML) + 1;
 			window.TestKOMReviewDetailDispatchDiscardData.innerHTML = JSON.stringify(inputData);
 		}),

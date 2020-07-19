@@ -4,7 +4,7 @@ import KOMDeckModel from '../_shared/KOMDeck/model.js';
 
 const mod = {
 
-	KOMReviewSpacingsToday (inputData) {
+	KOMReviewSpacingsToday(inputData) {
 		if (!Array.isArray(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -18,27 +18,27 @@ const mod = {
 		});
 	},
 
-	KOMReviewSchemeReviewing () {
+	KOMReviewSchemeReviewing() {
 		return 'kKOMReviewSchemeReviewing';
 	},
 
-	KOMReviewSchemeUnseen () {
+	KOMReviewSchemeUnseen() {
 		return 'kKOMReviewSchemeUnseen';
 	},
 
-	KOMReviewSchemeMixed () {
+	KOMReviewSchemeMixed() {
 		return 'kKOMReviewSchemeMixed';
 	},
 
-	KOMReviewSchemes () {
+	KOMReviewSchemes() {
 		return [
 			mod.KOMReviewSchemeReviewing(),
 			mod.KOMReviewSchemeUnseen(),
 			mod.KOMReviewSchemeMixed(),
 		];
 	},
-	
-	KOMReviewModelErrorsFor (inputData) {
+
+	KOMReviewModelErrorsFor(inputData) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -72,7 +72,7 @@ const mod = {
 		return Object.entries(errors).length ? errors : null;
 	},
 
-	KOMReviewFilter (param1, param2, param3) {
+	KOMReviewFilter(param1, param2, param3) {
 		if (!Array.isArray(param1)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -95,7 +95,7 @@ const mod = {
 				return false;
 			}
 
-			if (param3.KOMDeckIsForwardOnly && KOMSpacingModel.KOMSpacingModelIsBackward(e) ) {
+			if (param3.KOMDeckIsForwardOnly && KOMSpacingModel.KOMSpacingModelIsBackward(e)) {
 				return false;
 			}
 
@@ -111,7 +111,7 @@ const mod = {
 		});
 	},
 
-	KOMReviewDeckSort (inputData) {
+	KOMReviewDeckSort(inputData) {
 		if (!Array.isArray(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
 		}

@@ -13,7 +13,7 @@ const item = {
 			return {
 				KOMSpacingID: (i + 1).toString() + '-' + (forward ? 'forward' : 'backward'),
 				KOMSpacingChronicles: [],
-				KOMSpacingDueDate: (function() {
+				KOMSpacingDueDate: (function () {
 					if (!i) {
 						return new Date();
 					}
@@ -44,7 +44,7 @@ const item = {
 
 describe('KOMReviewMasterListItem_Misc', function () {
 
-	before(function() {
+	before(function () {
 		return browser.OLSKVisit(kDefaultRoute, {
 			KOMReviewMasterListItemObject: JSON.stringify(item),
 		});
@@ -63,11 +63,11 @@ describe('KOMReviewMasterListItem_Misc', function () {
 		it('sets tabindex', function () {
 			browser.assert.attribute(KOMReviewMasterListItem, 'tabindex', '0');
 		});
-		
+
 	});
 
 	describe('KOMReviewMasterListItemName', function test_KOMReviewMasterListItemName() {
-		
+
 		it('sets text', function () {
 			browser.assert.text(KOMReviewMasterListItemName, 'bravo');
 		});
@@ -75,7 +75,7 @@ describe('KOMReviewMasterListItem_Misc', function () {
 	});
 
 	describe('KOMReviewMasterListItemReviewValue', function test_KOMReviewMasterListItemReviewValue() {
-		
+
 		it('sets text', function () {
 			browser.assert.text(KOMReviewMasterListItemReviewValue, '1');
 		});
@@ -83,7 +83,7 @@ describe('KOMReviewMasterListItem_Misc', function () {
 	});
 
 	describe('KOMReviewMasterListItemUnseenValue', function test_KOMReviewMasterListItemUnseenValue() {
-		
+
 		it('sets text', function () {
 			browser.assert.text(KOMReviewMasterListItemUnseenValue, '1');
 		});

@@ -8,7 +8,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 
 	describe(`KOMReviewMasterListItem_Localize-${ languageCode }`, function () {
 
-		before(function() {
+		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				OLSKRoutingLanguage: languageCode,
 				KOMReviewMasterListItemObject: JSON.stringify({

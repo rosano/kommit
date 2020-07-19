@@ -2,7 +2,7 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 describe('KOMBrowse_Sync', function () {
 
-	before(function() {
+	before(function () {
 		return browser.OLSKVisit(kDefaultRoute, {
 			KOMBrowseDeckSelected: JSON.stringify(Object.assign(StubDeckObjectValid(), {
 				$KOMDeckCards: [],
@@ -22,7 +22,7 @@ describe('KOMBrowse_Sync', function () {
 		return browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
 	});
 
-	describe('ChangeDelegateCreateCard', function test_ChangeDelegateCreateCard () {
+	describe('ChangeDelegateCreateCard', function test_ChangeDelegateCreateCard() {
 
 		before(function () {
 			browser.assert.elements('.KOMBrowseListItem', 1);
@@ -41,7 +41,7 @@ describe('KOMBrowse_Sync', function () {
 		});
 
 		context('selected', function () {
-			
+
 			before(function () {
 				return browser.click('.OLSKResultsListItem:nth-child(2) .KOMBrowseListItem');
 			});
@@ -61,12 +61,12 @@ describe('KOMBrowse_Sync', function () {
 			it('skips sort', function () {
 				browser.assert.text('.KOMBrowseListItem', 'FakeChangeDelegateCreateCard FakeChangeDelegateCreateCard alfa2');
 			});
-		
+
 		});
 
 	});
 
-	describe('ChangeDelegateUpdateCard', function test_ChangeDelegateUpdateCard () {
+	describe('ChangeDelegateUpdateCard', function test_ChangeDelegateUpdateCard() {
 
 		before(function () {
 			return browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
@@ -89,7 +89,7 @@ describe('KOMBrowse_Sync', function () {
 		});
 
 		context('selected different', function () {
-			
+
 			before(function () {
 				return browser.click('.OLSKResultsListItem:nth-child(1) .KOMBrowseListItem');
 			});
@@ -113,11 +113,11 @@ describe('KOMBrowse_Sync', function () {
 			it('skips sort', function () {
 				browser.assert.text('.KOMBrowseListItem', 'bravo FakeChangeDelegateUpdateCard alfa2');
 			});
-		
+
 		});
 
 		context('selected same', function () {
-			
+
 			before(function () {
 				return browser.click('.OLSKResultsListItem:nth-child(2) .KOMBrowseListItem');
 			});
@@ -138,7 +138,7 @@ describe('KOMBrowse_Sync', function () {
 
 	});
 
-	describe('ChangeDelegateDeleteCard', function test_ChangeDelegateDeleteCard () {
+	describe('ChangeDelegateDeleteCard', function test_ChangeDelegateDeleteCard() {
 
 		before(function () {
 			return browser.click('.OLSKResultsListItem:nth-child(3) .KOMBrowseListItem');
@@ -173,7 +173,7 @@ describe('KOMBrowse_Sync', function () {
 		});
 
 		context('selected different', function () {
-			
+
 			before(function () {
 				return browser.click('.OLSKResultsListItem:nth-child(2) .KOMBrowseListItem');
 			});
@@ -201,11 +201,11 @@ describe('KOMBrowse_Sync', function () {
 			it('skips sort', function () {
 				browser.assert.text('.KOMBrowseListItem', 'bravo alfa4');
 			});
-		
+
 		});
 
 		context('selected same', function () {
-			
+
 			before(function () {
 				return browser.OLSKLauncherRun('FakeChangeDelegateCreateCard');
 			});
@@ -237,7 +237,7 @@ describe('KOMBrowse_Sync', function () {
 			it('skips sort', function () {
 				browser.assert.text('.KOMBrowseListItem', 'bravo alfa4');
 			});
-		
+
 		});
 
 	});

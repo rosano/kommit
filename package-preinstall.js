@@ -7,7 +7,7 @@
 
 	try {
 		require('glob');
-	} catch(e) {
+	} catch (e) {
 		return console.log(e);
 	}
 

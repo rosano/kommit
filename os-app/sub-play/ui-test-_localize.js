@@ -3,7 +3,7 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 const KOMPlayLogic = require('./ui-logic.js').default;
 
 const kTesting = {
-	uDeck () {
+	uDeck() {
 		return {
 			KOMDeckID: 'alfa',
 			KOMDeckName: '',
@@ -11,7 +11,7 @@ const kTesting = {
 			KOMDeckModificationDate: new Date('2019-02-23T13:56:36Z'),
 		};
 	},
-	uSpacings () {
+	uSpacings() {
 		return KOMPlayLogic._KOMPlaySortShuffle(Array.from(new Array(1)).map(function (e, i) {
 			return {
 				KOMSpacingID: (i + 1).toString() + '-forward',
@@ -39,7 +39,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 
 	describe(`KOMPlay_Localize-${ languageCode }`, function () {
 
-		before(function() {
+		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				OLSKRoutingLanguage: languageCode,
 				KOMPlaySpacings: JSON.stringify(kTesting.uSpacings()),
@@ -64,7 +64,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			before(function () {
 				return browser.pressButton(KOMPlayFlipButton);
 			});
-			
+
 			it('localizes KOMPlayResponseButtonAgain', function () {
 				browser.assert.text(KOMPlayResponseButtonAgain, uLocalized('KOMPlayResponseButtonAgainText'));
 			});
@@ -83,11 +83,11 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 
 		});
 
-		describe('speech', function test_speech () {
+		describe('speech', function test_speech() {
 
 			const items = kTesting.uSpacings(2);
 
-			before(function() {
+			before(function () {
 				return browser.OLSKVisit(kDefaultRoute, {
 					OLSKRoutingLanguage: languageCode,
 					KOMPlaySpacings: JSON.stringify(items),
@@ -107,11 +107,11 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 				before(function () {
 					return browser.pressButton(KOMPlayFlipButton);
 				});
-				
+
 				it('localizes KOMPlayHearAnswerButton', function () {
 					browser.assert.text(KOMPlayHearAnswerButton, uLocalized('KOMPlayHearAnswerButtonText'));
 				});
-			
+
 			});
 
 		});

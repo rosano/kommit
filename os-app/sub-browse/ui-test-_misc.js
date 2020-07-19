@@ -14,12 +14,12 @@ const kTesting = {
 
 describe('KOMBrowse_Misc', function () {
 
-	before(function() {
+	before(function () {
 		return browser.OLSKVisit(kDefaultRoute, {
 			KOMBrowseDeckSelected: JSON.stringify(kTesting.StubDeckObjectValid()),
 		});
 	});
-	
+
 	it('classes OLSKMobileViewInactive', function () {
 		browser.assert.hasNoClass('.KOMBrowseList', 'OLSKMobileViewInactive');
 		browser.assert.hasClass('.KOMBrowseInfo', 'OLSKMobileViewInactive');
@@ -29,11 +29,11 @@ describe('KOMBrowse_Misc', function () {
 		browser.assert.elements('.OLSKResultsListItemSelected', 0);
 	});
 
-	it('focuses OLSKMasterListFilterField', function() {
+	it('focuses OLSKMasterListFilterField', function () {
 		browser.assert.hasFocus('.OLSKMasterListFilterField');
-	});  
-    
-	context('create', function test_create () {
+	});
+
+	context('create', function test_create() {
 
 		before(function () {
 			browser.assert.elements('.OLSKResultsListItemSelected', 0);
@@ -48,7 +48,7 @@ describe('KOMBrowse_Misc', function () {
 			return browser.pressButton('.KOMBrowseListToolbarCreateButton');
 		});
 
-		it('classes OLSKMobileViewInactive', function() {
+		it('classes OLSKMobileViewInactive', function () {
 			browser.assert.hasClass('.KOMBrowseList', 'OLSKMobileViewInactive');
 			browser.assert.hasNoClass('.KOMBrowseInfo', 'OLSKMobileViewInactive');
 		});
@@ -61,7 +61,7 @@ describe('KOMBrowse_Misc', function () {
 			browser.assert.elements('.OLSKDetailPlaceholder', 0);
 		});
 
-		it('focuses KOMBrowseInfoFormFrontTextField', function() {
+		it('focuses KOMBrowseInfoFormFrontTextField', function () {
 			browser.assert.hasFocus('.KOMBrowseInfoFormFrontTextField');
 		});
 
@@ -81,13 +81,13 @@ describe('KOMBrowse_Misc', function () {
 
 	});
 
-	context('back', function test_back () {
+	context('back', function test_back() {
 
 		before(function () {
 			return browser.pressButton('.KOMBrowseInfoToolbarBackButton');
 		});
 
-		it('classes OLSKMobileViewInactive', function() {
+		it('classes OLSKMobileViewInactive', function () {
 			browser.assert.hasNoClass('.KOMBrowseList', 'OLSKMobileViewInactive');
 			browser.assert.hasClass('.KOMBrowseInfo', 'OLSKMobileViewInactive');
 		});
@@ -102,7 +102,7 @@ describe('KOMBrowse_Misc', function () {
 
 	});
 
-	context('arrow', function test_arrow () { // #pendext
+	context('arrow', function test_arrow() { // #pendext
 
 		before(function () {
 			return browser.focus('.OLSKMasterListFilterField');
@@ -112,11 +112,11 @@ describe('KOMBrowse_Misc', function () {
 			return browser.OLSKFireKeyboardEvent(browser.window, 'ArrowDown');
 		});
 
-		it('classes OLSKMasterListFocused', function() {
+		it('classes OLSKMasterListFocused', function () {
 			browser.assert.hasClass('.KOMBrowseList', 'OLSKMasterListFocused');
 		});
 
-		it('classes OLSKMobileViewInactive', function() {
+		it('classes OLSKMobileViewInactive', function () {
 			browser.assert.hasNoClass('.KOMBrowseList', 'OLSKMobileViewInactive');
 			browser.assert.hasClass('.KOMBrowseInfo', 'OLSKMobileViewInactive');
 		});
@@ -131,53 +131,53 @@ describe('KOMBrowse_Misc', function () {
 
 	});
 
-	context('tab', function test_tab () {
-		
+	context('tab', function test_tab() {
+
 		context('master focused', function () {
 
-			before(function() {
+			before(function () {
 				browser.assert.hasFocus('.OLSKMasterListFilterField');
 			});
 
-			before(function() {
+			before(function () {
 				browser.assert.hasClass('.KOMBrowseList', 'OLSKMasterListFocused');
 			});
-			
+
 			before(function () {
 				return browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
 			});
 
-			it('classes OLSKMasterListFocused', function() {
+			it('classes OLSKMasterListFocused', function () {
 				browser.assert.hasNoClass('.KOMBrowseList', 'OLSKMasterListFocused');
 			});
 
-			it('focuses KOMBrowseInfoFormFrontTextField', function() {
+			it('focuses KOMBrowseInfoFormFrontTextField', function () {
 				browser.assert.hasFocus('.KOMBrowseInfoFormFrontTextField');
 			});
-		
+
 		});
-		
+
 		context('master not focused', function () {
 
 			before(function () {
 				browser.assert.hasFocus('.KOMBrowseInfoFormFrontTextField');
 			});
-			
+
 			before(function () {
 				return browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
 			});
 
-			it.skip('focuses other field', function() {
+			it.skip('focuses other field', function () {
 				browser.assert.hasFocus('.KOMBrowseInfoFormRearTextField');
 			});
-		
+
 		});
 
 		context('shiftKey', function () {
-			
+
 			context.skip('other field focused', function () {
 
-				before(function() {
+				before(function () {
 					browser.assert.hasFocus('.KOMBrowseInfoFormRearTextField');
 				});
 
@@ -187,19 +187,19 @@ describe('KOMBrowse_Misc', function () {
 					});
 				});
 
-				it('focuses KOMBrowseInfoFormFrontTextField', function() {
+				it('focuses KOMBrowseInfoFormFrontTextField', function () {
 					browser.assert.hasFocus('.KOMBrowseInfoFormFrontTextField');
 				});
-			
+
 			});
-			
+
 			context('first field focused', function () {
 
-				before(function() {
+				before(function () {
 					browser.assert.hasFocus('.KOMBrowseInfoFormFrontTextField');
 				});
 
-				before(function() {
+				before(function () {
 					browser.assert.hasNoClass('.KOMBrowseList', 'OLSKMasterListFocused');
 				});
 
@@ -209,47 +209,47 @@ describe('KOMBrowse_Misc', function () {
 					});
 				});
 
-				it('focuses OLSKMasterListFilterField', function() {
+				it('focuses OLSKMasterListFilterField', function () {
 					browser.assert.hasFocus('.OLSKMasterListFilterField');
 				});
 
-				it('classes OLSKMasterListFocused', function() {
+				it('classes OLSKMasterListFocused', function () {
 					browser.assert.hasClass('.KOMBrowseList', 'OLSKMasterListFocused');
 				});
-			
+
 			});
-			
+
 			context('master focused', function () {
 
-				before(function() {
+				before(function () {
 					browser.assert.hasFocus('.OLSKMasterListFilterField');
 				});
 
-				before(function() {
+				before(function () {
 					browser.assert.hasClass('.KOMBrowseList', 'OLSKMasterListFocused');
 				});
-				
+
 				before(function () {
 					return browser.OLSKFireKeyboardEvent(browser.window, 'Tab', {
 						shiftKey: true,
 					});
 				});
 
-				it('classes OLSKMasterListFocused', function() {
+				it('classes OLSKMasterListFocused', function () {
 					browser.assert.hasNoClass('.KOMBrowseList', 'OLSKMasterListFocused');
 				});
 
-				it('focuses KOMBrowseInfoFormFrontTextField', function() {
+				it('focuses KOMBrowseInfoFormFrontTextField', function () {
 					browser.assert.hasFocus('.KOMBrowseInfoFormFrontTextField');
 				});
-			
+
 			});
-		
+
 		});
 
 	});
 
-	context('escape', function test_escape () {
+	context('escape', function test_escape() {
 
 		before(function () {
 			browser.fill('.KOMBrowseInfoFormFrontTextField', 'alfa');
@@ -274,17 +274,17 @@ describe('KOMBrowse_Misc', function () {
 		before(function () {
 			return browser.focus('.OLSKMasterListFilterField');
 		});
-		
-		it('focuses OLSKMasterListFilterField', function() {
+
+		it('focuses OLSKMasterListFilterField', function () {
 			browser.assert.hasFocus('.OLSKMasterListFilterField');
 		});
-		
-		it.skip('clears KOMBrowseListFilterText', function() {
+
+		it.skip('clears KOMBrowseListFilterText', function () {
 			browser.assert.input('.OLSKMasterListFilterField', '');
 		});
 
 		context('filter_empty', function () {
-			
+
 			before(function () {
 				browser.assert.text('#TestKOMBrowseListDispatchClose', '0');
 			});
@@ -296,22 +296,22 @@ describe('KOMBrowse_Misc', function () {
 			it('sends KOMBrowseListDispatchClose', function () {
 				browser.assert.text('#TestKOMBrowseListDispatchClose', '1');
 			});
-		
+
 		});
 
 	});
 
-	context('select', function test_select () {
-		
+	context('select', function test_select() {
+
 		before(function () {
 			return browser.click('.KOMBrowseListItem');
 		});
 
-		it('classes OLSKMasterListFocused', function() {
+		it('classes OLSKMasterListFocused', function () {
 			browser.assert.hasNoClass('.KOMBrowseList', 'OLSKMasterListFocused');
 		});
 
-		it('classes OLSKMobileViewInactive', function() {
+		it('classes OLSKMobileViewInactive', function () {
 			browser.assert.hasClass('.KOMBrowseList', 'OLSKMobileViewInactive');
 		});
 
@@ -319,7 +319,7 @@ describe('KOMBrowse_Misc', function () {
 			browser.assert.elements('.OLSKResultsListItemSelected', 1);
 		});
 
-		it('classes OLSKMobileViewInactive', function() {
+		it('classes OLSKMobileViewInactive', function () {
 			browser.assert.hasNoClass('.KOMBrowseInfo', 'OLSKMobileViewInactive');
 		});
 
@@ -327,13 +327,13 @@ describe('KOMBrowse_Misc', function () {
 			browser.assert.elements('.OLSKDetailPlaceholder', 0);
 		});
 
-		it('focus KOMBrowseInfoFormFrontTextField', function() {
+		it('focus KOMBrowseInfoFormFrontTextField', function () {
 			browser.assert.hasFocus('.KOMBrowseInfoFormFrontTextField');
 		});
 
 	});
 
-	context('filter', function test_filter () {
+	context('filter', function test_filter() {
 
 		before(function () {
 			return browser.pressButton('.KOMBrowseListToolbarCreateButton');
@@ -344,19 +344,19 @@ describe('KOMBrowse_Misc', function () {
 		});
 
 		context('no match', function () {
-			
+
 			before(function () {
 				browser.fill('.OLSKMasterListFilterField', 'charlie');
 			});
 
-			it('filters all KOMBrowseListItem', function() {
+			it('filters all KOMBrowseListItem', function () {
 				browser.assert.elements('.KOMBrowseListItem', 0);
 			});
 
 			it('sets KOMBrowseInfoItem', function () {
 				browser.assert.elements('.OLSKDetailPlaceholder', 1);
 			});
-		
+
 		});
 
 		context('partial match', function () {
@@ -365,7 +365,7 @@ describe('KOMBrowse_Misc', function () {
 				browser.fill('.OLSKMasterListFilterField', 'a');
 			});
 
-			it('filters partial KOMBrowseListItem', function() {
+			it('filters partial KOMBrowseListItem', function () {
 				browser.assert.elements('.KOMBrowseListItem', 2);
 			});
 
@@ -376,7 +376,7 @@ describe('KOMBrowse_Misc', function () {
 			it('sets KOMBrowseInfoItem', function () {
 				browser.assert.elements('.OLSKDetailPlaceholder', 0);
 			});
-		
+
 		});
 
 		context('exact match', function () {
@@ -385,7 +385,7 @@ describe('KOMBrowse_Misc', function () {
 				browser.fill('.OLSKMasterListFilterField', 'bravo');
 			});
 
-			it('filters exact KOMBrowseListItem', function() {
+			it('filters exact KOMBrowseListItem', function () {
 				browser.assert.elements('.KOMBrowseListItem', 1);
 			});
 
@@ -396,16 +396,16 @@ describe('KOMBrowse_Misc', function () {
 			it('sets KOMBrowseInfoItem', function () {
 				browser.assert.elements('.OLSKDetailPlaceholder', 0);
 			});
-		
+
 		});
 
 		context('clear', function () {
-			
+
 			before(function () {
 				return browser.pressButton('.OLSKInputWrapperClearButton');
 			});
 
-			it('filters no KOMBrowseListItem', function() {
+			it('filters no KOMBrowseListItem', function () {
 				browser.assert.elements('.KOMBrowseListItem', 2);
 			});
 
@@ -420,13 +420,13 @@ describe('KOMBrowse_Misc', function () {
 			it('sorts KOMBrowseListItem', function () {
 				browser.assert.text('.KOMBrowseListItemFront', 'bravoalfa');
 			});
-		
+
 		});
 
 	});
 
-	context('selection', function test_selection () {
-		
+	context('selection', function test_selection() {
+
 		before(function () {
 			return browser.click('.KOMBrowseListItem');
 		});
@@ -448,15 +448,15 @@ describe('KOMBrowse_Misc', function () {
 			it('sets no OLSKResultsListItemSelected', function () {
 				browser.assert.hasClass('.OLSKResultsListItem:first-of-type', 'OLSKResultsListItemSelected');
 			});
-		
+
 		});
 
 	});
 
-	context('edit', function test_edit () {
+	context('edit', function test_edit() {
 
 		context('title', function () {
-			
+
 			it('sets KOMBrowseListItemFront', function () {
 				browser.assert.text('.OLSKResultsListItemSelected .KOMBrowseListItemFront', 'bravo');
 			});
@@ -466,9 +466,9 @@ describe('KOMBrowse_Misc', function () {
 	});
 
 	describe.skip('front_audio', function test_front_audio() {
-		
+
 		context('record', function () {
-			
+
 			before(function () {
 				return browser.pressButton('.KOMBrowseInfoFormFrontAudio .KOMBrowseInfoAudioRecordButton');
 			});
@@ -480,11 +480,11 @@ describe('KOMBrowse_Misc', function () {
 			it('stores audio', function () {
 				browser.assert.elements('.KOMBrowseInfoFormFrontAudio .KOMBrowseInfoAudioClearButton', 1);
 			});
-		
+
 		});
-		
+
 		context('clear', function () {
-			
+
 			before(function () {
 				return browser.pressButton('.KOMBrowseInfoFormFrontAudio .KOMBrowseInfoAudioClearButton');
 			});
@@ -492,15 +492,15 @@ describe('KOMBrowse_Misc', function () {
 			it('clears audio', function () {
 				browser.assert.elements('.KOMBrowseInfoFormFrontAudio .KOMBrowseInfoAudioRecordButton', 1);
 			});
-		
+
 		});
 
 	});
 
 	describe.skip('rear_audio', function test_rear_audio() {
-		
+
 		context('record', function () {
-			
+
 			before(function () {
 				return browser.pressButton('.KOMBrowseInfoFormRearAudio .KOMBrowseInfoAudioRecordButton');
 			});
@@ -512,11 +512,11 @@ describe('KOMBrowse_Misc', function () {
 			it('stores audio', function () {
 				browser.assert.elements('.KOMBrowseInfoFormRearAudio .KOMBrowseInfoAudioClearButton', 1);
 			});
-		
+
 		});
-		
+
 		context('clear', function () {
-			
+
 			before(function () {
 				return browser.pressButton('.KOMBrowseInfoFormRearAudio .KOMBrowseInfoAudioClearButton');
 			});
@@ -524,12 +524,12 @@ describe('KOMBrowse_Misc', function () {
 			it('clears audio', function () {
 				browser.assert.elements('.KOMBrowseInfoFormRearAudio .KOMBrowseInfoAudioRecordButton', 1);
 			});
-		
+
 		});
 
 	});
 
-	context('close', function test_close () {
+	context('close', function test_close() {
 
 		before(function () {
 			browser.assert.text('#TestKOMBrowseListDispatchClose', '1');

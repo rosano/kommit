@@ -7,15 +7,15 @@ import KOMDeckModel from '../KOMDeck/model.js';
 
 const mod = {
 
-	KOMSpacingStorageCollectionName () {
+	KOMSpacingStorageCollectionName() {
 		return 'kom_spacings';
 	},
 
-	KOMSpacingStorageCollectionType () {
+	KOMSpacingStorageCollectionType() {
 		return 'kom_spacing';
 	},
 
-	KOMSpacingStoragePathForward (param1, param2) {
+	KOMSpacingStoragePathForward(param1, param2) {
 		if (KOMDeckModel.KOMDeckModelErrorsFor(param2)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -23,7 +23,7 @@ const mod = {
 		return KOMCardStorage.KOMCardStorageObjectPath(param1, param2).replace('main', 'spacing-forward');
 	},
 
-	KOMSpacingStoragePathBackward (param1, param2) {
+	KOMSpacingStoragePathBackward(param1, param2) {
 		if (KOMDeckModel.KOMDeckModelErrorsFor(param2)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -31,7 +31,7 @@ const mod = {
 		return KOMCardStorage.KOMCardStorageObjectPath(param1, param2).replace('main', 'spacing-backward');
 	},
 
-	KOMSpacingStorageMatch (inputData) {
+	KOMSpacingStorageMatch(inputData) {
 		if (typeof inputData !== 'string') {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -50,7 +50,7 @@ const mod = {
 		].includes(inputData);
 	},
 
-	KOMSpacingStorageBuild (privateClient, publicClient, changeDelegate) {
+	KOMSpacingStorageBuild(privateClient, publicClient, changeDelegate) {
 		privateClient.on('change', function (event) {
 			if (!changeDelegate) {
 				return;
@@ -75,7 +75,7 @@ const mod = {
 
 		const OLSKRemoteStorageCollectionExports = {
 
-			async _KOMSpacingStorageWrite (param1, param2, param3) {
+			async _KOMSpacingStorageWrite(param1, param2, param3) {
 				if (typeof param1 !== 'object' || param1 === null) {
 					return Promise.reject(new Error('KOMErrorInputNotValid'));
 				}
@@ -94,7 +94,7 @@ const mod = {
 				return Object.assign(param1, OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(param1Copy));
 			},
 
-			async _KOMSpacingStorageList (param1, param2) {
+			async _KOMSpacingStorageList(param1, param2) {
 				if (KOMDeckModel.KOMDeckModelErrorsFor(param2)) {
 					throw new Error('KOMErrorInputNotValid');
 				}
@@ -119,14 +119,14 @@ const mod = {
 				};
 			},
 
-			_KOMSpacingStorageDelete (param1, param2, param3) {
+			_KOMSpacingStorageDelete(param1, param2, param3) {
 				if (KOMSpacingModel.KOMSpacingModelErrorsFor(param1)) {
 					throw new Error('KOMErrorInputNotValid');
 				}
 
 				return privateClient.remove((KOMSpacingModel.KOMSpacingModelIsBackward(param1) ? mod.KOMSpacingStoragePathBackward : mod.KOMSpacingStoragePathForward)(param2, param3));
 			},
-			
+
 		};
 
 		return {
@@ -149,15 +149,15 @@ const mod = {
 		};
 	},
 
-	KOMSpacingStorageWrite (storageClient, param1, param2, param3) {
+	KOMSpacingStorageWrite(storageClient, param1, param2, param3) {
 		return storageClient.kommit[mod.KOMSpacingStorageCollectionName()]._KOMSpacingStorageWrite(param1, param2, param3);
 	},
 
-	KOMSpacingStorageList (storageClient, param1, param2) {
+	KOMSpacingStorageList(storageClient, param1, param2) {
 		return storageClient.kommit[mod.KOMSpacingStorageCollectionName()]._KOMSpacingStorageList(param1, param2);
 	},
 
-	KOMSpacingStorageDelete (storageClient, param1, param2, param3) {
+	KOMSpacingStorageDelete(storageClient, param1, param2, param3) {
 		return storageClient.kommit[mod.KOMSpacingStorageCollectionName()]._KOMSpacingStorageDelete(param1, param2, param3);
 	},
 

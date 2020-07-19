@@ -2,16 +2,16 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 Object.entries({
 	KOMBrowseListItem: '.KOMBrowseListItem',
-	
+
 	KOMBrowseListItemFront: '.KOMBrowseListItemFront',
 	KOMBrowseListItemRear: '.KOMBrowseListItemRear',
 }).map(function (e) {
-	return global[e.shift()]  = e.pop();
+	return global[e.shift()] = e.pop();
 });
 
 describe('KOMBrowseListItem_Access', function () {
 
-	before(function() {
+	before(function () {
 		return browser.OLSKVisit(kDefaultRoute, {
 			KOMBrowseListItemObject: JSON.stringify({
 				KOMCardFrontText: 'alfa',

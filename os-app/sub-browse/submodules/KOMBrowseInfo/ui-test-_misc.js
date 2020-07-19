@@ -2,9 +2,9 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 describe('KOMBrowseInfo_Misc', function () {
 
-	describe('KOMBrowseInfo', function test_KOMBrowseInfo () {
+	describe('KOMBrowseInfo', function test_KOMBrowseInfo() {
 
-		before(function() {
+		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMBrowseInfoItem: JSON.stringify({}),
 			});
@@ -23,8 +23,8 @@ describe('KOMBrowseInfo_Misc', function () {
 			before(function () {
 				browser.assert.attribute(KOMBrowseInfo, 'aria-hidden', null);
 			});
-			
-			before(function() {
+
+			before(function () {
 				return browser.OLSKVisit(kDefaultRoute, {
 					KOMBrowseInfoItem: JSON.stringify({}),
 					OLSKMobileViewInactive: true,
@@ -38,19 +38,19 @@ describe('KOMBrowseInfo_Misc', function () {
 			it('sets aria-hidden', function () {
 				browser.assert.attribute(KOMBrowseInfo, 'aria-hidden', 'true');
 			});
-		
+
 		});
 
 	});
 
-	describe('KOMBrowseInfoToolbar', function test_KOMBrowseInfoToolbar () {
+	describe('KOMBrowseInfoToolbar', function test_KOMBrowseInfoToolbar() {
 
-		before(function() {
+		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMBrowseInfoItem: JSON.stringify({}),
 			});
 		});
-		
+
 		it('classes OLSKMobileViewHeader', function () {
 			browser.assert.hasClass(KOMBrowseInfoToolbar, 'OLSKMobileViewHeader');
 		});
@@ -58,15 +58,15 @@ describe('KOMBrowseInfo_Misc', function () {
 		it('classes OLSKToolbar', function () {
 			browser.assert.hasClass(KOMBrowseInfoToolbar, 'OLSKToolbar');
 		});
-	
+
 		it('classes OLSKToolbarJustify', function () {
 			browser.assert.hasClass(KOMBrowseInfoToolbar, 'OLSKToolbarJustify');
 		});
-	
+
 	});
 
-	describe('KOMBrowseInfoToolbarBackButton', function test_KOMBrowseInfoToolbarBackButton () {
-		
+	describe('KOMBrowseInfoToolbarBackButton', function test_KOMBrowseInfoToolbarBackButton() {
+
 		it('classes OLSKLayoutButtonNoStyle', function () {
 			browser.assert.hasClass(KOMBrowseInfoToolbarBackButton, 'OLSKLayoutButtonNoStyle');
 		});
@@ -84,11 +84,11 @@ describe('KOMBrowseInfo_Misc', function () {
 		});
 
 		context('click', function () {
-			
+
 			before(function () {
 				browser.assert.text('#TestKOMBrowseInfoDispatchBack', '0');
 			});
-			
+
 			before(function () {
 				return browser.pressButton(KOMBrowseInfoToolbarBackButton);
 			});
@@ -96,21 +96,21 @@ describe('KOMBrowseInfo_Misc', function () {
 			it('sends KOMBrowseInfoDispatchBack', function () {
 				browser.assert.text('#TestKOMBrowseInfoDispatchBack', '1');
 			});
-		
+
 		});
-	
+
 	});
 
-	describe('KOMBrowseInfoToolbarBackButtonImage', function test_KOMBrowseInfoToolbarBackButtonImage () {
+	describe('KOMBrowseInfoToolbarBackButtonImage', function test_KOMBrowseInfoToolbarBackButtonImage() {
 
 		it('sets src', function () {
 			browser.assert.elements(`${ KOMBrowseInfoToolbarBackButtonImage } #_OLSKSharedBack`, 1);
 		});
-	
+
 	});
 
-	describe('KOMBrowseInfoToolbarDiscardButton', function test_KOMBrowseInfoToolbarDiscardButton () {
-		
+	describe('KOMBrowseInfoToolbarDiscardButton', function test_KOMBrowseInfoToolbarDiscardButton() {
+
 		it('classes OLSKLayoutButtonNoStyle', function () {
 			browser.assert.hasClass(KOMBrowseInfoToolbarDiscardButton, 'OLSKLayoutButtonNoStyle');
 		});
@@ -124,12 +124,12 @@ describe('KOMBrowseInfo_Misc', function () {
 		});
 
 		context('click', function () {
-			
+
 			before(function () {
 				browser.assert.text('#TestKOMBrowseInfoDispatchDiscard', '0');
 				browser.assert.text('#TestKOMBrowseInfoDispatchDiscardData', 'undefined');
 			});
-			
+
 			before(function () {
 				return browser.pressButton(KOMBrowseInfoToolbarDiscardButton);
 			});
@@ -140,19 +140,19 @@ describe('KOMBrowseInfo_Misc', function () {
 			});
 
 		});
-	
+
 	});
 
-	describe('KOMBrowseInfoToolbarDiscardButtonImage', function test_KOMBrowseInfoToolbarDiscardButtonImage () {
+	describe('KOMBrowseInfoToolbarDiscardButtonImage', function test_KOMBrowseInfoToolbarDiscardButtonImage() {
 
 		it('sets src', function () {
 			browser.assert.elements(`${ KOMBrowseInfoToolbarDiscardButtonImage } #_OLSKSharedDiscard`, 1);
 		});
-	
+
 	});
-	
-	describe('KOMBrowseInfoToolbarCreateButton', function test_KOMBrowseInfoToolbarCreateButton () {
-		
+
+	describe('KOMBrowseInfoToolbarCreateButton', function test_KOMBrowseInfoToolbarCreateButton() {
+
 		it('classes OLSKLayoutButtonNoStyle', function () {
 			browser.assert.hasClass(KOMBrowseInfoToolbarCreateButton, 'OLSKLayoutButtonNoStyle');
 		});
@@ -170,11 +170,11 @@ describe('KOMBrowseInfo_Misc', function () {
 		});
 
 		context('click', function () {
-			
+
 			before(function () {
 				browser.assert.text('#TestKOMBrowseInfoDispatchCreate', '0');
 			});
-			
+
 			before(function () {
 				return browser.pressButton(KOMBrowseInfoToolbarCreateButton);
 			});
@@ -184,20 +184,20 @@ describe('KOMBrowseInfo_Misc', function () {
 			});
 
 		});
-	
+
 	});
 
-	describe('KOMBrowseInfoToolbarCreateButtonImage', function test_KOMBrowseInfoToolbarCreateButtonImage () {
+	describe('KOMBrowseInfoToolbarCreateButtonImage', function test_KOMBrowseInfoToolbarCreateButtonImage() {
 
 		it('sets src', function () {
 			browser.assert.elements(`${ KOMBrowseInfoToolbarCreateButtonImage } #_OLSKSharedCreate`, 1);
 		});
-	
+
 	});
-	
+
 	describe('KOMBrowseInfoFormFrontTextField', function test_KOMBrowseInfoFormFrontTextField() {
-		
-		before(function() {
+
+		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMBrowseInfoItem: JSON.stringify({
 					KOMCardFrontText: 'alfa',
@@ -242,14 +242,14 @@ describe('KOMBrowseInfo_Misc', function () {
 			it('sends KOMBrowseInfoDispatchUpdate', function () {
 				browser.assert.text('#TestKOMBrowseInfoDispatchUpdate', '1');
 			});
-		
+
 		});
 
 	});
-	
+
 	describe('KOMBrowseInfoFormFrontReadButton', function test_KOMBrowseInfoFormFrontReadButton() {
 
-		before(function() {
+		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMBrowseInfoItem: JSON.stringify({
 					KOMCardFrontText: 'alfa',
@@ -264,10 +264,10 @@ describe('KOMBrowseInfo_Misc', function () {
 		it('sets disabled', function () {
 			browser.assert.attribute(KOMBrowseInfoFormFrontReadButton, 'disabled', '');
 		});
-		
+
 		context('play', function () {
 
-			before(function() {
+			before(function () {
 				return browser.OLSKVisit(kDefaultRoute, {
 					KOMBrowseInfoItem: JSON.stringify({
 						KOMCardFrontText: 'alfa',
@@ -289,7 +289,7 @@ describe('KOMBrowseInfo_Misc', function () {
 					browser.assert.text('#TestKOMBrowseInfoDispatchRead', '0');
 					browser.assert.text('#TestKOMBrowseInfoDispatchReadData', 'undefined');
 				});
-				
+
 				before(function () {
 					return browser.pressButton(KOMBrowseInfoFormFrontReadButton);
 				});
@@ -298,17 +298,17 @@ describe('KOMBrowseInfo_Misc', function () {
 					browser.assert.text('#TestKOMBrowseInfoDispatchRead', '1');
 					browser.assert.text('#TestKOMBrowseInfoDispatchReadData', 'alfa,en');
 				});
-			
+
 			});
-		
+
 		});
 
 	});
-	
+
 	describe('KOMBrowseInfoFormFrontAudio', function test_KOMBrowseInfoFormFrontAudio() {
-		
+
 		context('record', function () {
-			
+
 			before(function () {
 				return browser.pressButton(`${ KOMBrowseInfoFormFrontAudio } .KOMBrowseInfoAudioRecordButton`);
 			});
@@ -324,12 +324,12 @@ describe('KOMBrowseInfo_Misc', function () {
 			it.skip('passes KOMBrowseInfoAudioDispatchCapture', function () {
 				browser.assert.text('#TestKOMBrowseInfoAudioDispatchCapture', '1');
 			});
-		
+
 		});
-		
+
 		context('play', function () {
 
-			before(function() {
+			before(function () {
 				return browser.OLSKVisit(kDefaultRoute, {
 					KOMBrowseInfoItem: JSON.stringify({
 						KOMCardFrontText: 'alfa',
@@ -341,7 +341,7 @@ describe('KOMBrowseInfo_Misc', function () {
 			before(function () {
 				browser.assert.text('#TestKOMBrowseInfoAudioDispatchFetch', '0');
 			});
-			
+
 			before(function () {
 				return browser.pressButton(`${ KOMBrowseInfoFormFrontAudio } .KOMBrowseInfoAudioPlaybackButton`);
 			});
@@ -349,15 +349,15 @@ describe('KOMBrowseInfo_Misc', function () {
 			it('passes KOMBrowseInfoAudioDispatchFetch', function () {
 				browser.assert.text('#TestKOMBrowseInfoAudioDispatchFetch', '1');
 			});
-		
+
 		});
-		
+
 		context('clear', function () {
 
 			before(function () {
 				browser.assert.text('#TestKOMBrowseInfoAudioDispatchClear', '0');
 			});
-			
+
 			before(function () {
 				return browser.pressButton(`${ KOMBrowseInfoFormFrontAudio } .KOMBrowseInfoAudioClearButton`);
 			});
@@ -365,14 +365,14 @@ describe('KOMBrowseInfo_Misc', function () {
 			it('passes KOMBrowseInfoAudioDispatchClear', function () {
 				browser.assert.text('#TestKOMBrowseInfoAudioDispatchClear', '1');
 			});
-		
+
 		});
 
 	});
-	
+
 	describe('KOMBrowseInfoFormRearTextField', function test_KOMBrowseInfoFormRearTextField() {
-		
-		before(function() {
+
+		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMBrowseInfoItem: JSON.stringify({
 					KOMCardRearText: 'alfa',
@@ -417,15 +417,15 @@ describe('KOMBrowseInfo_Misc', function () {
 			it('sends KOMBrowseInfoDispatchUpdate', function () {
 				browser.assert.text('#TestKOMBrowseInfoDispatchUpdate', '1');
 			});
-		
+
 		});
 
 	});
-	
+
 	describe('KOMBrowseInfoFormRearAudio', function test_KOMBrowseInfoFormRearAudio() {
-		
+
 		context('record', function () {
-			
+
 			before(function () {
 				return browser.pressButton(`${ KOMBrowseInfoFormRearAudio } .KOMBrowseInfoAudioRecordButton`);
 			});
@@ -441,12 +441,12 @@ describe('KOMBrowseInfo_Misc', function () {
 			it.skip('passes KOMBrowseInfoAudioDispatchCapture', function () {
 				browser.assert.text('#TestKOMBrowseInfoAudioDispatchCapture', '1');
 			});
-		
+
 		});
-		
+
 		context('play', function () {
 
-			before(function() {
+			before(function () {
 				return browser.OLSKVisit(kDefaultRoute, {
 					KOMBrowseInfoItem: JSON.stringify({
 						KOMCardRearText: 'alfa',
@@ -458,7 +458,7 @@ describe('KOMBrowseInfo_Misc', function () {
 			before(function () {
 				browser.assert.text('#TestKOMBrowseInfoAudioDispatchFetch', '0');
 			});
-			
+
 			before(function () {
 				return browser.pressButton(`${ KOMBrowseInfoFormRearAudio } .KOMBrowseInfoAudioPlaybackButton`);
 			});
@@ -466,15 +466,15 @@ describe('KOMBrowseInfo_Misc', function () {
 			it('passes KOMBrowseInfoAudioDispatchFetch', function () {
 				browser.assert.text('#TestKOMBrowseInfoAudioDispatchFetch', '1');
 			});
-		
+
 		});
-		
+
 		context('clear', function () {
 
 			before(function () {
 				browser.assert.text('#TestKOMBrowseInfoAudioDispatchClear', '0');
 			});
-			
+
 			before(function () {
 				return browser.pressButton(`${ KOMBrowseInfoFormRearAudio } .KOMBrowseInfoAudioClearButton`);
 			});
@@ -482,14 +482,14 @@ describe('KOMBrowseInfo_Misc', function () {
 			it('passes KOMBrowseInfoAudioDispatchClear', function () {
 				browser.assert.text('#TestKOMBrowseInfoAudioDispatchClear', '1');
 			});
-		
+
 		});
 
 	});
-	
+
 	describe('KOMBrowseInfoFormNotesField', function test_KOMBrowseInfoFormNotesField() {
-		
-		before(function() {
+
+		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMBrowseInfoItem: JSON.stringify({
 					KOMCardNotes: 'alfa',
@@ -534,7 +534,7 @@ describe('KOMBrowseInfo_Misc', function () {
 			it('sends KOMBrowseInfoDispatchUpdate', function () {
 				browser.assert.text('#TestKOMBrowseInfoDispatchUpdate', '1');
 			});
-		
+
 		});
 
 	});

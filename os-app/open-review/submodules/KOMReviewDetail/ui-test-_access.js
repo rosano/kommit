@@ -8,11 +8,11 @@ Object.entries({
 	KOMReviewDetailToolbarBackButtonImage: '.KOMReviewDetailToolbarBackButtonImage',
 	KOMReviewDetailToolbarTitle: '.KOMReviewDetailToolbarTitle',
 	KOMReviewDetailToolbarCardsButton: '.KOMReviewDetailToolbarCardsButton',
-	
+
 	KOMReviewDetailStudyHeading: '.KOMReviewDetailStudyHeading',
-	
+
 	KOMReviewDetailNoCards: '.KOMReviewDetailNoCards',
-	
+
 	KOMReviewDetailForm: '.KOMReviewDetailForm',
 	KOMReviewDetailFormAudioIsEnabledField: '.KOMReviewDetailFormAudioIsEnabledField',
 	KOMReviewDetailFormAudioIsEnabledFieldLabel: '.KOMReviewDetailFormAudioIsEnabledFieldLabel',
@@ -41,11 +41,11 @@ Object.entries({
 	KOMReviewDetailRenameButton: '.KOMReviewDetailRenameButton',
 	KOMReviewDetailDiscardButton: '.KOMReviewDetailDiscardButton',
 }).map(function (e) {
-	return global[e.shift()]  = e.pop();
+	return global[e.shift()] = e.pop();
 });
 
 const kTesting = {
-	uSpacings () {
+	uSpacings() {
 		return Array.from(new Array(2)).map(function (e, i) {
 			return {
 				KOMSpacingID: (i + 1).toString() + '-forward',
@@ -66,7 +66,7 @@ const kTesting = {
 
 describe('KOMReviewDetail_Access', function () {
 
-	before(function() {
+	before(function () {
 		return browser.OLSKVisit(kDefaultRoute, {
 			KOMReviewDetailDeck: JSON.stringify({
 				KOMDeckName: 'alfa',
@@ -175,9 +175,9 @@ describe('KOMReviewDetail_Access', function () {
 		browser.assert.elements(KOMReviewDetailDiscardButton, 1);
 	});
 
-	context('today', function test_today () {
+	context('today', function test_today() {
 
-		before(function() {
+		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMReviewDetailDeck: JSON.stringify({
 					KOMDeckName: 'alfa',
@@ -214,7 +214,7 @@ describe('KOMReviewDetail_Access', function () {
 			browser.assert.elements(KOMReviewDetailStatsToday, 0);
 		});
 
-		context('reviewing', function test_reviewing () {
+		context('reviewing', function test_reviewing() {
 
 			it('shows KOMReviewDetailPlayButtonReviewing', function () {
 				browser.assert.elements(KOMReviewDetailPlayButtonReviewing, 1);
@@ -230,9 +230,9 @@ describe('KOMReviewDetail_Access', function () {
 
 		});
 
-		context('unseen', function test_unseen () {
+		context('unseen', function test_unseen() {
 
-			before(function() {
+			before(function () {
 				return browser.OLSKVisit(kDefaultRoute, {
 					KOMReviewDetailDeck: JSON.stringify({
 						KOMDeckName: 'alfa',
@@ -255,9 +255,9 @@ describe('KOMReviewDetail_Access', function () {
 
 		});
 
-		context('mixed', function test_mixed () {
+		context('mixed', function test_mixed() {
 
-			before(function() {
+			before(function () {
 				return browser.OLSKVisit(kDefaultRoute, {
 					KOMReviewDetailDeck: JSON.stringify({
 						KOMDeckName: 'alfa',
@@ -290,9 +290,9 @@ describe('KOMReviewDetail_Access', function () {
 
 	});
 
-	context('finished', function test_finished () {
+	context('finished', function test_finished() {
 
-		before(function() {
+		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMReviewDetailDeck: JSON.stringify({
 					KOMDeckName: 'alfa',
@@ -335,7 +335,7 @@ describe('KOMReviewDetail_Access', function () {
 		});
 
 		context('change direction', function () {
-			
+
 			before(function () {
 				return browser.uncheck(KOMReviewDetailFormIsForwardOnlyField);
 			});
@@ -351,7 +351,7 @@ describe('KOMReviewDetail_Access', function () {
 			it('hides KOMReviewDetailNoSpacings', function () {
 				browser.assert.elements(KOMReviewDetailNoSpacings, 0);
 			});
-		
+
 		});
 
 	});

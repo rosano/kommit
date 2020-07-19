@@ -2,7 +2,7 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 describe('KOMBrowseInfoAudio_Misc', function () {
 
-	before(function() {
+	before(function () {
 		return browser.OLSKVisit(kDefaultRoute, {
 			KOMBrowseInfoAudioItem: JSON.stringify({
 				KOMCardID: 'alfa',
@@ -11,7 +11,7 @@ describe('KOMBrowseInfoAudio_Misc', function () {
 		});
 	});
 
-	describe('KOMBrowseInfoAudioRecordButton', function test_KOMBrowseInfoAudioRecordButton () {
+	describe('KOMBrowseInfoAudioRecordButton', function test_KOMBrowseInfoAudioRecordButton() {
 
 		const _log = [];
 		const uLog = function (inputData) {
@@ -21,11 +21,11 @@ describe('KOMBrowseInfoAudio_Misc', function () {
 		};
 
 		context('click', function () {
-			
+
 			before(function () {
 				browser.assert.text('#TestKOMBrowseInfoAudioLog', '');
 			});
-			
+
 			before(function () {
 				return browser.pressButton(KOMBrowseInfoAudioRecordButton);
 			});
@@ -33,11 +33,11 @@ describe('KOMBrowseInfoAudio_Misc', function () {
 			it('starts record', function () {
 				browser.assert.text('#TestKOMBrowseInfoAudioLog', uLog('record'));
 			});
-		
+
 		});
 
 		context('click during recording', function () {
-			
+
 			before(function () {
 				browser.assert.text('#TestKOMBrowseInfoAudioDispatchCapture', '0');
 				browser.assert.text('#TestKOMBrowseInfoAudioDispatchCaptureData', 'undefined');
@@ -50,19 +50,19 @@ describe('KOMBrowseInfoAudio_Misc', function () {
 			it('stops record', function () {
 				browser.assert.text('#TestKOMBrowseInfoAudioLog', uLog('stop'));
 			});
-			
+
 			it('sends KOMBrowseInfoAudioDispatchCapture', function () {
 				browser.assert.text('#TestKOMBrowseInfoAudioDispatchCapture', '1');
 				browser.assert.text('#TestKOMBrowseInfoAudioDispatchCaptureData', JSON.stringify('KOMCardFrontAudio'));
 			});
-		
+
 		});
 
 	});
 
 	context('KOMBrowseInfoAudioItemProperty', function () {
-		
-		before(function() {
+
+		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMBrowseInfoAudioItem: JSON.stringify({
 					KOMCardID: 'alfa',
@@ -79,10 +79,10 @@ describe('KOMBrowseInfoAudio_Misc', function () {
 			return _log.join(',');
 		};
 
-		describe('KOMBrowseInfoAudioPlaybackButton', function test_KOMBrowseInfoAudioPlaybackButton () {
+		describe('KOMBrowseInfoAudioPlaybackButton', function test_KOMBrowseInfoAudioPlaybackButton() {
 
 			context('click', function () {
-				
+
 				before(function () {
 					browser.assert.text('#TestKOMBrowseInfoAudioLog', '');
 				});
@@ -100,15 +100,15 @@ describe('KOMBrowseInfoAudio_Misc', function () {
 					browser.assert.text('#TestKOMBrowseInfoAudioDispatchFetch', '1');
 					browser.assert.text('#TestKOMBrowseInfoAudioDispatchFetchData', JSON.stringify('KOMCardFrontAudio'));
 				});
-				
+
 				it('starts play', function () {
 					browser.assert.text('#TestKOMBrowseInfoAudioLog', uLog('play:bravo'));
 				});
-			
+
 			});
 
 			context('click during playback', function () {
-				
+
 				before(function () {
 					return browser.pressButton(KOMBrowseInfoAudioPlaybackButton);
 				});
@@ -116,15 +116,15 @@ describe('KOMBrowseInfoAudio_Misc', function () {
 				it('starts play', function () {
 					browser.assert.text('#TestKOMBrowseInfoAudioLog', uLog('stop'));
 				});
-			
+
 			});
 
 		});
 
-		describe('KOMBrowseInfoAudioClearButton', function test_KOMBrowseInfoAudioClearButton () {
+		describe('KOMBrowseInfoAudioClearButton', function test_KOMBrowseInfoAudioClearButton() {
 
 			context('click', function () {
-				
+
 				before(function () {
 					browser.assert.text('#TestKOMBrowseInfoAudioDispatchClear', '0');
 					browser.assert.text('#TestKOMBrowseInfoAudioDispatchClearData', 'undefined');
@@ -142,11 +142,11 @@ describe('KOMBrowseInfoAudio_Misc', function () {
 					browser.assert.text('#TestKOMBrowseInfoAudioDispatchClear', '1');
 					browser.assert.text('#TestKOMBrowseInfoAudioDispatchClearData', JSON.stringify('KOMCardFrontAudio'));
 				});
-			
+
 			});
 
 			context('click during playback', function () {
-				
+
 				before(function () {
 					return browser.pressButton(KOMBrowseInfoAudioPlaybackButton);
 				});
@@ -158,7 +158,7 @@ describe('KOMBrowseInfoAudio_Misc', function () {
 				it('stops playback', function () {
 					browser.assert.text('#TestKOMBrowseInfoAudioLog', uLog('play:bravo,stop,clear'));
 				});
-			
+
 			});
 
 		});

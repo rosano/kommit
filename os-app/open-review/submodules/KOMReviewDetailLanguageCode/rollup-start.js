@@ -3,7 +3,7 @@ import RollupStart from './main.svelte';
 const KOMReviewDetailLanguageCode = new RollupStart({
 	target: document.body,
 	props: Object.assign({
-		KOMReviewDetailLanguageCodeDispatchUpdate: (function _KOMReviewDetailLanguageCodeDispatchUpdate (inputData) {
+		KOMReviewDetailLanguageCodeDispatchUpdate: (function _KOMReviewDetailLanguageCodeDispatchUpdate(inputData) {
 			window.TestKOMReviewDetailLanguageCodeDispatchUpdate.innerHTML = parseInt(window.TestKOMReviewDetailLanguageCodeDispatchUpdate.innerHTML) + 1;
 			window.TestKOMReviewDetailLanguageCodeDispatchUpdateData.innerHTML = JSON.stringify(inputData);
 		}),

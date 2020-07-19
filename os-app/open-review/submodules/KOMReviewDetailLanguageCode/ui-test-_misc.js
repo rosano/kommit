@@ -2,7 +2,7 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 describe('KOMReviewDetailLanguageCode_Misc', function () {
 
-	before(function() {
+	before(function () {
 		return browser.OLSKVisit(kDefaultRoute, {
 			KOMReviewDetailLanguageCodeItem: JSON.stringify({
 				KOMDeckName: 'alfa',
@@ -12,16 +12,16 @@ describe('KOMReviewDetailLanguageCode_Misc', function () {
 		});
 	});
 
-	describe('KOMReviewDetailLanguageCodeFieldOptionUnspecified', function test_KOMReviewDetailLanguageCodeFieldOptionUnspecified () {
-		
+	describe('KOMReviewDetailLanguageCodeFieldOptionUnspecified', function test_KOMReviewDetailLanguageCodeFieldOptionUnspecified() {
+
 		it('sets value', function () {
 			browser.assert.attribute(KOMReviewDetailLanguageCodeFieldOptionUnspecified, 'value', '');
 		});
 
 	});
 
-	describe('KOMReviewDetailLanguageCodeField', function test_KOMReviewDetailLanguageCodeField () {
-		
+	describe('KOMReviewDetailLanguageCodeField', function test_KOMReviewDetailLanguageCodeField() {
+
 		it('sets value', function () {
 			browser.assert.input(KOMReviewDetailLanguageCodeField, '');
 		});
@@ -35,12 +35,12 @@ describe('KOMReviewDetailLanguageCode_Misc', function () {
 		});
 
 		context('select', function () {
-			
+
 			before(function () {
 				browser.assert.text('#TestKOMReviewDetailLanguageCodeDispatchUpdate', '0');
 				browser.assert.text('#TestKOMReviewDetailLanguageCodeDispatchUpdateData', 'undefined');
 			});
-			
+
 			before(function () {
 				return browser.select(KOMReviewDetailLanguageCodeField, 'bravo');
 			});
@@ -52,12 +52,12 @@ describe('KOMReviewDetailLanguageCode_Misc', function () {
 					KOMDeckFrontLanguageCode: 'bravo',
 				}));
 			});
-		
+
 		});
 
 		context('KOMReviewDetailLanguageCodeItemProperty', function () {
-			
-			before(function() {
+
+			before(function () {
 				return browser.OLSKVisit(kDefaultRoute, {
 					KOMReviewDetailLanguageCodeItem: JSON.stringify({
 						KOMDeckName: 'alfa',
@@ -75,7 +75,7 @@ describe('KOMReviewDetailLanguageCode_Misc', function () {
 			it.skip('sets tabindex', function () {
 				browser.assert.attribute(KOMReviewDetailLanguageCodeField, 'tabindex', '-1');
 			});
-		
+
 		});
 
 	});

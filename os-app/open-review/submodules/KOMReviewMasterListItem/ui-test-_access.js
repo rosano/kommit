@@ -9,12 +9,12 @@ Object.entries({
 	KOMReviewMasterListItemUnseenValue: '.KOMReviewMasterListItemUnseenValue',
 	KOMReviewMasterListItemUnseenLabel: '.KOMReviewMasterListItemUnseenLabel',
 }).map(function (e) {
-	return global[e.shift()]  = e.pop();
+	return global[e.shift()] = e.pop();
 });
 
 describe('KOMReviewMasterListItem_Access', function () {
 
-	before(function() {
+	before(function () {
 		return browser.OLSKVisit(kDefaultRoute, {
 			KOMReviewMasterListItemObject: JSON.stringify({
 				KOMDeckName: 'alfa',
@@ -26,7 +26,7 @@ describe('KOMReviewMasterListItem_Access', function () {
 	it('shows KOMReviewMasterListItem', function () {
 		browser.assert.elements(KOMReviewMasterListItem, 1);
 	});
-	
+
 	it('shows KOMReviewMasterListItemName', function () {
 		browser.assert.elements(KOMReviewMasterListItemName, 1);
 	});

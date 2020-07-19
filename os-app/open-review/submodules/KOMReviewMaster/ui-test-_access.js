@@ -5,15 +5,15 @@ Object.entries({
 
 	KOMReviewMasterToolbar: '.KOMReviewMasterToolbar',
 	KOMReviewMasterToolbarTitle: '.KOMReviewMasterToolbarTitle',
-	
+
 	KOMReviewMasterCreateButton: '.KOMReviewMasterCreateButton',
 }).map(function (e) {
-	return global[e.shift()]  = e.pop();
+	return global[e.shift()] = e.pop();
 });
 
 describe('KOMReviewMaster_Access', function () {
 
-	before(function() {
+	before(function () {
 		return browser.OLSKVisit(kDefaultRoute);
 	});
 
@@ -37,9 +37,9 @@ describe('KOMReviewMaster_Access', function () {
 		browser.assert.elements('.KOMReviewMasterListItem', 0);
 	});
 
-	context('KOMReviewMasterItems', function() {
-		
-		before(function() {
+	context('KOMReviewMasterItems', function () {
+
+		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMReviewMasterItems: JSON.stringify([{
 					KOMDeckName: 'alfa',
@@ -51,7 +51,7 @@ describe('KOMReviewMaster_Access', function () {
 		it('shows KOMReviewMasterListItem', function () {
 			browser.assert.elements('.KOMReviewMasterListItem', 1);
 		});
-		
+
 	});
 
 });

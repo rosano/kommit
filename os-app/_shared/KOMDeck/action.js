@@ -6,7 +6,7 @@ import KOMCardAction from '../KOMCard/action.js';
 
 const mod = {
 
-	async KOMDeckActionCreate (storageClient, inputData) {
+	async KOMDeckActionCreate(storageClient, inputData) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			return Promise.reject(new Error('KOMErrorInputNotValid'));
 		}
@@ -20,7 +20,7 @@ const mod = {
 		}, inputData));
 	},
 
-	async KOMDeckActionUpdate (storageClient, inputData) {
+	async KOMDeckActionUpdate(storageClient, inputData) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			return Promise.reject(new Error('KOMErrorInputNotValid'));
 		}
@@ -30,7 +30,7 @@ const mod = {
 		}));
 	},
 
-	async KOMDeckActionDelete (storageClient, inputData) {
+	async KOMDeckActionDelete(storageClient, inputData) {
 		await Promise.all((await KOMCardAction.KOMCardActionList(storageClient, inputData)).map(function (e) {
 			return KOMCardAction.KOMCardActionDelete(storageClient, e, inputData);
 		}));
@@ -38,10 +38,10 @@ const mod = {
 		return await KOMDeckStorage.KOMDeckStorageDelete(storageClient, inputData);
 	},
 
-	async KOMDeckActionList (storageClient) {
+	async KOMDeckActionList(storageClient) {
 		return Object.values(await KOMDeckStorage.KOMDeckStorageList(storageClient));
 	},
-	
+
 };
-	
+
 export default mod;

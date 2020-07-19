@@ -11,8 +11,8 @@ describe('KOMVitrineRouteGuard', function test_KOMVitrineRouteGuard() {
 		};
 	};
 
-	it('throws if not object', function() {
-		throws(function() {
+	it('throws if not object', function () {
+		throws(function () {
 			mainModule.KOMVitrineRouteGuard(null);
 		}, /KOMErrorInputNotValid/);
 	});

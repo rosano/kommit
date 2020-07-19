@@ -1,6 +1,6 @@
 const mod = {
 
-	KOMCardModelErrorsFor (inputData, options = {}) {
+	KOMCardModelErrorsFor(inputData, options = {}) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -78,7 +78,7 @@ const mod = {
 		return Object.entries(errors).length ? errors : null;
 	},
 
-	KOMCardModelAudioFields () {
+	KOMCardModelAudioFields() {
 		return [
 			'KOMCardFrontAudio',
 			'KOMCardRearAudio',

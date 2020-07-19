@@ -7,11 +7,11 @@ const KOMReviewMaster = new RollupStart({
 	target: document.body,
 	props: Object.assign({
 		KOMReviewMasterItems: [],
-		KOMReviewMasterDispatchCreate (inputData) {
+		KOMReviewMasterDispatchCreate(inputData) {
 			window.TestKOMReviewMasterDispatchCreate.innerHTML = parseInt(window.TestKOMReviewMasterDispatchCreate.innerHTML) + 1;
 			window.TestKOMReviewMasterDispatchCreateData.innerHTML = inputData;
 		},
-		KOMReviewMasterDispatchSelect (inputData) {
+		KOMReviewMasterDispatchSelect(inputData) {
 			window.TestKOMReviewMasterDispatchSelect.innerHTML = parseInt(window.TestKOMReviewMasterDispatchSelect.innerHTML) + 1;
 			window.TestKOMReviewMasterDispatchSelectData.innerHTML = JSON.stringify(inputData);
 		},

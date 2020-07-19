@@ -3,7 +3,7 @@ import KOMPlayLogic from '../../../sub-play/ui-logic.js';
 
 const mod = {
 
-	KOMReviewTodayTotalCards (inputData) {
+	KOMReviewTodayTotalCards(inputData) {
 		if (!Array.isArray(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -23,7 +23,7 @@ const mod = {
 		}, 0);
 	},
 
-	KOMReviewTodayTotalMilliseconds (inputData) {
+	KOMReviewTodayTotalMilliseconds(inputData) {
 		if (!Array.isArray(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -37,7 +37,7 @@ const mod = {
 		}, 0);
 	},
 
-	KOMReviewTodayMinutes (inputData) {
+	KOMReviewTodayMinutes(inputData) {
 		if (typeof inputData !== 'number') {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -45,12 +45,12 @@ const mod = {
 		return Math.round(inputData / 1000 / 60 * 10) / 10;
 	},
 
-	KOMReviewTodayReviewAccuracy (inputData) {
+	KOMReviewTodayReviewAccuracy(inputData) {
 		if (!Array.isArray(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		return (function(scores) {
+		return (function (scores) {
 			if (!scores.length) {
 				return 0;
 			}
@@ -68,12 +68,12 @@ const mod = {
 			}
 
 			if (!e.KOMSpacingChronicles.filter(function (e) {
-				if (items.includes(e)) {
-					return false;
-				}
+					if (items.includes(e)) {
+						return false;
+					}
 
-				return e.KOMChronicleMultiplier;
-			}).length) {
+					return e.KOMChronicleMultiplier;
+				}).length) {
 				return false;
 			}
 
@@ -87,7 +87,7 @@ const mod = {
 		}));
 	},
 
-	KOMReviewTodayPercentage (inputData) {
+	KOMReviewTodayPercentage(inputData) {
 		if (typeof inputData !== 'number') {
 			throw new Error('KOMErrorInputNotValid');
 		}

@@ -3,7 +3,7 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 const KOMPlayLogic = require('./ui-logic.js').default;
 
 const kTesting = {
-	uDeck () {
+	uDeck() {
 		return {
 			KOMDeckID: 'alfa',
 			KOMDeckName: '',
@@ -11,7 +11,7 @@ const kTesting = {
 			KOMDeckModificationDate: new Date('2019-02-23T13:56:36Z'),
 		};
 	},
-	uSpacings () {
+	uSpacings() {
 		return Array.from(new Array(2)).map(function (e, i) {
 			return {
 				KOMSpacingID: (i + 1).toString() + '-' + (i >= 2 ? 'backward' : 'forward'),
@@ -37,7 +37,7 @@ Object.entries({
 	KOMPlayToolbar: '.KOMPlayToolbar',
 	KOMPlayToolbarUndoButton: '.KOMPlayToolbarUndoButton',
 	KOMPlayToolbarDoneButton: '.KOMPlayToolbarDoneButton',
-	
+
 	KOMPlayBody: '.KOMPlayBody',
 
 	KOMPlayHear: '.KOMPlayHear',
@@ -56,12 +56,12 @@ Object.entries({
 	KOMPlayResponseButtonGood: '.KOMPlayResponseButtonGood',
 	KOMPlayResponseButtonEasy: '.KOMPlayResponseButtonEasy',
 }).map(function (e) {
-	return global[e.shift()]  = e.pop();
+	return global[e.shift()] = e.pop();
 });
 
 describe('KOMPlay_Access', function () {
 
-	before(function() {
+	before(function () {
 		return browser.OLSKVisit(kDefaultRoute, {
 			KOMPlaySpacings: JSON.stringify(kTesting.uSpacings()),
 			KOMPlayDeck: JSON.stringify(kTesting.uDeck()),
@@ -133,7 +133,7 @@ describe('KOMPlay_Access', function () {
 		before(function () {
 			return browser.pressButton(KOMPlayFlipButton);
 		});
-		
+
 		it('shows KOMPlayCardAnswer', function () {
 			browser.assert.elements(KOMPlayCardAnswer, 1);
 		});
@@ -161,7 +161,7 @@ describe('KOMPlay_Access', function () {
 		it('shows KOMPlayResponseButtonEasy', function () {
 			browser.assert.elements(KOMPlayResponseButtonEasy, 1);
 		});
-	
+
 	});
 
 	context('next', function () {
@@ -169,7 +169,7 @@ describe('KOMPlay_Access', function () {
 		before(function () {
 			return browser.pressButton(KOMPlayResponseButtonEasy);
 		});
-		
+
 		it('hides KOMPlayCardAnswer', function () {
 			browser.assert.elements(KOMPlayCardAnswer, 0);
 		});
@@ -197,7 +197,7 @@ describe('KOMPlay_Access', function () {
 		it('hides KOMPlayResponseButtonEasy', function () {
 			browser.assert.elements(KOMPlayResponseButtonEasy, 0);
 		});
-	
+
 	});
 
 	context('KOMPlayCard_click', function () {
@@ -205,11 +205,11 @@ describe('KOMPlay_Access', function () {
 		before(function () {
 			return browser.pressButton(KOMPlayToolbarUndoButton);
 		});
-		
+
 		before(function () {
 			return browser.click(KOMPlayCard);
 		});
-		
+
 		it('shows KOMPlayCardAnswer', function () {
 			browser.assert.elements(KOMPlayCardAnswer, 1);
 		});
@@ -237,10 +237,10 @@ describe('KOMPlay_Access', function () {
 		it('shows KOMPlayResponseButtonEasy', function () {
 			browser.assert.elements(KOMPlayResponseButtonEasy, 1);
 		});
-	
+
 	});
 
-	describe('speech_front', function test_speech_front () {
+	describe('speech_front', function test_speech_front() {
 
 		const items = kTesting.uSpacings(1).map(function (e, i) {
 			return Object.assign(e, i ? {
@@ -248,7 +248,7 @@ describe('KOMPlay_Access', function () {
 			} : {});
 		});
 
-		before(function() {
+		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMPlaySpacings: JSON.stringify(items),
 				KOMPlayDeck: JSON.stringify(Object.assign(kTesting.uDeck(), {
@@ -270,11 +270,11 @@ describe('KOMPlay_Access', function () {
 			before(function () {
 				return browser.pressButton(KOMPlayFlipButton);
 			});
-			
+
 			it('hides KOMPlayHearAnswerButton', function () {
 				browser.assert.elements(KOMPlayHearAnswerButton, 0);
 			});
-		
+
 		});
 
 		context('backward', function () {
@@ -282,11 +282,11 @@ describe('KOMPlay_Access', function () {
 			before(function () {
 				return browser.pressButton(KOMPlayResponseButtonGood);
 			});
-			
+
 			it('hides KOMPlayHearQuestionButton', function () {
 				browser.assert.elements(KOMPlayHearQuestionButton, 0);
 			});
-		
+
 		});
 
 		context('backward_flip', function () {
@@ -294,16 +294,16 @@ describe('KOMPlay_Access', function () {
 			before(function () {
 				return browser.pressButton(KOMPlayFlipButton);
 			});
-			
+
 			it('shows KOMPlayHearAnswerButton', function () {
 				browser.assert.elements(KOMPlayHearAnswerButton, 1);
 			});
-		
+
 		});
 
 	});
 
-	describe('speech_rear', function test_speech_rear () {
+	describe('speech_rear', function test_speech_rear() {
 
 		const items = kTesting.uSpacings(1).map(function (e, i) {
 			return Object.assign(e, i ? {
@@ -311,7 +311,7 @@ describe('KOMPlay_Access', function () {
 			} : {});
 		});
 
-		before(function() {
+		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMPlaySpacings: JSON.stringify(items),
 				KOMPlayDeck: JSON.stringify(Object.assign(kTesting.uDeck(), {
@@ -337,11 +337,11 @@ describe('KOMPlay_Access', function () {
 			it('shows KOMPlayHear', function () {
 				browser.assert.elements(KOMPlayHear, 1);
 			});
-			
+
 			it('shows KOMPlayHearAnswerButton', function () {
 				browser.assert.elements(KOMPlayHearAnswerButton, 1);
 			});
-		
+
 		});
 
 		context('backward', function () {
@@ -349,11 +349,11 @@ describe('KOMPlay_Access', function () {
 			before(function () {
 				return browser.pressButton(KOMPlayResponseButtonGood);
 			});
-			
+
 			it('shows KOMPlayHearQuestionButton', function () {
 				browser.assert.elements(KOMPlayHearQuestionButton, 1);
 			});
-		
+
 		});
 
 		context('backward_flip', function () {
@@ -361,11 +361,11 @@ describe('KOMPlay_Access', function () {
 			before(function () {
 				return browser.pressButton(KOMPlayFlipButton);
 			});
-			
+
 			it('hides KOMPlayHearAnswerButton', function () {
 				browser.assert.elements(KOMPlayHearAnswerButton, 0);
 			});
-		
+
 		});
 
 	});

@@ -21,13 +21,15 @@ const KOMSpacingStorage = require('./os-app/_shared/KOMSpacing/storage.js').defa
 		OLSKOptionIncludeDebug: true,
 	});
 
-	before(function() {
-		global.KOMTestingStorageClient = new RemoteStorage({ modules: [ storageModule ] });
+	before(function () {
+		global.KOMTestingStorageClient = new RemoteStorage({
+			modules: [storageModule]
+		});
 
 		global.KOMTestingStorageClient.access.claim(storageModule.name, 'rw');
 	});
 
-	beforeEach(function() {
+	beforeEach(function () {
 		return global.KOMTestingStorageClient[storageModule.name].__DEBUG.__OLSKRemoteStorageReset();
 	});
 })();
@@ -61,8 +63,8 @@ const KOMSpacingStorage = require('./os-app/_shared/KOMSpacing/storage.js').defa
 				KOMSpacingChronicles: [],
 			};
 		},
-		
+
 	}).map(function (e) {
-		return global[e.shift()]  = e.pop();
+		return global[e.shift()] = e.pop();
 	});
 })();

@@ -1,6 +1,6 @@
 const mod = {
 
-	KOMVitrineRouteGuard (inputData) {
+	KOMVitrineRouteGuard(inputData) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			throw new Error('KOMErrorInputNotValid');
 		}

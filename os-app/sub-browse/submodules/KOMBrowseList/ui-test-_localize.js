@@ -8,7 +8,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 
 	describe(`KOMBrowseList_Localize-${ languageCode }`, function () {
 
-		before(function() {
+		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				OLSKRoutingLanguage: languageCode,
 			});
@@ -17,7 +17,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 		it('localizes KOMBrowseListToolbarCloseButton', function () {
 			browser.assert.attribute(KOMBrowseListToolbarCloseButton, 'title', uLocalized('KOMBrowseListToolbarCloseButtonText'));
 		});
-	
+
 		it('localizes KOMBrowseListToolbarCreateButton', function () {
 			browser.assert.attribute(KOMBrowseListToolbarCreateButton, 'title', uLocalized('KOMBrowseListToolbarCreateButtonText'));
 		});

@@ -8,7 +8,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 
 	describe(`KOMBrowseInfoAudio_Localize-${ languageCode }`, function () {
 
-		before(function() {
+		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				OLSKRoutingLanguage: languageCode,
 				KOMBrowseInfoAudioItem: JSON.stringify({
@@ -23,7 +23,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 		});
 
 		context('click KOMBrowseInfoAudioRecordButton', function () {
-			
+
 			before(function () {
 				return browser.pressButton(KOMBrowseInfoAudioRecordButton);
 			});
@@ -31,12 +31,12 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			it('localizes KOMBrowseInfoAudioRecordingAlert', function () {
 				browser.assert.text(KOMBrowseInfoAudioRecordingAlert, uLocalized('KOMBrowseInfoAudioRecordingAlertText'));
 			});
-		
+
 		});
 
 		context('KOMBrowseInfoAudioItemProperty', function () {
-			
-			before(function() {
+
+			before(function () {
 				return browser.OLSKVisit(kDefaultRoute, {
 					OLSKRoutingLanguage: languageCode,
 					KOMBrowseInfoAudioItem: JSON.stringify({
@@ -54,12 +54,12 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			it('localizes KOMBrowseInfoAudioClearButton', function () {
 				browser.assert.text(KOMBrowseInfoAudioClearButton, uLocalized('KOMBrowseInfoAudioClearButtonText'));
 			});
-		
+
 		});
 
 		context('KOMBrowseInfoAudioAvailable', function () {
-			
-			before(function() {
+
+			before(function () {
 				return browser.OLSKVisit(kDefaultRoute, {
 					OLSKRoutingLanguage: languageCode,
 					KOMBrowseInfoAudioAvailable: false,
@@ -73,7 +73,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			it('localizes KOMBrowseInfoAudioNotAvailableAlert', function () {
 				browser.assert.text(KOMBrowseInfoAudioNotAvailableAlert, uLocalized('KOMBrowseInfoAudioNotAvailableAlertText'));
 			});
-		
+
 		});
 
 	});

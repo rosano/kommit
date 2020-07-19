@@ -2,7 +2,7 @@ const kDefaultRoutePath = require('./controller.js').OLSKControllerRoutes().shif
 
 Object.entries({
 	KOMVitrine: '.KOMVitrine',
-	
+
 	KOMVitrineIdentity: '.KOMVitrineIdentity',
 	KOMVitrineIdentityLogo: '.KOMVitrineIdentityLogo',
 	KOMVitrineIdentityName: '.KOMVitrineIdentityName',
@@ -12,36 +12,36 @@ Object.entries({
 	KOMVitrineVideoHeading: '.KOMVitrineVideoHeading',
 	KOMVitrineVideoFrame: '.KOMVitrineVideoFrame',
 }).map(function (e) {
-	return global[e.shift()]  = e.pop();
+	return global[e.shift()] = e.pop();
 });
 
 describe('KOMVitrine_Access', function () {
 
-	before(function() {
+	before(function () {
 		return browser.visit(kDefaultRoutePath);
 	});
-	
-	it('shows KOMVitrine', function() {
+
+	it('shows KOMVitrine', function () {
 		browser.assert.elements(KOMVitrine, 1);
 	});
-	
-	it('shows OLSKLanguageSwitcher', function() {
+
+	it('shows OLSKLanguageSwitcher', function () {
 		browser.assert.elements('.OLSKLanguageSwitcher', 1);
 	});
-	
-	it('shows KOMVitrineIdentity', function() {
+
+	it('shows KOMVitrineIdentity', function () {
 		browser.assert.elements(KOMVitrineIdentity, 1);
 	});
-	
-	it('shows KOMVitrineIdentityLogo', function() {
+
+	it('shows KOMVitrineIdentityLogo', function () {
 		browser.assert.elements(KOMVitrineIdentityLogo, 1);
 	});
-	
-	it('shows KOMVitrineIdentityName', function() {
+
+	it('shows KOMVitrineIdentityName', function () {
 		browser.assert.elements(KOMVitrineIdentityName, 1);
 	});
-	
-	it('shows KOMVitrineContent', function() {
+
+	it('shows KOMVitrineContent', function () {
 		browser.assert.elements(KOMVitrineContent, 1);
 	});
 
@@ -53,7 +53,7 @@ describe('KOMVitrine_Access', function () {
 		browser.assert.elements(KOMVitrineVideoFrame, 1);
 	});
 
-	it('shows ROCORootLink', function() {
+	it('shows ROCORootLink', function () {
 		browser.assert.elements('.ROCORootLink', 1);
 	});
 

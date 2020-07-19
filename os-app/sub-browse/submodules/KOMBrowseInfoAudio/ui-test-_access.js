@@ -2,21 +2,21 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 Object.entries({
 	KOMBrowseInfoAudio: '.KOMBrowseInfoAudio',
-	
+
 	KOMBrowseInfoAudioRecordButton: '.KOMBrowseInfoAudioRecordButton',
 	KOMBrowseInfoAudioRecordingAlert: '.KOMBrowseInfoAudioRecordingAlert',
-	
+
 	KOMBrowseInfoAudioPlaybackButton: '.KOMBrowseInfoAudioPlaybackButton',
 	KOMBrowseInfoAudioClearButton: '.KOMBrowseInfoAudioClearButton',
 
 	KOMBrowseInfoAudioNotAvailableAlert: '.KOMBrowseInfoAudioNotAvailableAlert',
 }).map(function (e) {
-	return global[e.shift()]  = e.pop();
+	return global[e.shift()] = e.pop();
 });
 
 describe('KOMBrowseInfoAudio_Access', function () {
 
-	before(function() {
+	before(function () {
 		return browser.OLSKVisit(kDefaultRoute, {
 			KOMBrowseInfoAudioItem: JSON.stringify({
 				KOMCardID: 'alfa',
@@ -50,9 +50,9 @@ describe('KOMBrowseInfoAudio_Access', function () {
 	});
 
 	context('KOMBrowseInfoAudioRecordButton', function () {
-		
+
 		context('click', function () {
-			
+
 			before(function () {
 				return browser.pressButton(KOMBrowseInfoAudioRecordButton);
 			});
@@ -60,11 +60,11 @@ describe('KOMBrowseInfoAudio_Access', function () {
 			it('shows KOMBrowseInfoAudioRecordingAlert', function () {
 				browser.assert.elements(KOMBrowseInfoAudioRecordingAlert, 1);
 			});
-		
+
 		});
 
 		context('click during record', function () {
-			
+
 			before(function () {
 				return browser.pressButton(KOMBrowseInfoAudioRecordButton);
 			});
@@ -72,14 +72,14 @@ describe('KOMBrowseInfoAudio_Access', function () {
 			it('hides KOMBrowseInfoAudioRecordingAlert', function () {
 				browser.assert.elements(KOMBrowseInfoAudioRecordingAlert, 0);
 			});
-		
+
 		});
-	
+
 	});
 
 	context('KOMBrowseInfoAudioItemProperty', function () {
-		
-		before(function() {
+
+		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMBrowseInfoAudioItem: JSON.stringify({
 					KOMCardID: 'alfa',
@@ -100,12 +100,12 @@ describe('KOMBrowseInfoAudio_Access', function () {
 		it('shows KOMBrowseInfoAudioClearButton', function () {
 			browser.assert.elements(KOMBrowseInfoAudioClearButton, 1);
 		});
-	
+
 	});
 
 	context('KOMBrowseInfoAudioAvailable', function () {
-		
-		before(function() {
+
+		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMBrowseInfoAudioAvailable: false,
 				KOMBrowseInfoAudioItem: JSON.stringify({
@@ -130,7 +130,7 @@ describe('KOMBrowseInfoAudio_Access', function () {
 		it('shows KOMBrowseInfoAudioNotAvailableAlert', function () {
 			browser.assert.elements(KOMBrowseInfoAudioNotAvailableAlert, 1);
 		});
-	
+
 	});
 
 });

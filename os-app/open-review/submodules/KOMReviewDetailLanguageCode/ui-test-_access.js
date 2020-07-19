@@ -2,18 +2,18 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 Object.entries({
 	KOMReviewDetailLanguageCode: '.KOMReviewDetailLanguageCode',
-	
+
 	KOMReviewDetailLanguageCodeFieldLabel: '.KOMReviewDetailLanguageCodeFieldLabel',
 	KOMReviewDetailLanguageCodeField: '.KOMReviewDetailLanguageCodeField',
-	
+
 	KOMReviewDetailLanguageCodeFieldOptionUnspecified: '.KOMReviewDetailLanguageCodeFieldOptionUnspecified',
 }).map(function (e) {
-	return global[e.shift()]  = e.pop();
+	return global[e.shift()] = e.pop();
 });
 
 describe('KOMReviewDetailLanguageCode_Access', function () {
 
-	before(function() {
+	before(function () {
 		return browser.OLSKVisit(kDefaultRoute, {
 			KOMReviewDetailLanguageCodeItem: JSON.stringify({
 				KOMDeckName: 'alfa',

@@ -8,7 +8,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 
 	describe(`KOMReviewMaster_Localize-${ languageCode }`, function () {
 
-		before(function() {
+		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				OLSKRoutingLanguage: languageCode,
 			});
@@ -17,19 +17,19 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 		it('localizes KOMReviewMasterToolbarTitle', function () {
 			browser.assert.text(KOMReviewMasterToolbarTitle, uLocalized('KOMReviewMasterToolbarTitleText'));
 		});
-	
+
 		it('localizes KOMReviewMasterCreateButton', function () {
 			browser.assert.text(KOMReviewMasterCreateButton, uLocalized('KOMReviewMasterCreateButtonText'));
 		});
 
-		context('KOMReviewMasterCreateButton', function() {
+		context('KOMReviewMasterCreateButton', function () {
 
-			it('localizes KOMReviewMasterCreateButtonPrompt', function() {
+			it('localizes KOMReviewMasterCreateButtonPrompt', function () {
 				browser.assert.OLSKPromptQuestion(function () {
 					return browser.pressButton(KOMReviewMasterCreateButton);
 				}, uLocalized('KOMReviewMasterCreateButtonPromptText'));
 			});
-		
+
 		});
 
 	});

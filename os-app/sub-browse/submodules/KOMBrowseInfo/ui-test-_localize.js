@@ -8,9 +8,9 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 
 	describe(`KOMBrowseInfo_Localize-${ languageCode }`, function () {
 
-		context('KOMBrowseInfoItem', function() {
-		
-			before(function() {
+		context('KOMBrowseInfoItem', function () {
+
+			before(function () {
 				return browser.OLSKVisit(kDefaultRoute, {
 					OLSKRoutingLanguage: languageCode,
 					KOMBrowseInfoItem: JSON.stringify({}),

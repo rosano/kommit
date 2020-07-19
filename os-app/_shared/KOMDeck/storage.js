@@ -4,19 +4,19 @@ const OLSKRemoteStorage = OLSKRemoteStoragePackage.default || OLSKRemoteStorageP
 
 const mod = {
 
-	KOMDeckStorageCollectionName () {
+	KOMDeckStorageCollectionName() {
 		return 'kom_decks';
 	},
 
-	KOMDeckStorageCollectionType () {
+	KOMDeckStorageCollectionType() {
 		return 'kom_deck';
 	},
 
-	KOMDeckStorageCollectionPath () {
+	KOMDeckStorageCollectionPath() {
 		return mod.KOMDeckStorageCollectionName() + '/';
 	},
 
-	KOMDeckStorageFolderPath (inputData) {
+	KOMDeckStorageFolderPath(inputData) {
 		if (!inputData) {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -24,7 +24,7 @@ const mod = {
 		return mod.KOMDeckStorageCollectionPath() + inputData + '/';
 	},
 
-	KOMDeckStorageObjectPath (inputData) {
+	KOMDeckStorageObjectPath(inputData) {
 		if (!inputData) {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -32,7 +32,7 @@ const mod = {
 		return mod.KOMDeckStorageFolderPath(inputData) + 'main';
 	},
 
-	KOMDeckStorageMatch (inputData) {
+	KOMDeckStorageMatch(inputData) {
 		if (typeof inputData !== 'string') {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -40,12 +40,12 @@ const mod = {
 		return inputData === mod.KOMDeckStorageObjectPath(inputData.split('/')[1]);
 	},
 
-	KOMDeckStorageBuild (privateClient, publicClient, changeDelegate) {
+	KOMDeckStorageBuild(privateClient, publicClient, changeDelegate) {
 		privateClient.on('change', function (event) {
 			if (!changeDelegate) {
 				return;
 			}
-			
+
 			if (!mod.KOMDeckStorageMatch(event.relativePath)) {
 				return;
 			}
@@ -65,7 +65,7 @@ const mod = {
 
 		const OLSKRemoteStorageCollectionExports = {
 
-			async _KOMDeckStorageWrite (inputData) {
+			async _KOMDeckStorageWrite(inputData) {
 				if (typeof inputData !== 'object' || inputData === null) {
 					return Promise.reject(new Error('KOMErrorInputNotValid'));
 				}
@@ -84,7 +84,7 @@ const mod = {
 				return Object.assign(inputData, OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(inputCopy));
 			},
 
-			async _KOMDeckStorageList () {
+			async _KOMDeckStorageList() {
 				return (await Promise.all(Object.keys(await privateClient.getAll(mod.KOMDeckStorageCollectionPath(), false)).map(function (e) {
 					return privateClient.getObject(mod.KOMDeckStorageObjectPath(e.slice(0, -1)), false);
 				}))).reduce(function (coll, item) {
@@ -96,14 +96,14 @@ const mod = {
 				}, {});
 			},
 
-			_KOMDeckStorageDelete (inputData) {
+			_KOMDeckStorageDelete(inputData) {
 				if (KOMDeckModel.KOMDeckModelErrorsFor(inputData)) {
 					throw new Error('KOMErrorInputNotValid');
 				}
 
 				return privateClient.remove(mod.KOMDeckStorageObjectPath(inputData.KOMDeckID));
 			},
-			
+
 		};
 
 		return {
@@ -126,15 +126,15 @@ const mod = {
 		};
 	},
 
-	KOMDeckStorageWrite (storageClient, inputData) {
+	KOMDeckStorageWrite(storageClient, inputData) {
 		return storageClient.kommit[mod.KOMDeckStorageCollectionName()]._KOMDeckStorageWrite(inputData);
 	},
 
-	KOMDeckStorageList (storageClient) {
+	KOMDeckStorageList(storageClient) {
 		return storageClient.kommit[mod.KOMDeckStorageCollectionName()]._KOMDeckStorageList();
 	},
 
-	KOMDeckStorageDelete (storageClient, inputData) {
+	KOMDeckStorageDelete(storageClient, inputData) {
 		return storageClient.kommit[mod.KOMDeckStorageCollectionName()]._KOMDeckStorageDelete(inputData);
 	},
 

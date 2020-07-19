@@ -1,21 +1,21 @@
-exports.OLSKControllerUseLivereload = function() {
+exports.OLSKControllerUseLivereload = function () {
 	return process.env.NODE_ENV === 'development';
 };
 
-exports.OLSKControllerSharedMiddlewares = function() {
+exports.OLSKControllerSharedMiddlewares = function () {
 	return {
-		KOMVitrineRouteGuardMiddleware (req, res, next) {
+		KOMVitrineRouteGuardMiddleware(req, res, next) {
 			return next(require('./logic.js').KOMVitrineRouteGuard(process.env));
 		},
 	};
 };
 
-exports.OLSKControllerRoutes = function() {
+exports.OLSKControllerRoutes = function () {
 	return [{
 		OLSKRoutePath: '/',
 		OLSKRouteMethod: 'get',
 		OLSKRouteSignature: 'KOMVitrineRoute',
-		OLSKRouteFunction (req, res, next) {
+		OLSKRouteFunction(req, res, next) {
 			return res.render(require('path').join(__dirname, 'ui-view'), {
 				KOMVitrineContent: require('OLSKString').OLSKStringReplaceTokens(require('marked').setOptions({
 					gfm: true,

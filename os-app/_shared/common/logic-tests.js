@@ -10,8 +10,8 @@ describe('KOMSharedDonateLinkGuard', function test_KOMSharedDonateLinkGuard() {
 		};
 	};
 
-	it('throws if not object', function() {
-		throws(function() {
+	it('throws if not object', function () {
+		throws(function () {
 			mainModule.KOMSharedDonateLinkGuard(null);
 		}, /KOMErrorInputNotValid/);
 	});
@@ -38,8 +38,8 @@ describe('KOMSharedGitHubLinkGuard', function test_KOMSharedGitHubLinkGuard() {
 		};
 	};
 
-	it('throws if not object', function() {
-		throws(function() {
+	it('throws if not object', function () {
+		throws(function () {
 			mainModule.KOMSharedGitHubLinkGuard(null);
 		}, /KOMErrorInputNotValid/);
 	});

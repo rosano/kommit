@@ -2,22 +2,22 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 Object.entries({
 	KOMReviewToday: '.KOMReviewToday',
-	
+
 	KOMReviewTodayTotalCardsLabel: '.KOMReviewTodayTotalCardsLabel',
 	KOMReviewTodayTotalCardsValue: '.KOMReviewTodayTotalCardsValue',
-	
+
 	KOMReviewTodayTimeMinutesLabel: '.KOMReviewTodayTimeMinutesLabel',
 	KOMReviewTodayTimeMinutesValue: '.KOMReviewTodayTimeMinutesValue',
-	
+
 	KOMReviewTodayReviewAccuracyLabel: '.KOMReviewTodayReviewAccuracyLabel',
 	KOMReviewTodayReviewAccuracyValue: '.KOMReviewTodayReviewAccuracyValue',
 }).map(function (e) {
-	return global[e.shift()]  = e.pop();
+	return global[e.shift()] = e.pop();
 });
 
 describe('KOMReviewToday_Access', function () {
 
-	before(function() {
+	before(function () {
 		return browser.OLSKVisit(kDefaultRoute, {
 			KOMReviewTodaySpacings: JSON.stringify([]),
 		});
