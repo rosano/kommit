@@ -75,6 +75,14 @@ const mod = {
 			}
 		}
 
+		if (inputData.KOMCardTags !== undefined || options.KOMOptionValidateIfNotPresent) {
+			if (!Array.isArray(inputData.KOMCardTags)) {
+				errors.KOMCardTags = [
+					'KOMErrorNotArray',
+				];
+			}
+		}
+
 		return Object.entries(errors).length ? errors : null;
 	},
 

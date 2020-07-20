@@ -167,6 +167,26 @@ describe('KOMCardModelErrorsFor', function test_KOMCardModelErrorsFor() {
 
 	});
 
+	context('KOMCardTags', function () {
+
+		it('returns object if not array', function () {
+			deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubCardObjectValid(), {
+				KOMCardTags: null,
+			})), {
+				KOMCardTags: [
+					'KOMErrorNotArray',
+				],
+			});
+		});
+
+		it('returns null', function () {
+			deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubCardObjectValid(), {
+				KOMCardTags: [],
+			})), null);
+		});
+
+	});
+
 	context('KOMOptionValidateIfNotPresent', function () {
 
 		it('returns object if not valid', function () {
@@ -182,6 +202,7 @@ describe('KOMCardModelErrorsFor', function test_KOMCardModelErrorsFor() {
 				'KOMCardNotes',
 				'KOMCardFrontAudio',
 				'KOMCardRearAudio',
+				'KOMCardTags',
 			]);
 		});
 
