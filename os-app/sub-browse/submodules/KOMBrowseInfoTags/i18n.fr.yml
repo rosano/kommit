@@ -1,3 +1,4 @@
 KOMBrowseInfoTagsInputFieldText: Nom du tag nouveau
 KOMBrowseInfoTagsCreateButtonText: Ajouter le tag
 KOMBrowseInfoTagsRemoveButtonTextFormat: Enlever '%@'
+KOMBrowseInfoTagsSuggestButtonTextFormat: Ajouter '%@'

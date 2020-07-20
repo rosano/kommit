@@ -5,6 +5,7 @@ describe('KOMBrowseInfoTags_Misc', function () {
 	before(function () {
 		return browser.OLSKVisit(kDefaultRoute, {
 			KOMBrowseInfoTagsItems: JSON.stringify(['bravo']),
+			KOMBrowseInfoTagsSuggestions: JSON.stringify(['charlie']),
 		});
 	});
 
@@ -107,6 +108,27 @@ describe('KOMBrowseInfoTags_Misc', function () {
 			it('sends KOMBrowseInfoTagsDispatchRemove', function () {
 				browser.assert.text('#TestKOMBrowseInfoTagsDispatchRemove', '1');
 				browser.assert.text('#TestKOMBrowseInfoTagsDispatchRemoveData', 'bravo');
+			});
+
+		});
+
+	});
+
+	describe('KOMBrowseInfoTagsSuggestButton', function test_KOMBrowseInfoTagsSuggestButton() {
+
+		context('click', function () {
+
+			before(function () {
+				browser.assert.text('#TestKOMBrowseInfoTagsDispatchCreate', '2');
+			});
+
+			before(function () {
+				return browser.pressButton(KOMBrowseInfoTagsSuggestButton);
+			});
+
+			it('sends KOMBrowseInfoTagsDispatchCreate', function () {
+				browser.assert.text('#TestKOMBrowseInfoTagsDispatchCreate', '3');
+				browser.assert.text('#TestKOMBrowseInfoTagsDispatchCreateData', 'charlie');
 			});
 
 		});

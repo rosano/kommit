@@ -8,6 +8,8 @@ Object.entries({
 	KOMBrowseInfoTagsCreateButton: '.KOMBrowseInfoTagsCreateButton',
 
 	KOMBrowseInfoTagsRemoveButton: '.KOMBrowseInfoTagsRemoveButton',
+
+	KOMBrowseInfoTagsSuggestButton: '.KOMBrowseInfoTagsSuggestButton',
 }).map(function (e) {
 	return global[e.shift()] = e.pop();
 });
@@ -36,16 +38,35 @@ describe('KOMBrowseInfoTags_Access', function () {
 		browser.assert.elements(KOMBrowseInfoTagsRemoveButton, 0);
 	});
 
-	context('KOMCardTags', function () {
+	it('hides KOMBrowseInfoTagsSuggestButton', function () {
+		browser.assert.elements(KOMBrowseInfoTagsSuggestButton, 0);
+	});
+
+	context('KOMBrowseInfoTagsItems', function () {
 
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
-				KOMBrowseInfoTagsItems: JSON.stringify(['bravo', 'charlie']),
+				KOMBrowseInfoTagsItems: JSON.stringify(['alfa', 'bravo']),
 			});
 		});
 
 		it('shows KOMBrowseInfoTagsRemoveButton', function () {
 			browser.assert.elements(KOMBrowseInfoTagsRemoveButton, 2);
+		});
+
+	});
+
+	context('KOMBrowseInfoTagsSuggestions', function () {
+
+		before(function () {
+			return browser.OLSKVisit(kDefaultRoute, {
+				KOMBrowseInfoTagsItems: JSON.stringify([]),
+				KOMBrowseInfoTagsSuggestions: JSON.stringify(['alfa', 'bravo']),
+			});
+		});
+
+		it('shows KOMBrowseInfoTagsSuggestButton', function () {
+			browser.assert.elements(KOMBrowseInfoTagsSuggestButton, 2);
 		});
 
 	});

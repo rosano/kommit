@@ -1,5 +1,6 @@
 <script>
 export let KOMBrowseInfoTagsItems;
+export let KOMBrowseInfoTagsSuggestions = [];
 export let KOMBrowseInfoTagsDispatchCreate;
 export let KOMBrowseInfoTagsDispatchRemove;
 
@@ -43,5 +44,11 @@ const mod = {
 		<button class="KOMBrowseInfoTagsCreateButton" type="submit" disabled={ !mod._ValueNewTagName }>{ OLSKLocalized('KOMBrowseInfoTagsCreateButtonText') }</button>
 	</p>
 </form>
+
+<p>
+	{#each KOMBrowseInfoTagsSuggestions as item }
+		<button class="KOMBrowseInfoTagsSuggestButton" on:click={ () =>  KOMBrowseInfoTagsDispatchCreate(item) }>{ OLSKString.OLSKStringWithFormat(OLSKLocalized('KOMBrowseInfoTagsSuggestButtonTextFormat'), item) }</button>
+	{/each}
+</p>
 
 </div>

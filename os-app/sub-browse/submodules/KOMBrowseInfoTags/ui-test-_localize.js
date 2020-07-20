@@ -14,6 +14,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			return browser.OLSKVisit(kDefaultRoute, {
 				OLSKRoutingLanguage: languageCode,
 				KOMBrowseInfoTagsItems: JSON.stringify(['bravo']),
+				KOMBrowseInfoTagsSuggestions: JSON.stringify(['charlie']),
 			});
 		});
 
@@ -27,6 +28,10 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 
 		it('localizes KOMBrowseInfoTagsRemoveButton', function () {
 			browser.assert.text(KOMBrowseInfoTagsRemoveButton, uFormatted(uLocalized('KOMBrowseInfoTagsRemoveButtonTextFormat'), 'bravo'));
+		});
+
+		it('localizes KOMBrowseInfoTagsSuggestButton', function () {
+			browser.assert.text(KOMBrowseInfoTagsSuggestButton, uFormatted(uLocalized('KOMBrowseInfoTagsSuggestButtonTextFormat'), 'charlie'));
 		});
 
 	});

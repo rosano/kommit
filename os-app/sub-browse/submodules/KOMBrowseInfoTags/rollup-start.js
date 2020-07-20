@@ -12,7 +12,7 @@ const KOMBrowseInfoTags = new RollupStart({
 			window.TestKOMBrowseInfoTagsDispatchRemoveData.innerHTML = inputData;
 		}),
 	}, Object.fromEntries(Array.from((new window.URLSearchParams(window.location.search)).entries()).map(function (e) {
-		if (['KOMBrowseInfoTagsItems'].includes(e[0])) {
+		if (['KOMBrowseInfoTagsItems', 'KOMBrowseInfoTagsSuggestions'].includes(e[0])) {
 			e[1] = JSON.parse(e[1]);
 		}
 
