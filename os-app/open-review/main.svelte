@@ -150,7 +150,7 @@ const mod = {
 					LCHRecipeName: 'FakeOLSKChangeDelegateConflictCard',
 					LCHRecipeCallback: async function FakeOLSKChangeDelegateConflictCard () {
 						const item = mod._ValueDeckSelected.$KOMDeckCards.filter(function (e) {
-							return e.KOMCardFrontText.match('FakeOLSKChangeDelegateConflictCard');
+							return e.KOMCardFrontText.match('FakeOLSKChangeDelegate');
 						}).pop();
 						
 						return mod.OLSKChangeDelegateConflictCard({

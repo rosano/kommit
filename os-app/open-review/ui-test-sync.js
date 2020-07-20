@@ -441,8 +441,6 @@ describe('KOMReview_Sync', function () {
 
 		});
 
-
-
 		context('same_deck', function () {
 
 			before(function () {
@@ -544,30 +542,10 @@ describe('KOMReview_Sync', function () {
 				});
 
 				before(function () {
-					return browser.pressButton('.KOMBrowseListToolbarCloseButton');
-				});
-
-				before(function () {
-					return browser.pressButton('.KOMReviewDetailToolbarBackButton');
-				});
-
-				before(function () {
-					return browser.click('.KOMReviewMasterListItemContainer:last-of-type .KOMReviewMasterListItem');
-				});
-
-				before(function () {
-					return browser.click('.KOMReviewDetailToolbarCardsButton');
-				});
-
-				before(function () {
-					return browser.wait({ element: '.KOMBrowseListItem'});
-				});
-
-				before(function () {
 					return browser.OLSKLauncherRun('FakeOLSKChangeDelegateConflictCard');
 				});
 
-				it.skip('selects local', function () {
+				it.skip('updates local', function () {
 					browser.assert.text('.KOMBrowseListItem', 'FakeOLSKChangeDelegateConflictCard-local');
 				});
 
