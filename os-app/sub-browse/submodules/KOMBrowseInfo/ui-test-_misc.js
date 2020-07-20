@@ -539,4 +539,68 @@ describe('KOMBrowseInfo_Misc', function () {
 
 	});
 
+	describe('KOMBrowseInfoFormTagsField', function test_KOMBrowseInfoFormTagsField() {
+
+		before(function () {
+			return browser.OLSKVisit(kDefaultRoute, {
+				KOMBrowseInfoItem: JSON.stringify({
+					KOMCardTags: ['alfa'],
+				}),
+			});
+		});
+
+		it('binds KOMCardTags', function () {
+			browser.assert.elements(`${ KOMBrowseInfoFormTagsField } .KOMBrowseInfoTagsRemoveButton`, 1);
+		});
+
+		context('create_tag', function () {
+
+			before(function () {
+				return browser.fill(`${ KOMBrowseInfoFormTagsField } .KOMBrowseInfoTagsInputField`, 'bravo');
+			});
+
+			before(function () {
+				browser.assert.text('#TestKOMBrowseInfoDispatchUpdate', '0');
+			});
+
+			before(function () {
+				return browser.pressButton(`${ KOMBrowseInfoFormTagsField } .KOMBrowseInfoTagsCreateButton`);
+			});
+
+			it('updates KOMBrowseInfoItem', function () {
+				browser.assert.text('#TestKOMBrowseInfoItem', JSON.stringify({
+					KOMCardTags: ['alfa', 'bravo'],
+				}));
+			});
+
+			it('sends KOMBrowseInfoDispatchUpdate', function () {
+				browser.assert.text('#TestKOMBrowseInfoDispatchUpdate', '1');
+			});
+
+		});
+
+		context('remove_tag', function () {
+
+			before(function () {
+				browser.assert.text('#TestKOMBrowseInfoDispatchUpdate', '1');
+			});
+
+			before(function () {
+				return browser.pressButton(`${ KOMBrowseInfoFormTagsField } .KOMBrowseInfoTagsRemoveButton`);
+			});
+
+			it('updates KOMBrowseInfoItem', function () {
+				browser.assert.text('#TestKOMBrowseInfoItem', JSON.stringify({
+					KOMCardTags: ['bravo'],
+				}));
+			});
+
+			it('sends KOMBrowseInfoDispatchUpdate', function () {
+				browser.assert.text('#TestKOMBrowseInfoDispatchUpdate', '2');
+			});
+
+		});
+
+	});
+
 });

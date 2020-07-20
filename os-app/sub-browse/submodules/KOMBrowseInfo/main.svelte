@@ -19,11 +19,32 @@ const OLSKLocalized = function(translationConstant) {
 
 import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting';
 
+const mod = {
+
+	// MESSAGE
+
+	KOMBrowseInfoTagsDispatchCreate (inputData) {
+		KOMBrowseInfoItem.KOMCardTags = (KOMBrowseInfoItem.KOMCardTags || []).concat(inputData);
+
+		KOMBrowseInfoDispatchUpdate();
+	},
+
+	KOMBrowseInfoTagsDispatchRemove (inputData) {
+		KOMBrowseInfoItem.KOMCardTags = KOMBrowseInfoItem.KOMCardTags.filter(function (e) {
+			return e !== inputData;
+		});
+
+		KOMBrowseInfoDispatchUpdate();
+	},
+
+};
+
 import OLSKDetailPlaceholder from 'OLSKDetailPlaceholder';
 import _OLSKSharedBack from '../../../_shared/__external/OLSKUIAssets/_OLSKSharedBack.svg';
 import _OLSKSharedDiscard from '../../../_shared/__external/OLSKUIAssets/_OLSKSharedDiscard.svg';
 import _OLSKSharedCreate from '../../../_shared/__external/OLSKUIAssets/_OLSKSharedCreate.svg';
 import KOMBrowseInfoAudio from '../KOMBrowseInfoAudio/main.svelte';
+import KOMBrowseInfoTags from '../KOMBrowseInfoTags/main.svelte';
 </script>
 
 <div class="KOMBrowseInfo OLSKViewportDetail" class:OLSKMobileViewInactive={ OLSKMobileViewInactive } aria-hidden={ OLSKMobileViewInactive ? true : null }>
@@ -87,6 +108,14 @@ import KOMBrowseInfoAudio from '../KOMBrowseInfoAudio/main.svelte';
 
 <p>
 	<input class="KOMBrowseInfoFormNotesField OLSKMobileSafariRemoveDefaultInputStyle" placeholder="{ OLSKLocalized('KOMBrowseInfoFormNotesFieldText') }" type="text" bind:value={ KOMBrowseInfoItem.KOMCardNotes } on:input={ KOMBrowseInfoDispatchUpdate } />
+</p>
+
+<p class="KOMBrowseInfoFormTags">
+	<KOMBrowseInfoTags
+		KOMBrowseInfoTagsItems={ KOMBrowseInfoItem.KOMCardTags || [] }
+		KOMBrowseInfoTagsDispatchCreate={ mod.KOMBrowseInfoTagsDispatchCreate }
+		KOMBrowseInfoTagsDispatchRemove={ mod.KOMBrowseInfoTagsDispatchRemove }
+		/>
 </p>
 
 </div>

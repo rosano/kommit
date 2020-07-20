@@ -19,6 +19,7 @@ Object.entries({
 	KOMBrowseInfoFormRearTextField: '.KOMBrowseInfoFormRearTextField',
 	KOMBrowseInfoFormRearAudio: '.KOMBrowseInfoFormRearAudio .KOMBrowseInfoAudio',
 	KOMBrowseInfoFormNotesField: '.KOMBrowseInfoFormNotesField',
+	KOMBrowseInfoFormTagsField: '.KOMBrowseInfoFormTags .KOMBrowseInfoTags',
 }).map(function (e) {
 	return global[e.shift()] = e.pop();
 });
@@ -113,6 +114,10 @@ describe('KOMBrowseInfo_Access', function () {
 
 		it('shows KOMBrowseInfoFormNotesField', function () {
 			browser.assert.elements(KOMBrowseInfoFormNotesField, 1);
+		});
+
+		it('shows KOMBrowseInfoFormTagsField', function () {
+			browser.assert.elements(KOMBrowseInfoFormTagsField, 1);
 		});
 
 	});
