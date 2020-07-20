@@ -3,9 +3,9 @@ import RollupStart from './main.svelte';
 const KOMBrowseInfoTags = new RollupStart({
 	target: document.body,
 	props: Object.assign({
-		KOMBrowseInfoTagsDispatchCreate: (function _KOMBrowseInfoTagsDispatchCreate(inputData) {
-			window.TestKOMBrowseInfoTagsDispatchCreate.innerHTML = parseInt(window.TestKOMBrowseInfoTagsDispatchCreate.innerHTML) + 1;
-			window.TestKOMBrowseInfoTagsDispatchCreateData.innerHTML = inputData;
+		KOMBrowseInfoTagsDispatchAdd: (function _KOMBrowseInfoTagsDispatchAdd(inputData) {
+			window.TestKOMBrowseInfoTagsDispatchAdd.innerHTML = parseInt(window.TestKOMBrowseInfoTagsDispatchAdd.innerHTML) + 1;
+			window.TestKOMBrowseInfoTagsDispatchAddData.innerHTML = inputData;
 		}),
 		KOMBrowseInfoTagsDispatchRemove: (function _KOMBrowseInfoTagsDispatchRemove(inputData) {
 			window.TestKOMBrowseInfoTagsDispatchRemove.innerHTML = parseInt(window.TestKOMBrowseInfoTagsDispatchRemove.innerHTML) + 1;

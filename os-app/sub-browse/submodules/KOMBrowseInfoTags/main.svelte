@@ -1,7 +1,7 @@
 <script>
 export let KOMBrowseInfoTagsItems;
 export let KOMBrowseInfoTagsSuggestions = [];
-export let KOMBrowseInfoTagsDispatchCreate;
+export let KOMBrowseInfoTagsDispatchAdd;
 export let KOMBrowseInfoTagsDispatchRemove;
 
 import OLSKInternational from 'OLSKInternational';
@@ -20,7 +20,7 @@ const mod = {
 	// INTERFACE
 
 	InterfaceFormDidSubmit () {
-		KOMBrowseInfoTagsDispatchCreate(mod._ValueNewTagName);
+		KOMBrowseInfoTagsDispatchAdd(mod._ValueNewTagName);
 
 		mod._ValueNewTagName = '';
 
@@ -47,7 +47,7 @@ const mod = {
 
 <p>
 	{#each KOMBrowseInfoTagsSuggestions as item }
-		<button class="KOMBrowseInfoTagsSuggestButton" on:click={ () =>  KOMBrowseInfoTagsDispatchCreate(item) }>{ OLSKString.OLSKStringWithFormat(OLSKLocalized('KOMBrowseInfoTagsSuggestButtonTextFormat'), item) }</button>
+		<button class="KOMBrowseInfoTagsSuggestButton" on:click={ () =>  KOMBrowseInfoTagsDispatchAdd(item) }>{ OLSKString.OLSKStringWithFormat(OLSKLocalized('KOMBrowseInfoTagsSuggestButtonTextFormat'), item) }</button>
 	{/each}
 </p>
 

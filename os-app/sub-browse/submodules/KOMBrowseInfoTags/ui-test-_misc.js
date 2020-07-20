@@ -44,17 +44,17 @@ describe('KOMBrowseInfoTags_Misc', function () {
 			context('click', function () {
 				
 				before(function () {
-					browser.assert.text('#TestKOMBrowseInfoTagsDispatchCreate', '0');
-					browser.assert.text('#TestKOMBrowseInfoTagsDispatchCreateData', 'undefined');
+					browser.assert.text('#TestKOMBrowseInfoTagsDispatchAdd', '0');
+					browser.assert.text('#TestKOMBrowseInfoTagsDispatchAddData', 'undefined');
 				});
 
 				before(function () {
 					return browser.pressButton(KOMBrowseInfoTagsCreateButton);
 				});
 
-				it('sends KOMBrowseInfoTagsDispatchCreate', function () {
-					browser.assert.text('#TestKOMBrowseInfoTagsDispatchCreate', '1');
-					browser.assert.text('#TestKOMBrowseInfoTagsDispatchCreateData', 'charlie');
+				it('sends KOMBrowseInfoTagsDispatchAdd', function () {
+					browser.assert.text('#TestKOMBrowseInfoTagsDispatchAdd', '1');
+					browser.assert.text('#TestKOMBrowseInfoTagsDispatchAddData', 'charlie');
 				});
 
 				it('clears KOMBrowseInfoTagsInputField', function () {
@@ -70,16 +70,16 @@ describe('KOMBrowseInfoTags_Misc', function () {
 				});
 
 				before(function () {
-					browser.assert.text('#TestKOMBrowseInfoTagsDispatchCreate', '1');
+					browser.assert.text('#TestKOMBrowseInfoTagsDispatchAdd', '1');
 				});
 
 				before(function () {
 					return browser.fire('.KOMBrowseInfoTagsForm', 'submit');
 				});
 
-				it('sends KOMBrowseInfoTagsDispatchCreate', function () {
-					browser.assert.text('#TestKOMBrowseInfoTagsDispatchCreate', '2');
-					browser.assert.text('#TestKOMBrowseInfoTagsDispatchCreateData', 'delta');
+				it('sends KOMBrowseInfoTagsDispatchAdd', function () {
+					browser.assert.text('#TestKOMBrowseInfoTagsDispatchAdd', '2');
+					browser.assert.text('#TestKOMBrowseInfoTagsDispatchAddData', 'delta');
 				});
 
 				it('clears KOMBrowseInfoTagsInputField', function () {
@@ -119,16 +119,16 @@ describe('KOMBrowseInfoTags_Misc', function () {
 		context('click', function () {
 
 			before(function () {
-				browser.assert.text('#TestKOMBrowseInfoTagsDispatchCreate', '2');
+				browser.assert.text('#TestKOMBrowseInfoTagsDispatchAdd', '2');
 			});
 
 			before(function () {
 				return browser.pressButton(KOMBrowseInfoTagsSuggestButton);
 			});
 
-			it('sends KOMBrowseInfoTagsDispatchCreate', function () {
-				browser.assert.text('#TestKOMBrowseInfoTagsDispatchCreate', '3');
-				browser.assert.text('#TestKOMBrowseInfoTagsDispatchCreateData', 'charlie');
+			it('sends KOMBrowseInfoTagsDispatchAdd', function () {
+				browser.assert.text('#TestKOMBrowseInfoTagsDispatchAdd', '3');
+				browser.assert.text('#TestKOMBrowseInfoTagsDispatchAddData', 'charlie');
 			});
 
 		});

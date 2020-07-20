@@ -23,7 +23,7 @@ const mod = {
 
 	// MESSAGE
 
-	KOMBrowseInfoTagsDispatchCreate (inputData) {
+	KOMBrowseInfoTagsDispatchAdd (inputData) {
 		KOMBrowseInfoItem.KOMCardTags = (KOMBrowseInfoItem.KOMCardTags || []).concat(inputData);
 
 		KOMBrowseInfoDispatchUpdate();
@@ -115,7 +115,7 @@ import KOMBrowseInfoTags from '../KOMBrowseInfoTags/main.svelte';
 <p class="KOMBrowseInfoFormTags">
 	<KOMBrowseInfoTags
 		KOMBrowseInfoTagsItems={ KOMBrowseInfoItem.KOMCardTags || [] }
-		KOMBrowseInfoTagsDispatchCreate={ mod.KOMBrowseInfoTagsDispatchCreate }
+		KOMBrowseInfoTagsDispatchAdd={ mod.KOMBrowseInfoTagsDispatchAdd }
 		KOMBrowseInfoTagsDispatchRemove={ mod.KOMBrowseInfoTagsDispatchRemove }
 		/>
 </p>
