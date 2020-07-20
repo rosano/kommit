@@ -29,7 +29,7 @@ const mod = {
 			return;
 		}
 
-		if (KOMBrowseInfoItem.KOMCardTags.includes(inputData)) {
+		if ((KOMBrowseInfoItem.KOMCardTags || []).includes(inputData)) {
 			return;
 		}
 		
