@@ -598,6 +598,28 @@ describe('KOMBrowseInfo_Misc', function () {
 
 		});
 
+		context('add_blank', function () {
+
+			before(function () {
+				return browser.fill(`${ KOMBrowseInfoFormTagsField } .KOMBrowseInfoTagsInputField`, ' ');
+			});
+
+			before(function () {
+				return browser.pressButton(`${ KOMBrowseInfoFormTagsField } .KOMBrowseInfoTagsCreateButton`);
+			});
+
+			it('does nothing', function () {
+				browser.assert.text('#TestKOMBrowseInfoItem', JSON.stringify({
+					KOMCardTags: ['alfa', 'bravo'],
+				}));
+			});
+
+			it('sends no KOMBrowseInfoDispatchUpdate', function () {
+				browser.assert.text('#TestKOMBrowseInfoDispatchUpdate', '1');
+			});
+
+		});
+
 		context('remove_tag', function () {
 
 			before(function () {
