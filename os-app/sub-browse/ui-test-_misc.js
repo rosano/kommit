@@ -343,10 +343,18 @@ describe('KOMBrowse_Misc', function () {
 			browser.fill('.KOMBrowseInfoFormFrontTextField', 'bravo');
 		});
 
+		before(function () {
+			return browser.fill('.KOMBrowseInfoTagsInputField', 'charlie');
+		});
+
+		before(function () {
+			return browser.pressButton('.KOMBrowseInfoTagsCreateButton');
+		});
+
 		context('no match', function () {
 
 			before(function () {
-				browser.fill('.OLSKMasterListFilterField', 'charlie');
+				browser.fill('.OLSKMasterListFilterField', 'delta');
 			});
 
 			it('filters all KOMBrowseListItem', function () {
@@ -419,6 +427,26 @@ describe('KOMBrowse_Misc', function () {
 
 			it('sorts KOMBrowseListItem', function () {
 				browser.assert.text('.KOMBrowseListItemFront', 'bravoalfa');
+			});
+
+		});
+
+		context('KOMCardTags', function () {
+
+			before(function () {
+				browser.fill('.OLSKMasterListFilterField', 'charlie');
+			});
+
+			it('filters items', function () {
+				browser.assert.elements('.KOMBrowseListItem', 1);
+			});
+
+			it('sets no OLSKResultsListItemSelected', function () {
+				browser.assert.elements('.OLSKResultsListItemSelected', 1);
+			});
+
+			it('sets KOMBrowseInfoItem', function () {
+				browser.assert.elements('.OLSKDetailPlaceholder', 0);
 			});
 
 		});

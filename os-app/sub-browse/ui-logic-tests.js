@@ -104,6 +104,34 @@ describe('KOMBrowseFilterFunction', function test_KOMBrowseFilterFunction() {
 
 		});
 
+		context('KOMCardTags', function () {
+
+			it('returns false if no match', function () {
+				deepEqual(mainModule.KOMBrowseFilterFunction('bravo')(kTesting.uCard({
+					KOMCardTags: ['alfa'],
+				})), false);
+			});
+
+			it('returns true', function () {
+				deepEqual(mainModule.KOMBrowseFilterFunction('alfa')(kTesting.uCard({
+					KOMCardTags: ['alfa'],
+				})), true);
+			});
+
+			it('matches partial', function () {
+				deepEqual(mainModule.KOMBrowseFilterFunction('alf')(kTesting.uCard({
+					KOMCardTags: ['alfa'],
+				})), true);
+			});
+
+			it('matches case insensitive', function () {
+				deepEqual(mainModule.KOMBrowseFilterFunction('ALF')(kTesting.uCard({
+					KOMCardTags: ['alfa'],
+				})), true);
+			});
+
+		});
+
 	});
 
 });
