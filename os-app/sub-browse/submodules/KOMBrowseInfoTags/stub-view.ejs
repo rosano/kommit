@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="/_shared/__external/normalize.css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="/<%= OLSKSharedPageControllerSlug %>/__compiled/ui-style.css">
+
+	<script type="text/javascript">
+		window.OLSKPublicConstants = function (inputData) {
+			return <%- JSON.stringify({
+				OLSKSharedPageCurrentLanguage,
+			}) %>[inputData];
+		};
+	</script>
+</head>
+<body>
+
+<script src="/<%= OLSKSharedPageControllerSlug %>/__compiled/ui-behaviour.js"></script>
+
+<p>
+	<strong>TestKOMBrowseInfoTagsDispatchCreate</strong>
+	<span id="TestKOMBrowseInfoTagsDispatchCreate">0</span>
+	<span id="TestKOMBrowseInfoTagsDispatchCreateData">undefined</span>
+</p>
+
+<p>
+	<strong>TestKOMBrowseInfoTagsDispatchRemove</strong>
+	<span id="TestKOMBrowseInfoTagsDispatchRemove">0</span>
+	<span id="TestKOMBrowseInfoTagsDispatchRemoveData">undefined</span>
+</p>
+
+</body>
+</html>
