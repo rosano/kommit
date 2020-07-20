@@ -8,7 +8,7 @@ Object.entries({
 	return global[e.shift()] = e.pop();
 });
 
-describe.only('KOMReview_Access', function () {
+describe('KOMReview_Access', function () {
 
 	before(function () {
 		return browser.OLSKVisit(kDefaultRoute);
