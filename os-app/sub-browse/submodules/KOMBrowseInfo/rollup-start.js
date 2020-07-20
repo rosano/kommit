@@ -1,7 +1,7 @@
 import RollupStart from './main.svelte';
 
 const params = Object.fromEntries(Array.from((new window.URLSearchParams(window.location.search)).entries()).map(function (e) {
-	if (['KOMBrowseInfoItem', 'KOMBrowseInfoDeck', 'KOMBrowseInfoSpeechAvailable'].includes(e[0])) {
+	if (['KOMBrowseInfoItem', 'KOMBrowseInfoDeck', 'KOMBrowseInfoSpeechAvailable', 'KOMBrowseInfoTagsSuggestions'].includes(e[0])) {
 		e[1] = JSON.parse(e[1]);
 	}
 

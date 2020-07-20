@@ -546,6 +546,7 @@ describe('KOMBrowseInfo_Misc', function () {
 				KOMBrowseInfoItem: JSON.stringify({
 					KOMCardTags: ['alfa'],
 				}),
+				KOMBrowseInfoTagsSuggestions: JSON.stringify(['bravo']),
 			});
 		});
 
@@ -553,7 +554,7 @@ describe('KOMBrowseInfo_Misc', function () {
 			browser.assert.elements(`${ KOMBrowseInfoFormTagsField } .KOMBrowseInfoTagsRemoveButton`, 1);
 		});
 
-		context('create_tag', function () {
+		context('add_tag', function () {
 
 			before(function () {
 				return browser.fill(`${ KOMBrowseInfoFormTagsField } .KOMBrowseInfoTagsInputField`, 'bravo');
@@ -574,6 +575,24 @@ describe('KOMBrowseInfo_Misc', function () {
 			});
 
 			it('sends KOMBrowseInfoDispatchUpdate', function () {
+				browser.assert.text('#TestKOMBrowseInfoDispatchUpdate', '1');
+			});
+
+		});
+
+		context('add_duplicate', function () {
+
+			before(function () {
+				return browser.pressButton(`${ KOMBrowseInfoFormTagsField } .KOMBrowseInfoTagsSuggestButton`);
+			});
+
+			it('does nothing', function () {
+				browser.assert.text('#TestKOMBrowseInfoItem', JSON.stringify({
+					KOMCardTags: ['alfa', 'bravo'],
+				}));
+			});
+
+			it('sends no KOMBrowseInfoDispatchUpdate', function () {
 				browser.assert.text('#TestKOMBrowseInfoDispatchUpdate', '1');
 			});
 

@@ -25,6 +25,10 @@ const mod = {
 	// MESSAGE
 
 	KOMBrowseInfoTagsDispatchAdd (inputData) {
+		if (KOMBrowseInfoItem.KOMCardTags.includes(inputData)) {
+			return;
+		}
+		
 		KOMBrowseInfoItem.KOMCardTags = (KOMBrowseInfoItem.KOMCardTags || []).concat(inputData);
 
 		KOMBrowseInfoDispatchUpdate();
