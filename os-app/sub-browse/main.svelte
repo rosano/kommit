@@ -42,9 +42,17 @@ const mod = {
 
 	// VALUE
 
+	_ValueTagsAll: [],
+
 	_ValueCardsAll: KOMBrowseDeckSelected.$KOMDeckCards,
 	ValueCardsAll (inputData, shouldSort = true) {
 		mod.ValueCardsVisible(mod._ValueCardsAll = inputData, shouldSort);
+		
+		mod._ValueTagsAll = mod._ValueCardsAll.reduce(function (coll, item) {
+			return coll.concat((item.KOMCardTags || []).filter(function (e) {
+				return !coll.includes(e);
+			}));
+		}, []);
 	},
 
 	_ValueCardsVisible: [],
@@ -404,6 +412,7 @@ import KOMBrowseInfo from './submodules/KOMBrowseInfo/main.svelte';
 <KOMBrowseInfo
 	KOMBrowseInfoItem={ mod._ValueCardSelected }
 	KOMBrowseInfoDeck={ KOMBrowseDeckSelected }
+	KOMBrowseInfoTagsSuggestions={ mod._ValueTagsAll }
 	KOMBrowseInfoSpeechAvailable={ KOMBrowseInfoSpeechAvailable }
 	KOMBrowseInfoDispatchBack={ mod.KOMBrowseInfoDispatchBack }
 	KOMBrowseInfoDispatchDiscard={ mod.KOMBrowseInfoDispatchDiscard }

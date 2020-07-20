@@ -36,6 +36,7 @@ const KOMBrowseInfo = new RollupStart({
 	target: document.body,
 	props: Object.assign({
 		KOMBrowseInfoDeck: {},
+		KOMBrowseInfoTagsSuggestions: [],
 		KOMBrowseInfoDispatchBack: (function _KOMBrowseInfoDispatchBack() {
 			window.TestKOMBrowseInfoDispatchBack.innerHTML = parseInt(window.TestKOMBrowseInfoDispatchBack.innerHTML) + 1;
 		}),

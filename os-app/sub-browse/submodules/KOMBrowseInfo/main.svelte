@@ -1,6 +1,7 @@
 <script>
 export let KOMBrowseInfoItem;
 export let KOMBrowseInfoDeck;
+export let KOMBrowseInfoTagsSuggestions;
 export let KOMBrowseInfoSpeechAvailable;
 export let KOMBrowseInfoDispatchBack;
 export let KOMBrowseInfoDispatchUpdate;
@@ -115,6 +116,7 @@ import KOMBrowseInfoTags from '../KOMBrowseInfoTags/main.svelte';
 <p class="KOMBrowseInfoFormTags">
 	<KOMBrowseInfoTags
 		KOMBrowseInfoTagsItems={ KOMBrowseInfoItem.KOMCardTags || [] }
+		KOMBrowseInfoTagsSuggestions={ KOMBrowseInfoTagsSuggestions }
 		KOMBrowseInfoTagsDispatchAdd={ mod.KOMBrowseInfoTagsDispatchAdd }
 		KOMBrowseInfoTagsDispatchRemove={ mod.KOMBrowseInfoTagsDispatchRemove }
 		/>
