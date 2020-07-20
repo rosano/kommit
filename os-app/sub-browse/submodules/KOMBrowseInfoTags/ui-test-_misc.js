@@ -22,6 +22,10 @@ describe('KOMBrowseInfoTags_Misc', function () {
 
 	describe('KOMBrowseInfoTagsCreateButton', function test_KOMBrowseInfoTagsCreateButton() {
 
+		it('sets type', function () {
+			browser.assert.attribute(KOMBrowseInfoTagsCreateButton, 'type', 'submit');
+		});
+
 		it('sets disabled', function () {
 			browser.assert.attribute(KOMBrowseInfoTagsCreateButton, 'disabled', '');
 		});
@@ -50,6 +54,31 @@ describe('KOMBrowseInfoTags_Misc', function () {
 				it('sends KOMBrowseInfoTagsDispatchCreate', function () {
 					browser.assert.text('#TestKOMBrowseInfoTagsDispatchCreate', '1');
 					browser.assert.text('#TestKOMBrowseInfoTagsDispatchCreateData', 'charlie');
+				});
+
+				it('clears KOMBrowseInfoTagsInputField', function () {
+					browser.assert.input(KOMBrowseInfoTagsInputField, '');
+				});
+			
+			});
+
+			context('submit', function () {
+				
+				before(function () {
+					return browser.fill(KOMBrowseInfoTagsInputField, 'delta');
+				});
+
+				before(function () {
+					browser.assert.text('#TestKOMBrowseInfoTagsDispatchCreate', '1');
+				});
+
+				before(function () {
+					return browser.fire('.KOMBrowseInfoTagsForm', 'submit');
+				});
+
+				it('sends KOMBrowseInfoTagsDispatchCreate', function () {
+					browser.assert.text('#TestKOMBrowseInfoTagsDispatchCreate', '2');
+					browser.assert.text('#TestKOMBrowseInfoTagsDispatchCreateData', 'delta');
 				});
 
 				it('clears KOMBrowseInfoTagsInputField', function () {

@@ -18,10 +18,12 @@ const mod = {
 
 	// INTERFACE
 
-	InterfaceCreateButtonDidClick () {
+	InterfaceFormDidSubmit () {
 		KOMBrowseInfoTagsDispatchCreate(mod._ValueNewTagName);
 
 		mod._ValueNewTagName = '';
+
+		event.preventDefault();
 	},
 
 };
@@ -35,9 +37,11 @@ const mod = {
 	{/each}
 </p>
 
-<p>
-	<input class="KOMBrowseInfoTagsInputField OLSKMobileSafariRemoveDefaultInputStyle" type="text" bind:value={ mod._ValueNewTagName } placeholder={ OLSKLocalized('KOMBrowseInfoTagsInputFieldText') } />
-	<button class="KOMBrowseInfoTagsCreateButton" on:click={ mod.InterfaceCreateButtonDidClick } disabled={ !mod._ValueNewTagName }>{ OLSKLocalized('KOMBrowseInfoTagsCreateButtonText') }</button>
-</p>
+<form class="KOMBrowseInfoTagsForm" on:submit={ mod.InterfaceFormDidSubmit }>
+	<p>
+		<input class="KOMBrowseInfoTagsInputField OLSKMobileSafariRemoveDefaultInputStyle" type="text" bind:value={ mod._ValueNewTagName } placeholder={ OLSKLocalized('KOMBrowseInfoTagsInputFieldText') } />
+		<button class="KOMBrowseInfoTagsCreateButton" type="submit" disabled={ !mod._ValueNewTagName }>{ OLSKLocalized('KOMBrowseInfoTagsCreateButtonText') }</button>
+	</p>
+</form>
 
 </div>
