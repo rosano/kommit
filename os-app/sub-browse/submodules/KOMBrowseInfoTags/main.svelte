@@ -29,12 +29,15 @@ const mod = {
 
 <div class="KOMBrowseInfoTags">
 
-<input class="KOMBrowseInfoTagsInputField OLSKMobileSafariRemoveDefaultInputStyle" type="text" bind:value={ mod._ValueNewTagName } placeholder={ OLSKLocalized('KOMBrowseInfoTagsInputFieldText') } />
+<p>
+	{#each KOMBrowseInfoTagsItems as item }
+		<button class="KOMBrowseInfoTagsRemoveButton" on:click={ () =>  KOMBrowseInfoTagsDispatchRemove(item) }>{ OLSKString.OLSKStringWithFormat(OLSKLocalized('KOMBrowseInfoTagsRemoveButtonTextFormat'), item) }</button>
+	{/each}
+</p>
 
-<button class="KOMBrowseInfoTagsCreateButton" on:click={ mod.InterfaceCreateButtonDidClick } disabled={ !mod._ValueNewTagName }>{ OLSKLocalized('KOMBrowseInfoTagsCreateButtonText') }</button>
-
-{#each KOMBrowseInfoTagsItems as item }
-	<button class="KOMBrowseInfoTagsRemoveButton" on:click={ () =>  KOMBrowseInfoTagsDispatchRemove(item) }>{ OLSKString.OLSKStringWithFormat(OLSKLocalized('KOMBrowseInfoTagsRemoveButtonTextFormat'), item) }</button>
-{/each}
+<p>
+	<input class="KOMBrowseInfoTagsInputField OLSKMobileSafariRemoveDefaultInputStyle" type="text" bind:value={ mod._ValueNewTagName } placeholder={ OLSKLocalized('KOMBrowseInfoTagsInputFieldText') } />
+	<button class="KOMBrowseInfoTagsCreateButton" on:click={ mod.InterfaceCreateButtonDidClick } disabled={ !mod._ValueNewTagName }>{ OLSKLocalized('KOMBrowseInfoTagsCreateButtonText') }</button>
+</p>
 
 </div>
