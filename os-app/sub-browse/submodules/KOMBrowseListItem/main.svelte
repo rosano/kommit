@@ -10,7 +10,8 @@ const OLSKLocalized = function(translationConstant) {
 <div class="KOMBrowseListItem">
 
 <strong class="KOMBrowseListItemFront" aria-hidden="true">{ KOMBrowseListItemObject.KOMCardFrontText }</strong><br>
-<span class="KOMBrowseListItemRear" aria-hidden="true">{ KOMBrowseListItemObject.KOMCardRearText }</span>
+<span class="KOMBrowseListItemRear" aria-hidden="true">{ KOMBrowseListItemObject.KOMCardRearText }</span><br>
+<span class="KOMBrowseListItemTags" aria-hidden="true">{ (KOMBrowseListItemObject.KOMCardTags || []).join(', ') }</span>
 
 </div>
 
@@ -32,5 +33,9 @@ const OLSKLocalized = function(translationConstant) {
 
 .KOMBrowseListItemFront {
 	display: inline-block;
+}
+
+.KOMBrowseListItemTags {
+	opacity: 0.5;
 }
 </style>

@@ -7,6 +7,7 @@ describe('KOMBrowseListItem_Misc', function () {
 			KOMBrowseListItemObject: JSON.stringify({
 				KOMCardFrontText: 'alfa',
 				KOMCardRearText: 'bravo',
+				KOMCardTags: ['charlie', 'delta'],
 			}),
 		});
 	});
@@ -31,6 +32,18 @@ describe('KOMBrowseListItem_Misc', function () {
 
 		it('binds KOMCardRearText', function () {
 			browser.assert.text(KOMBrowseListItemRear, 'bravo');
+		});
+
+	});
+
+	describe('KOMBrowseListItemTags', function test_KOMBrowseListItemTags() {
+
+		it('sets aria-hidden', function () {
+			browser.assert.attribute(KOMBrowseListItemTags, 'aria-hidden', 'true');
+		});
+
+		it('binds KOMCardTagsText', function () {
+			browser.assert.text(KOMBrowseListItemTags, 'charlie, delta');
 		});
 
 	});

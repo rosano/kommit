@@ -5,6 +5,7 @@ Object.entries({
 
 	KOMBrowseListItemFront: '.KOMBrowseListItemFront',
 	KOMBrowseListItemRear: '.KOMBrowseListItemRear',
+	KOMBrowseListItemTags: '.KOMBrowseListItemTags',
 }).map(function (e) {
 	return global[e.shift()] = e.pop();
 });
@@ -30,6 +31,10 @@ describe('KOMBrowseListItem_Access', function () {
 
 	it('shows KOMBrowseListItemRear', function () {
 		browser.assert.elements(KOMBrowseListItemRear, 1);
+	});
+
+	it('shows KOMBrowseListItemTags', function () {
+		browser.assert.elements(KOMBrowseListItemTags, 1);
 	});
 
 });
