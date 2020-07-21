@@ -47,12 +47,8 @@ const mod = {
 	_ValueCardsAll: KOMBrowseDeckSelected.$KOMDeckCards,
 	ValueCardsAll (inputData, shouldSort = true) {
 		mod.ValueCardsVisible(mod._ValueCardsAll = inputData, shouldSort);
-		
-		mod._ValueTagsAll = mod._ValueCardsAll.reduce(function (coll, item) {
-			return coll.concat((item.KOMCardTags || []).filter(function (e) {
-				return !coll.includes(e);
-			}));
-		}, []);
+
+		mod.ReactTags();
 	},
 
 	_ValueCardsVisible: [],
@@ -362,6 +358,14 @@ const mod = {
 		mod._ValueCardSelected = mod._ValueCardsVisible.filter(function (e) {
 			return e.KOMCardID === mod._ValueCardSelected.KOMCardID;
 		}).pop();
+	},
+
+	ReactTags () {
+		mod._ValueTagsAll = mod._ValueCardsAll.reduce(function (coll, item) {
+			return coll.concat((item.KOMCardTags || []).filter(function (e) {
+				return !coll.includes(e);
+			}));
+		}, []);
 	},
 
 	// SETUP
