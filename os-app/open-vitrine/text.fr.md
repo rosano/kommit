@@ -15,6 +15,7 @@ Le projet est librement accessible, mais si vous êtes en mesure de donner, veui
 - Créer des cartes illimitées
 - Écouter des cartes oralement avec synthèse vocale
 - Enregistrer d'audio
+- Organiser des cartes avec des tags
 - Synchroniser avec plusieurs appareils avec remoteStorage
 - Travailler hors ligne sans accès à l'Internet
 - Interface simple
