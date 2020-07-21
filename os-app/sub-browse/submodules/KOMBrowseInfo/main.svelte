@@ -105,6 +105,8 @@ import KOMBrowseInfoTags from '../KOMBrowseInfoTags/main.svelte';
 </p>
 
 <p class="KOMBrowseInfoFormRearAudio">
+	<button class="KOMBrowseInfoFormRearReadButton" on:click={ () => KOMBrowseInfoDispatchRead(KOMBrowseInfoItem.KOMCardRearText, KOMBrowseInfoDeck.KOMDeckRearLanguageCode) } disabled={ !KOMBrowseInfoSpeechAvailable || !KOMBrowseInfoDeck.KOMDeckRearLanguageCode }>{ OLSKLocalized('KOMBrowseInfoFormRearReadButtonText') }</button>
+
 	<KOMBrowseInfoAudio
 		KOMBrowseInfoAudioItem={ KOMBrowseInfoItem }
 		KOMBrowseInfoAudioItemProperty="KOMCardRearAudio"

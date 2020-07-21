@@ -422,6 +422,64 @@ describe('KOMBrowseInfo_Misc', function () {
 
 	});
 
+	describe('KOMBrowseInfoFormRearReadButton', function test_KOMBrowseInfoFormRearReadButton() {
+
+		before(function () {
+			return browser.OLSKVisit(kDefaultRoute, {
+				KOMBrowseInfoItem: JSON.stringify({
+					KOMCardRearText: 'alfa',
+				}),
+				KOMBrowseInfoDeck: JSON.stringify({
+					KOMDeckRearLanguageCode: 'en',
+				}),
+				KOMBrowseInfoSpeechAvailable: false,
+			});
+		});
+
+		it('sets disabled', function () {
+			browser.assert.attribute(KOMBrowseInfoFormRearReadButton, 'disabled', '');
+		});
+
+		context('play', function () {
+
+			before(function () {
+				return browser.OLSKVisit(kDefaultRoute, {
+					KOMBrowseInfoItem: JSON.stringify({
+						KOMCardRearText: 'alfa',
+					}),
+					KOMBrowseInfoDeck: JSON.stringify({
+						KOMDeckRearLanguageCode: 'en',
+					}),
+					KOMBrowseInfoSpeechAvailable: true,
+				});
+			});
+
+			it('sets disabled', function () {
+				browser.assert.attribute(KOMBrowseInfoFormRearReadButton, 'disabled', null);
+			});
+
+			context('click', function () {
+
+				before(function () {
+					browser.assert.text('#TestKOMBrowseInfoDispatchRead', '0');
+					browser.assert.text('#TestKOMBrowseInfoDispatchReadData', 'undefined');
+				});
+
+				before(function () {
+					return browser.pressButton(KOMBrowseInfoFormRearReadButton);
+				});
+
+				it('passes KOMBrowseInfoDispatchRead', function () {
+					browser.assert.text('#TestKOMBrowseInfoDispatchRead', '1');
+					browser.assert.text('#TestKOMBrowseInfoDispatchReadData', 'alfa,en');
+				});
+
+			});
+
+		});
+
+	});
+
 	describe('KOMBrowseInfoFormRearAudio', function test_KOMBrowseInfoFormRearAudio() {
 
 		context('record', function () {
