@@ -132,6 +132,34 @@ describe('KOMBrowseFilterFunction', function test_KOMBrowseFilterFunction() {
 
 		});
 
+		context('KOMCardNotes', function () {
+
+			it('returns false if no match', function () {
+				deepEqual(mainModule.KOMBrowseFilterFunction('bravo')(kTesting.uCard({
+					KOMCardNotes: 'alfa',
+				})), false);
+			});
+
+			it('returns true', function () {
+				deepEqual(mainModule.KOMBrowseFilterFunction('alfa')(kTesting.uCard({
+					KOMCardNotes: 'alfa',
+				})), true);
+			});
+
+			it('matches partial', function () {
+				deepEqual(mainModule.KOMBrowseFilterFunction('alf')(kTesting.uCard({
+					KOMCardNotes: 'alfa',
+				})), true);
+			});
+
+			it('matches case insensitive', function () {
+				deepEqual(mainModule.KOMBrowseFilterFunction('ALF')(kTesting.uCard({
+					KOMCardNotes: 'alfa',
+				})), true);
+			});
+
+		});
+
 	});
 
 });

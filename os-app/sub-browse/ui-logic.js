@@ -14,7 +14,9 @@ const mod = {
 		}
 
 		return function (e) {
-			return [e.KOMCardFrontText, e.KOMCardRearText].concat(e.KOMCardTags || []).filter(function (e) {
+			return [e.KOMCardFrontText, e.KOMCardRearText, e.KOMCardNotes].filter(function (e) {
+				return !!e;
+			}).concat(e.KOMCardTags || []).filter(function (e) {
 				return e.toLowerCase().match(inputData.toLowerCase());
 			}).length;
 		};
