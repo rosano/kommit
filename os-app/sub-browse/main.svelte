@@ -259,6 +259,8 @@ const mod = {
 		mod._ValueCardSelected = mod._ValueCardSelected; // #purge-svelte-force-update
 
 		mod.ControlCardUpdate(mod._ValueCardSelected, KOMBrowseDeckSelected);
+
+		mod.ReactTags();
 	},
 
 	async KOMBrowseInfoAudioDispatchCapture (param1, param2) {
