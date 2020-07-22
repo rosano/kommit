@@ -1,7 +1,7 @@
 KOMReviewDetailToolbarBackButtonText: Back
 KOMReviewDetailToolbarCardsButtonText: Cartes
 KOMReviewDetailStudyHeadingText: Réviser
-KOMReviewDetailNoCardsText: Il n'y a pas de cartes dans ce paquet.
+KOMReviewDetailNoCardsText: Il n'y a pas de cartes dans ce lot de cartes.
 KOMReviewDetailFormAudioIsEnabledFieldLabelText: Faire entendre audio
 KOMReviewDetailFormFrontSpeechIsEnabledFieldLabelText: Lire le recto
 KOMReviewDetailFormRearSpeechIsEnabledFieldLabelText: Lire le verso
@@ -12,8 +12,8 @@ KOMReviewDetailPlayButtonMixedText: Étudier toutes les cartes
 KOMReviewDetailNoSpacingsText: Toutes les cartes pour aujourd'hui ont été révisées.
 KOMReviewDetailStatsHeadingText: Statistiques
 KOMReviewDetailStatsUnavailableText: Réviser quelques cartes pour alimenter les statistiques.
-KOMReviewDetailDeckHeadingText: Paquet
+KOMReviewDetailDeckHeadingText: Lot de cartes
 KOMReviewDetailRenameButtonText: Renommer
 KOMReviewDetailRenameButtonPromptText: Nom
-KOMReviewDetailDiscardButtonText: Supprimer le paquet et toutes les cartes dedans
-KOMReviewDetailDiscardPromptText: Êtes-vous sûr.e? Veuillez entrer le nom du paquet pour confirmer et supprimer.
+KOMReviewDetailDiscardButtonText: Supprimer le lot de cartes et toutes les cartes dedans
+KOMReviewDetailDiscardPromptText: Êtes-vous sûr.e? Veuillez entrer le nom du lot de cartes pour confirmer et supprimer.
