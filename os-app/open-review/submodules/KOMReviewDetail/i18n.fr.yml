@@ -2,12 +2,12 @@ KOMReviewDetailToolbarBackButtonText: Back
 KOMReviewDetailToolbarCardsButtonText: Cartes
 KOMReviewDetailStudyHeadingText: Réviser
 KOMReviewDetailNoCardsText: Il n'y a pas de cartes dans ce lot de cartes.
-KOMReviewDetailFormAudioIsEnabledFieldLabelText: Faire entendre audio
+KOMReviewDetailFormAudioIsEnabledFieldLabelText: Faire entendre la version audio enregistrée
 KOMReviewDetailFormFrontSpeechIsEnabledFieldLabelText: Lire le recto
 KOMReviewDetailFormRearSpeechIsEnabledFieldLabelText: Lire le verso
-KOMReviewDetailFormIsForwardOnlyFieldLabelText: Sauter des cartes en arrières
+KOMReviewDetailFormIsForwardOnlyFieldLabelText: Ne pas activer la lecture des cartes inversées
 KOMReviewDetailPlayButtonReviewingText: Étudier des cartes à réviser
-KOMReviewDetailPlayButtonUnseenText: Étudier des cartes nouvelles
+KOMReviewDetailPlayButtonUnseenText: Étudier des nouvelles cartes
 KOMReviewDetailPlayButtonMixedText: Étudier toutes les cartes
 KOMReviewDetailNoSpacingsText: Toutes les cartes pour aujourd'hui ont été révisées.
 KOMReviewDetailStatsHeadingText: Statistiques
