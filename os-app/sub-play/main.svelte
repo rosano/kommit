@@ -136,6 +136,9 @@ const mod = {
 		}
 
 		const handlerFunctions = {
+			Escape () {
+				KOMPlayDispatchDone();
+			},
 			Space () {
 				mod.ControlProgress();
 			},

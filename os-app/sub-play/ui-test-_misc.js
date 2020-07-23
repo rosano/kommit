@@ -86,6 +86,18 @@ describe('KOMPlay_Misc', function () {
 
 		});
 
+		context('Escape', function () {
+
+			before(function () {
+				return browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
+			});
+
+			it('sends KOMPlayDispatchDone', function () {
+				browser.assert.text('#TestKOMPlayDispatchDone', '2');
+			});
+
+		});
+
 	});
 
 	describe('KOMPlayCard', function test_KOMPlayCard() {
