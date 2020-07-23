@@ -173,6 +173,10 @@ describe('KOMBrowseInfo_Misc', function () {
 			browser.assert.hasClass(KOMBrowseInfoToolbarTemplateButton, 'OLSKToolbarButton');
 		});
 
+		it('sets accesskey', function () {
+			browser.assert.attribute(KOMBrowseInfoToolbarTemplateButton, 'accesskey', 't');
+		});
+
 		context('click', function () {
 
 			before(function () {

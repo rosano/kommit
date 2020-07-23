@@ -77,7 +77,7 @@ import KOMBrowseInfoTags from '../KOMBrowseInfoTags/main.svelte';
 		
 		<button class="KOMBrowseInfoToolbarTemplateButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton" title={ OLSKLocalized('KOMBrowseInfoToolbarTemplateButtonText') } on:click={ () => KOMBrowseInfoDispatchTemplate(Object.fromEntries(Object.entries(KOMBrowseInfoItem).filter(function (e) {
 			return e[0] === 'KOMCardTags';
-		}))) }>
+		}))) } accesskey="t">
 			<div class="KOMBrowseInfoToolbarTemplateButtonImage">{@html _OLSKSharedClone }</div>
 		</button>
 	</div>
