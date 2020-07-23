@@ -164,7 +164,7 @@ import KOMReviewToday from '../KOMReviewToday/main.svelte';
 	</div>
 
 	<div class="OLSKToolbarElementGroup">
-		<button class="KOMReviewDetailToolbarCardsButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ KOMReviewDetailDispatchBrowse }>{ OLSKLocalized('KOMReviewDetailToolbarCardsButtonText') }</button>
+		<button class="KOMReviewDetailToolbarCardsButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ KOMReviewDetailDispatchBrowse } accesskey="c">{ OLSKLocalized('KOMReviewDetailToolbarCardsButtonText') }</button>
 	</div>
 </header>
 

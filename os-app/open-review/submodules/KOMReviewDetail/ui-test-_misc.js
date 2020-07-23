@@ -117,6 +117,10 @@ describe('KOMReviewDetail_Misc', function () {
 
 	describe('KOMReviewDetailToolbarCardsButton', function test_KOMReviewDetailToolbarCardsButton() {
 
+		it('sets accesskey', function () {
+			browser.assert.attribute(KOMReviewDetailToolbarCardsButton, 'accesskey', 'c');
+		});
+
 		context('click', function () {
 
 			before(function () {
