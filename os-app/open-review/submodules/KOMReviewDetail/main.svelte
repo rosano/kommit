@@ -210,7 +210,7 @@ import KOMReviewToday from '../KOMReviewToday/main.svelte';
 	<div class="KOMReviewDetailPlay">
 		{#if KOMReviewDetailPlaySingle }
 			<p>
-				<button class="KOMReviewDetailPlayButtonSingle" on:click={ mod.InterfaceMixedButtonDidClick }>{ OLSKLocalized('KOMReviewDetailPlayButtonSingleText') }</button>
+				<button class="KOMReviewDetailPlayButtonSingle" on:click={ mod.InterfaceMixedButtonDidClick } accesskey="g">{ OLSKLocalized('KOMReviewDetailPlayButtonSingleText') }</button>
 			</p>
 		{/if}
 		

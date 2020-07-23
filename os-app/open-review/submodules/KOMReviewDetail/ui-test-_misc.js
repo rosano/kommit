@@ -498,6 +498,10 @@ describe('KOMReviewDetail_Misc', function () {
 			});
 		});
 
+		it('sets accesskey', function () {
+			browser.assert.attribute(KOMReviewDetailPlayButtonSingle, 'accesskey', 'g');
+		});
+
 		context('click', function () {
 
 			before(function () {
