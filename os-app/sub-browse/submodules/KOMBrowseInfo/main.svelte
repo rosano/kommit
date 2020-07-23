@@ -6,7 +6,7 @@ export let KOMBrowseInfoSpeechAvailable;
 export let KOMBrowseInfoDispatchBack;
 export let KOMBrowseInfoDispatchUpdate;
 export let KOMBrowseInfoDispatchDiscard;
-export let KOMBrowseInfoDispatchCreate;
+export let KOMBrowseInfoDispatchTemplate;
 export let KOMBrowseInfoDispatchRead;
 export let KOMBrowseInfoAudioDispatchCapture;
 export let KOMBrowseInfoAudioDispatchFetch;
@@ -75,7 +75,9 @@ import KOMBrowseInfoTags from '../KOMBrowseInfoTags/main.svelte';
 			<div class="KOMBrowseInfoToolbarDiscardButtonImage">{@html _OLSKSharedDiscard }</div>
 		</button>
 		
-		<button class="KOMBrowseInfoToolbarTemplateButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton" title={ OLSKLocalized('KOMBrowseInfoToolbarTemplateButtonText') } on:click={ KOMBrowseInfoDispatchCreate }>
+		<button class="KOMBrowseInfoToolbarTemplateButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton" title={ OLSKLocalized('KOMBrowseInfoToolbarTemplateButtonText') } on:click={ () => KOMBrowseInfoDispatchTemplate(Object.fromEntries(Object.entries(KOMBrowseInfoItem).filter(function (e) {
+			return e[0] === 'KOMCardTags';
+		}))) }>
 			<div class="KOMBrowseInfoToolbarTemplateButtonImage">{@html _OLSKSharedClone }</div>
 		</button>
 	</div>

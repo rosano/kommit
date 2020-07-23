@@ -49,8 +49,9 @@ const KOMBrowseInfo = new RollupStart({
 
 			mod.ReactDetailItem(params.KOMBrowseInfoItem);
 		}),
-		KOMBrowseInfoDispatchCreate: (function _KOMBrowseInfoDispatchCreate() {
-			window.TestKOMBrowseInfoDispatchCreate.innerHTML = parseInt(window.TestKOMBrowseInfoDispatchCreate.innerHTML) + 1;
+		KOMBrowseInfoDispatchTemplate: (function _KOMBrowseInfoDispatchTemplate(inputData) {
+			window.TestKOMBrowseInfoDispatchTemplate.innerHTML = parseInt(window.TestKOMBrowseInfoDispatchTemplate.innerHTML) + 1;
+			window.TestKOMBrowseInfoDispatchTemplateData.innerHTML = JSON.stringify(inputData);
 		}),
 		KOMBrowseInfoDispatchRead: (function _KOMBrowseInfoDispatchRead() {
 			window.TestKOMBrowseInfoDispatchRead.innerHTML = parseInt(window.TestKOMBrowseInfoDispatchRead.innerHTML) + 1;

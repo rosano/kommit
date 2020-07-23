@@ -148,8 +148,8 @@ const mod = {
 
 	// CONTROL
 
-	async ControlCardCreate(inputData) {
-		const item = await KOMCardAction.KOMCardActionCreate(KOMBrowseStorageClient, mod.DataCardObjectTemplate(), inputData);
+	async ControlCardCreate(param1, param2 = {}) {
+		const item = await KOMCardAction.KOMCardActionCreate(KOMBrowseStorageClient, Object.assign(mod.DataCardObjectTemplate(), param2), param1);
 
 		mod.ValueCardsAll(mod._ValueCardsAll.concat(item));
 
@@ -251,8 +251,8 @@ const mod = {
 		mod.ControlCardDiscard(mod._ValueCardSelected, KOMBrowseDeckSelected);
 	},
 
-	KOMBrowseInfoDispatchCreate () {
-		mod.ControlCardCreate(KOMBrowseDeckSelected);
+	KOMBrowseInfoDispatchTemplate (inputData) {
+		mod.ControlCardCreate(KOMBrowseDeckSelected, inputData);
 	},
 
 	KOMBrowseInfoDispatchUpdate () {
@@ -423,7 +423,7 @@ import KOMBrowseInfo from './submodules/KOMBrowseInfo/main.svelte';
 	KOMBrowseInfoDispatchBack={ mod.KOMBrowseInfoDispatchBack }
 	KOMBrowseInfoDispatchDiscard={ mod.KOMBrowseInfoDispatchDiscard }
 	KOMBrowseInfoDispatchUpdate={ mod.KOMBrowseInfoDispatchUpdate }
-	KOMBrowseInfoDispatchCreate={ mod.KOMBrowseInfoDispatchCreate }
+	KOMBrowseInfoDispatchTemplate={ mod.KOMBrowseInfoDispatchTemplate }
 	KOMBrowseInfoDispatchRead={ KOMBrowseInfoDispatchRead }
 	KOMBrowseInfoAudioDispatchCapture={ mod.KOMBrowseInfoAudioDispatchCapture }
 	KOMBrowseInfoAudioDispatchFetch={ mod.KOMBrowseInfoAudioDispatchFetch }

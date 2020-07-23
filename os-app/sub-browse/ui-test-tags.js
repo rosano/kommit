@@ -24,20 +24,44 @@ describe('KOMBrowse_Tags', function () {
 		return browser.pressButton('.KOMBrowseListToolbarCreateButton');
 	});
 
-	before(function () {
-		return browser.fill('.KOMBrowseInfoTagsInputField', 'alfa');
+	context('suggestions', function () {
+
+		before(function () {
+			return browser.fill('.KOMBrowseInfoTagsInputField', 'alfa');
+		});
+
+		before(function () {
+			return browser.pressButton('.KOMBrowseInfoTagsCreateButton');
+		});
+
+		before(function () {
+			return browser.pressButton('.KOMBrowseListToolbarCreateButton');
+		});
+
+		it('suggests existing tag', function () {
+			browser.assert.elements('.KOMBrowseInfoTagsSuggestButton', 1);
+		});
+	
 	});
 
-	before(function () {
-		return browser.pressButton('.KOMBrowseInfoTagsCreateButton');
-	});
+	context('template', function () {
 
-	before(function () {
-		return browser.pressButton('.KOMBrowseListToolbarCreateButton');
-	});
+		before(function () {
+			browser.assert.elements('.KOMBrowseInfoTagsRemoveButton', 0);
+		});
 
-	it('suggests existing tag', function () {
-		browser.assert.elements('.KOMBrowseInfoTagsSuggestButton', 1);
+		before(function () {
+			return browser.pressButton('.KOMBrowseInfoTagsSuggestButton');
+		});
+
+		before(function () {
+			return browser.pressButton('.KOMBrowseInfoToolbarTemplateButton');
+		});
+
+		it('copies existing tag', function () {
+			browser.assert.elements('.KOMBrowseInfoTagsRemoveButton', 1);
+		});
+	
 	});
 
 });

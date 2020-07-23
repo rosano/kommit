@@ -153,6 +153,14 @@ describe('KOMBrowseInfo_Misc', function () {
 
 	describe('KOMBrowseInfoToolbarTemplateButton', function test_KOMBrowseInfoToolbarTemplateButton() {
 
+		before(function () {
+			return browser.OLSKVisit(kDefaultRoute, {
+				KOMBrowseInfoItem: JSON.stringify({
+					KOMCardTags: ['alfa'],
+				}),
+			});
+		});
+
 		it('classes OLSKLayoutButtonNoStyle', function () {
 			browser.assert.hasClass(KOMBrowseInfoToolbarTemplateButton, 'OLSKLayoutButtonNoStyle');
 		});
@@ -168,15 +176,19 @@ describe('KOMBrowseInfo_Misc', function () {
 		context('click', function () {
 
 			before(function () {
-				browser.assert.text('#TestKOMBrowseInfoDispatchCreate', '0');
+				browser.assert.text('#TestKOMBrowseInfoDispatchTemplate', '0');
+				browser.assert.text('#TestKOMBrowseInfoDispatchTemplateData', 'undefined');
 			});
 
 			before(function () {
 				return browser.pressButton(KOMBrowseInfoToolbarTemplateButton);
 			});
 
-			it('sends KOMBrowseInfoDispatchCreate', function () {
-				browser.assert.text('#TestKOMBrowseInfoDispatchCreate', '1');
+			it('sends KOMBrowseInfoDispatchTemplate', function () {
+				browser.assert.text('#TestKOMBrowseInfoDispatchTemplate', '1');
+				browser.assert.text('#TestKOMBrowseInfoDispatchTemplateData', JSON.stringify({
+					KOMCardTags: ['alfa'],
+				}));
 			});
 
 		});
