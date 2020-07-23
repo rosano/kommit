@@ -125,6 +125,14 @@ describe('KOMReviewDetail_Misc', function () {
 
 	describe('KOMReviewDetailDiscardButton', function test_KOMReviewDetailDiscardButton() {
 
+		it('classes OLSKLayoutButtonNoStyle', function () {
+			browser.assert.hasClass(KOMReviewDetailDiscardButton, 'OLSKLayoutButtonNoStyle');
+		});
+
+		it('classes OLSKLayoutElementTappable', function () {
+			browser.assert.hasClass(KOMReviewDetailDiscardButton, 'OLSKLayoutElementTappable');
+		});
+
 		context('click', function () {
 
 			context('response invalid', function () {

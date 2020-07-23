@@ -262,8 +262,10 @@ import KOMReviewToday from '../KOMReviewToday/main.svelte';
 	<button class="KOMReviewDetailRenameButton" on:click={ mod.InterfaceRenameButtonDidClick }>{ OLSKLocalized('KOMReviewDetailRenameButtonText') }</button>
 </p>
 
+<hr>
+
 <p>
-	<button class="KOMReviewDetailDiscardButton" on:click={ () => (window.prompt(OLSKLocalized('KOMReviewDetailDiscardPromptText')) === KOMReviewDetailDeck.KOMDeckName) && KOMReviewDetailDispatchDiscard(KOMReviewDetailDeck) }>{ OLSKLocalized('KOMReviewDetailDiscardButtonText') }</button>
+	<button class="KOMReviewDetailDiscardButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ () => (window.prompt(OLSKLocalized('KOMReviewDetailDiscardPromptText')) === KOMReviewDetailDeck.KOMDeckName) && KOMReviewDetailDispatchDiscard(KOMReviewDetailDeck) }>{ OLSKLocalized('KOMReviewDetailDiscardButtonText') }</button>
 </p>
 
 </div>
@@ -294,5 +296,14 @@ hr {
 	border: none;
 
 	background: #e6e6e6;
+}
+
+.KOMReviewDetailDiscardButton {
+	padding: 5px;
+
+	border: 1px solid #800002;
+	border-radius: 3px;
+	background: #ffefef;
+	color: #800002;
 }
 </style>
