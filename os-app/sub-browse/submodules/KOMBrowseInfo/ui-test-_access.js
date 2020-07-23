@@ -8,8 +8,8 @@ Object.entries({
 	KOMBrowseInfoToolbarBackButtonImage: '.KOMBrowseInfoToolbarBackButtonImage',
 	KOMBrowseInfoToolbarDiscardButton: '.KOMBrowseInfoToolbarDiscardButton',
 	KOMBrowseInfoToolbarDiscardButtonImage: '.KOMBrowseInfoToolbarDiscardButtonImage',
-	KOMBrowseInfoToolbarCreateButton: '.KOMBrowseInfoToolbarCreateButton',
-	KOMBrowseInfoToolbarCreateButtonImage: '.KOMBrowseInfoToolbarCreateButtonImage',
+	KOMBrowseInfoToolbarTemplateButton: '.KOMBrowseInfoToolbarTemplateButton',
+	KOMBrowseInfoToolbarTemplateButtonImage: '.KOMBrowseInfoToolbarTemplateButtonImage',
 
 	KOMBrowseInfoForm: '.KOMBrowseInfoForm',
 
@@ -81,12 +81,12 @@ describe('KOMBrowseInfo_Access', function () {
 			browser.assert.elements(KOMBrowseInfoToolbarDiscardButtonImage, 1);
 		});
 
-		it('shows KOMBrowseInfoToolbarCreateButton', function () {
-			browser.assert.elements(KOMBrowseInfoToolbarCreateButton, 1);
+		it('shows KOMBrowseInfoToolbarTemplateButton', function () {
+			browser.assert.elements(KOMBrowseInfoToolbarTemplateButton, 1);
 		});
 
-		it('shows KOMBrowseInfoToolbarCreateButtonImage', function () {
-			browser.assert.elements(KOMBrowseInfoToolbarCreateButtonImage, 1);
+		it('shows KOMBrowseInfoToolbarTemplateButtonImage', function () {
+			browser.assert.elements(KOMBrowseInfoToolbarTemplateButtonImage, 1);
 		});
 
 		it('shows KOMBrowseInfoForm', function () {

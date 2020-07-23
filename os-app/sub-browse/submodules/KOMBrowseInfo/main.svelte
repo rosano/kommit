@@ -51,7 +51,7 @@ const mod = {
 import OLSKDetailPlaceholder from 'OLSKDetailPlaceholder';
 import _OLSKSharedBack from '../../../_shared/__external/OLSKUIAssets/_OLSKSharedBack.svg';
 import _OLSKSharedDiscard from '../../../_shared/__external/OLSKUIAssets/_OLSKSharedDiscard.svg';
-import _OLSKSharedCreate from '../../../_shared/__external/OLSKUIAssets/_OLSKSharedCreate.svg';
+import _OLSKSharedClone from '../../../_shared/__external/OLSKUIAssets/_OLSKSharedClone.svg';
 import KOMBrowseInfoAudio from '../KOMBrowseInfoAudio/main.svelte';
 import KOMBrowseInfoTags from '../KOMBrowseInfoTags/main.svelte';
 </script>
@@ -75,8 +75,8 @@ import KOMBrowseInfoTags from '../KOMBrowseInfoTags/main.svelte';
 			<div class="KOMBrowseInfoToolbarDiscardButtonImage">{@html _OLSKSharedDiscard }</div>
 		</button>
 		
-		<button class="KOMBrowseInfoToolbarCreateButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton OLSKVisibilityMobile" title={ OLSKLocalized('KOMBrowseInfoToolbarCreateButtonText') } on:click={ KOMBrowseInfoDispatchCreate }>
-			<div class="KOMBrowseInfoToolbarCreateButtonImage">{@html _OLSKSharedCreate }</div>
+		<button class="KOMBrowseInfoToolbarTemplateButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton" title={ OLSKLocalized('KOMBrowseInfoToolbarTemplateButtonText') } on:click={ KOMBrowseInfoDispatchCreate }>
+			<div class="KOMBrowseInfoToolbarTemplateButtonImage">{@html _OLSKSharedClone }</div>
 		</button>
 	</div>
 </header>
