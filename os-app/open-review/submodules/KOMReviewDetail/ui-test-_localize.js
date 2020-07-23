@@ -47,7 +47,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 		});
 
 		it('localizes KOMReviewDetailStudyHeading', function () {
-			browser.assert.text(KOMReviewDetailStudyHeading, uLocalized('KOMReviewDetailStudyHeadingText'));
+			browser.assert.text(KOMReviewDetailStudyHeading, uLocalized('KOMReviewDetailGameOptionsHeadingText'));
 		});
 
 		it('localizes KOMReviewDetailNoCards', function () {

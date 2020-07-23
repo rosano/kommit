@@ -154,7 +154,7 @@ import KOMReviewToday from '../KOMReviewToday/main.svelte';
 
 <div class="KOMReviewDetailBody">
 
-<h1 class="KOMReviewDetailStudyHeading">{ OLSKLocalized('KOMReviewDetailStudyHeadingText') }</h1>
+<h1 class="KOMReviewDetailStudyHeading">{ OLSKLocalized('KOMReviewDetailGameOptionsHeadingText') }</h1>
 
 <div class="KOMReviewDetailForm">
 	<p>
