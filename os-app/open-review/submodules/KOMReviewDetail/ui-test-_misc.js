@@ -85,6 +85,18 @@ describe('KOMReviewDetail_Misc', function () {
 
 		});
 
+		context('Escape', function () {
+
+			before(function () {
+				return browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
+			});
+
+			it('sends KOMReviewDetailDispatchBack', function () {
+				browser.assert.text('#TestKOMReviewDetailDispatchBack', '2');
+			});
+
+		});
+
 	});
 
 	describe('KOMReviewDetailToolbarBackButtonImage', function test_KOMReviewDetailToolbarBackButtonImage() {

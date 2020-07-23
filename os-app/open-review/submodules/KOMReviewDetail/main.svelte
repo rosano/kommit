@@ -67,6 +67,20 @@ const mod = {
 		mod.ControlRename();
 	},
 
+	InterfaceWindowDidKeydown (event) {
+		if (document.querySelector('.LCHLauncher')) { // #spec
+			return;
+		}
+
+		const handlerFunctions = {
+			Escape () {
+				KOMReviewDetailDispatchBack()
+			},
+		};
+
+		handlerFunctions[event.key] && handlerFunctions[event.key]();
+	},
+
 	// CONTROL
 
 	ControlRename() {
@@ -134,6 +148,7 @@ import _OLSKSharedBack from '../../../_shared/__external/OLSKUIAssets/_OLSKShare
 import KOMReviewDetailLanguageCode from '../KOMReviewDetailLanguageCode/main.svelte';
 import KOMReviewToday from '../KOMReviewToday/main.svelte';
 </script>
+<svelte:window on:keydown={ mod.InterfaceWindowDidKeydown } />
 
 <div class="KOMReviewDetail">
 
