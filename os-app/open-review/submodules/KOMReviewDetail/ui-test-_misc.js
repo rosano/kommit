@@ -470,6 +470,49 @@ describe('KOMReviewDetail_Misc', function () {
 
 	});
 
+	describe('KOMReviewDetailPlayButtonSingle', function test_KOMReviewDetailPlayButtonSingle() {
+
+		before(function () {
+			return browser.OLSKVisit(kDefaultRoute, {
+				KOMReviewDetailDeck: JSON.stringify({
+					KOMDeckName: 'alfa',
+					$KOMDeckSpacings: kTesting.uSpacings().map(function (e, i) {
+						if (i) {
+							return e;
+						}
+
+						return Object.assign(e, {
+							KOMSpacingDueDate: new Date(),
+						});
+					}),
+				}),
+				KOMReviewDetailPlaySingle: true,
+			});
+		});
+
+		context('click', function () {
+
+			before(function () {
+				browser.assert.text('#TestKOMReviewDetailDispatchPlay', '0');
+				browser.assert.text('#TestKOMReviewDetailDispatchPlayData', 'undefined');
+			});
+
+			before(function () {
+				return browser.pressButton(KOMReviewDetailPlayButtonSingle);
+			});
+
+			it('sends KOMReviewDetailDispatchPlay', function () {
+				browser.assert.text('#TestKOMReviewDetailDispatchPlay', '1');
+				browser.assert.text('#TestKOMReviewDetailDispatchPlayData', JSON.stringify({
+					KOMReviewScheme: KOMReviewLogic.KOMReviewSchemeMixed(),
+					KOMReviewMaxUnseenCards: 10,
+				}));
+			});
+
+		});
+
+	});
+
 	describe('KOMReviewDetailStatsToday', function test_KOMReviewDetailStatsToday() {
 
 		before(function () {

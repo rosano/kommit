@@ -117,7 +117,7 @@ describe('KOMReview_Misc', function () {
 	describe('KOMPlay', function test_KOMPlay() {
 
 		before(function () {
-			return browser.pressButton('.KOMReviewDetailPlayButtonUnseen');
+			return browser.pressButton('.KOMReviewDetailPlayButtonSingle');
 		});
 
 		before(function () {
@@ -133,7 +133,7 @@ describe('KOMReview_Misc', function () {
 		});
 
 		before(function () {
-			return browser.pressButton('.KOMPlayResponseButtonGood');
+			return browser.pressButton('.KOMPlayResponseButtonEasy');
 		});
 
 		before(function () {
@@ -141,7 +141,7 @@ describe('KOMReview_Misc', function () {
 		});
 
 		before(function () {
-			return browser.pressButton('.KOMReviewDetailPlayButtonUnseen');
+			return browser.pressButton('.KOMReviewDetailPlayButtonSingle');
 		});
 
 		it('persists responses', function () {

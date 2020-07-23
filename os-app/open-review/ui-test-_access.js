@@ -299,7 +299,7 @@ describe('KOMReview_Access', function () {
 		});
 
 		before(function () {
-			return browser.pressButton('.KOMReviewDetailPlayButtonUnseen');
+			return browser.pressButton('.KOMReviewDetailPlayButtonSingle');
 		});
 
 		it('hides KOMReviewMaster', function () {

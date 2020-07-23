@@ -1,5 +1,6 @@
 <script>
 export let KOMReviewDetailDeck;
+export let KOMReviewDetailPlaySingle = false;
 export let KOMReviewDetailDispatchBack;
 export let KOMReviewDetailDispatchBrowse;
 export let KOMReviewDetailDispatchUpdate;
@@ -207,19 +208,25 @@ import KOMReviewToday from '../KOMReviewToday/main.svelte';
 
 {#if KOMReviewDetailDeck.$KOMDeckSpacings.length && mod._ValueSpacingsToday.length}
 	<div class="KOMReviewDetailPlay">
-		{#if mod._ValueSpacingsReviewing.length }
+		{#if KOMReviewDetailPlaySingle }
+			<p>
+				<button class="KOMReviewDetailPlayButtonSingle" on:click={ mod.InterfaceMixedButtonDidClick }>{ OLSKLocalized('KOMReviewDetailPlayButtonSingleText') }</button>
+			</p>
+		{/if}
+		
+		{#if !KOMReviewDetailPlaySingle && mod._ValueSpacingsReviewing.length }
 			<p>
 				<button class="KOMReviewDetailPlayButtonReviewing" on:click={ mod.InterfaceReviewingButtonDidClick }>{ OLSKLocalized('KOMReviewDetailPlayButtonReviewingText') }</button>
 			</p>
 		{/if}
 		
-		{#if mod._ValueSpacingsUnseen.length }
+		{#if !KOMReviewDetailPlaySingle && mod._ValueSpacingsUnseen.length }
 			<p>
 				<button class="KOMReviewDetailPlayButtonUnseen" on:click={ mod.InterfaceUnseenButtonDidClick }>{ OLSKLocalized('KOMReviewDetailPlayButtonUnseenText') }</button>
 			</p>
 		{/if}
 		
-		{#if mod._ValueSpacingsReviewing.length && mod._ValueSpacingsUnseen.length }
+		{#if !KOMReviewDetailPlaySingle && mod._ValueSpacingsReviewing.length && mod._ValueSpacingsUnseen.length }
 			<p>
 				<button class="KOMReviewDetailPlayButtonMixed" on:click={ mod.InterfaceMixedButtonDidClick }>{ OLSKLocalized('KOMReviewDetailPlayButtonMixedText') }</button>
 			</p>

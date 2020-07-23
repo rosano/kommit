@@ -29,6 +29,7 @@ Object.entries({
 	KOMReviewDetailPlayButtonReviewing: '.KOMReviewDetailPlayButtonReviewing',
 	KOMReviewDetailPlayButtonUnseen: '.KOMReviewDetailPlayButtonUnseen',
 	KOMReviewDetailPlayButtonMixed: '.KOMReviewDetailPlayButtonMixed',
+	KOMReviewDetailPlayButtonSingle: '.KOMReviewDetailPlayButtonSingle',
 
 	KOMReviewDetailNoSpacings: '.KOMReviewDetailNoSpacings',
 
@@ -284,6 +285,44 @@ describe('KOMReviewDetail_Access', function () {
 
 			it('shows KOMReviewDetailPlayButtonMixed', function () {
 				browser.assert.elements(KOMReviewDetailPlayButtonMixed, 1);
+			});
+
+		});
+
+		context('single', function test_single() {
+
+			before(function () {
+				return browser.OLSKVisit(kDefaultRoute, {
+					KOMReviewDetailDeck: JSON.stringify({
+						KOMDeckName: 'alfa',
+						$KOMDeckSpacings: kTesting.uSpacings().map(function (e, i) {
+							if (i) {
+								return e;
+							}
+
+							return Object.assign(e, {
+								KOMSpacingDueDate: new Date(),
+							});
+						}),
+					}),
+					KOMReviewDetailPlaySingle: true,
+				});
+			});
+
+			it('hides KOMReviewDetailPlayButtonReviewing', function () {
+				browser.assert.elements(KOMReviewDetailPlayButtonReviewing, 0);
+			});
+
+			it('hides KOMReviewDetailPlayButtonUnseen', function () {
+				browser.assert.elements(KOMReviewDetailPlayButtonUnseen, 0);
+			});
+
+			it('hides KOMReviewDetailPlayButtonMixed', function () {
+				browser.assert.elements(KOMReviewDetailPlayButtonMixed, 0);
+			});
+
+			it('shows KOMReviewDetailPlayButtonSingle', function () {
+				browser.assert.elements(KOMReviewDetailPlayButtonSingle, 1);
 			});
 
 		});

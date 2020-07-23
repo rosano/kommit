@@ -608,6 +608,7 @@ import OLSKStorageWidget from 'OLSKStorageWidget';
 			KOMReviewDetailDispatchUpdate={ mod.KOMReviewDetailDispatchUpdate }
 			KOMReviewDetailDispatchBrowse={ mod.KOMReviewDetailDispatchBrowse }
 			KOMReviewDetailDispatchPlay={ mod.KOMReviewDetailDispatchPlay }
+			KOMReviewDetailPlaySingle={ true }
 			/>
 	{/if}
 

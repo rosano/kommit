@@ -9,6 +9,7 @@ KOMReviewDetailFormIsForwardOnlyFieldLabelText: Ne pas activer la lecture des ca
 KOMReviewDetailPlayButtonReviewingText: Étudier des cartes à réviser
 KOMReviewDetailPlayButtonUnseenText: Étudier des nouvelles cartes
 KOMReviewDetailPlayButtonMixedText: Étudier toutes les cartes
+KOMReviewDetailPlayButtonSingleText: Jouer
 KOMReviewDetailNoSpacingsText: Toutes les cartes pour aujourd'hui ont été révisées.
 KOMReviewDetailStatsHeadingText: Statistiques
 KOMReviewDetailStatsUnavailableText: Réviser quelques cartes pour alimenter les statistiques.

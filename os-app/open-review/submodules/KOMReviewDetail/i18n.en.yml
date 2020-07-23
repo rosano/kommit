@@ -9,6 +9,7 @@ KOMReviewDetailFormIsForwardOnlyFieldLabelText: Skip reversed cards
 KOMReviewDetailPlayButtonReviewingText: Study review cards
 KOMReviewDetailPlayButtonUnseenText: Study new cards
 KOMReviewDetailPlayButtonMixedText: Study all cards
+KOMReviewDetailPlayButtonSingleText: Play
 KOMReviewDetailNoSpacingsText: All cards for today have been reviewed.
 KOMReviewDetailStatsHeadingText: Statistics
 KOMReviewDetailStatsUnavailableText: Review some cards to populate statistics.

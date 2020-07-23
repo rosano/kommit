@@ -25,8 +25,11 @@ const KOMReviewDetail = new RollupStart({
 			window.TestKOMReviewDetailDispatchDiscardData.innerHTML = JSON.stringify(inputData);
 		}),
 	}, Object.fromEntries(Array.from((new window.URLSearchParams(window.location.search)).entries()).map(function (e) {
-		if (['KOMReviewDetailDeck'].includes(e[0])) {
+		if (['KOMReviewDetailDeck', 'KOMReviewDetailPlaySingle'].includes(e[0])) {
 			e[1] = JSON.parse(e[1]);
+		}
+
+		if (e[0] === 'KOMReviewDetailDeck') {
 			e[1].$KOMDeckSpacings = e[1].$KOMDeckSpacings.map(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse).map(function (e) {
 				return Object.assign(e, {
 					$KOMSpacingCard: OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(e.$KOMSpacingCard),
