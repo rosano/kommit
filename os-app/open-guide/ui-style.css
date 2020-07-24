@@ -1,0 +1,52 @@
+:root {
+	--OLSKCommonBackground: var(--KOMCommonBackground);
+	--OLSKCommonForeground: var(--KOMCommonForeground);
+	--OLSKCommonFontSize: 11pt;
+}
+
+body {
+	background: var(--KOMCommonBackground);
+	color: var(--KOMCommonForeground);
+}
+
+.KOMGuideTitleHeading {
+	font-size: 24pt;
+}
+
+.KOMGuideNotice {
+	padding: 10px;
+	border: 1px solid var(--KOMCommonForeground);
+	
+	margin: 20px 0;
+}
+
+.KOMGuideNotice p:first-child {
+	margin-top: 0;
+}
+
+.KOMGuideNotice p:last-child {
+	margin-bottom: 0;
+}
+
+.KOMGuideContent h1 {
+	padding-bottom: 2px;
+
+	margin-top: 40px;
+	margin-bottom: 0px;
+	border-bottom: 1px solid #ccc;
+}
+
+.KOMGuideContent table {
+	width: 100%;
+
+	margin: 20px 0;
+}
+
+.KOMGuideContent table td:first-child {
+	width: 50%;
+}
+
+.KOMGuideContent table tr td {
+	padding: 3px 0;
+	border-top: 1px solid #eee;
+}

@@ -1,0 +1,32 @@
+<%
+locals.OLSKPageTitle = OLSKLocalized('KOMGuideTitle');
+locals.OLSKPageDescription = OLSKLocalized('KOMGuideDescription');
+locals.OLSKPageAssets = [
+	'/_shared/__external/normalize.css/normalize.css',
+	'/_shared/__external/OLSKLayout/ui-style.css',
+	'/_shared/common/ui-style.css',
+	'ui-style.css',
+];
+locals.OLSKPageUseLivereload = process.env.NODE_ENV === 'development';
+locals.OLSKPageMetaTags = {
+	viewport: 'width=device-width',
+};
+%>
+
+<%- include('../_shared/common/layout-header.ejs') %>
+
+<div class="KOMGuide OLSKCommon">
+
+<h1 class="KOMGuideTitleHeading"><%= OLSKLocalized('KOMGuideTitle') %></h1>
+
+<div class="KOMGuideContent">
+<%- OLSKStringReplaceTokens(KOMGuideContent, {}) %>
+</div>
+
+<hr>
+
+<%- include('../_shared/KOMRootLink/main.ejs') %>
+
+</div>
+
+<%- include('../_shared/common/layout-footer.ejs') %>
