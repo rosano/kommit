@@ -167,6 +167,14 @@ describe('KOMReview_Misc', function () {
 
 	});
 
+	describe('OLSKAppToolbarGuideLink', function test_OLSKAppToolbarGuideLink() {
+
+		it('binds OLSKAppToolbarGuideURL', function () {
+			browser.assert.attribute('.OLSKAppToolbarGuideLink', 'href', OLSKTestingCanonical(require('../open-guide/controller.js').OLSKControllerRoutes().shift()));
+		});
+
+	});
+
 	describe('KOMReviewStorageToolbar', function test_KOMReviewStorageToolbar() {
 
 		before(function () {

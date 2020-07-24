@@ -674,6 +674,7 @@ import OLSKStorageWidget from 'OLSKStorageWidget';
 
 		<OLSKAppToolbar
 			OLSKAppToolbarDonateURL={ window.OLSKPublicConstants('KOM_SHARED_DONATE_URL') }
+			OLSKAppToolbarGuideURL={ window.OLSKCanonicalFor('KOMGuideRoute') }
 			OLSKAppToolbarStorageStatus={ mod._ValueFooterStorageStatus }
 			OLSKAppToolbarDispatchStorage={ mod.OLSKAppToolbarDispatchStorage }
 			_OLSKAppToolbarDispatchExport={ mod._OLSKAppToolbarDispatchExport }
