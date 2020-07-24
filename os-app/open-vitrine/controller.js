@@ -22,7 +22,7 @@ exports.OLSKControllerRoutes = function () {
 					headerIds: false,
 				})(require('fs').readFileSync(require('path').join(__dirname, `text.${ res.locals.OLSKSharedPageCurrentLanguage }.md`), 'utf-8')), {
 					KOMVitrineDescription: res.locals.OLSKLocalized('KOMVitrineDescription'),
-
+					KOMVitrineTokenGuideURL: res.locals.OLSKCanonicalFor('KOMGuideRoute'),
 					KOMVitrineTokenReviewURL: res.locals.OLSKCanonicalLocalizedFor('KOMReviewRoute'),
 					KOM_VITRINE_ANKI_URL: process.env.KOM_VITRINE_ANKI_URL,
 					KOM_SHARED_DONATE_URL: process.env.KOM_SHARED_DONATE_URL,

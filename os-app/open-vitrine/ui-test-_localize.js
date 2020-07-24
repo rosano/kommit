@@ -41,6 +41,10 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			browser.assert.element(`a[href="${ process.env.KOM_VITRINE_ANKI_URL }"]`);
 		});
 
+		it('localizes LCHGuideRoute', function() {
+			browser.assert.element(`a[href="${ OLSKTestingCanonical(require('../open-guide/controller.js').OLSKControllerRoutes().shift()) }"]`);
+		});
+
 		it('localizes KOMReviewRoute', function () {
 			browser.assert.element(`a[href="${ OLSKTestingCanonical(require('../open-review/controller.js').OLSKControllerRoutes().shift(), {
 				OLSKRoutingLanguage: languageCode,
