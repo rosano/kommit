@@ -222,7 +222,7 @@ const mod = {
 			return mod.ControlCardSelect(null);
 		}
 
-		mod.ValueCardSelected(KOMBrowseLogic.KOMBrowseMatchFunction(inputData)(mod._ValueCardsVisible).shift());
+		mod.ValueCardSelected(KOMBrowseLogic.KOMBrowseExactMatchFirst(inputData, mod._ValueCardsVisible).shift());
 	},
 
 	// MESSAGE

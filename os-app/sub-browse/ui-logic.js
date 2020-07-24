@@ -25,26 +25,28 @@ const mod = {
 		};
 	},
 
-	KOMBrowseMatchFunction(inputData) {
-		if (typeof inputData !== 'string') {
+	KOMBrowseExactMatchFirst(param1, param2) {
+		if (typeof param1 !== 'string') {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		return function (array) {
-			if (!Array.isArray(array)) {
-				throw new Error('KOMErrorInputNotValid');
-			}
+		if (!Array.isArray(param2)) {
+			throw new Error('KOMErrorInputNotValid');
+		}
 
-			const matches = array.filter(mod.KOMBrowseFilterFunction(inputData));
-
-			return matches.filter(function (e) {
+		return param2.slice().sort(function (a, b) {
+			const isExact = function (e) {
 				return [e.KOMCardFrontText, e.KOMCardRearText].filter(function (e) {
-					return e.toLowerCase() === inputData.toLowerCase();
+					if (!e) {
+						return;
+					}
+					
+					return OLSKString.OLSKStringMatch(e, param1);
 				}).length;
-			}).map(function (e) {
-				return matches.splice(matches.indexOf(e), 1).pop();
-			}).concat(matches);
-		};
+			};
+
+			return isExact(a) > isExact(b) ? -1 : 1;
+		});
 	},
 
 };

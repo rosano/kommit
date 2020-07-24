@@ -116,110 +116,51 @@ describe('KOMBrowseFilterFunction', function test_KOMBrowseFilterFunction() {
 
 });
 
-describe('KOMBrowseMatchFunction', function test_KOMBrowseMatchFunction() {
+describe('KOMBrowseExactMatchFirst', function test_KOMBrowseExactMatchFirst() {
 
-	it('throws error if not string', function () {
+	it('throws error if param1 not string', function () {
 		throws(function () {
-			mainModule.KOMBrowseMatchFunction(null);
+			mainModule.KOMBrowseExactMatchFirst(null, []);
 		}, /KOMErrorInputNotValid/);
 	});
 
-	it('returns function', function () {
-		deepEqual(typeof mainModule.KOMBrowseMatchFunction('alfa'), 'function');
+	it('throws error if param2 not array', function () {
+		throws(function () {
+			mainModule.KOMBrowseExactMatchFirst('', null);
+		}, /KOMErrorInputNotValid/);
 	});
 
-	context('function', function () {
+	it('returns array', function () {
+		deepEqual(mainModule.KOMBrowseExactMatchFirst('alfa', []), []);
+	});
 
-		it('throws error if not array', function () {
-			throws(function () {
-				mainModule.KOMBrowseMatchFunction('alfa')(null);
-			}, /KOMErrorInputNotValid/);
+	it('creates copy', function () {
+		const item = [];
+		deepEqual(mainModule.KOMBrowseExactMatchFirst('alfa', item) !== item, true);
+	});
+
+	context('KOMCardFrontText', function () {
+
+		it('orders exact OLSKStringMatch first', function () {
+			const items = [kTesting.uCard({
+				KOMCardFrontText: 'álfa',
+			}), kTesting.uCard({
+				KOMCardFrontText: 'álf',
+			})];
+			deepEqual(mainModule.KOMBrowseExactMatchFirst('alf', items), items.reverse());
 		});
 
-		it('returns array', function () {
-			deepEqual(mainModule.KOMBrowseMatchFunction('bravo')([]), []);
-		});
+	});
 
-		context('KOMCardFrontText', function () {
+	context('KOMCardRearText', function () {
 
-			it('excludes if no match', function () {
-				const items = [kTesting.uCard({
-					KOMCardFrontText: 'alfa',
-				})];
-				deepEqual(mainModule.KOMBrowseMatchFunction('bravo')(items), []);
-			});
-
-			it('includes if exact', function () {
-				const items = [kTesting.uCard({
-					KOMCardFrontText: 'alfa',
-				})];
-				deepEqual(mainModule.KOMBrowseMatchFunction('alfa')(items), items);
-			});
-
-			it('includes if partial', function () {
-				const items = [kTesting.uCard({
-					KOMCardFrontText: 'alfa',
-				})];
-				deepEqual(mainModule.KOMBrowseMatchFunction('alf')(items), items);
-			});
-
-			it('matches case insensitive', function () {
-				const items = [kTesting.uCard({
-					KOMCardFrontText: 'alfa',
-				})];
-				deepEqual(mainModule.KOMBrowseMatchFunction('ALF')(items), items);
-			});
-
-			it('orders exact before partial', function () {
-				const items = [kTesting.uCard({
-					KOMCardFrontText: 'alfa',
-				}), kTesting.uCard({
-					KOMCardFrontText: 'alf',
-				})];
-				deepEqual(mainModule.KOMBrowseMatchFunction('alf')(items), items.reverse());
-			});
-
-		});
-
-		context('KOMCardRearText', function () {
-
-			it('excludes if no match', function () {
-				const items = [kTesting.uCard({
-					KOMCardRearText: 'alfa',
-				})];
-				deepEqual(mainModule.KOMBrowseMatchFunction('bravo')(items), []);
-			});
-
-			it('includes if exact', function () {
-				const items = [kTesting.uCard({
-					KOMCardRearText: 'alfa',
-				})];
-				deepEqual(mainModule.KOMBrowseMatchFunction('alfa')(items), items);
-			});
-
-			it('includes if partial', function () {
-				const items = [kTesting.uCard({
-					KOMCardRearText: 'alfa',
-				})];
-				deepEqual(mainModule.KOMBrowseMatchFunction('alf')(items), items);
-			});
-
-			it('matches case insensitive', function () {
-				const items = [kTesting.uCard({
-					KOMCardRearText: 'alfa',
-				})];
-				deepEqual(mainModule.KOMBrowseMatchFunction('ALF')(items), items);
-			});
-
-			it('orders exact before partial', function () {
-				const items = [kTesting.uCard({
-					KOMCardRearText: 'alfa',
-				}), kTesting.uCard({
-					KOMCardRearText: 'alf',
-				})];
-				deepEqual(mainModule.KOMBrowseMatchFunction('alf')(items), items.reverse());
-			});
-
+		it('orders exact OLSKStringMatch first', function () {
+			const items = [kTesting.uCard({
+				KOMCardRearText: 'álfa',
+			}), kTesting.uCard({
+				KOMCardRearText: 'álf',
+			})];
+			deepEqual(mainModule.KOMBrowseExactMatchFirst('alf', items), items.reverse());
 		});
 
 	});
