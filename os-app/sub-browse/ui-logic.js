@@ -46,4 +46,4 @@ const mod = {
 
 };
 
-Object.assign(exports, mod);
+export default mod;
