@@ -89,7 +89,7 @@ const mod = {
 	DataRecipes () {
 		const items = [];
 
-		if (OLSK_TESTING_BEHAVIOUR() && mod._ValueCardSelected) {
+		if (true || OLSK_TESTING_BEHAVIOUR() && mod._ValueCardSelected) {
 			items.push({
 				LCHRecipeSignature: 'KOMReviewLauncherItemDebugCard',
 				LCHRecipeName: OLSKLocalized('KOMReviewLauncherItemDebugCardText'),
