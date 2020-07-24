@@ -25,6 +25,10 @@ describe('KOMBrowse_Misc', function () {
 		browser.assert.hasClass('.KOMBrowseInfo', 'OLSKMobileViewInactive');
 	});
 
+	it('classes OLSKMasterListFocused', function () {
+		browser.assert.hasClass('.KOMBrowseList', 'OLSKMasterListFocused');
+	});
+
 	it('sets OLSKResultsListItemSelected', function () {
 		browser.assert.elements('.OLSKResultsListItemSelected', 0);
 	});
