@@ -1,3 +1,6 @@
+import * as OLSKStringPackage from 'OLSKString';
+const OLSKString = OLSKStringPackage.default || OLSKStringPackage;
+
 const mod = {
 
 	KOMBrowseSort(a, b) {
@@ -17,7 +20,7 @@ const mod = {
 			return [e.KOMCardFrontText, e.KOMCardRearText, e.KOMCardNotes].filter(function (e) {
 				return !!e;
 			}).concat(e.KOMCardTags || []).filter(function (e) {
-				return e.toLowerCase().includes(inputData.toLowerCase());
+				return OLSKString.OLSKStringMatch(inputData, e);
 			}).length;
 		};
 	},
