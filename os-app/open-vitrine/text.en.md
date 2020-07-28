@@ -2,7 +2,7 @@ _KOMVitrineDescription_
 
 Kommit is an app to help you with memorization. Inspired by [Anki](KOM_VITRINE_ANKI_URL) and other spaced-repetition learning systems, it presents flashcards to you just before your brain is likely to forget, thereby strengthening memory while reducing study time.
 
-Check out the features below, read the [guide](KOMVitrineTokenGuideURL), or [try it](KOMVitrineTokenReviewURL).
+Check out the features below, read the [guide](KOMVitrineTokenGuideURL), or [try the app](KOMVitrineTokenReviewURL).
 
 The code is open-source and available on [GitHub](KOM_SHARED_GITHUB_URL).
 
