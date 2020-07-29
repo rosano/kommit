@@ -71,20 +71,22 @@ const mod = {
 		});
 
 		if (mod._ValueStorageClient.connected) {
-			items.push({
-				LCHRecipeSignature: 'KOMReviewLauncherItemSendLoginLink',
-				LCHRecipeName: OLSKLocalized('KOMReviewLauncherItemSendLoginLinkText'),
-				LCHRecipeCallback () {
-					const url = `mailto:?subject=${ OLSKLocalized('KOMReviewLauncherItemSendLoginLinkSubject') }&body=${ encodeURIComponent(`${ window.location.href }#remotestorage=${ mod._ValueStorageClient.remote.userAddress }&access_token=${ mod._ValueStorageClient.remote.token }`) }`;
+			items.push(...[
+				{
+					LCHRecipeSignature: 'KOMReviewLauncherItemSendLoginLink',
+					LCHRecipeName: OLSKLocalized('KOMReviewLauncherItemSendLoginLinkText'),
+					LCHRecipeCallback () {
+						const url = `mailto:?subject=${ OLSKLocalized('KOMReviewLauncherItemSendLoginLinkSubject') }&body=${ encodeURIComponent(`${ window.location.href }#remotestorage=${ mod._ValueStorageClient.remote.userAddress }&access_token=${ mod._ValueStorageClient.remote.token }`.replace(/#+/g, '#')) }`;
 
-					if (OLSK_TESTING_BEHAVIOUR() && window.FakeOLSKConnected) {
-						window.FakeWindowLocationHref = url;
-						return;
-					}
+						if (OLSK_TESTING_BEHAVIOUR() && window.FakeOLSKConnected) {
+							window.FakeWindowLocationHref = url;
+							return;
+						}
 
-					window.location.href = url;
+						window.location.href = url;
+					},
 				},
-			});
+				]);
 		}
 
 		if (mod._KOMBrowse) {
