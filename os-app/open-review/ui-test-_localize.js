@@ -38,34 +38,6 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 
 		});
 
-		context('select_card', function test_select_card() {
-
-			before(function () {
-				return browser.click('.KOMReviewMasterListItem');
-			});
-
-			before(function () {
-				return browser.pressButton('.KOMReviewDetailToolbarCardsButton');
-			});
-
-			before(function () {
-				return browser.pressButton('.KOMBrowseListToolbarCreateButton');
-			});
-
-			before(function () {
-				return browser.click('.KOMBrowseListItem');
-			});
-
-			before(function () {
-				return browser.OLSKLauncherRun('KOMReviewLauncherItemDebugCard');
-			});
-
-			it('localizes KOMReviewLauncherItemDebugCard', function () {
-				return browser.assert.OLSKLauncherItemText('KOMReviewLauncherItemDebugCard', uLocalized('KOMReviewLauncherItemDebugCardText'));
-			});
-
-		});
-
 		context('KOMReviewLauncherItemSendLoginLink', function () {
 
 			before(function () {

@@ -66,10 +66,6 @@ describe('KOMReview_Access', function () {
 		return browser.assert.OLSKLauncherItems('KOMReviewLauncherItemSendLoginLink', 0);
 	});
 
-	it('hides KOMReviewLauncherItemDebugCard', function () {
-		return browser.assert.OLSKLauncherItems('KOMReviewLauncherItemDebugCard', 0);
-	});
-
 	context('click OLSKAppToolbarStorageButton', function () {
 
 		before(function () {
@@ -376,22 +372,6 @@ describe('KOMReview_Access', function () {
 
 		it('hides KOMReviewLauncherItemSelectDeck', function () {
 			return browser.assert.OLSKLauncherItems('KOMReviewLauncherItemSelectDeck', 0);
-		});
-
-	});
-
-	context('select_card', function test_select_card() {
-
-		before(function () {
-			return browser.pressButton('.KOMReviewDetailToolbarCardsButton');
-		});
-
-		before(function () {
-			return browser.click('.KOMBrowseListItem');
-		});
-
-		it('shows KOMReviewLauncherItemDebugCard', function () {
-			return browser.assert.OLSKLauncherItems('KOMReviewLauncherItemDebugCard', 1);
 		});
 
 	});

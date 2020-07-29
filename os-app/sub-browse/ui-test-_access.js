@@ -44,6 +44,10 @@ describe('KOMBrowse_Access', function () {
 		browser.assert.elements('.KOMBrowseInfoForm', 0);
 	});
 
+	it('hides KOMReviewLauncherItemDebugCard', function () {
+		return browser.assert.OLSKLauncherItems('KOMReviewLauncherItemDebugCard', 0);
+	});
+
 	context('create', function test_create() {
 
 		before(function () {
@@ -60,6 +64,14 @@ describe('KOMBrowse_Access', function () {
 
 		it('shows KOMBrowseInfoForm', function () {
 			browser.assert.elements('.KOMBrowseInfoForm', 1);
+		});
+
+	});
+
+	context('select', function test_select() {
+
+		it('shows KOMReviewLauncherItemDebugCard', function () {
+			return browser.assert.OLSKLauncherItems('KOMReviewLauncherItemDebugCard', 1);
 		});
 
 	});

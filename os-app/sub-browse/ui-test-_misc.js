@@ -577,4 +577,16 @@ describe('KOMBrowse_Misc', function () {
 
 	});
 
+	describe('KOMReviewLauncherItemDebugCard', function test_KOMReviewLauncherItemDebugCard() {
+
+		before(function () {
+			return browser.OLSKLauncherRun('KOMReviewLauncherItemDebugCard');
+		});
+
+		it.skip('sets window location', function () {
+			browser.assert.evaluate('window.FakeWindowOpen', 'https://inspektor.5apps.com/inspect?path=kommit%2Fkom_decks%2F01EB9SZTJRC76TNBQRZSFQ3N6T%2Fkom_cards%2F2020-06-25%2F01EBPK47QV90N1WFJ4W9QMN0Z3%2F');
+		});
+
+	});
+
 });

@@ -89,7 +89,7 @@ const mod = {
 	DataRecipes () {
 		const items = [];
 
-		if (true || OLSK_TESTING_BEHAVIOUR() && mod._ValueCardSelected) {
+		if (mod._ValueCardSelected) {
 			items.push({
 				LCHRecipeSignature: 'KOMReviewLauncherItemDebugCard',
 				LCHRecipeName: OLSKLocalized('KOMReviewLauncherItemDebugCardText'),
@@ -104,6 +104,45 @@ const mod = {
 					window.open(url)
 				},
 			});
+		}
+
+		if (OLSK_TESTING_BEHAVIOUR()) {
+			items.push(...[
+				{
+					LCHRecipeName: 'FakeChangeDelegateCreateCard',
+					LCHRecipeCallback: async function FakeChangeDelegateCreateCard () {
+						return mod.ChangeDelegateCreateCard(await KOMCardAction.KOMCardActionCreate(KOMBrowseStorageClient, mod.DataCardObjectTemplate('FakeChangeDelegateCreateCard'), KOMBrowseDeckSelected));
+					},
+				},
+				{
+					LCHRecipeName: 'FakeChangeDelegateUpdateCard',
+					LCHRecipeCallback: async function FakeChangeDelegateUpdateCard () {
+						return mod.ChangeDelegateUpdateCard(await KOMCardAction.KOMCardActionUpdate(KOMBrowseStorageClient, Object.assign(mod._ValueCardsAll.filter(function (e) {
+							return e.KOMCardFrontText.match('FakeChangeDelegate');
+						}).pop(), {
+							KOMCardFrontText: 'FakeChangeDelegateUpdateCard',
+						}), KOMBrowseDeckSelected));
+					},
+				},
+				{
+					LCHRecipeName: 'FakeChangeDelegateDeleteCard',
+					LCHRecipeCallback: async function FakeChangeDelegateDeleteCard () {
+						const item = mod._ValueCardsAll.filter(function (e) {
+							return e.KOMCardFrontText.match('FakeChangeDelegate');
+						}).pop();
+						
+						await KOMCardAction.KOMCardActionDelete(KOMBrowseStorageClient, item, KOMBrowseDeckSelected);
+						
+						return mod.ChangeDelegateDeleteCard(item);
+					},
+				},
+				{
+					LCHRecipeName: 'FakeEscapeWithoutSort',
+					LCHRecipeCallback: function FakeEscapeWithoutSort () {
+						mod.ControlCardSelect(null);
+					},
+				},
+			]);
 		}
 		
 		return items;
@@ -280,49 +319,8 @@ const mod = {
 	},
 
 	_OLSKAppToolbarDispatchLauncher () {
-		const items = [];
-
-		if (OLSK_TESTING_BEHAVIOUR()) {
-			items.push(...[
-				{
-					LCHRecipeName: 'FakeChangeDelegateCreateCard',
-					LCHRecipeCallback: async function FakeChangeDelegateCreateCard () {
-						return mod.ChangeDelegateCreateCard(await KOMCardAction.KOMCardActionCreate(KOMBrowseStorageClient, mod.DataCardObjectTemplate('FakeChangeDelegateCreateCard'), KOMBrowseDeckSelected));
-					},
-				},
-				{
-					LCHRecipeName: 'FakeChangeDelegateUpdateCard',
-					LCHRecipeCallback: async function FakeChangeDelegateUpdateCard () {
-						return mod.ChangeDelegateUpdateCard(await KOMCardAction.KOMCardActionUpdate(KOMBrowseStorageClient, Object.assign(mod._ValueCardsAll.filter(function (e) {
-							return e.KOMCardFrontText.match('FakeChangeDelegate');
-						}).pop(), {
-							KOMCardFrontText: 'FakeChangeDelegateUpdateCard',
-						}), KOMBrowseDeckSelected));
-					},
-				},
-				{
-					LCHRecipeName: 'FakeChangeDelegateDeleteCard',
-					LCHRecipeCallback: async function FakeChangeDelegateDeleteCard () {
-						const item = mod._ValueCardsAll.filter(function (e) {
-							return e.KOMCardFrontText.match('FakeChangeDelegate');
-						}).pop();
-						
-						await KOMCardAction.KOMCardActionDelete(KOMBrowseStorageClient, item, KOMBrowseDeckSelected);
-						
-						return mod.ChangeDelegateDeleteCard(item);
-					},
-				},
-				{
-					LCHRecipeName: 'FakeEscapeWithoutSort',
-					LCHRecipeCallback: function FakeEscapeWithoutSort () {
-						mod.ControlCardSelect(null);
-					},
-				},
-			]);
-		}
-		
 		window.Launchlet.LCHSingletonCreate({
-			LCHOptionRecipes: items,
+			LCHOptionRecipes: mod.DataRecipes(),
 		});
 	},
 
