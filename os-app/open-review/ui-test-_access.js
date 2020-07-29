@@ -376,7 +376,7 @@ describe('KOMReview_Access', function () {
 
 	});
 
-	context('connected', function () {
+	context('connected', function test_connected () {
 
 		before(function () {
 			return browser.OLSKLauncherRun('FakeOLSKConnected');

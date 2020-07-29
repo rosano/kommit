@@ -38,7 +38,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 
 		});
 
-		context('KOMReviewLauncherItemSendLoginLink', function () {
+		context('connected', function test_connected () {
 
 			before(function () {
 				return browser.OLSKLauncherRun('FakeOLSKConnected');
