@@ -36,15 +36,15 @@ const mod = {
 	// INTERFACE
 
 	InterfaceFormDidUpdate () {
-		if (!KOMReviewDetailDeck.KOMDeckFrontLanguageCode && KOMReviewDetailDeck.KOMDeckFrontSpeechIsEnabled) {
-			KOMReviewDetailDeck.KOMDeckFrontSpeechIsEnabled = false;
-			delete KOMReviewDetailDeck.KOMDeckFrontSpeechIsEnabled;
-		}
+		// if (!KOMReviewDetailDeck.KOMDeckFrontLanguageCode && KOMReviewDetailDeck.KOMDeckFrontSpeechIsEnabled) {
+		// 	KOMReviewDetailDeck.KOMDeckFrontSpeechIsEnabled = false;
+		// 	delete KOMReviewDetailDeck.KOMDeckFrontSpeechIsEnabled;
+		// }
 
-		if (!KOMReviewDetailDeck.KOMDeckRearLanguageCode && KOMReviewDetailDeck.KOMDeckRearSpeechIsEnabled) {
-			KOMReviewDetailDeck.KOMDeckRearSpeechIsEnabled = false;
-			delete KOMReviewDetailDeck.KOMDeckRearSpeechIsEnabled;
-		}
+		// if (!KOMReviewDetailDeck.KOMDeckRearLanguageCode && KOMReviewDetailDeck.KOMDeckRearSpeechIsEnabled) {
+		// 	KOMReviewDetailDeck.KOMDeckRearSpeechIsEnabled = false;
+		// 	delete KOMReviewDetailDeck.KOMDeckRearSpeechIsEnabled;
+		// }
 
 		window.setTimeout(function () {
 			KOMReviewDetailDispatchUpdate(KOMReviewDetailDeck);
