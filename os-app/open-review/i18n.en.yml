@@ -2,3 +2,5 @@ KOMReviewTitle: Kommit
 KOMReviewLauncherItemSelectDeckTextFormat: Select deck '%@'
 KOMReviewLauncherItemSendLoginLinkText: Send login link
 KOMReviewLauncherItemSendLoginLinkSubject: Kommit Login Link
+KOMReviewLauncherItemDebugFlushDataText: Flush data
+KOMReviewLauncherItemDebugFlushDataConfirmText: Are you sure?

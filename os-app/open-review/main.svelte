@@ -86,6 +86,24 @@ const mod = {
 						window.location.href = url;
 					},
 				},
+				{
+					LCHRecipeSignature: 'KOMReviewLauncherItemDebugFlushData',
+					LCHRecipeName: OLSKLocalized('KOMReviewLauncherItemDebugFlushDataText'),
+					LCHRecipeCallback: async function KOMReviewLauncherItemDebugFlushData () {
+						if (!window.confirm(OLSKLocalized('KOMReviewLauncherItemDebugFlushDataConfirmText'))) {
+							return;
+						}
+
+						await mod._ValueStorageClient.kommit.__HOTFIX.__OLSKRemoteStorageHotfixFlushData();
+
+						if (OLSK_TESTING_BEHAVIOUR() && window.FakeOLSKConnected) {
+							window.FakeWindowLocationHref = 'reload';
+							return;
+						}
+
+						window.location.reload();
+					},
+				},
 				]);
 		}
 

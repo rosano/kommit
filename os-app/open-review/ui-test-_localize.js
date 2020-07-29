@@ -48,6 +48,20 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 				return browser.assert.OLSKLauncherItemText('KOMReviewLauncherItemSendLoginLink', uLocalized('KOMReviewLauncherItemSendLoginLinkText'));
 			});
 
+			it('localizes KOMReviewLauncherItemDebugFlushData', function () {
+				return browser.assert.OLSKLauncherItemText('KOMReviewLauncherItemDebugFlushData', uLocalized('KOMReviewLauncherItemDebugFlushDataText'));
+			});
+
+			context('KOMReviewLauncherItemDebugFlushData', function () {
+
+				it('localizes KOMReviewLauncherItemDebugFlushDataConfirm', function () {
+					return browser.assert.OLSKConfirmQuestionAsync(function () {
+						return browser.OLSKLauncherRun('KOMReviewLauncherItemDebugFlushData');
+					}, uLocalized('KOMReviewLauncherItemDebugFlushDataConfirmText'));
+				});
+			
+			});
+
 		});
 
 	});

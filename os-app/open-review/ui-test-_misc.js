@@ -247,4 +247,16 @@ describe('KOMReview_Misc', function () {
 
 	});
 
+	describe('KOMReviewLauncherItemDebugFlushData', function test_KOMReviewLauncherItemDebugFlushData() {
+
+		before(function () {
+			return browser.OLSKLauncherRun('KOMReviewLauncherItemDebugFlushData');
+		});
+
+		it.skip('reloads page', function () {
+			browser.assert.evaluate('window.FakeWindowLocationHref', 'reload');
+		});
+
+	});
+
 });
