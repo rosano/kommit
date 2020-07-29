@@ -101,7 +101,7 @@ const mod = {
 							return;
 						}
 
-						window.location.reload();
+						// window.location.reload();
 					},
 				},
 				]);
