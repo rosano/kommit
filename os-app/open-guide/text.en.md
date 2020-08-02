@@ -39,13 +39,13 @@ During a review, the cards will be presented in a random order. Try to recall th
     - First time: within the next ten minutes
     - Second time: after a day or so
     - Subsequently: after progressively larger periods
-- *Good*
+- *Normal*
     - First time: within the next ten minutes
     - Second time: after a few days
     - Subsequently: after progressively larger periods, moreso than *Hard*
 - *Easy*
     - First time: after four days
-    - Subsequently: after progressively larger periods, moreso than *Good*
+    - Subsequently: after progressively larger periods, moreso than *Normal*
 
 A maximum of 10 unseen cards will be presented in one game.
 
@@ -105,7 +105,7 @@ The *Read* button speaks the text using the language chosen on the deck page.
 | Flip card | `Space` |
 | Respond Again | `1` |
 | Respond Hard | `2` |
-| Respond Good | `3` or `Space` |
+| Respond Normal | `3` or `Space` |
 | Respond Easy | `4` |
 | Close | `Escape` |
 
