@@ -12,5 +12,3 @@ __static
 
 # LOCAL
 .env
-.env.staging
-.env.test
