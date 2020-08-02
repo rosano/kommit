@@ -198,15 +198,7 @@ describe('KOMReview_Misc', function () {
 	describe('KOMReviewLauncherItemSelectDeck', function test_KOMReviewLauncherItemSelectDeck() {
 
 		before(function () {
-			return browser.pressButton('.OLSKAppToolbarLauncherButton');
-		});
-
-		before(function () {
-			return browser.fill('.LCHLauncherFilterInput', 'bravo');
-		});
-
-		before(function () {
-			return browser.click('.LCHLauncherPipeItem');
+			return browser.OLSKLauncherRun('bravo');
 		});
 
 		it('selects deck', function () {
@@ -218,27 +210,11 @@ describe('KOMReview_Misc', function () {
 	describe('KOMReviewLauncherItemSendLoginLink', function test_KOMReviewLauncherItemSendLoginLink() {
 
 		before(function () {
-			return browser.pressButton('.OLSKAppToolbarLauncherButton');
+			return browser.OLSKLauncherRun('FakeOLSKConnected');
 		});
 
 		before(function () {
-			return browser.fill('.LCHLauncherFilterInput', 'FakeOLSKConnected');
-		});
-
-		before(function () {
-			return browser.click('.LCHLauncherPipeItem');
-		});
-
-		before(function () {
-			return browser.pressButton('.OLSKAppToolbarLauncherButton');
-		});
-
-		before(function () {
-			return browser.fill('.LCHLauncherFilterInput', 'KOMReviewLauncherItemSendLoginLink');
-		});
-
-		before(function () {
-			return browser.click('.LCHLauncherPipeItem');
+			return browser.OLSKLauncherRun('KOMReviewLauncherItemSendLoginLink');
 		});
 
 		it('sets mailto', function () {
