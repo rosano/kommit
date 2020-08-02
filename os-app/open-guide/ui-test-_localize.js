@@ -26,4 +26,4 @@ kDefaultRoute._OLSKRouteLanguages.forEach(function (languageCode) {
 
 	});
 
-})
+});

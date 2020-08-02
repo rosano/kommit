@@ -68,12 +68,12 @@ const mod = {
 			}
 
 			if (!e.KOMSpacingChronicles.filter(function (e) {
-					if (items.includes(e)) {
-						return false;
-					}
+				if (items.includes(e)) {
+					return false;
+				}
 
-					return e.KOMChronicleMultiplier;
-				}).length) {
+				return e.KOMChronicleMultiplier;
+			}).length) {
 				return false;
 			}
 

@@ -3,7 +3,7 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 describe('KOMGuide_Misc', function () {
 
 	before(function () {
-		return browser.OLSKVisit(kDefaultRoute)
+		return browser.OLSKVisit(kDefaultRoute);
 	});
 
 	it('assigns meta:viewport', function () {
