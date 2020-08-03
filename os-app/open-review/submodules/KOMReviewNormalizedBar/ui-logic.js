@@ -47,7 +47,7 @@ const mod = {
 
 		return param1()
 			.domain(param3)
-			.range(param2[param3.length].reverse())
+			.range(param2[param3.length].slice().reverse())
 			.unknown('red');
 	},
 
