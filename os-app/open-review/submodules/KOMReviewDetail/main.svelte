@@ -256,11 +256,11 @@ import KOMReviewToday from '../KOMReviewToday/main.svelte';
 {#if KOMReviewDetailDeck.$KOMDeckSpacings.length }
 	<hr>
 
-	<div class="KOMReviewDetailStats">
-		<h1 class="KOMReviewDetailStatsHeading">{ OLSKLocalized('KOMReviewDetailStatsHeadingText') }</h1>
+	<div class="KOMReviewDetailToday">
+		<h1 class="KOMReviewDetailTodayHeading">{ OLSKLocalized('KOMReviewDetailTodayHeadingText') }</h1>
 
 		{#if !mod._ValueSpacingsStudied.length }
-			<p class="KOMReviewDetailStatsUnavailable">{ OLSKLocalized('KOMReviewDetailStatsUnavailableText') }</p>
+			<p class="KOMReviewDetailTodayUnavailable">{ OLSKLocalized('KOMReviewDetailTodayUnavailableText') }</p>
 		{/if}
 
 		{#if mod._ValueSpacingsStudied.length }

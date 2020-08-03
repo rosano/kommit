@@ -134,12 +134,12 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 				browser.assert.text(KOMReviewDetailPlayButtonMixed, uLocalized('KOMReviewDetailPlayButtonMixedText'));
 			});
 
-			it('localizes KOMReviewDetailStatsHeading', function () {
-				browser.assert.text(KOMReviewDetailStatsHeading, uLocalized('KOMReviewDetailStatsHeadingText'));
+			it('localizes KOMReviewDetailTodayHeading', function () {
+				browser.assert.text(KOMReviewDetailTodayHeading, uLocalized('KOMReviewDetailTodayHeadingText'));
 			});
 
-			it('localizes KOMReviewDetailStatsUnavailable', function () {
-				browser.assert.text(KOMReviewDetailStatsUnavailable, uLocalized('KOMReviewDetailStatsUnavailableText'));
+			it('localizes KOMReviewDetailTodayUnavailable', function () {
+				browser.assert.text(KOMReviewDetailTodayUnavailable, uLocalized('KOMReviewDetailTodayUnavailableText'));
 			});
 
 		});

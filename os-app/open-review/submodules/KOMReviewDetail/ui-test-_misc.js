@@ -541,7 +541,7 @@ describe('KOMReviewDetail_Misc', function () {
 
 	});
 
-	describe('KOMReviewDetailStatsToday', function test_KOMReviewDetailStatsToday() {
+	describe('KOMReviewDetailTodayToday', function test_KOMReviewDetailTodayToday() {
 
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
@@ -566,7 +566,7 @@ describe('KOMReviewDetail_Misc', function () {
 		});
 
 		it('sets KOMReviewTodaySpacings', function () {
-			browser.assert.text(`${ KOMReviewDetailStatsToday } .KOMReviewTodayTotalCardsValue`, '1');
+			browser.assert.text(`${ KOMReviewDetailTodayToday } .KOMReviewTodayTotalCardsValue`, '1');
 		});
 
 	});
