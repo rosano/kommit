@@ -35,7 +35,6 @@ Object.entries({
 
 	KOMReviewDetailToday: '.KOMReviewDetailToday',
 	KOMReviewDetailTodayHeading: '.KOMReviewDetailTodayHeading',
-	KOMReviewDetailTodayUnavailable: '.KOMReviewDetailTodayUnavailable',
 	KOMReviewDetailTodayToday: '.KOMReviewDetailToday .KOMReviewToday',
 
 	KOMReviewDetailGeneral: '.KOMReviewDetailGeneral',
@@ -206,20 +205,8 @@ describe('KOMReviewDetail_Access', function () {
 			browser.assert.elements(KOMReviewDetailPlay, 1);
 		});
 
-		it('shows KOMReviewDetailToday', function () {
-			browser.assert.elements(KOMReviewDetailToday, 1);
-		});
-
-		it('shows KOMReviewDetailTodayHeading', function () {
-			browser.assert.elements(KOMReviewDetailTodayHeading, 1);
-		});
-
-		it('shows KOMReviewDetailTodayUnavailable', function () {
-			browser.assert.elements(KOMReviewDetailTodayUnavailable, 1);
-		});
-
-		it('hides KOMReviewDetailTodayToday', function () {
-			browser.assert.elements(KOMReviewDetailTodayToday, 0);
+		it('hides KOMReviewDetailToday', function () {
+			browser.assert.elements(KOMReviewDetailToday, 0);
 		});
 
 		it('hides KOMReviewDetailGeneral', function () {
@@ -376,8 +363,12 @@ describe('KOMReviewDetail_Access', function () {
 			browser.assert.elements(KOMReviewDetailNoSpacings, 1);
 		});
 
-		it('hides KOMReviewDetailTodayUnavailable', function () {
-			browser.assert.elements(KOMReviewDetailTodayUnavailable, 0);
+		it('shows KOMReviewDetailToday', function () {
+			browser.assert.elements(KOMReviewDetailToday, 1);
+		});
+
+		it('shows KOMReviewDetailTodayHeading', function () {
+			browser.assert.elements(KOMReviewDetailTodayHeading, 1);
 		});
 
 		it('shows KOMReviewDetailTodayToday', function () {

@@ -25,7 +25,7 @@ const mod = {
 	_ValueSpacingsToday: [],
 	_ValueSpacingsReviewing: [],
 	_ValueSpacingsUnseen: [],
-	_ValueSpacingsStudied: [],
+	_ValueSpacingsStudiedToday: [],
 	_ValueSpacingsNotUnseen: [],
 
 	_ValueLanguages: 'speechSynthesis' in window ? speechSynthesis.getVoices().map(function (e) {
@@ -128,7 +128,7 @@ const mod = {
 			return !KOMSpacingModel.KOMSpacingModelIsUnseen(e);
 		});
 		mod._ValueSpacingsUnseen = items.filter(KOMSpacingModel.KOMSpacingModelIsUnseen);
-		mod._ValueSpacingsStudied = inputData.$KOMDeckSpacings.filter(function (e) {
+		mod._ValueSpacingsStudiedToday = inputData.$KOMDeckSpacings.filter(function (e) {
 			if (!e.KOMSpacingChronicles.length) {
 				return false;
 			}
@@ -257,23 +257,17 @@ import KOMReviewToday from '../KOMReviewToday/main.svelte';
 	<p class="KOMReviewDetailNoSpacings">{ OLSKLocalized('KOMReviewDetailNoSpacingsText') }</p>
 {/if}
 
-{#if KOMReviewDetailDeck.$KOMDeckSpacings.length }
+{#if mod._ValueSpacingsStudiedToday.length }
 	<hr>
 
 	<div class="KOMReviewDetailToday">
 		<h1 class="KOMReviewDetailTodayHeading">{ OLSKLocalized('KOMReviewDetailTodayHeadingText') }</h1>
 
-		{#if !mod._ValueSpacingsStudied.length }
-			<p class="KOMReviewDetailTodayUnavailable">{ OLSKLocalized('KOMReviewDetailTodayUnavailableText') }</p>
-		{/if}
-
-		{#if mod._ValueSpacingsStudied.length }
-			<KOMReviewToday KOMReviewTodaySpacings={ mod._ValueSpacingsStudied } />
-		{/if}
+		<KOMReviewToday KOMReviewTodaySpacings={ mod._ValueSpacingsStudiedToday } />
 	</div>
 {/if}
 
-{#if KOMReviewDetailDeck.$KOMDeckSpacings.length && mod._ValueSpacingsNotUnseen.length }
+{#if mod._ValueSpacingsNotUnseen.length }
 	<hr>
 
 	<div class="KOMReviewDetailGeneral">
