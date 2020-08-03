@@ -394,7 +394,7 @@ describe('KOMSpacingModelIsReviewing', function test_KOMSpacingModelIsReviewing(
 	it('returns true', function () {
 		deepEqual(mainModule.KOMSpacingModelIsReviewing(Object.assign(kTesting.StubSpacingObjectValid(), {
 			KOMSpacingInterval: 1,
-		})), 1);
+		})), true);
 	});
 
 });
