@@ -399,6 +399,14 @@ describe('KOMSpacingModelIsReviewing', function test_KOMSpacingModelIsReviewing(
 
 });
 
+describe('KOMSpacingModelMatureThreshold', function test_KOMSpacingModelMatureThreshold() {
+
+	it('returns number', function () {
+		deepEqual(mainModule.KOMSpacingModelMatureThreshold(), 21);
+	});
+
+});
+
 describe('KOMSpacingModelIsMature', function test_KOMSpacingModelIsMature() {
 
 	it('throws if not valid', function () {
@@ -411,7 +419,7 @@ describe('KOMSpacingModelIsMature', function test_KOMSpacingModelIsMature() {
 		deepEqual(mainModule.KOMSpacingModelIsMature(kTesting.StubSpacingObjectValid()), false);
 	});
 
-	it('returns false if KOMSpacingInterval below three weeks', function () {
+	it('returns false if KOMSpacingInterval below KOMSpacingModelMatureThreshold', function () {
 		deepEqual(mainModule.KOMSpacingModelIsMature(Object.assign(kTesting.StubSpacingObjectValid(), {
 			KOMSpacingInterval: 1,
 		})), false);
@@ -419,7 +427,7 @@ describe('KOMSpacingModelIsMature', function test_KOMSpacingModelIsMature() {
 
 	it('returns true', function () {
 		deepEqual(mainModule.KOMSpacingModelIsMature(Object.assign(kTesting.StubSpacingObjectValid(), {
-			KOMSpacingInterval: 21,
+			KOMSpacingInterval: mainModule.KOMSpacingModelMatureThreshold(),
 		})), true);
 	});
 

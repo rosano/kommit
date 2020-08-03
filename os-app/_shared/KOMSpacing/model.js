@@ -160,6 +160,10 @@ const mod = {
 		return !!inputData.KOMSpacingInterval;
 	},
 
+	KOMSpacingModelMatureThreshold() {
+		return 21;
+	},
+
 	KOMSpacingModelIsMature(inputData) {
 		if (mod.KOMSpacingModelErrorsFor(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
@@ -169,7 +173,7 @@ const mod = {
 			return false;
 		}
 
-		return inputData.KOMSpacingInterval >= 21;
+		return inputData.KOMSpacingInterval >= mod.KOMSpacingModelMatureThreshold();
 	},
 
 	KOMSpacingModelFilterUnique(inputData) {
