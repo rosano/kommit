@@ -12,6 +12,14 @@ describe('KOMReviewNormalizeBarWidth', function test_KOMReviewNormalizeBarWidth(
 
 });
 
+describe('KOMReviewNormalizeBarHeight', function test_KOMReviewNormalizeBarHeight() {
+
+	it('returns number', function () {
+		deepEqual(mainModule.KOMReviewNormalizeBarHeight(), 10);
+	});
+
+});
+
 describe('KOMReviewNormalizeBarScaleX', function test_KOMReviewNormalizeBarScaleX() {
 
 	it('throws if param1 not d3.scaleLinear', function () {
