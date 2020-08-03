@@ -61,6 +61,9 @@
     "// AUDIO RECORDING": null,
     "vmsg": "latest",
 
+    "// DATA VISUALISATION": null,
+    "d3": "latest",
+
     "// I sacrifice myself for the commas of others": null
   },
   "devDependencies": {
