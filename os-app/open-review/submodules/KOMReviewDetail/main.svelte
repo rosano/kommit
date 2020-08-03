@@ -151,6 +151,7 @@ $: mod.ReactDirection(KOMReviewDetailDeck.KOMDeckIsForwardOnly);
 import _OLSKSharedBack from '../../../_shared/__external/OLSKUIAssets/_OLSKSharedBack.svg';
 import KOMReviewDetailLanguageCode from '../KOMReviewDetailLanguageCode/main.svelte';
 import KOMReviewToday from '../KOMReviewToday/main.svelte';
+import KOMReviewGeneral from '../KOMReviewGeneral/main.svelte';
 </script>
 <svelte:window on:keydown={ mod.InterfaceWindowDidKeydown } />
 
@@ -272,6 +273,8 @@ import KOMReviewToday from '../KOMReviewToday/main.svelte';
 
 	<div class="KOMReviewDetailGeneral">
 		<h1 class="KOMReviewDetailGeneralHeading">{ OLSKLocalized('KOMReviewDetailGeneralHeadingText') }</h1>
+
+		<KOMReviewGeneral KOMReviewGeneralSpacings={ KOMReviewDetailDeck.$KOMDeckSpacings } />
 	</div>
 {/if}
 

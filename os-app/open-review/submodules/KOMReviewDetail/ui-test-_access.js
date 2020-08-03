@@ -383,6 +383,10 @@ describe('KOMReviewDetail_Access', function () {
 			browser.assert.elements(KOMReviewDetailGeneralHeading, 1);
 		});
 
+		it('shows KOMReviewGeneral', function () {
+			browser.assert.elements('.KOMReviewGeneral', 1);
+		});
+
 		context('change direction', function () {
 
 			before(function () {

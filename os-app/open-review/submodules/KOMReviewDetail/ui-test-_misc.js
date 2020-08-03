@@ -571,4 +571,12 @@ describe('KOMReviewDetail_Misc', function () {
 
 	});
 
+	describe('KOMReviewDetailGeneral', function test_KOMReviewDetailGeneral() {
+
+		it('sets KOMReviewGeneralSpacings', function () {
+			browser.assert.text('.KOMReviewGeneral .KOMReviewChartCompositionStatesTotalCardsValue', '2');
+		});
+
+	});
+
 });
