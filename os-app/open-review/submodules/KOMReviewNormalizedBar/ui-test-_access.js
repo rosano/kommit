@@ -1,29 +1,29 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 Object.entries({
-	KOMReviewNormalizeBar: '.KOMReviewNormalizeBar',
+	KOMReviewChartElementNormalizedBar: '.KOMReviewChartElementNormalizedBar',
 	
-	KOMReviewNormalizeBarSection: '.KOMReviewNormalizeBarSection',
+	KOMReviewChartElementNormalizedBarSection: '.KOMReviewChartElementNormalizedBarSection',
 }).map(function (e) {
 	return global[e.shift()] = e.pop();
 });
 
-describe('KOMReviewNormalizeBar_Access', function () {
+describe('KOMReviewChartElementNormalizedBar_Access', function () {
 
 	const values = [1, 2, 3];
 
 	before(function () {
 		return browser.OLSKVisit(kDefaultRoute, {
-			KOMReviewNormalizeBarValues: JSON.stringify(values)
+			KOMReviewChartElementNormalizedBarValues: JSON.stringify(values)
 		});
 	});
 
-	it('shows KOMReviewNormalizeBar', function () {
-		browser.assert.elements(KOMReviewNormalizeBar, 1);
+	it('shows KOMReviewChartElementNormalizedBar', function () {
+		browser.assert.elements(KOMReviewChartElementNormalizedBar, 1);
 	});
 
-	it('shows KOMReviewNormalizeBarSection', function () {
-		browser.assert.elements(KOMReviewNormalizeBarSection, values.length);
+	it('shows KOMReviewChartElementNormalizedBarSection', function () {
+		browser.assert.elements(KOMReviewChartElementNormalizedBarSection, values.length);
 	});
 
 });

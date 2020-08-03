@@ -12,7 +12,7 @@ if (!KOMReviewChartCompositionStatesLogic.KOMReviewChartCompositionStatesIsValid
 	throw new Error('KOMErrorInputNotValid');
 }
 
-import KOMReviewNormalizeBarUILogic from '../KOMReviewNormalizedBar/ui-logic.js';
+import KOMReviewChartElementNormalizedBarUILogic from '../KOMReviewChartElementNormalizedBar/ui-logic.js';
 
 import d3 from '../../../_shared/__external/d3/dist/d3.min.js';
 
@@ -25,12 +25,12 @@ const mod = {
 	},
 
 	DataScaleColor (inputData) {
-		return KOMReviewNormalizeBarUILogic.KOMReviewNormalizeBarScaleColor(d3.scaleOrdinal, d3.schemeGreys, mod.DataNormalizeValues())(inputData);
+		return KOMReviewChartElementNormalizedBarUILogic.KOMReviewChartElementNormalizedBarScaleColor(d3.scaleOrdinal, d3.schemeGreys, mod.DataNormalizeValues())(inputData);
 	},
 
 };
 
-import KOMReviewNormalizedBar from '../KOMReviewNormalizedBar/main.svelte';
+import KOMReviewChartElementNormalizedBar from '../KOMReviewChartElementNormalizedBar/main.svelte';
 </script>
 
 <table class="KOMReviewChartCompositionStates">
@@ -61,7 +61,7 @@ import KOMReviewNormalizedBar from '../KOMReviewNormalizedBar/main.svelte';
 
 <tr>
 	<td colspan="3">
-		<KOMReviewNormalizedBar KOMReviewNormalizeBarValues={ mod.DataNormalizeValues() } />
+		<KOMReviewChartElementNormalizedBar KOMReviewChartElementNormalizedBarValues={ mod.DataNormalizeValues() } />
 	</td>
 </tr>
 
@@ -88,7 +88,7 @@ tr:last-child td {
 	padding: 0;
 }
 
-.KOMReviewChartCompositionStates :global(.KOMReviewNormalizeBar) {
+.KOMReviewChartCompositionStates :global(.KOMReviewChartElementNormalizedBar) {
 	width: 100%;
 	max-width: 150px;
 	height: auto;

@@ -1,31 +1,31 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-const KOMReviewNormalizeBarUILogic = require('./ui-logic.js').default;
+const KOMReviewChartElementNormalizedBarUILogic = require('./ui-logic.js').default;
 const d3 = require('d3');
 
-describe('KOMReviewNormalizeBar_Misc', function () {
+describe('KOMReviewChartElementNormalizedBar_Misc', function () {
 
 	const values = [1, 2, 3];
 
 	before(function () {
 		return browser.OLSKVisit(kDefaultRoute, {
-			KOMReviewNormalizeBarValues: JSON.stringify(values)
+			KOMReviewChartElementNormalizedBarValues: JSON.stringify(values)
 		});
 	});
 
-	describe('KOMReviewNormalizeBar', function test_KOMReviewNormalizeBar() {
+	describe('KOMReviewChartElementNormalizedBar', function test_KOMReviewChartElementNormalizedBar() {
 
 		it('sets viewBox', function () {
-			browser.assert.attribute(KOMReviewNormalizeBar, 'viewBox', `0,0,${ KOMReviewNormalizeBarUILogic.KOMReviewNormalizeBarWidth() },${ KOMReviewNormalizeBarUILogic.KOMReviewNormalizeBarHeight() }`);
+			browser.assert.attribute(KOMReviewChartElementNormalizedBar, 'viewBox', `0,0,${ KOMReviewChartElementNormalizedBarUILogic.KOMReviewChartElementNormalizedBarWidth() },${ KOMReviewChartElementNormalizedBarUILogic.KOMReviewChartElementNormalizedBarHeight() }`);
 		});
 
 	});
 
-	describe('KOMReviewNormalizeBarSection', function test_KOMReviewNormalizeBarSection() {
+	describe('KOMReviewChartElementNormalizedBarSection', function test_KOMReviewChartElementNormalizedBarSection() {
 
 		it('sets x', function () {
 			values.reduce(function (coll, item, index, original) {
-				browser.assert.attribute(`${ KOMReviewNormalizeBarSection }:nth-child(${ index + 1 })`, 'x', KOMReviewNormalizeBarUILogic.KOMReviewNormalizeBarScaleHorizontal(d3.scaleLinear, original)(coll));
+				browser.assert.attribute(`${ KOMReviewChartElementNormalizedBarSection }:nth-child(${ index + 1 })`, 'x', KOMReviewChartElementNormalizedBarUILogic.KOMReviewChartElementNormalizedBarScaleHorizontal(d3.scaleLinear, original)(coll));
 
 				return coll + item;
 			}, 0);
@@ -33,25 +33,25 @@ describe('KOMReviewNormalizeBar_Misc', function () {
 
 		it('sets y', function () {
 			values.forEach(function (e, i) {
-				browser.assert.attribute(`${ KOMReviewNormalizeBarSection }:nth-child(${ i + 1 })`, 'y', '0');
+				browser.assert.attribute(`${ KOMReviewChartElementNormalizedBarSection }:nth-child(${ i + 1 })`, 'y', '0');
 			})
 		});
 
 		it('sets width', function () {
 			values.forEach(function (e, i) {
-				browser.assert.attribute(`${ KOMReviewNormalizeBarSection }:nth-child(${ i + 1 })`, 'width', KOMReviewNormalizeBarUILogic.KOMReviewNormalizeBarScaleHorizontal(d3.scaleLinear, values)(e));
+				browser.assert.attribute(`${ KOMReviewChartElementNormalizedBarSection }:nth-child(${ i + 1 })`, 'width', KOMReviewChartElementNormalizedBarUILogic.KOMReviewChartElementNormalizedBarScaleHorizontal(d3.scaleLinear, values)(e));
 			})
 		});
 
 		it('sets height', function () {
 			values.forEach(function (e, i) {
-				browser.assert.attribute(`${ KOMReviewNormalizeBarSection }:nth-child(${ i + 1 })`, 'height', KOMReviewNormalizeBarUILogic.KOMReviewNormalizeBarHeight());
+				browser.assert.attribute(`${ KOMReviewChartElementNormalizedBarSection }:nth-child(${ i + 1 })`, 'height', KOMReviewChartElementNormalizedBarUILogic.KOMReviewChartElementNormalizedBarHeight());
 			})
 		});
 
 		it('sets fill', function () {
 			values.forEach(function (e, i) {
-				browser.assert.attribute(`${ KOMReviewNormalizeBarSection }:nth-child(${ i + 1 })`, 'fill', KOMReviewNormalizeBarUILogic.KOMReviewNormalizeBarScaleColor(d3.scaleOrdinal, d3.schemeGreys, values)(e));
+				browser.assert.attribute(`${ KOMReviewChartElementNormalizedBarSection }:nth-child(${ i + 1 })`, 'fill', KOMReviewChartElementNormalizedBarUILogic.KOMReviewChartElementNormalizedBarScaleColor(d3.scaleOrdinal, d3.schemeGreys, values)(e));
 			})
 		});
 
