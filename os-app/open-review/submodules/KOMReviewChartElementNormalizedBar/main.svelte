@@ -19,7 +19,9 @@ const mod = {
 	},
 
 	DataScaleColor (inputData) {
-		return KOMReviewChartElementNormalizedBarLogic.KOMReviewChartElementNormalizedBarScaleColor(d3.scaleOrdinal, d3.schemeGreys, KOMReviewChartElementNormalizedBarValues)(inputData);
+		return KOMReviewChartElementNormalizedBarLogic.KOMReviewChartElementNormalizedBarScaleColor(d3.scaleOrdinal, d3.schemeGreys, KOMReviewChartElementNormalizedBarValues.map(function (e, i) {
+			return i;
+		}))(inputData);
 	},
 
 };
@@ -30,7 +32,7 @@ const mod = {
 {#each KOMReviewChartElementNormalizedBarValues as item, index }
 	<rect class="KOMReviewChartElementNormalizedBarSection" x={ mod.DataScaleHorizontal(KOMReviewChartElementNormalizedBarValues.slice(0, index).reduce(function (coll, item) {
 		return coll + item;
-	}, 0)) } y="0" width={ mod.DataScaleHorizontal(item) } height={ KOMReviewChartElementNormalizedBarLogic.KOMReviewChartElementNormalizedBarHeight() } fill={ mod.DataScaleColor(item) }></rect>
+	}, 0)) } y="0" width={ mod.DataScaleHorizontal(item) } height={ KOMReviewChartElementNormalizedBarLogic.KOMReviewChartElementNormalizedBarHeight() } fill={ mod.DataScaleColor(index) }></rect>
 {/each}
 
 </svg>
