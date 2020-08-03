@@ -164,6 +164,18 @@ const mod = {
 		return 21;
 	},
 
+	KOMSpacingModelIsDeveloping(inputData) {
+		if (mod.KOMSpacingModelErrorsFor(inputData)) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		if (!inputData.KOMSpacingInterval) {
+			return false;
+		}
+
+		return inputData.KOMSpacingInterval < mod.KOMSpacingModelMatureThreshold();
+	},
+
 	KOMSpacingModelIsMature(inputData) {
 		if (mod.KOMSpacingModelErrorsFor(inputData)) {
 			throw new Error('KOMErrorInputNotValid');

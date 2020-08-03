@@ -407,6 +407,32 @@ describe('KOMSpacingModelMatureThreshold', function test_KOMSpacingModelMatureTh
 
 });
 
+describe('KOMSpacingModelIsDeveloping', function test_KOMSpacingModelIsDeveloping() {
+
+	it('throws if not valid', function () {
+		throws(function () {
+			mainModule.KOMSpacingModelIsDeveloping({});
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns false if no KOMSpacingInterval', function () {
+		deepEqual(mainModule.KOMSpacingModelIsDeveloping(kTesting.StubSpacingObjectValid()), false);
+	});
+
+	it('returns false if KOMSpacingInterval above KOMSpacingModelMatureThreshold', function () {
+		deepEqual(mainModule.KOMSpacingModelIsDeveloping(Object.assign(kTesting.StubSpacingObjectValid(), {
+			KOMSpacingInterval: mainModule.KOMSpacingModelMatureThreshold(),
+		})), false);
+	});
+
+	it('returns true', function () {
+		deepEqual(mainModule.KOMSpacingModelIsDeveloping(Object.assign(kTesting.StubSpacingObjectValid(), {
+			KOMSpacingInterval: 1,
+		})), true);
+	});
+
+});
+
 describe('KOMSpacingModelIsMature', function test_KOMSpacingModelIsMature() {
 
 	it('throws if not valid', function () {
