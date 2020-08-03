@@ -38,6 +38,9 @@ Object.entries({
 	KOMReviewDetailTodayUnavailable: '.KOMReviewDetailTodayUnavailable',
 	KOMReviewDetailTodayToday: '.KOMReviewDetailToday .KOMReviewToday',
 
+	KOMReviewDetailGeneral: '.KOMReviewDetailGeneral',
+	KOMReviewDetailGeneralHeading: '.KOMReviewDetailGeneralHeading',
+
 	KOMReviewDetailDeckHeading: '.KOMReviewDetailDeckHeading',
 	KOMReviewDetailRenameButton: '.KOMReviewDetailRenameButton',
 	KOMReviewDetailDiscardButton: '.KOMReviewDetailDiscardButton',
@@ -164,6 +167,10 @@ describe('KOMReviewDetail_Access', function () {
 		browser.assert.elements(KOMReviewDetailToday, 0);
 	});
 
+	it('hides KOMReviewDetailGeneral', function () {
+		browser.assert.elements(KOMReviewDetailGeneral, 0);
+	});
+
 	it('shows KOMReviewDetailDeckHeading', function () {
 		browser.assert.elements(KOMReviewDetailDeckHeading, 1);
 	});
@@ -213,6 +220,10 @@ describe('KOMReviewDetail_Access', function () {
 
 		it('hides KOMReviewDetailTodayToday', function () {
 			browser.assert.elements(KOMReviewDetailTodayToday, 0);
+		});
+
+		it('hides KOMReviewDetailGeneral', function () {
+			browser.assert.elements(KOMReviewDetailGeneral, 0);
 		});
 
 		context('reviewing', function test_reviewing() {
@@ -371,6 +382,14 @@ describe('KOMReviewDetail_Access', function () {
 
 		it('shows KOMReviewDetailTodayToday', function () {
 			browser.assert.elements(KOMReviewDetailTodayToday, 1);
+		});
+
+		it('shows KOMReviewDetailGeneral', function () {
+			browser.assert.elements(KOMReviewDetailGeneral, 1);
+		});
+
+		it('shows KOMReviewDetailGeneralHeading', function () {
+			browser.assert.elements(KOMReviewDetailGeneralHeading, 1);
 		});
 
 		context('change direction', function () {

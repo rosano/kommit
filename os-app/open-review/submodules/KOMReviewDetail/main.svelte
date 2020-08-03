@@ -26,6 +26,7 @@ const mod = {
 	_ValueSpacingsReviewing: [],
 	_ValueSpacingsUnseen: [],
 	_ValueSpacingsStudied: [],
+	_ValueSpacingsNotUnseen: [],
 
 	_ValueLanguages: 'speechSynthesis' in window ? speechSynthesis.getVoices().map(function (e) {
 		return e.lang
@@ -133,6 +134,9 @@ const mod = {
 			}
 			
 			return KOMPlayLogic.KOMPlayDayGrouping(e.KOMSpacingChronicles.slice(-1).pop().KOMChronicleResponseDate) === KOMPlayLogic.KOMPlayDayGrouping(new Date());
+		});
+		mod._ValueSpacingsNotUnseen = inputData.$KOMDeckSpacings.filter(function (e) {
+			return e.KOMSpacingChronicles.length;
 		});
 	},
 
@@ -266,6 +270,14 @@ import KOMReviewToday from '../KOMReviewToday/main.svelte';
 		{#if mod._ValueSpacingsStudied.length }
 			<KOMReviewToday KOMReviewTodaySpacings={ mod._ValueSpacingsStudied } />
 		{/if}
+	</div>
+{/if}
+
+{#if KOMReviewDetailDeck.$KOMDeckSpacings.length && mod._ValueSpacingsNotUnseen.length }
+	<hr>
+
+	<div class="KOMReviewDetailGeneral">
+		<h1 class="KOMReviewDetailGeneralHeading">{ OLSKLocalized('KOMReviewDetailGeneralHeadingText') }</h1>
 	</div>
 {/if}
 

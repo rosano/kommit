@@ -64,6 +64,16 @@ const KOMSpacingStorage = require('./os-app/_shared/KOMSpacing/storage.js').defa
 			};
 		},
 
+		StubChronicleObjectValid(inputData = new Date()) {
+			return {
+				KOMChronicleDrawDate: inputData,
+				KOMChronicleFlipDate: inputData,
+				KOMChronicleResponseDate: new Date(inputData.valueOf() + 10000),
+				KOMChronicleResponseType: 'RESPONSE_EASY',
+				KOMChronicleDueDate: inputData,
+			};
+		},
+
 	}).map(function (e) {
 		return global[e.shift()] = e.pop();
 	});

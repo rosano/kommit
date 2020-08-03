@@ -180,6 +180,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 						KOMDeckName: 'alfa',
 						$KOMDeckSpacings: kTesting.uSpacings().map(function (e) {
 							return Object.assign(e, {
+								KOMSpacingChronicles: [StubChronicleObjectValid()],
 								KOMSpacingDueDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3),
 							});
 						}),
@@ -189,6 +190,10 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 
 			it('localizes KOMReviewDetailNoSpacings', function () {
 				browser.assert.text(KOMReviewDetailNoSpacings, uLocalized('KOMReviewDetailNoSpacingsText'));
+			});
+
+			it('localizes KOMReviewDetailGeneralHeading', function () {
+				browser.assert.text(KOMReviewDetailGeneralHeading, uLocalized('KOMReviewDetailGeneralHeadingText'));
 			});
 
 		});
