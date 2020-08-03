@@ -8,7 +8,7 @@ const mod = {
 		return 10;
 	},
 
-	KOMReviewNormalizeBarScaleX(param1, param2) {
+	KOMReviewNormalizeBarScaleHorizontal(param1, param2) {
 		if (typeof param1 !== 'function') {
 			throw new Error('KOMErrorInputNotValid');
 		}

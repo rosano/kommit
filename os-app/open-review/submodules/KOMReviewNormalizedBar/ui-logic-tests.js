@@ -20,33 +20,33 @@ describe('KOMReviewNormalizeBarHeight', function test_KOMReviewNormalizeBarHeigh
 
 });
 
-describe('KOMReviewNormalizeBarScaleX', function test_KOMReviewNormalizeBarScaleX() {
+describe('KOMReviewNormalizeBarScaleHorizontal', function test_KOMReviewNormalizeBarScaleHorizontal() {
 
 	it('throws if param1 not d3.scaleLinear', function () {
 		throws(function () {
-			mainModule.KOMReviewNormalizeBarScaleX({}, [1]);
+			mainModule.KOMReviewNormalizeBarScaleHorizontal({}, [1]);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('throws if param2 not array', function () {
 		throws(function () {
-			mainModule.KOMReviewNormalizeBarScaleX(d3.scaleLinear, null);
+			mainModule.KOMReviewNormalizeBarScaleHorizontal(d3.scaleLinear, null);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('throws if param2 empty', function () {
 		throws(function () {
-			mainModule.KOMReviewNormalizeBarScaleX(d3.scaleLinear, []);
+			mainModule.KOMReviewNormalizeBarScaleHorizontal(d3.scaleLinear, []);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns function', function () {
-		deepEqual(typeof mainModule.KOMReviewNormalizeBarScaleX(d3.scaleLinear, [1]), 'function');
+		deepEqual(typeof mainModule.KOMReviewNormalizeBarScaleHorizontal(d3.scaleLinear, [1]), 'function');
 	});
 
 	context('function', function () {
 
-		const item = mainModule.KOMReviewNormalizeBarScaleX(d3.scaleLinear, [5, 5]);
+		const item = mainModule.KOMReviewNormalizeBarScaleHorizontal(d3.scaleLinear, [5, 5]);
 
 		it('sets range minimum', function () {
 			deepEqual(item(0), 0);
