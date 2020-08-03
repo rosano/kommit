@@ -14,28 +14,32 @@ const mod = {
 	// DATA
 
 	DataStatesData() {
-		const cardIDs = [];
-		return KOMReviewGeneralSpacings.reduce(function (coll, item) {
-			if (!cardIDs.includes(KOMSpacingModel.KOMSpacingModelIdentifier(item.KOMSpacingID))) {
-				cardIDs.push(KOMSpacingModel.KOMSpacingModelIdentifier(item.KOMSpacingID));
-				coll.KOMReviewChartCompositionStatesTotal += 1;
+		return Object.entries(KOMReviewGeneralSpacings.reduce(function (coll, item) {
+			const cardID = KOMSpacingModel.KOMSpacingModelIdentifier(item.KOMSpacingID);
+
+			if (!coll.KOMReviewChartCompositionStatesTotal.includes(cardID)) {
+				coll.KOMReviewChartCompositionStatesTotal.push(cardID);
 			}
 
-			if (KOMSpacingModel.KOMSpacingModelIsDeveloping(item)) {
-				coll.KOMReviewChartCompositionStatesDeveloping += 1;
+			if (KOMSpacingModel.KOMSpacingModelIsDeveloping(item) && !coll.KOMReviewChartCompositionStatesDeveloping.includes(cardID)) {
+				coll.KOMReviewChartCompositionStatesDeveloping.push(cardID);
 			}
 
-			if (KOMSpacingModel.KOMSpacingModelIsMature(item)) {
-				coll.KOMReviewChartCompositionStatesMature += 1;
+			if (KOMSpacingModel.KOMSpacingModelIsMature(item) && !coll.KOMReviewChartCompositionStatesMature.includes(cardID)) {
+				coll.KOMReviewChartCompositionStatesMature.push(cardID);
 			}
 
 			return coll;
 		}, {
-			KOMReviewChartCompositionStatesTotal: 0,
-			KOMReviewChartCompositionStatesDeveloping: 0,
-			KOMReviewChartCompositionStatesMature: 0,
-			KOMReviewChartCompositionStatesSuspended: 0,
-		})
+			KOMReviewChartCompositionStatesTotal: [],
+			KOMReviewChartCompositionStatesDeveloping: [],
+			KOMReviewChartCompositionStatesMature: [],
+			KOMReviewChartCompositionStatesSuspended: [],
+		})).reduce(function (coll, item) {
+			coll[item[0]] = item[1].length;
+
+			return coll;
+		}, {});
 	},
 
 };

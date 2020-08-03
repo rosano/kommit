@@ -11,7 +11,11 @@ describe('KOMReviewGeneral_Misc', function () {
 				Object.assign(StubSpacingObjectValid(), {
 					KOMSpacingInterval: 21,
 				}),
-			]),
+			].reduce(function (coll, item) {
+				return coll.concat([item, Object.assign(Object.assign({}, item), {
+					KOMSpacingID: item.KOMSpacingID.replace('forward', 'backward'),
+				})]);
+			}, [])),
 		});
 	});
 
