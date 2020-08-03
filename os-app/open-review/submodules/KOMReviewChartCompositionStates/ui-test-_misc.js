@@ -7,7 +7,7 @@ describe('KOMReviewChartCompositionStates_Misc', function () {
 
 	const item = {
 		KOMReviewChartCompositionStatesTotal: 1,
-		KOMReviewChartCompositionStatesLearning: 2,
+		KOMReviewChartCompositionStatesDeveloping: 2,
 		KOMReviewChartCompositionStatesMature: 3,
 		KOMReviewChartCompositionStatesSuspended: 4,
 	};
@@ -26,18 +26,18 @@ describe('KOMReviewChartCompositionStates_Misc', function () {
 
 	});
 
-	describe.skip('KOMReviewChartCompositionStatesLearningCardsColor', function test_KOMReviewChartCompositionStatesLearningCardsColor() {
+	describe.skip('KOMReviewChartCompositionStatesDevelopingCardsColor', function test_KOMReviewChartCompositionStatesDevelopingCardsColor() {
 
 		it('sets style', function () {
-			browser.assert.attribute(KOMReviewChartCompositionStatesLearningCardsColor, 'style', `background: ${ KOMReviewChartElementNormalizedBarLogic.KOMReviewChartElementNormalizedBarScaleColor(d3.scaleOrdinal, d3.schemeGreys, Object.values(item))(2) }`);
+			browser.assert.attribute(KOMReviewChartCompositionStatesDevelopingCardsColor, 'style', `background: ${ KOMReviewChartElementNormalizedBarLogic.KOMReviewChartElementNormalizedBarScaleColor(d3.scaleOrdinal, d3.schemeGreys, Object.values(item))(2) }`);
 		});
 
 	});
 
-	describe('KOMReviewChartCompositionStatesLearningCardsValue', function test_KOMReviewChartCompositionStatesLearningCardsValue() {
+	describe('KOMReviewChartCompositionStatesDevelopingCardsValue', function test_KOMReviewChartCompositionStatesDevelopingCardsValue() {
 
 		it('sets text', function () {
-			browser.assert.text(KOMReviewChartCompositionStatesLearningCardsValue, '2');
+			browser.assert.text(KOMReviewChartCompositionStatesDevelopingCardsValue, '2');
 		});
 
 	});

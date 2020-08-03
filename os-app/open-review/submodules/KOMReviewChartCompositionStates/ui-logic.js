@@ -9,7 +9,7 @@ const mod = {
 			return false;
 		}
 
-		if (typeof inputData.KOMReviewChartCompositionStatesLearning !== 'number') {
+		if (typeof inputData.KOMReviewChartCompositionStatesDeveloping !== 'number') {
 			return false;
 		}
 

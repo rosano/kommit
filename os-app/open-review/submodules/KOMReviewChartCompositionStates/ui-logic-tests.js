@@ -6,7 +6,7 @@ const kTesting = {
 	StubDataObjectValid() {
 		return {
 			KOMReviewChartCompositionStatesTotal: 1,
-			KOMReviewChartCompositionStatesLearning: 1,
+			KOMReviewChartCompositionStatesDeveloping: 1,
 			KOMReviewChartCompositionStatesMature: 1,
 			KOMReviewChartCompositionStatesSuspended: 1,
 		};
@@ -27,9 +27,9 @@ describe('KOMReviewChartCompositionStatesIsValid', function test_KOMReviewChartC
 		})), false);
 	});
 
-	it('returns false if KOMReviewChartCompositionStatesLearning not number', function () {
+	it('returns false if KOMReviewChartCompositionStatesDeveloping not number', function () {
 		deepEqual(mainModule.KOMReviewChartCompositionStatesIsValid(Object.assign(kTesting.StubDataObjectValid(), {
-			KOMReviewChartCompositionStatesLearning: null,
+			KOMReviewChartCompositionStatesDeveloping: null,
 		})), false);
 	});
 

@@ -42,9 +42,9 @@ import KOMReviewChartElementNormalizedBar from '../KOMReviewChartElementNormaliz
 </tr>
 
 <tr>
-	<td><span class="KOMReviewChartCompositionStatesLearningCardsColor" style="background: { mod.DataScaleColor(KOMReviewChartCompositionStatesData.KOMReviewChartCompositionStatesLearning) };"></span></td>
-	<td class="KOMReviewChartCompositionStatesLearningCardsLabel">{ OLSKLocalized('KOMReviewChartCompositionStatesLearningCardsLabelText') }</td>
-	<td class="KOMReviewChartCompositionStatesLearningCardsValue">{ KOMReviewChartCompositionStatesData.KOMReviewChartCompositionStatesLearning }</td>
+	<td><span class="KOMReviewChartCompositionStatesDevelopingCardsColor" style="background: { mod.DataScaleColor(KOMReviewChartCompositionStatesData.KOMReviewChartCompositionStatesDeveloping) };"></span></td>
+	<td class="KOMReviewChartCompositionStatesDevelopingCardsLabel">{ OLSKLocalized('KOMReviewChartCompositionStatesDevelopingCardsLabelText') }</td>
+	<td class="KOMReviewChartCompositionStatesDevelopingCardsValue">{ KOMReviewChartCompositionStatesData.KOMReviewChartCompositionStatesDeveloping }</td>
 </tr>
 
 <tr>

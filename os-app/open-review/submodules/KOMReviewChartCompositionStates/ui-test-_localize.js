@@ -13,7 +13,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 				OLSKRoutingLanguage: languageCode,
 				KOMReviewChartCompositionStatesData: JSON.stringify({
 					KOMReviewChartCompositionStatesTotal: 1,
-					KOMReviewChartCompositionStatesLearning: 2,
+					KOMReviewChartCompositionStatesDeveloping: 2,
 					KOMReviewChartCompositionStatesMature: 3,
 					KOMReviewChartCompositionStatesSuspended: 4,
 				}),
@@ -24,8 +24,8 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			browser.assert.text(KOMReviewChartCompositionStatesTotalCardsLabel, uLocalized('KOMReviewChartCompositionStatesTotalCardsLabelText'));
 		});
 
-		it('localizes KOMReviewChartCompositionStatesLearningCardsLabel', function () {
-			browser.assert.text(KOMReviewChartCompositionStatesLearningCardsLabel, uLocalized('KOMReviewChartCompositionStatesLearningCardsLabelText'));
+		it('localizes KOMReviewChartCompositionStatesDevelopingCardsLabel', function () {
+			browser.assert.text(KOMReviewChartCompositionStatesDevelopingCardsLabel, uLocalized('KOMReviewChartCompositionStatesDevelopingCardsLabelText'));
 		});
 
 		it('localizes KOMReviewChartCompositionStatesMatureCardsLabel', function () {

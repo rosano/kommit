@@ -6,9 +6,9 @@ Object.entries({
 	KOMReviewChartCompositionStatesTotalCardsLabel: '.KOMReviewChartCompositionStatesTotalCardsLabel',
 	KOMReviewChartCompositionStatesTotalCardsValue: '.KOMReviewChartCompositionStatesTotalCardsValue',
 
-	KOMReviewChartCompositionStatesLearningCardsColor: '.KOMReviewChartCompositionStatesLearningCardsColor',
-	KOMReviewChartCompositionStatesLearningCardsLabel: '.KOMReviewChartCompositionStatesLearningCardsLabel',
-	KOMReviewChartCompositionStatesLearningCardsValue: '.KOMReviewChartCompositionStatesLearningCardsValue',
+	KOMReviewChartCompositionStatesDevelopingCardsColor: '.KOMReviewChartCompositionStatesDevelopingCardsColor',
+	KOMReviewChartCompositionStatesDevelopingCardsLabel: '.KOMReviewChartCompositionStatesDevelopingCardsLabel',
+	KOMReviewChartCompositionStatesDevelopingCardsValue: '.KOMReviewChartCompositionStatesDevelopingCardsValue',
 
 	KOMReviewChartCompositionStatesMatureCardsColor: '.KOMReviewChartCompositionStatesMatureCardsColor',
 	KOMReviewChartCompositionStatesMatureCardsLabel: '.KOMReviewChartCompositionStatesMatureCardsLabel',
@@ -27,7 +27,7 @@ describe('KOMReviewChartCompositionStates_Access', function () {
 		return browser.OLSKVisit(kDefaultRoute, {
 			KOMReviewChartCompositionStatesData: JSON.stringify({
 				KOMReviewChartCompositionStatesTotal: 1,
-				KOMReviewChartCompositionStatesLearning: 2,
+				KOMReviewChartCompositionStatesDeveloping: 2,
 				KOMReviewChartCompositionStatesMature: 3,
 				KOMReviewChartCompositionStatesSuspended: 4,
 			}),
@@ -46,16 +46,16 @@ describe('KOMReviewChartCompositionStates_Access', function () {
 		browser.assert.elements(KOMReviewChartCompositionStatesTotalCardsValue, 1);
 	});
 
-	it('shows KOMReviewChartCompositionStatesLearningCardsColor', function () {
-		browser.assert.elements(KOMReviewChartCompositionStatesLearningCardsColor, 1);
+	it('shows KOMReviewChartCompositionStatesDevelopingCardsColor', function () {
+		browser.assert.elements(KOMReviewChartCompositionStatesDevelopingCardsColor, 1);
 	});
 
-	it('shows KOMReviewChartCompositionStatesLearningCardsLabel', function () {
-		browser.assert.elements(KOMReviewChartCompositionStatesLearningCardsLabel, 1);
+	it('shows KOMReviewChartCompositionStatesDevelopingCardsLabel', function () {
+		browser.assert.elements(KOMReviewChartCompositionStatesDevelopingCardsLabel, 1);
 	});
 
-	it('shows KOMReviewChartCompositionStatesLearningCardsValue', function () {
-		browser.assert.elements(KOMReviewChartCompositionStatesLearningCardsValue, 1);
+	it('shows KOMReviewChartCompositionStatesDevelopingCardsValue', function () {
+		browser.assert.elements(KOMReviewChartCompositionStatesDevelopingCardsValue, 1);
 	});
 
 	it('shows KOMReviewChartCompositionStatesMatureCardsColor', function () {
