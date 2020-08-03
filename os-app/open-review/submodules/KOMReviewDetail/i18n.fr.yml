@@ -11,8 +11,8 @@ KOMReviewDetailPlayButtonUnseenText: Étudier des nouvelles cartes
 KOMReviewDetailPlayButtonMixedText: Étudier toutes les cartes
 KOMReviewDetailPlayButtonSingleText: Jouer
 KOMReviewDetailNoSpacingsText: Toutes les cartes pour aujourd'hui ont été révisées.
-KOMReviewDetailTodayHeadingText: Statistiques
-KOMReviewDetailTodayUnavailableText: Réviser quelques cartes pour alimenter les statistiques.
+KOMReviewDetailTodayHeadingText: Aujourd'hui
+KOMReviewDetailTodayUnavailableText: Réviser quelques cartes pour alimenter les statistiques pour aujourd'hui.
 KOMReviewDetailDeckHeadingText: Lot de cartes
 KOMReviewDetailRenameButtonText: Renommer
 KOMReviewDetailRenameButtonPromptText: Nom
