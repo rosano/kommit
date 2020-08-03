@@ -399,6 +399,32 @@ describe('KOMSpacingModelIsReviewing', function test_KOMSpacingModelIsReviewing(
 
 });
 
+describe('KOMSpacingModelIsMature', function test_KOMSpacingModelIsMature() {
+
+	it('throws if not valid', function () {
+		throws(function () {
+			mainModule.KOMSpacingModelIsMature({});
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns false if no KOMSpacingInterval', function () {
+		deepEqual(mainModule.KOMSpacingModelIsMature(kTesting.StubSpacingObjectValid()), false);
+	});
+
+	it('returns false if KOMSpacingInterval below three weeks', function () {
+		deepEqual(mainModule.KOMSpacingModelIsMature(Object.assign(kTesting.StubSpacingObjectValid(), {
+			KOMSpacingInterval: 1,
+		})), false);
+	});
+
+	it('returns true', function () {
+		deepEqual(mainModule.KOMSpacingModelIsMature(Object.assign(kTesting.StubSpacingObjectValid(), {
+			KOMSpacingInterval: 21,
+		})), true);
+	});
+
+});
+
 describe('KOMSpacingModelFilterUnique', function test_KOMSpacingModelFilterUnique() {
 
 	it('throws if not array', function () {

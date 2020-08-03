@@ -160,6 +160,18 @@ const mod = {
 		return !!inputData.KOMSpacingInterval;
 	},
 
+	KOMSpacingModelIsMature(inputData) {
+		if (mod.KOMSpacingModelErrorsFor(inputData)) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		if (!inputData.KOMSpacingInterval) {
+			return false;
+		}
+
+		return inputData.KOMSpacingInterval >= 21;
+	},
+
 	KOMSpacingModelFilterUnique(inputData) {
 		if (!Array.isArray(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
