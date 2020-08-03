@@ -5,6 +5,7 @@ describe('KOMReviewGeneral_Misc', function () {
 	before(function () {
 		return browser.OLSKVisit(kDefaultRoute, {
 			KOMReviewGeneralSpacings: JSON.stringify([
+				StubSpacingObjectValid(),
 				Object.assign(StubSpacingObjectValid(), {
 					KOMSpacingInterval: 1,
 				}),
@@ -23,6 +24,7 @@ describe('KOMReviewGeneral_Misc', function () {
 
 		it('sets KOMReviewChartCompositionStatesData', function () {
 			browser.assert.text('.KOMReviewChartCompositionStates .KOMReviewChartCompositionStatesTotalCardsValue', '1');
+			browser.assert.text('.KOMReviewChartCompositionStates .KOMReviewChartCompositionStatesUnseenCardsValue', '1');
 			browser.assert.text('.KOMReviewChartCompositionStates .KOMReviewChartCompositionStatesDevelopingCardsValue', '1');
 			browser.assert.text('.KOMReviewChartCompositionStates .KOMReviewChartCompositionStatesMatureCardsValue', '1');
 		});

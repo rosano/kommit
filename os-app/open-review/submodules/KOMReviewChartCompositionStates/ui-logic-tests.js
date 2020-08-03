@@ -6,6 +6,7 @@ const kTesting = {
 	StubDataObjectValid() {
 		return {
 			KOMReviewChartCompositionStatesTotal: 1,
+			KOMReviewChartCompositionStatesUnseen: 1,
 			KOMReviewChartCompositionStatesDeveloping: 1,
 			KOMReviewChartCompositionStatesMature: 1,
 			KOMReviewChartCompositionStatesSuspended: 1,
@@ -24,6 +25,12 @@ describe('KOMReviewChartCompositionStatesIsValid', function test_KOMReviewChartC
 	it('returns false if KOMReviewChartCompositionStatesTotal not number', function () {
 		deepEqual(mainModule.KOMReviewChartCompositionStatesIsValid(Object.assign(kTesting.StubDataObjectValid(), {
 			KOMReviewChartCompositionStatesTotal: null,
+		})), false);
+	});
+
+	it('returns false if KOMReviewChartCompositionStatesUnseen not number', function () {
+		deepEqual(mainModule.KOMReviewChartCompositionStatesIsValid(Object.assign(kTesting.StubDataObjectValid(), {
+			KOMReviewChartCompositionStatesUnseen: null,
 		})), false);
 	});
 

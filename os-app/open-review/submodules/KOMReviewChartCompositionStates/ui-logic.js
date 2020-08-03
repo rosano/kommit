@@ -9,6 +9,10 @@ const mod = {
 			return false;
 		}
 
+		if (typeof inputData.KOMReviewChartCompositionStatesUnseen !== 'number') {
+			return false;
+		}
+
 		if (typeof inputData.KOMReviewChartCompositionStatesDeveloping !== 'number') {
 			return false;
 		}

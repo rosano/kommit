@@ -7,6 +7,7 @@ describe('KOMReviewChartCompositionStates_Misc', function () {
 
 	const item = {
 		KOMReviewChartCompositionStatesTotal: 1,
+		KOMReviewChartCompositionStatesUnseen: 2,
 		KOMReviewChartCompositionStatesDeveloping: 2,
 		KOMReviewChartCompositionStatesMature: 3,
 		KOMReviewChartCompositionStatesSuspended: 4,
@@ -22,6 +23,22 @@ describe('KOMReviewChartCompositionStates_Misc', function () {
 
 		it('sets text', function () {
 			browser.assert.text(KOMReviewChartCompositionStatesTotalCardsValue, '1');
+		});
+
+	});
+
+	describe.skip('KOMReviewChartCompositionStatesUnseenCardsColor', function test_KOMReviewChartCompositionStatesUnseenCardsColor() {
+
+		it('sets style', function () {
+			browser.assert.attribute(KOMReviewChartCompositionStatesUnseenCardsColor, 'style', `background: ${ KOMReviewChartElementNormalizedBarLogic.KOMReviewChartElementNormalizedBarScaleColor(d3.scaleOrdinal, d3.schemeGreys, Object.values(item))(2) }`);
+		});
+
+	});
+
+	describe('KOMReviewChartCompositionStatesUnseenCardsValue', function test_KOMReviewChartCompositionStatesUnseenCardsValue() {
+
+		it('sets text', function () {
+			browser.assert.text(KOMReviewChartCompositionStatesUnseenCardsValue, '2');
 		});
 
 	});
@@ -77,7 +94,7 @@ describe('KOMReviewChartCompositionStates_Misc', function () {
 	describe('KOMReviewChartElementNormalizedBar', function test_KOMReviewChartElementNormalizedBar() {
 
 		it('sets KOMReviewChartElementNormalizedBarValues', function () {
-			browser.assert.elements('.KOMReviewChartElementNormalizedBarSection', 3);
+			browser.assert.elements('.KOMReviewChartElementNormalizedBarSection', 4);
 		});
 
 	});

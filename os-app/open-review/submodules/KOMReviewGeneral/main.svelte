@@ -21,6 +21,10 @@ const mod = {
 				coll.KOMReviewChartCompositionStatesTotal.push(cardID);
 			}
 
+			if (KOMSpacingModel.KOMSpacingModelIsUnseen(item) && !coll.KOMReviewChartCompositionStatesUnseen.includes(cardID)) {
+				coll.KOMReviewChartCompositionStatesUnseen.push(cardID);
+			}
+
 			if (KOMSpacingModel.KOMSpacingModelIsDeveloping(item) && !coll.KOMReviewChartCompositionStatesDeveloping.includes(cardID)) {
 				coll.KOMReviewChartCompositionStatesDeveloping.push(cardID);
 			}
@@ -32,6 +36,7 @@ const mod = {
 			return coll;
 		}, {
 			KOMReviewChartCompositionStatesTotal: [],
+			KOMReviewChartCompositionStatesUnseen: [],
 			KOMReviewChartCompositionStatesDeveloping: [],
 			KOMReviewChartCompositionStatesMature: [],
 			KOMReviewChartCompositionStatesSuspended: [],

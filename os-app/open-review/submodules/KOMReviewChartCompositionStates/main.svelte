@@ -44,19 +44,25 @@ import KOMReviewChartElementNormalizedBar from '../KOMReviewChartElementNormaliz
 </tr>
 
 <tr>
-	<td><span class="KOMReviewChartCompositionStatesDevelopingCardsColor" style="background: { mod.DataScaleColor(0) };"></span></td>
+	<td><span class="KOMReviewChartCompositionStatesUnseenCardsColor" style="background: { mod.DataScaleColor(0) };"></span></td>
+	<td class="KOMReviewChartCompositionStatesUnseenCardsLabel">{ OLSKLocalized('KOMReviewChartCompositionStatesUnseenCardsLabelText') }</td>
+	<td class="KOMReviewChartCompositionStatesUnseenCardsValue">{ KOMReviewChartCompositionStatesData.KOMReviewChartCompositionStatesUnseen }</td>
+</tr>
+
+<tr>
+	<td><span class="KOMReviewChartCompositionStatesDevelopingCardsColor" style="background: { mod.DataScaleColor(1) };"></span></td>
 	<td class="KOMReviewChartCompositionStatesDevelopingCardsLabel">{ OLSKLocalized('KOMReviewChartCompositionStatesDevelopingCardsLabelText') }</td>
 	<td class="KOMReviewChartCompositionStatesDevelopingCardsValue">{ KOMReviewChartCompositionStatesData.KOMReviewChartCompositionStatesDeveloping }</td>
 </tr>
 
 <tr>
-	<td><span class="KOMReviewChartCompositionStatesMatureCardsColor" style="background: { mod.DataScaleColor(1) };"></span></td>
+	<td><span class="KOMReviewChartCompositionStatesMatureCardsColor" style="background: { mod.DataScaleColor(2) };"></span></td>
 	<td class="KOMReviewChartCompositionStatesMatureCardsLabel">{ OLSKLocalized('KOMReviewChartCompositionStatesMatureCardsLabelText') }</td>
 	<td class="KOMReviewChartCompositionStatesMatureCardsValue">{ KOMReviewChartCompositionStatesData.KOMReviewChartCompositionStatesMature }</td>
 </tr>
 
 <tr>
-	<td><span class="KOMReviewChartCompositionStatesSuspendedCardsColor" style="background: { mod.DataScaleColor(2) };"></span></td>
+	<td><span class="KOMReviewChartCompositionStatesSuspendedCardsColor" style="background: { mod.DataScaleColor(3) };"></span></td>
 	<td class="KOMReviewChartCompositionStatesSuspendedCardsLabel">{ OLSKLocalized('KOMReviewChartCompositionStatesSuspendedCardsLabelText') }</td>
 	<td class="KOMReviewChartCompositionStatesSuspendedCardsValue">{ KOMReviewChartCompositionStatesData.KOMReviewChartCompositionStatesSuspended }</td>
 </tr>

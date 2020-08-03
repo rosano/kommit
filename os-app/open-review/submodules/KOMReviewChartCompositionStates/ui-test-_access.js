@@ -6,6 +6,10 @@ Object.entries({
 	KOMReviewChartCompositionStatesTotalCardsLabel: '.KOMReviewChartCompositionStatesTotalCardsLabel',
 	KOMReviewChartCompositionStatesTotalCardsValue: '.KOMReviewChartCompositionStatesTotalCardsValue',
 
+	KOMReviewChartCompositionStatesUnseenCardsColor: '.KOMReviewChartCompositionStatesUnseenCardsColor',
+	KOMReviewChartCompositionStatesUnseenCardsLabel: '.KOMReviewChartCompositionStatesUnseenCardsLabel',
+	KOMReviewChartCompositionStatesUnseenCardsValue: '.KOMReviewChartCompositionStatesUnseenCardsValue',
+
 	KOMReviewChartCompositionStatesDevelopingCardsColor: '.KOMReviewChartCompositionStatesDevelopingCardsColor',
 	KOMReviewChartCompositionStatesDevelopingCardsLabel: '.KOMReviewChartCompositionStatesDevelopingCardsLabel',
 	KOMReviewChartCompositionStatesDevelopingCardsValue: '.KOMReviewChartCompositionStatesDevelopingCardsValue',
@@ -27,6 +31,7 @@ describe('KOMReviewChartCompositionStates_Access', function () {
 		return browser.OLSKVisit(kDefaultRoute, {
 			KOMReviewChartCompositionStatesData: JSON.stringify({
 				KOMReviewChartCompositionStatesTotal: 1,
+				KOMReviewChartCompositionStatesUnseen: 1,
 				KOMReviewChartCompositionStatesDeveloping: 2,
 				KOMReviewChartCompositionStatesMature: 3,
 				KOMReviewChartCompositionStatesSuspended: 4,
@@ -44,6 +49,18 @@ describe('KOMReviewChartCompositionStates_Access', function () {
 
 	it('shows KOMReviewChartCompositionStatesTotalCardsValue', function () {
 		browser.assert.elements(KOMReviewChartCompositionStatesTotalCardsValue, 1);
+	});
+
+	it('shows KOMReviewChartCompositionStatesUnseenCardsColor', function () {
+		browser.assert.elements(KOMReviewChartCompositionStatesUnseenCardsColor, 1);
+	});
+
+	it('shows KOMReviewChartCompositionStatesUnseenCardsLabel', function () {
+		browser.assert.elements(KOMReviewChartCompositionStatesUnseenCardsLabel, 1);
+	});
+
+	it('shows KOMReviewChartCompositionStatesUnseenCardsValue', function () {
+		browser.assert.elements(KOMReviewChartCompositionStatesUnseenCardsValue, 1);
 	});
 
 	it('shows KOMReviewChartCompositionStatesDevelopingCardsColor', function () {
