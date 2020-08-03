@@ -12,7 +12,7 @@ if (!KOMReviewChartCompositionStatesLogic.KOMReviewChartCompositionStatesIsValid
 	throw new Error('KOMErrorInputNotValid');
 }
 
-import KOMReviewChartElementNormalizedBarUILogic from '../KOMReviewChartElementNormalizedBar/ui-logic.js';
+import KOMReviewChartElementNormalizedBarLogic from '../KOMReviewChartElementNormalizedBar/ui-logic.js';
 
 import d3 from '../../../_shared/__external/d3/dist/d3.min.js';
 
@@ -25,7 +25,7 @@ const mod = {
 	},
 
 	DataScaleColor (inputData) {
-		return KOMReviewChartElementNormalizedBarUILogic.KOMReviewChartElementNormalizedBarScaleColor(d3.scaleOrdinal, d3.schemeGreys, mod.DataNormalizeValues())(inputData);
+		return KOMReviewChartElementNormalizedBarLogic.KOMReviewChartElementNormalizedBarScaleColor(d3.scaleOrdinal, d3.schemeGreys, mod.DataNormalizeValues())(inputData);
 	},
 
 };

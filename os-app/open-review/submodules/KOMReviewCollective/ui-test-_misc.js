@@ -1,6 +1,6 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-const KOMReviewChartElementNormalizedBarUILogic = require('../KOMReviewChartElementNormalizedBar/ui-logic.js').default;
+const KOMReviewChartElementNormalizedBarLogic = require('../KOMReviewChartElementNormalizedBar/ui-logic.js').default;
 const d3 = require('d3');
 
 describe('KOMReviewChartCompositionStates_Misc', function () {
@@ -29,7 +29,7 @@ describe('KOMReviewChartCompositionStates_Misc', function () {
 	describe.skip('KOMReviewChartCompositionStatesLearningCardsColor', function test_KOMReviewChartCompositionStatesLearningCardsColor() {
 
 		it('sets style', function () {
-			browser.assert.attribute(KOMReviewChartCompositionStatesLearningCardsColor, 'style', `background: ${ KOMReviewChartElementNormalizedBarUILogic.KOMReviewChartElementNormalizedBarScaleColor(d3.scaleOrdinal, d3.schemeGreys, Object.values(item))(2) }`);
+			browser.assert.attribute(KOMReviewChartCompositionStatesLearningCardsColor, 'style', `background: ${ KOMReviewChartElementNormalizedBarLogic.KOMReviewChartElementNormalizedBarScaleColor(d3.scaleOrdinal, d3.schemeGreys, Object.values(item))(2) }`);
 		});
 
 	});
@@ -45,7 +45,7 @@ describe('KOMReviewChartCompositionStates_Misc', function () {
 	describe.skip('KOMReviewChartCompositionStatesMatureCardsColor', function test_KOMReviewChartCompositionStatesMatureCardsColor() {
 
 		it('sets style', function () {
-			browser.assert.attribute(KOMReviewChartCompositionStatesMatureCardsColor, 'style', `background: ${ KOMReviewChartElementNormalizedBarUILogic.KOMReviewChartElementNormalizedBarScaleColor(d3.scaleOrdinal, d3.schemeGreys, Object.values(item))(3) }`);
+			browser.assert.attribute(KOMReviewChartCompositionStatesMatureCardsColor, 'style', `background: ${ KOMReviewChartElementNormalizedBarLogic.KOMReviewChartElementNormalizedBarScaleColor(d3.scaleOrdinal, d3.schemeGreys, Object.values(item))(3) }`);
 		});
 
 	});
@@ -61,7 +61,7 @@ describe('KOMReviewChartCompositionStates_Misc', function () {
 	describe.skip('KOMReviewChartCompositionStatesSuspendedCardsColor', function test_KOMReviewChartCompositionStatesSuspendedCardsColor() {
 
 		it('sets style', function () {
-			browser.assert.attribute(KOMReviewChartCompositionStatesSuspendedCardsColor, 'style', `background: ${ KOMReviewChartElementNormalizedBarUILogic.KOMReviewChartElementNormalizedBarScaleColor(d3.scaleOrdinal, d3.schemeGreys, Object.values(item))(4) }`);
+			browser.assert.attribute(KOMReviewChartCompositionStatesSuspendedCardsColor, 'style', `background: ${ KOMReviewChartElementNormalizedBarLogic.KOMReviewChartElementNormalizedBarScaleColor(d3.scaleOrdinal, d3.schemeGreys, Object.values(item))(4) }`);
 		});
 
 	});
