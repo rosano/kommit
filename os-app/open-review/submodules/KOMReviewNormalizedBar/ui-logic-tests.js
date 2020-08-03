@@ -59,3 +59,53 @@ describe('KOMReviewNormalizeBarScaleX', function test_KOMReviewNormalizeBarScale
 	});
 
 });
+
+describe('KOMReviewNormalizeBarScaleColor', function test_KOMReviewNormalizeBarScaleColor() {
+
+	it('throws if param1 not d3.scaleOrdinal', function () {
+		throws(function () {
+			mainModule.KOMReviewNormalizeBarScaleColor({}, d3.schemeGreys, [1]);
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('throws if param2 not d3.schemeGreys', function () {
+		throws(function () {
+			mainModule.KOMReviewNormalizeBarScaleColor(d3.scaleOrdinal, {}, [1]);
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('throws if param3 not array', function () {
+		throws(function () {
+			mainModule.KOMReviewNormalizeBarScaleColor(d3.scaleOrdinal, d3.schemeGreys, null);
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('throws if param3 less than two', function () {
+		throws(function () {
+			mainModule.KOMReviewNormalizeBarScaleColor(d3.scaleOrdinal, d3.schemeGreys, [1, 2]);
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns function', function () {
+		deepEqual(typeof mainModule.KOMReviewNormalizeBarScaleColor(d3.scaleOrdinal, d3.schemeGreys, [1, 2, 3]), 'function');
+	});
+
+	context('function', function () {
+
+		const item = mainModule.KOMReviewNormalizeBarScaleColor(d3.scaleOrdinal, d3.schemeGreys, [1, 2, 3]);
+
+		it('sets range minimum', function () {
+			deepEqual(item(1), d3.schemeGreys[3].slice().reverse()[0]);
+		});
+
+		it('sets range maximum', function () {
+			deepEqual(item(3), d3.schemeGreys[3].slice().reverse()[2]);
+		});
+
+		it('sets range unknown', function () {
+			deepEqual(item(4), 'red');
+		});
+	
+	});
+
+});
