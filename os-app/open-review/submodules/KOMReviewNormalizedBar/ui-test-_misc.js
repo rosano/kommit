@@ -16,7 +16,7 @@ describe('KOMReviewNormalizeBar_Misc', function () {
 	describe('KOMReviewNormalizeBar', function test_KOMReviewNormalizeBar() {
 
 		it('sets viewBox', function () {
-			browser.assert.attribute(KOMReviewNormalizeBar, 'viewBox', '0,0,100,100');
+			browser.assert.attribute(KOMReviewNormalizeBar, 'viewBox', `0,0,${ KOMReviewNormalizeBarUILogic.KOMReviewNormalizeBarWidth() },${ KOMReviewNormalizeBarUILogic.KOMReviewNormalizeBarHeight() }`);
 		});
 
 	});
@@ -33,7 +33,7 @@ describe('KOMReviewNormalizeBar_Misc', function () {
 
 		it('sets y', function () {
 			values.forEach(function (e, i) {
-				browser.assert.attribute(`${ KOMReviewNormalizeBarSection }:nth-child(${ i + 1 })`, 'y', KOMReviewNormalizeBarUILogic.KOMReviewNormalizeBarHeight());
+				browser.assert.attribute(`${ KOMReviewNormalizeBarSection }:nth-child(${ i + 1 })`, 'y', '0');
 			})
 		});
 

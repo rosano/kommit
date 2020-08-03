@@ -25,12 +25,12 @@ const mod = {
 };
 </script>
 
-<svg class="KOMReviewNormalizeBar" viewBox="0,0,100,100">
+<svg class="KOMReviewNormalizeBar" viewBox={ `0,0,${ KOMReviewNormalizeBarUILogic.KOMReviewNormalizeBarWidth() },${ KOMReviewNormalizeBarUILogic.KOMReviewNormalizeBarHeight() }` }>
 
-	{#each KOMReviewNormalizeBarValues as item, index }
-		<rect class="KOMReviewNormalizeBarSection" x={ mod.DataScaleHorizontal(KOMReviewNormalizeBarValues.slice(0, index).reduce(function (coll, item) {
-			return coll + item;
-		}, 0)) } y={ KOMReviewNormalizeBarUILogic.KOMReviewNormalizeBarHeight() } width={ mod.DataScaleHorizontal(item) } height={ KOMReviewNormalizeBarUILogic.KOMReviewNormalizeBarHeight() } fill={ mod.DataScaleColor(item) }></rect>
-	{/each}
+{#each KOMReviewNormalizeBarValues as item, index }
+	<rect class="KOMReviewNormalizeBarSection" x={ mod.DataScaleHorizontal(KOMReviewNormalizeBarValues.slice(0, index).reduce(function (coll, item) {
+		return coll + item;
+	}, 0)) } y="0" width={ mod.DataScaleHorizontal(item) } height={ KOMReviewNormalizeBarUILogic.KOMReviewNormalizeBarHeight() } fill={ mod.DataScaleColor(item) }></rect>
+{/each}
 
 </svg>
