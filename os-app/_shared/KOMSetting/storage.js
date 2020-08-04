@@ -2,6 +2,13 @@ import KOMSettingModel from './model.js';
 
 const mod = {
 
+	uFakeSetting(inputData) {
+		return {
+			KOMSettingKey: inputData.split('/')[1],
+			KOMSettingValue: '',
+		};
+	},
+
 	KOMSettingStorageCollectionName () {
 		return 'kom_settings';
 	},
@@ -20,6 +27,14 @@ const mod = {
 		}
 
 		return mod.KOMSettingStorageCollectionPath() + inputData.KOMSettingKey;
+	},
+
+	KOMSettingStorageMatch(inputData) {
+		if (typeof inputData !== 'string') {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		return inputData === mod.KOMSettingStorageObjectPath(mod.uFakeSetting(inputData));
 	},
 
 	KOMSettingStorageBuild (privateClient, publicClient, changeDelegate) {

@@ -41,6 +41,24 @@ describe('KOMSettingStorageObjectPath', function test_KOMSettingStorageObjectPat
 
 });
 
+describe('KOMSettingStorageMatch', function test_KOMSettingStorageMatch() {
+
+	it('throws error if not string', function () {
+		throws(function () {
+			mainModule.KOMSettingStorageMatch(null);
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns false if no KOMSettingStorageCollectionPath', function () {
+		deepEqual(mainModule.KOMSettingStorageMatch(mainModule.KOMSettingStorageObjectPath(StubSettingObjectValid()).replace(mainModule.KOMSettingStorageCollectionPath(), mainModule.KOMSettingStorageCollectionPath().slice(1))), false);
+	});
+
+	it('returns true', function () {
+		deepEqual(mainModule.KOMSettingStorageMatch(mainModule.KOMSettingStorageObjectPath(StubSettingObjectValid())), true);
+	});
+
+});
+
 describe('KOMSettingStorageWrite', function test_KOMSettingStorageWrite() {
 
 	it('rejects if not object', async function() {
