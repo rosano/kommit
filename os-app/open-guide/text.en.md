@@ -35,15 +35,15 @@ By default, the cards will be presented both front-to-back and back-to-front, bu
 During a review, the cards will be presented in a random order. Try to recall the opposite side without looking, then *Flip* the card to reveal the following response buttons to schedule the card's next appearance:
 
 - *Again*: within the next ten minutes,
-- *Hard*
+- *Sooner*
     - First time: within the next ten minutes
     - Second time: after a day or so
     - Subsequently: after progressively larger periods
 - *Normal*
     - First time: within the next ten minutes
     - Second time: after a few days
-    - Subsequently: after progressively larger periods, moreso than *Hard*
-- *Easy*
+    - Subsequently: after progressively larger periods, moreso than *Sooner*
+- *Later*
     - First time: after four days
     - Subsequently: after progressively larger periods, moreso than *Normal*
 
@@ -104,9 +104,9 @@ The *Read* button speaks the text using the language chosen on the deck page.
 :--- | ---
 | Flip card | `Space` |
 | Respond Again | `1` |
-| Respond Hard | `2` |
+| Respond Sooner | `2` |
 | Respond Normal | `3` or `Space` |
-| Respond Easy | `4` |
+| Respond Later | `4` |
 | Close | `Escape` |
 
 | List of cards ||
