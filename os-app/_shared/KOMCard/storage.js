@@ -65,8 +65,8 @@ const mod = {
 		if (typeof inputData !== 'string') {
 			throw new Error('KOMErrorInputNotValid');
 		}
-
-		if (KOMDeckStorage.KOMDeckStorageMatch(inputData)) {
+		
+		if (!inputData.match(mod.KOMCardStorageCollectionName())) {
 			return false;
 		}
 

@@ -2,6 +2,7 @@ const { rejects, throws, deepEqual } = require('assert');
 
 const mainModule = require('./storage.js').default;
 const KOMDeckStorage = require('../KOMDeck/storage.js').default;
+const KOMSettingStorage = require('../KOMSetting/storage.js').default;
 
 describe('KOMCardStorageCollectionName', function test_KOMCardStorageCollectionName() {
 
@@ -99,6 +100,10 @@ describe('KOMCardStorageMatch', function test_KOMCardStorageMatch() {
 
 	it('returns false if KOMDeckStorageObjectPath', function () {
 		deepEqual(mainModule.KOMCardStorageMatch(KOMDeckStorage.KOMDeckStorageObjectPath('alfa')), false);
+	});
+
+	it('returns false if KOMSettingStorageObjectPath', function () {
+		deepEqual(mainModule.KOMCardStorageMatch(KOMSettingStorage.KOMSettingStorageObjectPath(StubSettingObjectValid())), false);
 	});
 
 	it('returns false if no KOMCardStorageCollectionPath', function () {
