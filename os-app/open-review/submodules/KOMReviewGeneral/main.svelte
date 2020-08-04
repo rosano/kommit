@@ -15,22 +15,18 @@ const mod = {
 
 	DataStatesData() {
 		return Object.entries(KOMReviewGeneralSpacings.reduce(function (coll, item) {
-			const cardID = KOMSpacingModel.KOMSpacingModelIdentifier(item.KOMSpacingID);
+			coll.KOMReviewChartCompositionStatesTotal.push(item);
 
-			if (!coll.KOMReviewChartCompositionStatesTotal.includes(cardID)) {
-				coll.KOMReviewChartCompositionStatesTotal.push(cardID);
+			if (KOMSpacingModel.KOMSpacingModelIsUnseen(item)) {
+				coll.KOMReviewChartCompositionStatesUnseen.push(item);
 			}
 
-			if (KOMSpacingModel.KOMSpacingModelIsUnseen(item) && !coll.KOMReviewChartCompositionStatesUnseen.includes(cardID)) {
-				coll.KOMReviewChartCompositionStatesUnseen.push(cardID);
+			if (KOMSpacingModel.KOMSpacingModelIsDeveloping(item)) {
+				coll.KOMReviewChartCompositionStatesDeveloping.push(item);
 			}
 
-			if (KOMSpacingModel.KOMSpacingModelIsDeveloping(item) && !coll.KOMReviewChartCompositionStatesDeveloping.includes(cardID)) {
-				coll.KOMReviewChartCompositionStatesDeveloping.push(cardID);
-			}
-
-			if (KOMSpacingModel.KOMSpacingModelIsMature(item) && !coll.KOMReviewChartCompositionStatesMature.includes(cardID)) {
-				coll.KOMReviewChartCompositionStatesMature.push(cardID);
+			if (KOMSpacingModel.KOMSpacingModelIsMature(item)) {
+				coll.KOMReviewChartCompositionStatesMature.push(item);
 			}
 
 			return coll;
@@ -41,7 +37,7 @@ const mod = {
 			KOMReviewChartCompositionStatesMature: [],
 			KOMReviewChartCompositionStatesSuspended: [],
 		})).reduce(function (coll, item) {
-			coll[item[0]] = item[1].length;
+			coll[item[0]] = KOMSpacingModel.KOMSpacingModelFilterUnique(item[1]).length;
 
 			return coll;
 		}, {});
