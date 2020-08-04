@@ -16,10 +16,9 @@ describe('KOMReviewMasterListItem_Access', function () {
 
 	before(function () {
 		return browser.OLSKVisit(kDefaultRoute, {
-			KOMReviewMasterListItemObject: JSON.stringify({
-				KOMDeckName: 'alfa',
-				$KOMDeckSpacings: [],
-			}),
+			KOMReviewMasterListItemName: 'alfa',
+			KOMReviewMasterListItemReviewCount: 1,
+			KOMReviewMasterListItemUnseenCount: 2,
 		});
 	});
 

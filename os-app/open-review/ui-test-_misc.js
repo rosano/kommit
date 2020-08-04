@@ -137,6 +137,14 @@ describe('KOMReview_Misc', function () {
 		});
 
 		before(function () {
+			return browser.pressButton('.KOMPlayFlipButton');
+		});
+
+		before(function () {
+			return browser.pressButton('.KOMPlayResponseButtonGood');
+		});
+
+		before(function () {
 			return browser.pressButton('.KOMPlayToolbarDoneButton');
 		});
 
@@ -155,6 +163,18 @@ describe('KOMReview_Misc', function () {
 
 		after(function () {
 			return browser.pressButton('.KOMReviewDetailToolbarBackButton');
+		});
+
+	});
+
+	describe('KOMReviewMasterListItem', function KOMReviewMasterListItem() {
+
+		it('sets $KOMDeckTodayReviewCount', function () {
+			browser.assert.text('.KOMReviewMasterListItemReviewValue', '1');
+		});
+
+		it('sets $KOMDeckTodayUnseenCount', function () {
+			browser.assert.text('.KOMReviewMasterListItemUnseenValue', '2');
 		});
 
 	});

@@ -38,7 +38,12 @@ import KOMReviewMasterListItem from '../KOMReviewMasterListItem/main.svelte';
 <div class="KOMReviewMasterBody">
 
 {#each KOMReviewMasterItems as e}
-	<KOMReviewMasterListItem KOMReviewMasterListItemObject={ e } KOMReviewMasterListItemDispatchClick={ () => KOMReviewMasterDispatchSelect(e) } />
+	<KOMReviewMasterListItem
+		KOMReviewMasterListItemName={ e.KOMDeckName }
+		KOMReviewMasterListItemReviewCount={ e.$KOMDeckTodayReviewCount }
+		KOMReviewMasterListItemUnseenCount={ e.$KOMDeckTodayUnseenCount }
+		KOMReviewMasterListItemDispatchClick={ () => KOMReviewMasterDispatchSelect(e) }
+		/>
 {/each}
 
 <button class="KOMReviewMasterCreateButton" on:click={ mod.InterfaceCreateButtonDidClick } accesskey="n">{ OLSKLocalized('KOMReviewMasterCreateButtonText') }

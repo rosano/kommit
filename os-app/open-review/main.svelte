@@ -23,6 +23,7 @@ import KOMSettingAction from '../_shared/KOMSetting/action.js';
 import KOMReviewLogic from './ui-logic.js';
 import KOMPlayLogic from '../sub-play/ui-logic.js';
 import OLSKThrottle from 'OLSKThrottle';
+import KOMSpacingModel from '../_shared/KOMSpacing/model.js';
 
 const mod = {
 
@@ -262,6 +263,8 @@ const mod = {
 			KOMDeckName: inputData,
 			$KOMDeckCards: [],
 			$KOMDeckSpacings: [],
+			$KOMDeckTodayReviewCount: 0,
+			$KOMDeckTodayUnseenCount: 0,
 		});
 
 		mod.ValueDecksAll(mod._ValueDecksAll.concat(item));
@@ -586,15 +589,33 @@ const mod = {
 			return typeof e === 'object'; // #patch-remotestorage-true
 		}).map(async function (deck) {
 			const cards = await KOMCardAction.KOMCardActionList(mod._ValueStorageClient, deck);
+			const spacings = [].concat(...(await Promise.all(cards.map(async function (card) {
+				return Object.values(await KOMSpacingStorage.KOMSpacingStorageList(mod._ValueStorageClient, card, deck)).map(function (e) {
+					return Object.assign(e, {
+						$KOMSpacingCard: card,
+					})
+				})
+			}))));
+
+			const items = KOMReviewLogic.KOMReviewSpacingsToday(spacings).filter(function (e) {
+				if (deck.KOMDeckIsForwardOnly && KOMSpacingModel.KOMSpacingModelIsBackward(e)) {
+					return false;
+				}
+
+				return true;
+			});
+
+			const _ValueSpacingsToday = items;
+			const _ValueSpacingsReviewing = KOMSpacingModel.KOMSpacingModelFilterUnique(items.filter(function (e) {
+				return !KOMSpacingModel.KOMSpacingModelIsUnseen(e);
+			}));
+			const _ValueSpacingsUnseen = KOMSpacingModel.KOMSpacingModelFilterUnique(items.filter(KOMSpacingModel.KOMSpacingModelIsUnseen));
+
 			return Object.assign(deck, {
 				$KOMDeckCards: cards,
-				$KOMDeckSpacings: [].concat(...(await Promise.all(cards.map(async function (card) {
-					return Object.values(await KOMSpacingStorage.KOMSpacingStorageList(mod._ValueStorageClient, card, deck)).map(function (e) {
-						return Object.assign(e, {
-							$KOMSpacingCard: card,
-						})
-					})
-				})))),
+				$KOMDeckSpacings: spacings,
+				$KOMDeckTodayReviewCount: _ValueSpacingsReviewing.length,
+				$KOMDeckTodayUnseenCount: _ValueSpacingsUnseen.length,
 			})
 		})));
 	},

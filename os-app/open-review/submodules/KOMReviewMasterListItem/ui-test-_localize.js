@@ -11,10 +11,9 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				OLSKRoutingLanguage: languageCode,
-				KOMReviewMasterListItemObject: JSON.stringify({
-					KOMDeckName: 'alfa',
-					$KOMDeckSpacings: [],
-				}),
+				KOMReviewMasterListItemName: 'alfa',
+				KOMReviewMasterListItemReviewCount: 1,
+				KOMReviewMasterListItemUnseenCount: 2,
 			});
 		});
 

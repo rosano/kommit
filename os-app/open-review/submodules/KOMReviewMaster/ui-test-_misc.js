@@ -73,30 +73,27 @@ describe('KOMReviewMaster_Misc', function () {
 		const item = {
 			KOMDeckID: 'alfa',
 			KOMDeckName: 'bravo',
-			$KOMDeckSpacings: uFlatten(Array.from(new Array(3)).map(function (e, i) {
-				return [true, false].map(function (forward) {
-					return {
-						KOMSpacingID: (i + 1).toString() + '-' + (forward ? 'forward' : 'backward'),
-						KOMSpacingChronicles: [],
-						KOMSpacingDueDate: !i ? new Date() : (i >= 2 ? new Date(Date.now() + 1000 * 60 * 60 * 24 * 3) : undefined),
-						$KOMSpacingCard: {
-							KOMCardID: (i + 1).toString(),
-							KOMCardDeckID: 'alfa',
-							KOMCardFrontText: (i + 1).toString(),
-							KOMCardRearText: 'charlie',
-							KOMCardNotes: 'delta',
-							KOMCardCreationDate: new Date('2019-02-23T13:56:36Z'),
-							KOMCardModificationDate: new Date('2019-02-23T13:56:36Z'),
-						},
-					};
-				});
-			})),
+			$KOMDeckSpacings: [],
+			$KOMDeckTodayReviewCount: 1,
+			$KOMDeckTodayUnseenCount: 2,
 		};
 
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMReviewMasterItems: JSON.stringify([item]),
 			});
+		});
+
+		it('sets KOMReviewMasterListItemName', function () {
+			browser.assert.text('.KOMReviewMasterListItemName', 'bravo');
+		});
+
+		it('sets KOMReviewMasterListItemReviewCount', function () {
+			browser.assert.text('.KOMReviewMasterListItemReviewValue', '1');
+		});
+
+		it('sets KOMReviewMasterListItemUnseenCount', function () {
+			browser.assert.text('.KOMReviewMasterListItemUnseenValue', '2');
 		});
 
 		context('click', function () {
