@@ -162,6 +162,10 @@ describe('KOMReviewDetail_Access', function () {
 		browser.assert.elements(KOMReviewDetailDiscardButton, 1);
 	});
 
+	it('hides KOMReviewDetailLauncherItemPlayReviewing', function () {
+		return browser.assert.OLSKLauncherItems('KOMReviewDetailLauncherItemPlayReviewing', 0);
+	});
+
 	context('today', function test_today() {
 
 		before(function () {
@@ -206,6 +210,10 @@ describe('KOMReviewDetail_Access', function () {
 				browser.assert.elements(KOMReviewDetailPlayButtonMixed, 0);
 			});
 
+			it('shows KOMReviewDetailLauncherItemPlayReviewing', function () {
+				return browser.assert.OLSKLauncherItems('KOMReviewDetailLauncherItemPlayReviewing', 1);
+			});
+
 		});
 
 		context('unseen', function test_unseen() {
@@ -234,6 +242,10 @@ describe('KOMReviewDetail_Access', function () {
 				browser.assert.elements(KOMReviewDetailPlayButtonMixed, 0);
 			});
 
+			it('hides KOMReviewDetailLauncherItemPlayReviewing', function () {
+				return browser.assert.OLSKLauncherItems('KOMReviewDetailLauncherItemPlayReviewing', 0);
+			});
+
 		});
 
 		context('mixed', function test_mixed() {
@@ -260,6 +272,10 @@ describe('KOMReviewDetail_Access', function () {
 
 			it('shows KOMReviewDetailPlayButtonMixed', function () {
 				browser.assert.elements(KOMReviewDetailPlayButtonMixed, 1);
+			});
+
+			it('shows KOMReviewDetailLauncherItemPlayReviewing', function () {
+				return browser.assert.OLSKLauncherItems('KOMReviewDetailLauncherItemPlayReviewing', 1);
 			});
 
 		});
@@ -295,6 +311,10 @@ describe('KOMReviewDetail_Access', function () {
 				browser.assert.elements(KOMReviewDetailPlayButtonSingle, 1);
 			});
 
+			it('shows KOMReviewDetailLauncherItemPlayReviewing', function () {
+				return browser.assert.OLSKLauncherItems('KOMReviewDetailLauncherItemPlayReviewing', 1);
+			});
+
 		});
 
 	});
@@ -324,6 +344,10 @@ describe('KOMReviewDetail_Access', function () {
 
 		it('hides KOMReviewDetailPlay', function () {
 			browser.assert.elements(KOMReviewDetailPlay, 0);
+		});
+
+		it('hides KOMReviewDetailLauncherItemPlayReviewing', function () {
+			return browser.assert.OLSKLauncherItems('KOMReviewDetailLauncherItemPlayReviewing', 0);
 		});
 
 		it('shows KOMReviewDetailNoSpacings', function () {

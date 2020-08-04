@@ -27,6 +27,7 @@ const KOMReviewDetail = new RollupStart({
 			window.TestKOMReviewDetailDispatchDiscard.innerHTML = parseInt(window.TestKOMReviewDetailDispatchDiscard.innerHTML) + 1;
 			window.TestKOMReviewDetailDispatchDiscardData.innerHTML = JSON.stringify(inputData);
 		}),
+		KOMReviewDetail_DebugShowLauncherButton: true,
 	}, Object.fromEntries(Array.from((new window.URLSearchParams(window.location.search)).entries()).map(function (e) {
 		if (['KOMReviewDetailDeck', 'KOMReviewDetailPlaySingle'].includes(e[0])) {
 			e[1] = JSON.parse(e[1]);

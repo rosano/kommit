@@ -7,11 +7,14 @@ export let KOMReviewDetailDispatchUpdate;
 export let KOMReviewDetailDispatchRecount;
 export let KOMReviewDetailDispatchPlay;
 export let KOMReviewDetailDispatchDiscard;
+export let KOMReviewDetail_DebugShowLauncherButton = false;
 
 import OLSKInternational from 'OLSKInternational';
 const OLSKLocalized = function(translationConstant) {
 	return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, JSON.parse(`{"OLSK_I18N_SEARCH_REPLACE":"OLSK_I18N_SEARCH_REPLACE"}`)[window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage')]);
 };
+
+import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting';
 
 import KOMReviewLogic from '../../ui-logic.js';
 
@@ -26,6 +29,24 @@ const mod = {
 	}).filter(function (e, i, coll) {
 		return coll.indexOf(e) === i;
 	}).sort() : [],
+
+	// DATA
+
+	DataRecipes () {
+		const items = [];
+
+		if (KOMReviewDetailDeck.$KOMDeckSpacings.length && KOMReviewDetailDeck.$KOMDeckTodayReviewCount) {
+			items.push({
+				LCHRecipeSignature: 'KOMReviewDetailLauncherItemPlayReviewing',
+				LCHRecipeName: OLSKLocalized('KOMReviewDetailPlayButtonReviewingText'),
+				LCHRecipeCallback () {
+					mod.ContolPlay(KOMReviewLogic.KOMReviewSchemeReviewing());
+				},
+			});
+		}
+		
+		return items;
+	},
 
 	// INTERFACE
 
@@ -109,6 +130,14 @@ const mod = {
 		}
 		
 		KOMReviewDetailDispatchPlay(outputData);
+	},
+
+	// MESSAGES
+
+	_OLSKAppToolbarDispatchLauncher () {
+		window.Launchlet.LCHSingletonCreate({
+			LCHOptionRecipes: mod.DataRecipes(),
+		});
 	},
 
 };
@@ -260,6 +289,10 @@ import KOMReviewGeneral from '../KOMReviewGeneral/main.svelte';
 </div>
 
 </div>
+
+{#if OLSK_TESTING_BEHAVIOUR() && KOMReviewDetail_DebugShowLauncherButton }
+	<button class="OLSKAppToolbarLauncherButton" on:click={ mod._OLSKAppToolbarDispatchLauncher }></button>
+{/if}
 
 <style>
 .KOMReviewDetail {

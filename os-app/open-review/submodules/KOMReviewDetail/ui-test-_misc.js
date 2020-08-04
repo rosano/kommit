@@ -475,6 +475,21 @@ describe('KOMReviewDetail_Misc', function () {
 
 	});
 
+	describe('KOMReviewDetailLauncherItemPlayReviewing', function test_KOMReviewDetailLauncherItemPlayReviewing() {
+
+		before(function () {
+			return browser.OLSKLauncherRun('KOMReviewDetailLauncherItemPlayReviewing');
+		});
+
+		it('sends KOMReviewDetailDispatchPlay', function () {
+			browser.assert.text('#TestKOMReviewDetailDispatchPlay', '2');
+			browser.assert.text('#TestKOMReviewDetailDispatchPlayData', JSON.stringify({
+				KOMReviewScheme: KOMReviewLogic.KOMReviewSchemeReviewing(),
+			}));
+		});
+
+	});
+
 	describe('KOMReviewDetailPlayButtonUnseen', function test_KOMReviewDetailPlayButtonUnseen() {
 
 		context('click', function () {
@@ -484,7 +499,7 @@ describe('KOMReviewDetail_Misc', function () {
 			});
 
 			it('sends KOMReviewDetailDispatchPlay', function () {
-				browser.assert.text('#TestKOMReviewDetailDispatchPlay', '2');
+				browser.assert.text('#TestKOMReviewDetailDispatchPlay', '3');
 				browser.assert.text('#TestKOMReviewDetailDispatchPlayData', JSON.stringify({
 					KOMReviewScheme: KOMReviewLogic.KOMReviewSchemeUnseen(),
 					KOMReviewMaxUnseenCards: 10,
@@ -504,7 +519,7 @@ describe('KOMReviewDetail_Misc', function () {
 			});
 
 			it('sends KOMReviewDetailDispatchPlay', function () {
-				browser.assert.text('#TestKOMReviewDetailDispatchPlay', '3');
+				browser.assert.text('#TestKOMReviewDetailDispatchPlay', '4');
 				browser.assert.text('#TestKOMReviewDetailDispatchPlayData', JSON.stringify({
 					KOMReviewScheme: KOMReviewLogic.KOMReviewSchemeMixed(),
 					KOMReviewMaxUnseenCards: 10,
