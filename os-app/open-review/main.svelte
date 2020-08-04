@@ -376,7 +376,7 @@ const mod = {
 	KOMPlayDispatchDone () {
 		mod._ValuePlayVisible = false;
 
-		setTimeout(mod.SetupValueDecksAll, 100);
+		mod._ValueDeckSelected.$_KOMDeckUpdateToday();
 	},
 
 	KOMPlayDispatchUpdate (inputData) {
