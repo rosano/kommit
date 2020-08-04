@@ -614,9 +614,17 @@ const mod = {
 					return !KOMSpacingModel.KOMSpacingModelIsUnseen(e);
 				}));
 				const _ValueSpacingsUnseen = KOMSpacingModel.KOMSpacingModelFilterUnique(items.filter(KOMSpacingModel.KOMSpacingModelIsUnseen));
+				const _ValueSpacingsStudiedToday = deck.$KOMDeckSpacings.filter(function (e) {
+					if (!e.KOMSpacingChronicles.length) {
+						return false;
+					}
+					
+					return KOMPlayLogic.KOMPlayDayGrouping(e.KOMSpacingChronicles.slice(-1).pop().KOMChronicleResponseDate) === KOMPlayLogic.KOMPlayDayGrouping(new Date());
+				});
 
 				deck.$KOMDeckTodayReviewCount = _ValueSpacingsReviewing.length;
 				deck.$KOMDeckTodayUnseenCount = _ValueSpacingsUnseen.length;
+				deck.$KOMDeckTodayFinishedCount = _ValueSpacingsStudiedToday.length;
 			};
 
 			$_KOMDeckUpdateToday();
