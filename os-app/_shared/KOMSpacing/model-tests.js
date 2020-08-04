@@ -472,16 +472,12 @@ describe('KOMSpacingModelFilterUnique', function test_KOMSpacingModelFilterUniqu
 	});
 
 	it('excludes duplicate cards', function () {
-		const item1 = Object.assign(kTesting.StubSpacingObjectValid(), {
-			$KOMSpacingCard: kTesting.StubCardObjectValid(),
-		});
-		const item2 = Object.assign(kTesting.StubSpacingObjectValid(), {
-			$KOMSpacingCard: Object.assign(kTesting.StubCardObjectValid(), {
-				KOMCardID: 'bravo',
-			}),
+		const item1 = StubSpacingObjectValid();
+		const item2 = Object.assign(StubSpacingObjectValid(), {
+			KOMSpacingID: 'charlie-forward',
 		});
 
-		deepEqual(mainModule.KOMSpacingModelFilterUnique([item1, Object.assign(item1, {
+		deepEqual(mainModule.KOMSpacingModelFilterUnique([item1, Object.assign(Object.assign({}, item1), {
 			KOMSpacingID: item1.KOMSpacingID.replace('forward', 'backward'),
 		}), item2]), [item1, item2]);
 	});

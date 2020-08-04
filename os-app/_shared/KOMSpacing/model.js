@@ -195,11 +195,13 @@ const mod = {
 
 		let cards = [];
 		return inputData.filter(function (e, i, coll) {
-			if (cards.includes(e.$KOMSpacingCard)) {
+			const id = mod.KOMSpacingModelIdentifier(e.KOMSpacingID);
+
+			if (cards.includes(id)) {
 				return false;
 			}
 
-			cards.push(e.$KOMSpacingCard);
+			cards.push(id);
 
 			return true;
 		});
