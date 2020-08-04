@@ -9,6 +9,14 @@ export let KOMReviewDetailDispatchPlay;
 export let KOMReviewDetailDispatchDiscard;
 export let KOMReviewDetail_DebugShowLauncherButton = false;
 
+export const modPublic = {
+
+	KOMReviewDetailRecipes () {
+		return mod.DataRecipes();
+	},
+
+};
+
 import OLSKInternational from 'OLSKInternational';
 const OLSKLocalized = function(translationConstant) {
 	return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, JSON.parse(`{"OLSK_I18N_SEARCH_REPLACE":"OLSK_I18N_SEARCH_REPLACE"}`)[window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage')]);
@@ -42,6 +50,13 @@ const mod = {
 				LCHRecipeCallback () {
 					mod.ContolPlay(KOMReviewLogic.KOMReviewSchemeReviewing());
 				},
+			});
+		}
+
+		if (OLSK_TESTING_BEHAVIOUR()) {
+			items.push({
+				LCHRecipeName: 'KOMReviewDetailLauncherFakeItemProxy',
+				LCHRecipeCallback: function KOMReviewDetailLauncherFakeItemProxy () {},
 			});
 		}
 		

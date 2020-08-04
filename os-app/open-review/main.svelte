@@ -110,6 +110,10 @@ const mod = {
 				]);
 		}
 
+		if (mod._KOMReviewDetail) {
+			items.push(...mod._KOMReviewDetail.modPublic.KOMReviewDetailRecipes());
+		}
+
 		if (mod._KOMBrowse) {
 			items.push(...mod._KOMBrowse.modPublic.KOMBrowseRecipes());
 		}
@@ -687,6 +691,7 @@ import OLSKStorageWidget from 'OLSKStorageWidget';
 			KOMReviewDetailDispatchBrowse={ mod.KOMReviewDetailDispatchBrowse }
 			KOMReviewDetailDispatchPlay={ mod.KOMReviewDetailDispatchPlay }
 			KOMReviewDetailPlaySingle={ true }
+			bind:this={ mod._KOMReviewDetail }
 			/>
 	{/if}
 

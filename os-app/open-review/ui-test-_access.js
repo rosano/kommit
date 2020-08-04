@@ -70,6 +70,10 @@ describe('KOMReview_Access', function () {
 		return browser.assert.OLSKLauncherItems('KOMReviewLauncherItemDebugFlushData', 0);
 	});
 
+	it('hides KOMReviewDetailLauncherFakeItemProxy', function () {
+		return browser.assert.OLSKLauncherItems('KOMReviewDetailLauncherFakeItemProxy', 0);
+	});
+
 	context('click OLSKAppToolbarStorageButton', function () {
 
 		before(function () {
@@ -154,6 +158,10 @@ describe('KOMReview_Access', function () {
 
 		it('hides KOMBrowseInfo', function () {
 			browser.assert.elements('.KOMBrowseInfo', 0);
+		});
+
+		it('shows KOMReviewDetailLauncherFakeItemProxy', function () {
+			return browser.assert.OLSKLauncherItems('KOMReviewDetailLauncherFakeItemProxy', 1);
 		});
 
 	});
