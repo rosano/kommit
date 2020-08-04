@@ -53,6 +53,16 @@ const mod = {
 			});
 		}
 
+		if (KOMReviewDetailDeck.$KOMDeckSpacings.length && KOMReviewDetailDeck.$KOMDeckTodayUnseenCount) {
+			items.push({
+				LCHRecipeSignature: 'KOMReviewDetailLauncherItemPlayUnseen',
+				LCHRecipeName: OLSKLocalized('KOMReviewDetailPlayButtonUnseenText'),
+				LCHRecipeCallback () {
+					mod.ContolPlay(KOMReviewLogic.KOMReviewSchemeUnseen());
+				},
+			});
+		}
+
 		if (OLSK_TESTING_BEHAVIOUR()) {
 			items.push({
 				LCHRecipeName: 'KOMReviewDetailLauncherFakeItemProxy',

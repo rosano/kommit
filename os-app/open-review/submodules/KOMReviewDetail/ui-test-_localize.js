@@ -108,6 +108,10 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 				return browser.assert.OLSKLauncherItemText('KOMReviewDetailLauncherItemPlayReviewing', uLocalized('KOMReviewDetailPlayButtonReviewingText'));
 			});
 
+			it('localizes KOMReviewDetailLauncherItemPlayUnseen', function () {
+				return browser.assert.OLSKLauncherItemText('KOMReviewDetailLauncherItemPlayUnseen', uLocalized('KOMReviewDetailPlayButtonUnseenText'));
+			});
+
 			it('localizes KOMReviewDetailPlayButtonUnseen', function () {
 				browser.assert.text(KOMReviewDetailPlayButtonUnseen, uLocalized('KOMReviewDetailPlayButtonUnseenText'));
 			});
