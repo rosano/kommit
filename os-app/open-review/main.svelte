@@ -19,6 +19,7 @@ import * as RemoteStoragePackage from 'remotestoragejs';
 const RemoteStorage = RemoteStoragePackage.default || RemoteStoragePackage;
 import KOMDeckAction from '../_shared/KOMDeck/action.js';
 import KOMCardAction from '../_shared/KOMCard/action.js';
+import KOMSettingAction from '../_shared/KOMSetting/action.js';
 import KOMReviewLogic from './ui-logic.js';
 import KOMPlayLogic from '../sub-play/ui-logic.js';
 import OLSKThrottle from 'OLSKThrottle';
@@ -212,6 +213,13 @@ const mod = {
 					LCHRecipeName: 'FakeOLSKChangeDelegateDeleteSpacing',
 					LCHRecipeCallback: function FakeOLSKChangeDelegateDeleteSpacing () {
 						return mod.OLSKChangeDelegateDeleteSpacing(mod.FakeSpacingObjectValid());
+					},
+				},
+				{
+					LCHRecipeName: 'KOMReviewLauncherItemToggleExcludeTripleQuestionMark',
+					LCHRecipeCallback: async function KOMReviewLauncherItemToggleExcludeTripleQuestionMark () {
+						const value = await KOMSettingAction.KOMSettingsActionProperty(mod._ValueStorageClient, 'KOMSettingExcludeTripleQuestionMark');
+						return KOMSettingAction.KOMSettingsActionProperty(mod._ValueStorageClient, 'KOMSettingExcludeTripleQuestionMark', value === 'true' ? 'false' : 'true');
 					},
 				},
 			]);
