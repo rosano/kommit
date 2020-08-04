@@ -117,34 +117,6 @@ describe('KOMReviewMaster_Misc', function () {
 
 		});
 
-		context('Enter', function () {
-
-			before(function () {
-				return browser.query('.KOMReviewMasterListItem').focus();
-			});
-
-			before(function () {
-				return browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
-			});
-
-			it.skip('sends KOMReviewMasterDispatchSelect', function () {
-				browser.assert.text('#TestKOMReviewMasterDispatchSelect', '2');
-			});
-
-		});
-
-		context('Space', function () {
-
-			before(function () {
-				return browser.OLSKFireKeyboardEvent(browser.window, 'Space');
-			});
-
-			it.skip('sends KOMReviewMasterDispatchSelect', function () {
-				browser.assert.text('#TestKOMReviewMasterDispatchSelect', '3');
-			});
-
-		});
-
 	});
 
 });
