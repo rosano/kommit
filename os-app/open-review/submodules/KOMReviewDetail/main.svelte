@@ -23,8 +23,6 @@ const mod = {
 
 	// VALUE
 
-	_ValueSpacingsReviewing: [],
-	_ValueSpacingsUnseen: [],
 	_ValueSpacingsStudiedToday: [],
 	_ValueSpacingsNotUnseen: [],
 
@@ -129,10 +127,6 @@ const mod = {
 			return true;
 		});
 
-		mod._ValueSpacingsReviewing = items.filter(function (e) {
-			return !KOMSpacingModel.KOMSpacingModelIsUnseen(e);
-		});
-		mod._ValueSpacingsUnseen = items.filter(KOMSpacingModel.KOMSpacingModelIsUnseen);
 		mod._ValueSpacingsStudiedToday = inputData.$KOMDeckSpacings.filter(function (e) {
 			if (!e.KOMSpacingChronicles.length) {
 				return false;
