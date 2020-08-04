@@ -589,16 +589,21 @@ const mod = {
 	},
 
 	async SetupValueDecksAll() {
+		const excludeTripleQuestionMark = (await KOMSettingAction.KOMSettingsActionProperty(mod._ValueStorageClient, 'KOMSettingExcludeTripleQuestionMark') || {}).KOMSettingValue === 'true';
+
 		mod.ValueDecksAll(await Promise.all((await KOMDeckAction.KOMDeckActionList(mod._ValueStorageClient)).filter(function (e) {
 			return typeof e === 'object'; // #patch-remotestorage-true
 		}).map(async function (deck) {
 			const cards = await KOMCardAction.KOMCardActionList(mod._ValueStorageClient, deck);
-			deck.$KOMDeckSpacings = [].concat(...(await Promise.all(cards.map(async function (card) {
+
+			deck.$KOMDeckSpacings = [].concat(...(await Promise.all((excludeTripleQuestionMark ? cards.filter(function (e) {
+				return ![e.KOMCardFrontText, e.KOMCardRearText].join(',').includes('???');
+			}) : cards).map(async function (card) {
 				return Object.values(await KOMSpacingStorage.KOMSpacingStorageList(mod._ValueStorageClient, card, deck)).map(function (e) {
 					return Object.assign(e, {
 						$KOMSpacingCard: card,
-					})
-				})
+					});
+				});
 			}))));
 
 			const $_KOMDeckUpdateToday = function () {
