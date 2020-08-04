@@ -14,6 +14,7 @@ import KOM_Data from '../_shared/KOM_Data/main.js';
 import KOMDeckStorage from '../_shared/KOMDeck/storage.js';
 import KOMCardStorage from '../_shared/KOMCard/storage.js';
 import KOMSpacingStorage from '../_shared/KOMSpacing/storage.js';
+import KOMSettingStorage from '../_shared/KOMSetting/storage.js';
 import * as RemoteStoragePackage from 'remotestoragejs';
 const RemoteStorage = RemoteStoragePackage.default || RemoteStoragePackage;
 import KOMDeckAction from '../_shared/KOMDeck/action.js';
@@ -510,6 +511,7 @@ const mod = {
 					OLSKChangeDelegateDelete: mod.OLSKChangeDelegateDeleteSpacing,
 				},
 			}),
+			KOMSettingStorage.KOMSettingStorageBuild,
 			], {
 			OLSKOptionIncludeDebug: OLSK_TESTING_BEHAVIOUR() || window.OLSKPublicConstants('OLSKDebugRemoteStorage'),
 		});
