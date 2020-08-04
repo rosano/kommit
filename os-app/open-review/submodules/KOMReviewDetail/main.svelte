@@ -257,7 +257,7 @@ import KOMReviewGeneral from '../KOMReviewGeneral/main.svelte';
 	<p class="KOMReviewDetailNoSpacings">{ OLSKLocalized('KOMReviewDetailNoSpacingsText') }</p>
 {/if}
 
-{#if KOMReviewDetailDeck.$KOMDeckTodayFinishedCount }
+{#if KOMReviewDetailDeck.$KOMDeckTodayStudiedCount }
 	<hr>
 
 	<div class="KOMReviewDetailToday">

@@ -16,7 +16,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 					$KOMDeckSpacings: [],
 					$KOMDeckTodayReviewCount: 0,
 					$KOMDeckTodayUnseenCount: 0,
-					$KOMDeckTodayFinishedCount: 0,
+					$KOMDeckTodayStudiedCount: 0,
 				}),
 			});
 		});
@@ -95,7 +95,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 						$KOMDeckSpacings: [StubSpacingObjectValid()],
 						$KOMDeckTodayReviewCount: 1,
 						$KOMDeckTodayUnseenCount: 1,
-						$KOMDeckTodayFinishedCount: 0,
+						$KOMDeckTodayStudiedCount: 0,
 					}),
 				});
 			});
@@ -124,7 +124,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 						$KOMDeckSpacings: [StubSpacingObjectValid()],
 						$KOMDeckTodayReviewCount: 1,
 						$KOMDeckTodayUnseenCount: 1,
-						$KOMDeckTodayFinishedCount: 0,
+						$KOMDeckTodayStudiedCount: 0,
 					}),
 					KOMReviewDetailPlaySingle: true,
 				});
@@ -149,7 +149,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 						})],
 						$KOMDeckTodayReviewCount: 0,
 						$KOMDeckTodayUnseenCount: 0,
-						$KOMDeckTodayFinishedCount: 1,
+						$KOMDeckTodayStudiedCount: 1,
 					}),
 				});
 			});

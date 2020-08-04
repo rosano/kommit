@@ -9,7 +9,7 @@ const kTesting = {
 			$KOMDeckSpacings: [StubSpacingObjectValid()],
 			$KOMDeckTodayReviewCount: 0,
 			$KOMDeckTodayUnseenCount: 0,
-			$KOMDeckTodayFinishedCount: 0,
+			$KOMDeckTodayStudiedCount: 0,
 		}, inputData);
 	},
 
@@ -559,7 +559,7 @@ describe('KOMReviewDetail_Misc', function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMReviewDetailDeck: JSON.stringify({
 					KOMDeckName: 'alfa',
-					$KOMDeckTodayFinishedCount: 1,
+					$KOMDeckTodayStudiedCount: 1,
 					$KOMDeckSpacings: [Object.assign(StubSpacingObjectValid(), {
 						KOMSpacingChronicles: [StubChronicleObjectValid()],
 						KOMSpacingDueDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3),

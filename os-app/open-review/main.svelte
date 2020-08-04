@@ -624,7 +624,7 @@ const mod = {
 
 				deck.$KOMDeckTodayReviewCount = _ValueSpacingsReviewing.length;
 				deck.$KOMDeckTodayUnseenCount = _ValueSpacingsUnseen.length;
-				deck.$KOMDeckTodayFinishedCount = _ValueSpacingsStudiedToday.length;
+				deck.$KOMDeckTodayStudiedCount = _ValueSpacingsStudiedToday.length;
 			};
 
 			$_KOMDeckUpdateToday();

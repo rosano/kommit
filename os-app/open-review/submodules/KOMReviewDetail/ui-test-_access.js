@@ -171,7 +171,7 @@ describe('KOMReviewDetail_Access', function () {
 					$KOMDeckSpacings: [StubSpacingObjectValid()],
 					$KOMDeckTodayReviewCount: 1,
 					$KOMDeckTodayUnseenCount: 0,
-					$KOMDeckTodayFinishedCount: 0,
+					$KOMDeckTodayStudiedCount: 0,
 				}),
 			});
 		});
@@ -217,7 +217,7 @@ describe('KOMReviewDetail_Access', function () {
 						$KOMDeckSpacings: [StubSpacingObjectValid()],
 						$KOMDeckTodayReviewCount: 0,
 						$KOMDeckTodayUnseenCount: 1,
-						$KOMDeckTodayFinishedCount: 0,
+						$KOMDeckTodayStudiedCount: 0,
 					}),
 				});
 			});
@@ -245,7 +245,7 @@ describe('KOMReviewDetail_Access', function () {
 						$KOMDeckSpacings: [StubSpacingObjectValid()],
 						$KOMDeckTodayReviewCount: 1,
 						$KOMDeckTodayUnseenCount: 1,
-						$KOMDeckTodayFinishedCount: 0,
+						$KOMDeckTodayStudiedCount: 0,
 					}),
 				});
 			});
@@ -273,7 +273,7 @@ describe('KOMReviewDetail_Access', function () {
 						$KOMDeckSpacings: [StubSpacingObjectValid()],
 						$KOMDeckTodayReviewCount: 1,
 						$KOMDeckTodayUnseenCount: 1,
-						$KOMDeckTodayFinishedCount: 0,
+						$KOMDeckTodayStudiedCount: 0,
 					}),
 					KOMReviewDetailPlaySingle: true,
 				});
@@ -312,7 +312,7 @@ describe('KOMReviewDetail_Access', function () {
 					})],
 					$KOMDeckTodayReviewCount: 0,
 					$KOMDeckTodayUnseenCount: 0,
-					$KOMDeckTodayFinishedCount: 1,
+					$KOMDeckTodayStudiedCount: 1,
 				}),
 			});
 		});
