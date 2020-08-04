@@ -376,7 +376,7 @@ const mod = {
 	KOMPlayDispatchDone () {
 		mod._ValuePlayVisible = false;
 
-		setTimeout(mod.SetupStorageWidget, 100);
+		setTimeout(mod.SetupValueDecksAll, 100);
 	},
 
 	KOMPlayDispatchUpdate (inputData) {
