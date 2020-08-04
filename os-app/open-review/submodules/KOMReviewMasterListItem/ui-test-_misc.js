@@ -52,16 +52,28 @@ describe('KOMReviewMasterListItem_Misc', function () {
 
 	describe('KOMReviewMasterListItem', function test_KOMReviewMasterListItem() {
 
-		it('sets role', function () {
-			browser.assert.attribute(KOMReviewMasterListItem, 'role', 'button');
-		});
-
 		it('sets aria-label', function () {
 			browser.assert.attribute(KOMReviewMasterListItem, 'aria-label', 'bravo');
 		});
 
-		it('sets tabindex', function () {
-			browser.assert.attribute(KOMReviewMasterListItem, 'tabindex', '0');
+		it('classes OLSKLayoutButtonNoStyle', function () {
+			browser.assert.hasClass(KOMReviewMasterListItem, 'OLSKLayoutButtonNoStyle');
+		});
+
+		context('click', function () {
+
+			before(function () {
+				browser.assert.text('#TestKOMReviewMasterListItemDispatchClick', '0');
+			});
+
+			before(function () {
+				return browser.pressButton('.KOMReviewMasterListItem');
+			});
+
+			it('sends KOMReviewMasterListItemDispatchClick', function () {
+				browser.assert.text('#TestKOMReviewMasterListItemDispatchClick', '1');
+			});
+
 		});
 
 	});

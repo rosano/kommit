@@ -36,15 +36,14 @@ import KOMReviewMasterListItem from '../KOMReviewMasterListItem/main.svelte';
 </header>
 
 <div class="KOMReviewMasterBody">
+
 {#each KOMReviewMasterItems as e}
-	<div class="KOMReviewMasterListItemContainer" on:click={ () => KOMReviewMasterDispatchSelect(e) }
-		on:keypress={ (event) => ['Enter', 'Space'].includes(event.code) && KOMReviewMasterDispatchSelect(e) }>
-		<KOMReviewMasterListItem KOMReviewMasterListItemObject={ e } />
-	</div>
+	<KOMReviewMasterListItem KOMReviewMasterListItemObject={ e } KOMReviewMasterListItemDispatchClick={ () => KOMReviewMasterDispatchSelect(e) } />
 {/each}
 
 <button class="KOMReviewMasterCreateButton" on:click={ mod.InterfaceCreateButtonDidClick } accesskey="n">{ OLSKLocalized('KOMReviewMasterCreateButtonText') }
 </button>
+
 </div>
 
 </div>
@@ -77,16 +76,5 @@ import KOMReviewMasterListItem from '../KOMReviewMasterListItem/main.svelte';
 
 :global(.OLSKIsLoading) .KOMReviewMasterBody {
 	visibility: hidden;
-}
-
-.KOMReviewMasterBody :global(.KOMReviewMasterListItem) {
-	display: block;
-	margin-bottom: var(--KOMCommonPadding);
-	padding: var(--KOMCommonPadding);
-	border: 1px solid rgba(0, 0, 0, 0.1);
-
-	clear: both;
-
-	cursor: pointer;
 }
 </style>

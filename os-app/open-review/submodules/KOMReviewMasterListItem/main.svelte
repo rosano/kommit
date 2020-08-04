@@ -1,5 +1,6 @@
 <script>
 export let KOMReviewMasterListItemObject;
+export let KOMReviewMasterListItemDispatchClick;
 
 import OLSKInternational from 'OLSKInternational';
 const OLSKLocalized = function(translationConstant) {
@@ -40,7 +41,7 @@ const mod = {
 $: mod.ReactObject(KOMReviewMasterListItemObject)
 </script>
 
-<div class="KOMReviewMasterListItem" role="button" tabindex="0" aria-label={ KOMReviewMasterListItemObject.KOMDeckName }>
+<button class="KOMReviewMasterListItem OLSKLayoutButtonNoStyle" aria-label={ KOMReviewMasterListItemObject.KOMDeckName } on:click={ KOMReviewMasterListItemDispatchClick }>
 
 <strong class="KOMReviewMasterListItemName">{ KOMReviewMasterListItemObject.KOMDeckName }</strong><br>
 
@@ -50,22 +51,23 @@ $: mod.ReactObject(KOMReviewMasterListItemObject)
 <span class="KOMReviewMasterListItemUnseenValue">{ mod._ValueSpacingsUnseen.length }</span>
 <span class="KOMReviewMasterListItemUnseenLabel">{ OLSKLocalized('KOMReviewMasterListItemUnseenLabelText') }</span>
 
-</div>
+</button>
 
-<style>	
+<style>
 .KOMReviewMasterListItem {
+	display: block;
+	width: 100%;
 	min-height: 46px;
-	padding: 10px;
-	border-bottom: var(--KOMBorderStyle);
+	padding: var(--KOMCommonPadding);
+	border: 1px solid rgba(0, 0, 0, 0.1);
 
-	overflow: hidden;
-	text-overflow: ellipsis;
+	margin-bottom: var(--KOMCommonPadding);
 
-	/* prevent breaking from long urls */
-	overflow-wrap: break-word;
-	word-wrap: break-word;
-	word-break: break-word;
-	hyphens: auto;
+	text-align: left;
+}
+
+.KOMReviewMasterListItem:active {
+	color: inherit;
 }
 
 .KOMReviewMasterListItemTitle {
