@@ -589,7 +589,7 @@ const mod = {
 			return typeof e === 'object'; // #patch-remotestorage-true
 		}).map(async function (deck) {
 			const cards = await KOMCardAction.KOMCardActionList(mod._ValueStorageClient, deck);
-			const spacings = [].concat(...(await Promise.all(cards.map(async function (card) {
+			deck.$KOMDeckSpacings = [].concat(...(await Promise.all(cards.map(async function (card) {
 				return Object.values(await KOMSpacingStorage.KOMSpacingStorageList(mod._ValueStorageClient, card, deck)).map(function (e) {
 					return Object.assign(e, {
 						$KOMSpacingCard: card,
@@ -597,25 +597,29 @@ const mod = {
 				})
 			}))));
 
-			const items = KOMReviewLogic.KOMReviewSpacingsToday(spacings).filter(function (e) {
-				if (deck.KOMDeckIsForwardOnly && KOMSpacingModel.KOMSpacingModelIsBackward(e)) {
-					return false;
-				}
+			const $_KOMDeckUpdateToday = function () {
+				const items = KOMReviewLogic.KOMReviewSpacingsToday(deck.$KOMDeckSpacings).filter(function (e) {
+					if (deck.KOMDeckIsForwardOnly && KOMSpacingModel.KOMSpacingModelIsBackward(e)) {
+						return false;
+					}
 
-				return true;
-			});
+					return true;
+				});
+				
+				const _ValueSpacingsReviewing = KOMSpacingModel.KOMSpacingModelFilterUnique(items.filter(function (e) {
+					return !KOMSpacingModel.KOMSpacingModelIsUnseen(e);
+				}));
+				const _ValueSpacingsUnseen = KOMSpacingModel.KOMSpacingModelFilterUnique(items.filter(KOMSpacingModel.KOMSpacingModelIsUnseen));
 
-			const _ValueSpacingsToday = items;
-			const _ValueSpacingsReviewing = KOMSpacingModel.KOMSpacingModelFilterUnique(items.filter(function (e) {
-				return !KOMSpacingModel.KOMSpacingModelIsUnseen(e);
-			}));
-			const _ValueSpacingsUnseen = KOMSpacingModel.KOMSpacingModelFilterUnique(items.filter(KOMSpacingModel.KOMSpacingModelIsUnseen));
+				deck.$KOMDeckTodayReviewCount = _ValueSpacingsReviewing.length;
+				deck.$KOMDeckTodayUnseenCount = _ValueSpacingsUnseen.length;
+			};
+
+			$_KOMDeckUpdateToday();
 
 			return Object.assign(deck, {
 				$KOMDeckCards: cards,
-				$KOMDeckSpacings: spacings,
-				$KOMDeckTodayReviewCount: _ValueSpacingsReviewing.length,
-				$KOMDeckTodayUnseenCount: _ValueSpacingsUnseen.length,
+				$_KOMDeckUpdateToday,
 			})
 		})));
 	},
