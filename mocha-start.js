@@ -7,6 +7,7 @@ const KOM_Data = require('./os-app/_shared/KOM_Data/main.js').default;
 const KOMDeckStorage = require('./os-app/_shared/KOMDeck/storage.js').default;
 const KOMCardStorage = require('./os-app/_shared/KOMCard/storage.js').default;
 const KOMSpacingStorage = require('./os-app/_shared/KOMSpacing/storage.js').default;
+const KOMSettingStorage = require('./os-app/_shared/KOMSetting/storage.js').default;
 
 (function KOMMochaStorage() {
 	if (process.env.OLSK_TESTING_BEHAVIOUR === 'true') {
@@ -17,6 +18,7 @@ const KOMSpacingStorage = require('./os-app/_shared/KOMSpacing/storage.js').defa
 		KOMDeckStorage.KOMDeckStorageBuild,
 		KOMCardStorage.KOMCardStorageBuild,
 		KOMSpacingStorage.KOMSpacingStorageBuild,
+		KOMSettingStorage.KOMSettingStorageBuild,
 	], {
 		OLSKOptionIncludeDebug: true,
 	});
@@ -71,6 +73,13 @@ const KOMSpacingStorage = require('./os-app/_shared/KOMSpacing/storage.js').defa
 				KOMChronicleResponseDate: new Date(inputData.valueOf() + 10000),
 				KOMChronicleResponseType: 'RESPONSE_EASY',
 				KOMChronicleDueDate: inputData,
+			};
+		},
+
+		StubSettingObjectValid() {
+			return {
+				KOMSettingKey: 'alfa',
+				KOMSettingValue: 'bravo',
 			};
 		},
 
