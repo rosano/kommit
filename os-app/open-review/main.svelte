@@ -344,6 +344,10 @@ const mod = {
 		mod._ValueDeckSelected = mod._ValueDeckSelected // #purge-svelte-force-update
 	},
 
+	KOMReviewDetailDispatchRecount () {
+		mod._ValueDeckSelected.$_KOMDeckUpdateToday();
+	},
+
 	KOMReviewDetailDispatchBrowse () {
 		mod._ValueBrowseVisible = true;
 	},
@@ -605,7 +609,7 @@ const mod = {
 
 					return true;
 				});
-				
+
 				const _ValueSpacingsReviewing = KOMSpacingModel.KOMSpacingModelFilterUnique(items.filter(function (e) {
 					return !KOMSpacingModel.KOMSpacingModelIsUnseen(e);
 				}));
@@ -661,6 +665,7 @@ import OLSKStorageWidget from 'OLSKStorageWidget';
 			KOMReviewDetailDispatchBack={ mod.KOMReviewDetailDispatchBack }
 			KOMReviewDetailDispatchDiscard={ mod.KOMReviewDetailDispatchDiscard }
 			KOMReviewDetailDispatchUpdate={ mod.KOMReviewDetailDispatchUpdate }
+			KOMReviewDetailDispatchRecount={ mod.KOMReviewDetailDispatchRecount }
 			KOMReviewDetailDispatchBrowse={ mod.KOMReviewDetailDispatchBrowse }
 			KOMReviewDetailDispatchPlay={ mod.KOMReviewDetailDispatchPlay }
 			KOMReviewDetailPlaySingle={ true }

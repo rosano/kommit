@@ -1,25 +1,5 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-const kTesting = {
-	uSpacings() {
-		return Array.from(new Array(2)).map(function (e, i) {
-			return {
-				KOMSpacingID: (i + 1).toString() + '-forward',
-				KOMSpacingChronicles: [],
-				$KOMSpacingCard: {
-					KOMCardID: 'bravo',
-					KOMCardDeckID: 'alfa',
-					KOMCardFrontText: (i + 1).toString(),
-					KOMCardRearText: 'charlie',
-					KOMCardNotes: 'delta',
-					KOMCardCreationDate: new Date('2019-02-23T13:56:36Z'),
-					KOMCardModificationDate: new Date('2019-02-23T13:56:36Z'),
-				},
-			};
-		});
-	},
-};
-
 kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 
 	const uLocalized = function (inputData) {
@@ -34,6 +14,9 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 				KOMReviewDetailDeck: JSON.stringify({
 					KOMDeckName: 'alfa',
 					$KOMDeckSpacings: [],
+					$KOMDeckTodayReviewCount: 0,
+					$KOMDeckTodayUnseenCount: 0,
+					$KOMDeckTodayFinishedCount: 0,
 				}),
 			});
 		});
@@ -109,15 +92,10 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 					OLSKRoutingLanguage: languageCode,
 					KOMReviewDetailDeck: JSON.stringify({
 						KOMDeckName: 'alfa',
-						$KOMDeckSpacings: kTesting.uSpacings().map(function (e, i) {
-							if (i) {
-								return e;
-							}
-
-							return Object.assign(e, {
-								KOMSpacingDueDate: new Date(),
-							});
-						}),
+						$KOMDeckSpacings: [StubSpacingObjectValid()],
+						$KOMDeckTodayReviewCount: 1,
+						$KOMDeckTodayUnseenCount: 1,
+						$KOMDeckTodayFinishedCount: 0,
 					}),
 				});
 			});
@@ -143,15 +121,10 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 					OLSKRoutingLanguage: languageCode,
 					KOMReviewDetailDeck: JSON.stringify({
 						KOMDeckName: 'alfa',
-						$KOMDeckSpacings: kTesting.uSpacings().map(function (e, i) {
-							if (i) {
-								return e;
-							}
-
-							return Object.assign(e, {
-								KOMSpacingDueDate: new Date(),
-							});
-						}),
+						$KOMDeckSpacings: [StubSpacingObjectValid()],
+						$KOMDeckTodayReviewCount: 1,
+						$KOMDeckTodayUnseenCount: 1,
+						$KOMDeckTodayFinishedCount: 0,
 					}),
 					KOMReviewDetailPlaySingle: true,
 				});
@@ -170,12 +143,13 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 					OLSKRoutingLanguage: languageCode,
 					KOMReviewDetailDeck: JSON.stringify({
 						KOMDeckName: 'alfa',
-						$KOMDeckSpacings: kTesting.uSpacings().map(function (e) {
-							return Object.assign(e, {
-								KOMSpacingChronicles: [StubChronicleObjectValid()],
-								KOMSpacingDueDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3),
-							});
-						}),
+						$KOMDeckSpacings: [Object.assign(StubSpacingObjectValid(), {
+							KOMSpacingChronicles: [StubChronicleObjectValid()],
+							KOMSpacingDueDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3),
+						})],
+						$KOMDeckTodayReviewCount: 0,
+						$KOMDeckTodayUnseenCount: 0,
+						$KOMDeckTodayFinishedCount: 1,
 					}),
 				});
 			});

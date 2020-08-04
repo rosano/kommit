@@ -2,48 +2,26 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 const KOMReviewLogic = require('../../ui-logic.js').default;
 
 const kTesting = {
-	uSpacings(inputData) {
-		return Array.from(new Array(2)).map(function (e, i) {
-			return {
-				KOMSpacingID: (i + 1).toString() + '-forward',
-				KOMSpacingChronicles: [],
-				$KOMSpacingCard: {
-					KOMCardID: (i + 1).toString(),
-					KOMCardDeckID: 'alfa',
-					KOMCardFrontText: (i + 1).toString(),
-					KOMCardRearText: 'charlie',
-					KOMCardNotes: 'delta',
-					KOMCardCreationDate: new Date('2019-02-23T13:56:36Z'),
-					KOMCardModificationDate: new Date('2019-02-23T13:56:36Z'),
-				},
-			};
-		}).map(function (e, i) {
-			if (!inputData) {
-				return e;
-			}
-
-			if (i) {
-				return e;
-			}
-
-			return Object.assign(e, {
-				KOMSpacingDueDate: new Date((new Date()).toJSON().slice(0, 10)),
-			});
-		});
-	},
+	
 	uDeck(inputData = {}) {
 		return Object.assign({
 			KOMDeckName: 'alfa',
-			$KOMDeckSpacings: [],
+			$KOMDeckSpacings: [StubSpacingObjectValid()],
+			$KOMDeckTodayReviewCount: 0,
+			$KOMDeckTodayUnseenCount: 0,
+			$KOMDeckTodayFinishedCount: 0,
 		}, inputData);
 	},
+
 };
 
 describe('KOMReviewDetail_Misc', function () {
 
 	before(function () {
 		return browser.OLSKVisit(kDefaultRoute, {
-			KOMReviewDetailDeck: JSON.stringify(kTesting.uDeck()),
+			KOMReviewDetailDeck: JSON.stringify(kTesting.uDeck({
+				$KOMDeckSpacings: [],
+			})),
 		});
 	});
 
@@ -184,7 +162,9 @@ describe('KOMReviewDetail_Misc', function () {
 
 				it('sends KOMReviewDetailDispatchDiscard', function () {
 					browser.assert.text('#TestKOMReviewDetailDispatchDiscard', '1');
-					browser.assert.text('#TestKOMReviewDetailDispatchDiscardData', JSON.stringify(kTesting.uDeck()));
+					browser.assert.text('#TestKOMReviewDetailDispatchDiscardData', JSON.stringify(kTesting.uDeck({
+						$KOMDeckSpacings: [],
+					})));
 				});
 
 			});
@@ -222,8 +202,9 @@ describe('KOMReviewDetail_Misc', function () {
 
 				it('sends KOMReviewDetailDispatchUpdate', function () {
 					browser.assert.text('#TestKOMReviewDetailDispatchUpdate', '1');
-					browser.assert.text('#TestKOMReviewDetailDispatchUpdateData', JSON.stringify(Object.assign(kTesting.uDeck(), {
+					browser.assert.text('#TestKOMReviewDetailDispatchUpdateData', JSON.stringify(kTesting.uDeck({
 						KOMDeckName: 'bravo',
+						$KOMDeckSpacings: [],
 					})));
 				});
 
@@ -235,14 +216,9 @@ describe('KOMReviewDetail_Misc', function () {
 
 	describe('KOMReviewDetailFormAudioIsEnabledField', function test_KOMReviewDetailFormAudioIsEnabledField() {
 
-		const item = {
-			KOMDeckName: 'alfa',
-			$KOMDeckSpacings: kTesting.uSpacings(true),
-		};
-
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
-				KOMReviewDetailDeck: JSON.stringify(item),
+				KOMReviewDetailDeck: JSON.stringify(kTesting.uDeck()),
 			});
 		});
 
@@ -267,7 +243,7 @@ describe('KOMReviewDetail_Misc', function () {
 
 			it('sends KOMReviewDetailDispatchUpdate', function () {
 				browser.assert.text('#TestKOMReviewDetailDispatchUpdate', '1');
-				browser.assert.text('#TestKOMReviewDetailDispatchUpdateData', JSON.stringify(Object.assign(item, {
+				browser.assert.text('#TestKOMReviewDetailDispatchUpdateData', JSON.stringify(kTesting.uDeck({
 					KOMDeckAudioIsEnabled: true,
 				})));
 			});
@@ -280,10 +256,7 @@ describe('KOMReviewDetail_Misc', function () {
 
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
-				KOMReviewDetailDeck: JSON.stringify(kTesting.uDeck({
-					KOMDeckFrontLanguageCode: '',
-					$KOMDeckSpacings: kTesting.uSpacings(true),
-				})),
+				KOMReviewDetailDeck: JSON.stringify(kTesting.uDeck()),
 			});
 		});
 
@@ -291,20 +264,33 @@ describe('KOMReviewDetail_Misc', function () {
 			browser.assert.input(`${ KOMReviewDetailFormFrontLanguageCode } .KOMReviewDetailLanguageCodeField`, '');
 		});
 
+		context.skip('click', function () {
+
+			before(function () {
+				browser.assert.text('#TestKOMReviewDetailDispatchUpdate', '0');
+				browser.assert.text('#TestKOMReviewDetailDispatchUpdateData', 'undefined');
+			});
+
+			before(function () {
+				return browser.select(`${ KOMReviewDetailFormFrontLanguageCode } .KOMReviewDetailLanguageCodeField`, 'en');
+			});
+
+			it('sends KOMReviewDetailDispatchUpdate', function () {
+				browser.assert.text('#TestKOMReviewDetailDispatchUpdate', '1');
+				browser.assert.text('#TestKOMReviewDetailDispatchUpdateData', JSON.stringify(kTesting.uDeck({
+					KOMDeckFrontLanguageCode: 'en',
+				})));
+			});
+
+		});
+
 	});
 
 	describe('KOMReviewDetailFormFrontSpeechIsEnabledField', function test_KOMReviewDetailFormFrontSpeechIsEnabledField() {
 
-		const uItem = function () {
-			return kTesting.uDeck({
-				KOMDeckFrontLanguageCode: '',
-				$KOMDeckSpacings: kTesting.uSpacings(true),
-			});
-		};
-
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
-				KOMReviewDetailDeck: JSON.stringify(uItem()),
+				KOMReviewDetailDeck: JSON.stringify(kTesting.uDeck()),
 			});
 		});
 
@@ -329,8 +315,42 @@ describe('KOMReviewDetail_Misc', function () {
 
 			it('sends KOMReviewDetailDispatchUpdate', function () {
 				browser.assert.text('#TestKOMReviewDetailDispatchUpdate', '1');
-				browser.assert.text('#TestKOMReviewDetailDispatchUpdateData', JSON.stringify(Object.assign(uItem(), {
+				browser.assert.text('#TestKOMReviewDetailDispatchUpdateData', JSON.stringify(kTesting.uDeck({
 					KOMDeckFrontSpeechIsEnabled: true,
+				})));
+			});
+
+		});
+
+	});
+
+	describe('KOMReviewDetailFormRearLanguageCode', function test_KOMReviewDetailFormRearLanguageCode() {
+
+		before(function () {
+			return browser.OLSKVisit(kDefaultRoute, {
+				KOMReviewDetailDeck: JSON.stringify(kTesting.uDeck()),
+			});
+		});
+
+		it('binds KOMDeckRearLanguageCode', function () {
+			browser.assert.input(`${ KOMReviewDetailFormRearLanguageCode } .KOMReviewDetailLanguageCodeField`, '');
+		});
+
+		context.skip('click', function () {
+
+			before(function () {
+				browser.assert.text('#TestKOMReviewDetailDispatchUpdate', '0');
+				browser.assert.text('#TestKOMReviewDetailDispatchUpdateData', 'undefined');
+			});
+
+			before(function () {
+				return browser.select(`${ KOMReviewDetailFormRearLanguageCode } .KOMReviewDetailLanguageCodeField`, 'en');
+			});
+
+			it('sends KOMReviewDetailDispatchUpdate', function () {
+				browser.assert.text('#TestKOMReviewDetailDispatchUpdate', '1');
+				browser.assert.text('#TestKOMReviewDetailDispatchUpdateData', JSON.stringify(kTesting.uDeck({
+					KOMDeckRearLanguageCode: 'en',
 				})));
 			});
 
@@ -340,16 +360,9 @@ describe('KOMReviewDetail_Misc', function () {
 
 	describe('KOMReviewDetailFormRearSpeechIsEnabledField', function test_KOMReviewDetailFormRearSpeechIsEnabledField() {
 
-		const uItem = function () {
-			return kTesting.uDeck({
-				KOMDeckRearLanguageCode: '',
-				$KOMDeckSpacings: kTesting.uSpacings(true),
-			});
-		};
-
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
-				KOMReviewDetailDeck: JSON.stringify(uItem()),
+				KOMReviewDetailDeck: JSON.stringify(kTesting.uDeck()),
 			});
 		});
 
@@ -374,7 +387,7 @@ describe('KOMReviewDetail_Misc', function () {
 
 			it('sends KOMReviewDetailDispatchUpdate', function () {
 				browser.assert.text('#TestKOMReviewDetailDispatchUpdate', '1');
-				browser.assert.text('#TestKOMReviewDetailDispatchUpdateData', JSON.stringify(Object.assign(uItem(), {
+				browser.assert.text('#TestKOMReviewDetailDispatchUpdateData', JSON.stringify(kTesting.uDeck({
 					KOMDeckRearSpeechIsEnabled: true,
 				})));
 			});
@@ -385,14 +398,9 @@ describe('KOMReviewDetail_Misc', function () {
 
 	describe('KOMReviewDetailFormIsForwardOnlyField', function test_KOMReviewDetailFormIsForwardOnlyField() {
 
-		const item = {
-			KOMDeckName: 'alfa',
-			$KOMDeckSpacings: kTesting.uSpacings(true),
-		};
-
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
-				KOMReviewDetailDeck: JSON.stringify(item),
+				KOMReviewDetailDeck: JSON.stringify(kTesting.uDeck()),
 			});
 		});
 
@@ -412,25 +420,38 @@ describe('KOMReviewDetail_Misc', function () {
 			});
 
 			before(function () {
+				browser.assert.text('#TestKOMReviewDetailDispatchRecount', '0');
+			});
+
+			before(function () {
 				return browser.check(KOMReviewDetailFormIsForwardOnlyField);
 			});
 
 			it('sends KOMReviewDetailDispatchUpdate', function () {
 				browser.assert.text('#TestKOMReviewDetailDispatchUpdate', '1');
-				browser.assert.text('#TestKOMReviewDetailDispatchUpdateData', JSON.stringify(Object.assign(item, {
+				browser.assert.text('#TestKOMReviewDetailDispatchUpdateData', JSON.stringify(kTesting.uDeck({
 					KOMDeckIsForwardOnly: true,
 				})));
 			});
 
-		});
+			it('sends KOMReviewDetailDispatchRecount', function () {
+				browser.assert.text('#TestKOMReviewDetailDispatchRecount', '1');
+			});
 
-		after(function () {
-			return browser.uncheck(KOMReviewDetailFormIsForwardOnlyField);
 		});
 
 	});
 
 	describe('KOMReviewDetailPlayButtonReviewing', function test_KOMReviewDetailPlayButtonReviewing() {
+
+		before(function () {
+			return browser.OLSKVisit(kDefaultRoute, {
+				KOMReviewDetailDeck: JSON.stringify(kTesting.uDeck({
+					$KOMDeckTodayReviewCount: 1,
+					$KOMDeckTodayUnseenCount: 1,
+				})),
+			});
+		});
 
 		context('click', function () {
 
@@ -498,18 +519,9 @@ describe('KOMReviewDetail_Misc', function () {
 
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
-				KOMReviewDetailDeck: JSON.stringify({
-					KOMDeckName: 'alfa',
-					$KOMDeckSpacings: kTesting.uSpacings().map(function (e, i) {
-						if (i) {
-							return e;
-						}
-
-						return Object.assign(e, {
-							KOMSpacingDueDate: new Date(),
-						});
-					}),
-				}),
+				KOMReviewDetailDeck: JSON.stringify(kTesting.uDeck({
+					$KOMDeckTodayReviewCount: 1,
+				})),
 				KOMReviewDetailPlaySingle: true,
 			});
 		});
@@ -547,20 +559,13 @@ describe('KOMReviewDetail_Misc', function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMReviewDetailDeck: JSON.stringify({
 					KOMDeckName: 'alfa',
-					KOMDeckIsForwardOnly: true,
-					$KOMDeckSpacings: kTesting.uSpacings().map(function (e, i) {
-						return Object.assign(e, i ? {
-							KOMSpacingDueDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3),
-						} : {
-							KOMSpacingID: e.KOMSpacingID.replace('forward', 'backward'),
-							KOMSpacingChronicles: [{
-								KOMChronicleDrawDate: new Date(),
-								KOMChronicleFlipDate: new Date(),
-								KOMChronicleResponseDate: new Date(),
-								KOMChronicleResponseType: 'alfa',
-							}],
-						});
-					}),
+					$KOMDeckTodayFinishedCount: 1,
+					$KOMDeckSpacings: [Object.assign(StubSpacingObjectValid(), {
+						KOMSpacingChronicles: [StubChronicleObjectValid()],
+						KOMSpacingDueDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3),
+					}), Object.assign(StubSpacingObjectValid(), {
+						KOMSpacingID: 'charlie-forward',
+					})],
 				}),
 			});
 		});

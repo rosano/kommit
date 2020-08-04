@@ -4,6 +4,7 @@ export let KOMReviewDetailPlaySingle = false;
 export let KOMReviewDetailDispatchBack;
 export let KOMReviewDetailDispatchBrowse;
 export let KOMReviewDetailDispatchUpdate;
+export let KOMReviewDetailDispatchRecount;
 export let KOMReviewDetailDispatchPlay;
 export let KOMReviewDetailDispatchDiscard;
 
@@ -22,7 +23,6 @@ const mod = {
 
 	// VALUE
 
-	_ValueSpacingsToday: [],
 	_ValueSpacingsReviewing: [],
 	_ValueSpacingsUnseen: [],
 	_ValueSpacingsStudiedToday: [],
@@ -50,6 +50,12 @@ const mod = {
 		window.setTimeout(function () {
 			KOMReviewDetailDispatchUpdate(KOMReviewDetailDeck);
 		});
+	},
+
+	InterfaceForwardOnlyDidInput () {
+		mod.InterfaceFormDidUpdate();
+		
+		KOMReviewDetailDispatchRecount();
 	},
 
 	InterfaceReviewingButtonDidClick() {
@@ -123,7 +129,6 @@ const mod = {
 			return true;
 		});
 
-		mod._ValueSpacingsToday = items;
 		mod._ValueSpacingsReviewing = items.filter(function (e) {
 			return !KOMSpacingModel.KOMSpacingModelIsUnseen(e);
 		});
@@ -216,7 +221,7 @@ import KOMReviewGeneral from '../KOMReviewGeneral/main.svelte';
 	</p>
 	<p>
 		<label>
-			<input class="KOMReviewDetailFormIsForwardOnlyField" type="checkbox" bind:checked={ KOMReviewDetailDeck.KOMDeckIsForwardOnly } on:input={ mod.InterfaceFormDidUpdate } />
+			<input class="KOMReviewDetailFormIsForwardOnlyField" type="checkbox" bind:checked={ KOMReviewDetailDeck.KOMDeckIsForwardOnly } on:input={ mod.InterfaceForwardOnlyDidInput } />
 			<span class="KOMReviewDetailFormIsForwardOnlyFieldLabel">{ OLSKLocalized('KOMReviewDetailFormIsForwardOnlyFieldLabelText') }</span>
 		</label>
 	</p>
@@ -226,7 +231,7 @@ import KOMReviewGeneral from '../KOMReviewGeneral/main.svelte';
 	<p class="KOMReviewDetailNoCards">{ OLSKLocalized('KOMReviewDetailNoCardsText') }</p>
 {/if}
 
-{#if KOMReviewDetailDeck.$KOMDeckSpacings.length && mod._ValueSpacingsToday.length}
+{#if KOMReviewDetailDeck.$KOMDeckSpacings.length && (KOMReviewDetailDeck.$KOMDeckTodayReviewCount || KOMReviewDetailDeck.$KOMDeckTodayUnseenCount)}
 	<div class="KOMReviewDetailPlay">
 		{#if KOMReviewDetailPlaySingle }
 			<p>
@@ -234,19 +239,19 @@ import KOMReviewGeneral from '../KOMReviewGeneral/main.svelte';
 			</p>
 		{/if}
 		
-		{#if !KOMReviewDetailPlaySingle && mod._ValueSpacingsReviewing.length }
+		{#if !KOMReviewDetailPlaySingle && KOMReviewDetailDeck.$KOMDeckTodayReviewCount }
 			<p>
 				<button class="KOMReviewDetailPlayButtonReviewing" on:click={ mod.InterfaceReviewingButtonDidClick }>{ OLSKLocalized('KOMReviewDetailPlayButtonReviewingText') }</button>
 			</p>
 		{/if}
 		
-		{#if !KOMReviewDetailPlaySingle && mod._ValueSpacingsUnseen.length }
+		{#if !KOMReviewDetailPlaySingle && KOMReviewDetailDeck.$KOMDeckTodayUnseenCount }
 			<p>
 				<button class="KOMReviewDetailPlayButtonUnseen" on:click={ mod.InterfaceUnseenButtonDidClick }>{ OLSKLocalized('KOMReviewDetailPlayButtonUnseenText') }</button>
 			</p>
 		{/if}
 		
-		{#if !KOMReviewDetailPlaySingle && mod._ValueSpacingsReviewing.length && mod._ValueSpacingsUnseen.length }
+		{#if !KOMReviewDetailPlaySingle && KOMReviewDetailDeck.$KOMDeckTodayReviewCount && KOMReviewDetailDeck.$KOMDeckTodayUnseenCount }
 			<p>
 				<button class="KOMReviewDetailPlayButtonMixed" on:click={ mod.InterfaceMixedButtonDidClick }>{ OLSKLocalized('KOMReviewDetailPlayButtonMixedText') }</button>
 			</p>
@@ -254,11 +259,11 @@ import KOMReviewGeneral from '../KOMReviewGeneral/main.svelte';
 	</div>
 {/if}
 
-{#if KOMReviewDetailDeck.$KOMDeckSpacings.length && !mod._ValueSpacingsToday.length}
+{#if KOMReviewDetailDeck.$KOMDeckSpacings.length && !(KOMReviewDetailDeck.$KOMDeckTodayReviewCount || KOMReviewDetailDeck.$KOMDeckTodayUnseenCount)}
 	<p class="KOMReviewDetailNoSpacings">{ OLSKLocalized('KOMReviewDetailNoSpacingsText') }</p>
 {/if}
 
-{#if mod._ValueSpacingsStudiedToday.length }
+{#if KOMReviewDetailDeck.$KOMDeckTodayFinishedCount }
 	<hr>
 
 	<div class="KOMReviewDetailToday">

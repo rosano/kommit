@@ -16,6 +16,9 @@ const KOMReviewDetail = new RollupStart({
 			window.TestKOMReviewDetailDispatchUpdate.innerHTML = parseInt(window.TestKOMReviewDetailDispatchUpdate.innerHTML) + 1;
 			window.TestKOMReviewDetailDispatchUpdateData.innerHTML = JSON.stringify(inputData);
 		}),
+		KOMReviewDetailDispatchRecount: (function _KOMReviewDetailDispatchRecount() {
+			window.TestKOMReviewDetailDispatchRecount.innerHTML = parseInt(window.TestKOMReviewDetailDispatchPlay.innerHTML) + 1;
+		}),
 		KOMReviewDetailDispatchPlay: (function _KOMReviewDetailDispatchPlay(inputData) {
 			window.TestKOMReviewDetailDispatchPlay.innerHTML = parseInt(window.TestKOMReviewDetailDispatchPlay.innerHTML) + 1;
 			window.TestKOMReviewDetailDispatchPlayData.innerHTML = JSON.stringify(inputData);
