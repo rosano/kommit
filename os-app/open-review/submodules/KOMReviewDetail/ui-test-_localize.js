@@ -150,6 +150,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 						$KOMDeckTodayReviewCount: 0,
 						$KOMDeckTodayUnseenCount: 0,
 						$KOMDeckTodayStudiedCount: 1,
+						$KOMDeckGeneralNotUnseenCount: 1,
 					}),
 				});
 			});

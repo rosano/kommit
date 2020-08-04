@@ -313,6 +313,7 @@ describe('KOMReviewDetail_Access', function () {
 					$KOMDeckTodayReviewCount: 0,
 					$KOMDeckTodayUnseenCount: 0,
 					$KOMDeckTodayStudiedCount: 1,
+					$KOMDeckGeneralNotUnseenCount: 1,
 				}),
 			});
 		});

@@ -559,12 +559,13 @@ describe('KOMReviewDetail_Misc', function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMReviewDetailDeck: JSON.stringify({
 					KOMDeckName: 'alfa',
+					$KOMDeckSpacings: [],
 					$KOMDeckTodayStudiedCount: 1,
-					$KOMDeckSpacings: [Object.assign(StubSpacingObjectValid(), {
+					$KOMDeckTodayStudiedSpacings: [Object.assign(StubSpacingObjectValid(), {
 						KOMSpacingChronicles: [StubChronicleObjectValid()],
 						KOMSpacingDueDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3),
 					}), Object.assign(StubSpacingObjectValid(), {
-						KOMSpacingID: 'charlie-forward',
+						KOMSpacingID: 'bravo-backward',
 					})],
 				}),
 			});
@@ -578,8 +579,23 @@ describe('KOMReviewDetail_Misc', function () {
 
 	describe('KOMReviewDetailGeneral', function test_KOMReviewDetailGeneral() {
 
+		before(function () {
+			return browser.OLSKVisit(kDefaultRoute, {
+				KOMReviewDetailDeck: JSON.stringify({
+					KOMDeckName: 'alfa',
+					$KOMDeckSpacings: [Object.assign(StubSpacingObjectValid(), {
+						KOMSpacingChronicles: [StubChronicleObjectValid()],
+						KOMSpacingDueDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3),
+					}), Object.assign(StubSpacingObjectValid(), {
+						KOMSpacingID: 'bravo-backward',
+					})],
+					$KOMDeckGeneralNotUnseenCount: 1,
+				}),
+			});
+		});
+
 		it('sets KOMReviewGeneralSpacings', function () {
-			browser.assert.text('.KOMReviewGeneral .KOMReviewChartCompositionStatesTotalCardsValue', '2');
+			browser.assert.text('.KOMReviewGeneral .KOMReviewChartCompositionStatesTotalCardsValue', '1');
 		});
 
 	});

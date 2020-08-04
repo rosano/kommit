@@ -38,6 +38,14 @@ const KOMReviewDetail = new RollupStart({
 					$KOMSpacingCard: OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(e.$KOMSpacingCard),
 				});
 			});
+
+			if (e[1].$KOMDeckTodayStudiedSpacings) {
+				e[1].$KOMDeckTodayStudiedSpacings = e[1].$KOMDeckTodayStudiedSpacings.map(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse).map(function (e) {
+					return Object.assign(e, {
+						$KOMSpacingCard: OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(e.$KOMSpacingCard),
+					});
+				});
+			}
 		}
 
 		return e;

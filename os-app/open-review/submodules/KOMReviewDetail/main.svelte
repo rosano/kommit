@@ -13,18 +13,13 @@ const OLSKLocalized = function(translationConstant) {
 	return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, JSON.parse(`{"OLSK_I18N_SEARCH_REPLACE":"OLSK_I18N_SEARCH_REPLACE"}`)[window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage')]);
 };
 
-import KOMSpacingModel from '../../../_shared/KOMSpacing/model.js';
 import KOMReviewLogic from '../../ui-logic.js';
-import KOMPlayLogic from '../../../sub-play/ui-logic.js';
 
 const kMaxUnseenCards = 10;
 
 const mod = {
 
 	// VALUE
-
-	_ValueSpacingsStudiedToday: [],
-	_ValueSpacingsNotUnseen: [],
 
 	_ValueLanguages: 'speechSynthesis' in window ? speechSynthesis.getVoices().map(function (e) {
 		return e.lang
@@ -116,36 +111,7 @@ const mod = {
 		KOMReviewDetailDispatchPlay(outputData);
 	},
 
-	// REACT
-
-	ReactObject (inputData) {
-		const items = KOMReviewLogic.KOMReviewSpacingsToday(inputData.$KOMDeckSpacings).filter(function (e) {
-			if (inputData.KOMDeckIsForwardOnly && KOMSpacingModel.KOMSpacingModelIsBackward(e)) {
-				return false;
-			}
-
-			return true;
-		});
-
-		mod._ValueSpacingsStudiedToday = inputData.$KOMDeckSpacings.filter(function (e) {
-			if (!e.KOMSpacingChronicles.length) {
-				return false;
-			}
-			
-			return KOMPlayLogic.KOMPlayDayGrouping(e.KOMSpacingChronicles.slice(-1).pop().KOMChronicleResponseDate) === KOMPlayLogic.KOMPlayDayGrouping(new Date());
-		});
-		mod._ValueSpacingsNotUnseen = inputData.$KOMDeckSpacings.filter(function (e) {
-			return e.KOMSpacingChronicles.length;
-		});
-	},
-
-	ReactDirection () {
-		mod.ReactObject(KOMReviewDetailDeck);
-	},
-
 };
-
-$: mod.ReactDirection(KOMReviewDetailDeck.KOMDeckIsForwardOnly);
 
 import _OLSKSharedBack from '../../../_shared/__external/OLSKUIAssets/_OLSKSharedBack.svg';
 import KOMReviewDetailLanguageCode from '../KOMReviewDetailLanguageCode/main.svelte';
@@ -263,11 +229,11 @@ import KOMReviewGeneral from '../KOMReviewGeneral/main.svelte';
 	<div class="KOMReviewDetailToday">
 		<h1 class="KOMReviewDetailTodayHeading">{ OLSKLocalized('KOMReviewDetailTodayHeadingText') }</h1>
 
-		<KOMReviewToday KOMReviewTodaySpacings={ mod._ValueSpacingsStudiedToday } />
+		<KOMReviewToday KOMReviewTodaySpacings={ KOMReviewDetailDeck.$KOMDeckTodayStudiedSpacings || [] } />
 	</div>
 {/if}
 
-{#if mod._ValueSpacingsNotUnseen.length }
+{#if KOMReviewDetailDeck.$KOMDeckGeneralNotUnseenCount }
 	<hr>
 
 	<div class="KOMReviewDetailGeneral">
