@@ -3,7 +3,7 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 Object.entries({
 	KOMReviewGeneral: '.KOMReviewGeneral',
 
-	KOMReviewGeneralCardStatesHeading: '.KOMReviewGeneralCardStatesHeading',
+	KOMReviewGeneralCollectionHeading: '.KOMReviewGeneralCollectionHeading',
 }).map(function (e) {
 	return global[e.shift()] = e.pop();
 });
@@ -20,8 +20,8 @@ describe('KOMReviewGeneral_Access', function () {
 		browser.assert.elements(KOMReviewGeneral, 1);
 	});
 
-	it('shows KOMReviewGeneralCardStatesHeading', function () {
-		browser.assert.elements(KOMReviewGeneralCardStatesHeading, 1);
+	it('shows KOMReviewGeneralCollectionHeading', function () {
+		browser.assert.elements(KOMReviewGeneralCollectionHeading, 1);
 	});
 
 	it('shows KOMReviewChartCompositionStates', function () {

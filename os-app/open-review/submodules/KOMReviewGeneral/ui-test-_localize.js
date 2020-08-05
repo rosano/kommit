@@ -15,8 +15,8 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			});
 		});
 
-		it('localizes KOMReviewGeneralCardStatesHeading', function () {
-			browser.assert.text(KOMReviewGeneralCardStatesHeading, uLocalized('KOMReviewGeneralCardStatesHeadingText'));
+		it('localizes KOMReviewGeneralCollectionHeading', function () {
+			browser.assert.text(KOMReviewGeneralCollectionHeading, uLocalized('KOMReviewGeneralCollectionHeadingText'));
 		});
 
 	});
