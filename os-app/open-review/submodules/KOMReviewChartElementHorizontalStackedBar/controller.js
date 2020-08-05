@@ -1,8 +1,8 @@
 exports.OLSKControllerRoutes = function () {
 	return [{
-		OLSKRoutePath: '/stub/KOMReviewChartElementNormalizedBar',
+		OLSKRoutePath: '/stub/KOMReviewChartElementHorizontalStackedBar',
 		OLSKRouteMethod: 'get',
-		OLSKRouteSignature: 'KOMReviewChartElementNormalizedBarStubRoute',
+		OLSKRouteSignature: 'KOMReviewChartElementHorizontalStackedBarStubRoute',
 		OLSKRouteFunction(req, res, next) {
 			return res.render(require('path').join(__dirname, 'stub-view'));
 		},

@@ -99,8 +99,8 @@ describe('KOMReviewChartCompositionCollection_Access', function () {
 		browser.assert.elements(KOMReviewChartCompositionCollectionSuspendedCardsValue, 1);
 	});
 
-	it('shows KOMReviewChartElementNormalizedBar', function () {
-		browser.assert.elements('.KOMReviewChartElementNormalizedBar', 1);
+	it('shows KOMReviewChartElementHorizontalStackedBar', function () {
+		browser.assert.elements('.KOMReviewChartElementHorizontalStackedBar', 1);
 	});
 
 });

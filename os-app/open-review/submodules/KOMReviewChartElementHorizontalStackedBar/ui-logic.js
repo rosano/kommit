@@ -1,14 +1,14 @@
 const mod = {
 
-	KOMReviewChartElementNormalizedBarWidth() {
+	KOMReviewChartElementHorizontalStackedBarWidth() {
 		return 100;
 	},
 
-	KOMReviewChartElementNormalizedBarHeight() {
+	KOMReviewChartElementHorizontalStackedBarHeight() {
 		return 10;
 	},
 
-	KOMReviewChartElementNormalizedBarScaleHorizontal(param1, param2) {
+	KOMReviewChartElementHorizontalStackedBarScaleHorizontal(param1, param2) {
 		if (typeof param1 !== 'function') {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -22,13 +22,13 @@ const mod = {
 		}
 
 		return param1()
-			.range([0, mod.KOMReviewChartElementNormalizedBarWidth()])
+			.range([0, mod.KOMReviewChartElementHorizontalStackedBarWidth()])
 			.domain([0, param2.reduce(function (coll, item) {
 				return coll + item;
 			}, 0)]);
 	},
 
-	KOMReviewChartElementNormalizedBarScaleColor(param1, param2, param3) {
+	KOMReviewChartElementHorizontalStackedBarScaleColor(param1, param2, param3) {
 		if (typeof param1 !== 'function') {
 			throw new Error('KOMErrorInputNotValid');
 		}

@@ -1,6 +1,6 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-const KOMReviewChartElementNormalizedBarLogic = require('../KOMReviewChartElementNormalizedBar/ui-logic.js').default;
+const KOMReviewChartElementHorizontalStackedBarLogic = require('../KOMReviewChartElementHorizontalStackedBar/ui-logic.js').default;
 const d3 = require('d3');
 
 describe('KOMReviewChartCompositionCollection_Misc', function () {
@@ -30,7 +30,7 @@ describe('KOMReviewChartCompositionCollection_Misc', function () {
 	describe.skip('KOMReviewChartCompositionCollectionUnseenCardsColor', function test_KOMReviewChartCompositionCollectionUnseenCardsColor() {
 
 		it('sets style', function () {
-			browser.assert.attribute(KOMReviewChartCompositionCollectionUnseenCardsColor, 'style', `background: ${ KOMReviewChartElementNormalizedBarLogic.KOMReviewChartElementNormalizedBarScaleColor(d3.scaleOrdinal, d3.schemeGreys, Object.values(item))(2) }`);
+			browser.assert.attribute(KOMReviewChartCompositionCollectionUnseenCardsColor, 'style', `background: ${ KOMReviewChartElementHorizontalStackedBarLogic.KOMReviewChartElementHorizontalStackedBarScaleColor(d3.scaleOrdinal, d3.schemeGreys, Object.values(item))(2) }`);
 		});
 
 	});
@@ -46,7 +46,7 @@ describe('KOMReviewChartCompositionCollection_Misc', function () {
 	describe.skip('KOMReviewChartCompositionCollectionDevelopingCardsColor', function test_KOMReviewChartCompositionCollectionDevelopingCardsColor() {
 
 		it('sets style', function () {
-			browser.assert.attribute(KOMReviewChartCompositionCollectionDevelopingCardsColor, 'style', `background: ${ KOMReviewChartElementNormalizedBarLogic.KOMReviewChartElementNormalizedBarScaleColor(d3.scaleOrdinal, d3.schemeGreys, Object.values(item))(2) }`);
+			browser.assert.attribute(KOMReviewChartCompositionCollectionDevelopingCardsColor, 'style', `background: ${ KOMReviewChartElementHorizontalStackedBarLogic.KOMReviewChartElementHorizontalStackedBarScaleColor(d3.scaleOrdinal, d3.schemeGreys, Object.values(item))(2) }`);
 		});
 
 	});
@@ -62,7 +62,7 @@ describe('KOMReviewChartCompositionCollection_Misc', function () {
 	describe.skip('KOMReviewChartCompositionCollectionMatureCardsColor', function test_KOMReviewChartCompositionCollectionMatureCardsColor() {
 
 		it('sets style', function () {
-			browser.assert.attribute(KOMReviewChartCompositionCollectionMatureCardsColor, 'style', `background: ${ KOMReviewChartElementNormalizedBarLogic.KOMReviewChartElementNormalizedBarScaleColor(d3.scaleOrdinal, d3.schemeGreys, Object.values(item))(3) }`);
+			browser.assert.attribute(KOMReviewChartCompositionCollectionMatureCardsColor, 'style', `background: ${ KOMReviewChartElementHorizontalStackedBarLogic.KOMReviewChartElementHorizontalStackedBarScaleColor(d3.scaleOrdinal, d3.schemeGreys, Object.values(item))(3) }`);
 		});
 
 	});
@@ -78,7 +78,7 @@ describe('KOMReviewChartCompositionCollection_Misc', function () {
 	describe.skip('KOMReviewChartCompositionCollectionSuspendedCardsColor', function test_KOMReviewChartCompositionCollectionSuspendedCardsColor() {
 
 		it('sets style', function () {
-			browser.assert.attribute(KOMReviewChartCompositionCollectionSuspendedCardsColor, 'style', `background: ${ KOMReviewChartElementNormalizedBarLogic.KOMReviewChartElementNormalizedBarScaleColor(d3.scaleOrdinal, d3.schemeGreys, Object.values(item))(4) }`);
+			browser.assert.attribute(KOMReviewChartCompositionCollectionSuspendedCardsColor, 'style', `background: ${ KOMReviewChartElementHorizontalStackedBarLogic.KOMReviewChartElementHorizontalStackedBarScaleColor(d3.scaleOrdinal, d3.schemeGreys, Object.values(item))(4) }`);
 		});
 
 	});
@@ -91,10 +91,10 @@ describe('KOMReviewChartCompositionCollection_Misc', function () {
 
 	});
 
-	describe('KOMReviewChartElementNormalizedBar', function test_KOMReviewChartElementNormalizedBar() {
+	describe('KOMReviewChartElementHorizontalStackedBar', function test_KOMReviewChartElementHorizontalStackedBar() {
 
-		it('sets KOMReviewChartElementNormalizedBarValues', function () {
-			browser.assert.elements('.KOMReviewChartElementNormalizedBarSection', 4);
+		it('sets KOMReviewChartElementHorizontalStackedBarValues', function () {
+			browser.assert.elements('.KOMReviewChartElementHorizontalStackedBarSection', 4);
 		});
 
 	});

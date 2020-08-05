@@ -12,7 +12,7 @@ if (!KOMReviewChartCompositionCollectionLogic.KOMReviewChartCompositionCollectio
 	throw new Error('KOMErrorInputNotValid');
 }
 
-import KOMReviewChartElementNormalizedBarLogic from '../KOMReviewChartElementNormalizedBar/ui-logic.js';
+import KOMReviewChartElementHorizontalStackedBarLogic from '../KOMReviewChartElementHorizontalStackedBar/ui-logic.js';
 
 import d3 from '../../../_shared/__external/d3/dist/d3.min.js';
 
@@ -25,14 +25,14 @@ const mod = {
 	},
 
 	DataScaleColor (inputData) {
-		return KOMReviewChartElementNormalizedBarLogic.KOMReviewChartElementNormalizedBarScaleColor(d3.scaleOrdinal, d3.schemeGreys, mod.DataNormalizeValues().map(function (e, i) {
+		return KOMReviewChartElementHorizontalStackedBarLogic.KOMReviewChartElementHorizontalStackedBarScaleColor(d3.scaleOrdinal, d3.schemeGreys, mod.DataNormalizeValues().map(function (e, i) {
 			return i;
 		}))(inputData);
 	},
 
 };
 
-import KOMReviewChartElementNormalizedBar from '../KOMReviewChartElementNormalizedBar/main.svelte';
+import KOMReviewChartElementHorizontalStackedBar from '../KOMReviewChartElementHorizontalStackedBar/main.svelte';
 </script>
 
 <table class="KOMReviewChartCompositionCollection">
@@ -69,7 +69,7 @@ import KOMReviewChartElementNormalizedBar from '../KOMReviewChartElementNormaliz
 
 <tr>
 	<td colspan="3">
-		<KOMReviewChartElementNormalizedBar KOMReviewChartElementNormalizedBarValues={ mod.DataNormalizeValues() } />
+		<KOMReviewChartElementHorizontalStackedBar KOMReviewChartElementHorizontalStackedBarValues={ mod.DataNormalizeValues() } />
 	</td>
 </tr>
 
@@ -96,7 +96,7 @@ tr:last-child td {
 	padding: 0;
 }
 
-.KOMReviewChartCompositionCollection :global(.KOMReviewChartElementNormalizedBar) {
+.KOMReviewChartCompositionCollection :global(.KOMReviewChartElementHorizontalStackedBar) {
 	width: 100%;
 	max-width: 150px;
 	height: auto;
