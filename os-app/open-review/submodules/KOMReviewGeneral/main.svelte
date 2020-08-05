@@ -15,27 +15,27 @@ const mod = {
 
 	DataStatesData() {
 		return Object.entries(KOMReviewGeneralSpacings.reduce(function (coll, item) {
-			coll.KOMReviewChartCompositionStatesTotal.push(item);
+			coll.KOMReviewChartCompositionCollectionTotal.push(item);
 
 			if (KOMSpacingModel.KOMSpacingModelIsUnseen(item)) {
-				coll.KOMReviewChartCompositionStatesUnseen.push(item);
+				coll.KOMReviewChartCompositionCollectionUnseen.push(item);
 			}
 
 			if (KOMSpacingModel.KOMSpacingModelIsDeveloping(item)) {
-				coll.KOMReviewChartCompositionStatesDeveloping.push(item);
+				coll.KOMReviewChartCompositionCollectionDeveloping.push(item);
 			}
 
 			if (KOMSpacingModel.KOMSpacingModelIsMature(item)) {
-				coll.KOMReviewChartCompositionStatesMature.push(item);
+				coll.KOMReviewChartCompositionCollectionMature.push(item);
 			}
 
 			return coll;
 		}, {
-			KOMReviewChartCompositionStatesTotal: [],
-			KOMReviewChartCompositionStatesUnseen: [],
-			KOMReviewChartCompositionStatesDeveloping: [],
-			KOMReviewChartCompositionStatesMature: [],
-			KOMReviewChartCompositionStatesSuspended: [],
+			KOMReviewChartCompositionCollectionTotal: [],
+			KOMReviewChartCompositionCollectionUnseen: [],
+			KOMReviewChartCompositionCollectionDeveloping: [],
+			KOMReviewChartCompositionCollectionMature: [],
+			KOMReviewChartCompositionCollectionSuspended: [],
 		})).reduce(function (coll, item) {
 			coll[item[0]] = KOMSpacingModel.KOMSpacingModelFilterUnique(item[1]).length;
 
@@ -45,13 +45,13 @@ const mod = {
 
 };
 
-import KOMReviewChartCompositionStates from '../KOMReviewChartCompositionStates/main.svelte';
+import KOMReviewChartCompositionCollection from '../KOMReviewChartCompositionCollection/main.svelte';
 </script>
 
 <div class="KOMReviewGeneral">
 
 <h2 class="KOMReviewGeneralCollectionHeading">{ OLSKLocalized('KOMReviewGeneralCollectionHeadingText') }</h2>
 
-<KOMReviewChartCompositionStates KOMReviewChartCompositionStatesData={ mod.DataStatesData() } />
+<KOMReviewChartCompositionCollection KOMReviewChartCompositionCollectionData={ mod.DataStatesData() } />
 
 </div>

@@ -1,9 +1,9 @@
 import RollupStart from './main.svelte';
 
-const KOMReviewChartCompositionStates = new RollupStart({
+const KOMReviewChartCompositionCollection = new RollupStart({
 	target: document.body,
 	props: Object.assign({}, Object.fromEntries(Array.from((new window.URLSearchParams(window.location.search)).entries()).map(function (e) {
-		if (['KOMReviewChartCompositionStatesData'].includes(e[0])) {
+		if (['KOMReviewChartCompositionCollectionData'].includes(e[0])) {
 			e[1] = JSON.parse(e[1]);
 		}
 
@@ -11,4 +11,4 @@ const KOMReviewChartCompositionStates = new RollupStart({
 	}))),
 });
 
-export default KOMReviewChartCompositionStates;
+export default KOMReviewChartCompositionCollection;

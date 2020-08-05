@@ -20,13 +20,13 @@ describe('KOMReviewGeneral_Misc', function () {
 		});
 	});
 
-	describe('KOMReviewChartCompositionStates', function test_KOMReviewChartCompositionStates() {
+	describe('KOMReviewChartCompositionCollection', function test_KOMReviewChartCompositionCollection() {
 
-		it('sets KOMReviewChartCompositionStatesData', function () {
-			browser.assert.text('.KOMReviewChartCompositionStates .KOMReviewChartCompositionStatesTotalCardsValue', '1');
-			browser.assert.text('.KOMReviewChartCompositionStates .KOMReviewChartCompositionStatesUnseenCardsValue', '1');
-			browser.assert.text('.KOMReviewChartCompositionStates .KOMReviewChartCompositionStatesDevelopingCardsValue', '1');
-			browser.assert.text('.KOMReviewChartCompositionStates .KOMReviewChartCompositionStatesMatureCardsValue', '1');
+		it('sets KOMReviewChartCompositionCollectionData', function () {
+			browser.assert.text('.KOMReviewChartCompositionCollection .KOMReviewChartCompositionCollectionTotalCardsValue', '1');
+			browser.assert.text('.KOMReviewChartCompositionCollection .KOMReviewChartCompositionCollectionUnseenCardsValue', '1');
+			browser.assert.text('.KOMReviewChartCompositionCollection .KOMReviewChartCompositionCollectionDevelopingCardsValue', '1');
+			browser.assert.text('.KOMReviewChartCompositionCollection .KOMReviewChartCompositionCollectionMatureCardsValue', '1');
 		});
 
 	});

@@ -24,8 +24,8 @@ describe('KOMReviewGeneral_Access', function () {
 		browser.assert.elements(KOMReviewGeneralCollectionHeading, 1);
 	});
 
-	it('shows KOMReviewChartCompositionStates', function () {
-		browser.assert.elements('.KOMReviewChartCompositionStates', 1);
+	it('shows KOMReviewChartCompositionCollection', function () {
+		browser.assert.elements('.KOMReviewChartCompositionCollection', 1);
 	});
 
 });

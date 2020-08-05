@@ -627,7 +627,7 @@ describe('KOMReviewDetail_Misc', function () {
 		});
 
 		it('sets KOMReviewGeneralSpacings', function () {
-			browser.assert.text(`${ KOMReviewDetailStatisticsGeneral } .KOMReviewChartCompositionStatesTotalCardsValue`, '1');
+			browser.assert.text(`${ KOMReviewDetailStatisticsGeneral } .KOMReviewChartCompositionCollectionTotalCardsValue`, '1');
 		});
 
 	});
