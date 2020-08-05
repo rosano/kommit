@@ -167,8 +167,8 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 				browser.assert.text(KOMReviewDetailNoSpacings, uLocalized('KOMReviewDetailNoSpacingsText'));
 			});
 
-			it('localizes KOMReviewDetailTodayHeading', function () {
-				browser.assert.text(KOMReviewDetailTodayHeading, uLocalized('KOMReviewDetailTodayHeadingText'));
+			it('localizes KOMReviewDetailStatisticsHeading', function () {
+				browser.assert.text(KOMReviewDetailStatisticsHeading, uLocalized('KOMReviewDetailStatisticsHeadingText'));
 			});
 
 			it('localizes KOMReviewDetailGeneralHeading', function () {

@@ -280,8 +280,8 @@ import KOMReviewGeneral from '../KOMReviewGeneral/main.svelte';
 {#if KOMReviewDetailDeck.$KOMDeckTodayStudiedCount }
 	<hr>
 
-	<div class="KOMReviewDetailToday">
-		<h1 class="KOMReviewDetailTodayHeading">{ OLSKLocalized('KOMReviewDetailTodayHeadingText') }</h1>
+	<div class="KOMReviewDetailStatistics">
+		<h1 class="KOMReviewDetailStatisticsHeading">{ OLSKLocalized('KOMReviewDetailStatisticsHeadingText') }</h1>
 
 		<KOMReviewToday KOMReviewTodaySpacings={ KOMReviewDetailDeck.$KOMDeckTodayStudiedSpacings || [] } />
 	</div>

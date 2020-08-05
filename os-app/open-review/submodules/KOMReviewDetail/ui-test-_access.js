@@ -33,9 +33,9 @@ Object.entries({
 
 	KOMReviewDetailNoSpacings: '.KOMReviewDetailNoSpacings',
 
-	KOMReviewDetailToday: '.KOMReviewDetailToday',
-	KOMReviewDetailTodayHeading: '.KOMReviewDetailTodayHeading',
-	KOMReviewDetailTodayToday: '.KOMReviewDetailToday .KOMReviewToday',
+	KOMReviewDetailStatistics: '.KOMReviewDetailStatistics',
+	KOMReviewDetailStatisticsHeading: '.KOMReviewDetailStatisticsHeading',
+	KOMReviewDetailStatisticsToday: '.KOMReviewDetailStatistics .KOMReviewToday',
 
 	KOMReviewDetailGeneral: '.KOMReviewDetailGeneral',
 	KOMReviewDetailGeneralHeading: '.KOMReviewDetailGeneralHeading',
@@ -142,8 +142,8 @@ describe('KOMReviewDetail_Access', function () {
 		browser.assert.elements(KOMReviewDetailNoSpacings, 0);
 	});
 
-	it('hides KOMReviewDetailToday', function () {
-		browser.assert.elements(KOMReviewDetailToday, 0);
+	it('hides KOMReviewDetailStatistics', function () {
+		browser.assert.elements(KOMReviewDetailStatistics, 0);
 	});
 
 	it('hides KOMReviewDetailGeneral', function () {
@@ -192,8 +192,8 @@ describe('KOMReviewDetail_Access', function () {
 			browser.assert.elements(KOMReviewDetailPlay, 1);
 		});
 
-		it('hides KOMReviewDetailToday', function () {
-			browser.assert.elements(KOMReviewDetailToday, 0);
+		it('hides KOMReviewDetailStatistics', function () {
+			browser.assert.elements(KOMReviewDetailStatistics, 0);
 		});
 
 		it('hides KOMReviewDetailGeneral', function () {
@@ -378,16 +378,16 @@ describe('KOMReviewDetail_Access', function () {
 			browser.assert.elements(KOMReviewDetailNoSpacings, 1);
 		});
 
-		it('shows KOMReviewDetailToday', function () {
-			browser.assert.elements(KOMReviewDetailToday, 1);
+		it('shows KOMReviewDetailStatistics', function () {
+			browser.assert.elements(KOMReviewDetailStatistics, 1);
 		});
 
-		it('shows KOMReviewDetailTodayHeading', function () {
-			browser.assert.elements(KOMReviewDetailTodayHeading, 1);
+		it('shows KOMReviewDetailStatisticsHeading', function () {
+			browser.assert.elements(KOMReviewDetailStatisticsHeading, 1);
 		});
 
-		it('shows KOMReviewDetailTodayToday', function () {
-			browser.assert.elements(KOMReviewDetailTodayToday, 1);
+		it('shows KOMReviewDetailStatisticsToday', function () {
+			browser.assert.elements(KOMReviewDetailStatisticsToday, 1);
 		});
 
 		it('shows KOMReviewDetailGeneral', function () {
