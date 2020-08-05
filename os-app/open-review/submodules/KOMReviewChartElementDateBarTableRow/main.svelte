@@ -23,3 +23,11 @@ import KOMReviewChartElementHorizontalStackedBar from '../KOMReviewChartElementH
 </td>
 	
 </tr>
+
+<style>
+.KOMReviewChartElementDateBarTableRowBar :global(.KOMReviewChartElementHorizontalStackedBar) {
+	width: 100%;
+	max-width: 150px;
+	height: auto;
+}
+</style>
