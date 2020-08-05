@@ -34,7 +34,7 @@ By default, the cards will be presented both front-to-back and back-to-front, bu
 
 During a review, the cards will be presented in a random order. Try to recall the opposite side without looking, then *Flip* the card to reveal the following response buttons to schedule the card's next appearance:
 
-- *Again*: within the next ten minutes,
+- *This session*: within the next ten minutes,
 - *Sooner*
     - First time: within the next ten minutes
     - Second time: after a day or so
@@ -55,7 +55,7 @@ Evaluate yourself based on personal goals. Are you practicing speed? a certain w
 
 If your device has a physical keyboard, streamline your responses with [shortcuts](#shortcuts).
 
-Don't be afraid of the *Again* button, it basically strengthens your memory.
+Don't be afraid of the *This session* button, it basically strengthens your memory.
 
 You can try [mneumonics and other memory tricks](https://en.wikipedia.org/wiki/Moonwalking_with_Einstein) to help remember – usually the more personal it is, the better.
 
@@ -103,7 +103,7 @@ The *Read* button speaks the text using the language chosen on the deck page.
 | Memory game ||
 :--- | ---
 | Flip card | `Space` |
-| Respond *Again* | `1` |
+| Respond *This session* | `1` |
 | Respond *Sooner* | `2` |
 | Respond *Normal* | `3` or `Space` |
 | Respond *Later* | `4` |
