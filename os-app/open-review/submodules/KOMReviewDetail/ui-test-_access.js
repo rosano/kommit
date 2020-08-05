@@ -36,6 +36,7 @@ Object.entries({
 	KOMReviewDetailStatistics: '.KOMReviewDetailStatistics',
 	KOMReviewDetailStatisticsHeading: '.KOMReviewDetailStatisticsHeading',
 	KOMReviewDetailStatisticsToday: '.KOMReviewDetailStatistics .KOMReviewToday',
+	KOMReviewDetailStatisticsGeneral: '.KOMReviewDetailStatistics .KOMReviewGeneral',
 
 	KOMReviewDetailGeneral: '.KOMReviewDetailGeneral',
 	KOMReviewDetailGeneralHeading: '.KOMReviewDetailGeneralHeading',
@@ -398,8 +399,41 @@ describe('KOMReviewDetail_Access', function () {
 			browser.assert.elements(KOMReviewDetailGeneralHeading, 1);
 		});
 
-		it('shows KOMReviewGeneral', function () {
-			browser.assert.elements('.KOMReviewGeneral', 1);
+		it('shows KOMReviewDetailStatisticsGeneral', function () {
+			browser.assert.elements(KOMReviewDetailStatisticsGeneral, 1);
+		});
+
+	});
+
+	context('KOMDeckTodayStudiedCount', function test_KOMDeckTodayStudiedCount() {
+
+		before(function () {
+			return browser.OLSKVisit(kDefaultRoute, {
+				KOMReviewDetailDeck: JSON.stringify({
+					KOMDeckName: 'alfa',
+					KOMDeckIsForwardOnly: true,
+					$KOMDeckSpacings: [Object.assign(StubSpacingObjectValid(), {
+						KOMSpacingChronicles: [StubChronicleObjectValid()],
+						KOMSpacingDueDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3),
+					})],
+					$KOMDeckTodayReviewCount: 0,
+					$KOMDeckTodayUnseenCount: 0,
+					$KOMDeckTodayStudiedCount: 0,
+					$KOMDeckGeneralNotUnseenCount: 1,
+				}),
+			});
+		});
+
+		it('shows KOMReviewDetailStatistics', function () {
+			browser.assert.elements(KOMReviewDetailStatistics, 1);
+		});
+
+		it('hides KOMReviewDetailStatisticsToday', function () {
+			browser.assert.elements(KOMReviewDetailStatisticsToday, 0);
+		});
+
+		it('shows KOMReviewDetailStatisticsGeneral', function () {
+			browser.assert.elements(KOMReviewDetailStatisticsGeneral, 1);
 		});
 
 	});

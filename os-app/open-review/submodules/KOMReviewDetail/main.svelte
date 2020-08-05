@@ -277,23 +277,21 @@ import KOMReviewGeneral from '../KOMReviewGeneral/main.svelte';
 	<p class="KOMReviewDetailNoSpacings">{ OLSKLocalized('KOMReviewDetailNoSpacingsText') }</p>
 {/if}
 
-{#if KOMReviewDetailDeck.$KOMDeckTodayStudiedCount }
+{#if KOMReviewDetailDeck.$KOMDeckGeneralNotUnseenCount }
 	<hr>
 
 	<div class="KOMReviewDetailStatistics">
 		<h1 class="KOMReviewDetailStatisticsHeading">{ OLSKLocalized('KOMReviewDetailStatisticsHeadingText') }</h1>
 
-		<KOMReviewToday KOMReviewTodaySpacings={ KOMReviewDetailDeck.$KOMDeckTodayStudiedSpacings || [] } />
-	</div>
-{/if}
+		{#if KOMReviewDetailDeck.$KOMDeckTodayStudiedCount }
+			<KOMReviewToday KOMReviewTodaySpacings={ KOMReviewDetailDeck.$KOMDeckTodayStudiedSpacings || [] } />
+		{/if}
 
-{#if KOMReviewDetailDeck.$KOMDeckGeneralNotUnseenCount }
-	<hr>
+		<div class="KOMReviewDetailGeneral">
+			<h1 class="KOMReviewDetailGeneralHeading">{ OLSKLocalized('KOMReviewDetailGeneralHeadingText') }</h1>
 
-	<div class="KOMReviewDetailGeneral">
-		<h1 class="KOMReviewDetailGeneralHeading">{ OLSKLocalized('KOMReviewDetailGeneralHeadingText') }</h1>
-
-		<KOMReviewGeneral KOMReviewGeneralSpacings={ KOMReviewDetailDeck.$KOMDeckSpacings } />
+			<KOMReviewGeneral KOMReviewGeneralSpacings={ KOMReviewDetailDeck.$KOMDeckSpacings } />
+		</div>
 	</div>
 {/if}
 
