@@ -83,6 +83,13 @@ const KOMSettingStorage = require('./os-app/_shared/KOMSetting/storage.js').defa
 			};
 		},
 
+		StubReviewChartElementDateBarTableRowDataObjectValid() {
+			return {
+				KOMReviewChartElementDateBarTableRowDataKey: 'alfa',
+				KOMReviewChartElementDateBarTableRowDataValues: [1, 2, 3],
+			};
+		},
+
 	}).map(function (e) {
 		return global[e.shift()] = e.pop();
 	});
