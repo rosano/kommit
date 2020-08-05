@@ -103,10 +103,10 @@ The *Read* button speaks the text using the language chosen on the deck page.
 | Memory game ||
 :--- | ---
 | Flip card | `Space` |
-| Respond Again | `1` |
-| Respond Sooner | `2` |
-| Respond Normal | `3` or `Space` |
-| Respond Later | `4` |
+| Respond *Again* | `1` |
+| Respond *Sooner* | `2` |
+| Respond *Normal* | `3` or `Space` |
+| Respond *Later* | `4` |
 | Close | `Escape` |
 
 | List of cards ||
