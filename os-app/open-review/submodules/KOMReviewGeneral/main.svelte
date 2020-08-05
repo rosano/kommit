@@ -49,6 +49,10 @@ import KOMReviewChartCompositionCollection from '../KOMReviewChartCompositionCol
 
 <div class="KOMReviewGeneral">
 
+<div class="KOMReviewGeneralUpcoming">
+	<h2 class="KOMReviewGeneralUpcomingHeading">{ OLSKLocalized('KOMReviewGeneralUpcomingHeadingText') }</h2>
+</div>
+
 <div class="KOMReviewGeneralCollection">
 	<h2 class="KOMReviewGeneralCollectionHeading">{ OLSKLocalized('KOMReviewGeneralCollectionHeadingText') }</h2>
 

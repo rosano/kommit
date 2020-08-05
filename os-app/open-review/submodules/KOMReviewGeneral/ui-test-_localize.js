@@ -15,6 +15,10 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			});
 		});
 
+		it('localizes KOMReviewGeneralUpcomingHeading', function () {
+			browser.assert.text(KOMReviewGeneralUpcomingHeading, uLocalized('KOMReviewGeneralUpcomingHeadingText'));
+		});
+
 		it('localizes KOMReviewGeneralCollectionHeading', function () {
 			browser.assert.text(KOMReviewGeneralCollectionHeading, uLocalized('KOMReviewGeneralCollectionHeadingText'));
 		});

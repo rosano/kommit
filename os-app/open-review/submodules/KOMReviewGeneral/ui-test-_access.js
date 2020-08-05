@@ -3,6 +3,9 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 Object.entries({
 	KOMReviewGeneral: '.KOMReviewGeneral',
 
+	KOMReviewGeneralUpcoming: '.KOMReviewGeneralUpcoming',
+	KOMReviewGeneralUpcomingHeading: '.KOMReviewGeneralUpcomingHeading',
+
 	KOMReviewGeneralCollection: '.KOMReviewGeneralCollection',
 	KOMReviewGeneralCollectionHeading: '.KOMReviewGeneralCollectionHeading',
 }).map(function (e) {
@@ -19,6 +22,14 @@ describe('KOMReviewGeneral_Access', function () {
 
 	it('shows KOMReviewGeneral', function () {
 		browser.assert.elements(KOMReviewGeneral, 1);
+	});
+
+	it('shows KOMReviewGeneralUpcoming', function () {
+		browser.assert.elements(KOMReviewGeneralUpcoming, 1);
+	});
+
+	it('shows KOMReviewGeneralUpcomingHeading', function () {
+		browser.assert.elements(KOMReviewGeneralUpcomingHeading, 1);
 	});
 
 	it('shows KOMReviewGeneralCollection', function () {
