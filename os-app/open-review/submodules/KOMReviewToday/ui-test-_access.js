@@ -3,6 +3,8 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 Object.entries({
 	KOMReviewToday: '.KOMReviewToday',
 
+	KOMReviewTodayHeading: '.KOMReviewTodayHeading',
+
 	KOMReviewTodayTotalCardsLabel: '.KOMReviewTodayTotalCardsLabel',
 	KOMReviewTodayTotalCardsValue: '.KOMReviewTodayTotalCardsValue',
 
@@ -25,6 +27,10 @@ describe('KOMReviewToday_Access', function () {
 
 	it('shows KOMReviewToday', function () {
 		browser.assert.elements(KOMReviewToday, 1);
+	});
+
+	it('shows KOMReviewTodayHeading', function () {
+		browser.assert.elements(KOMReviewTodayHeading, 1);
 	});
 
 	it('shows KOMReviewTodayTotalCardsLabel', function () {

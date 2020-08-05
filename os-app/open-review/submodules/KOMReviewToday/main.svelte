@@ -9,7 +9,11 @@ const OLSKLocalized = function(translationConstant) {
 import KOMReviewTodayLogic from './ui-logic.js';
 </script>
 
-<table class="KOMReviewToday">
+<div class="KOMReviewToday">
+
+<h2 class="KOMReviewTodayHeading">{ OLSKLocalized('KOMReviewTodayHeadingText') }</h2>
+
+<table>
 
 <tr>
 	<td class="KOMReviewTodayTotalCardsLabel">{ OLSKLocalized('KOMReviewTodayTotalCardsLabelText') }</td>
@@ -27,6 +31,8 @@ import KOMReviewTodayLogic from './ui-logic.js';
 </tr>
 
 </table>
+
+</div>
 
 <style>
 td:first-child {

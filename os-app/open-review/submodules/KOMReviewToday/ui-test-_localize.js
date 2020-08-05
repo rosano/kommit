@@ -15,6 +15,10 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			});
 		});
 
+		it('localizes KOMReviewTodayHeading', function () {
+			browser.assert.text(KOMReviewTodayHeading, uLocalized('KOMReviewTodayHeadingText'));
+		});
+
 		it('localizes KOMReviewTodayTotalCardsLabel', function () {
 			browser.assert.text(KOMReviewTodayTotalCardsLabel, uLocalized('KOMReviewTodayTotalCardsLabelText'));
 		});
