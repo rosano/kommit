@@ -58,6 +58,26 @@ describe('KOMReviewChartElementHorizontalStackedBarScaleHorizontal', function te
 	
 	});
 
+	context('param3', function () {
+
+		it('throws if not number', function () {
+			throws(function () {
+				mainModule.KOMReviewChartElementHorizontalStackedBarScaleHorizontal(d3.scaleLinear, [1], null);
+			}, /KOMErrorInputNotValid/);
+		});
+
+		context('function', function () {
+
+			const item = mainModule.KOMReviewChartElementHorizontalStackedBarScaleHorizontal(d3.scaleLinear, [5, 5], 15);
+
+			it('sets range maximum', function () {
+				deepEqual(item(15), mainModule.KOMReviewChartElementHorizontalStackedBarWidth());
+			});
+		
+		});
+	
+	});
+
 });
 
 describe('KOMReviewChartElementHorizontalStackedBarScaleColor', function test_KOMReviewChartElementHorizontalStackedBarScaleColor() {

@@ -8,7 +8,7 @@ const mod = {
 		return 10;
 	},
 
-	KOMReviewChartElementHorizontalStackedBarScaleHorizontal(param1, param2) {
+	KOMReviewChartElementHorizontalStackedBarScaleHorizontal(param1, param2, param3) {
 		if (typeof param1 !== 'function') {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -21,9 +21,15 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
+		if (typeof param3 !== 'undefined') {
+			if (typeof param3 !== 'number') {
+				throw new Error('KOMErrorInputNotValid');
+			}
+		}
+
 		return param1()
 			.range([0, mod.KOMReviewChartElementHorizontalStackedBarWidth()])
-			.domain([0, param2.reduce(function (coll, item) {
+			.domain([0, param3 || param2.reduce(function (coll, item) {
 				return coll + item;
 			}, 0)]);
 	},
