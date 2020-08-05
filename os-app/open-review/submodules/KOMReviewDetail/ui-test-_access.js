@@ -39,7 +39,6 @@ Object.entries({
 	KOMReviewDetailStatisticsGeneral: '.KOMReviewDetailStatistics .KOMReviewGeneral',
 
 	KOMReviewDetailGeneral: '.KOMReviewDetailGeneral',
-	KOMReviewDetailGeneralHeading: '.KOMReviewDetailGeneralHeading',
 
 	KOMReviewDetailDeckHeading: '.KOMReviewDetailDeckHeading',
 	KOMReviewDetailRenameButton: '.KOMReviewDetailRenameButton',
@@ -393,10 +392,6 @@ describe('KOMReviewDetail_Access', function () {
 
 		it('shows KOMReviewDetailGeneral', function () {
 			browser.assert.elements(KOMReviewDetailGeneral, 1);
-		});
-
-		it('shows KOMReviewDetailGeneralHeading', function () {
-			browser.assert.elements(KOMReviewDetailGeneralHeading, 1);
 		});
 
 		it('shows KOMReviewDetailStatisticsGeneral', function () {

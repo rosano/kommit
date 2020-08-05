@@ -288,8 +288,6 @@ import KOMReviewGeneral from '../KOMReviewGeneral/main.svelte';
 		{/if}
 
 		<div class="KOMReviewDetailGeneral">
-			<h1 class="KOMReviewDetailGeneralHeading">{ OLSKLocalized('KOMReviewDetailGeneralHeadingText') }</h1>
-
 			<KOMReviewGeneral KOMReviewGeneralSpacings={ KOMReviewDetailDeck.$KOMDeckSpacings } />
 		</div>
 	</div>
