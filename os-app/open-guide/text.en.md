@@ -43,7 +43,7 @@ During a review, the cards will be presented in a random order. Try to recall th
     - First time: within the next ten minutes
     - Second time: after a few days
     - Subsequently: after progressively larger periods, moreso than *Closer*
-- *Later*
+- *Farther*
     - First time: after four days
     - Subsequently: after progressively larger periods, moreso than *Normal*
 
@@ -106,7 +106,7 @@ The *Read* button speaks the text using the language chosen on the deck page.
 | Respond *This session* | `1` |
 | Respond *Closer* | `2` |
 | Respond *Normal* | `3` or `Space` |
-| Respond *Later* | `4` |
+| Respond *Farther* | `4` |
 | Close | `Escape` |
 
 | List of cards ||
