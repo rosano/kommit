@@ -7,6 +7,10 @@ const KOMReviewChartElementHorizontalStackedBar = new RollupStart({
 			e[1] = JSON.parse(e[1]);
 		}
 
+		if (['KOMReviewChartElementHorizontalStackedBarMaximum'].includes(e[0])) {
+			e[1] = parseFloat(e[1]);
+		}
+
 		return e;
 	}))),
 });

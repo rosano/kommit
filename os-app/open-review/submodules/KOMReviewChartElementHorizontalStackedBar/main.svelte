@@ -1,5 +1,6 @@
 <script>
 export let KOMReviewChartElementHorizontalStackedBarValues;
+export let KOMReviewChartElementHorizontalStackedBarMaximum = undefined;
 
 import OLSKInternational from 'OLSKInternational';
 const OLSKLocalized = function(translationConstant) {
@@ -15,7 +16,7 @@ const mod = {
 	// DATA
 
 	DataScaleHorizontal (inputData) {
-		return KOMReviewChartElementHorizontalStackedBarLogic.KOMReviewChartElementHorizontalStackedBarScaleHorizontal(d3.scaleLinear, KOMReviewChartElementHorizontalStackedBarValues)(inputData);
+		return KOMReviewChartElementHorizontalStackedBarLogic.KOMReviewChartElementHorizontalStackedBarScaleHorizontal(d3.scaleLinear, KOMReviewChartElementHorizontalStackedBarValues, KOMReviewChartElementHorizontalStackedBarMaximum)(inputData);
 	},
 
 	DataScaleColor (inputData) {
