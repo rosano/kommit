@@ -38,8 +38,6 @@ Object.entries({
 	KOMReviewDetailStatisticsToday: '.KOMReviewDetailStatistics .KOMReviewToday',
 	KOMReviewDetailStatisticsGeneral: '.KOMReviewDetailStatistics .KOMReviewGeneral',
 
-	KOMReviewDetailGeneral: '.KOMReviewDetailGeneral',
-
 	KOMReviewDetailDeckHeading: '.KOMReviewDetailDeckHeading',
 	KOMReviewDetailRenameButton: '.KOMReviewDetailRenameButton',
 	KOMReviewDetailDiscardButton: '.KOMReviewDetailDiscardButton',
@@ -146,10 +144,6 @@ describe('KOMReviewDetail_Access', function () {
 		browser.assert.elements(KOMReviewDetailStatistics, 0);
 	});
 
-	it('hides KOMReviewDetailGeneral', function () {
-		browser.assert.elements(KOMReviewDetailGeneral, 0);
-	});
-
 	it('shows KOMReviewDetailDeckHeading', function () {
 		browser.assert.elements(KOMReviewDetailDeckHeading, 1);
 	});
@@ -194,10 +188,6 @@ describe('KOMReviewDetail_Access', function () {
 
 		it('hides KOMReviewDetailStatistics', function () {
 			browser.assert.elements(KOMReviewDetailStatistics, 0);
-		});
-
-		it('hides KOMReviewDetailGeneral', function () {
-			browser.assert.elements(KOMReviewDetailGeneral, 0);
 		});
 
 		context('reviewing', function test_reviewing() {
@@ -388,10 +378,6 @@ describe('KOMReviewDetail_Access', function () {
 
 		it('shows KOMReviewDetailStatisticsToday', function () {
 			browser.assert.elements(KOMReviewDetailStatisticsToday, 1);
-		});
-
-		it('shows KOMReviewDetailGeneral', function () {
-			browser.assert.elements(KOMReviewDetailGeneral, 1);
 		});
 
 		it('shows KOMReviewDetailStatisticsGeneral', function () {

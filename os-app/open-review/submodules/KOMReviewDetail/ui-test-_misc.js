@@ -609,7 +609,7 @@ describe('KOMReviewDetail_Misc', function () {
 
 	});
 
-	describe('KOMReviewDetailGeneral', function test_KOMReviewDetailGeneral() {
+	describe('KOMReviewDetailStatisticsGeneral', function test_KOMReviewDetailStatisticsGeneral() {
 
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
@@ -627,7 +627,7 @@ describe('KOMReviewDetail_Misc', function () {
 		});
 
 		it('sets KOMReviewGeneralSpacings', function () {
-			browser.assert.text('.KOMReviewGeneral .KOMReviewChartCompositionStatesTotalCardsValue', '1');
+			browser.assert.text(`${ KOMReviewDetailStatisticsGeneral } .KOMReviewChartCompositionStatesTotalCardsValue`, '1');
 		});
 
 	});

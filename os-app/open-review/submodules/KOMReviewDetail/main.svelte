@@ -287,9 +287,7 @@ import KOMReviewGeneral from '../KOMReviewGeneral/main.svelte';
 			<KOMReviewToday KOMReviewTodaySpacings={ KOMReviewDetailDeck.$KOMDeckTodayStudiedSpacings || [] } />
 		{/if}
 
-		<div class="KOMReviewDetailGeneral">
-			<KOMReviewGeneral KOMReviewGeneralSpacings={ KOMReviewDetailDeck.$KOMDeckSpacings } />
-		</div>
+		<KOMReviewGeneral KOMReviewGeneralSpacings={ KOMReviewDetailDeck.$KOMDeckSpacings } />
 	</div>
 {/if}
 
