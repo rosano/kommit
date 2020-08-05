@@ -1,13 +1,21 @@
 import KOMReviewLogic from '../../logic.js';
 
-const uGrouping = function (inputData) {
-	return KOMReviewLogic.KOMReviewLogicDayGrouping(inputData);
-};
-
 const mod = {
 
 	KOMReviewGeneralTableDays() {
 		return 7;
+	},
+
+	KOMReviewGeneralGroup(inputData) {
+		if (!Array.isArray(inputData)) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		return inputData.reduce(function (coll, item) {
+			coll[KOMReviewLogic.KOMReviewLogicDayGrouping(item.KOMSpacingDueDate)] = (coll[KOMReviewLogic.KOMReviewLogicDayGrouping(item.KOMSpacingDueDate)] || []).concat(item);
+
+			return coll;
+		}, {});
 	},
 
 	KOMReviewGeneralUpcomingFilter(inputData) {
@@ -16,11 +24,11 @@ const mod = {
 		}
 
 		return inputData.filter(function (e) {
-			if (uGrouping(e.KOMSpacingDueDate) < uGrouping(new Date())) {
+			if (KOMReviewLogic.KOMReviewLogicDayGrouping(e.KOMSpacingDueDate) < KOMReviewLogic.KOMReviewLogicDayGrouping(new Date())) {
 				return false;
 			}
 
-			if (uGrouping(e.KOMSpacingDueDate) >= uGrouping(new Date(Date.now() + 1000 * 60 * 60 * 24 * mod.KOMReviewGeneralTableDays()))) {
+			if (KOMReviewLogic.KOMReviewLogicDayGrouping(e.KOMSpacingDueDate) >= KOMReviewLogic.KOMReviewLogicDayGrouping(new Date(Date.now() + 1000 * 60 * 60 * 24 * mod.KOMReviewGeneralTableDays()))) {
 				return false;
 			}
 
