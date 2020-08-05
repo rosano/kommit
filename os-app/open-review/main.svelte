@@ -629,7 +629,7 @@ const mod = {
 						return false;
 					}
 					
-					return KOMPlayLogic.KOMPlayDayGrouping(e.KOMSpacingChronicles.slice(-1).pop().KOMChronicleResponseDate) === KOMPlayLogic.KOMPlayDayGrouping(new Date());
+					return KOMPlayLogic.KOMReviewLogicDayGrouping(e.KOMSpacingChronicles.slice(-1).pop().KOMChronicleResponseDate) === KOMPlayLogic.KOMReviewLogicDayGrouping(new Date());
 				});
 
 				deck.$KOMDeckGeneralNotUnseenCount = deck.$KOMDeckSpacings.filter(function (e) {

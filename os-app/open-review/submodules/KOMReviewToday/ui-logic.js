@@ -1,5 +1,6 @@
 import KOMSpacingModel from '../../../_shared/KOMSpacing/model.js';
 import KOMPlayLogic from '../../../sub-play/ui-logic.js';
+import KOMReviewLogic from '../../logic.js';
 
 const mod = {
 
@@ -30,7 +31,7 @@ const mod = {
 
 		return inputData.reduce(function (coll, item) {
 			return coll + item.KOMSpacingChronicles.filter(function (e) {
-				return KOMPlayLogic.KOMPlayDayGrouping(e.KOMChronicleResponseDate) === KOMPlayLogic.KOMPlayDayGrouping(new Date());
+				return KOMReviewLogic.KOMReviewLogicDayGrouping(e.KOMChronicleResponseDate) === KOMReviewLogic.KOMReviewLogicDayGrouping(new Date());
 			}).reduce(function (responseTime, e) {
 				return responseTime + (e.KOMChronicleResponseDate - e.KOMChronicleDrawDate);
 			}, 0);
@@ -60,7 +61,7 @@ const mod = {
 			}, 0) * 1.0 / scores.length;
 		})(inputData.filter(function (e) {
 			const items = e.KOMSpacingChronicles.filter(function (e) {
-				return KOMPlayLogic.KOMPlayDayGrouping(e.KOMChronicleResponseDate) === KOMPlayLogic.KOMPlayDayGrouping(new Date());
+				return KOMReviewLogic.KOMReviewLogicDayGrouping(e.KOMChronicleResponseDate) === KOMReviewLogic.KOMReviewLogicDayGrouping(new Date());
 			});
 
 			if (!items.length) {
@@ -80,7 +81,7 @@ const mod = {
 			return true;
 		}).map(function (e) {
 			return e.KOMSpacingChronicles.filter(function (e) {
-				return KOMPlayLogic.KOMPlayDayGrouping(e.KOMChronicleResponseDate) === KOMPlayLogic.KOMPlayDayGrouping(new Date());
+				return KOMReviewLogic.KOMReviewLogicDayGrouping(e.KOMChronicleResponseDate) === KOMReviewLogic.KOMReviewLogicDayGrouping(new Date());
 			}).filter(function (e) {
 				return e.KOMChronicleResponseType === KOMPlayLogic.KOMPlayResponseTypeAgain();
 			}).length ? 0 : 1;

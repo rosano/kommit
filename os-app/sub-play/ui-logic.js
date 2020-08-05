@@ -1,3 +1,4 @@
+import KOMReviewLogic from '../open-review/logic.js';
 import KOMSpacingModel from '../_shared/KOMSpacing/model.js';
 
 const kIntervalAgainSeconds = 60;
@@ -17,14 +18,6 @@ const kMultiplierSummandEasy = 0.15;
 const kMultiplierMultiplicandEasy = 1.3;
 
 const mod = {
-
-	KOMPlayDayGrouping(inputData) {
-		if (!(inputData instanceof Date) || Number.isNaN(inputData.getTime())) {
-			throw new Error('KOMErrorInputNotValid');
-		}
-
-		return (new Date(inputData.valueOf() - (inputData.getTimezoneOffset() / 60 + 4) * 1000 * 60 * 60)).toJSON().slice(0, 10);
-	},
 
 	KOMPlaySort(inputData) {
 		if (!Array.isArray(inputData)) {
@@ -185,8 +178,8 @@ const mod = {
 			return 0;
 		}
 
-		const due = new Date(mod.KOMPlayDayGrouping(spacing.KOMSpacingDueDate)).valueOf();
-		const date = new Date(mod.KOMPlayDayGrouping(chronicle.KOMChronicleResponseDate)).valueOf();
+		const due = new Date(KOMReviewLogic.KOMReviewLogicDayGrouping(spacing.KOMSpacingDueDate)).valueOf();
+		const date = new Date(KOMReviewLogic.KOMReviewLogicDayGrouping(chronicle.KOMChronicleResponseDate)).valueOf();
 
 		if (date <= due) {
 			return 0;
@@ -435,7 +428,7 @@ const mod = {
 
 		return Object.assign({
 			KOMChronicleDrawDate: param1,
-		}, param2.KOMSpacingDrawDate && KOMSpacingModel.KOMSpacingModelIsReviewing(param2) && mod.KOMPlayDayGrouping(param1) === mod.KOMPlayDayGrouping(param2.KOMSpacingDrawDate) ? {
+		}, param2.KOMSpacingDrawDate && KOMSpacingModel.KOMSpacingModelIsReviewing(param2) && KOMReviewLogic.KOMReviewLogicDayGrouping(param1) === KOMReviewLogic.KOMReviewLogicDayGrouping(param2.KOMSpacingDrawDate) ? {
 			KOMChronicleDidDrawMultipleTimes: true,
 		} : {});
 	},
@@ -451,7 +444,7 @@ const mod = {
 
 		return Object.assign({
 			KOMChronicleFlipDate: param1,
-		}, param2.KOMSpacingFlipDate && KOMSpacingModel.KOMSpacingModelIsReviewing(param2) && mod.KOMPlayDayGrouping(param1) === mod.KOMPlayDayGrouping(param2.KOMSpacingFlipDate) ? {
+		}, param2.KOMSpacingFlipDate && KOMSpacingModel.KOMSpacingModelIsReviewing(param2) && KOMReviewLogic.KOMReviewLogicDayGrouping(param1) === KOMReviewLogic.KOMReviewLogicDayGrouping(param2.KOMSpacingFlipDate) ? {
 			KOMChronicleDidFlipMultipleTimes: true,
 		} : {});
 	},

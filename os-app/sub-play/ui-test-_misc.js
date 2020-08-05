@@ -713,7 +713,7 @@ describe('KOMPlay_Misc', function () {
 		// });
 
 		it('sets KOMSpacingDrawDate', function () {
-			browser.assert.text('#TestKOMSpacingDrawDate', KOMPlayLogic.KOMPlayDayGrouping(new Date()));
+			browser.assert.text('#TestKOMSpacingDrawDate', KOMPlayLogic.KOMReviewLogicDayGrouping(new Date()));
 		});
 
 		it('sends KOMPlayDispatchUpdate', function () {
@@ -739,7 +739,7 @@ describe('KOMPlay_Misc', function () {
 		});
 
 		it('sets KOMSpacingFlipDate', function () {
-			browser.assert.text('#TestKOMSpacingFlipDate', KOMPlayLogic.KOMPlayDayGrouping(new Date()));
+			browser.assert.text('#TestKOMSpacingFlipDate', KOMPlayLogic.KOMReviewLogicDayGrouping(new Date()));
 		});
 
 		it('sets no KOMChronicleDidFlipMultipleTimes', function () {

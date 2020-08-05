@@ -1,4 +1,4 @@
-import KOMPlayLogic from '../sub-play/ui-logic.js';
+import KOMReviewLogic from './logic.js';
 import KOMSpacingModel from '../_shared/KOMSpacing/model.js';
 import KOMDeckModel from '../_shared/KOMDeck/model.js';
 
@@ -14,7 +14,7 @@ const mod = {
 				return true;
 			}
 
-			return KOMPlayLogic.KOMPlayDayGrouping(e.KOMSpacingDueDate).valueOf() <= KOMPlayLogic.KOMPlayDayGrouping(new Date()).valueOf();
+			return KOMReviewLogic.KOMReviewLogicDayGrouping(e.KOMSpacingDueDate).valueOf() <= KOMReviewLogic.KOMReviewLogicDayGrouping(new Date()).valueOf();
 		});
 	},
 
