@@ -50,7 +50,7 @@ import KOMReviewChartCompositionStates from '../KOMReviewChartCompositionStates/
 
 <div class="KOMReviewGeneral">
 
-<h3 class="KOMReviewGeneralCardStatesHeading">{ OLSKLocalized('KOMReviewGeneralCardStatesHeadingText') }</h3>
+<h2 class="KOMReviewGeneralCardStatesHeading">{ OLSKLocalized('KOMReviewGeneralCardStatesHeadingText') }</h2>
 
 <KOMReviewChartCompositionStates KOMReviewChartCompositionStatesData={ mod.DataStatesData() } />
 
