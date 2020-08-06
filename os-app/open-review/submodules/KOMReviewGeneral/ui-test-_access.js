@@ -41,7 +41,7 @@ describe('KOMReviewGeneral_Access', function () {
 		browser.assert.elements('.KOMReviewChartCompositionCollection', 1);
 	});
 
-	context('KOMReviewGeneralSpacings', function () {
+	context('upcoming', function () {
 		
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {

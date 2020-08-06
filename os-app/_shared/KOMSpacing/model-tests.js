@@ -527,7 +527,7 @@ describe('KOMSpacingModelGroupByStatus', function test_KOMSpacingModelGroupBySta
 
 	it('groups mature', function () {
 		const item = Object.assign(StubSpacingObjectValid(), {
-			KOMSpacingInterval: 21,
+			KOMSpacingInterval: mainModule.KOMSpacingModelMatureThreshold(),
 			KOMSpacingDueDate: new Date(),
 		});
 		deepEqual(mainModule.KOMSpacingModelGroupByStatus([item]), uGrouping({
