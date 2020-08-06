@@ -6,7 +6,7 @@ const mod = {
 		return 7;
 	},
 
-	KOMReviewGeneralGroup(inputData) {
+	KOMReviewGeneralGroupByDate(inputData) {
 		if (!Array.isArray(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
