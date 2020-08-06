@@ -1,5 +1,6 @@
 <script>
 export let KOMReviewChartElementDateBarTableData;
+export let KOMReviewChartElementHorizontalStackedBarColors;
 
 const mod = {
 
@@ -30,6 +31,7 @@ import KOMReviewChartElementDateBarTableRow from '../KOMReviewChartElementDateBa
 	<KOMReviewChartElementDateBarTableRow
 		KOMReviewChartElementDateBarTableRowData={ item }
 		KOMReviewChartElementHorizontalStackedBarMaximum={ mod.DataMaximum() }
+		KOMReviewChartElementHorizontalStackedBarColors={ KOMReviewChartElementHorizontalStackedBarColors }
 		/>
 {/each}
 	

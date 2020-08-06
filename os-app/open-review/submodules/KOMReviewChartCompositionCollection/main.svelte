@@ -1,5 +1,6 @@
 <script>
 export let KOMReviewChartCompositionCollectionData;
+export let KOMReviewChartElementHorizontalStackedBarColors;
 
 import OLSKInternational from 'OLSKInternational';
 const OLSKLocalized = function(translationConstant) {
@@ -65,7 +66,9 @@ import KOMReviewChartElementHorizontalStackedBar from '../KOMReviewChartElementH
 
 <tr>
 	<td colspan="3">
-		<KOMReviewChartElementHorizontalStackedBar KOMReviewChartElementHorizontalStackedBarValues={ mod.DataStackedBarValues() } />
+		<KOMReviewChartElementHorizontalStackedBar KOMReviewChartElementHorizontalStackedBarValues={ mod.DataStackedBarValues() } 
+		KOMReviewChartElementHorizontalStackedBarColors={ KOMReviewChartElementHorizontalStackedBarColors }
+		/>
 	</td>
 </tr>
 

@@ -1,5 +1,6 @@
 <script>
 export let KOMReviewChartElementDateBarTableRowData;
+export let KOMReviewChartElementHorizontalStackedBarColors;
 export let KOMReviewChartElementHorizontalStackedBarMaximum;
 
 import KOMReviewChartElementDateBarTableRowLogic from './ui-logic.js';
@@ -31,6 +32,7 @@ import KOMReviewChartElementHorizontalStackedBar from '../KOMReviewChartElementH
 	<KOMReviewChartElementHorizontalStackedBar
 		KOMReviewChartElementHorizontalStackedBarValues={ KOMReviewChartElementDateBarTableRowData.KOMReviewChartElementDateBarTableRowDataValues }
 		KOMReviewChartElementHorizontalStackedBarMaximum={ KOMReviewChartElementHorizontalStackedBarMaximum }
+		KOMReviewChartElementHorizontalStackedBarColors={ KOMReviewChartElementHorizontalStackedBarColors }
 		/>
 </td>
 

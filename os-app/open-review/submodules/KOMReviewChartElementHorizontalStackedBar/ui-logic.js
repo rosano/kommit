@@ -43,18 +43,22 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
+		if (!param2.length) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
 		if (!Array.isArray(param3)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		if (param3.length < 3) {
+		if (param3.length !== param2.length) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
 		return param1()
 			.domain(param3)
-			.range(param2[param3.length].slice().reverse())
-			.unknown('red');
+			.range(param2)
+			.unknown('pink');
 	},
 
 };

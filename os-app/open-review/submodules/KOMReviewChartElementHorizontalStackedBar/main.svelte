@@ -1,5 +1,6 @@
 <script>
 export let KOMReviewChartElementHorizontalStackedBarValues;
+export let KOMReviewChartElementHorizontalStackedBarColors;
 export let KOMReviewChartElementHorizontalStackedBarMaximum = undefined;
 
 import OLSKInternational from 'OLSKInternational';
@@ -20,7 +21,7 @@ const mod = {
 	},
 
 	DataScaleColor (inputData) {
-		return KOMReviewChartElementHorizontalStackedBarLogic.KOMReviewChartElementHorizontalStackedBarScaleColor(d3.scaleOrdinal, d3.schemeGreys, KOMReviewChartElementHorizontalStackedBarValues.map(function (e, i) {
+		return KOMReviewChartElementHorizontalStackedBarLogic.KOMReviewChartElementHorizontalStackedBarScaleColor(d3.scaleOrdinal, KOMReviewChartElementHorizontalStackedBarColors, KOMReviewChartElementHorizontalStackedBarValues.map(function (e, i) {
 			return i;
 		}))(inputData);
 	},

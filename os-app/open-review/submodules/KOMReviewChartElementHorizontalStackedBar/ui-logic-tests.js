@@ -84,46 +84,52 @@ describe('KOMReviewChartElementHorizontalStackedBarScaleColor', function test_KO
 
 	it('throws if param1 not d3.scaleOrdinal', function () {
 		throws(function () {
-			mainModule.KOMReviewChartElementHorizontalStackedBarScaleColor({}, d3.schemeGreys, [1]);
+			mainModule.KOMReviewChartElementHorizontalStackedBarScaleColor({}, ['alfa', 'bravo', 'charlie'], [1]);
 		}, /KOMErrorInputNotValid/);
 	});
 
-	it('throws if param2 not d3.schemeGreys', function () {
+	it('throws if param2 not array', function () {
 		throws(function () {
-			mainModule.KOMReviewChartElementHorizontalStackedBarScaleColor(d3.scaleOrdinal, {}, [1]);
+			mainModule.KOMReviewChartElementHorizontalStackedBarScaleColor(d3.scaleOrdinal, null, [1]);
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('throws if param2 empty', function () {
+		throws(function () {
+			mainModule.KOMReviewChartElementHorizontalStackedBarScaleColor(d3.scaleOrdinal, [], [1]);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('throws if param3 not array', function () {
 		throws(function () {
-			mainModule.KOMReviewChartElementHorizontalStackedBarScaleColor(d3.scaleOrdinal, d3.schemeGreys, null);
+			mainModule.KOMReviewChartElementHorizontalStackedBarScaleColor(d3.scaleOrdinal, ['alfa', 'bravo', 'charlie'], null);
 		}, /KOMErrorInputNotValid/);
 	});
 
-	it('throws if param3 less than two', function () {
+	it('throws if param3 not equal length to param2', function () {
 		throws(function () {
-			mainModule.KOMReviewChartElementHorizontalStackedBarScaleColor(d3.scaleOrdinal, d3.schemeGreys, [1, 2]);
+			mainModule.KOMReviewChartElementHorizontalStackedBarScaleColor(d3.scaleOrdinal, ['alfa', 'bravo', 'charlie'], [1, 2]);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns function', function () {
-		deepEqual(typeof mainModule.KOMReviewChartElementHorizontalStackedBarScaleColor(d3.scaleOrdinal, d3.schemeGreys, [1, 2, 3]), 'function');
+		deepEqual(typeof mainModule.KOMReviewChartElementHorizontalStackedBarScaleColor(d3.scaleOrdinal, ['alfa', 'bravo', 'charlie'], [1, 2, 3]), 'function');
 	});
 
 	context('function', function () {
 
-		const item = mainModule.KOMReviewChartElementHorizontalStackedBarScaleColor(d3.scaleOrdinal, d3.schemeGreys, [1, 2, 3]);
+		const item = mainModule.KOMReviewChartElementHorizontalStackedBarScaleColor(d3.scaleOrdinal, ['alfa', 'bravo', 'charlie'], [1, 2, 3]);
 
 		it('sets range minimum', function () {
-			deepEqual(item(1), d3.schemeGreys[3].slice().reverse()[0]);
+			deepEqual(item(1), 'alfa');
 		});
 
 		it('sets range maximum', function () {
-			deepEqual(item(3), d3.schemeGreys[3].slice().reverse()[2]);
+			deepEqual(item(3), 'charlie');
 		});
 
 		it('sets range unknown', function () {
-			deepEqual(item(4), 'red');
+			deepEqual(item(4), 'pink');
 		});
 	
 	});

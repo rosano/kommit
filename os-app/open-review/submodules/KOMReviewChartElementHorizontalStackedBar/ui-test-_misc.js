@@ -6,10 +6,12 @@ const d3 = require('d3');
 describe('KOMReviewChartElementHorizontalStackedBar_Misc', function () {
 
 	const values = [1, 2, 3];
+	const colors = ['alfa', 'bravo', 'charlie'];
 
 	before(function () {
 		return browser.OLSKVisit(kDefaultRoute, {
 			KOMReviewChartElementHorizontalStackedBarValues: JSON.stringify(values),
+			KOMReviewChartElementHorizontalStackedBarColors: JSON.stringify(colors),
 		});
 	});
 
@@ -51,7 +53,7 @@ describe('KOMReviewChartElementHorizontalStackedBar_Misc', function () {
 
 		it('sets fill', function () {
 			values.forEach(function (e, i) {
-				browser.assert.attribute(`${ KOMReviewChartElementHorizontalStackedBarSection }:nth-child(${ i + 1 })`, 'fill', KOMReviewChartElementHorizontalStackedBarLogic.KOMReviewChartElementHorizontalStackedBarScaleColor(d3.scaleOrdinal, d3.schemeGreys, values)(e));
+				browser.assert.attribute(`${ KOMReviewChartElementHorizontalStackedBarSection }:nth-child(${ i + 1 })`, 'fill', KOMReviewChartElementHorizontalStackedBarLogic.KOMReviewChartElementHorizontalStackedBarScaleColor(d3.scaleOrdinal, colors, values)(e));
 			})
 		});
 

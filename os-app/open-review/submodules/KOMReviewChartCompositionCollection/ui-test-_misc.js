@@ -12,6 +12,7 @@ describe('KOMReviewChartCompositionCollection_Misc', function () {
 		KOMSpacingGroupingMature: Array.from(Array(3)),
 		KOMSpacingGroupingSuspended: Array.from(Array(4)),
 	};
+	const colors = ['alfa', 'bravo', 'charlie', 'delta'];
 
 	before(function () {
 		return browser.OLSKVisit(kDefaultRoute, {
@@ -30,7 +31,7 @@ describe('KOMReviewChartCompositionCollection_Misc', function () {
 	describe.skip('KOMReviewChartCompositionCollectionUnseenCardsColor', function test_KOMReviewChartCompositionCollectionUnseenCardsColor() {
 
 		it('sets style', function () {
-			browser.assert.attribute(KOMReviewChartCompositionCollectionUnseenCardsColor, 'style', `background: ${ KOMReviewChartElementHorizontalStackedBarLogic.KOMReviewChartElementHorizontalStackedBarScaleColor(d3.scaleOrdinal, d3.schemeGreys, Object.values(item))(2) }`);
+			browser.assert.attribute(KOMReviewChartCompositionCollectionUnseenCardsColor, 'style', `background: ${ KOMReviewChartElementHorizontalStackedBarLogic.KOMReviewChartElementHorizontalStackedBarScaleColor(d3.scaleOrdinal, colors, Object.values(item))(2) }`);
 		});
 
 	});
@@ -46,7 +47,7 @@ describe('KOMReviewChartCompositionCollection_Misc', function () {
 	describe.skip('KOMReviewChartCompositionCollectionDevelopingCardsColor', function test_KOMReviewChartCompositionCollectionDevelopingCardsColor() {
 
 		it('sets style', function () {
-			browser.assert.attribute(KOMReviewChartCompositionCollectionDevelopingCardsColor, 'style', `background: ${ KOMReviewChartElementHorizontalStackedBarLogic.KOMReviewChartElementHorizontalStackedBarScaleColor(d3.scaleOrdinal, d3.schemeGreys, Object.values(item))(2) }`);
+			browser.assert.attribute(KOMReviewChartCompositionCollectionDevelopingCardsColor, 'style', `background: ${ KOMReviewChartElementHorizontalStackedBarLogic.KOMReviewChartElementHorizontalStackedBarScaleColor(d3.scaleOrdinal, colors, Object.values(item))(2) }`);
 		});
 
 	});
@@ -62,7 +63,7 @@ describe('KOMReviewChartCompositionCollection_Misc', function () {
 	describe.skip('KOMReviewChartCompositionCollectionMatureCardsColor', function test_KOMReviewChartCompositionCollectionMatureCardsColor() {
 
 		it('sets style', function () {
-			browser.assert.attribute(KOMReviewChartCompositionCollectionMatureCardsColor, 'style', `background: ${ KOMReviewChartElementHorizontalStackedBarLogic.KOMReviewChartElementHorizontalStackedBarScaleColor(d3.scaleOrdinal, d3.schemeGreys, Object.values(item))(3) }`);
+			browser.assert.attribute(KOMReviewChartCompositionCollectionMatureCardsColor, 'style', `background: ${ KOMReviewChartElementHorizontalStackedBarLogic.KOMReviewChartElementHorizontalStackedBarScaleColor(d3.scaleOrdinal, colors, Object.values(item))(3) }`);
 		});
 
 	});
@@ -78,7 +79,7 @@ describe('KOMReviewChartCompositionCollection_Misc', function () {
 	describe.skip('KOMReviewChartCompositionCollectionSuspendedCardsColor', function test_KOMReviewChartCompositionCollectionSuspendedCardsColor() {
 
 		it('sets style', function () {
-			browser.assert.attribute(KOMReviewChartCompositionCollectionSuspendedCardsColor, 'style', `background: ${ KOMReviewChartElementHorizontalStackedBarLogic.KOMReviewChartElementHorizontalStackedBarScaleColor(d3.scaleOrdinal, d3.schemeGreys, Object.values(item))(4) }`);
+			browser.assert.attribute(KOMReviewChartCompositionCollectionSuspendedCardsColor, 'style', `background: ${ KOMReviewChartElementHorizontalStackedBarLogic.KOMReviewChartElementHorizontalStackedBarScaleColor(d3.scaleOrdinal, colors, Object.values(item))(4) }`);
 		});
 
 	});
