@@ -13,9 +13,9 @@ const mod = {
 	// DATA
 
 	DataSum() {
-		return KOMReviewChartElementDateBarTableRowData.KOMReviewChartElementDateBarTableRowDataValues.reduce(function (coll, item) {
+		return Math.round(KOMReviewChartElementDateBarTableRowData.KOMReviewChartElementDateBarTableRowDataValues.reduce(function (coll, item) {
 			return coll + item;
-		}, 0);
+		}, 0) * 10) / 10;
 	},
 
 };
