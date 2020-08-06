@@ -70,9 +70,9 @@ const KOMSettingStorage = require('./os-app/_shared/KOMSetting/storage.js').defa
 			return {
 				KOMChronicleDrawDate: inputData,
 				KOMChronicleFlipDate: inputData,
-				KOMChronicleResponseDate: new Date(inputData.valueOf() + 10000),
+				KOMChronicleResponseDate: inputData,
 				KOMChronicleResponseType: 'RESPONSE_EASY',
-				KOMChronicleDueDate: inputData,
+				KOMChronicleDueDate: new Date(inputData.valueOf() + 1000 * 60 * 60 * 24),
 			};
 		},
 
