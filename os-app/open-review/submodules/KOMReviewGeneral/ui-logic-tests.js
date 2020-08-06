@@ -133,3 +133,46 @@ describe('KOMReviewGeneralHistoricalDates', function test_KOMReviewGeneralHistor
 
 });
 
+describe('KOMReviewGeneralHistoricalFilter', function test_KOMReviewGeneralHistoricalFilter() {
+
+	const offset = (function (inputData) {
+		return inputData < 10 ? `0${ inputData }` : inputData;
+	})((new Date()).getTimezoneOffset() / 60);
+
+	const uGroupingDate = function (inputData = 0) {
+		return new Date(Date.parse(`${ KOMReviewLogic.KOMReviewLogicDayGrouping(new Date()) }T04:00:00-${ offset }:00`) + inputData);
+	};
+
+	it('throws if not array', function () {
+		throws(function () {
+			mainModule.KOMReviewGeneralHistoricalFilter(null);
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns array', function () {
+		deepEqual(mainModule.KOMReviewGeneralHistoricalFilter([]), []);
+	});
+
+	it('excludes if unseen', function () {
+		deepEqual(mainModule.KOMReviewGeneralHistoricalFilter([StubSpacingObjectValid()]), []);
+	});
+
+	it('excludes if after today', function () {
+		deepEqual(mainModule.KOMReviewGeneralHistoricalFilter([StubSpacingObjectHistorical(uGroupingDate(1000 * 60 * 60 * 24))]), []);
+	});
+
+	it('excludes if before KOMReviewGeneralTableDays', function () {
+		deepEqual(mainModule.KOMReviewGeneralHistoricalFilter([StubSpacingObjectHistorical(uGroupingDate(-1000 * 60 * 60 * 24 * mainModule.KOMReviewGeneralTableDays() - 1))]), []);
+	});
+
+	it('includes if today', function () {
+		const item = StubSpacingObjectHistorical(uGroupingDate());
+		deepEqual(mainModule.KOMReviewGeneralHistoricalFilter([item]), [item]);
+	});
+
+	it('includes if KOMReviewGeneralTableDays', function () {
+		const item = StubSpacingObjectHistorical(uGroupingDate(-1000 * 60 * 60 * 24 * mainModule.KOMReviewGeneralTableDays()));
+		deepEqual(mainModule.KOMReviewGeneralHistoricalFilter([item]), [item]);
+	});
+
+});

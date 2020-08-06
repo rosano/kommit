@@ -52,6 +52,30 @@ const mod = {
 		});
 	},
 
+	KOMReviewGeneralHistoricalFilter(inputData) {
+		if (!Array.isArray(inputData)) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		return inputData.filter(function (e) {
+			if (!e.KOMSpacingDueDate) {
+				return false;
+			}
+
+			return e.KOMSpacingChronicles.filter(function (e) {
+				if (KOMReviewLogic.KOMReviewLogicDayGrouping(e.KOMChronicleResponseDate) > KOMReviewLogic.KOMReviewLogicDayGrouping(new Date())) {
+					return false;
+				}
+
+				if (KOMReviewLogic.KOMReviewLogicDayGrouping(e.KOMChronicleResponseDate) < KOMReviewLogic.KOMReviewLogicDayGrouping(new Date(Date.now() - 1000 * 60 * 60 * 24 * mod.KOMReviewGeneralTableDays()))) {
+					return false;
+				}
+
+				return true;
+			}).length;
+		});
+	},
+
 };
 
 export default mod;

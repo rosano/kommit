@@ -66,6 +66,13 @@ const KOMSettingStorage = require('./os-app/_shared/KOMSetting/storage.js').defa
 			};
 		},
 
+		StubSpacingObjectHistorical(inputData) {
+			return Object.assign(StubSpacingObjectValid(), {
+				KOMSpacingChronicles: [StubChronicleObjectValid(inputData || new Date(Date.now() - 1000 * 60 * 60 * 24 * 3))],
+				KOMSpacingDueDate: new Date(),
+			});
+		},
+
 		StubChronicleObjectValid(inputData = new Date()) {
 			return {
 				KOMChronicleDrawDate: inputData,
