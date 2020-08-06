@@ -21,7 +21,9 @@ const mod = {
 	},
 
 	DataStackedBarValues () {
-		return Object.values(KOMReviewChartCompositionCollectionData).slice(1);
+		return Object.values(KOMReviewChartCompositionCollectionData).slice(1).map(function (e) {
+			return e.length;
+		});
 	},
 
 };
