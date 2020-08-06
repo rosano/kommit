@@ -7,6 +7,7 @@ const OLSKLocalized = function(translationConstant) {
 };
 
 import KOMReviewTodayLogic from './ui-logic.js';
+import KOMReviewLogic from '../../ui-logic.js';
 </script>
 
 <div class="KOMReviewToday">
@@ -22,7 +23,7 @@ import KOMReviewTodayLogic from './ui-logic.js';
 
 <tr>
 	<td class="KOMReviewTodayTimeMinutesLabel">{ OLSKLocalized('KOMReviewTodayTimeMinutesLabelText') }</td>
-	<td class="KOMReviewTodayTimeMinutesValue">{ KOMReviewTodayLogic.KOMReviewTodayMinutes(KOMReviewTodayLogic.KOMReviewTodayTotalMilliseconds(KOMReviewTodaySpacings)) }</td>
+	<td class="KOMReviewTodayTimeMinutesValue">{ KOMReviewLogic.KOMReviewTotalMinutes(KOMReviewTodayLogic.KOMReviewTodayTotalMilliseconds(KOMReviewTodaySpacings)) }</td>
 </tr>
 
 <tr>

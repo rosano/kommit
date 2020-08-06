@@ -38,14 +38,6 @@ const mod = {
 		}, 0);
 	},
 
-	KOMReviewTodayMinutes(inputData) {
-		if (typeof inputData !== 'number') {
-			throw new Error('KOMErrorInputNotValid');
-		}
-
-		return Math.round(inputData / 1000 / 60 * 10) / 10;
-	},
-
 	KOMReviewTodayReviewAccuracy(inputData) {
 		if (!Array.isArray(inputData)) {
 			throw new Error('KOMErrorInputNotValid');

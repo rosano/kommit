@@ -85,28 +85,6 @@ describe('KOMReviewTodayTotalMilliseconds', function test_KOMReviewTodayTotalMil
 
 });
 
-describe('KOMReviewTodayMinutes', function test_KOMReviewTodayMinutes() {
-
-	it('throws if not number', function () {
-		throws(function () {
-			mainModule.KOMReviewTodayMinutes('10000');
-		}, /KOMErrorInputNotValid/);
-	});
-
-	it('returns number', function () {
-		deepEqual(mainModule.KOMReviewTodayMinutes(60000), 1);
-	});
-
-	it('calculates fraction', function () {
-		deepEqual(mainModule.KOMReviewTodayMinutes(30000), 0.5);
-	});
-
-	it('rounds to first decimal', function () {
-		deepEqual(mainModule.KOMReviewTodayMinutes(15000), 0.3);
-	});
-
-});
-
 describe('KOMReviewTodayReviewAccuracy', function test_KOMReviewTodayReviewAccuracy() {
 
 	it('throws if not array', function () {

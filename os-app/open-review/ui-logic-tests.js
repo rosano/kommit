@@ -368,3 +368,25 @@ describe('KOMReviewDeckSort', function test_KOMReviewDeckSort() {
 	});
 
 });
+
+describe('KOMReviewTotalMinutes', function test_KOMReviewTotalMinutes() {
+
+	it('throws if not number', function () {
+		throws(function () {
+			mainModule.KOMReviewTotalMinutes('10000');
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns number', function () {
+		deepEqual(mainModule.KOMReviewTotalMinutes(60000), 1);
+	});
+
+	it('calculates fraction', function () {
+		deepEqual(mainModule.KOMReviewTotalMinutes(30000), 0.5);
+	});
+
+	it('rounds to first decimal', function () {
+		deepEqual(mainModule.KOMReviewTotalMinutes(15000), 0.3);
+	});
+
+});
