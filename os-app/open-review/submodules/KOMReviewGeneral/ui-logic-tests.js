@@ -16,13 +16,13 @@ describe('KOMReviewGeneralColorScheme', function test_KOMReviewGeneralColorSchem
 
 	it('returns array', function () {
 		deepEqual(mainModule.KOMReviewGeneralColorScheme(), [
-			'#f7f7f7',
-			'#d9d9d9',
-			'#bdbdbd',
-			'#969696',
-			'#737373',
-			'#525252',
 			'#252525',
+			'#525252',
+			'#737373',
+			'#969696',
+			'#bdbdbd',
+			'#d9d9d9',
+			'#f7f7f7',
 			]);
 	});
 
@@ -36,10 +36,18 @@ describe('KOMReviewGeneralColorUnseen', function test_KOMReviewGeneralColorUnsee
 
 });
 
+describe('KOMReviewGeneralColorRelearning', function test_KOMReviewGeneralColorRelearning() {
+
+	it('returns string', function () {
+		deepEqual(mainModule.KOMReviewGeneralColorRelearning(), mainModule.KOMReviewGeneralColorScheme()[1]);
+	});
+
+});
+
 describe('KOMReviewGeneralColorDeveloping', function test_KOMReviewGeneralColorDeveloping() {
 
 	it('returns string', function () {
-		deepEqual(mainModule.KOMReviewGeneralColorDeveloping(), mainModule.KOMReviewGeneralColorScheme()[1]);
+		deepEqual(mainModule.KOMReviewGeneralColorDeveloping(), mainModule.KOMReviewGeneralColorScheme()[2]);
 	});
 
 });
@@ -47,15 +55,7 @@ describe('KOMReviewGeneralColorDeveloping', function test_KOMReviewGeneralColorD
 describe('KOMReviewGeneralColorMature', function test_KOMReviewGeneralColorMature() {
 
 	it('returns string', function () {
-		deepEqual(mainModule.KOMReviewGeneralColorMature(), mainModule.KOMReviewGeneralColorScheme()[2]);
-	});
-
-});
-
-describe('KOMReviewGeneralColorRelearning', function test_KOMReviewGeneralColorRelearning() {
-
-	it('returns string', function () {
-		deepEqual(mainModule.KOMReviewGeneralColorRelearning(), mainModule.KOMReviewGeneralColorScheme()[3]);
+		deepEqual(mainModule.KOMReviewGeneralColorMature(), mainModule.KOMReviewGeneralColorScheme()[3]);
 	});
 
 });

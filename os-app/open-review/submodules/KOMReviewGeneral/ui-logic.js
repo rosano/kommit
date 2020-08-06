@@ -4,13 +4,13 @@ const mod = {
 
 	KOMReviewGeneralColorScheme() {
 		return [
-			'#f7f7f7',
-			'#d9d9d9',
-			'#bdbdbd',
-			'#969696',
-			'#737373',
-			'#525252',
 			'#252525',
+			'#525252',
+			'#737373',
+			'#969696',
+			'#bdbdbd',
+			'#d9d9d9',
+			'#f7f7f7',
 		];
 	},
 
@@ -18,15 +18,15 @@ const mod = {
 		return mod.KOMReviewGeneralColorScheme()[0];
 	},
 
-	KOMReviewGeneralColorDeveloping () {
+	KOMReviewGeneralColorRelearning () {
 		return mod.KOMReviewGeneralColorScheme()[1];
 	},
 
-	KOMReviewGeneralColorMature () {
+	KOMReviewGeneralColorDeveloping () {
 		return mod.KOMReviewGeneralColorScheme()[2];
 	},
 
-	KOMReviewGeneralColorRelearning () {
+	KOMReviewGeneralColorMature () {
 		return mod.KOMReviewGeneralColorScheme()[3];
 	},
 
