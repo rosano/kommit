@@ -142,9 +142,9 @@ const mod = {
 	KOMReviewGeneralHistoricalColors() {
 		return [
 			mod.KOMReviewGeneralColorUnseen(),
+			mod.KOMReviewGeneralColorRelearning(),
 			mod.KOMReviewGeneralColorDeveloping(),
 			mod.KOMReviewGeneralColorMature(),
-			mod.KOMReviewGeneralColorRelearning(),
 			];
 	},
 

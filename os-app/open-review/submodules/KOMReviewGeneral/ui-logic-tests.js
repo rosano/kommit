@@ -315,9 +315,9 @@ describe('KOMReviewGeneralHistoricalColors', function test_KOMReviewGeneralHisto
 	it('returns array', function () {
 		deepEqual(mainModule.KOMReviewGeneralHistoricalColors(), [
 			mainModule.KOMReviewGeneralColorUnseen(),
+			mainModule.KOMReviewGeneralColorRelearning(),
 			mainModule.KOMReviewGeneralColorDeveloping(),
 			mainModule.KOMReviewGeneralColorMature(),
-			mainModule.KOMReviewGeneralColorRelearning(),
 			]);
 	});
 

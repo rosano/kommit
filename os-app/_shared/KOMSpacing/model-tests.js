@@ -545,9 +545,9 @@ describe('KOMSpacingModelGroupChroniclesByStatus', function test_KOMSpacingModel
 	const uGrouping = function (inputData = {}) {
 		return Object.assign({
 			KOMChronicleGroupingLearning: [],
+			KOMChronicleGroupingRelearning: [],
 			KOMChronicleGroupingDeveloping: [],
 			KOMChronicleGroupingMature: [],
-			KOMChronicleGroupingRelearning: [],
 		}, inputData);
 	};
 
@@ -634,9 +634,9 @@ describe('KOMSpacingModelGroupChroniclesByStatus', function test_KOMSpacingModel
 			KOMSpacingChronicles: item,
 		})], KOMSharedLogic.KOMSharedGroupingDay(new Date())), uGrouping({
 			KOMChronicleGroupingLearning: item.slice(0, 2),
+			KOMChronicleGroupingRelearning: item.slice(4, 6),
 			KOMChronicleGroupingDeveloping: item.slice(2, 3).concat(item[6]),
 			KOMChronicleGroupingMature: item.slice(3, 4),
-			KOMChronicleGroupingRelearning: item.slice(4, 6),
 		}));
 	});
 

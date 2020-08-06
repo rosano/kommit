@@ -276,9 +276,9 @@ const mod = {
 			return coll;
 		}, {
 			KOMChronicleGroupingLearning: [],
+			KOMChronicleGroupingRelearning: [],
 			KOMChronicleGroupingDeveloping: [],
 			KOMChronicleGroupingMature: [],
-			KOMChronicleGroupingRelearning: [],
 		});
 	},
 
