@@ -488,6 +488,7 @@ describe('KOMSpacingModelGroupByStatus', function test_KOMSpacingModelGroupBySta
 
 	const uGrouping = function (inputData = {}) {
 		return Object.assign({
+			KOMSpacingGroupingTotal: [],
 			KOMSpacingGroupingUnseen: [],
 			KOMSpacingGroupingDeveloping: [],
 			KOMSpacingGroupingMature: [],
@@ -508,6 +509,7 @@ describe('KOMSpacingModelGroupByStatus', function test_KOMSpacingModelGroupBySta
 	it('groups unseen', function () {
 		const item = StubSpacingObjectValid();
 		deepEqual(mainModule.KOMSpacingModelGroupByStatus([item]), uGrouping({
+			KOMSpacingGroupingTotal: [item],
 			KOMSpacingGroupingUnseen: [item],
 		}));
 	});
@@ -518,6 +520,7 @@ describe('KOMSpacingModelGroupByStatus', function test_KOMSpacingModelGroupBySta
 			KOMSpacingDueDate: new Date(),
 		});
 		deepEqual(mainModule.KOMSpacingModelGroupByStatus([item]), uGrouping({
+			KOMSpacingGroupingTotal: [item],
 			KOMSpacingGroupingDeveloping: [item],
 		}));
 	});
@@ -528,6 +531,7 @@ describe('KOMSpacingModelGroupByStatus', function test_KOMSpacingModelGroupBySta
 			KOMSpacingDueDate: new Date(),
 		});
 		deepEqual(mainModule.KOMSpacingModelGroupByStatus([item]), uGrouping({
+			KOMSpacingGroupingTotal: [item],
 			KOMSpacingGroupingMature: [item],
 		}));
 	});

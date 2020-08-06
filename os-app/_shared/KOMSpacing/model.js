@@ -213,6 +213,8 @@ const mod = {
 		}
 
 		return inputData.reduce(function (coll, item) {
+			coll.KOMSpacingGroupingTotal.push(item);
+
 			if (mod.KOMSpacingModelIsUnseen(item)) {
 				coll.KOMSpacingGroupingUnseen.push(item);
 			}
@@ -227,6 +229,7 @@ const mod = {
 			
 			return coll;
 		}, {
+			KOMSpacingGroupingTotal: [],
 			KOMSpacingGroupingUnseen: [],
 			KOMSpacingGroupingDeveloping: [],
 			KOMSpacingGroupingMature: [],
