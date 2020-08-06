@@ -2,6 +2,38 @@ import KOMSharedLogic from '../../../_shared/KOMSharedLogic/main.js';
 
 const mod = {
 
+	KOMReviewGeneralColorScheme() {
+		return [
+			'#f7f7f7',
+			'#d9d9d9',
+			'#bdbdbd',
+			'#969696',
+			'#737373',
+			'#525252',
+			'#252525',
+		];
+	},
+
+	KOMReviewGeneralColorUnseen () {
+		return mod.KOMReviewGeneralColorScheme()[0];
+	},
+
+	KOMReviewGeneralColorDeveloping () {
+		return mod.KOMReviewGeneralColorScheme()[1];
+	},
+
+	KOMReviewGeneralColorMature () {
+		return mod.KOMReviewGeneralColorScheme()[2];
+	},
+
+	KOMReviewGeneralColorRelearning () {
+		return mod.KOMReviewGeneralColorScheme()[3];
+	},
+
+	KOMReviewGeneralColorSuspended () {
+		return mod.KOMReviewGeneralColorScheme()[4];
+	},
+
 	KOMReviewGeneralTableDays() {
 		return 7;
 	},
