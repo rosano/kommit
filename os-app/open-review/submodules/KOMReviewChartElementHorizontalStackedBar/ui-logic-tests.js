@@ -2,7 +2,7 @@ const { throws, deepEqual } = require('assert');
 
 const mainModule = require('./ui-logic.js').default;
 
-const d3 = require('d3');
+const d3 = require('d3-scale');
 
 describe('KOMReviewChartElementHorizontalStackedBarWidth', function test_KOMReviewChartElementHorizontalStackedBarWidth() {
 

@@ -1,7 +1,7 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 const KOMReviewChartElementHorizontalStackedBarLogic = require('./ui-logic.js').default;
-const d3 = require('d3');
+const d3 = require('d3-scale');
 
 describe('KOMReviewChartElementHorizontalStackedBar_Misc', function () {
 

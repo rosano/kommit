@@ -9,7 +9,7 @@ const OLSKLocalized = function(translationConstant) {
 
 import KOMReviewChartElementHorizontalStackedBarLogic from '../KOMReviewChartElementHorizontalStackedBar/ui-logic.js';
 
-import d3 from '../../../_shared/__external/d3/dist/d3.min.js';
+import d3 from '../../../_shared/__external/d3-scale/dist/d3-scale.min.js';
 
 const mod = {
 

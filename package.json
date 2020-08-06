@@ -62,7 +62,7 @@
     "vmsg": "latest",
 
     "// DATA VISUALISATION": null,
-    "d3": "latest",
+    "d3-scale": "latest",
 
     "// I sacrifice myself for the commas of others": null
   },

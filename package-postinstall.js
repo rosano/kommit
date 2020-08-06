@@ -51,7 +51,7 @@
 		'OLSKUIAssets',
 		'launchlet',
 		'vmsg',
-		'd3',
+		'd3-scale',
 
 		// pass tests
 		'OLSKMasterList',
