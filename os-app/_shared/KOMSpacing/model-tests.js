@@ -2,6 +2,8 @@ const { throws, deepEqual } = require('assert');
 
 const mainModule = require('./model.js').default;
 
+const KOMReviewLogic = require('../../open-review/ui-logic.js').default;
+
 const kTesting = {
 	StubSpacingObjectValid() {
 		return {
@@ -533,6 +535,108 @@ describe('KOMSpacingModelGroupByStatus', function test_KOMSpacingModelGroupBySta
 		deepEqual(mainModule.KOMSpacingModelGroupByStatus([item]), uGrouping({
 			KOMSpacingGroupingTotal: [item],
 			KOMSpacingGroupingMature: [item],
+		}));
+	});
+
+});
+
+describe('KOMSpacingModelGroupChroniclesByStatus', function test_KOMSpacingModelGroupChroniclesByStatus() {
+
+	const uGrouping = function (inputData = {}) {
+		return Object.assign({
+			KOMChronicleGroupingLearning: [],
+			KOMChronicleGroupingDeveloping: [],
+			KOMChronicleGroupingMature: [],
+			KOMChronicleGroupingRelearning: [],
+		}, inputData);
+	};
+
+	const uChronicles = function (inputData = Infinity) {
+		return [
+			StubChronicleObjectValid(),
+			StubChronicleObjectValid(),
+			Object.assign(StubChronicleObjectValid(), {
+				KOMChronicleInterval: 1,
+			}),
+			Object.assign(StubChronicleObjectValid(), {
+				KOMChronicleInterval: mainModule.KOMSpacingModelMatureThreshold(),
+			}),
+			StubChronicleObjectValid(),
+			StubChronicleObjectValid(),
+			Object.assign(StubChronicleObjectValid(), {
+				KOMChronicleInterval: 1,
+			}),
+		].slice(0, inputData);
+	};
+
+	it('throws if param1 not array', function () {
+		throws(function () {
+			mainModule.KOMSpacingModelGroupChroniclesByStatus(null, '2000-01-01');
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('throws if param2 not string', function () {
+		throws(function () {
+			mainModule.KOMSpacingModelGroupChroniclesByStatus([], null);
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('throws if param2 not formatted', function () {
+		throws(function () {
+			mainModule.KOMSpacingModelGroupChroniclesByStatus([], 'alfa-br-va');
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns array', function () {
+		deepEqual(mainModule.KOMSpacingModelGroupChroniclesByStatus([], '2000-01-01'), uGrouping());
+	});
+
+	it('ignores if unseen', function () {
+		const item = StubSpacingObjectValid();
+		deepEqual(mainModule.KOMSpacingModelGroupChroniclesByStatus([item], KOMReviewLogic.KOMReviewLogicDayGrouping(new Date())), uGrouping());
+	});
+
+	it('ignores if no match', function () {
+		deepEqual(mainModule.KOMSpacingModelGroupChroniclesByStatus([StubSpacingObjectHistorical()], KOMReviewLogic.KOMReviewLogicDayGrouping(new Date('2000-01-01'))), uGrouping());
+	});
+
+	it('groups learning', function () {
+		const item = uChronicles(2);
+		deepEqual(mainModule.KOMSpacingModelGroupChroniclesByStatus([Object.assign(StubSpacingObjectHistorical(), {
+			KOMSpacingChronicles: item,
+		})], KOMReviewLogic.KOMReviewLogicDayGrouping(new Date())).KOMChronicleGroupingLearning, item.slice(0, 2));
+	});
+
+	it('groups developing', function () {
+		const item = uChronicles(3);
+		deepEqual(mainModule.KOMSpacingModelGroupChroniclesByStatus([Object.assign(StubSpacingObjectHistorical(), {
+			KOMSpacingChronicles: item,
+		})], KOMReviewLogic.KOMReviewLogicDayGrouping(new Date())).KOMChronicleGroupingDeveloping, item.slice(2, 3));
+	});
+
+	it('groups mature', function () {
+		const item = uChronicles(4);
+		deepEqual(mainModule.KOMSpacingModelGroupChroniclesByStatus([Object.assign(StubSpacingObjectHistorical(), {
+			KOMSpacingChronicles: item,
+		})], KOMReviewLogic.KOMReviewLogicDayGrouping(new Date())).KOMChronicleGroupingMature, item.slice(3, 4));
+	});
+
+	it('groups relearning', function () {
+		const item = uChronicles(5);
+		deepEqual(mainModule.KOMSpacingModelGroupChroniclesByStatus([Object.assign(StubSpacingObjectHistorical(), {
+			KOMSpacingChronicles: item,
+		})], KOMReviewLogic.KOMReviewLogicDayGrouping(new Date())).KOMChronicleGroupingRelearning, item.slice(4, 5));
+	});
+
+	it('groups lapses', function () {
+		const item = uChronicles();
+		deepEqual(mainModule.KOMSpacingModelGroupChroniclesByStatus([Object.assign(StubSpacingObjectHistorical(), {
+			KOMSpacingChronicles: item,
+		})], KOMReviewLogic.KOMReviewLogicDayGrouping(new Date())), uGrouping({
+			KOMChronicleGroupingLearning: item.slice(0, 2),
+			KOMChronicleGroupingDeveloping: item.slice(2, 3).concat(item[6]),
+			KOMChronicleGroupingMature: item.slice(3, 4),
+			KOMChronicleGroupingRelearning: item.slice(4, 6),
 		}));
 	});
 

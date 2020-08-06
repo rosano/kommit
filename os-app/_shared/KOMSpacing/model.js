@@ -1,4 +1,5 @@
 import KOMCardModel from '../KOMCard/model.js';
+import KOMReviewLogic from '../../open-review/ui-logic.js';
 
 const mod = {
 
@@ -234,6 +235,50 @@ const mod = {
 			KOMSpacingGroupingDeveloping: [],
 			KOMSpacingGroupingMature: [],
 			KOMSpacingGroupingSuspended: [],
+		});
+	},
+
+	KOMSpacingModelGroupChroniclesByStatus(param1, param2) {
+		if (!Array.isArray(param1)) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		if (typeof param2 !== 'string') {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		if (!param2.match(/\d\d\d\d-\d\d-\d\d/)) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		return param1.reduce(function (coll, item) {
+			const chronicles = item.KOMSpacingChronicles.filter(function (e) {
+				return KOMReviewLogic.KOMReviewLogicDayGrouping(e.KOMChronicleResponseDate) === param2;
+			});
+
+			if (chronicles.includes(item.KOMSpacingChronicles[0])) {
+				const match = chronicles.find((e) => e.KOMChronicleInterval);
+				coll.KOMChronicleGroupingLearning.push(...chronicles.splice(0, match ? chronicles.indexOf(match) : chronicles.length));
+			}
+
+			coll.KOMChronicleGroupingDeveloping.push(...chronicles.filter(function (e) {
+				return e.KOMChronicleInterval < mod.KOMSpacingModelMatureThreshold();
+			}));
+
+			coll.KOMChronicleGroupingMature.push(...chronicles.filter(function (e) {
+				return e.KOMChronicleInterval >= mod.KOMSpacingModelMatureThreshold();
+			}));
+
+			coll.KOMChronicleGroupingRelearning.push(...chronicles.filter(function (e) {
+				return !e.KOMChronicleInterval;
+			}));
+
+			return coll;
+		}, {
+			KOMChronicleGroupingLearning: [],
+			KOMChronicleGroupingDeveloping: [],
+			KOMChronicleGroupingMature: [],
+			KOMChronicleGroupingRelearning: [],
 		});
 	},
 
