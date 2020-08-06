@@ -47,11 +47,15 @@ import KOMReviewChartElementDateBarTable from '../KOMReviewChartElementDateBarTa
 
 <div class="KOMReviewGeneral">
 
+{#if KOMReviewGeneralLogic.KOMReviewGeneralUpcomingFilter(KOMReviewGeneralSpacings).length }
+
 <div class="KOMReviewGeneralUpcoming">
 	<h2 class="KOMReviewGeneralUpcomingHeading">{ OLSKLocalized('KOMReviewGeneralUpcomingHeadingText') }</h2>
 
 	<KOMReviewChartElementDateBarTable KOMReviewChartElementDateBarTableData={ mod.DataUpcomingData() } />
 </div>
+	
+{/if}
 
 <div class="KOMReviewGeneralCollection">
 	<h2 class="KOMReviewGeneralCollectionHeading">{ OLSKLocalized('KOMReviewGeneralCollectionHeadingText') }</h2>

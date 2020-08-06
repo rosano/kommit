@@ -11,7 +11,12 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				OLSKRoutingLanguage: languageCode,
-				KOMReviewGeneralSpacings: JSON.stringify([]),
+				KOMReviewGeneralSpacings: JSON.stringify([
+					Object.assign(StubSpacingObjectValid(), {
+						KOMSpacingInterval: 1,
+						KOMSpacingDueDate: new Date(),
+					}),
+				]),
 			});
 		});
 
