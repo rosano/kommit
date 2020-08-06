@@ -483,3 +483,53 @@ describe('KOMSpacingModelFilterUnique', function test_KOMSpacingModelFilterUniqu
 	});
 
 });
+
+describe('KOMSpacingModelGroupByStatus', function test_KOMSpacingModelGroupByStatus() {
+
+	const uGrouping = function (inputData = {}) {
+		return Object.assign({
+			KOMSpacingGroupingUnseen: [],
+			KOMSpacingGroupingDeveloping: [],
+			KOMSpacingGroupingMature: [],
+			KOMSpacingGroupingSuspended: [],
+		}, inputData);
+	};
+
+	it('throws if not array', function () {
+		throws(function () {
+			mainModule.KOMSpacingModelGroupByStatus(null);
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns array', function () {
+		deepEqual(mainModule.KOMSpacingModelGroupByStatus([]), uGrouping());
+	});
+
+	it('groups unseen', function () {
+		const item = StubSpacingObjectValid();
+		deepEqual(mainModule.KOMSpacingModelGroupByStatus([item]), uGrouping({
+			KOMSpacingGroupingUnseen: [item],
+		}));
+	});
+
+	it('groups developing', function () {
+		const item = Object.assign(StubSpacingObjectValid(), {
+			KOMSpacingInterval: 1,
+			KOMSpacingDueDate: new Date(),
+		});
+		deepEqual(mainModule.KOMSpacingModelGroupByStatus([item]), uGrouping({
+			KOMSpacingGroupingDeveloping: [item],
+		}));
+	});
+
+	it('groups mature', function () {
+		const item = Object.assign(StubSpacingObjectValid(), {
+			KOMSpacingInterval: 21,
+			KOMSpacingDueDate: new Date(),
+		});
+		deepEqual(mainModule.KOMSpacingModelGroupByStatus([item]), uGrouping({
+			KOMSpacingGroupingMature: [item],
+		}));
+	});
+
+});

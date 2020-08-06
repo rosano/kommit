@@ -207,6 +207,33 @@ const mod = {
 		});
 	},
 
+	KOMSpacingModelGroupByStatus(inputData) {
+		if (!Array.isArray(inputData)) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		return inputData.reduce(function (coll, item) {
+			if (mod.KOMSpacingModelIsUnseen(item)) {
+				coll.KOMSpacingGroupingUnseen.push(item);
+			}
+
+			if (mod.KOMSpacingModelIsDeveloping(item)) {
+				coll.KOMSpacingGroupingDeveloping.push(item);
+			}
+
+			if (mod.KOMSpacingModelIsMature(item)) {
+				coll.KOMSpacingGroupingMature.push(item);
+			}
+			
+			return coll;
+		}, {
+			KOMSpacingGroupingUnseen: [],
+			KOMSpacingGroupingDeveloping: [],
+			KOMSpacingGroupingMature: [],
+			KOMSpacingGroupingSuspended: [],
+		});
+	},
+
 };
 
 export default mod;
