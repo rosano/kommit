@@ -1,6 +1,25 @@
 <script>
 export let KOMReviewChartElementDateBarTableData;
-export let KOMReviewChartElementHorizontalStackedBarMaximum;
+
+const mod = {
+
+	// DATA
+
+	DataMaximum () {
+		return KOMReviewChartElementDateBarTableData.reduce(function (coll, item) {
+			const sum = item.KOMReviewChartElementDateBarTableRowDataValues.reduce(function (coll, item) {
+				return coll + item;
+			}, 0);
+
+			if (sum > coll) {
+				return sum;
+			}
+
+			return coll;
+		}, 0);
+	},
+
+};
 
 import KOMReviewChartElementDateBarTableRow from '../KOMReviewChartElementDateBarTableRow/main.svelte';
 </script>
@@ -10,7 +29,7 @@ import KOMReviewChartElementDateBarTableRow from '../KOMReviewChartElementDateBa
 {#each KOMReviewChartElementDateBarTableData as item }
 	<KOMReviewChartElementDateBarTableRow
 		KOMReviewChartElementDateBarTableRowData={ item }
-		KOMReviewChartElementHorizontalStackedBarMaximum={ KOMReviewChartElementHorizontalStackedBarMaximum }
+		KOMReviewChartElementHorizontalStackedBarMaximum={ mod.DataMaximum() }
 		/>
 {/each}
 	
