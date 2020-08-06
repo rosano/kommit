@@ -2,7 +2,7 @@ const { throws, deepEqual } = require('assert');
 
 const mainModule = require('./model.js').default;
 
-const KOMReviewLogic = require('../../open-review/ui-logic.js').default;
+const KOMSharedLogic = require('../../_shared/KOMSharedLogic/main.js').default;
 
 const kTesting = {
 	StubSpacingObjectValid() {
@@ -593,46 +593,46 @@ describe('KOMSpacingModelGroupChroniclesByStatus', function test_KOMSpacingModel
 
 	it('ignores if unseen', function () {
 		const item = StubSpacingObjectValid();
-		deepEqual(mainModule.KOMSpacingModelGroupChroniclesByStatus([item], KOMReviewLogic.KOMReviewLogicDayGrouping(new Date())), uGrouping());
+		deepEqual(mainModule.KOMSpacingModelGroupChroniclesByStatus([item], KOMSharedLogic.KOMSharedGroupingDay(new Date())), uGrouping());
 	});
 
 	it('ignores if no match', function () {
-		deepEqual(mainModule.KOMSpacingModelGroupChroniclesByStatus([StubSpacingObjectHistorical()], KOMReviewLogic.KOMReviewLogicDayGrouping(new Date('2000-01-01'))), uGrouping());
+		deepEqual(mainModule.KOMSpacingModelGroupChroniclesByStatus([StubSpacingObjectHistorical()], KOMSharedLogic.KOMSharedGroupingDay(new Date('2000-01-01'))), uGrouping());
 	});
 
 	it('groups learning', function () {
 		const item = uChronicles(2);
 		deepEqual(mainModule.KOMSpacingModelGroupChroniclesByStatus([Object.assign(StubSpacingObjectHistorical(), {
 			KOMSpacingChronicles: item,
-		})], KOMReviewLogic.KOMReviewLogicDayGrouping(new Date())).KOMChronicleGroupingLearning, item.slice(0, 2));
+		})], KOMSharedLogic.KOMSharedGroupingDay(new Date())).KOMChronicleGroupingLearning, item.slice(0, 2));
 	});
 
 	it('groups developing', function () {
 		const item = uChronicles(3);
 		deepEqual(mainModule.KOMSpacingModelGroupChroniclesByStatus([Object.assign(StubSpacingObjectHistorical(), {
 			KOMSpacingChronicles: item,
-		})], KOMReviewLogic.KOMReviewLogicDayGrouping(new Date())).KOMChronicleGroupingDeveloping, item.slice(2, 3));
+		})], KOMSharedLogic.KOMSharedGroupingDay(new Date())).KOMChronicleGroupingDeveloping, item.slice(2, 3));
 	});
 
 	it('groups mature', function () {
 		const item = uChronicles(4);
 		deepEqual(mainModule.KOMSpacingModelGroupChroniclesByStatus([Object.assign(StubSpacingObjectHistorical(), {
 			KOMSpacingChronicles: item,
-		})], KOMReviewLogic.KOMReviewLogicDayGrouping(new Date())).KOMChronicleGroupingMature, item.slice(3, 4));
+		})], KOMSharedLogic.KOMSharedGroupingDay(new Date())).KOMChronicleGroupingMature, item.slice(3, 4));
 	});
 
 	it('groups relearning', function () {
 		const item = uChronicles(5);
 		deepEqual(mainModule.KOMSpacingModelGroupChroniclesByStatus([Object.assign(StubSpacingObjectHistorical(), {
 			KOMSpacingChronicles: item,
-		})], KOMReviewLogic.KOMReviewLogicDayGrouping(new Date())).KOMChronicleGroupingRelearning, item.slice(4, 5));
+		})], KOMSharedLogic.KOMSharedGroupingDay(new Date())).KOMChronicleGroupingRelearning, item.slice(4, 5));
 	});
 
 	it('groups lapses', function () {
 		const item = uChronicles();
 		deepEqual(mainModule.KOMSpacingModelGroupChroniclesByStatus([Object.assign(StubSpacingObjectHistorical(), {
 			KOMSpacingChronicles: item,
-		})], KOMReviewLogic.KOMReviewLogicDayGrouping(new Date())), uGrouping({
+		})], KOMSharedLogic.KOMSharedGroupingDay(new Date())), uGrouping({
 			KOMChronicleGroupingLearning: item.slice(0, 2),
 			KOMChronicleGroupingDeveloping: item.slice(2, 3).concat(item[6]),
 			KOMChronicleGroupingMature: item.slice(3, 4),

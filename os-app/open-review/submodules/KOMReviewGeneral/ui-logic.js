@@ -1,4 +1,4 @@
-import KOMReviewLogic from '../../ui-logic.js';
+import KOMSharedLogic from '../../../_shared/KOMSharedLogic/main.js';
 
 const mod = {
 
@@ -8,7 +8,7 @@ const mod = {
 
 	KOMReviewGeneralUpcomingDates() {
 		return Array.from(Array(mod.KOMReviewGeneralTableDays())).map(function (e, i) {
-			return KOMReviewLogic.KOMReviewLogicDayGrouping(new Date(Date.now() + 1000 * 60 * 60 * 24 * i));
+			return KOMSharedLogic.KOMSharedGroupingDay(new Date(Date.now() + 1000 * 60 * 60 * 24 * i));
 		});
 	},
 
@@ -22,11 +22,11 @@ const mod = {
 				return false;
 			}
 			
-			if (KOMReviewLogic.KOMReviewLogicDayGrouping(e.KOMSpacingDueDate) < KOMReviewLogic.KOMReviewLogicDayGrouping(new Date())) {
+			if (KOMSharedLogic.KOMSharedGroupingDay(e.KOMSpacingDueDate) < KOMSharedLogic.KOMSharedGroupingDay(new Date())) {
 				return false;
 			}
 
-			if (KOMReviewLogic.KOMReviewLogicDayGrouping(e.KOMSpacingDueDate) >= KOMReviewLogic.KOMReviewLogicDayGrouping(new Date(Date.now() + 1000 * 60 * 60 * 24 * mod.KOMReviewGeneralTableDays()))) {
+			if (KOMSharedLogic.KOMSharedGroupingDay(e.KOMSpacingDueDate) >= KOMSharedLogic.KOMSharedGroupingDay(new Date(Date.now() + 1000 * 60 * 60 * 24 * mod.KOMReviewGeneralTableDays()))) {
 				return false;
 			}
 
@@ -40,7 +40,7 @@ const mod = {
 		}
 
 		return inputData.reduce(function (coll, item) {
-			coll[KOMReviewLogic.KOMReviewLogicDayGrouping(item.KOMSpacingDueDate)] = (coll[KOMReviewLogic.KOMReviewLogicDayGrouping(item.KOMSpacingDueDate)] || []).concat(item);
+			coll[KOMSharedLogic.KOMSharedGroupingDay(item.KOMSpacingDueDate)] = (coll[KOMSharedLogic.KOMSharedGroupingDay(item.KOMSpacingDueDate)] || []).concat(item);
 
 			return coll;
 		}, {});
@@ -48,7 +48,7 @@ const mod = {
 
 	KOMReviewGeneralHistoricalDates() {
 		return Array.from(Array(mod.KOMReviewGeneralTableDays())).map(function (e, i) {
-			return KOMReviewLogic.KOMReviewLogicDayGrouping(new Date(Date.now() - 1000 * 60 * 60 * 24 * i));
+			return KOMSharedLogic.KOMSharedGroupingDay(new Date(Date.now() - 1000 * 60 * 60 * 24 * i));
 		});
 	},
 
@@ -63,11 +63,11 @@ const mod = {
 			}
 
 			return e.KOMSpacingChronicles.filter(function (e) {
-				if (KOMReviewLogic.KOMReviewLogicDayGrouping(e.KOMChronicleResponseDate) > KOMReviewLogic.KOMReviewLogicDayGrouping(new Date())) {
+				if (KOMSharedLogic.KOMSharedGroupingDay(e.KOMChronicleResponseDate) > KOMSharedLogic.KOMSharedGroupingDay(new Date())) {
 					return false;
 				}
 
-				if (KOMReviewLogic.KOMReviewLogicDayGrouping(e.KOMChronicleResponseDate) < KOMReviewLogic.KOMReviewLogicDayGrouping(new Date(Date.now() - 1000 * 60 * 60 * 24 * mod.KOMReviewGeneralTableDays()))) {
+				if (KOMSharedLogic.KOMSharedGroupingDay(e.KOMChronicleResponseDate) < KOMSharedLogic.KOMSharedGroupingDay(new Date(Date.now() - 1000 * 60 * 60 * 24 * mod.KOMReviewGeneralTableDays()))) {
 					return false;
 				}
 
@@ -83,7 +83,7 @@ const mod = {
 
 		return inputData.reduce(function (coll, item) {
 			item.KOMSpacingChronicles.forEach(function (e) {
-				coll[KOMReviewLogic.KOMReviewLogicDayGrouping(e.KOMChronicleResponseDate)] = (coll[KOMReviewLogic.KOMReviewLogicDayGrouping(e.KOMChronicleResponseDate)] || []).concat(item);
+				coll[KOMSharedLogic.KOMSharedGroupingDay(e.KOMChronicleResponseDate)] = (coll[KOMSharedLogic.KOMSharedGroupingDay(e.KOMChronicleResponseDate)] || []).concat(item);
 			});
 
 			return coll;

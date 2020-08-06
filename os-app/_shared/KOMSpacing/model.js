@@ -1,5 +1,5 @@
 import KOMCardModel from '../KOMCard/model.js';
-import KOMReviewLogic from '../../open-review/ui-logic.js';
+import KOMSharedLogic from '../../_shared/KOMSharedLogic/main.js';
 
 const mod = {
 
@@ -253,7 +253,7 @@ const mod = {
 
 		return param1.reduce(function (coll, item) {
 			const chronicles = item.KOMSpacingChronicles.filter(function (e) {
-				return KOMReviewLogic.KOMReviewLogicDayGrouping(e.KOMChronicleResponseDate) === param2;
+				return KOMSharedLogic.KOMSharedGroupingDay(e.KOMChronicleResponseDate) === param2;
 			});
 
 			if (chronicles.includes(item.KOMSpacingChronicles[0])) {

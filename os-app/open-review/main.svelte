@@ -21,6 +21,7 @@ import KOMDeckAction from '../_shared/KOMDeck/action.js';
 import KOMCardAction from '../_shared/KOMCard/action.js';
 import KOMSettingAction from '../_shared/KOMSetting/action.js';
 import KOMReviewLogic from './ui-logic.js';
+import KOMSharedLogic from './_shared/KOMSharedLogic/main.js';
 import KOMPlayLogic from '../sub-play/ui-logic.js';
 import OLSKThrottle from 'OLSKThrottle';
 import KOMSpacingModel from '../_shared/KOMSpacing/model.js';
@@ -629,7 +630,7 @@ const mod = {
 						return false;
 					}
 					
-					return KOMReviewLogic.KOMReviewLogicDayGrouping(e.KOMSpacingChronicles.slice(-1).pop().KOMChronicleResponseDate) === KOMReviewLogic.KOMReviewLogicDayGrouping(new Date());
+					return KOMSharedLogic.KOMSharedGroupingDay(e.KOMSpacingChronicles.slice(-1).pop().KOMChronicleResponseDate) === KOMSharedLogic.KOMSharedGroupingDay(new Date());
 				});
 
 				deck.$KOMDeckGeneralNotUnseenCount = deck.$KOMDeckSpacings.filter(function (e) {

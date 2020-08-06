@@ -2,12 +2,12 @@ const { throws, deepEqual } = require('assert');
 
 const mainModule = require('./ui-logic.js').default;
 
-const KOMReviewLogic = require('../../ui-logic.js').default;
+const KOMSharedLogic = require('../../../_shared/KOMSharedLogic/main.js').default;
 
 const uGroup = function (param1, param2 = []) {
 	const outputData = {};
 	
-	outputData[KOMReviewLogic.KOMReviewLogicDayGrouping(param1)] = [].concat(param2);
+	outputData[KOMSharedLogic.KOMSharedGroupingDay(param1)] = [].concat(param2);
 
 	return outputData;
 };
@@ -24,7 +24,7 @@ describe('KOMReviewGeneralUpcomingDates', function test_KOMReviewGeneralUpcoming
 
 	it('returns array', function () {
 		deepEqual(mainModule.KOMReviewGeneralUpcomingDates(), Array.from(Array(mainModule.KOMReviewGeneralTableDays())).map(function (e, i) {
-			return KOMReviewLogic.KOMReviewLogicDayGrouping(new Date(Date.now() + 1000 * 60 * 60 * 24 * i));
+			return KOMSharedLogic.KOMSharedGroupingDay(new Date(Date.now() + 1000 * 60 * 60 * 24 * i));
 		}));
 	});
 
@@ -37,7 +37,7 @@ describe('KOMReviewGeneralUpcomingFilter', function test_KOMReviewGeneralUpcomin
 	})((new Date()).getTimezoneOffset() / 60);
 
 	const uGroupingDate = function (inputData = 0) {
-		return new Date(Date.parse(`${ KOMReviewLogic.KOMReviewLogicDayGrouping(new Date()) }T04:00:00-${ offset }:00`) + inputData);
+		return new Date(Date.parse(`${ KOMSharedLogic.KOMSharedGroupingDay(new Date()) }T04:00:00-${ offset }:00`) + inputData);
 	};
 
 	it('throws if not array', function () {
@@ -127,7 +127,7 @@ describe('KOMReviewGeneralHistoricalDates', function test_KOMReviewGeneralHistor
 
 	it('returns array', function () {
 		deepEqual(mainModule.KOMReviewGeneralHistoricalDates(), Array.from(Array(mainModule.KOMReviewGeneralTableDays())).map(function (e, i) {
-			return KOMReviewLogic.KOMReviewLogicDayGrouping(new Date(Date.now() - 1000 * 60 * 60 * 24 * i));
+			return KOMSharedLogic.KOMSharedGroupingDay(new Date(Date.now() - 1000 * 60 * 60 * 24 * i));
 		}));
 	});
 
@@ -140,7 +140,7 @@ describe('KOMReviewGeneralHistoricalFilter', function test_KOMReviewGeneralHisto
 	})((new Date()).getTimezoneOffset() / 60);
 
 	const uGroupingDate = function (inputData = 0) {
-		return new Date(Date.parse(`${ KOMReviewLogic.KOMReviewLogicDayGrouping(new Date()) }T04:00:00-${ offset }:00`) + inputData);
+		return new Date(Date.parse(`${ KOMSharedLogic.KOMSharedGroupingDay(new Date()) }T04:00:00-${ offset }:00`) + inputData);
 	};
 
 	it('throws if not array', function () {

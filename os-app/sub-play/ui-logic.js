@@ -1,5 +1,5 @@
-import KOMReviewLogic from '../open-review/ui-logic.js';
 import KOMSpacingModel from '../_shared/KOMSpacing/model.js';
+import KOMSharedLogic from '../_shared/KOMSharedLogic/main.js';
 
 const kIntervalAgainSeconds = 60;
 const kIntervalLearnMinutes = 10;
@@ -178,8 +178,8 @@ const mod = {
 			return 0;
 		}
 
-		const due = new Date(KOMReviewLogic.KOMReviewLogicDayGrouping(spacing.KOMSpacingDueDate)).valueOf();
-		const date = new Date(KOMReviewLogic.KOMReviewLogicDayGrouping(chronicle.KOMChronicleResponseDate)).valueOf();
+		const due = new Date(KOMSharedLogic.KOMSharedGroupingDay(spacing.KOMSpacingDueDate)).valueOf();
+		const date = new Date(KOMSharedLogic.KOMSharedGroupingDay(chronicle.KOMChronicleResponseDate)).valueOf();
 
 		if (date <= due) {
 			return 0;
@@ -428,7 +428,7 @@ const mod = {
 
 		return Object.assign({
 			KOMChronicleDrawDate: param1,
-		}, param2.KOMSpacingDrawDate && KOMSpacingModel.KOMSpacingModelIsReviewing(param2) && KOMReviewLogic.KOMReviewLogicDayGrouping(param1) === KOMReviewLogic.KOMReviewLogicDayGrouping(param2.KOMSpacingDrawDate) ? {
+		}, param2.KOMSpacingDrawDate && KOMSpacingModel.KOMSpacingModelIsReviewing(param2) && KOMSharedLogic.KOMSharedGroupingDay(param1) === KOMSharedLogic.KOMSharedGroupingDay(param2.KOMSpacingDrawDate) ? {
 			KOMChronicleDidDrawMultipleTimes: true,
 		} : {});
 	},
@@ -444,7 +444,7 @@ const mod = {
 
 		return Object.assign({
 			KOMChronicleFlipDate: param1,
-		}, param2.KOMSpacingFlipDate && KOMSpacingModel.KOMSpacingModelIsReviewing(param2) && KOMReviewLogic.KOMReviewLogicDayGrouping(param1) === KOMReviewLogic.KOMReviewLogicDayGrouping(param2.KOMSpacingFlipDate) ? {
+		}, param2.KOMSpacingFlipDate && KOMSpacingModel.KOMSpacingModelIsReviewing(param2) && KOMSharedLogic.KOMSharedGroupingDay(param1) === KOMSharedLogic.KOMSharedGroupingDay(param2.KOMSpacingFlipDate) ? {
 			KOMChronicleDidFlipMultipleTimes: true,
 		} : {});
 	},
