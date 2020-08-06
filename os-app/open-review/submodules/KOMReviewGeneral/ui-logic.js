@@ -6,6 +6,12 @@ const mod = {
 		return 7;
 	},
 
+	KOMReviewGeneralUpcomingDates() {
+		return Array.from(Array(mod.KOMReviewGeneralTableDays())).map(function (e, i) {
+			return KOMReviewLogic.KOMReviewLogicDayGrouping(new Date(Date.now() + 1000 * 60 * 60 * 24 * i));
+		});
+	},
+
 	KOMReviewGeneralUpcomingFilter(inputData) {
 		if (!Array.isArray(inputData)) {
 			throw new Error('KOMErrorInputNotValid');

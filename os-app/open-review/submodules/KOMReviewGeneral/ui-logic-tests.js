@@ -12,6 +12,16 @@ describe('KOMReviewGeneralTableDays', function test_KOMReviewGeneralTableDays() 
 
 });
 
+describe('KOMReviewGeneralUpcomingDates', function test_KOMReviewGeneralUpcomingDates() {
+
+	it('returns array', function () {
+		deepEqual(mainModule.KOMReviewGeneralUpcomingDates(), Array.from(Array(mainModule.KOMReviewGeneralTableDays())).map(function (e, i) {
+			return KOMReviewLogic.KOMReviewLogicDayGrouping(new Date(Date.now() + 1000 * 60 * 60 * 24 * i));
+		}));
+	});
+
+});
+
 describe('KOMReviewGeneralUpcomingFilter', function test_KOMReviewGeneralUpcomingFilter() {
 
 	const offset = (function (inputData) {
