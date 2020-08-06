@@ -16,7 +16,7 @@ const mod = {
 	// DATA
 
 	DataScaleColor (inputData) {
-		return KOMReviewChartElementHorizontalStackedBarLogic.KOMReviewChartElementHorizontalStackedBarScaleColor(d3.scaleOrdinal, d3.schemeGreys, mod.DataStackedBarValues().map(function (e, i) {
+		return KOMReviewChartElementHorizontalStackedBarLogic.KOMReviewChartElementHorizontalStackedBarScaleColor(d3.scaleOrdinal, KOMReviewChartElementHorizontalStackedBarColors, mod.DataStackedBarValues().map(function (e, i) {
 			return i;
 		}))(inputData);
 	},
