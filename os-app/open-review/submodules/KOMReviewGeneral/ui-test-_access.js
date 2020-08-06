@@ -5,6 +5,7 @@ Object.entries({
 
 	KOMReviewGeneralUpcoming: '.KOMReviewGeneralUpcoming',
 	KOMReviewGeneralUpcomingHeading: '.KOMReviewGeneralUpcomingHeading',
+	KOMReviewGeneralUpcomingDateBarTable: '.KOMReviewGeneralUpcoming .KOMReviewChartElementDateBarTable',
 
 	KOMReviewGeneralCollection: '.KOMReviewGeneralCollection',
 	KOMReviewGeneralCollectionHeading: '.KOMReviewGeneralCollectionHeading',
@@ -30,6 +31,10 @@ describe('KOMReviewGeneral_Access', function () {
 
 	it('shows KOMReviewGeneralUpcomingHeading', function () {
 		browser.assert.elements(KOMReviewGeneralUpcomingHeading, 1);
+	});
+
+	it('shows KOMReviewGeneralUpcomingDateBarTable', function () {
+		browser.assert.elements(KOMReviewGeneralUpcomingDateBarTable, 1);
 	});
 
 	it('shows KOMReviewGeneralCollection', function () {

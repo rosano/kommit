@@ -43,15 +43,15 @@ describe('KOMReviewGeneral_Misc', function () {
 			context('KOMReviewChartElementDateBarTableRow', function () {
 				
 				it('sets KOMReviewChartElementDateBarTableRowDataKey', function () {
-					browser.assert.text(`${ KOMReviewGeneralUpcomingDateBarTable } .KOMReviewChartElementDateBarTableRow .KOMReviewChartElementDateBarTableRowKey`, 'alfa bravo charlie');
+					browser.assert.text(`${ KOMReviewGeneralUpcomingDateBarTable } .KOMReviewChartElementDateBarTableRow .KOMReviewChartElementDateBarTableRowKey`, KOMReviewGeneralLogic.KOMReviewGeneralUpcomingDates().join(''));
 				});
 				
 				it('sets KOMReviewChartElementDateBarTableRowDataValues', function () {
-					browser.assert.elements(`${ KOMReviewGeneralUpcomingDateBarTable } .KOMReviewChartElementDateBarTableRow .KOMReviewChartElementHorizontalStackedBarSection`, 2 * KOMReviewGeneralLogic.KOMReviewGeneralTableDays());
+					browser.assert.elements(`${ KOMReviewGeneralUpcomingDateBarTable } .KOMReviewChartElementDateBarTableRow .KOMReviewChartElementHorizontalStackedBarSection`, (1 + 2 + 1) * KOMReviewGeneralLogic.KOMReviewGeneralTableDays());
 				});
 				
 				it('sets KOMReviewChartElementHorizontalStackedBarMaximum', function () {
-					browser.assert.attribute(`${ KOMReviewGeneralUpcomingDateBarTable } .KOMReviewChartElementDateBarTableRow .KOMReviewChartElementHorizontalStackedBarSection`, 'width', 123);
+					browser.assert.attribute(`${ KOMReviewGeneralUpcomingDateBarTable } .KOMReviewChartElementDateBarTableRow .KOMReviewChartElementHorizontalStackedBarSection:nth-child(2)`, 'width', 123);
 				});
 			
 			});
