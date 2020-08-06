@@ -31,6 +31,19 @@ const mod = {
 		});
 	},
 
+	DataHistoricalData() {
+		const grouping = KOMReviewGeneralLogic.KOMReviewGeneralHistoricalGroupByDate(KOMReviewGeneralLogic.KOMReviewGeneralHistoricalFilter(KOMReviewGeneralSpacings));
+
+		return KOMReviewGeneralLogic.KOMReviewGeneralHistoricalDates().map(function (e) {
+			return {
+				KOMReviewChartElementDateBarTableRowDataKey: e,
+				KOMReviewChartElementDateBarTableRowDataValues: Object.entries(KOMSpacingModel.KOMSpacingModelGroupChroniclesByStatus(grouping[e] || [], e)).reduce(function (coll, item) {
+					return coll.concat(KOMReviewLogic.KOMReviewTotalMinutes(KOMReviewGeneralLogic.KOMReviewGeneralHistoricalTotalMilliseconds(item[1])));
+				}, [0]).concat(0),
+			};
+		});
+	},
+
 	DataCollectionData() {
 		return Object.entries(KOMSpacingModel.KOMSpacingModelGroupByStatus(KOMReviewGeneralSpacings)).reduce(function (coll, item) {
 			coll[item[0]] = KOMSpacingModel.KOMSpacingModelFilterUnique(item[1]);
@@ -53,6 +66,16 @@ import KOMReviewChartElementDateBarTable from '../KOMReviewChartElementDateBarTa
 	<h2 class="KOMReviewGeneralUpcomingHeading">{ OLSKLocalized('KOMReviewGeneralUpcomingHeadingText') }</h2>
 
 	<KOMReviewChartElementDateBarTable KOMReviewChartElementDateBarTableData={ mod.DataUpcomingData() } />
+</div>
+	
+{/if}
+
+{#if KOMReviewGeneralLogic.KOMReviewGeneralHistoricalFilter(KOMReviewGeneralSpacings).length }
+
+<div class="KOMReviewGeneralHistorical">
+	<h2 class="KOMReviewGeneralHistoricalHeading">{ OLSKLocalized('KOMReviewGeneralHistoricalHeadingText') }</h2>
+
+	<KOMReviewChartElementDateBarTable KOMReviewChartElementDateBarTableData={ mod.DataHistoricalData() } />
 </div>
 	
 {/if}

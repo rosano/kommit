@@ -7,6 +7,10 @@ Object.entries({
 	KOMReviewGeneralUpcomingHeading: '.KOMReviewGeneralUpcomingHeading',
 	KOMReviewGeneralUpcomingDateBarTable: '.KOMReviewGeneralUpcoming .KOMReviewChartElementDateBarTable',
 
+	KOMReviewGeneralHistorical: '.KOMReviewGeneralHistorical',
+	KOMReviewGeneralHistoricalHeading: '.KOMReviewGeneralHistoricalHeading',
+	KOMReviewGeneralHistoricalDateBarTable: '.KOMReviewGeneralHistorical .KOMReviewChartElementDateBarTable',
+
 	KOMReviewGeneralCollection: '.KOMReviewGeneralCollection',
 	KOMReviewGeneralCollectionHeading: '.KOMReviewGeneralCollectionHeading',
 }).map(function (e) {
@@ -27,6 +31,10 @@ describe('KOMReviewGeneral_Access', function () {
 
 	it('hides KOMReviewGeneralUpcoming', function () {
 		browser.assert.elements(KOMReviewGeneralUpcoming, 0);
+	});
+
+	it('hides KOMReviewGeneralHistorical', function () {
+		browser.assert.elements(KOMReviewGeneralHistorical, 0);
 	});
 
 	it('shows KOMReviewGeneralCollection', function () {
@@ -64,6 +72,30 @@ describe('KOMReviewGeneral_Access', function () {
 
 		it('shows KOMReviewGeneralUpcomingDateBarTable', function () {
 			browser.assert.elements(KOMReviewGeneralUpcomingDateBarTable, 1);
+		});
+	
+	});
+
+	context('historical', function () {
+		
+		before(function () {
+			return browser.OLSKVisit(kDefaultRoute, {
+				KOMReviewGeneralSpacings: JSON.stringify([
+					StubSpacingObjectHistorical(),
+				]),
+			});
+		});
+
+		it('shows KOMReviewGeneralHistorical', function () {
+			browser.assert.elements(KOMReviewGeneralHistorical, 1);
+		});
+
+		it('shows KOMReviewGeneralHistoricalHeading', function () {
+			browser.assert.elements(KOMReviewGeneralHistoricalHeading, 1);
+		});
+
+		it('shows KOMReviewGeneralHistoricalDateBarTable', function () {
+			browser.assert.elements(KOMReviewGeneralHistoricalDateBarTable, 1);
 		});
 	
 	});

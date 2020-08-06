@@ -16,12 +16,17 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 						KOMSpacingInterval: 1,
 						KOMSpacingDueDate: new Date(),
 					}),
+					StubSpacingObjectHistorical(),
 				]),
 			});
 		});
 
 		it('localizes KOMReviewGeneralUpcomingHeading', function () {
 			browser.assert.text(KOMReviewGeneralUpcomingHeading, uLocalized('KOMReviewGeneralUpcomingHeadingText'));
+		});
+
+		it('localizes KOMReviewGeneralHistoricalHeading', function () {
+			browser.assert.text(KOMReviewGeneralHistoricalHeading, uLocalized('KOMReviewGeneralHistoricalHeadingText'));
 		});
 
 		it('localizes KOMReviewGeneralCollectionHeading', function () {

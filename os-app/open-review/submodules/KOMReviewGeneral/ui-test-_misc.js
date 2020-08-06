@@ -56,6 +56,50 @@ describe('KOMReviewGeneral_Misc', function () {
 
 	});
 
+	describe('KOMReviewGeneralHistoricalDateBarTable', function test_KOMReviewGeneralHistoricalDateBarTable() {
+
+		before(function () {
+			return browser.OLSKVisit(kDefaultRoute, {
+				KOMReviewGeneralSpacings: JSON.stringify([
+					StubSpacingObjectValid(),
+					StubSpacingObjectHistorical(),
+					Object.assign(StubSpacingObjectHistorical(), {
+						KOMSpacingInterval: 1,
+					}),
+					Object.assign(StubSpacingObjectHistorical(), {
+						KOMSpacingInterval: 21,
+					}),
+					StubSpacingObjectHistorical(new Date(Date.now() - 1000 * 60 * 60 * 24 * KOMReviewGeneralLogic.KOMReviewGeneralTableDays() * 2)),
+				].reduce(function (coll, item) {
+					return coll.concat([item, Object.assign(Object.assign({}, item), {
+						KOMSpacingID: item.KOMSpacingID.replace('forward', 'backward'),
+					})]);
+				}, [])),
+			});
+		});
+
+		context('KOMReviewGeneralHistoricalDateBarTableData', function () {
+			
+			it('creates KOMReviewGeneralTableDays elements', function () {
+				browser.assert.elements(`${ KOMReviewGeneralHistoricalDateBarTable } .KOMReviewChartElementDateBarTableRow`, KOMReviewGeneralLogic.KOMReviewGeneralTableDays());
+			});
+
+			context('KOMReviewChartElementDateBarTableRow', function () {
+				
+				it('sets KOMReviewChartElementDateBarTableRowDataKey', function () {
+					browser.assert.text(`${ KOMReviewGeneralHistoricalDateBarTable } .KOMReviewChartElementDateBarTableRow .KOMReviewChartElementDateBarTableRowKey`, KOMReviewGeneralLogic.KOMReviewGeneralHistoricalDates().join(''));
+				});
+				
+				it('sets KOMReviewChartElementDateBarTableRowDataValues', function () {
+					browser.assert.elements(`${ KOMReviewGeneralHistoricalDateBarTable } .KOMReviewChartElementDateBarTableRow .KOMReviewChartElementHorizontalStackedBarSection`, (1 + 4 + 1) * KOMReviewGeneralLogic.KOMReviewGeneralTableDays());
+				});
+			
+			});
+		
+		});
+
+	});
+
 	describe('KOMReviewChartCompositionCollection', function test_KOMReviewChartCompositionCollection() {
 
 		before(function () {
