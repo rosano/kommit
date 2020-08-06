@@ -32,6 +32,10 @@ describe('KOMReviewGeneralUpcomingFilter', function test_KOMReviewGeneralUpcomin
 		deepEqual(mainModule.KOMReviewGeneralUpcomingFilter([]), []);
 	});
 
+	it('excludes if unseen', function () {
+		deepEqual(mainModule.KOMReviewGeneralUpcomingFilter([StubSpacingObjectValid()]), []);
+	});
+
 	it('excludes if before today', function () {
 		deepEqual(mainModule.KOMReviewGeneralUpcomingFilter([Object.assign(StubSpacingObjectValid(), {
 			KOMSpacingDueDate: uGroupingDate(-1),

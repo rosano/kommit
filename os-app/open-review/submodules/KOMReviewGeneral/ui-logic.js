@@ -12,6 +12,10 @@ const mod = {
 		}
 
 		return inputData.filter(function (e) {
+			if (!e.KOMSpacingDueDate) {
+				return false;
+			}
+			
 			if (KOMReviewLogic.KOMReviewLogicDayGrouping(e.KOMSpacingDueDate) < KOMReviewLogic.KOMReviewLogicDayGrouping(new Date())) {
 				return false;
 			}
