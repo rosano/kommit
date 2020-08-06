@@ -15,37 +15,20 @@ const mod = {
 	// DATA
 
 	DataUpcomingData() {
-		let maximum = 0;
-
-		const updateMaximum = function (inputData) {
-			const total = inputData.reduce(function (coll, item) {
-				return coll + item;
-			}, 0);
-
-			if (total > maximum) {
-				maximum = total;
-			}
-
-			return inputData;
-		};
-
 		const grouping = KOMReviewGeneralLogic.KOMReviewGeneralUpcomingGroupByDate(KOMReviewGeneralLogic.KOMReviewGeneralUpcomingFilter(KOMReviewGeneralSpacings));
 
-		return {
-			KOMReviewChartElementDateBarTableData: KOMReviewGeneralLogic.KOMReviewGeneralUpcomingDates().map(function (e) {
-				return {
-					KOMReviewChartElementDateBarTableRowDataKey: e,
-					KOMReviewChartElementDateBarTableRowDataValues: updateMaximum(Object.entries(KOMSpacingModel.KOMSpacingModelGroupByStatus(grouping[e] || [])).reduce(function (coll, item) {
-						if (['KOMSpacingGroupingDeveloping', 'KOMSpacingGroupingMature'].includes(item[0])) {
-							coll.push(KOMSpacingModel.KOMSpacingModelFilterUnique(item[1]).length);
-						}
+		return KOMReviewGeneralLogic.KOMReviewGeneralUpcomingDates().map(function (e) {
+			return {
+				KOMReviewChartElementDateBarTableRowDataKey: e,
+				KOMReviewChartElementDateBarTableRowDataValues: Object.entries(KOMSpacingModel.KOMSpacingModelGroupByStatus(grouping[e] || [])).reduce(function (coll, item) {
+					if (['KOMSpacingGroupingDeveloping', 'KOMSpacingGroupingMature'].includes(item[0])) {
+						coll.push(KOMSpacingModel.KOMSpacingModelFilterUnique(item[1]).length);
+					}
 
-						return coll;
-					}, [0]).concat(0)),
-				};
-			}),
-			KOMReviewChartElementHorizontalStackedBarMaximum: maximum,
-		}
+					return coll;
+				}, [0]).concat(0),
+			};
+		});
 	},
 
 	DataCollectionData() {
@@ -67,7 +50,7 @@ import KOMReviewChartElementDateBarTable from '../KOMReviewChartElementDateBarTa
 <div class="KOMReviewGeneralUpcoming">
 	<h2 class="KOMReviewGeneralUpcomingHeading">{ OLSKLocalized('KOMReviewGeneralUpcomingHeadingText') }</h2>
 
-	<KOMReviewChartElementDateBarTable { ...mod.DataUpcomingData() } />
+	<KOMReviewChartElementDateBarTable KOMReviewChartElementDateBarTableData={ mod.DataUpcomingData() } />
 </div>
 
 <div class="KOMReviewGeneralCollection">

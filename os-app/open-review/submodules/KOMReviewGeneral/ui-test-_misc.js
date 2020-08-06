@@ -49,10 +49,6 @@ describe('KOMReviewGeneral_Misc', function () {
 				it('sets KOMReviewChartElementDateBarTableRowDataValues', function () {
 					browser.assert.elements(`${ KOMReviewGeneralUpcomingDateBarTable } .KOMReviewChartElementDateBarTableRow .KOMReviewChartElementHorizontalStackedBarSection`, (1 + 2 + 1) * KOMReviewGeneralLogic.KOMReviewGeneralTableDays());
 				});
-				
-				it('sets KOMReviewChartElementHorizontalStackedBarMaximum', function () {
-					browser.assert.attribute(`${ KOMReviewGeneralUpcomingDateBarTable } .KOMReviewChartElementDateBarTableRow .KOMReviewChartElementHorizontalStackedBarSection:nth-child(2)`, 'width', 123);
-				});
 			
 			});
 		
