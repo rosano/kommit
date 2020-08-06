@@ -26,7 +26,7 @@ const mod = {
 					}
 
 					return coll;
-				}, [0]).concat(0),
+				}, []),
 			};
 		});
 	},
@@ -39,7 +39,7 @@ const mod = {
 				KOMReviewChartElementDateBarTableRowDataKey: e,
 				KOMReviewChartElementDateBarTableRowDataValues: Object.entries(KOMSpacingModel.KOMSpacingModelGroupChroniclesByStatus(grouping[e] || [], e)).reduce(function (coll, item) {
 					return coll.concat(KOMReviewLogic.KOMReviewTotalMinutes(KOMReviewGeneralLogic.KOMReviewGeneralHistoricalTotalMilliseconds(item[1])));
-				}, [0]).concat(0),
+				}, []),
 			};
 		});
 	},
@@ -65,7 +65,7 @@ import KOMReviewChartElementDateBarTable from '../KOMReviewChartElementDateBarTa
 <div class="KOMReviewGeneralUpcoming">
 	<h2 class="KOMReviewGeneralUpcomingHeading">{ OLSKLocalized('KOMReviewGeneralUpcomingHeadingText') }</h2>
 
-	<KOMReviewChartElementDateBarTable KOMReviewChartElementDateBarTableData={ mod.DataUpcomingData() } />
+	<KOMReviewChartElementDateBarTable KOMReviewChartElementDateBarTableData={ mod.DataUpcomingData() } KOMReviewChartElementHorizontalStackedBarColors={ KOMReviewGeneralLogic.KOMReviewGeneralUpcomingColors() } />
 </div>
 	
 {/if}
@@ -75,7 +75,7 @@ import KOMReviewChartElementDateBarTable from '../KOMReviewChartElementDateBarTa
 <div class="KOMReviewGeneralHistorical">
 	<h2 class="KOMReviewGeneralHistoricalHeading">{ OLSKLocalized('KOMReviewGeneralHistoricalHeadingText') }</h2>
 
-	<KOMReviewChartElementDateBarTable KOMReviewChartElementDateBarTableData={ mod.DataHistoricalData() } />
+	<KOMReviewChartElementDateBarTable KOMReviewChartElementDateBarTableData={ mod.DataHistoricalData() } KOMReviewChartElementHorizontalStackedBarColors={ KOMReviewGeneralLogic.KOMReviewGeneralHistoricalColors() } />
 </div>
 	
 {/if}
@@ -83,7 +83,7 @@ import KOMReviewChartElementDateBarTable from '../KOMReviewChartElementDateBarTa
 <div class="KOMReviewGeneralCollection">
 	<h2 class="KOMReviewGeneralCollectionHeading">{ OLSKLocalized('KOMReviewGeneralCollectionHeadingText') }</h2>
 
-	<KOMReviewChartCompositionCollection KOMReviewChartCompositionCollectionData={ mod.DataCollectionData() } />
+	<KOMReviewChartCompositionCollection KOMReviewChartCompositionCollectionData={ mod.DataCollectionData() } KOMReviewChartElementHorizontalStackedBarColors={ KOMReviewGeneralLogic.KOMReviewGeneralCollectionColors() } />
 </div>
 
 </div>

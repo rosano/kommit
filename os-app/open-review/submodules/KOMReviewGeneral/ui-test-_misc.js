@@ -47,7 +47,17 @@ describe('KOMReviewGeneral_Misc', function () {
 				});
 				
 				it('sets KOMReviewChartElementDateBarTableRowDataValues', function () {
-					browser.assert.elements(`${ KOMReviewGeneralUpcomingDateBarTable } .KOMReviewChartElementDateBarTableRow .KOMReviewChartElementHorizontalStackedBarSection`, (1 + 2 + 1) * KOMReviewGeneralLogic.KOMReviewGeneralTableDays());
+					browser.assert.elements(`${ KOMReviewGeneralUpcomingDateBarTable } .KOMReviewChartElementDateBarTableRow .KOMReviewChartElementHorizontalStackedBarSection`, KOMReviewGeneralLogic.KOMReviewGeneralUpcomingColors().length * KOMReviewGeneralLogic.KOMReviewGeneralTableDays());
+				});
+			
+			});
+
+			context('KOMReviewChartElementHorizontalStackedBar', function () {
+				
+				it('sets KOMReviewChartElementHorizontalStackedBarColors', function () {
+					KOMReviewGeneralLogic.KOMReviewGeneralUpcomingColors().forEach(function (e, i) {
+						browser.assert.attribute(`${ KOMReviewGeneralUpcomingDateBarTable } .KOMReviewChartElementDateBarTableRow:first-of-type .KOMReviewChartElementHorizontalStackedBarSection:nth-child(${ i + 1 })`, 'fill', e);
+					})
 				});
 			
 			});
@@ -91,7 +101,17 @@ describe('KOMReviewGeneral_Misc', function () {
 				});
 				
 				it('sets KOMReviewChartElementDateBarTableRowDataValues', function () {
-					browser.assert.elements(`${ KOMReviewGeneralHistoricalDateBarTable } .KOMReviewChartElementDateBarTableRow .KOMReviewChartElementHorizontalStackedBarSection`, (1 + 4 + 1) * KOMReviewGeneralLogic.KOMReviewGeneralTableDays());
+					browser.assert.elements(`${ KOMReviewGeneralHistoricalDateBarTable } .KOMReviewChartElementDateBarTableRow .KOMReviewChartElementHorizontalStackedBarSection`, KOMReviewGeneralLogic.KOMReviewGeneralHistoricalColors() * KOMReviewGeneralLogic.KOMReviewGeneralTableDays());
+				});
+			
+			});
+
+			context('KOMReviewChartElementHorizontalStackedBar', function () {
+				
+				it('sets KOMReviewChartElementHorizontalStackedBarColors', function () {
+					KOMReviewGeneralLogic.KOMReviewGeneralHistoricalColors().forEach(function (e, i) {
+						browser.assert.attribute(`${ KOMReviewGeneralHistoricalDateBarTable } .KOMReviewChartElementDateBarTableRow:first-of-type .KOMReviewChartElementHorizontalStackedBarSection:nth-child(${ i + 1 })`, 'fill', e);
+					})
 				});
 			
 			});
@@ -125,6 +145,12 @@ describe('KOMReviewGeneral_Misc', function () {
 			browser.assert.text('.KOMReviewChartCompositionCollection .KOMReviewChartCompositionCollectionUnseenCardsValue', '1');
 			browser.assert.text('.KOMReviewChartCompositionCollection .KOMReviewChartCompositionCollectionDevelopingCardsValue', '1');
 			browser.assert.text('.KOMReviewChartCompositionCollection .KOMReviewChartCompositionCollectionMatureCardsValue', '1');
+		});
+
+		it('sets KOMReviewChartElementHorizontalStackedBarColors', function () {
+			KOMReviewGeneralLogic.KOMReviewGeneralCollectionColors().forEach(function (e, i) {
+				browser.assert.attribute(`.KOMReviewChartCompositionCollection .KOMReviewChartElementHorizontalStackedBarSection:nth-child(${ i + 1 })`, 'fill', e);
+			})
 		});
 
 	});
