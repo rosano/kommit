@@ -90,6 +90,16 @@ const mod = {
 		}, {});
 	},
 
+	KOMReviewGeneralHistoricalTotalMilliseconds(inputData) {
+		if (!Array.isArray(inputData)) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		return inputData.reduce(function (coll, item) {
+			return coll + (item.KOMChronicleResponseDate - item.KOMChronicleDrawDate);
+		}, 0);
+	},
+
 };
 
 export default mod;

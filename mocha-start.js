@@ -75,8 +75,8 @@ const KOMSettingStorage = require('./os-app/_shared/KOMSetting/storage.js').defa
 
 		StubChronicleObjectValid(inputData = new Date()) {
 			return {
-				KOMChronicleDrawDate: inputData,
-				KOMChronicleFlipDate: inputData,
+				KOMChronicleDrawDate: new Date(inputData.valueOf() - 10000),
+				KOMChronicleFlipDate: new Date(inputData.valueOf() - 10000),
 				KOMChronicleResponseDate: inputData,
 				KOMChronicleResponseType: 'RESPONSE_EASY',
 				KOMChronicleDueDate: new Date(inputData.valueOf() + 1000 * 60 * 60 * 24),

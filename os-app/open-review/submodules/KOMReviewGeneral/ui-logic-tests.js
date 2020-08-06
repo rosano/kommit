@@ -220,3 +220,25 @@ describe('KOMReviewGeneralHistoricalGroupByDate', function test_KOMReviewGeneral
 	});
 
 });
+
+describe('KOMReviewGeneralHistoricalTotalMilliseconds', function test_KOMReviewGeneralHistoricalTotalMilliseconds() {
+
+	it('throws if not array', function () {
+		throws(function () {
+			mainModule.KOMReviewGeneralHistoricalTotalMilliseconds(null);
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns number', function () {
+		deepEqual(mainModule.KOMReviewGeneralHistoricalTotalMilliseconds([]), 0);
+	});
+
+	it('counts single', function () {
+		deepEqual(mainModule.KOMReviewGeneralHistoricalTotalMilliseconds([StubChronicleObjectValid()]), 10000);
+	});
+
+	it('counts multiple', function () {
+		deepEqual(mainModule.KOMReviewGeneralHistoricalTotalMilliseconds([StubChronicleObjectValid(), StubChronicleObjectValid()]), 20000);
+	});
+
+});
