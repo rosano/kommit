@@ -6,18 +6,6 @@ const mod = {
 		return 7;
 	},
 
-	KOMReviewGeneralGroupByDate(inputData) {
-		if (!Array.isArray(inputData)) {
-			throw new Error('KOMErrorInputNotValid');
-		}
-
-		return inputData.reduce(function (coll, item) {
-			coll[KOMReviewLogic.KOMReviewLogicDayGrouping(item.KOMSpacingDueDate)] = (coll[KOMReviewLogic.KOMReviewLogicDayGrouping(item.KOMSpacingDueDate)] || []).concat(item);
-
-			return coll;
-		}, {});
-	},
-
 	KOMReviewGeneralUpcomingFilter(inputData) {
 		if (!Array.isArray(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
@@ -34,6 +22,18 @@ const mod = {
 
 			return true;
 		});
+	},
+
+	KOMReviewGeneralUpcomingGroupByDate(inputData) {
+		if (!Array.isArray(inputData)) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		return inputData.reduce(function (coll, item) {
+			coll[KOMReviewLogic.KOMReviewLogicDayGrouping(item.KOMSpacingDueDate)] = (coll[KOMReviewLogic.KOMReviewLogicDayGrouping(item.KOMSpacingDueDate)] || []).concat(item);
+
+			return coll;
+		}, {});
 	},
 
 };

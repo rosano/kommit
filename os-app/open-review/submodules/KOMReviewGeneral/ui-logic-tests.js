@@ -12,55 +12,6 @@ describe('KOMReviewGeneralTableDays', function test_KOMReviewGeneralTableDays() 
 
 });
 
-describe('KOMReviewGeneralGroupByDate', function test_KOMReviewGeneralGroupByDate() {
-
-	const uGroup = function (param1, param2 = []) {
-		const outputData = {};
-		
-		outputData[KOMReviewLogic.KOMReviewLogicDayGrouping(param1)] = [].concat(param2);
-
-		return outputData;
-	};
-
-	it('throws if not array', function () {
-		throws(function () {
-			mainModule.KOMReviewGeneralGroupByDate(null);
-		}, /KOMErrorInputNotValid/);
-	});
-
-	it('returns object', function () {
-		deepEqual(mainModule.KOMReviewGeneralGroupByDate([]), {});
-	});
-
-	it('groups by date if single', function () {
-		const item = Object.assign(StubSpacingObjectValid(), {
-			KOMSpacingDueDate: new Date(),
-		});
-		deepEqual(mainModule.KOMReviewGeneralGroupByDate([item]), uGroup(item.KOMSpacingDueDate, item));
-	});
-
-	it('groups by date if multiple', function () {
-		const item1 = Object.assign(StubSpacingObjectValid(), {
-			KOMSpacingDueDate: new Date('2019-04-12T00:00:00Z'),
-		});
-		const item2 = Object.assign(StubSpacingObjectValid(), {
-			KOMSpacingDueDate: new Date('2019-04-13T00:00:00Z'),
-		});
-		deepEqual(mainModule.KOMReviewGeneralGroupByDate([item1, item2]), Object.assign(uGroup(item1.KOMSpacingDueDate, item1), uGroup(item2.KOMSpacingDueDate, item2)));
-	});
-
-	it('groups by date if duplicate', function () {
-		const item1 = Object.assign(StubSpacingObjectValid(), {
-			KOMSpacingDueDate: new Date(),
-		});
-		const item2 = Object.assign(StubSpacingObjectValid(), {
-			KOMSpacingDueDate: new Date(),
-		});
-		deepEqual(mainModule.KOMReviewGeneralGroupByDate([item1, item2]), uGroup(item1.KOMSpacingDueDate, [item1, item2]));
-	});
-
-});
-
 describe('KOMReviewGeneralUpcomingFilter', function test_KOMReviewGeneralUpcomingFilter() {
 
 	const offset = (function (inputData) {
@@ -105,6 +56,55 @@ describe('KOMReviewGeneralUpcomingFilter', function test_KOMReviewGeneralUpcomin
 			KOMSpacingDueDate: uGroupingDate(1000 * 60 * 60 * 24 * mainModule.KOMReviewGeneralTableDays() - 1),
 		});
 		deepEqual(mainModule.KOMReviewGeneralUpcomingFilter([item]), [item]);
+	});
+
+});
+
+describe('KOMReviewGeneralUpcomingGroupByDate', function test_KOMReviewGeneralUpcomingGroupByDate() {
+
+	const uGroup = function (param1, param2 = []) {
+		const outputData = {};
+		
+		outputData[KOMReviewLogic.KOMReviewLogicDayGrouping(param1)] = [].concat(param2);
+
+		return outputData;
+	};
+
+	it('throws if not array', function () {
+		throws(function () {
+			mainModule.KOMReviewGeneralUpcomingGroupByDate(null);
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns object', function () {
+		deepEqual(mainModule.KOMReviewGeneralUpcomingGroupByDate([]), {});
+	});
+
+	it('groups by date if single', function () {
+		const item = Object.assign(StubSpacingObjectValid(), {
+			KOMSpacingDueDate: new Date(),
+		});
+		deepEqual(mainModule.KOMReviewGeneralUpcomingGroupByDate([item]), uGroup(item.KOMSpacingDueDate, item));
+	});
+
+	it('groups by date if multiple', function () {
+		const item1 = Object.assign(StubSpacingObjectValid(), {
+			KOMSpacingDueDate: new Date('2019-04-12T00:00:00Z'),
+		});
+		const item2 = Object.assign(StubSpacingObjectValid(), {
+			KOMSpacingDueDate: new Date('2019-04-13T00:00:00Z'),
+		});
+		deepEqual(mainModule.KOMReviewGeneralUpcomingGroupByDate([item1, item2]), Object.assign(uGroup(item1.KOMSpacingDueDate, item1), uGroup(item2.KOMSpacingDueDate, item2)));
+	});
+
+	it('groups by date if duplicate', function () {
+		const item1 = Object.assign(StubSpacingObjectValid(), {
+			KOMSpacingDueDate: new Date(),
+		});
+		const item2 = Object.assign(StubSpacingObjectValid(), {
+			KOMSpacingDueDate: new Date(),
+		});
+		deepEqual(mainModule.KOMReviewGeneralUpcomingGroupByDate([item1, item2]), uGroup(item1.KOMSpacingDueDate, [item1, item2]));
 	});
 
 });
