@@ -26,4 +26,24 @@ describe('KOMReviewChartElementDateBarTableRow_Misc', function () {
 
 	});
 
+	context('zero', function () {
+		
+		before(function () {
+			return browser.OLSKVisit(kDefaultRoute, {
+				KOMReviewChartElementDateBarTableRowData: JSON.stringify(Object.assign(StubReviewChartElementDateBarTableRowDataObjectValid(), {
+					KOMReviewChartElementDateBarTableRowDataValues: [0, 0, 0],
+				})),
+			});
+		});
+
+		it('classes KOMReviewChartElementDateBarTableRowZero', function () {
+			browser.assert.hasClass(KOMReviewChartElementDateBarTableRow, 'KOMReviewChartElementDateBarTableRowZero');
+		});
+
+		it('sets KOMReviewChartElementDateBarTableRowCount', function () {
+			browser.assert.text(KOMReviewChartElementDateBarTableRowCount, '');
+		});
+	
+	});
+
 });

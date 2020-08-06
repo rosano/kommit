@@ -8,10 +8,22 @@ if (!KOMReviewChartElementDateBarTableRowLogic.KOMReviewChartElementDateBarTable
 	throw new Error('KOMErrorInputNotValid');
 }
 
+const mod = {
+
+	// DATA
+
+	DataSum() {
+		return KOMReviewChartElementDateBarTableRowData.KOMReviewChartElementDateBarTableRowDataValues.reduce(function (coll, item) {
+			return coll + item;
+		}, 0);
+	},
+
+};
+
 import KOMReviewChartElementHorizontalStackedBar from '../KOMReviewChartElementHorizontalStackedBar/main.svelte';
 </script>
 
-<tr class="KOMReviewChartElementDateBarTableRow">
+<tr class="KOMReviewChartElementDateBarTableRow" class:KOMReviewChartElementDateBarTableRowZero={ !mod.DataSum() }>
 
 <td class="KOMReviewChartElementDateBarTableRowKey">{ KOMReviewChartElementDateBarTableRowData.KOMReviewChartElementDateBarTableRowDataKey }</td>
 
@@ -22,9 +34,7 @@ import KOMReviewChartElementHorizontalStackedBar from '../KOMReviewChartElementH
 		/>
 </td>
 
-<td class="KOMReviewChartElementDateBarTableRowCount">{ KOMReviewChartElementDateBarTableRowData.KOMReviewChartElementDateBarTableRowDataValues.reduce(function (coll, item) {
-		return coll + item;
-	}, 0) }</td>
+<td class="KOMReviewChartElementDateBarTableRowCount">{ mod.DataSum() || '' }</td>
 	
 </tr>
 
@@ -33,5 +43,9 @@ import KOMReviewChartElementHorizontalStackedBar from '../KOMReviewChartElementH
 	width: 100%;
 	max-width: 150px;
 	height: auto;
+}
+
+.KOMReviewChartElementDateBarTableRowZero {
+	opacity: 0.3;
 }
 </style>
