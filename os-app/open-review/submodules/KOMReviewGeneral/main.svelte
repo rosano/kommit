@@ -26,7 +26,7 @@ const mod = {
 					}
 
 					return coll;
-				}, []),
+				}, []).reverse(),
 			};
 		});
 	},
@@ -39,7 +39,7 @@ const mod = {
 				KOMReviewChartElementDateBarTableRowDataKey: e,
 				KOMReviewChartElementDateBarTableRowDataValues: Object.entries(KOMSpacingModel.KOMSpacingModelGroupChroniclesByStatus(grouping[e] || [], e)).reduce(function (coll, item) {
 					return coll.concat(KOMReviewLogic.KOMReviewTotalMinutes(KOMReviewGeneralLogic.KOMReviewGeneralHistoricalTotalMilliseconds(item[1])));
-				}, []),
+				}, []).reverse(),
 			};
 		});
 	},

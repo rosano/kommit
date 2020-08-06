@@ -80,8 +80,8 @@ const mod = {
 
 	KOMReviewGeneralUpcomingColors() {
 		return [
-			mod.KOMReviewGeneralColorDeveloping(),
 			mod.KOMReviewGeneralColorMature(),
+			mod.KOMReviewGeneralColorDeveloping(),
 			];
 	},
 
@@ -141,10 +141,10 @@ const mod = {
 
 	KOMReviewGeneralHistoricalColors() {
 		return [
-			mod.KOMReviewGeneralColorUnseen(),
-			mod.KOMReviewGeneralColorRelearning(),
-			mod.KOMReviewGeneralColorDeveloping(),
 			mod.KOMReviewGeneralColorMature(),
+			mod.KOMReviewGeneralColorDeveloping(),
+			mod.KOMReviewGeneralColorRelearning(),
+			mod.KOMReviewGeneralColorUnseen(),
 			];
 	},
 
