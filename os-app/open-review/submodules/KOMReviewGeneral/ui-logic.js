@@ -78,6 +78,13 @@ const mod = {
 		}, {});
 	},
 
+	KOMReviewGeneralUpcomingColors() {
+		return [
+			mod.KOMReviewGeneralColorDeveloping(),
+			mod.KOMReviewGeneralColorMature(),
+			];
+	},
+
 	KOMReviewGeneralHistoricalDates() {
 		return Array.from(Array(mod.KOMReviewGeneralTableDays())).map(function (e, i) {
 			return KOMSharedLogic.KOMSharedGroupingDay(new Date(Date.now() - 1000 * 60 * 60 * 24 * i));
@@ -130,6 +137,24 @@ const mod = {
 		return inputData.reduce(function (coll, item) {
 			return coll + (item.KOMChronicleResponseDate - item.KOMChronicleDrawDate);
 		}, 0);
+	},
+
+	KOMReviewGeneralHistoricalColors() {
+		return [
+			mod.KOMReviewGeneralColorUnseen(),
+			mod.KOMReviewGeneralColorDeveloping(),
+			mod.KOMReviewGeneralColorMature(),
+			mod.KOMReviewGeneralColorRelearning(),
+			];
+	},
+
+	KOMReviewGeneralCollectionColors() {
+		return [
+			mod.KOMReviewGeneralColorUnseen(),
+			mod.KOMReviewGeneralColorDeveloping(),
+			mod.KOMReviewGeneralColorMature(),
+			mod.KOMReviewGeneralColorSuspended(),
+			];
 	},
 
 };

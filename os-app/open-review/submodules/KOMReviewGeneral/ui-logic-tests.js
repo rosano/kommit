@@ -179,6 +179,17 @@ describe('KOMReviewGeneralUpcomingGroupByDate', function test_KOMReviewGeneralUp
 
 });
 
+describe('KOMReviewGeneralUpcomingColors', function test_KOMReviewGeneralUpcomingColors() {
+
+	it('returns array', function () {
+		deepEqual(mainModule.KOMReviewGeneralUpcomingColors(), [
+			mainModule.KOMReviewGeneralColorDeveloping(),
+			mainModule.KOMReviewGeneralColorMature(),
+			]);
+	});
+
+});
+
 describe('KOMReviewGeneralHistoricalDates', function test_KOMReviewGeneralHistoricalDates() {
 
 	it('returns array', function () {
@@ -295,6 +306,32 @@ describe('KOMReviewGeneralHistoricalTotalMilliseconds', function test_KOMReviewG
 
 	it('counts multiple', function () {
 		deepEqual(mainModule.KOMReviewGeneralHistoricalTotalMilliseconds([StubChronicleObjectValid(), StubChronicleObjectValid()]), 20000);
+	});
+
+});
+
+describe('KOMReviewGeneralHistoricalColors', function test_KOMReviewGeneralHistoricalColors() {
+
+	it('returns array', function () {
+		deepEqual(mainModule.KOMReviewGeneralHistoricalColors(), [
+			mainModule.KOMReviewGeneralColorUnseen(),
+			mainModule.KOMReviewGeneralColorDeveloping(),
+			mainModule.KOMReviewGeneralColorMature(),
+			mainModule.KOMReviewGeneralColorRelearning(),
+			]);
+	});
+
+});
+
+describe('KOMReviewGeneralCollectionColors', function test_KOMReviewGeneralCollectionColors() {
+
+	it('returns array', function () {
+		deepEqual(mainModule.KOMReviewGeneralCollectionColors(), [
+			mainModule.KOMReviewGeneralColorUnseen(),
+			mainModule.KOMReviewGeneralColorDeveloping(),
+			mainModule.KOMReviewGeneralColorMature(),
+			mainModule.KOMReviewGeneralColorSuspended(),
+			]);
 	});
 
 });
