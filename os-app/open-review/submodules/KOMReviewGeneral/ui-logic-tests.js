@@ -4,6 +4,14 @@ const mainModule = require('./ui-logic.js').default;
 
 const KOMReviewLogic = require('../../ui-logic.js').default;
 
+const uGroup = function (param1, param2 = []) {
+	const outputData = {};
+	
+	outputData[KOMReviewLogic.KOMReviewLogicDayGrouping(param1)] = [].concat(param2);
+
+	return outputData;
+};
+
 describe('KOMReviewGeneralTableDays', function test_KOMReviewGeneralTableDays() {
 
 	it('returns number', function () {
@@ -75,14 +83,6 @@ describe('KOMReviewGeneralUpcomingFilter', function test_KOMReviewGeneralUpcomin
 });
 
 describe('KOMReviewGeneralUpcomingGroupByDate', function test_KOMReviewGeneralUpcomingGroupByDate() {
-
-	const uGroup = function (param1, param2 = []) {
-		const outputData = {};
-		
-		outputData[KOMReviewLogic.KOMReviewLogicDayGrouping(param1)] = [].concat(param2);
-
-		return outputData;
-	};
 
 	it('throws if not array', function () {
 		throws(function () {
@@ -173,6 +173,50 @@ describe('KOMReviewGeneralHistoricalFilter', function test_KOMReviewGeneralHisto
 	it('includes if KOMReviewGeneralTableDays', function () {
 		const item = StubSpacingObjectHistorical(uGroupingDate(-1000 * 60 * 60 * 24 * mainModule.KOMReviewGeneralTableDays()));
 		deepEqual(mainModule.KOMReviewGeneralHistoricalFilter([item]), [item]);
+	});
+
+});
+
+describe('KOMReviewGeneralHistoricalGroupByDate', function test_KOMReviewGeneralHistoricalGroupByDate() {
+
+	it('throws if not array', function () {
+		throws(function () {
+			mainModule.KOMReviewGeneralHistoricalGroupByDate(null);
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns object', function () {
+		deepEqual(mainModule.KOMReviewGeneralHistoricalGroupByDate([]), {});
+	});
+
+	it('groups by date if single object', function () {
+		const item = StubSpacingObjectHistorical();
+		deepEqual(mainModule.KOMReviewGeneralHistoricalGroupByDate([item]), uGroup(item.KOMSpacingChronicles[0].KOMChronicleResponseDate, item));
+	});
+
+	it('groups by date if multiple objects', function () {
+		const item1 = StubSpacingObjectHistorical(new Date('2019-04-12T00:00:00Z'));
+		const item2 = StubSpacingObjectHistorical(new Date('2019-04-13T00:00:00Z'));
+
+		deepEqual(mainModule.KOMReviewGeneralHistoricalGroupByDate([item1, item2]), Object.assign(uGroup(item1.KOMSpacingChronicles[0].KOMChronicleResponseDate, item1), uGroup(item2.KOMSpacingChronicles[0].KOMChronicleResponseDate, item2)));
+	});
+
+	it('groups by date if duplicate', function () {
+		const item1 = StubSpacingObjectHistorical();
+		const item2 = StubSpacingObjectHistorical();
+		
+		deepEqual(mainModule.KOMReviewGeneralHistoricalGroupByDate([item1, item2]), uGroup(item1.KOMSpacingChronicles[0].KOMChronicleResponseDate, [item1, item2]));
+	});
+
+	it('groups by date if multiple objects', function () {
+		const item = Object.assign(StubSpacingObjectHistorical(), {
+			KOMSpacingChronicles: [
+				StubChronicleObjectValid(new Date('2019-04-12T00:00:00Z')),
+				StubChronicleObjectValid(new Date('2019-04-13T00:00:00Z')),
+			],
+		});
+
+		deepEqual(mainModule.KOMReviewGeneralHistoricalGroupByDate([item]), Object.assign(uGroup(item.KOMSpacingChronicles[0].KOMChronicleResponseDate, item), uGroup(item.KOMSpacingChronicles[1].KOMChronicleResponseDate, item)));
 	});
 
 });

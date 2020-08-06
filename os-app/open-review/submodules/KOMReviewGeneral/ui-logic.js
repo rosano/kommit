@@ -76,6 +76,20 @@ const mod = {
 		});
 	},
 
+	KOMReviewGeneralHistoricalGroupByDate(inputData) {
+		if (!Array.isArray(inputData)) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		return inputData.reduce(function (coll, item) {
+			item.KOMSpacingChronicles.forEach(function (e) {
+				coll[KOMReviewLogic.KOMReviewLogicDayGrouping(e.KOMChronicleResponseDate)] = (coll[KOMReviewLogic.KOMReviewLogicDayGrouping(e.KOMChronicleResponseDate)] || []).concat(item);
+			});
+
+			return coll;
+		}, {});
+	},
+
 };
 
 export default mod;
