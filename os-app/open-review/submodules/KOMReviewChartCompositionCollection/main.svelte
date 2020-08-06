@@ -14,14 +14,14 @@ const mod = {
 
 	// DATA
 
-	DataNormalizeValues () {
-		return Object.values(KOMReviewChartCompositionCollectionData).slice(1);
-	},
-
 	DataScaleColor (inputData) {
-		return KOMReviewChartElementHorizontalStackedBarLogic.KOMReviewChartElementHorizontalStackedBarScaleColor(d3.scaleOrdinal, d3.schemeGreys, mod.DataNormalizeValues().map(function (e, i) {
+		return KOMReviewChartElementHorizontalStackedBarLogic.KOMReviewChartElementHorizontalStackedBarScaleColor(d3.scaleOrdinal, d3.schemeGreys, mod.DataStackedBarValues().map(function (e, i) {
 			return i;
 		}))(inputData);
+	},
+
+	DataStackedBarValues () {
+		return Object.values(KOMReviewChartCompositionCollectionData).slice(1);
 	},
 
 };
@@ -63,7 +63,7 @@ import KOMReviewChartElementHorizontalStackedBar from '../KOMReviewChartElementH
 
 <tr>
 	<td colspan="3">
-		<KOMReviewChartElementHorizontalStackedBar KOMReviewChartElementHorizontalStackedBarValues={ mod.DataNormalizeValues() } />
+		<KOMReviewChartElementHorizontalStackedBar KOMReviewChartElementHorizontalStackedBarValues={ mod.DataStackedBarValues() } />
 	</td>
 </tr>
 
