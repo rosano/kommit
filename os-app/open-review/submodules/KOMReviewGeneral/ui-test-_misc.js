@@ -43,7 +43,7 @@ describe('KOMReviewGeneral_Misc', function () {
 			context('KOMReviewChartElementDateBarTableRow', function () {
 				
 				it('sets KOMReviewChartElementDateBarTableRowDataKey', function () {
-					browser.assert.text(`${ KOMReviewGeneralUpcomingDateBarTable } .KOMReviewChartElementDateBarTableRow .KOMReviewChartElementDateBarTableRowKey`, KOMReviewGeneralLogic.KOMReviewGeneralUpcomingDates().join(''));
+					browser.assert.text(`${ KOMReviewGeneralUpcomingDateBarTable } .KOMReviewChartElementDateBarTableRow .KOMReviewChartElementDateBarTableRowKey`, [OLSKTestingLocalized('KOMReviewGeneralTodayText', 'en')].concat(KOMReviewGeneralLogic.KOMReviewGeneralUpcomingDates().slice(1)).join(''));
 				});
 				
 				it('sets KOMReviewChartElementDateBarTableRowDataValues', function () {
@@ -97,7 +97,7 @@ describe('KOMReviewGeneral_Misc', function () {
 			context('KOMReviewChartElementDateBarTableRow', function () {
 				
 				it('sets KOMReviewChartElementDateBarTableRowDataKey', function () {
-					browser.assert.text(`${ KOMReviewGeneralHistoricalDateBarTable } .KOMReviewChartElementDateBarTableRow .KOMReviewChartElementDateBarTableRowKey`, KOMReviewGeneralLogic.KOMReviewGeneralHistoricalDates().join(''));
+					browser.assert.text(`${ KOMReviewGeneralHistoricalDateBarTable } .KOMReviewChartElementDateBarTableRow .KOMReviewChartElementDateBarTableRowKey`, [OLSKTestingLocalized('KOMReviewGeneralTodayText', 'en')].concat(KOMReviewGeneralLogic.KOMReviewGeneralHistoricalDates().slice(1)).join(''));
 				});
 				
 				it('sets KOMReviewChartElementDateBarTableRowDataValues', function () {
