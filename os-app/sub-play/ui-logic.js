@@ -1,4 +1,4 @@
-import KOMReviewLogic from '../open-review/logic.js';
+import KOMReviewLogic from '../open-review/ui-logic.js';
 import KOMSpacingModel from '../_shared/KOMSpacing/model.js';
 
 const kIntervalAgainSeconds = 60;

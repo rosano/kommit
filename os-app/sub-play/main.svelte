@@ -13,7 +13,7 @@ const OLSKLocalized = function(translationConstant) {
 import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting';
 import KOMPlayLogic from './ui-logic.js';
 import KOMSpacingModel from '../_shared/KOMSpacing/model.js';
-import KOMReviewLogic from '../open-review/logic.js';
+import KOMReviewLogic from '../open-review/ui-logic.js';
 
 const mod = {
 

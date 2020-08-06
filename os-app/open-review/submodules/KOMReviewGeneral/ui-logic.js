@@ -1,4 +1,4 @@
-import KOMReviewLogic from '../../logic.js';
+import KOMReviewLogic from '../../ui-logic.js';
 
 const mod = {
 

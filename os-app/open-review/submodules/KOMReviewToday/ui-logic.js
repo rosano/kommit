@@ -1,6 +1,6 @@
 import KOMSpacingModel from '../../../_shared/KOMSpacing/model.js';
 import KOMPlayLogic from '../../../sub-play/ui-logic.js';
-import KOMReviewLogic from '../../logic.js';
+import KOMReviewLogic from '../../ui-logic.js';
 
 const mod = {
 

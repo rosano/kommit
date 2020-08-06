@@ -2,7 +2,7 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 const KOMPlayLogic = require('./ui-logic.js').default;
 const KOMSpacingModel = require('../_shared/KOMSpacing/model.js').default;
-const KOMReviewLogic = require('../open-review/logic.js').default;
+const KOMReviewLogic = require('../open-review/ui-logic.js').default;
 
 const kTesting = {
 	uDeck() {

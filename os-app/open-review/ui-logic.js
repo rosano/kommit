@@ -1,8 +1,15 @@
-import KOMReviewLogic from './logic.js';
 import KOMSpacingModel from '../_shared/KOMSpacing/model.js';
 import KOMDeckModel from '../_shared/KOMDeck/model.js';
 
 const mod = {
+
+	KOMReviewLogicDayGrouping(inputData) {
+		if (!(inputData instanceof Date) || Number.isNaN(inputData.getTime())) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		return (new Date(inputData.valueOf() - (inputData.getTimezoneOffset() / 60 + 4) * 1000 * 60 * 60)).toJSON().slice(0, 10);
+	},
 
 	KOMReviewSpacingsToday(inputData) {
 		if (!Array.isArray(inputData)) {
@@ -14,7 +21,7 @@ const mod = {
 				return true;
 			}
 
-			return KOMReviewLogic.KOMReviewLogicDayGrouping(e.KOMSpacingDueDate).valueOf() <= KOMReviewLogic.KOMReviewLogicDayGrouping(new Date()).valueOf();
+			return mod.KOMReviewLogicDayGrouping(e.KOMSpacingDueDate).valueOf() <= mod.KOMReviewLogicDayGrouping(new Date()).valueOf();
 		});
 	},
 
