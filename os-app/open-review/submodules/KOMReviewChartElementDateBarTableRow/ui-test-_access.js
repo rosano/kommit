@@ -5,6 +5,7 @@ Object.entries({
 	
 	KOMReviewChartElementDateBarTableRowKey: '.KOMReviewChartElementDateBarTableRowKey',
 	KOMReviewChartElementDateBarTableRowBar: '.KOMReviewChartElementDateBarTableRowBar .KOMReviewChartElementHorizontalStackedBar',
+	KOMReviewChartElementDateBarTableRowCount: '.KOMReviewChartElementDateBarTableRowCount',
 }).map(function (e) {
 	return global[e.shift()] = e.pop();
 });
@@ -27,6 +28,10 @@ describe('KOMReviewChartElementDateBarTableRow_Access', function () {
 
 	it('shows KOMReviewChartElementDateBarTableRowBar', function () {
 		browser.assert.elements(KOMReviewChartElementDateBarTableRowBar, 1);
+	});
+
+	it('shows KOMReviewChartElementDateBarTableRowCount', function () {
+		browser.assert.elements(KOMReviewChartElementDateBarTableRowCount, 1);
 	});
 
 });

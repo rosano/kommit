@@ -16,4 +16,14 @@ describe('KOMReviewChartElementDateBarTableRow_Misc', function () {
 
 	});
 
+	describe('KOMReviewChartElementDateBarTableRowCount', function test_KOMReviewChartElementDateBarTableRowCount() {
+
+		it('sets text', function () {
+			browser.assert.text(KOMReviewChartElementDateBarTableRowCount, StubReviewChartElementDateBarTableRowDataObjectValid().KOMReviewChartElementDateBarTableRowDataValues.reduce(function (coll, item) {
+				return coll + item;
+			}, 0));
+		});
+
+	});
+
 });

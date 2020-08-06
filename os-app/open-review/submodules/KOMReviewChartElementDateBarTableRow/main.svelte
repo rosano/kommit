@@ -21,6 +21,10 @@ import KOMReviewChartElementHorizontalStackedBar from '../KOMReviewChartElementH
 		KOMReviewChartElementHorizontalStackedBarMaximum={ KOMReviewChartElementHorizontalStackedBarMaximum }
 		/>
 </td>
+
+<td class="KOMReviewChartElementDateBarTableRowCount">{ KOMReviewChartElementDateBarTableRowData.KOMReviewChartElementDateBarTableRowDataValues.reduce(function (coll, item) {
+		return coll + item;
+	}, 0) }</td>
 	
 </tr>
 
