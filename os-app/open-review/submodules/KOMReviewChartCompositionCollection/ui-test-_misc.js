@@ -6,11 +6,11 @@ const d3 = require('d3');
 describe('KOMReviewChartCompositionCollection_Misc', function () {
 
 	const item = {
-		KOMReviewChartCompositionCollectionTotal: 1,
-		KOMReviewChartCompositionCollectionUnseen: 2,
-		KOMReviewChartCompositionCollectionDeveloping: 2,
-		KOMReviewChartCompositionCollectionMature: 3,
-		KOMReviewChartCompositionCollectionSuspended: 4,
+		KOMSpacingGroupingTotal: Array.from(Array(1)),
+		KOMSpacingGroupingUnseen: Array.from(Array(2)),
+		KOMSpacingGroupingDeveloping: Array.from(Array(2)),
+		KOMSpacingGroupingMature: Array.from(Array(3)),
+		KOMSpacingGroupingSuspended: Array.from(Array(4)),
 	};
 
 	before(function () {

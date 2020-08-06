@@ -12,11 +12,11 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			return browser.OLSKVisit(kDefaultRoute, {
 				OLSKRoutingLanguage: languageCode,
 				KOMReviewChartCompositionCollectionData: JSON.stringify({
-					KOMReviewChartCompositionCollectionTotal: 1,
-					KOMReviewChartCompositionCollectionUnseen: 2,
-					KOMReviewChartCompositionCollectionDeveloping: 2,
-					KOMReviewChartCompositionCollectionMature: 3,
-					KOMReviewChartCompositionCollectionSuspended: 4,
+					KOMSpacingGroupingTotal: Array.from(Array(1)),
+					KOMSpacingGroupingUnseen: Array.from(Array(2)),
+					KOMSpacingGroupingDeveloping: Array.from(Array(2)),
+					KOMSpacingGroupingMature: Array.from(Array(3)),
+					KOMSpacingGroupingSuspended: Array.from(Array(4)),
 				}),
 			});
 		});

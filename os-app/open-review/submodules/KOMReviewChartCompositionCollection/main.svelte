@@ -6,12 +6,6 @@ const OLSKLocalized = function(translationConstant) {
 	return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, JSON.parse(`{"OLSK_I18N_SEARCH_REPLACE":"OLSK_I18N_SEARCH_REPLACE"}`)[window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage')]);
 };
 
-import KOMReviewChartCompositionCollectionLogic from './ui-logic.js';
-
-if (!KOMReviewChartCompositionCollectionLogic.KOMReviewChartCompositionCollectionIsValid(KOMReviewChartCompositionCollectionData)) {
-	throw new Error('KOMErrorInputNotValid');
-}
-
 import KOMReviewChartElementHorizontalStackedBarLogic from '../KOMReviewChartElementHorizontalStackedBar/ui-logic.js';
 
 import d3 from '../../../_shared/__external/d3/dist/d3.min.js';
@@ -40,31 +34,31 @@ import KOMReviewChartElementHorizontalStackedBar from '../KOMReviewChartElementH
 <tr>
 	<th></th>
 	<th class="KOMReviewChartCompositionCollectionTotalCardsLabel">{ OLSKLocalized('KOMReviewChartCompositionCollectionTotalCardsLabelText') }</th>
-	<th class="KOMReviewChartCompositionCollectionTotalCardsValue">{ KOMReviewChartCompositionCollectionData.KOMReviewChartCompositionCollectionTotal }</th>
+	<th class="KOMReviewChartCompositionCollectionTotalCardsValue">{ KOMReviewChartCompositionCollectionData.KOMSpacingGroupingTotal.length }</th>
 </tr>
 
 <tr>
 	<td><span class="KOMReviewChartCompositionCollectionUnseenCardsColor" style="background: { mod.DataScaleColor(0) };"></span></td>
 	<td class="KOMReviewChartCompositionCollectionUnseenCardsLabel">{ OLSKLocalized('KOMReviewChartCompositionCollectionUnseenCardsLabelText') }</td>
-	<td class="KOMReviewChartCompositionCollectionUnseenCardsValue">{ KOMReviewChartCompositionCollectionData.KOMReviewChartCompositionCollectionUnseen }</td>
+	<td class="KOMReviewChartCompositionCollectionUnseenCardsValue">{ KOMReviewChartCompositionCollectionData.KOMSpacingGroupingUnseen.length }</td>
 </tr>
 
 <tr>
 	<td><span class="KOMReviewChartCompositionCollectionDevelopingCardsColor" style="background: { mod.DataScaleColor(1) };"></span></td>
 	<td class="KOMReviewChartCompositionCollectionDevelopingCardsLabel">{ OLSKLocalized('KOMReviewChartCompositionCollectionDevelopingCardsLabelText') }</td>
-	<td class="KOMReviewChartCompositionCollectionDevelopingCardsValue">{ KOMReviewChartCompositionCollectionData.KOMReviewChartCompositionCollectionDeveloping }</td>
+	<td class="KOMReviewChartCompositionCollectionDevelopingCardsValue">{ KOMReviewChartCompositionCollectionData.KOMSpacingGroupingDeveloping.length }</td>
 </tr>
 
 <tr>
 	<td><span class="KOMReviewChartCompositionCollectionMatureCardsColor" style="background: { mod.DataScaleColor(2) };"></span></td>
 	<td class="KOMReviewChartCompositionCollectionMatureCardsLabel">{ OLSKLocalized('KOMReviewChartCompositionCollectionMatureCardsLabelText') }</td>
-	<td class="KOMReviewChartCompositionCollectionMatureCardsValue">{ KOMReviewChartCompositionCollectionData.KOMReviewChartCompositionCollectionMature }</td>
+	<td class="KOMReviewChartCompositionCollectionMatureCardsValue">{ KOMReviewChartCompositionCollectionData.KOMSpacingGroupingMature.length }</td>
 </tr>
 
 <tr>
 	<td><span class="KOMReviewChartCompositionCollectionSuspendedCardsColor" style="background: { mod.DataScaleColor(3) };"></span></td>
 	<td class="KOMReviewChartCompositionCollectionSuspendedCardsLabel">{ OLSKLocalized('KOMReviewChartCompositionCollectionSuspendedCardsLabelText') }</td>
-	<td class="KOMReviewChartCompositionCollectionSuspendedCardsValue">{ KOMReviewChartCompositionCollectionData.KOMReviewChartCompositionCollectionSuspended }</td>
+	<td class="KOMReviewChartCompositionCollectionSuspendedCardsValue">{ KOMReviewChartCompositionCollectionData.KOMSpacingGroupingSuspended.length }</td>
 </tr>
 
 <tr>
@@ -96,7 +90,7 @@ tr:last-child td {
 	padding: 0;
 }
 
-.KOMReviewChartCompositionCollection :global(.KOMReviewChartElementHorizontalStackedBar) {
+.KOMSpacingGrouping :global(.KOMReviewChartElementHorizontalStackedBar) {
 	width: 100%;
 	max-width: 150px;
 	height: auto;

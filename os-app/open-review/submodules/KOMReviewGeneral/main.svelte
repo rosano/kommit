@@ -13,30 +13,8 @@ const mod = {
 	// DATA
 
 	DataStatesData() {
-		return Object.entries(KOMReviewGeneralSpacings.reduce(function (coll, item) {
-			coll.KOMReviewChartCompositionCollectionTotal.push(item);
-
-			if (KOMSpacingModel.KOMSpacingModelIsUnseen(item)) {
-				coll.KOMReviewChartCompositionCollectionUnseen.push(item);
-			}
-
-			if (KOMSpacingModel.KOMSpacingModelIsDeveloping(item)) {
-				coll.KOMReviewChartCompositionCollectionDeveloping.push(item);
-			}
-
-			if (KOMSpacingModel.KOMSpacingModelIsMature(item)) {
-				coll.KOMReviewChartCompositionCollectionMature.push(item);
-			}
-
-			return coll;
-		}, {
-			KOMReviewChartCompositionCollectionTotal: [],
-			KOMReviewChartCompositionCollectionUnseen: [],
-			KOMReviewChartCompositionCollectionDeveloping: [],
-			KOMReviewChartCompositionCollectionMature: [],
-			KOMReviewChartCompositionCollectionSuspended: [],
-		})).reduce(function (coll, item) {
-			coll[item[0]] = KOMSpacingModel.KOMSpacingModelFilterUnique(item[1]).length;
+		return Object.entries(KOMSpacingModel.KOMSpacingModelGroupByStatus(KOMReviewGeneralSpacings)).reduce(function (coll, item) {
+			coll[item[0]] = KOMSpacingModel.KOMSpacingModelFilterUnique(item[1]);
 
 			return coll;
 		}, {});

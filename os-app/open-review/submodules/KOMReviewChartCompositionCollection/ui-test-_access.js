@@ -30,11 +30,11 @@ describe('KOMReviewChartCompositionCollection_Access', function () {
 	before(function () {
 		return browser.OLSKVisit(kDefaultRoute, {
 			KOMReviewChartCompositionCollectionData: JSON.stringify({
-				KOMReviewChartCompositionCollectionTotal: 1,
-				KOMReviewChartCompositionCollectionUnseen: 1,
-				KOMReviewChartCompositionCollectionDeveloping: 2,
-				KOMReviewChartCompositionCollectionMature: 3,
-				KOMReviewChartCompositionCollectionSuspended: 4,
+				KOMSpacingGroupingTotal: Array.from(Array(1)),
+				KOMSpacingGroupingUnseen: Array.from(Array(2)),
+				KOMSpacingGroupingDeveloping: Array.from(Array(2)),
+				KOMSpacingGroupingMature: Array.from(Array(3)),
+				KOMSpacingGroupingSuspended: Array.from(Array(4)),
 			}),
 		});
 	});
