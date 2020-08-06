@@ -46,6 +46,12 @@ const mod = {
 		}, {});
 	},
 
+	KOMReviewGeneralHistoricalDates() {
+		return Array.from(Array(mod.KOMReviewGeneralTableDays())).map(function (e, i) {
+			return KOMReviewLogic.KOMReviewLogicDayGrouping(new Date(Date.now() - 1000 * 60 * 60 * 24 * i));
+		});
+	},
+
 };
 
 export default mod;

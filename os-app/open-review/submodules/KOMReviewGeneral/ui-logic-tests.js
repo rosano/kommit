@@ -122,3 +122,14 @@ describe('KOMReviewGeneralUpcomingGroupByDate', function test_KOMReviewGeneralUp
 	});
 
 });
+
+describe('KOMReviewGeneralHistoricalDates', function test_KOMReviewGeneralHistoricalDates() {
+
+	it('returns array', function () {
+		deepEqual(mainModule.KOMReviewGeneralHistoricalDates(), Array.from(Array(mainModule.KOMReviewGeneralTableDays())).map(function (e, i) {
+			return KOMReviewLogic.KOMReviewLogicDayGrouping(new Date(Date.now() - 1000 * 60 * 60 * 24 * i));
+		}));
+	});
+
+});
+
