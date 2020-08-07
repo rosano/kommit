@@ -275,7 +275,7 @@ describe('KOMReviewGeneralHistoricalGroupByDate', function test_KOMReviewGeneral
 		deepEqual(mainModule.KOMReviewGeneralHistoricalGroupByDate([item1, item2]), uGroup(item1.KOMSpacingChronicles[0].KOMChronicleResponseDate, [item1, item2]));
 	});
 
-	it('groups by date if multiple objects', function () {
+	it('groups by date if multiple chronicle objects', function () {
 		const item = Object.assign(StubSpacingObjectHistorical(), {
 			KOMSpacingChronicles: [
 				StubChronicleObjectValid(new Date('2019-04-12T00:00:00Z')),
@@ -284,6 +284,17 @@ describe('KOMReviewGeneralHistoricalGroupByDate', function test_KOMReviewGeneral
 		});
 
 		deepEqual(mainModule.KOMReviewGeneralHistoricalGroupByDate([item]), Object.assign(uGroup(item.KOMSpacingChronicles[0].KOMChronicleResponseDate, item), uGroup(item.KOMSpacingChronicles[1].KOMChronicleResponseDate, item)));
+	});
+
+	it('groups by date if multiple chronicle objects with duplicate date', function () {
+		const item = Object.assign(StubSpacingObjectHistorical(), {
+			KOMSpacingChronicles: [
+				StubChronicleObjectValid(new Date('2019-04-12T00:00:00Z')),
+				StubChronicleObjectValid(new Date('2019-04-12T00:00:00Z')),
+			],
+		});
+
+		deepEqual(mainModule.KOMReviewGeneralHistoricalGroupByDate([item]), Object.assign(uGroup(item.KOMSpacingChronicles[0].KOMChronicleResponseDate, item)));
 	});
 
 });

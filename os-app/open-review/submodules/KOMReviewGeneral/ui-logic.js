@@ -122,7 +122,13 @@ const mod = {
 
 		return inputData.reduce(function (coll, item) {
 			item.KOMSpacingChronicles.forEach(function (e) {
-				coll[KOMSharedLogic.KOMSharedGroupingDay(e.KOMChronicleResponseDate)] = (coll[KOMSharedLogic.KOMSharedGroupingDay(e.KOMChronicleResponseDate)] || []).concat(item);
+				const array = (coll[KOMSharedLogic.KOMSharedGroupingDay(e.KOMChronicleResponseDate)] || []);
+				
+				if (!array.includes(item)) {
+					array.push(item);
+				}
+
+				coll[KOMSharedLogic.KOMSharedGroupingDay(e.KOMChronicleResponseDate)] = array;
 			});
 
 			return coll;
