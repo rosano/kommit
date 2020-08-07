@@ -33,11 +33,6 @@ Object.entries({
 
 	KOMReviewDetailNoSpacings: '.KOMReviewDetailNoSpacings',
 
-	KOMReviewDetailStatistics: '.KOMReviewDetailStatistics',
-	KOMReviewDetailStatisticsHeading: '.KOMReviewDetailStatisticsHeading',
-	KOMReviewDetailStatisticsToday: '.KOMReviewDetailStatistics .KOMReviewToday',
-	KOMReviewDetailStatisticsGeneral: '.KOMReviewDetailStatistics .KOMReviewGeneral',
-
 	KOMReviewDetailDeckHeading: '.KOMReviewDetailDeckHeading',
 	KOMReviewDetailRenameButton: '.KOMReviewDetailRenameButton',
 	KOMReviewDetailDiscardButton: '.KOMReviewDetailDiscardButton',
@@ -140,8 +135,8 @@ describe('KOMReviewDetail_Access', function () {
 		browser.assert.elements(KOMReviewDetailNoSpacings, 0);
 	});
 
-	it('hides KOMReviewDetailStatistics', function () {
-		browser.assert.elements(KOMReviewDetailStatistics, 0);
+	it('hides KOMReviewStats', function () {
+		browser.assert.elements('.KOMReviewStats', 0);
 	});
 
 	it('shows KOMReviewDetailDeckHeading', function () {
@@ -186,8 +181,8 @@ describe('KOMReviewDetail_Access', function () {
 			browser.assert.elements(KOMReviewDetailPlay, 1);
 		});
 
-		it('hides KOMReviewDetailStatistics', function () {
-			browser.assert.elements(KOMReviewDetailStatistics, 0);
+		it('hides KOMReviewStats', function () {
+			browser.assert.elements('.KOMReviewStats', 0);
 		});
 
 		context('reviewing', function test_reviewing() {
@@ -368,53 +363,8 @@ describe('KOMReviewDetail_Access', function () {
 			browser.assert.elements(KOMReviewDetailNoSpacings, 1);
 		});
 
-		it('shows KOMReviewDetailStatistics', function () {
-			browser.assert.elements(KOMReviewDetailStatistics, 1);
-		});
-
-		it('shows KOMReviewDetailStatisticsHeading', function () {
-			browser.assert.elements(KOMReviewDetailStatisticsHeading, 1);
-		});
-
-		it('shows KOMReviewDetailStatisticsToday', function () {
-			browser.assert.elements(KOMReviewDetailStatisticsToday, 1);
-		});
-
-		it('shows KOMReviewDetailStatisticsGeneral', function () {
-			browser.assert.elements(KOMReviewDetailStatisticsGeneral, 1);
-		});
-
-	});
-
-	context('KOMDeckTodayStudiedCount', function test_KOMDeckTodayStudiedCount() {
-
-		before(function () {
-			return browser.OLSKVisit(kDefaultRoute, {
-				KOMReviewDetailDeck: JSON.stringify({
-					KOMDeckName: 'alfa',
-					KOMDeckIsForwardOnly: true,
-					$KOMDeckSpacings: [Object.assign(StubSpacingObjectValid(), {
-						KOMSpacingChronicles: [StubChronicleObjectValid()],
-						KOMSpacingDueDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3),
-					})],
-					$KOMDeckTodayReviewCount: 0,
-					$KOMDeckTodayUnseenCount: 0,
-					$KOMDeckTodayStudiedCount: 0,
-					$KOMDeckGeneralNotUnseenCount: 1,
-				}),
-			});
-		});
-
-		it('shows KOMReviewDetailStatistics', function () {
-			browser.assert.elements(KOMReviewDetailStatistics, 1);
-		});
-
-		it('hides KOMReviewDetailStatisticsToday', function () {
-			browser.assert.elements(KOMReviewDetailStatisticsToday, 0);
-		});
-
-		it('shows KOMReviewDetailStatisticsGeneral', function () {
-			browser.assert.elements(KOMReviewDetailStatisticsGeneral, 1);
+		it('shows KOMReviewStats', function () {
+			browser.assert.elements('.KOMReviewStats', 1);
 		});
 
 	});

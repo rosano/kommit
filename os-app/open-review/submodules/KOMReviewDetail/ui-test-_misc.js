@@ -584,13 +584,18 @@ describe('KOMReviewDetail_Misc', function () {
 
 	});
 
-	describe('KOMReviewDetailStatisticsToday', function test_KOMReviewDetailStatisticsToday() {
+	describe('KOMReviewStats', function test_KOMReviewStats() {
 
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMReviewDetailDeck: JSON.stringify({
 					KOMDeckName: 'alfa',
-					$KOMDeckSpacings: [],
+					$KOMDeckSpacings: [Object.assign(StubSpacingObjectValid(), {
+						KOMSpacingChronicles: [StubChronicleObjectValid()],
+						KOMSpacingDueDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3),
+					}), Object.assign(StubSpacingObjectValid(), {
+						KOMSpacingID: 'bravo-backward',
+					})],
 					$KOMDeckTodayStudiedCount: 1,
 					$KOMDeckGeneralNotUnseenCount: 1,
 					$KOMDeckTodayStudiedSpacings: [Object.assign(StubSpacingObjectValid(), {
@@ -603,31 +608,9 @@ describe('KOMReviewDetail_Misc', function () {
 			});
 		});
 
-		it('sets KOMReviewTodaySpacings', function () {
-			browser.assert.text(`${ KOMReviewDetailStatisticsToday } .KOMReviewTodayTotalCardsValue`, '1');
-		});
-
-	});
-
-	describe('KOMReviewDetailStatisticsGeneral', function test_KOMReviewDetailStatisticsGeneral() {
-
-		before(function () {
-			return browser.OLSKVisit(kDefaultRoute, {
-				KOMReviewDetailDeck: JSON.stringify({
-					KOMDeckName: 'alfa',
-					$KOMDeckSpacings: [Object.assign(StubSpacingObjectValid(), {
-						KOMSpacingChronicles: [StubChronicleObjectValid()],
-						KOMSpacingDueDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3),
-					}), Object.assign(StubSpacingObjectValid(), {
-						KOMSpacingID: 'bravo-backward',
-					})],
-					$KOMDeckGeneralNotUnseenCount: 1,
-				}),
-			});
-		});
-
-		it('sets KOMReviewGeneralSpacings', function () {
-			browser.assert.text(`${ KOMReviewDetailStatisticsGeneral } .KOMReviewChartCompositionCollectionTotalCardsValue`, '1');
+		it('sets KOMReviewStatsDeck', function () {
+			browser.assert.text(`.KOMReviewStats .KOMReviewTodayTotalCardsValue`, '1');
+			browser.assert.text(`.KOMReviewStats .KOMReviewChartCompositionCollectionTotalCardsValue`, '1');
 		});
 
 	});

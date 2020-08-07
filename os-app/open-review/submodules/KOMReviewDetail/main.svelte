@@ -169,8 +169,7 @@ const mod = {
 
 import _OLSKSharedBack from '../../../_shared/__external/OLSKUIAssets/_OLSKSharedBack.svg';
 import KOMReviewDetailLanguageCode from '../KOMReviewDetailLanguageCode/main.svelte';
-import KOMReviewToday from '../KOMReviewToday/main.svelte';
-import KOMReviewGeneral from '../KOMReviewGeneral/main.svelte';
+import KOMReviewStats from '../KOMReviewStats/main.svelte';
 </script>
 <svelte:window on:keydown={ mod.InterfaceWindowDidKeydown } />
 
@@ -280,15 +279,7 @@ import KOMReviewGeneral from '../KOMReviewGeneral/main.svelte';
 {#if KOMReviewDetailDeck.$KOMDeckGeneralNotUnseenCount }
 	<hr>
 
-	<div class="KOMReviewDetailStatistics">
-		<h1 class="KOMReviewDetailStatisticsHeading">{ OLSKLocalized('KOMReviewDetailStatisticsHeadingText') }</h1>
-
-		{#if KOMReviewDetailDeck.$KOMDeckTodayStudiedCount }
-			<KOMReviewToday KOMReviewTodaySpacings={ KOMReviewDetailDeck.$KOMDeckTodayStudiedSpacings || [] } />
-		{/if}
-
-		<KOMReviewGeneral KOMReviewGeneralSpacings={ KOMReviewDetailDeck.$KOMDeckSpacings } />
-	</div>
+	<KOMReviewStats KOMReviewStatsDeck={ KOMReviewDetailDeck } />
 {/if}
 
 <hr>
