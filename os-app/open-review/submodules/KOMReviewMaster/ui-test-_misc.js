@@ -108,7 +108,7 @@ describe('KOMReviewMaster_Misc', function () {
 			});
 
 			before(function () {
-				return browser.click('.KOMReviewMasterListItem');
+				return browser.pressButton('.KOMReviewMasterListItem');
 			});
 
 			it('sends KOMReviewMasterDispatchSelect', function () {

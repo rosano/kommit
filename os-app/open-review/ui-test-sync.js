@@ -272,7 +272,7 @@ describe('KOMReview_Sync', function () {
 	context('KOMReviewDetail', function test_KOMReviewDetail() {
 
 		before(function () {
-			return browser.click('.KOMReviewMasterListItem');
+			return browser.pressButton('.KOMReviewMasterListItem');
 		});
 
 		describe('OLSKChangeDelegateUpdateDeck', function () {
@@ -364,7 +364,7 @@ describe('KOMReview_Sync', function () {
 		context('different_deck', function () {
 
 			before(function () {
-				return browser.click('.KOMReviewMasterListItem');
+				return browser.pressButton('.KOMReviewMasterListItem');
 			});
 
 			before(function () {
@@ -456,7 +456,7 @@ describe('KOMReview_Sync', function () {
 			});
 
 			before(function () {
-				return browser.click('.KOMReviewMasterListItemContainer:last-of-type .KOMReviewMasterListItem');
+				return browser.pressButton('.KOMReviewMasterListItemContainer:last-of-type .KOMReviewMasterListItem');
 			});
 
 			before(function () {

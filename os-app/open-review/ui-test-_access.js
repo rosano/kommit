@@ -141,7 +141,7 @@ describe('KOMReview_Access', function () {
 	context('select', function test_select() {
 
 		before(function () {
-			return browser.click('.KOMReviewMasterListItem');
+			return browser.pressButton('.KOMReviewMasterListItem');
 		});
 
 		it('hides KOMReviewMaster', function () {
@@ -241,7 +241,7 @@ describe('KOMReview_Access', function () {
 	context('discard', function test_discard() {
 
 		before(function () {
-			return browser.click('.KOMReviewMasterListItem');
+			return browser.pressButton('.KOMReviewMasterListItem');
 		});
 
 		before(function () {
@@ -295,7 +295,7 @@ describe('KOMReview_Access', function () {
 		});
 
 		before(function () {
-			return browser.click('.KOMReviewMasterListItem');
+			return browser.pressButton('.KOMReviewMasterListItem');
 		});
 
 		before(function () {

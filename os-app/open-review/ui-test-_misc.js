@@ -43,7 +43,7 @@ describe('KOMReview_Misc', function () {
 	context('rename', function () {
 
 		before(function () {
-			return browser.click('.KOMReviewMasterListItem');
+			return browser.pressButton('.KOMReviewMasterListItem');
 		});
 
 		before(function () {
@@ -69,7 +69,7 @@ describe('KOMReview_Misc', function () {
 	describe('KOMBrowse', function test_KOMBrowse() {
 
 		before(function () {
-			return browser.click('.KOMReviewMasterListItem');
+			return browser.pressButton('.KOMReviewMasterListItem');
 		});
 
 		before(function () {
@@ -272,6 +272,10 @@ describe('KOMReview_Misc', function () {
 
 		before(function () {
 			return browser.OLSKLauncherRun('KOMReviewLauncherItemDebugFlushData');
+		});
+
+		it('deselects deck', function () {
+			browser.assert.evaluate('window.FakeWindowLocationHref', 'reload');
 		});
 
 		it.skip('reloads page', function () {
