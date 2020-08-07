@@ -24,6 +24,16 @@ exports.OLSKControllerRoutes = function () {
 					KOMGuideTokenColorDeveloping: KOMSharedLogic.KOMSharedColorDeveloping(),
 					KOMGuideTokenColorMature: KOMSharedLogic.KOMSharedColorMature(),
 					KOMGuideTokenColorSuspended: KOMSharedLogic.KOMSharedColorSuspended(),
+
+					KOMReviewLauncherItemSelectDeckText: res.locals.OLSKFormatted(res.locals.OLSKLocalized('KOMReviewLauncherItemSelectDeckTextFormat'), '…'),
+
+					KOMReviewLauncherItemSendLoginLinkText: res.locals.OLSKLocalized('KOMReviewLauncherItemSendLoginLinkText'),
+					KOMReviewLauncherItemDebugFlushDataText: res.locals.OLSKLocalized('KOMReviewLauncherItemDebugFlushDataText'),
+
+					KOMReviewDetailPlayButtonReviewingText: res.locals.OLSKLocalized('KOMReviewDetailPlayButtonReviewingText'),
+					KOMReviewDetailPlayButtonUnseenText: res.locals.OLSKLocalized('KOMReviewDetailPlayButtonUnseenText'),
+					
+					KOMReviewLauncherItemDebugCardText: res.locals.OLSKLocalized('KOMReviewLauncherItemDebugCardText'),
 				}),
 				OLSKStringReplaceTokens: require('OLSKString').OLSKStringReplaceTokens,
 				IsTestingBehaviour: req.hostname.match('loc.tests'),
