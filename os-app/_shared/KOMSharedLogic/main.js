@@ -11,11 +11,9 @@ const mod = {
 	KOMSharedColorScheme() {
 		return [
 			'#252525',
-			'#525252',
-			'#737373',
+			'#636363',
 			'#969696',
-			'#bdbdbd',
-			'#d9d9d9',
+			'#cccccc',
 			'#f7f7f7',
 		];
 	},

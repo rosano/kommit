@@ -35,11 +35,9 @@ describe('KOMSharedColorScheme', function test_KOMSharedColorScheme() {
 	it('returns array', function () {
 		deepEqual(mainModule.KOMSharedColorScheme(), [
 			'#252525',
-			'#525252',
-			'#737373',
+			'#636363',
 			'#969696',
-			'#bdbdbd',
-			'#d9d9d9',
+			'#cccccc',
 			'#f7f7f7',
 			]);
 	});
