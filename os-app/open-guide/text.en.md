@@ -34,7 +34,7 @@ By default, the cards will be presented both front-to-back and back-to-front, bu
 
 During a review, the cards will be presented in a random order. Try to recall the opposite side without looking, then *Flip* the card to reveal the following response buttons to schedule the card's next appearance:
 
-- *This session*: within the next ten minutes,
+- *Relearn*: within the next ten minutes, restart the schedule
 - *Closer*
     - First time: within the next ten minutes
     - Second time: after a day or so
@@ -96,7 +96,7 @@ Cards are visually encoded based on the following states:
 <tr>
 	<td><span style="background: KOMGuideTokenColorRelearning;"></span></td>
 	<td>Relearning</td>
-	<td>the *This session* button was pressed</td>
+	<td>the *Relearn* button was pressed</td>
 </tr>
 
 <tr>
@@ -167,7 +167,7 @@ Counting the number of cards based on its state.
 | Memory game ||
 :--- | ---
 | Flip card | `Space` |
-| Respond *This session* | `1` |
+| Respond *Relearn* | `1` |
 | Respond *Closer* | `2` |
 | Respond *Normal* | `3` or `Space` |
 | Respond *Farther* | `4` |
