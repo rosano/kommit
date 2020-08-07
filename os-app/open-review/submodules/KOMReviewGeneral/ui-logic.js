@@ -2,38 +2,6 @@ import KOMSharedLogic from '../../../_shared/KOMSharedLogic/main.js';
 
 const mod = {
 
-	KOMReviewGeneralColorScheme() {
-		return [
-			'#252525',
-			'#525252',
-			'#737373',
-			'#969696',
-			'#bdbdbd',
-			'#d9d9d9',
-			'#f7f7f7',
-		];
-	},
-
-	KOMReviewGeneralColorUnseen () {
-		return mod.KOMReviewGeneralColorScheme()[0];
-	},
-
-	KOMReviewGeneralColorRelearning () {
-		return mod.KOMReviewGeneralColorScheme()[1];
-	},
-
-	KOMReviewGeneralColorDeveloping () {
-		return mod.KOMReviewGeneralColorScheme()[2];
-	},
-
-	KOMReviewGeneralColorMature () {
-		return mod.KOMReviewGeneralColorScheme()[3];
-	},
-
-	KOMReviewGeneralColorSuspended () {
-		return mod.KOMReviewGeneralColorScheme()[4];
-	},
-
 	KOMReviewGeneralTableDays() {
 		return 7;
 	},
@@ -80,8 +48,8 @@ const mod = {
 
 	KOMReviewGeneralUpcomingColors() {
 		return [
-			mod.KOMReviewGeneralColorMature(),
-			mod.KOMReviewGeneralColorDeveloping(),
+			KOMSharedLogic.KOMSharedColorMature(),
+			KOMSharedLogic.KOMSharedColorDeveloping(),
 			];
 	},
 
@@ -147,19 +115,19 @@ const mod = {
 
 	KOMReviewGeneralHistoricalColors() {
 		return [
-			mod.KOMReviewGeneralColorMature(),
-			mod.KOMReviewGeneralColorDeveloping(),
-			mod.KOMReviewGeneralColorRelearning(),
-			mod.KOMReviewGeneralColorUnseen(),
+			KOMSharedLogic.KOMSharedColorMature(),
+			KOMSharedLogic.KOMSharedColorDeveloping(),
+			KOMSharedLogic.KOMSharedColorRelearning(),
+			KOMSharedLogic.KOMSharedColorUnseen(),
 			];
 	},
 
 	KOMReviewGeneralCollectionColors() {
 		return [
-			mod.KOMReviewGeneralColorUnseen(),
-			mod.KOMReviewGeneralColorDeveloping(),
-			mod.KOMReviewGeneralColorMature(),
-			mod.KOMReviewGeneralColorSuspended(),
+			KOMSharedLogic.KOMSharedColorUnseen(),
+			KOMSharedLogic.KOMSharedColorDeveloping(),
+			KOMSharedLogic.KOMSharedColorMature(),
+			KOMSharedLogic.KOMSharedColorSuspended(),
 			];
 	},
 

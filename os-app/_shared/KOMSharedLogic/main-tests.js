@@ -29,3 +29,61 @@ describe('KOMSharedGroupingDay', function test_KOMSharedGroupingDay() {
 	});
 
 });
+
+describe('KOMSharedColorScheme', function test_KOMSharedColorScheme() {
+
+	it('returns array', function () {
+		deepEqual(mainModule.KOMSharedColorScheme(), [
+			'#252525',
+			'#525252',
+			'#737373',
+			'#969696',
+			'#bdbdbd',
+			'#d9d9d9',
+			'#f7f7f7',
+			]);
+	});
+
+});
+
+describe('KOMSharedColorUnseen', function test_KOMSharedColorUnseen() {
+
+	it('returns string', function () {
+		deepEqual(mainModule.KOMSharedColorUnseen(), mainModule.KOMSharedColorScheme()[0]);
+	});
+
+});
+
+describe('KOMSharedColorRelearning', function test_KOMSharedColorRelearning() {
+
+	it('returns string', function () {
+		deepEqual(mainModule.KOMSharedColorRelearning(), mainModule.KOMSharedColorScheme()[1]);
+	});
+
+});
+
+describe('KOMSharedColorDeveloping', function test_KOMSharedColorDeveloping() {
+
+	it('returns string', function () {
+		deepEqual(mainModule.KOMSharedColorDeveloping(), mainModule.KOMSharedColorScheme()[2]);
+	});
+
+});
+
+describe('KOMSharedColorMature', function test_KOMSharedColorMature() {
+
+	it('returns string', function () {
+		deepEqual(mainModule.KOMSharedColorMature(), mainModule.KOMSharedColorScheme()[3]);
+	});
+
+});
+
+describe('KOMSharedColorSuspended', function test_KOMSharedColorSuspended() {
+
+	it('returns string', function () {
+		deepEqual(mainModule.KOMSharedColorSuspended(), mainModule.KOMSharedColorScheme()[4]);
+	});
+
+});
+
+

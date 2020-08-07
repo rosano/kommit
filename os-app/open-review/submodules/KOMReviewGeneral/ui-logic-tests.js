@@ -12,62 +12,6 @@ const uGroup = function (param1, param2 = []) {
 	return outputData;
 };
 
-describe('KOMReviewGeneralColorScheme', function test_KOMReviewGeneralColorScheme() {
-
-	it('returns array', function () {
-		deepEqual(mainModule.KOMReviewGeneralColorScheme(), [
-			'#252525',
-			'#525252',
-			'#737373',
-			'#969696',
-			'#bdbdbd',
-			'#d9d9d9',
-			'#f7f7f7',
-			]);
-	});
-
-});
-
-describe('KOMReviewGeneralColorUnseen', function test_KOMReviewGeneralColorUnseen() {
-
-	it('returns string', function () {
-		deepEqual(mainModule.KOMReviewGeneralColorUnseen(), mainModule.KOMReviewGeneralColorScheme()[0]);
-	});
-
-});
-
-describe('KOMReviewGeneralColorRelearning', function test_KOMReviewGeneralColorRelearning() {
-
-	it('returns string', function () {
-		deepEqual(mainModule.KOMReviewGeneralColorRelearning(), mainModule.KOMReviewGeneralColorScheme()[1]);
-	});
-
-});
-
-describe('KOMReviewGeneralColorDeveloping', function test_KOMReviewGeneralColorDeveloping() {
-
-	it('returns string', function () {
-		deepEqual(mainModule.KOMReviewGeneralColorDeveloping(), mainModule.KOMReviewGeneralColorScheme()[2]);
-	});
-
-});
-
-describe('KOMReviewGeneralColorMature', function test_KOMReviewGeneralColorMature() {
-
-	it('returns string', function () {
-		deepEqual(mainModule.KOMReviewGeneralColorMature(), mainModule.KOMReviewGeneralColorScheme()[3]);
-	});
-
-});
-
-describe('KOMReviewGeneralColorSuspended', function test_KOMReviewGeneralColorSuspended() {
-
-	it('returns string', function () {
-		deepEqual(mainModule.KOMReviewGeneralColorSuspended(), mainModule.KOMReviewGeneralColorScheme()[4]);
-	});
-
-});
-
 describe('KOMReviewGeneralTableDays', function test_KOMReviewGeneralTableDays() {
 
 	it('returns number', function () {
@@ -183,8 +127,8 @@ describe('KOMReviewGeneralUpcomingColors', function test_KOMReviewGeneralUpcomin
 
 	it('returns array', function () {
 		deepEqual(mainModule.KOMReviewGeneralUpcomingColors(), [
-			mainModule.KOMReviewGeneralColorMature(),
-			mainModule.KOMReviewGeneralColorDeveloping(),
+			KOMSharedLogic.KOMSharedColorMature(),
+			KOMSharedLogic.KOMSharedColorDeveloping(),
 			]);
 	});
 
@@ -325,10 +269,10 @@ describe('KOMReviewGeneralHistoricalColors', function test_KOMReviewGeneralHisto
 
 	it('returns array', function () {
 		deepEqual(mainModule.KOMReviewGeneralHistoricalColors(), [
-			mainModule.KOMReviewGeneralColorMature(),
-			mainModule.KOMReviewGeneralColorDeveloping(),
-			mainModule.KOMReviewGeneralColorRelearning(),
-			mainModule.KOMReviewGeneralColorUnseen(),
+			KOMSharedLogic.KOMSharedColorMature(),
+			KOMSharedLogic.KOMSharedColorDeveloping(),
+			KOMSharedLogic.KOMSharedColorRelearning(),
+			KOMSharedLogic.KOMSharedColorUnseen(),
 			]);
 	});
 
@@ -338,10 +282,10 @@ describe('KOMReviewGeneralCollectionColors', function test_KOMReviewGeneralColle
 
 	it('returns array', function () {
 		deepEqual(mainModule.KOMReviewGeneralCollectionColors(), [
-			mainModule.KOMReviewGeneralColorUnseen(),
-			mainModule.KOMReviewGeneralColorDeveloping(),
-			mainModule.KOMReviewGeneralColorMature(),
-			mainModule.KOMReviewGeneralColorSuspended(),
+			KOMSharedLogic.KOMSharedColorUnseen(),
+			KOMSharedLogic.KOMSharedColorDeveloping(),
+			KOMSharedLogic.KOMSharedColorMature(),
+			KOMSharedLogic.KOMSharedColorSuspended(),
 			]);
 	});
 
