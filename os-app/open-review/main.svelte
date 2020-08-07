@@ -107,7 +107,9 @@ const mod = {
 							return;
 						}
 
-						// window.location.reload();
+						setTimeout(function () {
+							window.location.reload();
+						}, 100);
 					},
 				},
 				]);
