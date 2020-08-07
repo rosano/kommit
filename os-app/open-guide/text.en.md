@@ -55,8 +55,6 @@ Evaluate yourself based on personal goals. Are you practicing speed? a certain w
 
 If your device has a physical keyboard, streamline your responses with [shortcuts](#shortcuts).
 
-Don't be afraid of the *This session* button, it basically strengthens your memory.
-
 You can try [mneumonics and other memory tricks](https://en.wikipedia.org/wiki/Moonwalking_with_Einstein) to help remember – usually the more personal it is, the better.
 
 # Card browser
