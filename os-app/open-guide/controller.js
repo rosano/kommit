@@ -8,7 +8,7 @@ exports.OLSKControllerRoutes = function () {
 		OLSKRouteMethod: 'get',
 		OLSKRouteSignature: 'KOMGuideRoute',
 		OLSKRouteFunction(req, res, next) {
-			const filePath = require('path').join(__dirname, '__compiled/main.js');
+			const filePath = require('path').join(__dirname, '__compiled/ignore');
 
 			require('OLSKDisk').OLSKDiskWriteFile(filePath, require('OLSKDisk').OLSKDiskReadFile(require('path').join(__dirname, '../_shared/KOMSharedLogic/main.js')).replace('export default mod;', 'Object.assign(exports, mod);'));
 
