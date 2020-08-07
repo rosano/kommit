@@ -10,6 +10,26 @@ const OLSKLocalized = function(translationConstant) {
 
 const mod = {
 
+	// DATA
+
+	DataUnseenCount () {
+		return KOMReviewMasterItems.reduce(function (coll, item) {
+			return coll + (item.$KOMDeckGeneralNotUnseenCount || 0);
+		}, 0);
+	},
+
+	DataTodaySpacings () {
+		return KOMReviewMasterItems.reduce(function (coll, item) {
+			return coll.concat(item.$KOMDeckTodayStudiedSpacings || []);
+		}, []);
+	},
+
+	DataGeneralSpacings () {
+		return KOMReviewMasterItems.reduce(function (coll, item) {
+			return coll.concat(item.$KOMDeckSpacings || []);
+		}, []);
+	},
+
 	// INTERFACE
 
 	InterfaceCreateButtonDidClick() {
@@ -25,6 +45,7 @@ const mod = {
 };
 
 import KOMReviewMasterListItem from '../KOMReviewMasterListItem/main.svelte';
+import KOMReviewStats from '../KOMReviewStats/main.svelte';
 </script>
 
 <div class="KOMReviewMaster">
@@ -48,6 +69,12 @@ import KOMReviewMasterListItem from '../KOMReviewMasterListItem/main.svelte';
 
 <button class="KOMReviewMasterCreateButton" on:click={ mod.InterfaceCreateButtonDidClick } accesskey="n">{ OLSKLocalized('KOMReviewMasterCreateButtonText') }
 </button>
+
+{#if KOMReviewMasterItems.length && mod.DataUnseenCount() }
+	<hr>
+
+	<KOMReviewStats KOMReviewTodaySpacings={ mod.DataTodaySpacings() } KOMReviewGeneralSpacings={ mod.DataGeneralSpacings() } />
+{/if}
 
 </div>
 
@@ -81,5 +108,12 @@ import KOMReviewMasterListItem from '../KOMReviewMasterListItem/main.svelte';
 
 :global(.OLSKIsLoading) .KOMReviewMasterBody {
 	visibility: hidden;
+}
+
+hr {
+	height: 1px;
+	border: none;
+
+	background: #e6e6e6;
 }
 </style>

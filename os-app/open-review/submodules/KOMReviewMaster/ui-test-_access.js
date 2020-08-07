@@ -52,6 +52,34 @@ describe('KOMReviewMaster_Access', function () {
 			browser.assert.elements('.KOMReviewMasterListItem', 1);
 		});
 
+		it('hides KOMReviewStats', function () {
+			browser.assert.elements('.KOMReviewStats', 0);
+		});
+
+	});
+
+	context('finished', function test_finished() {
+
+		before(function () {
+			return browser.OLSKVisit(kDefaultRoute, {
+				KOMReviewMasterItems: JSON.stringify([{
+					KOMDeckName: 'alfa',
+					$KOMDeckSpacings: [Object.assign(StubSpacingObjectValid(), {
+						KOMSpacingChronicles: [StubChronicleObjectValid()],
+						KOMSpacingDueDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3),
+					})],
+					$KOMDeckTodayReviewCount: 0,
+					$KOMDeckTodayUnseenCount: 0,
+					$KOMDeckTodayStudiedCount: 1,
+					$KOMDeckGeneralNotUnseenCount: 1,
+				}]),
+			});
+		});
+
+		it('shows KOMReviewStats', function () {
+			browser.assert.elements('.KOMReviewStats', 1);
+		});
+
 	});
 
 });
