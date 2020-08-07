@@ -77,6 +77,68 @@ The *Read* button speaks the text using the language chosen on the deck page.
 
 *Tags* can be used to organize cards and make them easier to find.
 
+# Statistics
+
+Various figures are calculated based on the state of each card and the amount of time spent.
+
+On the deck page, calculations are based on the selected deck. On the List of decks, calculations are based on all decks combined.
+
+Cards are visually encoded based on the following states:
+
+<table class="KOMGuideStatisticsLegend">
+
+<tr>
+	<td><span style="background: KOMGuideTokenColorUnseen;"></span></td>
+	<td>Unseen</td>
+	<td>without any reviews, not scheduled</td>
+</tr>
+
+<tr>
+	<td><span style="background: KOMGuideTokenColorRelearning;"></span></td>
+	<td>Relearning</td>
+	<td>the *This session* button was pressed</td>
+</tr>
+
+<tr>
+	<td><span style="background: KOMGuideTokenColorDeveloping;"></span></td>
+	<td>Developing</td>
+	<td>scheduled to appear within 21 days</td>
+</tr>
+
+<tr>
+	<td><span style="background: KOMGuideTokenColorMature;"></span></td>
+	<td>Mature</td>
+	<td>scheduled to appear after 21 days</td>
+</tr>
+
+<tr>
+	<td><span style="background: KOMGuideTokenColorSuspended;"></span></td>
+	<td>Suspended</td>
+	<td>the card was removed from the schedule</td>
+</tr>
+
+</table>
+
+## Today
+
+All statistics in this section are for the current day.
+
+- *Total cards*: number of cards reviewed.
+- *Time*: minutes passed during the memory game.
+- *Review accuracy*: percentage of review cards remembered correctly; new cards are not counted.
+
+## Upcoming cards
+
+The number of *Developing* and *Mature* cards scheduled on a given day.
+
+## Time
+
+Minutes passed on a given day during the memory game on Unseen, Relearning, Developing, and Mature cards.
+
+## Collection
+
+Counting the number of cards based on its state.
+
 # Shortcuts
 
 <div class="KOMGuideNotice">
@@ -126,3 +188,4 @@ The *Read* button speaks the text using the language chosen on the deck page.
 It allows the same data to be used in different ways by multiple apps. You could think of it as a USB key for your documents that you can plug into websites to work on your stuff.
 
 You can get one for free from [5apps](https://5apps.com/storage/) or [host your own](https://wiki.remotestorage.io/Servers).
+

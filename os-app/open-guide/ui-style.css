@@ -50,3 +50,14 @@ body {
 	padding: 3px 0;
 	border-top: 1px solid #eee;
 }
+
+.KOMGuideStatisticsLegend td {
+	width: unset !important;
+	padding: 10px !important;
+}
+
+.KOMGuideStatisticsLegend span {
+	display: inline-block;
+	width: 20px;
+	height: 10px;
+}
