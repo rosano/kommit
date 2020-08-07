@@ -175,7 +175,7 @@ import KOMReviewStats from '../KOMReviewStats/main.svelte';
 
 <div class="KOMReviewDetail">
 
-<header class="KOMReviewDetailToolbar OLSKToolbar OLSKToolbarJustify">
+<header class="KOMReviewDetailToolbar OLSKToolbar OLSKToolbarJustify OLSKMobileViewHeader">
 	<div class="OLSKToolbarElementGroup">
 		<button class="KOMReviewDetailToolbarBackButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton" title={ OLSKLocalized('KOMReviewDetailToolbarBackButtonText') } on:click={ KOMReviewDetailDispatchBack }>
 			<div class="KOMReviewDetailToolbarBackButtonImage">{@html _OLSKSharedBack }</div>

@@ -50,7 +50,7 @@ import KOMReviewStats from '../KOMReviewStats/main.svelte';
 
 <div class="KOMReviewMaster">
 
-<header class="KOMReviewMasterToolbar OLSKToolbar OLSKToolbarJustify">
+<header class="KOMReviewMasterToolbar OLSKToolbar OLSKToolbarJustify OLSKMobileViewHeader">
 	<div class="OLSKToolbarElementGroup">
 		<span class="KOMReviewMasterToolbarTitle">{ OLSKLocalized('KOMReviewMasterToolbarTitleText') }</span>
 	</div>

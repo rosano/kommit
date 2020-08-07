@@ -16,6 +16,10 @@ describe('KOMReviewMaster_Misc', function () {
 			browser.assert.hasClass(KOMReviewMasterToolbar, 'OLSKToolbarJustify');
 		});
 
+		it('classes OLSKMobileViewHeader', function () {
+			browser.assert.hasClass(KOMReviewMasterToolbar, 'OLSKMobileViewHeader');
+		});
+
 	});
 
 	describe('KOMReviewMasterCreateButton', function test_KOMReviewMasterCreateButton() {
