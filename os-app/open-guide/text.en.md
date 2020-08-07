@@ -8,7 +8,7 @@ This document is a work-in-progress. Feel free to ask questions on [Mastodon](ht
 
 Kommit helps you remember what you learn via flashcards and [spaced repetition](https://en.wikipedia.org/wiki/Spaced_repetition).
 
-When one side is presented, you try to recall the other before flipping it over – this [actively recall](https://en.wikipedia.org/wiki/Active_recall) strengthens your memory more than multiple-choice questions.
+When one side is presented, you try to recall the other before flipping it over – this [active recall](https://en.wikipedia.org/wiki/Active_recall) strengthens your memory more than multiple-choice questions.
 
 The cards are presented when you are likely to forget, which [aids memory retention](https://elearninginfographics.com/memory-retention-and-the-forgetting-curve-infographic/) and also reduces the amount of time you need to study. This method can make remembering a choice rather than leaving it up to chance.
 
