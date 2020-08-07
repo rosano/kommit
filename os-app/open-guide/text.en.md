@@ -119,7 +119,7 @@ The *Read* button speaks the text using the language chosen on the deck page.
 :--- | ---
 | Launcher | `Alt-Enter` |
 
-# What is 'remoteStorage'?
+# What is remoteStorage?
 
 [remoteStorage](https://remotestorage.io) is an incredible open-source technology for synchronizing data between multiple devices and making it available offline.
 
