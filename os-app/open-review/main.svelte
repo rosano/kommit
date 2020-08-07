@@ -100,6 +100,8 @@ const mod = {
 
 						await mod._ValueStorageClient.kommit.__HOTFIX.__OLSKRemoteStorageHotfixFlushData();
 
+						mod.ControlDeckSelect(null);
+
 						if (OLSK_TESTING_BEHAVIOUR() && window.FakeOLSKConnected) {
 							window.FakeWindowLocationHref = 'reload';
 							return;

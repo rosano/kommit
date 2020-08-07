@@ -274,8 +274,8 @@ describe('KOMReview_Misc', function () {
 			return browser.OLSKLauncherRun('KOMReviewLauncherItemDebugFlushData');
 		});
 
-		it('deselects deck', function () {
-			browser.assert.evaluate('window.FakeWindowLocationHref', 'reload');
+		it.skip('deselects deck', function () {
+			browser.assert.elements('.KOMReviewMaster', 1);
 		});
 
 		it.skip('reloads page', function () {
