@@ -14,10 +14,8 @@ describe('KOMReviewStats_Access', function () {
 
 	before(function () {
 		return browser.OLSKVisit(kDefaultRoute, {
-			KOMReviewStatsDeck: JSON.stringify({
-				KOMDeckName: 'alfa',
-				$KOMDeckSpacings: [],
-			}),
+			KOMReviewTodaySpacings: JSON.stringify([]),
+			KOMReviewGeneralSpacings: JSON.stringify([]),
 		});
 	});
 
@@ -41,11 +39,8 @@ describe('KOMReviewStats_Access', function () {
 		
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
-				KOMReviewStatsDeck: JSON.stringify({
-					KOMDeckName: 'alfa',
-					$KOMDeckSpacings: [],
-					$KOMDeckTodayStudiedCount: 1,
-				}),
+				KOMReviewTodaySpacings: JSON.stringify([StubSpacingObjectValid()]),
+				KOMReviewGeneralSpacings: JSON.stringify([]),
 			});
 		});
 

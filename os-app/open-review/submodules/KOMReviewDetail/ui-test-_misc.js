@@ -608,7 +608,7 @@ describe('KOMReviewDetail_Misc', function () {
 			});
 		});
 
-		it('sets KOMReviewStatsDeck', function () {
+		it('sets KOMReviewTodaySpacings', function () {
 			browser.assert.text(`.KOMReviewStats .KOMReviewTodayTotalCardsValue`, '1');
 			browser.assert.text(`.KOMReviewStats .KOMReviewChartCompositionCollectionTotalCardsValue`, '1');
 		});

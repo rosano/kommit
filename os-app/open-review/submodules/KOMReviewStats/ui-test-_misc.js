@@ -6,17 +6,13 @@ describe('KOMReviewStats_Misc', function () {
 
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
-				KOMReviewStatsDeck: JSON.stringify({
-					KOMDeckName: 'alfa',
-					$KOMDeckSpacings: [],
-					$KOMDeckTodayStudiedCount: 1,
-					$KOMDeckTodayStudiedSpacings: [Object.assign(StubSpacingObjectValid(), {
-						KOMSpacingChronicles: [StubChronicleObjectValid()],
-						KOMSpacingDueDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3),
-					}), Object.assign(StubSpacingObjectValid(), {
-						KOMSpacingID: 'bravo-backward',
-					})],
-				}),
+				KOMReviewTodaySpacings: JSON.stringify([Object.assign(StubSpacingObjectValid(), {
+					KOMSpacingChronicles: [StubChronicleObjectValid()],
+					KOMSpacingDueDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3),
+				}), Object.assign(StubSpacingObjectValid(), {
+					KOMSpacingID: 'bravo-backward',
+				})]),
+				KOMReviewGeneralSpacings: JSON.stringify([]),
 			});
 		});
 
@@ -30,15 +26,13 @@ describe('KOMReviewStats_Misc', function () {
 
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
-				KOMReviewStatsDeck: JSON.stringify({
-					KOMDeckName: 'alfa',
-					$KOMDeckSpacings: [Object.assign(StubSpacingObjectValid(), {
-						KOMSpacingChronicles: [StubChronicleObjectValid()],
-						KOMSpacingDueDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3),
-					}), Object.assign(StubSpacingObjectValid(), {
-						KOMSpacingID: 'bravo-backward',
-					})],
-				}),
+				KOMReviewTodaySpacings: JSON.stringify([]),
+				KOMReviewGeneralSpacings: JSON.stringify([Object.assign(StubSpacingObjectValid(), {
+					KOMSpacingChronicles: [StubChronicleObjectValid()],
+					KOMSpacingDueDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3),
+				}), Object.assign(StubSpacingObjectValid(), {
+					KOMSpacingID: 'bravo-backward',
+				})]),
 			});
 		});
 
