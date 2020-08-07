@@ -323,7 +323,6 @@ import KOMReviewStats from '../KOMReviewStats/main.svelte';
 }
 
 hr {
-	width: 100%;
 	height: 1px;
 	border: none;
 
