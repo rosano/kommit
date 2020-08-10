@@ -4,8 +4,6 @@ This document is a work-in-progress. Feel free to ask questions on [Mastodon](ht
 
 </div>
 
-# How it works
-
 Kommit helps you remember what you learn via flashcards and [spaced repetition](https://en.wikipedia.org/wiki/Spaced_repetition).
 
 When one side is presented, you try to recall the other before flipping it over – this [active recall](https://en.wikipedia.org/wiki/Active_recall) strengthens your memory more than multiple-choice questions.
