@@ -229,7 +229,12 @@ const mod = {
 					LCHRecipeName: 'KOMReviewLauncherItemToggleExcludeTripleQuestionMark',
 					LCHRecipeCallback: async function KOMReviewLauncherItemToggleExcludeTripleQuestionMark () {
 						const value = await KOMSettingAction.KOMSettingsActionProperty(mod._ValueStorageClient, 'KOMSettingExcludeTripleQuestionMark');
-						return KOMSettingAction.KOMSettingsActionProperty(mod._ValueStorageClient, 'KOMSettingExcludeTripleQuestionMark', value === 'true' ? 'false' : 'true');
+
+						if (value) {
+							return KOMSettingAction.KOMSettingsActionDelete(mod._ValueStorageClient, 'KOMSettingExcludeTripleQuestionMark');
+						}
+
+						KOMSettingAction.KOMSettingsActionProperty(mod._ValueStorageClient, 'KOMSettingExcludeTripleQuestionMark', 'true');
 					},
 				},
 			]);
