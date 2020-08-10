@@ -65,7 +65,7 @@ const mod = {
 				return privateClient.getObject(mod.KOMSettingStorageObjectPath({
 					KOMSettingKey: inputData,
 					KOMSettingValue: '',
-				}));
+				}), false);
 			},
 
 			_KOMSettingStorageList () {
