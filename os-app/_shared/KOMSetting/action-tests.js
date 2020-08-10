@@ -1,4 +1,4 @@
-const { rejects, deepEqual } = require('assert');
+const { rejects, throws, deepEqual } = require('assert');
 
 const mainModule = require('./action.js').default;
 
@@ -30,8 +30,10 @@ describe('KOMSettingsActionProperty', function test_KOMSettingsActionProperty() 
 
 describe('KOMSettingsActionDelete', function test_KOMSettingsActionDelete() {
 
-	it('rejects if not string', async function() {
-		await rejects(mainModule.KOMSettingsActionDelete(KOMTestingStorageClient, 1), /KOMErrorInputNotValid/);
+	it('throws if not string', function() {
+		throws(function () {
+			mainModule.KOMSettingsActionDelete(KOMTestingStorageClient, 1);
+		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns statusCode', async function() {

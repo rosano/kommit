@@ -118,6 +118,10 @@ const mod = {
 	},
 
 	KOMSettingStorageDelete (storageClient, inputData) {
+		if (typeof inputData !== 'string') {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
 		return storageClient.kommit[mod.KOMSettingStorageCollectionName()]._KOMSettingStorageDelete(inputData);
 	},
 
