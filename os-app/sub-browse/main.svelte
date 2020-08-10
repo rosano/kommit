@@ -365,7 +365,7 @@ const mod = {
 			return coll.concat((item.KOMCardTags || []).filter(function (e) {
 				return !coll.includes(e);
 			}));
-		}, []);
+		}, []).sort();
 	},
 
 	// SETUP
