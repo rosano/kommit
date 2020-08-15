@@ -32,11 +32,15 @@ const mod = {
 
 	// VALUE
 
-	_ValueLanguages: 'speechSynthesis' in window ? speechSynthesis.getVoices().map(function (e) {
-		return e.lang
-	}).filter(function (e, i, coll) {
-		return coll.indexOf(e) === i;
-	}).sort() : [],
+	_ValueLanguages: [],
+
+	ValueLanguages (inputData) {
+		mod._ValueLanguages = inputData.map(function (e) {
+			return e.lang
+		}).filter(function (e, i, coll) {
+			return coll.indexOf(e) === i;
+		}).sort();
+	},
 
 	// DATA
 
@@ -165,7 +169,37 @@ const mod = {
 		});
 	},
 
+	// SETUP
+
+	SetupEverything () {
+		mod.SetupLanguages();
+	},
+
+	SetupLanguages () {
+		if (!('speechSynthesis' in window)) {
+			return;
+		}
+
+		mod.ValueLanguages(speechSynthesis.getVoices());
+
+		if (mod._ValueLanguages.length) {
+			return;
+		}
+
+		window.speechSynthesis.onvoiceschanged = function () {
+			mod.ValueLanguages(window.speechSynthesis.getVoices());
+		};
+	},
+
+	// LIFECYCLE
+
+	LifecycleModuleDidLoad() {
+		mod.SetupEverything();
+	},
+
 };
+
+mod.LifecycleModuleDidLoad();
 
 import _OLSKSharedBack from '../../../_shared/__external/OLSKUIAssets/_OLSKSharedBack.svg';
 import KOMReviewDetailLanguageCode from '../KOMReviewDetailLanguageCode/main.svelte';
