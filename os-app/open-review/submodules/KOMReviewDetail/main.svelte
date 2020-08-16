@@ -90,7 +90,7 @@ const mod = {
 		// 	delete KOMReviewDetailDeck.KOMDeckRearSpeechIsEnabled;
 		// }
 
-		window.setTimeout(function () {
+		setTimeout(function () {
 			KOMReviewDetailDispatchUpdate(KOMReviewDetailDeck);
 		});
 	},
