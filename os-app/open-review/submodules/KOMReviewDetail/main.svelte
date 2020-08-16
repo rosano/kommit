@@ -186,6 +186,7 @@ const mod = {
 			return;
 		}
 
+		// dom events - Getting the list of voices in speechSynthesis (Web Speech API) - Stack Overflow https://stackoverflow.com/questions/21513706/getting-the-list-of-voices-in-speechsynthesis-web-speech-api
 		window.speechSynthesis.onvoiceschanged = function () {
 			mod.ValueLanguages(window.speechSynthesis.getVoices());
 		};
