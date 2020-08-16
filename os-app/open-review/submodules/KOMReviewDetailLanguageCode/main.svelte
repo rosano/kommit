@@ -13,7 +13,7 @@ const mod = {
 
 	// VALUE
 
-	_ValueLanguageCode: null,
+	_ValueLanguageCode: KOMReviewDetailLanguageCodeItem[KOMReviewDetailLanguageCodeItemProperty],
 
 	// INTERFACE
 
@@ -37,7 +37,7 @@ const mod = {
 
 };
 
-$: mod.ReactItemDidChange(KOMReviewDetailLanguageCodeItem)
+// $: mod.ReactItemDidChange(KOMReviewDetailLanguageCodeItem)
 </script>
 
 <label class="KOMReviewDetailLanguageCode">
