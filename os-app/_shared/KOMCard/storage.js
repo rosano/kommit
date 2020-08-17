@@ -116,7 +116,7 @@ const mod = {
 			},
 
 			async _KOMCardStorageList(inputData) {
-				return (await Promise.all((await OLSKRemoteStorage.OLSKRemoteStorageListObjectsRecursive(privateClient, mod.KOMCardStorageCollectionPath(inputData.KOMDeckID))).filter(mod.KOMCardStorageMatch).map(function (e) {
+				return (await Promise.all((await OLSKRemoteStorage.OLSKRemoteStorageListingRecursive(privateClient, mod.KOMCardStorageCollectionPath(inputData.KOMDeckID))).filter(mod.KOMCardStorageMatch).map(function (e) {
 					return privateClient.getObject(e, false);
 				}))).reduce(function (coll, item) {
 					if (item) {
@@ -132,7 +132,7 @@ const mod = {
 					return Promise.reject(new Error('KOMErrorInputNotValid'));
 				}
 
-				return (await Promise.all((await OLSKRemoteStorage.OLSKRemoteStorageListObjectsRecursive(privateClient, mod.KOMCardStorageFolderPath(inputData))).map(function (path) {
+				return (await Promise.all((await OLSKRemoteStorage.OLSKRemoteStorageListingRecursive(privateClient, mod.KOMCardStorageFolderPath(inputData))).map(function (path) {
 					return privateClient.remove(path);
 				}))).pop();
 			},

@@ -229,7 +229,7 @@ describe('KOMCardActionAudioCapture', function test_KOMCardActionAudioCapture() 
 
 		it('writes KOMCardStorageAudioPathFront', async function () {
 			await mainModule.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardFrontAudio', blob, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid());
-			deepEqual(await OLSKRemoteStorage.OLSKRemoteStorageListObjectsRecursive(OLSKRemoteStorage._OLSKRemoteStoragePrivateClient(KOMTestingStorageClient.kommit), ''), [
+			deepEqual(await OLSKRemoteStorage.OLSKRemoteStorageListingRecursive(OLSKRemoteStorage._OLSKRemoteStoragePrivateClient(KOMTestingStorageClient.kommit), ''), [
 				KOMCardStorage.KOMCardStorageAudioPathFront(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()),
 			]);
 		});
@@ -244,7 +244,7 @@ describe('KOMCardActionAudioCapture', function test_KOMCardActionAudioCapture() 
 
 		it('writes KOMCardStorageAudioPathRear', async function () {
 			await mainModule.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardRearAudio', blob, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid());
-			deepEqual(await OLSKRemoteStorage.OLSKRemoteStorageListObjectsRecursive(OLSKRemoteStorage._OLSKRemoteStoragePrivateClient(KOMTestingStorageClient.kommit), ''), [
+			deepEqual(await OLSKRemoteStorage.OLSKRemoteStorageListingRecursive(OLSKRemoteStorage._OLSKRemoteStoragePrivateClient(KOMTestingStorageClient.kommit), ''), [
 				KOMCardStorage.KOMCardStorageAudioPathRear(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()),
 			]);
 		});
@@ -288,7 +288,7 @@ describe('KOMCardActionAudioClear', function test_KOMCardActionAudioClear() {
 
 			await mainModule.KOMCardActionAudioClear(KOMTestingStorageClient, 'KOMCardFrontAudio', kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid());
 
-			deepEqual(await OLSKRemoteStorage.OLSKRemoteStorageListObjectsRecursive(OLSKRemoteStorage._OLSKRemoteStoragePrivateClient(KOMTestingStorageClient.kommit), ''), []);
+			deepEqual(await OLSKRemoteStorage.OLSKRemoteStorageListingRecursive(OLSKRemoteStorage._OLSKRemoteStoragePrivateClient(KOMTestingStorageClient.kommit), ''), []);
 		});
 
 		it('deletes KOMCardFrontAudio', async function () {
@@ -308,7 +308,7 @@ describe('KOMCardActionAudioClear', function test_KOMCardActionAudioClear() {
 
 			await mainModule.KOMCardActionAudioClear(KOMTestingStorageClient, 'KOMCardRearAudio', kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid());
 
-			deepEqual(await OLSKRemoteStorage.OLSKRemoteStorageListObjectsRecursive(OLSKRemoteStorage._OLSKRemoteStoragePrivateClient(KOMTestingStorageClient.kommit), ''), []);
+			deepEqual(await OLSKRemoteStorage.OLSKRemoteStorageListingRecursive(OLSKRemoteStorage._OLSKRemoteStoragePrivateClient(KOMTestingStorageClient.kommit), ''), []);
 		});
 
 		it('deletes KOMCardRearAudio', async function () {
