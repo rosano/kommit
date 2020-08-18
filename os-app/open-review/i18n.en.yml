@@ -1,6 +1,6 @@
 KOMReviewTitle: Kommit
 KOMReviewLauncherItemSelectDeckTextFormat: Select deck '%@'
-KOMReviewLauncherItemSendLoginLinkText: Send login link
+KOMReviewLauncherItemSendLoginLinkText: Copy private access link
 KOMReviewLauncherItemSendLoginLinkSubject: Kommit Login Link
 KOMReviewLauncherItemDebugFlushDataText: Flush data
 KOMReviewLauncherItemDebugFlushDataConfirmText: Are you sure?

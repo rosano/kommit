@@ -80,14 +80,18 @@ const mod = {
 					LCHRecipeSignature: 'KOMReviewLauncherItemSendLoginLink',
 					LCHRecipeName: OLSKLocalized('KOMReviewLauncherItemSendLoginLinkText'),
 					LCHRecipeCallback: function KOMReviewLauncherItemSendLoginLink () {
-						const url = `mailto:?subject=${ OLSKLocalized('KOMReviewLauncherItemSendLoginLinkSubject') }&body=${ encodeURIComponent(`${ window.location.href }#remotestorage=${ mod._ValueStorageClient.remote.userAddress }&access_token=${ mod._ValueStorageClient.remote.token }`.replace(/#+/g, '#')) }`;
+						const link = `${ window.location.href }#remotestorage=${ mod._ValueStorageClient.remote.userAddress }&access_token=${ mod._ValueStorageClient.remote.token }`.replace(/#+/g, '#')
+						
+						const url = `mailto:?subject=${ OLSKLocalized('KOMReviewLauncherItemSendLoginLinkSubject') }&body=${ encodeURIComponent(link) }`;
 
 						if (OLSK_TESTING_BEHAVIOUR() && window.FakeOLSKConnected) {
 							window.FakeWindowLocationHref = url;
 							return;
 						}
 
-						window.location.href = url;
+						// window.location.href = url;
+
+						return this.api.LCHCopyToClipboard(link);
 					},
 				},
 				{
