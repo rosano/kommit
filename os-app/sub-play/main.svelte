@@ -169,6 +169,13 @@ const mod = {
 
 				mod.InterfaceHearQuestionButtonDidClick();
 			},
+			a () {
+				if (!mod.DataAnswerShouldSound()) {
+					return
+				}
+
+				mod.InterfaceHearAnswerButtonDidClick();
+			},
 		};
 
 		handlersForKey[event.key] && handlersForKey[event.key]();
