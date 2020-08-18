@@ -62,6 +62,10 @@ describe('KOMReview_Access', function () {
 		return browser.assert.OLSKLauncherItems('KOMReviewLauncherItemSelectDeck', 0);
 	});
 
+	it('shows KOMReviewLauncherItemToggleExcludeTripleQuestionMark', function () {
+		return browser.assert.OLSKLauncherItems('KOMReviewLauncherItemToggleExcludeTripleQuestionMark', 1);
+	});
+
 	it('hides KOMReviewLauncherItemSendLoginLink', function () {
 		return browser.assert.OLSKLauncherItems('KOMReviewLauncherItemSendLoginLink', 0);
 	});

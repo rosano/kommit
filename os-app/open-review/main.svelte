@@ -226,15 +226,14 @@ const mod = {
 					},
 				},
 				{
-					LCHRecipeName: 'KOMReviewLauncherItemToggleExcludeTripleQuestionMark',
+					LCHRecipeSignature: 'KOMReviewLauncherItemToggleExcludeTripleQuestionMark',
+					LCHRecipeName: OLSKLocalized('KOMReviewLauncherItemToggleExcludeTripleQuestionMarkText'),
 					LCHRecipeCallback: async function KOMReviewLauncherItemToggleExcludeTripleQuestionMark () {
 						const value = await KOMSettingAction.KOMSettingsActionProperty(mod._ValueStorageClient, 'KOMSettingExcludeTripleQuestionMark');
 
-						if (value) {
-							return KOMSettingAction.KOMSettingsActionDelete(mod._ValueStorageClient, 'KOMSettingExcludeTripleQuestionMark');
-						}
+						value ? await KOMSettingAction.KOMSettingsActionDelete(mod._ValueStorageClient, 'KOMSettingExcludeTripleQuestionMark') : await KOMSettingAction.KOMSettingsActionProperty(mod._ValueStorageClient, 'KOMSettingExcludeTripleQuestionMark', 'true');
 
-						KOMSettingAction.KOMSettingsActionProperty(mod._ValueStorageClient, 'KOMSettingExcludeTripleQuestionMark', 'true');
+						mod.ReactThrottle();
 					},
 				},
 			]);
