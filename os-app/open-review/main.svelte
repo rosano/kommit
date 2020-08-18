@@ -229,17 +229,6 @@ const mod = {
 						return mod.OLSKChangeDelegateDeleteSpacing(mod.FakeSpacingObjectValid());
 					},
 				},
-				{
-					LCHRecipeSignature: 'KOMReviewLauncherItemToggleExcludeTripleQuestionMark',
-					LCHRecipeName: OLSKLocalized('KOMReviewLauncherItemToggleExcludeTripleQuestionMarkText'),
-					LCHRecipeCallback: async function KOMReviewLauncherItemToggleExcludeTripleQuestionMark () {
-						const value = await KOMSettingAction.KOMSettingsActionProperty(mod._ValueStorageClient, 'KOMSettingExcludeTripleQuestionMark');
-
-						value ? await KOMSettingAction.KOMSettingsActionDelete(mod._ValueStorageClient, 'KOMSettingExcludeTripleQuestionMark') : await KOMSettingAction.KOMSettingsActionProperty(mod._ValueStorageClient, 'KOMSettingExcludeTripleQuestionMark', 'true');
-
-						mod.ReactThrottle();
-					},
-				},
 			]);
 		}
 
@@ -343,6 +332,14 @@ const mod = {
 
 	KOMReviewMasterDispatchSelect (inputData) {
 		mod.ControlDeckSelect(inputData);
+	},
+
+	async KOMReviewMasterDispatchToggleExcludeTripleQuestionMark () {
+		const value = await KOMSettingAction.KOMSettingsActionProperty(mod._ValueStorageClient, 'KOMSettingExcludeTripleQuestionMark');
+
+		value ? await KOMSettingAction.KOMSettingsActionDelete(mod._ValueStorageClient, 'KOMSettingExcludeTripleQuestionMark') : await KOMSettingAction.KOMSettingsActionProperty(mod._ValueStorageClient, 'KOMSettingExcludeTripleQuestionMark', 'true');
+
+		mod.ReactThrottle();
 	},
 
 	KOMReviewDetailDispatchBack () {
@@ -715,6 +712,7 @@ import OLSKStorageWidget from 'OLSKStorageWidget';
 			KOMReviewMasterItems={ mod._ValueDecksAll }
 			KOMReviewMasterDispatchCreate={ mod.KOMReviewMasterDispatchCreate }
 			KOMReviewMasterDispatchSelect={ mod.KOMReviewMasterDispatchSelect }
+			KOMReviewMasterDispatchToggleExcludeTripleQuestionMark={ mod.KOMReviewMasterDispatchToggleExcludeTripleQuestionMark }
 			bind:this={ mod._KOMReviewMaster }
 			/>
 	{/if}

@@ -20,10 +20,6 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			browser.assert.text('title', uLocalized('KOMReviewTitle'));
 		});
 
-		it('localizes KOMReviewLauncherItemToggleExcludeTripleQuestionMark', function () {
-			return browser.assert.OLSKLauncherItemText('KOMReviewLauncherItemToggleExcludeTripleQuestionMark', uLocalized('KOMReviewLauncherItemToggleExcludeTripleQuestionMarkText'));
-		});
-
 		context('select_deck', function test_select_deck() {
 
 			before(function () {

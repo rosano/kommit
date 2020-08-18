@@ -120,4 +120,20 @@ describe('KOMReviewMaster_Misc', function () {
 
 	});
 
+	describe('KOMReviewMasterLauncherItemToggleExcludeTripleQuestionMark', function test_KOMReviewMasterLauncherItemToggleExcludeTripleQuestionMark() {
+
+		before(function () {
+			browser.assert.text('#TestKOMReviewMasterDispatchToggleExcludeTripleQuestionMark', '0');
+		});
+
+		before(function () {
+			return browser.OLSKLauncherRun('KOMReviewMasterLauncherItemToggleExcludeTripleQuestionMark');
+		});
+
+		it('sends KOMReviewMasterDispatchToggleExcludeTripleQuestionMark', function () {
+			browser.assert.text('#TestKOMReviewMasterDispatchToggleExcludeTripleQuestionMark', '1');
+		});
+
+	});
+
 });

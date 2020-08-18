@@ -2,6 +2,8 @@
 export let KOMReviewMasterItems;
 export let KOMReviewMasterDispatchCreate;
 export let KOMReviewMasterDispatchSelect;
+export let KOMReviewMasterDispatchToggleExcludeTripleQuestionMark;
+export let KOMReviewMaster_DebugShowLauncherButton = false;
 
 export const modPublic = {
 
@@ -41,7 +43,13 @@ const mod = {
 	},
 
 	DataRecipes () {
-		const items = [];
+		const items = [{
+			LCHRecipeSignature: 'KOMReviewMasterLauncherItemToggleExcludeTripleQuestionMark',
+			LCHRecipeName: OLSKLocalized('KOMReviewMasterLauncherItemToggleExcludeTripleQuestionMarkText'),
+			LCHRecipeCallback: function KOMReviewMasterLauncherItemToggleExcludeTripleQuestionMark () {
+				return KOMReviewMasterDispatchToggleExcludeTripleQuestionMark();
+			},
+		}];
 
 		if (OLSK_TESTING_BEHAVIOUR()) {
 			items.push({
@@ -63,6 +71,14 @@ const mod = {
 		}
 
 		KOMReviewMasterDispatchCreate(outputData);
+	},
+
+	// MESSAGES
+
+	_OLSKAppToolbarDispatchLauncher () {
+		window.Launchlet.LCHSingletonCreate({
+			LCHOptionRecipes: mod.DataRecipes(),
+		});
 	},
 
 };
@@ -102,6 +118,10 @@ import KOMReviewStats from '../KOMReviewStats/main.svelte';
 </div>
 
 </div>
+
+{#if OLSK_TESTING_BEHAVIOUR() && KOMReviewMaster_DebugShowLauncherButton }
+	<button class="OLSKAppToolbarLauncherButton" on:click={ mod._OLSKAppToolbarDispatchLauncher }></button>
+{/if}
 
 <style>
 .KOMReviewMaster {

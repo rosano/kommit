@@ -26,7 +26,7 @@ exports.OLSKControllerRoutes = function () {
 					KOMGuideTokenColorSuspended: KOMSharedLogic.KOMSharedColorSuspended(),
 
 					KOMReviewLauncherItemSelectDeckText: res.locals.OLSKFormatted(res.locals.OLSKLocalized('KOMReviewLauncherItemSelectDeckTextFormat'), '…'),
-					KOMReviewLauncherItemToggleExcludeTripleQuestionMarkText: res.locals.OLSKLocalized('KOMReviewLauncherItemToggleExcludeTripleQuestionMarkText'),
+					KOMReviewMasterLauncherItemToggleExcludeTripleQuestionMarkText: res.locals.OLSKLocalized('KOMReviewMasterLauncherItemToggleExcludeTripleQuestionMarkText'),
 
 					KOMReviewLauncherItemSendLoginLinkText: res.locals.OLSKLocalized('KOMReviewLauncherItemSendLoginLinkText'),
 					KOMReviewLauncherItemDebugFlushDataText: res.locals.OLSKLocalized('KOMReviewLauncherItemDebugFlushDataText'),

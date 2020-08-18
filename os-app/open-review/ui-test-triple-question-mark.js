@@ -67,7 +67,7 @@ describe('KOMReview_TripleQuestionMark', function () {
 		});
 
 		before(function () {
-			return browser.OLSKLauncherRun('KOMReviewLauncherItemToggleExcludeTripleQuestionMark');
+			return browser.OLSKLauncherRun('KOMReviewMasterLauncherItemToggleExcludeTripleQuestionMark');
 		});
 
 		it('excludes triple question mark', function () {
@@ -79,7 +79,7 @@ describe('KOMReview_TripleQuestionMark', function () {
 	context('toggle_off', function () {
 		
 		before(function () {
-			return browser.OLSKLauncherRun('KOMReviewLauncherItemToggleExcludeTripleQuestionMark');
+			return browser.OLSKLauncherRun('KOMReviewMasterLauncherItemToggleExcludeTripleQuestionMark');
 		});
 
 		it('includes triple question mark', function () {
