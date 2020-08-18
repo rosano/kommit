@@ -3,5 +3,7 @@ KOMReviewLauncherItemSelectDeckTextFormat: Choisir lot de cartes '%@'
 KOMReviewLauncherItemSendLoginLinkText: Copier lien d'accès privé
 KOMReviewLauncherItemSendLoginLinkSubject: Kommit lien d'accès
 KOMReviewLauncherItemDebugForceUpdateText: Forcer mis à jour
+KOMReviewLauncherItemDebugPlungeDataText: Ventouser les données
+KOMReviewLauncherItemDebugPlungeDataConfirmText: Êtes-vous sûr.e?
 KOMReviewLauncherItemDebugFlushDataText: Recharche les données
 KOMReviewLauncherItemDebugFlushDataConfirmText: Êtes-vous sûr.e?

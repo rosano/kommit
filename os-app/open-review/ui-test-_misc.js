@@ -268,6 +268,22 @@ describe('KOMReview_Misc', function () {
 
 	});
 
+	describe('KOMReviewLauncherItemDebugPlungeData', function test_KOMReviewLauncherItemDebugPlungeData() {
+
+		before(function () {
+			return browser.OLSKLauncherRun('KOMReviewLauncherItemDebugPlungeData');
+		});
+
+		it.skip('does something', function () {
+			browser.assert.elements('.KOMReviewMaster', 1);
+		});
+
+		it.skip('reloads page', function () {
+			browser.assert.evaluate('window.FakeWindowLocationHref', 'reload');
+		});
+
+	});
+
 	describe('KOMReviewLauncherItemDebugFlushData', function test_KOMReviewLauncherItemDebugFlushData() {
 
 		before(function () {
