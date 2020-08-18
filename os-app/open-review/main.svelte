@@ -109,7 +109,7 @@ const mod = {
 
 						setTimeout(function () {
 							window.location.reload();
-						}, 100);
+						}, 1000);
 					},
 				},
 				]);
