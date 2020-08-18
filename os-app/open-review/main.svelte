@@ -608,17 +608,41 @@ const mod = {
 		mod.ValueDecksAll(await Promise.all((await KOMDeckAction.KOMDeckActionList(mod._ValueStorageClient)).filter(function (e) {
 			return typeof e === 'object'; // #patch-remotestorage-true
 		}).map(async function (deck) {
-			const cards = await KOMCardAction.KOMCardActionList(mod._ValueStorageClient, deck);
+			const objectsMap = Object.entries(await KOMDeckStorage.KOMDeckStorageObjectsRecursive(mod._ValueStorageClient, deck));
 
-			deck.$KOMDeckSpacings = [].concat(...(await Promise.all((excludeTripleQuestionMark ? cards.filter(function (e) {
+			const cards = objectsMap.reduce(function (coll, item) {
+				if (KOMCardStorage.KOMCardStorageMatch(item[0])) {
+					return coll.concat(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(item[1]));
+				}
+
+				return coll;
+			}, []);
+
+			const spacings = objectsMap.reduce(function (coll, item) {
+				if (KOMSpacingStorage.KOMSpacingStorageMatch(item[0])) {
+					coll[KOMSpacingModel.KOMSpacingModelIdentifier(item[1].KOMSpacingID)] = (coll[KOMSpacingModel.KOMSpacingModelIdentifier(item[1].KOMSpacingID)] || []).concat(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(item[1]))
+				}
+
+				return coll;
+			}, {});
+
+			await Promise.all(cards.map(async function (e) {
+				if ((spacings[e.KOMCardID] || []).length === 2) {
+					return;
+				}
+
+				spacings[e.KOMCardID] = Object.values(await KOMSpacingStorage.KOMSpacingStorageList(mod._ValueStorageClient, e, deck));
+			}))
+
+			deck.$KOMDeckSpacings = [].concat(...(excludeTripleQuestionMark ? cards.filter(function (e) {
 				return ![e.KOMCardFrontText, e.KOMCardRearText].join(',').includes('???');
-			}) : cards).map(async function (card) {
-				return Object.values(await KOMSpacingStorage.KOMSpacingStorageList(mod._ValueStorageClient, card, deck)).map(function (e) {
+			}) : cards).map(function (card) {
+				return (spacings[card.KOMCardID] || []).map(function (e) {
 					return Object.assign(e, {
 						$KOMSpacingCard: card,
 					});
 				});
-			}))));
+			}));
 
 			const $_KOMDeckUpdateToday = function () {
 				const items = KOMReviewLogic.KOMReviewSpacingsToday(deck.$KOMDeckSpacings).filter(function (e) {
