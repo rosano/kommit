@@ -2,9 +2,7 @@ import KOMCardStorage from '../KOMCard/storage.js';
 import KOMSpacingModel from './model.js';
 import * as OLSKRemoteStoragePackage from 'OLSKRemoteStorage';
 const OLSKRemoteStorage = OLSKRemoteStoragePackage.default || OLSKRemoteStoragePackage;
-import KOMDeckStorage from '../KOMDeck/storage.js';
 import KOMDeckModel from '../KOMDeck/model.js';
-import KOMSettingStorage from '../KOMSetting/storage.js';
 
 const mod = {
 
@@ -37,15 +35,7 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		if (KOMSettingStorage.KOMSettingStorageMatch(inputData)) {
-			return false;
-		}
-
-		if (KOMDeckStorage.KOMDeckStorageMatch(inputData)) {
-			return false;
-		}
-
-		if (KOMCardStorage.KOMCardStorageMatch(inputData)) {
+		if (inputData.split('/').length < 4) {
 			return false;
 		}
 

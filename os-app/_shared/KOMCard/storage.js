@@ -66,7 +66,7 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 		
-		if (!inputData.match(mod.KOMCardStorageCollectionName())) {
+		if (inputData.split('/').length < 4) {
 			return false;
 		}
 
