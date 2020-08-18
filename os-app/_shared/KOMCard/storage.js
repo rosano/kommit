@@ -116,6 +116,13 @@ const mod = {
 			},
 
 			async _KOMCardStorageList(inputData) {
+				return Object.entries(await OLSKRemoteStorage.OLSKRemoteStorageObjectsRecursive(privateClient, mod.KOMCardStorageCollectionPath(inputData.KOMDeckID))).reduce(function (coll, item) {
+					if (mod.KOMCardStorageMatch(item[0])) {
+						coll[item[1].KOMCardID] = OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(item[1]);
+					}
+
+					return coll;
+				}, {});
 				return (await Promise.all((await OLSKRemoteStorage.OLSKRemoteStorageListingRecursive(privateClient, mod.KOMCardStorageCollectionPath(inputData.KOMDeckID))).filter(mod.KOMCardStorageMatch).map(function (e) {
 					return privateClient.getObject(e, false);
 				}))).reduce(function (coll, item) {
