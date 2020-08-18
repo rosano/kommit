@@ -115,6 +115,10 @@ const mod = {
 				]);
 		}
 
+		if (mod._KOMReviewMaster) {
+			items.push(...mod._KOMReviewMaster.modPublic.KOMReviewMasterRecipes());
+		}
+
 		if (mod._KOMReviewDetail) {
 			items.push(...mod._KOMReviewDetail.modPublic.KOMReviewDetailRecipes());
 		}
@@ -711,6 +715,7 @@ import OLSKStorageWidget from 'OLSKStorageWidget';
 			KOMReviewMasterItems={ mod._ValueDecksAll }
 			KOMReviewMasterDispatchCreate={ mod.KOMReviewMasterDispatchCreate }
 			KOMReviewMasterDispatchSelect={ mod.KOMReviewMasterDispatchSelect }
+			bind:this={ mod._KOMReviewMaster }
 			/>
 	{/if}
 

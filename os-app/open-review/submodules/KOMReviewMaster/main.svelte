@@ -3,10 +3,20 @@ export let KOMReviewMasterItems;
 export let KOMReviewMasterDispatchCreate;
 export let KOMReviewMasterDispatchSelect;
 
+export const modPublic = {
+
+	KOMReviewMasterRecipes () {
+		return mod.DataRecipes();
+	},
+
+};
+
 import OLSKInternational from 'OLSKInternational';
 const OLSKLocalized = function(translationConstant) {
 	return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, JSON.parse(`{"OLSK_I18N_SEARCH_REPLACE":"OLSK_I18N_SEARCH_REPLACE"}`)[window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage')]);
 };
+
+import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting';
 
 const mod = {
 
@@ -28,6 +38,19 @@ const mod = {
 		return KOMReviewMasterItems.reduce(function (coll, item) {
 			return coll.concat(item.$KOMDeckSpacings || []);
 		}, []);
+	},
+
+	DataRecipes () {
+		const items = [];
+
+		if (OLSK_TESTING_BEHAVIOUR()) {
+			items.push({
+				LCHRecipeName: 'KOMReviewMasterLauncherFakeItemProxy',
+				LCHRecipeCallback: function KOMReviewMasterLauncherFakeItemProxy () {},
+			});
+		}
+		
+		return items;
 	},
 
 	// INTERFACE
