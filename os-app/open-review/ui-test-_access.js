@@ -156,16 +156,16 @@ describe('KOMReview_Access', function () {
 			browser.assert.elements('.KOMReviewDetail', 1);
 		});
 
+		it('shows KOMReviewDetailLauncherFakeItemProxy', function () {
+			return browser.assert.OLSKLauncherItems('KOMReviewDetailLauncherFakeItemProxy', 1);
+		});
+
 		it('hides KOMBrowseList', function () {
 			browser.assert.elements('.KOMBrowseList', 0);
 		});
 
 		it('hides KOMBrowseInfo', function () {
 			browser.assert.elements('.KOMBrowseInfo', 0);
-		});
-
-		it('shows KOMReviewDetailLauncherFakeItemProxy', function () {
-			return browser.assert.OLSKLauncherItems('KOMReviewDetailLauncherFakeItemProxy', 1);
 		});
 
 	});
