@@ -72,6 +72,24 @@ const mod = {
 					return mod.ControlDeckSelect(e);
 				},
 			}
+		}).concat({
+			LCHRecipeSignature: 'KOMReviewLauncherItemForceUpdate',
+			LCHRecipeName: OLSKLocalized('KOMReviewLauncherItemForceUpdateText'),
+			LCHRecipeCallback: async function KOMReviewLauncherItemForceUpdate () {
+				const item = await navigator.serviceWorker.getRegistration();
+
+				if (item.waiting) {
+					return item.waiting.postMessage({
+						action: 'skipWaiting',
+					});
+				}
+
+				navigator.serviceWorker.controller.postMessage('OLSKServiceWorkerClearVersionCacheMessage');
+
+				setTimeout(function () {
+					window.location.reload();
+				}, 1000);
+			},
 		});
 
 		if (mod._ValueStorageClient.connected) {

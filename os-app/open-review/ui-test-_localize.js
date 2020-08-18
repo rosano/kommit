@@ -20,6 +20,10 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			browser.assert.text('title', uLocalized('KOMReviewTitle'));
 		});
 
+		it('localizes KOMReviewLauncherItemForceUpdate', function () {
+			return browser.assert.OLSKLauncherItemText('KOMReviewLauncherItemForceUpdate', uLocalized('KOMReviewLauncherItemForceUpdateText'));
+		});
+
 		context('select_deck', function test_select_deck() {
 
 			before(function () {

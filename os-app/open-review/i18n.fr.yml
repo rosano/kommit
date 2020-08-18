@@ -2,5 +2,6 @@ KOMReviewTitle: Kommit
 KOMReviewLauncherItemSelectDeckTextFormat: Choisir lot de cartes '%@'
 KOMReviewLauncherItemSendLoginLinkText: Copier lien d'accès privé
 KOMReviewLauncherItemSendLoginLinkSubject: Kommit lien d'accès
+KOMReviewLauncherItemForceUpdateText: Forcer mis à jour
 KOMReviewLauncherItemDebugFlushDataText: Recharche les données
 KOMReviewLauncherItemDebugFlushDataConfirmText: Êtes-vous sûr.e?
