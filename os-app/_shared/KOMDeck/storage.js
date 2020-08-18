@@ -104,6 +104,10 @@ const mod = {
 				return privateClient.remove(mod.KOMDeckStorageObjectPath(inputData.KOMDeckID));
 			},
 
+			_KOMDeckStorageObjectsRecursive(inputData) {
+				return OLSKRemoteStorage.OLSKRemoteStorageObjectsRecursive(privateClient, mod.KOMDeckStorageFolderPath(inputData.KOMDeckID));
+			},
+
 		};
 
 		return {
@@ -136,6 +140,10 @@ const mod = {
 
 	KOMDeckStorageDelete(storageClient, inputData) {
 		return storageClient.kommit[mod.KOMDeckStorageCollectionName()]._KOMDeckStorageDelete(inputData);
+	},
+
+	KOMDeckStorageObjectsRecursive(storageClient, inputData) {
+		return storageClient.kommit[mod.KOMDeckStorageCollectionName()]._KOMDeckStorageObjectsRecursive(inputData);
 	},
 
 };
