@@ -152,7 +152,6 @@ Counting the number of cards based on its state.
 | Create new deck | `AccessKey` + `n` |
 | `KOMReviewLauncherItemSelectDeckText` | Launcher |
 | `KOMReviewMasterLauncherItemToggleExcludeTripleQuestionMarkText` | Launcher |
-| `KOMReviewLauncherItemDebugFlushDataText` | Launcher |
 
 | Deck page ||
 :--- | ---
@@ -185,6 +184,7 @@ Counting the number of cards based on its state.
 | Global ||
 :--- | ---
 | `KOMReviewLauncherItemSendLoginLinkText` | Launcher |
+| `KOMReviewLauncherItemDebugFlushDataText` | Launcher |
 | Launcher | `Alt-Enter` |
 
 # What is remoteStorage?
