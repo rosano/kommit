@@ -136,7 +136,7 @@ const mod = {
 			return;
 		}
 
-		const handlerFunctions = {
+		const handlersForCode = {
 			Escape () {
 				KOMPlayDispatchDone();
 			},
@@ -157,7 +157,21 @@ const mod = {
 			},
 		};
 
-		handlerFunctions[event.code] && handlerFunctions[event.code]();
+		if (handlersForCode[event.code]) {
+			return handlersForCode[event.code]();
+		}
+
+		const handlersForKey = {
+			q () {
+				if (!mod.DataQuestionShouldSound()) {
+					return
+				}
+
+				mod.InterfaceHearQuestionButtonDidClick();
+			},
+		};
+
+		handlersForKey[event.key] && handlersForKey[event.key]();
 	},
 
 	InterfaceCardDidClick () {

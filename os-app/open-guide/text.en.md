@@ -168,6 +168,7 @@ Counting the number of cards based on its state.
 | Respond *Closer* | `2` |
 | Respond *Normal* | `3` or `Space` |
 | Respond *Farther* | `4` |
+| Repeat Question | `q` |
 | Close | `Escape` |
 
 | List of cards ||

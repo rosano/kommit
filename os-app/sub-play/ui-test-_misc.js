@@ -895,6 +895,18 @@ describe('KOMPlay_Misc', function () {
 
 			});
 
+			context('shortcut', function () {
+
+				before(function () {
+					return browser.OLSKFireKeyboardEvent(browser.window, 'q');
+				});
+
+				it('starts read', function () {
+					browser.assert.text('#TestKOMPlayAudioLog', uLog(`read:${ deck.KOMDeckFrontLanguageCode }:${ items[0].$KOMSpacingCard.KOMCardFrontText }`));
+				});
+
+			});
+
 		});
 
 		context('flip', function () {
