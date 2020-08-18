@@ -284,10 +284,10 @@ describe('KOMReview_Misc', function () {
 
 	});
 
-	describe('KOMReviewLauncherItemForceUpdate', function test_KOMReviewLauncherItemForceUpdate() {
+	describe('KOMReviewLauncherItemDebugForceUpdate', function test_KOMReviewLauncherItemDebugForceUpdate() {
 
 		before(function () {
-			return browser.OLSKLauncherRun('KOMReviewLauncherItemForceUpdate');
+			return browser.OLSKLauncherRun('KOMReviewLauncherItemDebugForceUpdate');
 		});
 
 		it.skip('update service worker registration', function () {});

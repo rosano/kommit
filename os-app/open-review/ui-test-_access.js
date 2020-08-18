@@ -70,8 +70,8 @@ describe('KOMReview_Access', function () {
 		return browser.assert.OLSKLauncherItems('KOMReviewLauncherItemDebugFlushData', 0);
 	});
 
-	it('shows KOMReviewLauncherItemForceUpdate', function () {
-		return browser.assert.OLSKLauncherItems('KOMReviewLauncherItemForceUpdate', 1);
+	it('shows KOMReviewLauncherItemDebugForceUpdate', function () {
+		return browser.assert.OLSKLauncherItems('KOMReviewLauncherItemDebugForceUpdate', 1);
 	});
 
 	it('shows KOMReviewMasterLauncherFakeItemProxy', function () {

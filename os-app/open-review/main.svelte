@@ -73,9 +73,9 @@ const mod = {
 				},
 			}
 		}).concat({
-			LCHRecipeSignature: 'KOMReviewLauncherItemForceUpdate',
-			LCHRecipeName: OLSKLocalized('KOMReviewLauncherItemForceUpdateText'),
-			LCHRecipeCallback: async function KOMReviewLauncherItemForceUpdate () {
+			LCHRecipeSignature: 'KOMReviewLauncherItemDebugForceUpdate',
+			LCHRecipeName: OLSKLocalized('KOMReviewLauncherItemDebugForceUpdateText'),
+			LCHRecipeCallback: async function KOMReviewLauncherItemDebugForceUpdate () {
 				const item = await navigator.serviceWorker.getRegistration();
 
 				if (item.waiting) {
