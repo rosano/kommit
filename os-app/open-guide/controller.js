@@ -38,7 +38,6 @@ exports.OLSKControllerRoutes = function () {
 					KOMReviewLauncherItemDebugCardText: res.locals.OLSKLocalized('KOMReviewLauncherItemDebugCardText'),
 				}),
 				OLSKStringReplaceTokens: require('OLSKString').OLSKStringReplaceTokens,
-				IsTestingBehaviour: req.hostname.match('loc.tests'),
 			});
 		},
 		_OLSKRouteLanguages: ['en'],
