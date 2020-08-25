@@ -35,7 +35,7 @@ exports.OLSKControllerRoutes = function () {
 					KOMReviewLauncherItemDebugForceUpdateText: res.locals.OLSKLocalized('KOMReviewLauncherItemDebugForceUpdateText'),
 					KOMReviewLauncherItemDebugFlushDataText: res.locals.OLSKLocalized('KOMReviewLauncherItemDebugFlushDataText'),
 					
-					KOMReviewLauncherItemDebugCardText: res.locals.OLSKLocalized('KOMReviewLauncherItemDebugCardText'),
+					KOMBrowseInfoLauncherItemDebugText: res.locals.OLSKLocalized('KOMBrowseInfoLauncherItemDebugText'),
 				}),
 				OLSKStringReplaceTokens: require('OLSKString').OLSKStringReplaceTokens,
 			});
