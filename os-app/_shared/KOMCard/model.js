@@ -83,6 +83,14 @@ const mod = {
 			}
 		}
 
+		if (inputData.KOMCardIsSuspended !== undefined || options.KOMOptionValidateIfNotPresent) {
+			if (typeof inputData.KOMCardIsSuspended !== 'boolean') {
+				errors.KOMCardIsSuspended = [
+					'KOMErrorNotBoolean',
+				];
+			}
+		}
+
 		return Object.entries(errors).length ? errors : null;
 	},
 

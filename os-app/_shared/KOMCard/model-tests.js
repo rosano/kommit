@@ -185,6 +185,26 @@ describe('KOMCardModelErrorsFor', function test_KOMCardModelErrorsFor() {
 			})), null);
 		});
 
+	});	
+
+	context('KOMCardIsSuspended', function () {
+
+		it('returns object if not boolean', function () {
+			deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubCardObjectValid(), {
+				KOMCardIsSuspended: 'true',
+			})), {
+				KOMCardIsSuspended: [
+					'KOMErrorNotBoolean',
+				],
+			});
+		});
+
+		it('returns null', function () {
+			deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubCardObjectValid(), {
+				KOMCardIsSuspended: true,
+			})), null);
+		});
+
 	});
 
 	context('KOMOptionValidateIfNotPresent', function () {
@@ -203,6 +223,7 @@ describe('KOMCardModelErrorsFor', function test_KOMCardModelErrorsFor() {
 				'KOMCardFrontAudio',
 				'KOMCardRearAudio',
 				'KOMCardTags',
+				'KOMCardIsSuspended',
 			]);
 		});
 
