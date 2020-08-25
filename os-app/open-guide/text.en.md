@@ -179,6 +179,7 @@ Counting the number of cards based on its state.
 | Copy tags to new card | `AccessKey` + `t` |
 | Clear filter text and selected card, focus filter field | `Escape` |
 | Close, if filter field is focused | `Escape` |
+| `KOMBrowseInfoLauncherItemToggleSuspendText` | Launcher |
 | `KOMBrowseInfoLauncherItemDebugText` | Launcher |
 
 | Global ||
@@ -195,4 +196,3 @@ Counting the number of cards based on its state.
 It allows the same data to be used in different ways by multiple apps. You could think of it as a USB key for your documents that you can plug into websites to work on your stuff.
 
 You can get one for free from [5apps](https://5apps.com/storage/) or [host your own](https://wiki.remotestorage.io/Servers).
-
