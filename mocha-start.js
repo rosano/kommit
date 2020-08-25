@@ -39,31 +39,31 @@ const KOMSettingStorage = require('./os-app/_shared/KOMSetting/storage.js').defa
 (function KVCMochaStubs() {
 	Object.entries({
 
-		StubDeckObjectValid() {
-			return {
+		StubDeckObjectValid(inputData) {
+			return Object.assign({
 				KOMDeckID: 'alfa',
 				KOMDeckName: 'bravo',
 				KOMDeckCreationDate: new Date('2019-02-23T13:56:36Z'),
 				KOMDeckModificationDate: new Date('2019-02-23T13:56:36Z'),
-			};
+			}, inputData);
 		},
 
-		StubCardObjectValid() {
-			return {
+		StubCardObjectValid(inputData) {
+			return Object.assign({
 				KOMCardID: 'charlie',
 				KOMCardDeckID: 'alfa',
 				KOMCardFrontText: 'delta',
 				KOMCardRearText: 'echo',
 				KOMCardCreationDate: new Date('2019-04-13T10:52:36Z'),
 				KOMCardModificationDate: new Date('2019-04-13T10:52:36Z'),
-			};
+			}, inputData);
 		},
 
-		StubSpacingObjectValid() {
-			return {
+		StubSpacingObjectValid(inputData) {
+			return Object.assign({
 				KOMSpacingID: 'bravo-forward',
 				KOMSpacingChronicles: [],
-			};
+			}, inputData);
 		},
 
 		StubSpacingObjectHistorical(inputData) {
