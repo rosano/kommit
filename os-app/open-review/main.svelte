@@ -273,6 +273,12 @@ const mod = {
 						return mod.OLSKChangeDelegateDeleteSpacing(mod.FakeSpacingObjectValid());
 					},
 				},
+				{
+					LCHRecipeName: 'KOMReviewLauncherItemDebug_ImportFileData',
+					LCHRecipeCallback: function KOMReviewLauncherItemDebug_ImportFileData () {
+						mod.InterfaceStorageInputFieldDidRead(window.prompt());
+					},
+				},
 			]);
 		}
 
@@ -304,6 +310,34 @@ const mod = {
 			KOMSpacingID: 'FakeCardID-' + (inputData ? 'backward' : 'forward'),
 			KOMSpacingChronicles: [],
 		};
+	},
+
+	// INTERFACE
+
+	InterfaceStorageInputFieldDidInput (event) {
+		const inputElement = event.target;
+		const fileReader = new FileReader();
+		
+		fileReader.onload = function (event) {
+			mod.InterfaceStorageInputFieldDidRead(event.target.result);
+			
+			inputElement.value = null;
+		};
+
+		fileReader.readAsText(inputElement.files[0]);
+	},
+
+	async InterfaceStorageInputFieldDidRead (inputData) {
+		if (!inputData.trim()) {
+			return window.alert(OLSKLocalized('KOMReviewStorageImportErrorNotFilledAlertText'))
+		}
+
+		try {
+			await KOM_Data.KOM_DataImport(mod._ValueStorageClient, OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(JSON.parse(inputData)));
+			await mod.SetupValueDecksAll();
+		} catch (e) {
+			window.alert(OLSKLocalized('KOMReviewStorageImportErrorNotValidAlertText'));
+		}
 	},
 
 	// CONTROL
@@ -828,7 +862,7 @@ import OLSKStorageWidget from 'OLSKStorageWidget';
 		{#if !mod._ValueStorageToolbarHidden }
 			<div class="KOMReviewStorageToolbar OLSKToolbar OLSKToolbarJustify OLSKStorageToolbar">
 				<div class="OLSKToolbarElementGroup">
-					<div></div>
+					<input class="KOMReviewStorageImportField" type="file" on:change={ mod.InterfaceStorageInputFieldDidInput } />
 				</div>
 
 				<div class="OLSKToolbarElementGroup">

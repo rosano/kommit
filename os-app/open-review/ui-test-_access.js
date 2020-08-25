@@ -4,6 +4,8 @@ Object.entries({
 	KOMReviewViewportFooter: '.KOMReviewViewportFooter',
 
 	KOMReviewStorageToolbar: '.KOMReviewStorageToolbar',
+	
+	KOMReviewStorageImportField: '.KOMReviewStorageImportField',
 }).map(function (e) {
 	return global[e.shift()] = e.pop();
 });
@@ -94,6 +96,10 @@ describe('KOMReview_Access', function () {
 
 		it('shows KOMReviewStorageToolbar', function () {
 			browser.assert.elements(KOMReviewStorageToolbar, 1);
+		});
+
+		it('shows KOMReviewStorageImportField', function () {
+			browser.assert.elements(KOMReviewStorageImportField, 1);
 		});
 
 		it('shows OLSKStorageWidget', function () {
