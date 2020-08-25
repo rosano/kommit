@@ -712,6 +712,34 @@ describe('KOMBrowseInfo_Misc', function () {
 
 		});
 
+	});	
+
+	describe('KOMBrowseInfoLauncherItemDebug', function test_KOMBrowseInfoLauncherItemDebug() {
+
+		before(function () {
+			return browser.OLSKVisit(kDefaultRoute, {
+				KOMBrowseInfoItem: JSON.stringify({
+					KOMCardNotes: 'alfa',
+				}),
+			});
+		});
+
+		before(function () {
+			browser.assert.text('#TestKOMBrowseInfoDispatchDebug', '0');
+			browser.assert.text('#TestKOMBrowseInfoDispatchDebugData', 'undefined');
+		});
+
+		before(function () {
+			return browser.OLSKLauncherRun('KOMBrowseInfoLauncherItemDebug');
+		});
+
+		it('sends KOMBrowseInfoDispatchDebug', function () {
+			browser.assert.text('#TestKOMBrowseInfoDispatchDebug', '1');
+			browser.assert.text('#TestKOMBrowseInfoDispatchDebugData', JSON.stringify({
+				KOMCardNotes: 'alfa',
+			}));
+		});
+
 	});
 
 });

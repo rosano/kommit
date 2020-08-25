@@ -11,7 +11,9 @@ export let KOMBrowseInfoDispatchRead;
 export let KOMBrowseInfoAudioDispatchCapture;
 export let KOMBrowseInfoAudioDispatchFetch;
 export let KOMBrowseInfoAudioDispatchClear;
+export let KOMBrowseInfoDispatchDebug;
 export let OLSKMobileViewInactive = false;
+export let KOMBrowseInfo_DebugShowLauncherButton = false;
 
 export const modPublic = {
 
@@ -37,7 +39,13 @@ const mod = {
 			return [];
 		}
 
-		const items = [];
+		const items = [{
+			LCHRecipeSignature: 'KOMBrowseInfoLauncherItemDebug',
+			LCHRecipeName: OLSKLocalized('KOMBrowseInfoLauncherItemDebugText'),
+			LCHRecipeCallback () {
+				KOMBrowseInfoDispatchDebug(KOMBrowseInfoItem);
+			},
+		}];
 
 		if (OLSK_TESTING_BEHAVIOUR()) {
 			items.push({
@@ -71,6 +79,12 @@ const mod = {
 		});
 
 		KOMBrowseInfoDispatchUpdate();
+	},
+
+	_OLSKAppToolbarDispatchLauncher () {
+		window.Launchlet.LCHSingletonCreate({
+			LCHOptionRecipes: mod.DataRecipes(),
+		});
 	},
 
 };
@@ -165,5 +179,9 @@ import KOMBrowseInfoTags from '../KOMBrowseInfoTags/main.svelte';
 {/if}
 
 </div>
+
+{#if OLSK_TESTING_BEHAVIOUR() && KOMBrowseInfo_DebugShowLauncherButton }
+	<button class="OLSKAppToolbarLauncherButton" on:click={ mod._OLSKAppToolbarDispatchLauncher }></button>
+{/if}
 
 <style src="./ui-style.css"></style>

@@ -66,7 +66,12 @@ const KOMBrowseInfo = new RollupStart({
 		KOMBrowseInfoAudioDispatchClear: (function _KOMBrowseInfoAudioDispatchClear() {
 			window.TestKOMBrowseInfoAudioDispatchClear.innerHTML = parseInt(window.TestKOMBrowseInfoAudioDispatchClear.innerHTML) + 1;
 		}),
+		KOMBrowseInfoDispatchDebug: (function _KOMBrowseInfoDispatchDebug(inputData) {
+			window.TestKOMBrowseInfoDispatchDebug.innerHTML = parseInt(window.TestKOMBrowseInfoDispatchDebug.innerHTML) + 1;
+			window.TestKOMBrowseInfoDispatchDebugData.innerHTML = JSON.stringify(inputData);
+		}),
 		KOMBrowseInfoSpeechAvailable: false,
+		KOMBrowseInfo_DebugShowLauncherButton: true,
 	}, params),
 });
 

@@ -577,10 +577,10 @@ describe('KOMBrowse_Misc', function () {
 
 	});
 
-	describe('KOMReviewLauncherItemDebugCard', function test_KOMReviewLauncherItemDebugCard() {
+	describe('KOMBrowseInfoLauncherItemDebug', function test_KOMBrowseInfoLauncherItemDebug() {
 
 		before(function () {
-			return browser.OLSKLauncherRun('KOMReviewLauncherItemDebugCard');
+			return browser.OLSKLauncherRun('KOMBrowseInfoLauncherItemDebug');
 		});
 
 		it.skip('sets window location', function () {

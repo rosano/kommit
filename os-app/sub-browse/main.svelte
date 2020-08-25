@@ -89,23 +89,6 @@ const mod = {
 	DataRecipes () {
 		const items = [];
 
-		if (mod._ValueCardSelected) {
-			items.push({
-				LCHRecipeSignature: 'KOMReviewLauncherItemDebugCard',
-				LCHRecipeName: OLSKLocalized('KOMReviewLauncherItemDebugCardText'),
-				LCHRecipeCallback () {
-					const url = `https://inspektor.5apps.com/?path=kommit%2F${ encodeURIComponent(KOMCardStorage.KOMCardStorageFolderPath(mod._ValueCardSelected, KOMBrowseDeckSelected)) }`;
-
-					if (OLSK_TESTING_BEHAVIOUR()) {
-						window.FakeWindowOpen = url;
-						return;
-					}
-
-					window.open(url)
-				},
-			});
-		}
-
 		if (OLSK_TESTING_BEHAVIOUR()) {
 			items.push(...[
 				{
@@ -322,6 +305,17 @@ const mod = {
 		return await KOMCardAction.KOMCardActionAudioFetch(KOMBrowseStorageClient, inputData, mod._ValueCardSelected, KOMBrowseDeckSelected);
 	},
 
+	KOMBrowseInfoDispatchDebug (inputData) {
+		const url = `https://inspektor.5apps.com/?path=kommit%2F${ encodeURIComponent(KOMCardStorage.KOMCardStorageFolderPath(inputData, KOMBrowseDeckSelected)) }`;
+
+		if (OLSK_TESTING_BEHAVIOUR()) {
+			window.FakeWindowOpen = url;
+			return;
+		}
+
+		window.open(url)
+	},
+
 	_OLSKAppToolbarDispatchLauncher () {
 		window.Launchlet.LCHSingletonCreate({
 			LCHOptionRecipes: mod.DataRecipes(),
@@ -431,6 +425,7 @@ import KOMBrowseInfo from './submodules/KOMBrowseInfo/main.svelte';
 	KOMBrowseInfoAudioDispatchFetch={ mod.KOMBrowseInfoAudioDispatchFetch }
 	KOMBrowseInfoAudioDispatchClear={ mod.KOMBrowseInfoAudioDispatchClear }
 	OLSKMobileViewInactive={ !mod.OLSKMobileViewInactive }
+	KOMBrowseInfoDispatchDebug={ mod.KOMBrowseInfoDispatchDebug }
 	bind:this={ mod._KOMBrowseInfo }
 	/>
 

@@ -49,6 +49,10 @@ describe('KOMBrowseInfo_Access', function () {
 		browser.assert.elements(KOMBrowseInfoForm, 0);
 	});
 
+	it('hides KOMBrowseInfoLauncherItemDebug', function () {
+		return browser.assert.OLSKLauncherItems('KOMBrowseInfoLauncherItemDebug', 0);
+	});
+
 	context('KOMBrowseInfoItem', function () {
 
 		before(function () {
@@ -123,6 +127,10 @@ describe('KOMBrowseInfo_Access', function () {
 
 		it('shows KOMBrowseInfoFormTagsField', function () {
 			browser.assert.elements(KOMBrowseInfoFormTagsField, 1);
+		});
+
+		it('shows KOMBrowseInfoLauncherItemDebug', function () {
+			return browser.assert.OLSKLauncherItems('KOMBrowseInfoLauncherItemDebug', 1);
 		});
 
 	});
