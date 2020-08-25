@@ -3,6 +3,7 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 Object.entries({
 	KOMBrowseListItem: '.KOMBrowseListItem',
 
+	KOMBrowseListItemSuspended: '.KOMBrowseListItemSuspended',
 	KOMBrowseListItemFront: '.KOMBrowseListItemFront',
 	KOMBrowseListItemRear: '.KOMBrowseListItemRear',
 	KOMBrowseListItemTags: '.KOMBrowseListItemTags',
@@ -25,6 +26,10 @@ describe('KOMBrowseListItem_Access', function () {
 		browser.assert.elements(KOMBrowseListItem, 1);
 	});
 
+	it('hides KOMBrowseListItemSuspended', function () {
+		browser.assert.elements(KOMBrowseListItemSuspended, 0);
+	});
+
 	it('shows KOMBrowseListItemFront', function () {
 		browser.assert.elements(KOMBrowseListItemFront, 1);
 	});
@@ -35,6 +40,24 @@ describe('KOMBrowseListItem_Access', function () {
 
 	it('shows KOMBrowseListItemTags', function () {
 		browser.assert.elements(KOMBrowseListItemTags, 1);
+	});
+
+	context('KOMCardIsSuspended', function () {
+		
+		before(function () {
+			return browser.OLSKVisit(kDefaultRoute, {
+				KOMBrowseListItemObject: JSON.stringify({
+					KOMCardFrontText: 'alfa',
+					KOMCardRearText: 'bravo',
+					KOMCardIsSuspended: true,
+				}),
+			});
+		});
+
+		it('shows KOMBrowseListItemSuspended', function () {
+			browser.assert.elements(KOMBrowseListItemSuspended, 1);
+		});
+	
 	});
 
 });
