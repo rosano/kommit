@@ -48,6 +48,10 @@ describe('KOMBrowse_Access', function () {
 		return browser.assert.OLSKLauncherItems('KOMReviewLauncherItemDebugCard', 0);
 	});
 
+	it('hides KOMBrowseInfoLauncherFakeItemProxy', function () {
+		return browser.assert.OLSKLauncherItems('KOMBrowseInfoLauncherFakeItemProxy', 0);
+	});
+
 	context('create', function test_create() {
 
 		before(function () {
@@ -72,6 +76,10 @@ describe('KOMBrowse_Access', function () {
 
 		it('shows KOMReviewLauncherItemDebugCard', function () {
 			return browser.assert.OLSKLauncherItems('KOMReviewLauncherItemDebugCard', 1);
+		});
+
+		it('shows KOMBrowseInfoLauncherFakeItemProxy', function () {
+			return browser.assert.OLSKLauncherItems('KOMBrowseInfoLauncherFakeItemProxy', 1);
 		});
 
 	});

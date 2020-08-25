@@ -144,6 +144,10 @@ const mod = {
 				},
 			]);
 		}
+
+		if (mod._KOMBrowseInfo) {
+			items.push(...mod._KOMBrowseInfo.modPublic.KOMBrowseInfoRecipes());
+		}
 		
 		return items;
 	},
@@ -427,6 +431,7 @@ import KOMBrowseInfo from './submodules/KOMBrowseInfo/main.svelte';
 	KOMBrowseInfoAudioDispatchFetch={ mod.KOMBrowseInfoAudioDispatchFetch }
 	KOMBrowseInfoAudioDispatchClear={ mod.KOMBrowseInfoAudioDispatchClear }
 	OLSKMobileViewInactive={ !mod.OLSKMobileViewInactive }
+	bind:this={ mod._KOMBrowseInfo }
 	/>
 
 {#if OLSK_TESTING_BEHAVIOUR() && KOMBrowseStorageClient.FakeStorageClient }

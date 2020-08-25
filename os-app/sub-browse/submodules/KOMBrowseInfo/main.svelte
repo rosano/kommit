@@ -13,6 +13,14 @@ export let KOMBrowseInfoAudioDispatchFetch;
 export let KOMBrowseInfoAudioDispatchClear;
 export let OLSKMobileViewInactive = false;
 
+export const modPublic = {
+
+	KOMBrowseInfoRecipes () {
+		return mod.DataRecipes();
+	},
+
+};
+
 import OLSKInternational from 'OLSKInternational';
 const OLSKLocalized = function(translationConstant) {
 	return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, JSON.parse(`{"OLSK_I18N_SEARCH_REPLACE":"OLSK_I18N_SEARCH_REPLACE"}`)[window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage')]);
@@ -21,6 +29,25 @@ const OLSKLocalized = function(translationConstant) {
 import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting';
 
 const mod = {
+
+	// DATA
+
+	DataRecipes () {
+		if (!KOMBrowseInfoItem) {
+			return [];
+		}
+
+		const items = [];
+
+		if (OLSK_TESTING_BEHAVIOUR()) {
+			items.push({
+				LCHRecipeName: 'KOMBrowseInfoLauncherFakeItemProxy',
+				LCHRecipeCallback: function KOMBrowseInfoLauncherFakeItemProxy () {},
+			});
+		}
+		
+		return items;
+	},
 
 	// MESSAGE
 
