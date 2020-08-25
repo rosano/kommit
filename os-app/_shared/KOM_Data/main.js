@@ -28,6 +28,7 @@ const mod = {
 			const deck = await KOMDeckAction.KOMDeckActionCreate(storageClient, e);
 
 			if (deck.KOMErrors) {
+				// console.log('KOMErrorInputNotValid', deck.KOMErrors, e);
 				return Promise.reject(new Error('KOMErrorInputNotValid'));
 			}
 
@@ -35,24 +36,28 @@ const mod = {
 				const card = await KOMCardAction.KOMCardActionCreate(storageClient, e, deck);
 
 				if (card.KOMErrors) {
+					// console.log('KOMErrorInputNotValid', card.KOMErrors, e);
 					return Promise.reject(new Error('KOMErrorInputNotValid'));
 				}
 
-				await Promise.all(['$KOMCardSpacingForward', '$KOMCardSpacingBackward'].map(async function (e) {
+				const spacings = await KOMSpacingStorage.KOMSpacingStorageList(storageClient, card, deck);
+
+				return Promise.all(['$KOMCardSpacingForward', '$KOMCardSpacingBackward'].map(async function (e) {
 					if (!card[e]) {
 						return Promise.resolve();
 					}
 
-					const spacing = await KOMSpacingStorage.KOMSpacingStorageWrite(storageClient, card[e], card, deck);
+					const spacing = await KOMSpacingStorage.KOMSpacingStorageWrite(storageClient, Object.assign(card[e], {
+						KOMSpacingID: spacings[e.slice(1)].KOMSpacingID,
+					}), card, deck);
 
 					if (spacing.KOMErrors) {
+						// console.log('KOMErrorInputNotValid', spacing.KOMErrors, card[e]);
 						return Promise.reject(new Error('KOMErrorInputNotValid'));
 					}
 
 					return spacing;
 				}));
-
-				return card
 			}));
 
 			delete deck.$KOMDeckCards;

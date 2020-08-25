@@ -106,7 +106,7 @@ describe('KOM_DataImport', function test_KOM_DataImport() {
 			await rejects(mainModule.KOM_DataImport(KOMTestingStorageClient, [uDeck({
 				$KOMDeckCards: [uCard({
 					$KOMCardSpacingForward: StubSpacingObjectValid({
-						KOMSpacingID: null,
+						KOMSpacingChronicles: null,
 					}),
 				})],
 			})]), /KOMErrorInputNotValid/);
@@ -140,7 +140,7 @@ describe('KOM_DataImport', function test_KOM_DataImport() {
 			await rejects(mainModule.KOM_DataImport(KOMTestingStorageClient, [uDeck({
 				$KOMDeckCards: [uCard({
 					$KOMCardSpacingBackward: StubSpacingObjectValid({
-						KOMSpacingID: null,
+						KOMSpacingChronicles: null,
 					}),
 				})],
 			})]), /KOMErrorInputNotValid/);
@@ -148,7 +148,6 @@ describe('KOM_DataImport', function test_KOM_DataImport() {
 
 		it('creates KOMSpacing object', async function () {
 			const spacing = StubSpacingObjectValid({
-				KOMSpacingID: 'bravo-backward',
 				KOMSpacingChronicles: [StubChronicleObjectValid()],
 			});
 
