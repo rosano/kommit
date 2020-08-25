@@ -248,6 +248,17 @@ describe('KOMReviewFilter', function test_KOMReviewFilter() {
 		deepEqual(mainModule.KOMReviewFilter([], kTesting.StubReviewObjectValid(), kTesting.StubDeckObjectValid()), []);
 	});
 
+	it('excludes if KOMCardIsSuspended', function () {
+		deepEqual(mainModule.KOMReviewFilter(uItems().map(function (e) {
+			e.$KOMSpacingCard.KOMCardIsSuspended = true;
+
+			return e;
+		}), Object.assign(kTesting.StubReviewObjectValid(), {
+			KOMReviewScheme: mainModule.KOMReviewSchemeMixed(),
+			KOMReviewMaxUnseenCards: Infinity,
+		}), kTesting.StubDeckObjectValid()), []);
+	});
+
 	context('KOMReviewScheme', function () {
 
 		it('excludes unseen if KOMReviewSchemeReviewing', function () {

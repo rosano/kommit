@@ -87,6 +87,10 @@ const mod = {
 
 		const cardsNew = [];
 		return param1.filter(function (e, i) {
+			if (e.$KOMSpacingCard.KOMCardIsSuspended) {
+				return false;
+			}
+
 			if (param2.KOMReviewScheme === mod.KOMReviewSchemeReviewing() && KOMSpacingModel.KOMSpacingModelIsUnseen(e)) {
 				return false;
 			}

@@ -695,6 +695,8 @@ const mod = {
 					}
 
 					return true;
+				}).filter(function (e) {
+					return !e.$KOMSpacingCard.KOMCardIsSuspended;
 				});
 
 				const _ValueSpacingsReviewing = KOMSpacingModel.KOMSpacingModelFilterUnique(items.filter(function (e) {
