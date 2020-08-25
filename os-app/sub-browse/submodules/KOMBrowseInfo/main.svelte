@@ -40,6 +40,18 @@ const mod = {
 		}
 
 		const items = [{
+			LCHRecipeSignature: 'KOMBrowseInfoLauncherItemToggleSuspend',
+			LCHRecipeName: OLSKLocalized('KOMBrowseInfoLauncherItemToggleSuspendText'),
+			LCHRecipeCallback () {
+				if (KOMBrowseInfoItem.KOMCardIsSuspended) {
+					delete KOMBrowseInfoItem.KOMCardIsSuspended;
+				} else {
+					KOMBrowseInfoItem.KOMCardIsSuspended = true;
+				}
+
+				KOMBrowseInfoDispatchUpdate();
+			},
+		}, {
 			LCHRecipeSignature: 'KOMBrowseInfoLauncherItemDebug',
 			LCHRecipeName: OLSKLocalized('KOMBrowseInfoLauncherItemDebugText'),
 			LCHRecipeCallback () {

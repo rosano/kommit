@@ -712,7 +712,56 @@ describe('KOMBrowseInfo_Misc', function () {
 
 		});
 
-	});	
+	});
+
+	describe('KOMBrowseInfoLauncherItemToggleSuspend', function test_KOMBrowseInfoLauncherItemToggleSuspend() {
+
+		before(function () {
+			return browser.OLSKVisit(kDefaultRoute, {
+				KOMBrowseInfoItem: JSON.stringify({
+					KOMCardNotes: 'alfa',
+				}),
+			});
+		});
+
+		before(function () {
+			browser.assert.text('#TestKOMBrowseInfoDispatchUpdate', '0');
+		});
+
+		before(function () {
+			return browser.OLSKLauncherRun('KOMBrowseInfoLauncherItemToggleSuspend');
+		});
+
+		it('updates KOMBrowseInfoItem', function () {
+			browser.assert.text('#TestKOMBrowseInfoItem', JSON.stringify({
+				KOMCardNotes: 'alfa',
+				KOMCardIsSuspended: true,
+			}));
+		});
+
+		it('sends KOMBrowseInfoDispatchToggleSuspend', function () {
+			browser.assert.text('#TestKOMBrowseInfoDispatchUpdate', '1');
+		});
+
+		context('KOMCardIsSuspended', function () {
+
+			before(function () {
+				return browser.OLSKLauncherRun('KOMBrowseInfoLauncherItemToggleSuspend');
+			});
+
+			it('updates KOMBrowseInfoItem', function () {
+				browser.assert.text('#TestKOMBrowseInfoItem', JSON.stringify({
+					KOMCardNotes: 'alfa',
+				}));
+			});
+
+			it('sends KOMBrowseInfoDispatchToggleSuspend', function () {
+				browser.assert.text('#TestKOMBrowseInfoDispatchUpdate', '2');
+			});
+		
+		});
+
+	});
 
 	describe('KOMBrowseInfoLauncherItemDebug', function test_KOMBrowseInfoLauncherItemDebug() {
 
