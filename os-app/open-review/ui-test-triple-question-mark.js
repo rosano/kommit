@@ -16,7 +16,7 @@ describe('KOMReview_TripleQuestionMark', function () {
 		});
 	});
 
-	it('shows KOMReviewMasterListItem', function () {
+	it('shows KOMReviewMasterListItem', function () { // #hotfix-invisible-until-assert
 		browser.assert.elements('.KOMReviewMasterListItem', 1);
 	});
 
