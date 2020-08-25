@@ -216,6 +216,12 @@ const mod = {
 		return inputData.reduce(function (coll, item) {
 			coll.KOMSpacingGroupingTotal.push(item);
 
+			if ((item.$KOMSpacingCard || {}).KOMCardIsSuspended) {
+				coll.KOMSpacingGroupingSuspended.push(item);
+				
+				return coll;
+			}
+
 			if (mod.KOMSpacingModelIsUnseen(item)) {
 				coll.KOMSpacingGroupingUnseen.push(item);
 			}

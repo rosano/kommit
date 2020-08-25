@@ -538,6 +538,18 @@ describe('KOMSpacingModelGroupByStatus', function test_KOMSpacingModelGroupBySta
 		}));
 	});
 
+	it('groups suspended', function () {
+		const item = Object.assign(StubSpacingObjectValid(), {
+			$KOMSpacingCard: StubCardObjectValid({
+				KOMCardIsSuspended: true,
+			}),
+		});
+		deepEqual(mainModule.KOMSpacingModelGroupByStatus([item]), uGrouping({
+			KOMSpacingGroupingTotal: [item],
+			KOMSpacingGroupingSuspended: [item],
+		}));
+	});
+
 });
 
 describe('KOMSpacingModelGroupChroniclesByStatus', function test_KOMSpacingModelGroupChroniclesByStatus() {
