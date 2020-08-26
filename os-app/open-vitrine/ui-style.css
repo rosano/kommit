@@ -27,3 +27,8 @@ body {
 .KOMVitrineIdentityName {
 	margin: 0;
 }
+
+.KOMVitrineVideoFrame {
+	width: 100%;
+	height: 300px;
+}
