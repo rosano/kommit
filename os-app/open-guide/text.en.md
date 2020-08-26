@@ -149,14 +149,14 @@ Counting the number of cards based on its state.
 
 | List of decks ||
 :--- | ---
-| Create new deck | `AccessKey` + `n` |
+| Create new deck | `AccessKey+n` |
 | `KOMReviewLauncherItemSelectDeckText` | Launcher |
 | `KOMReviewMasterLauncherItemToggleExcludeTripleQuestionMarkText` | Launcher |
 
 | Deck page ||
 :--- | ---
-| Show cards | `AccessKey` + `c` |
-| Play memory game | `AccessKey` + `g` |
+| Show cards | `AccessKey+c` |
+| Play memory game | `AccessKey+g` |
 | Close | `Escape` |
 | `KOMReviewDetailPlayButtonReviewingText` | Launcher |
 | `KOMReviewDetailPlayButtonUnseenText` | Launcher |
@@ -174,9 +174,9 @@ Counting the number of cards based on its state.
 
 | List of cards ||
 :--- | ---
-| Create new card | `AccessKey` + `n` |
+| Create new card | `AccessKey+n` |
 | Select previous or next card, if filter field is focused | `Up` or `Down` |
-| Copy tags to new card | `AccessKey` + `t` |
+| Copy tags to new card | `AccessKey+t` |
 | Clear filter text and selected card, focus filter field | `Escape` |
 | Close, if filter field is focused | `Escape` |
 | `KOMBrowseInfoLauncherItemToggleSuspendText` | Launcher |
@@ -187,7 +187,7 @@ Counting the number of cards based on its state.
 | `KOMReviewLauncherItemSendLoginLinkText` | Launcher |
 | `KOMReviewLauncherItemDebugForceUpdateText` | Launcher |
 | `KOMReviewLauncherItemDebugFlushDataText` | Launcher |
-| Launcher | `Alt-Enter` |
+| Launcher | `Alt+Enter` |
 
 # What is remoteStorage?
 
