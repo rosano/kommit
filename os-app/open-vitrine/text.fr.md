@@ -11,8 +11,6 @@ Le projet est librement accessible, mais si vous êtes en mesure de donner, veui
 * * *
 
 ## Caractéristiques
-- Créer un nombre illimité de lots de cartes
-- Créer des cartes illimitées
 - Écouter des cartes oralement avec synthèse vocale
 - Enregistrer d'audio
 - Organiser des cartes avec des tags

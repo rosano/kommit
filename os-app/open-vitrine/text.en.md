@@ -11,8 +11,6 @@ The project is freely accessible but if you are in a position to give, please [d
 * * *
 
 ## Features
-- Create unlimited decks
-- Create unlimited cards
 - Hear cards orally with text-to-speech
 - Record audio
 - Organize cards with tags
