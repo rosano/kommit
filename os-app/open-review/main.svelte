@@ -279,6 +279,30 @@ const mod = {
 						mod.InterfaceStorageInputFieldDidRead(window.prompt());
 					},
 				},
+				{
+					LCHRecipeName: 'KOMReviewLauncherItemDebug_TestSpeedPopulate',
+					LCHRecipeCallback: function KOMReviewLauncherItemDebug_TestSpeedPopulate () {
+						const deck = mod._ValueDecksAll.slice(-1).pop();
+						return Promise.all(Array.from(Array(100)).map(function (e, i) {
+							return KOMCardAction.KOMCardActionCreate(mod._ValueStorageClient, Object.assign(mod.FakeCardObjectValid(), {
+								KOMCardID: i.toString(),
+								KOMCardDeckID: deck.KOMDeckID,
+							}), deck).then(function (card) {
+								return Promise.all([true, false].map(function (e, i) {
+									return KOMSpacingStorage.KOMSpacingStorageWrite(mod._ValueStorageClient, Object.assign(mod.FakeSpacingObjectPopulated(new Date(Date.now() - 1000 * 60 * 60 * 24)), {
+										KOMSpacingID: card.KOMCardID + '-' + (i ? 'backward' : 'forward'),
+									}), card, deck)
+								}));
+							});
+						}));
+					},
+				},
+				{
+					LCHRecipeName: 'KOMReviewLauncherItemDebug_TestSpeedStartup',
+					LCHRecipeCallback: function KOMReviewLauncherItemDebug_TestSpeedStartup () {
+						return mod.SetupValueDecksAll();
+					},
+				},
 			]);
 		}
 
@@ -310,6 +334,27 @@ const mod = {
 			KOMSpacingID: 'FakeCardID-' + (inputData ? 'backward' : 'forward'),
 			KOMSpacingChronicles: [],
 		};
+	},
+
+	FakeSpacingObjectPopulated(inputData) {
+		const drawDate = new Date(inputData - 1000);
+		return Object.assign(mod.FakeSpacingObjectValid(), {
+			KOMSpacingDrawDate: drawDate,
+			KOMSpacingFlipDate: inputData,
+			KOMSpacingResponseDate: inputData,
+			KOMSpacingInterval: 1,
+			KOMSpacingMultiplier: 2.5,
+			KOMSpacingDueDate: new Date(),
+			KOMSpacingChronicles: [{
+				KOMChronicleDrawDate: drawDate,
+				KOMChronicleFlipDate: inputData,
+				KOMChronicleResponseType: 'RESPONSE_EASY',
+				KOMChronicleResponseDate: inputData,
+				KOMChronicleInterval: 1,
+				KOMChronicleMultiplier: 2.5,
+				KOMChronicleDueDate: new Date(),
+			}],
+		});
 	},
 
 	// INTERFACE
