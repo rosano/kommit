@@ -1,5 +1,6 @@
 <script>
 export let KOMReviewGeneralSpacings;
+export let KOMReviewGeneralHistoricalData;
 export let KOMReviewChartCompositionCollectionData;
 
 import OLSKInternational from 'OLSKInternational';
@@ -33,19 +34,6 @@ const mod = {
 		});
 	},
 
-	DataHistoricalData() {
-		const grouping = KOMReviewGeneralLogic.KOMReviewGeneralHistoricalGroupByDate(KOMReviewGeneralLogic.KOMReviewGeneralHistoricalFilter(KOMReviewGeneralSpacings));
-
-		return KOMReviewGeneralLogic.KOMReviewGeneralHistoricalDates().map(function (e) {
-			return {
-				KOMReviewChartElementDateBarTableRowDataKey: KOMSharedLogic.KOMSharedGroupingDay(new Date()) === e ? OLSKLocalized('KOMReviewGeneralTodayText') : e,
-				KOMReviewChartElementDateBarTableRowDataValues: Object.entries(KOMSpacingModel.KOMSpacingModelGroupChroniclesByStatus(grouping[e] || [], e)).reduce(function (coll, item) {
-					return coll.concat(KOMReviewLogic.KOMReviewTotalMinutes(KOMReviewGeneralLogic.KOMReviewGeneralHistoricalTotalMilliseconds(item[1])));
-				}, []).reverse(),
-			};
-		});
-	},
-
 };
 
 import KOMReviewChartCompositionCollection from '../KOMReviewChartCompositionCollection/main.svelte';
@@ -64,12 +52,12 @@ import KOMReviewChartElementDateBarTable from '../KOMReviewChartElementDateBarTa
 	
 {/if}
 
-{#if KOMReviewGeneralLogic.KOMReviewGeneralHistoricalFilter(KOMReviewGeneralSpacings).length }
+{#if KOMReviewGeneralHistoricalData.length }
 
 <div class="KOMReviewGeneralHistorical">
 	<h2 class="KOMReviewGeneralHistoricalHeading">{ OLSKLocalized('KOMReviewGeneralHistoricalHeadingText') }</h2>
 
-	<KOMReviewChartElementDateBarTable KOMReviewChartElementDateBarTableData={ mod.DataHistoricalData() } KOMReviewChartElementHorizontalStackedBarColors={ KOMReviewGeneralLogic.KOMReviewGeneralHistoricalColors() } />
+	<KOMReviewChartElementDateBarTable KOMReviewChartElementDateBarTableData={ KOMReviewGeneralHistoricalData } KOMReviewChartElementHorizontalStackedBarColors={ KOMReviewGeneralLogic.KOMReviewGeneralHistoricalColors() } />
 </div>
 	
 {/if}

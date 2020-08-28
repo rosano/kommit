@@ -5,6 +5,7 @@ const uDeck = function (inputData) {
 		KOMDeckID: 'alfa',
 		KOMDeckName: 'bravo',
 		$KOMDeckSpacings: [],
+		$KOMReviewGeneralHistoricalData: [],
 	}, inputData);
 };
 
@@ -131,6 +132,10 @@ describe('KOMReviewMaster_Misc', function () {
 					$KOMReviewTodayTimeMinutes: 2,
 					$KOMReviewTodayReviewAccuracy: 3,
 					$KOMDeckGeneralNotUnseenCount: 1,
+					$KOMReviewGeneralHistoricalData: [{
+						KOMReviewChartElementDateBarTableRowDataKey: 'alfa',
+						KOMReviewChartElementDateBarTableRowDataValues: [1, 2, 3, 4],
+					}],
 					$KOMReviewChartCompositionCollectionData: {
 						KOMSpacingGroupingTotal: 1,
 						KOMSpacingGroupingUnseen: 2,
@@ -144,6 +149,10 @@ describe('KOMReviewMaster_Misc', function () {
 					$KOMReviewTodayTimeMinutes: 2,
 					$KOMReviewTodayReviewAccuracy: 3,
 					$KOMDeckGeneralNotUnseenCount: 1,
+					$KOMReviewGeneralHistoricalData: [{
+						KOMReviewChartElementDateBarTableRowDataKey: 'alfa',
+						KOMReviewChartElementDateBarTableRowDataValues: [1, 2, 3, 4],
+					}],
 					$KOMReviewChartCompositionCollectionData: {
 						KOMSpacingGroupingTotal: 1,
 						KOMSpacingGroupingUnseen: 2,
@@ -165,6 +174,22 @@ describe('KOMReviewMaster_Misc', function () {
 
 		it('sets KOMReviewTodayReviewAccuracy', function () {
 			browser.assert.text('.KOMReviewStats .KOMReviewTodayReviewAccuracyValue', 6);
+		});
+
+		context('KOMReviewGeneralHistoricalData', function () {
+
+			it('sets KOMReviewChartElementDateBarTableRowDataKey', function () {
+				browser.assert.elements('.KOMReviewGeneralHistorical .KOMReviewChartElementDateBarTableRow .KOMReviewChartElementDateBarTableRowKey', 1);
+			});
+			
+			it('sets KOMReviewChartElementDateBarTableRowDataValues', function () {
+				browser.assert.elements('.KOMReviewGeneralHistorical .KOMReviewChartElementDateBarTableRow .KOMReviewChartElementHorizontalStackedBarSection', 4);
+			});
+
+			it('sets KOMReviewChartElementDateBarTableRowCount', function () {
+				browser.assert.text('.KOMReviewGeneralHistorical .KOMReviewChartElementDateBarTableRow .KOMReviewChartElementDateBarTableRowCount', '20');
+			});
+		
 		});
 
 		it('sets KOMReviewChartCompositionCollectionData', function () {

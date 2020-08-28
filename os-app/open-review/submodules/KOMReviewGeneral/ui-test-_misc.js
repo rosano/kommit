@@ -85,23 +85,27 @@ describe('KOMReviewGeneral_Misc', function () {
 						KOMSpacingID: item.KOMSpacingID.replace('forward', 'backward'),
 					})]);
 				}, [])),
+				KOMReviewGeneralHistoricalData: JSON.stringify([{
+					KOMReviewChartElementDateBarTableRowDataKey: 'alfa',
+					KOMReviewChartElementDateBarTableRowDataValues: [1, 2, 3, 4],
+				}]),
 			});
 		});
 
 		context('KOMReviewGeneralHistoricalDateBarTableData', function () {
 			
 			it('creates KOMReviewGeneralTableDays elements', function () {
-				browser.assert.elements(`${ KOMReviewGeneralHistoricalDateBarTable } .KOMReviewChartElementDateBarTableRow`, KOMReviewGeneralLogic.KOMReviewGeneralTableDays());
+				browser.assert.elements(`${ KOMReviewGeneralHistoricalDateBarTable } .KOMReviewChartElementDateBarTableRow`, 1);
 			});
 
 			context('KOMReviewChartElementDateBarTableRow', function () {
 				
 				it('sets KOMReviewChartElementDateBarTableRowDataKey', function () {
-					browser.assert.text(`${ KOMReviewGeneralHistoricalDateBarTable } .KOMReviewChartElementDateBarTableRow .KOMReviewChartElementDateBarTableRowKey`, [OLSKTestingLocalized('KOMReviewGeneralTodayText', 'en')].concat(KOMReviewGeneralLogic.KOMReviewGeneralHistoricalDates().slice(1)).join(''));
+					browser.assert.text(`${ KOMReviewGeneralHistoricalDateBarTable } .KOMReviewChartElementDateBarTableRow .KOMReviewChartElementDateBarTableRowKey`, 'alfa');
 				});
 				
 				it('sets KOMReviewChartElementDateBarTableRowDataValues', function () {
-					browser.assert.elements(`${ KOMReviewGeneralHistoricalDateBarTable } .KOMReviewChartElementDateBarTableRow .KOMReviewChartElementHorizontalStackedBarSection`, KOMReviewGeneralLogic.KOMReviewGeneralHistoricalColors() * KOMReviewGeneralLogic.KOMReviewGeneralTableDays());
+					browser.assert.elements(`${ KOMReviewGeneralHistoricalDateBarTable } .KOMReviewChartElementDateBarTableRow .KOMReviewChartElementHorizontalStackedBarSection`, 4);
 				});
 			
 			});

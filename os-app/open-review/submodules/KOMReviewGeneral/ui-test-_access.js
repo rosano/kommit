@@ -81,6 +81,10 @@ describe('KOMReviewGeneral_Access', function () {
 				KOMReviewGeneralSpacings: JSON.stringify([
 					StubSpacingObjectHistorical(),
 				]),
+				KOMReviewGeneralHistoricalData: JSON.stringify([{
+					KOMReviewChartElementDateBarTableRowDataKey: 'alfa',
+					KOMReviewChartElementDateBarTableRowDataValues: [1, 2, 3, 4],
+				}]),
 			});
 		});
 

@@ -18,6 +18,10 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 					}),
 					StubSpacingObjectHistorical(),
 				]),
+				KOMReviewGeneralHistoricalData: JSON.stringify([{
+					KOMReviewChartElementDateBarTableRowDataKey: 'alfa',
+					KOMReviewChartElementDateBarTableRowDataValues: [1, 2, 3, 4],
+				}]),
 			});
 		});
 

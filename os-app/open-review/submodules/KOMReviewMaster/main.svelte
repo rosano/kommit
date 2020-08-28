@@ -46,6 +46,20 @@ const mod = {
 
 	DataGeneralParameters () {
 		return {
+			KOMReviewGeneralHistoricalData: Object.entries(KOMReviewMasterItems.reduce(function (coll, item) {
+				return item.$KOMReviewGeneralHistoricalData.reduce(function (coll, item) {
+					return Object.assign(coll, {
+						[item.KOMReviewChartElementDateBarTableRowDataKey]: coll[item.KOMReviewChartElementDateBarTableRowDataKey] ? coll[item.KOMReviewChartElementDateBarTableRowDataKey].map(function (e, i) {
+							return e + item.KOMReviewChartElementDateBarTableRowDataValues[i];
+						}) : item.KOMReviewChartElementDateBarTableRowDataValues,
+					});
+				}, coll);
+			}, {})).map(function (e) {
+				return {
+					KOMReviewChartElementDateBarTableRowDataKey: e[0],
+					KOMReviewChartElementDateBarTableRowDataValues: e[1],
+				}
+			}),
 			KOMReviewChartCompositionCollectionData: KOMReviewMasterItems.reduce(function (coll, item) {
 				return Object.assign(coll, {
 					KOMSpacingGroupingTotal: coll.KOMSpacingGroupingTotal + item.$KOMReviewChartCompositionCollectionData.KOMSpacingGroupingTotal,

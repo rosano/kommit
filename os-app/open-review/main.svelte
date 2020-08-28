@@ -803,6 +803,17 @@ const mod = {
 				deck.$KOMReviewTodayTimeMinutes = KOMReviewLogic.KOMReviewTotalMinutes(KOMReviewLogic.KOMReviewTodayTotalMilliseconds(deck.$KOMDeckTodayStudiedSpacings));
 				deck.$KOMReviewTodayReviewAccuracy = KOMReviewLogic.KOMReviewTodayPercentage(KOMReviewLogic.KOMReviewTodayReviewAccuracy(deck.$KOMDeckTodayStudiedSpacings));
 
+				const historicalGroupings = KOMReviewLogic.KOMReviewGeneralHistoricalGroupByDate(KOMReviewLogic.KOMReviewGeneralHistoricalFilter(deck.$KOMDeckSpacings));
+				
+				deck.$KOMReviewGeneralHistoricalData = KOMReviewLogic.KOMReviewGeneralHistoricalDates().map(function (e) {
+					return {
+						KOMReviewChartElementDateBarTableRowDataKey: KOMSharedLogic.KOMSharedGroupingDay(new Date()) === e ? OLSKLocalized('KOMReviewGeneralTodayText') : e,
+						KOMReviewChartElementDateBarTableRowDataValues: Object.entries(KOMSpacingModel.KOMSpacingModelGroupChroniclesByStatus(historicalGroupings[e] || [], e)).reduce(function (coll, item) {
+							return coll.concat(KOMReviewLogic.KOMReviewTotalMinutes(KOMReviewLogic.KOMReviewGeneralHistoricalTotalMilliseconds(item[1])));
+						}, []).reverse(),
+					};
+				});
+
 				deck.$KOMReviewChartCompositionCollectionData = Object.entries(KOMSpacingModel.KOMSpacingModelGroupByStatus(deck.$KOMDeckSpacings)).reduce(function (coll, item) {
 					coll[item[0]] = KOMSpacingModel.KOMSpacingModelFilterUnique(item[1]).length;
 

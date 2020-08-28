@@ -7,6 +7,7 @@ const KOMReviewGeneral = new RollupStart({
 	target: document.body,
 	props: Object.assign({
 		KOMReviewGeneralSpacings: [],
+		KOMReviewGeneralHistoricalData: [],
 		KOMReviewChartCompositionCollectionData: {
 			KOMSpacingGroupingTotal: 1,
 			KOMSpacingGroupingUnseen: 2,
@@ -15,7 +16,7 @@ const KOMReviewGeneral = new RollupStart({
 			KOMSpacingGroupingSuspended: 5,
 		},
 	}, Object.fromEntries(Array.from((new window.URLSearchParams(window.location.search)).entries()).map(function (e) {
-		if (['KOMReviewGeneralSpacings', 'KOMReviewChartCompositionCollectionData'].includes(e[0])) {
+		if (['KOMReviewGeneralSpacings', 'KOMReviewGeneralHistoricalData', 'KOMReviewChartCompositionCollectionData'].includes(e[0])) {
 			e[1] = JSON.parse(e[1]);
 		}
 

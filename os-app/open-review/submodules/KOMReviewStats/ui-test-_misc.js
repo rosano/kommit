@@ -44,12 +44,16 @@ describe('KOMReviewStats_Misc', function () {
 				}), Object.assign(StubSpacingObjectValid(), {
 					KOMSpacingID: 'bravo-backward',
 				})]),
+				KOMReviewGeneralHistoricalData: JSON.stringify([{
+					KOMReviewChartElementDateBarTableRowDataKey: 'alfa',
+					KOMReviewChartElementDateBarTableRowDataValues: [1, 2, 3, 4],
+				}]),
 				KOMReviewChartCompositionCollectionData: JSON.stringify(item),
 			});
 		});
 
-		it('sets KOMReviewGeneralSpacings', function () {
-			browser.assert.text(`${ KOMReviewStatsGeneral } .KOMReviewChartCompositionCollectionTotalCardsValue`, '1');
+		it('sets KOMReviewGeneralHistoricalData', function () {
+			browser.assert.text('.KOMReviewGeneralHistorical .KOMReviewChartElementDateBarTableRow .KOMReviewChartElementDateBarTableRowKey', 'alfa');
 		});
 
 		it('sets KOMReviewChartCompositionCollectionData', function () {
