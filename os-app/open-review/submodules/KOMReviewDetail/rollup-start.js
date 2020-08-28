@@ -34,12 +34,6 @@ const KOMReviewDetail = new RollupStart({
 		}
 
 		if (e[0] === 'KOMReviewDetailDeck') {
-			e[1].$KOMDeckSpacings = e[1].$KOMDeckSpacings.map(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse).map(function (e) {
-				return Object.assign(e, {
-					$KOMSpacingCard: OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(e.$KOMSpacingCard),
-				});
-			});
-
 			if (e[1].$KOMDeckTodayStudiedSpacings) {
 				e[1].$KOMDeckTodayStudiedSpacings = e[1].$KOMDeckTodayStudiedSpacings.map(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse).map(function (e) {
 					return Object.assign(e, {

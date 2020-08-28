@@ -4,12 +4,14 @@ const KOMReviewLogic = require('../../ui-logic.js').default;
 const uDeck = function (inputData) {
 	return Object.assign({
 		KOMDeckName: 'alfa',
-		$KOMDeckSpacings: [StubSpacingObjectValid()],
 		$KOMDeckTodayReviewCount: 0,
 		$KOMDeckTodayUnseenCount: 0,
 		$KOMDeckTodayStudiedCount: 0,
 		$KOMReviewGeneralUpcomingData: [],
 		$KOMReviewGeneralHistoricalData: [],
+		$KOMReviewChartCompositionCollectionData: {
+			KOMSpacingGroupingTotal: 0,
+		},
 	}, inputData);
 };
 
@@ -17,9 +19,7 @@ describe('KOMReviewDetail_Misc', function () {
 
 	before(function () {
 		return browser.OLSKVisit(kDefaultRoute, {
-			KOMReviewDetailDeck: JSON.stringify(uDeck({
-				$KOMDeckSpacings: [],
-			})),
+			KOMReviewDetailDeck: JSON.stringify(uDeck()),
 		});
 	});
 
@@ -164,9 +164,7 @@ describe('KOMReviewDetail_Misc', function () {
 
 				it('sends KOMReviewDetailDispatchDiscard', function () {
 					browser.assert.text('#TestKOMReviewDetailDispatchDiscard', '1');
-					browser.assert.text('#TestKOMReviewDetailDispatchDiscardData', JSON.stringify(uDeck({
-						$KOMDeckSpacings: [],
-					})));
+					browser.assert.text('#TestKOMReviewDetailDispatchDiscardData', JSON.stringify(uDeck()));
 				});
 
 			});
@@ -206,7 +204,6 @@ describe('KOMReviewDetail_Misc', function () {
 					browser.assert.text('#TestKOMReviewDetailDispatchUpdate', '1');
 					browser.assert.text('#TestKOMReviewDetailDispatchUpdateData', JSON.stringify(uDeck({
 						KOMDeckName: 'bravo',
-						$KOMDeckSpacings: [],
 					})));
 				});
 
@@ -599,12 +596,6 @@ describe('KOMReviewDetail_Misc', function () {
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMReviewDetailDeck: JSON.stringify(uDeck({
-					$KOMDeckSpacings: [Object.assign(StubSpacingObjectValid(), {
-						KOMSpacingChronicles: [StubChronicleObjectValid()],
-						KOMSpacingDueDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3),
-					}), Object.assign(StubSpacingObjectValid(), {
-						KOMSpacingID: 'bravo-backward',
-					})],
 					$KOMDeckTodayStudiedCount: 1,
 					$KOMDeckGeneralNotUnseenCount: 1,
 					$KOMDeckTodayStudiedSpacings: [Object.assign(StubSpacingObjectValid(), {

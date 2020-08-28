@@ -43,9 +43,14 @@ Object.entries({
 const uDeck = function (inputData) {
 	return Object.assign({
 		KOMDeckName: 'alfa',
-		$KOMDeckSpacings: [],
+		$KOMDeckTodayReviewCount: 0,
+		$KOMDeckTodayUnseenCount: 0,
+		$KOMDeckTodayStudiedCount: 0,
 		$KOMReviewGeneralUpcomingData: [],
 		$KOMReviewGeneralHistoricalData: [],
+		$KOMReviewChartCompositionCollectionData: {
+			KOMSpacingGroupingTotal: 0,
+		},
 	}, inputData);
 };
 
@@ -170,10 +175,12 @@ describe('KOMReviewDetail_Access', function () {
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMReviewDetailDeck: JSON.stringify(uDeck({
-					$KOMDeckSpacings: [StubSpacingObjectValid()],
 					$KOMDeckTodayReviewCount: 1,
 					$KOMDeckTodayUnseenCount: 0,
 					$KOMDeckTodayStudiedCount: 0,
+					$KOMReviewChartCompositionCollectionData: {
+						KOMSpacingGroupingTotal: 1,
+					},
 				})),
 			});
 		});
@@ -219,7 +226,6 @@ describe('KOMReviewDetail_Access', function () {
 			before(function () {
 				return browser.OLSKVisit(kDefaultRoute, {
 					KOMReviewDetailDeck: JSON.stringify(uDeck({
-						$KOMDeckSpacings: [StubSpacingObjectValid()],
 						$KOMDeckTodayReviewCount: 0,
 						$KOMDeckTodayUnseenCount: 1,
 						$KOMDeckTodayStudiedCount: 0,
@@ -254,7 +260,6 @@ describe('KOMReviewDetail_Access', function () {
 			before(function () {
 				return browser.OLSKVisit(kDefaultRoute, {
 					KOMReviewDetailDeck: JSON.stringify(uDeck({
-						$KOMDeckSpacings: [StubSpacingObjectValid()],
 						$KOMDeckTodayReviewCount: 1,
 						$KOMDeckTodayUnseenCount: 1,
 						$KOMDeckTodayStudiedCount: 0,
@@ -289,7 +294,6 @@ describe('KOMReviewDetail_Access', function () {
 			before(function () {
 				return browser.OLSKVisit(kDefaultRoute, {
 					KOMReviewDetailDeck: JSON.stringify(uDeck({
-						$KOMDeckSpacings: [StubSpacingObjectValid()],
 						$KOMDeckTodayReviewCount: 1,
 						$KOMDeckTodayUnseenCount: 1,
 						$KOMDeckTodayStudiedCount: 0,
@@ -332,10 +336,6 @@ describe('KOMReviewDetail_Access', function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMReviewDetailDeck: JSON.stringify(uDeck({
 					KOMDeckIsForwardOnly: true,
-					$KOMDeckSpacings: [Object.assign(StubSpacingObjectValid(), {
-						KOMSpacingChronicles: [StubChronicleObjectValid()],
-						KOMSpacingDueDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3),
-					})],
 					$KOMDeckTodayReviewCount: 0,
 					$KOMDeckTodayUnseenCount: 0,
 					$KOMDeckTodayStudiedCount: 1,

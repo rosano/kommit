@@ -47,7 +47,7 @@ const mod = {
 	DataRecipes () {
 		const items = [];
 
-		if (KOMReviewDetailDeck.$KOMDeckSpacings.length && KOMReviewDetailDeck.$KOMDeckTodayReviewCount) {
+		if (KOMReviewDetailDeck.$KOMDeckTodayReviewCount) {
 			items.push({
 				LCHRecipeSignature: 'KOMReviewDetailLauncherItemPlayReviewing',
 				LCHRecipeName: OLSKLocalized('KOMReviewDetailPlayButtonReviewingText'),
@@ -57,7 +57,7 @@ const mod = {
 			});
 		}
 
-		if (KOMReviewDetailDeck.$KOMDeckSpacings.length && KOMReviewDetailDeck.$KOMDeckTodayUnseenCount) {
+		if (KOMReviewDetailDeck.$KOMDeckTodayUnseenCount) {
 			items.push({
 				LCHRecipeSignature: 'KOMReviewDetailLauncherItemPlayUnseen',
 				LCHRecipeName: OLSKLocalized('KOMReviewDetailPlayButtonUnseenText'),
@@ -275,11 +275,11 @@ import KOMReviewStats from '../KOMReviewStats/main.svelte';
 	</p>
 </div>
 
-{#if !KOMReviewDetailDeck.$KOMDeckSpacings.length}
+{#if !KOMReviewDetailDeck.$KOMReviewChartCompositionCollectionData.KOMSpacingGroupingTotal }
 	<p class="KOMReviewDetailNoCards">{ OLSKLocalized('KOMReviewDetailNoCardsText') }</p>
 {/if}
 
-{#if KOMReviewDetailDeck.$KOMDeckSpacings.length && (KOMReviewDetailDeck.$KOMDeckTodayReviewCount || KOMReviewDetailDeck.$KOMDeckTodayUnseenCount)}
+{#if KOMReviewDetailDeck.$KOMDeckTodayReviewCount || KOMReviewDetailDeck.$KOMDeckTodayUnseenCount}
 	<div class="KOMReviewDetailPlay">
 		{#if KOMReviewDetailPlaySingle }
 			<p>
@@ -307,7 +307,7 @@ import KOMReviewStats from '../KOMReviewStats/main.svelte';
 	</div>
 {/if}
 
-{#if KOMReviewDetailDeck.$KOMDeckSpacings.length && !(KOMReviewDetailDeck.$KOMDeckTodayReviewCount || KOMReviewDetailDeck.$KOMDeckTodayUnseenCount)}
+{#if KOMReviewDetailDeck.$KOMDeckTodayStudiedCount && !KOMReviewDetailDeck.$KOMDeckTodayReviewCount && !KOMReviewDetailDeck.$KOMDeckTodayUnseenCount}
 	<p class="KOMReviewDetailNoSpacings">{ OLSKLocalized('KOMReviewDetailNoSpacingsText') }</p>
 {/if}
 

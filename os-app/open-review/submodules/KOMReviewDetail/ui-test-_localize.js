@@ -3,9 +3,11 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 const uDeck = function (inputData) {
 	return Object.assign({
 		KOMDeckName: 'alfa',
-		$KOMDeckSpacings: [],
 		$KOMReviewGeneralUpcomingData: [],
 		$KOMReviewGeneralHistoricalData: [],
+		$KOMReviewChartCompositionCollectionData: {
+			KOMSpacingGroupingTotal: 0,
+		},
 	}, inputData);
 };
 
@@ -92,16 +94,18 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 
 		});
 
-		context('$KOMDeckSpacings', function test_$KOMDeckSpacings() {
+		context('cards', function test_cards() {
 
 			before(function () {
 				return browser.OLSKVisit(kDefaultRoute, {
 					OLSKRoutingLanguage: languageCode,
 					KOMReviewDetailDeck: JSON.stringify(uDeck({
-						$KOMDeckSpacings: [StubSpacingObjectValid()],
 						$KOMDeckTodayReviewCount: 1,
 						$KOMDeckTodayUnseenCount: 1,
 						$KOMDeckTodayStudiedCount: 0,
+						$KOMReviewChartCompositionCollectionData: {
+							KOMSpacingGroupingTotal: 1,
+						},
 					})),
 				});
 			});
@@ -134,7 +138,6 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 				return browser.OLSKVisit(kDefaultRoute, {
 					OLSKRoutingLanguage: languageCode,
 					KOMReviewDetailDeck: JSON.stringify(uDeck({
-						$KOMDeckSpacings: [StubSpacingObjectValid()],
 						$KOMDeckTodayReviewCount: 1,
 						$KOMDeckTodayUnseenCount: 1,
 						$KOMDeckTodayStudiedCount: 0,
@@ -155,10 +158,6 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 				return browser.OLSKVisit(kDefaultRoute, {
 					OLSKRoutingLanguage: languageCode,
 					KOMReviewDetailDeck: JSON.stringify(uDeck({
-						$KOMDeckSpacings: [Object.assign(StubSpacingObjectValid(), {
-							KOMSpacingChronicles: [StubChronicleObjectValid()],
-							KOMSpacingDueDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3),
-						})],
 						$KOMDeckTodayReviewCount: 0,
 						$KOMDeckTodayUnseenCount: 0,
 						$KOMDeckTodayStudiedCount: 1,
