@@ -83,5 +83,3 @@ describe('KOMSharedColorSuspended', function test_KOMSharedColorSuspended() {
 	});
 
 });
-
-
