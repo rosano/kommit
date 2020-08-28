@@ -1,6 +1,5 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-const cardCount = 100;
 const responseShort = 300;
 const responseLong = 1000;
 
@@ -8,6 +7,11 @@ const uTime = function (param1, param2) {
 	return [Date.now() - param1].filter(function (e) {
 		return e > param2;
 	}).pop();
+};
+
+let _count = 100;
+const uCount = function (inputData = 0) {
+	return _count += inputData;
 };
 
 describe('KOMReview_Speed', function () {
@@ -63,11 +67,11 @@ describe('KOMReview_Speed', function () {
 		});
 
 		it('sets KOMReviewMasterListItemUnseenValue', function () {
-			browser.assert.text('.KOMReviewMasterListItemReviewValue', cardCount);
+			browser.assert.text('.KOMReviewMasterListItemReviewValue', uCount());
 		});
 
 		it('sets KOMReviewChartCompositionCollectionTotalCardsValue', function () {
-			browser.assert.text('.KOMReviewChartCompositionCollectionTotalCardsValue', cardCount);
+			browser.assert.text('.KOMReviewChartCompositionCollectionTotalCardsValue', uCount());
 		});
 	
 	});
@@ -107,7 +111,7 @@ describe('KOMReview_Speed', function () {
 		});
 
 		it('loads data', function () {
-			browser.assert.elements('.KOMBrowseListItem', cardCount);
+			browser.assert.elements('.KOMBrowseListItem', uCount());
 		});
 	
 	});
@@ -135,16 +139,12 @@ describe('KOMReview_Speed', function () {
 		});
 
 		it('sets KOMReviewChartCompositionCollectionTotalCardsValue', function () {
-			browser.assert.text('.KOMReviewChartCompositionCollectionTotalCardsValue', cardCount);
+			browser.assert.text('.KOMReviewChartCompositionCollectionTotalCardsValue', uCount(1));
 		});
 	
 	});
 
 	context('TestSpeedLoadPlay', function () {
-
-		before(function () {
-			return browser.pressButton('.KOMBrowseListToolbarCloseButton');
-		});
 
 		before(function () {
 			data.TestSpeedLoadPlay = new Date();
@@ -159,7 +159,7 @@ describe('KOMReview_Speed', function () {
 		});
 
 		it('loads data', function () {
-			browser.assert.text('#TestKOMPlayStateQueueCount', cardCount * 2 - 1);
+			browser.assert.text('#TestKOMPlayStateQueueCount', uCount() * 2 - 1);
 		});
 	
 	});
@@ -191,7 +191,7 @@ describe('KOMReview_Speed', function () {
 		});
 
 		it('sets KOMReviewChartCompositionCollectionTotalCardsValue', function () {
-			browser.assert.text('.KOMReviewChartCompositionCollectionTotalCardsValue', cardCount);
+			browser.assert.text('.KOMReviewChartCompositionCollectionTotalCardsValue', uCount());
 		});
 	
 	});
