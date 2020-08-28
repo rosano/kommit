@@ -12,7 +12,7 @@ const uTime = function (param1, param2) {
 	}).pop();
 };
 
-describe.only('KOMReview_Speed', function () {
+describe('KOMReview_Speed', function () {
 
 	const data = {};
 
