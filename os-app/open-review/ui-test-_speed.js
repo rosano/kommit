@@ -116,7 +116,7 @@ describe('KOMReview_Speed', function () {
 	
 	});
 
-	context('TestSpeedBrowseDone', function () {
+	context('TestSpeedBrowseClose', function () {
 
 		before(function () {
 			return browser.pressButton('.KOMBrowseListToolbarCreateButton');
@@ -127,7 +127,7 @@ describe('KOMReview_Speed', function () {
 		});
 
 		before(function () {
-			data.TestSpeedBrowseDone = new Date();
+			data.TestSpeedBrowseClose = new Date();
 		});
 
 		before(function () {
@@ -135,7 +135,7 @@ describe('KOMReview_Speed', function () {
 		});
 
 		it('responds quickly', function () {
-			browser.assert.deepEqual(uTime(data.TestSpeedLoadCreate, responseShort), undefined);
+			browser.assert.deepEqual(uTime(data.TestSpeedBrowseClose, responseShort), undefined);
 		});
 
 		it('sets KOMReviewChartCompositionCollectionTotalCardsValue', function () {
