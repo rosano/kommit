@@ -28,15 +28,7 @@ Object.entries({
 describe('KOMReviewChartCompositionCollection_Access', function () {
 
 	before(function () {
-		return browser.OLSKVisit(kDefaultRoute, {
-			KOMReviewChartCompositionCollectionData: JSON.stringify({
-				KOMSpacingGroupingTotal: Array.from(Array(1)),
-				KOMSpacingGroupingUnseen: Array.from(Array(2)),
-				KOMSpacingGroupingDeveloping: Array.from(Array(2)),
-				KOMSpacingGroupingMature: Array.from(Array(3)),
-				KOMSpacingGroupingSuspended: Array.from(Array(4)),
-			}),
-		});
+		return browser.OLSKVisit(kDefaultRoute);
 	});
 
 	it('shows KOMReviewChartCompositionCollection', function () {

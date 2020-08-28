@@ -11,13 +11,6 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				OLSKRoutingLanguage: languageCode,
-				KOMReviewChartCompositionCollectionData: JSON.stringify({
-					KOMSpacingGroupingTotal: Array.from(Array(1)),
-					KOMSpacingGroupingUnseen: Array.from(Array(2)),
-					KOMSpacingGroupingDeveloping: Array.from(Array(2)),
-					KOMSpacingGroupingMature: Array.from(Array(3)),
-					KOMSpacingGroupingSuspended: Array.from(Array(4)),
-				}),
 			});
 		});
 

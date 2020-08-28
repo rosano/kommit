@@ -47,7 +47,7 @@ const mod = {
 
 	DataCollectionData() {
 		return Object.entries(KOMSpacingModel.KOMSpacingModelGroupByStatus(KOMReviewGeneralSpacings)).reduce(function (coll, item) {
-			coll[item[0]] = KOMSpacingModel.KOMSpacingModelFilterUnique(item[1]);
+			coll[item[0]] = KOMSpacingModel.KOMSpacingModelFilterUnique(item[1]).length;
 
 			return coll;
 		}, {});
