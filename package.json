@@ -19,6 +19,9 @@
     "OLSKRemoteStorage": "olsk/OLSKRemoteStorage",
     "OLSKStorageWidget": "olsk/OSWPackage",
 
+    "// LOCAL STORAGE": null,
+    "OLSKLocalStorage": "olsk/OLSKLocalStorage",
+
     "// UNIQUE IDS": null,
     "ulid": "latest",
 
