@@ -856,8 +856,12 @@ const mod = {
 
 	// LIFECYCLE
 
-	LifecycleModuleWillMount() {
-		mod.SetupEverything();
+	async LifecycleModuleWillMount() {
+		try {
+			await mod.SetupEverything();
+		} catch (e) {
+			console.error(e);
+		}
 	},
 
 };
