@@ -1,7 +1,5 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-require('./ui-test-_access.js');
-
 const cardCount = 100;
 const responseShort = 300;
 const responseLong = 1000;
