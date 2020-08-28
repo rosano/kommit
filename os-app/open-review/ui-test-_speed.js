@@ -66,7 +66,7 @@ describe('KOMReview_Speed', function () {
 			browser.assert.deepEqual(uTime(data.TestSpeedStartup, responseLong), undefined);
 		});
 
-		it('sets KOMReviewMasterListItemUnseenValue', function () {
+		it('sets KOMReviewMasterListItemReviewValue', function () {
 			browser.assert.text('.KOMReviewMasterListItemReviewValue', uCount());
 		});
 
