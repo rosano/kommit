@@ -1,5 +1,12 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
+const uDeck = function (inputData) {
+	return Object.assign({
+		KOMDeckName: 'alfa',
+		$KOMDeckSpacings: [],
+	}, inputData);
+};
+
 kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 
 	const uLocalized = function (inputData) {
@@ -11,13 +18,11 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				OLSKRoutingLanguage: languageCode,
-				KOMReviewDetailDeck: JSON.stringify({
-					KOMDeckName: 'alfa',
-					$KOMDeckSpacings: [],
+				KOMReviewDetailDeck: JSON.stringify(uDeck({
 					$KOMDeckTodayReviewCount: 0,
 					$KOMDeckTodayUnseenCount: 0,
 					$KOMDeckTodayStudiedCount: 0,
-				}),
+				})),
 			});
 		});
 
@@ -90,13 +95,12 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			before(function () {
 				return browser.OLSKVisit(kDefaultRoute, {
 					OLSKRoutingLanguage: languageCode,
-					KOMReviewDetailDeck: JSON.stringify({
-						KOMDeckName: 'alfa',
+					KOMReviewDetailDeck: JSON.stringify(uDeck({
 						$KOMDeckSpacings: [StubSpacingObjectValid()],
 						$KOMDeckTodayReviewCount: 1,
 						$KOMDeckTodayUnseenCount: 1,
 						$KOMDeckTodayStudiedCount: 0,
-					}),
+					})),
 				});
 			});
 
@@ -127,13 +131,12 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			before(function () {
 				return browser.OLSKVisit(kDefaultRoute, {
 					OLSKRoutingLanguage: languageCode,
-					KOMReviewDetailDeck: JSON.stringify({
-						KOMDeckName: 'alfa',
+					KOMReviewDetailDeck: JSON.stringify(uDeck({
 						$KOMDeckSpacings: [StubSpacingObjectValid()],
 						$KOMDeckTodayReviewCount: 1,
 						$KOMDeckTodayUnseenCount: 1,
 						$KOMDeckTodayStudiedCount: 0,
-					}),
+					})),
 					KOMReviewDetailPlaySingle: true,
 				});
 			});
@@ -149,8 +152,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			before(function () {
 				return browser.OLSKVisit(kDefaultRoute, {
 					OLSKRoutingLanguage: languageCode,
-					KOMReviewDetailDeck: JSON.stringify({
-						KOMDeckName: 'alfa',
+					KOMReviewDetailDeck: JSON.stringify(uDeck({
 						$KOMDeckSpacings: [Object.assign(StubSpacingObjectValid(), {
 							KOMSpacingChronicles: [StubChronicleObjectValid()],
 							KOMSpacingDueDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3),
@@ -159,7 +161,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 						$KOMDeckTodayUnseenCount: 0,
 						$KOMDeckTodayStudiedCount: 1,
 						$KOMDeckGeneralNotUnseenCount: 1,
-					}),
+					})),
 				});
 			});
 

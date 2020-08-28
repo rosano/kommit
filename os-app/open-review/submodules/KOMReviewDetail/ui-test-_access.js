@@ -40,14 +40,18 @@ Object.entries({
 	return global[e.shift()] = e.pop();
 });
 
+const uDeck = function (inputData) {
+	return Object.assign({
+		KOMDeckName: 'alfa',
+		$KOMDeckSpacings: [],
+	}, inputData);
+};
+
 describe('KOMReviewDetail_Access', function () {
 
 	before(function () {
 		return browser.OLSKVisit(kDefaultRoute, {
-			KOMReviewDetailDeck: JSON.stringify({
-				KOMDeckName: 'alfa',
-				$KOMDeckSpacings: [],
-			}),
+			KOMReviewDetailDeck: JSON.stringify(uDeck()),
 		});
 	});
 
@@ -163,13 +167,12 @@ describe('KOMReviewDetail_Access', function () {
 
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
-				KOMReviewDetailDeck: JSON.stringify({
-					KOMDeckName: 'alfa',
+				KOMReviewDetailDeck: JSON.stringify(uDeck({
 					$KOMDeckSpacings: [StubSpacingObjectValid()],
 					$KOMDeckTodayReviewCount: 1,
 					$KOMDeckTodayUnseenCount: 0,
 					$KOMDeckTodayStudiedCount: 0,
-				}),
+				})),
 			});
 		});
 
@@ -213,13 +216,12 @@ describe('KOMReviewDetail_Access', function () {
 
 			before(function () {
 				return browser.OLSKVisit(kDefaultRoute, {
-					KOMReviewDetailDeck: JSON.stringify({
-						KOMDeckName: 'alfa',
+					KOMReviewDetailDeck: JSON.stringify(uDeck({
 						$KOMDeckSpacings: [StubSpacingObjectValid()],
 						$KOMDeckTodayReviewCount: 0,
 						$KOMDeckTodayUnseenCount: 1,
 						$KOMDeckTodayStudiedCount: 0,
-					}),
+					})),
 				});
 			});
 
@@ -249,13 +251,12 @@ describe('KOMReviewDetail_Access', function () {
 
 			before(function () {
 				return browser.OLSKVisit(kDefaultRoute, {
-					KOMReviewDetailDeck: JSON.stringify({
-						KOMDeckName: 'alfa',
+					KOMReviewDetailDeck: JSON.stringify(uDeck({
 						$KOMDeckSpacings: [StubSpacingObjectValid()],
 						$KOMDeckTodayReviewCount: 1,
 						$KOMDeckTodayUnseenCount: 1,
 						$KOMDeckTodayStudiedCount: 0,
-					}),
+					})),
 				});
 			});
 
@@ -285,13 +286,12 @@ describe('KOMReviewDetail_Access', function () {
 
 			before(function () {
 				return browser.OLSKVisit(kDefaultRoute, {
-					KOMReviewDetailDeck: JSON.stringify({
-						KOMDeckName: 'alfa',
+					KOMReviewDetailDeck: JSON.stringify(uDeck({
 						$KOMDeckSpacings: [StubSpacingObjectValid()],
 						$KOMDeckTodayReviewCount: 1,
 						$KOMDeckTodayUnseenCount: 1,
 						$KOMDeckTodayStudiedCount: 0,
-					}),
+					})),
 					KOMReviewDetailPlaySingle: true,
 				});
 			});
@@ -328,8 +328,7 @@ describe('KOMReviewDetail_Access', function () {
 
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
-				KOMReviewDetailDeck: JSON.stringify({
-					KOMDeckName: 'alfa',
+				KOMReviewDetailDeck: JSON.stringify(uDeck({
 					KOMDeckIsForwardOnly: true,
 					$KOMDeckSpacings: [Object.assign(StubSpacingObjectValid(), {
 						KOMSpacingChronicles: [StubChronicleObjectValid()],
@@ -339,7 +338,7 @@ describe('KOMReviewDetail_Access', function () {
 					$KOMDeckTodayUnseenCount: 0,
 					$KOMDeckTodayStudiedCount: 1,
 					$KOMDeckGeneralNotUnseenCount: 1,
-				}),
+				})),
 			});
 		});
 
