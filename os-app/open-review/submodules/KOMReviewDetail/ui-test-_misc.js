@@ -598,12 +598,6 @@ describe('KOMReviewDetail_Misc', function () {
 				KOMReviewDetailDeck: JSON.stringify(uDeck({
 					$KOMDeckTodayStudiedCount: 1,
 					$KOMDeckGeneralNotUnseenCount: 1,
-					$KOMDeckTodayStudiedSpacings: [Object.assign(StubSpacingObjectValid(), {
-						KOMSpacingChronicles: [StubChronicleObjectValid()],
-						KOMSpacingDueDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3),
-					}), Object.assign(StubSpacingObjectValid(), {
-						KOMSpacingID: 'bravo-backward',
-					})],
 					$KOMReviewTodayTotalCards: 1,
 					$KOMReviewTodayTimeMinutes: 2,
 					$KOMReviewTodayReviewAccuracy: 3,
