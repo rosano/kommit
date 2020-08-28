@@ -112,6 +112,34 @@ describe('KOMReview_Speed', function () {
 	
 	});
 
+	context('TestSpeedBrowseDone', function () {
+
+		before(function () {
+			return browser.pressButton('.KOMBrowseListToolbarCreateButton');
+		});
+
+		before(function () {
+			browser.fill('.KOMBrowseInfoFormFrontTextField', 'bravo');
+		});
+
+		before(function () {
+			data.TestSpeedBrowseDone = new Date();
+		});
+
+		before(function () {
+			return browser.pressButton('.KOMBrowseListToolbarCloseButton');
+		});
+
+		it('responds quickly', function () {
+			browser.assert.deepEqual(uTime(data.TestSpeedLoadCreate, responseShort), undefined);
+		});
+
+		it('sets KOMReviewChartCompositionCollectionTotalCardsValue', function () {
+			browser.assert.text('.KOMReviewChartCompositionCollectionTotalCardsValue', cardCount);
+		});
+	
+	});
+
 	context('TestSpeedLoadPlay', function () {
 
 		before(function () {
