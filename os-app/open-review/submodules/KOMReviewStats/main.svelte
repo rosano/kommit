@@ -1,5 +1,7 @@
 <script>
-export let KOMReviewTodaySpacings;
+export let KOMReviewTodayTotalCards;
+export let KOMReviewTodayTimeMinutes;
+export let KOMReviewTodayReviewAccuracy;
 export let KOMReviewGeneralSpacings;
 
 import OLSKInternational from 'OLSKInternational';
@@ -14,8 +16,12 @@ import KOMReviewGeneral from '../KOMReviewGeneral/main.svelte';
 <div class="KOMReviewStats">
 	<h1 class="KOMReviewStatsHeading">{ OLSKLocalized('KOMReviewStatsHeadingText') }</h1>
 
-	{#if KOMReviewTodaySpacings.length }
-		<KOMReviewToday KOMReviewTodaySpacings={ KOMReviewTodaySpacings || [] } />
+	{#if KOMReviewTodayTotalCards }
+		<KOMReviewToday
+			KOMReviewTodayTotalCards={ KOMReviewTodayTotalCards }
+			KOMReviewTodayTimeMinutes={ KOMReviewTodayTimeMinutes }
+			KOMReviewTodayReviewAccuracy={ KOMReviewTodayReviewAccuracy }
+			/>
 	{/if}
 
 	<KOMReviewGeneral KOMReviewGeneralSpacings={ KOMReviewGeneralSpacings } />

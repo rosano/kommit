@@ -13,10 +13,7 @@ Object.entries({
 describe('KOMReviewStats_Access', function () {
 
 	before(function () {
-		return browser.OLSKVisit(kDefaultRoute, {
-			KOMReviewTodaySpacings: JSON.stringify([]),
-			KOMReviewGeneralSpacings: JSON.stringify([]),
-		});
+		return browser.OLSKVisit(kDefaultRoute);
 	});
 
 	it('shows KOMReviewStats', function () {
@@ -39,8 +36,7 @@ describe('KOMReviewStats_Access', function () {
 		
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
-				KOMReviewTodaySpacings: JSON.stringify([StubSpacingObjectValid()]),
-				KOMReviewGeneralSpacings: JSON.stringify([]),
+				KOMReviewTodayTotalCards: 1,
 			});
 		});
 

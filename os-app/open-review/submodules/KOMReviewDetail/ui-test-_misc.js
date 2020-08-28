@@ -608,13 +608,23 @@ describe('KOMReviewDetail_Misc', function () {
 					}), Object.assign(StubSpacingObjectValid(), {
 						KOMSpacingID: 'bravo-backward',
 					})],
+					$KOMReviewTodayTotalCards: 1,
+					$KOMReviewTodayTimeMinutes: 2,
+					$KOMReviewTodayReviewAccuracy: 3,
 				}),
 			});
 		});
 
-		it('sets KOMReviewTodaySpacings', function () {
-			browser.assert.text(`.KOMReviewStats .KOMReviewTodayTotalCardsValue`, '1');
-			browser.assert.text(`.KOMReviewStats .KOMReviewChartCompositionCollectionTotalCardsValue`, '1');
+		it('sets KOMReviewTodayTotalCards', function () {
+			browser.assert.text('.KOMReviewStats .KOMReviewTodayTotalCardsValue', 1);
+		});
+
+		it('sets KOMReviewTodayTimeMinutes', function () {
+			browser.assert.text('.KOMReviewStats .KOMReviewTodayTimeMinutesValue', 2);
+		});
+
+		it('sets KOMReviewTodayReviewAccuracy', function () {
+			browser.assert.text('.KOMReviewStats .KOMReviewTodayReviewAccuracyValue', 3);
 		});
 
 	});

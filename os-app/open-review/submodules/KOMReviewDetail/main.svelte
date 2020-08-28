@@ -314,7 +314,12 @@ import KOMReviewStats from '../KOMReviewStats/main.svelte';
 {#if KOMReviewDetailDeck.$KOMDeckGeneralNotUnseenCount }
 	<hr>
 
-	<KOMReviewStats KOMReviewTodaySpacings={ KOMReviewDetailDeck.$KOMDeckTodayStudiedSpacings || [] } KOMReviewGeneralSpacings={ KOMReviewDetailDeck.$KOMDeckSpacings } />
+	<KOMReviewStats
+		KOMReviewTodayTotalCards={ KOMReviewDetailDeck.$KOMReviewTodayTotalCards }
+		KOMReviewTodayTimeMinutes={ KOMReviewDetailDeck.$KOMReviewTodayTimeMinutes }
+		KOMReviewTodayReviewAccuracy={ KOMReviewDetailDeck.$KOMReviewTodayReviewAccuracy }
+		KOMReviewGeneralSpacings={ KOMReviewDetailDeck.$KOMDeckSpacings }
+		/>
 {/if}
 
 <hr>

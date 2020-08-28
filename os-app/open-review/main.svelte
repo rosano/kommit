@@ -768,7 +768,7 @@ const mod = {
 			}));
 
 			const $_KOMDeckUpdateToday = function () {
-				const items = KOMReviewLogic.KOMReviewSpacingsToday(deck.$KOMDeckSpacings).filter(function (e) {
+				const _ValueSpacingsToday = KOMReviewLogic.KOMReviewSpacingsToday(deck.$KOMDeckSpacings).filter(function (e) {
 					if (deck.KOMDeckIsForwardOnly && KOMSpacingModel.KOMSpacingModelIsBackward(e)) {
 						return false;
 					}
@@ -778,10 +778,10 @@ const mod = {
 					return !e.$KOMSpacingCard.KOMCardIsSuspended;
 				});
 
-				const _ValueSpacingsReviewing = KOMSpacingModel.KOMSpacingModelFilterUnique(items.filter(function (e) {
+				const _ValueSpacingsReviewing = KOMSpacingModel.KOMSpacingModelFilterUnique(_ValueSpacingsToday.filter(function (e) {
 					return !KOMSpacingModel.KOMSpacingModelIsUnseen(e);
 				}));
-				const _ValueSpacingsUnseen = KOMSpacingModel.KOMSpacingModelFilterUnique(items.filter(KOMSpacingModel.KOMSpacingModelIsUnseen));
+				const _ValueSpacingsUnseen = KOMSpacingModel.KOMSpacingModelFilterUnique(_ValueSpacingsToday.filter(KOMSpacingModel.KOMSpacingModelIsUnseen));
 				
 				deck.$KOMDeckTodayStudiedSpacings = deck.$KOMDeckSpacings.filter(function (e) {
 					if (!e.KOMSpacingChronicles.length) {
@@ -798,6 +798,10 @@ const mod = {
 				deck.$KOMDeckTodayReviewCount = _ValueSpacingsReviewing.length;
 				deck.$KOMDeckTodayUnseenCount = _ValueSpacingsUnseen.length;
 				deck.$KOMDeckTodayStudiedCount = deck.$KOMDeckTodayStudiedSpacings.length;
+
+				deck.$KOMReviewTodayTotalCards = KOMSpacingModel.KOMSpacingModelFilterUnique(deck.$KOMDeckTodayStudiedSpacings).length;
+				deck.$KOMReviewTodayTimeMinutes = KOMReviewLogic.KOMReviewTotalMinutes(KOMReviewLogic.KOMReviewTodayTotalMilliseconds(deck.$KOMDeckTodayStudiedSpacings));
+				deck.$KOMReviewTodayReviewAccuracy = KOMReviewLogic.KOMReviewTodayPercentage(KOMReviewLogic.KOMReviewTodayReviewAccuracy(deck.$KOMDeckTodayStudiedSpacings));
 			};
 
 			$_KOMDeckUpdateToday();

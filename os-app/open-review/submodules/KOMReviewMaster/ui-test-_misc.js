@@ -120,6 +120,42 @@ describe('KOMReviewMaster_Misc', function () {
 
 	});
 
+	describe('KOMReviewStats', function test_KOMReviewStats() {
+
+		before(function () {
+			return browser.OLSKVisit(kDefaultRoute, {
+				KOMReviewMasterItems: JSON.stringify([{
+					KOMDeckID: 'alfa',
+					KOMDeckName: '',
+					$KOMReviewTodayTotalCards: 1,
+					$KOMReviewTodayTimeMinutes: 2,
+					$KOMReviewTodayReviewAccuracy: 3,
+					$KOMDeckGeneralNotUnseenCount: 1,
+				}, {
+					KOMDeckID: 'bravo',
+					KOMDeckName: '',
+					$KOMReviewTodayTotalCards: 1,
+					$KOMReviewTodayTimeMinutes: 2,
+					$KOMReviewTodayReviewAccuracy: 3,
+					$KOMDeckGeneralNotUnseenCount: 1,
+				}]),
+			});
+		});
+
+		it('sets KOMReviewTodayTotalCards', function () {
+			browser.assert.text('.KOMReviewStats .KOMReviewTodayTotalCardsValue', 2);
+		});
+
+		it('sets KOMReviewTodayTimeMinutes', function () {
+			browser.assert.text('.KOMReviewStats .KOMReviewTodayTimeMinutesValue', 4);
+		});
+
+		it('sets KOMReviewTodayReviewAccuracy', function () {
+			browser.assert.text('.KOMReviewStats .KOMReviewTodayReviewAccuracyValue', 6);
+		});
+
+	});
+
 	describe('KOMReviewMasterLauncherItemToggleExcludeTripleQuestionMark', function test_KOMReviewMasterLauncherItemToggleExcludeTripleQuestionMark() {
 
 		before(function () {

@@ -5,8 +5,13 @@ const OLSKRemoteStorage = OLSKRemoteStoragePackage.default || OLSKRemoteStorageP
 
 const KOMReviewStats = new RollupStart({
 	target: document.body,
-	props: Object.assign({}, Object.fromEntries(Array.from((new window.URLSearchParams(window.location.search)).entries()).map(function (e) {
-		if (['KOMReviewTodaySpacings', 'KOMReviewGeneralSpacings'].includes(e[0])) {
+	props: Object.assign({
+		KOMReviewTodayTotalCards: 0,
+		KOMReviewTodayTimeMinutes: 0,
+		KOMReviewTodayReviewAccuracy: 0,
+		KOMReviewGeneralSpacings: [],
+	}, Object.fromEntries(Array.from((new window.URLSearchParams(window.location.search)).entries()).map(function (e) {
+		if (['KOMReviewGeneralSpacings'].includes(e[0])) {
 			e[1] = JSON.parse(e[1]).map(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse).map(function (e) {
 				if (e.KOMSpacingChronicles) {
 					e.KOMSpacingChronicles.forEach(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse);

@@ -30,10 +30,18 @@ const mod = {
 		}, 0);
 	},
 
-	DataTodaySpacings () {
+	DataTodayParameters () {
 		return KOMReviewMasterItems.reduce(function (coll, item) {
-			return coll.concat(item.$KOMDeckTodayStudiedSpacings || []);
-		}, []);
+			return Object.assign(coll, {
+				KOMReviewTodayTotalCards: coll.KOMReviewTodayTotalCards + item.$KOMReviewTodayTotalCards,
+				KOMReviewTodayTimeMinutes: coll.KOMReviewTodayTimeMinutes + item.$KOMReviewTodayTimeMinutes,
+				KOMReviewTodayReviewAccuracy: coll.KOMReviewTodayReviewAccuracy + item.$KOMReviewTodayReviewAccuracy,
+			});
+		}, {
+			KOMReviewTodayTotalCards: 0,
+			KOMReviewTodayTimeMinutes: 0,
+			KOMReviewTodayReviewAccuracy: 0,
+		});
 	},
 
 	DataGeneralSpacings () {
@@ -112,7 +120,10 @@ import KOMReviewStats from '../KOMReviewStats/main.svelte';
 {#if KOMReviewMasterItems.length && mod.DataUnseenCount() }
 	<hr>
 
-	<KOMReviewStats KOMReviewTodaySpacings={ mod.DataTodaySpacings() } KOMReviewGeneralSpacings={ mod.DataGeneralSpacings() } />
+	<KOMReviewStats
+		{... mod.DataTodayParameters() }
+		KOMReviewGeneralSpacings={ mod.DataGeneralSpacings() }
+		/>
 {/if}
 
 </div>

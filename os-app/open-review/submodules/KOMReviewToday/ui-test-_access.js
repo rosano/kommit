@@ -20,9 +20,7 @@ Object.entries({
 describe('KOMReviewToday_Access', function () {
 
 	before(function () {
-		return browser.OLSKVisit(kDefaultRoute, {
-			KOMReviewTodaySpacings: JSON.stringify([]),
-		});
+		return browser.OLSKVisit(kDefaultRoute);
 	});
 
 	it('shows KOMReviewToday', function () {

@@ -6,18 +6,22 @@ describe('KOMReviewStats_Misc', function () {
 
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
-				KOMReviewTodaySpacings: JSON.stringify([Object.assign(StubSpacingObjectValid(), {
-					KOMSpacingChronicles: [StubChronicleObjectValid()],
-					KOMSpacingDueDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3),
-				}), Object.assign(StubSpacingObjectValid(), {
-					KOMSpacingID: 'bravo-backward',
-				})]),
-				KOMReviewGeneralSpacings: JSON.stringify([]),
+				KOMReviewTodayTotalCards: 1,
+				KOMReviewTodayTimeMinutes: 2,
+				KOMReviewTodayReviewAccuracy: 3,
 			});
 		});
 
-		it('sets KOMReviewTodaySpacings', function () {
-			browser.assert.text(`${ KOMReviewStatsToday } .KOMReviewTodayTotalCardsValue`, '1');
+		it('sets KOMReviewTodayTotalCards', function () {
+			browser.assert.text(`${ KOMReviewStatsToday } .KOMReviewTodayTotalCardsValue`, 1);
+		});
+
+		it('sets KOMReviewTodayTimeMinutes', function () {
+			browser.assert.text(`${ KOMReviewStatsToday } .KOMReviewTodayTimeMinutesValue`, 2);
+		});
+
+		it('sets KOMReviewTodayReviewAccuracy', function () {
+			browser.assert.text(`${ KOMReviewStatsToday } .KOMReviewTodayReviewAccuracyValue`, 3);
 		});
 
 	});
@@ -26,7 +30,6 @@ describe('KOMReviewStats_Misc', function () {
 
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
-				KOMReviewTodaySpacings: JSON.stringify([]),
 				KOMReviewGeneralSpacings: JSON.stringify([Object.assign(StubSpacingObjectValid(), {
 					KOMSpacingChronicles: [StubChronicleObjectValid()],
 					KOMSpacingDueDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3),
