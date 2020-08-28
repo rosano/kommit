@@ -2,6 +2,7 @@
 export let KOMBrowseStorageClient;
 
 export let KOMBrowseDeckSelected;
+export let KOMBrowseDeckCards;
 export let KOMBrowseDispatchCreate;
 export let KOMBrowseListDispatchClose;
 export let KOMBrowseInfoSpeechAvailable;
@@ -44,7 +45,7 @@ const mod = {
 
 	_ValueTagsAll: [],
 
-	_ValueCardsAll: KOMBrowseDeckSelected.$KOMDeckCards,
+	_ValueCardsAll: KOMBrowseDeckCards,
 	ValueCardsAll (inputData, shouldSort = true) {
 		mod.ValueCardsVisible(mod._ValueCardsAll = inputData, shouldSort);
 

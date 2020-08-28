@@ -43,6 +43,11 @@ const mod = {
 	},
 
 	_ValueBrowseVisible: false,
+	
+	_ValueBrowseCards: [],
+	ValueBrowseCards (inputData) {
+		mod._ValueBrowseCards = inputData;
+	},
 
 	_ValuePlayVisible: false,
 	_ValuePlaySpacings: [],
@@ -485,7 +490,9 @@ const mod = {
 		mod._ValueDeckSelected.$_KOMDeckUpdateToday();
 	},
 
-	KOMReviewDetailDispatchBrowse () {
+	async KOMReviewDetailDispatchBrowse () {
+		mod.ValueBrowseCards(await KOMCardAction.KOMCardActionList(mod._ValueStorageClient, mod._ValueDeckSelected));
+
 		mod._ValueBrowseVisible = true;
 	},
 
@@ -508,6 +515,8 @@ const mod = {
 		}
 
 		mod._ValueBrowseVisible = false;
+
+		mod.ValueBrowseCards([]);
 	},
 
 	KOMBrowseInfoDispatchRead () {
@@ -896,6 +905,7 @@ import OLSKStorageWidget from 'OLSKStorageWidget';
 		<KOMBrowse
 			KOMBrowseStorageClient={ mod._ValueStorageClient }
 			KOMBrowseDeckSelected={ mod._ValueDeckSelected }
+			KOMBrowseDeckCards={ mod._ValueBrowseCards }
 			KOMBrowseDispatchCreate={ mod.KOMBrowseDispatchCreate }
 			KOMBrowseListDispatchClose={ mod.KOMBrowseListDispatchClose }
 			KOMBrowseInfoSpeechAvailable={ mod._ValueSpeechAvailable }

@@ -4,9 +4,7 @@ describe('KOMBrowse_Sync', function () {
 
 	before(function () {
 		return browser.OLSKVisit(kDefaultRoute, {
-			KOMBrowseDeckSelected: JSON.stringify(Object.assign(StubDeckObjectValid(), {
-				$KOMDeckCards: [],
-			})),
+			KOMBrowseDeckSelected: JSON.stringify(StubDeckObjectValid()),
 		});
 	});
 
