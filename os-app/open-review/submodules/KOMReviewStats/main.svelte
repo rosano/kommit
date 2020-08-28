@@ -3,6 +3,7 @@ export let KOMReviewTodayTotalCards;
 export let KOMReviewTodayTimeMinutes;
 export let KOMReviewTodayReviewAccuracy;
 export let KOMReviewGeneralSpacings;
+export let KOMReviewChartCompositionCollectionData;
 
 import OLSKInternational from 'OLSKInternational';
 const OLSKLocalized = function(translationConstant) {
@@ -24,5 +25,7 @@ import KOMReviewGeneral from '../KOMReviewGeneral/main.svelte';
 			/>
 	{/if}
 
-	<KOMReviewGeneral KOMReviewGeneralSpacings={ KOMReviewGeneralSpacings } />
+	<KOMReviewGeneral
+		KOMReviewChartCompositionCollectionData={ KOMReviewChartCompositionCollectionData }
+		KOMReviewGeneralSpacings={ KOMReviewGeneralSpacings } />
 </div>

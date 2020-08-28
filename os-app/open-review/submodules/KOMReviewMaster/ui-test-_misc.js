@@ -1,5 +1,13 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
+const uDeck = function (inputData) {
+	return Object.assign({
+		KOMDeckID: 'alfa',
+		KOMDeckName: 'bravo',
+		$KOMDeckSpacings: [],
+	}, inputData);
+};
+
 describe('KOMReviewMaster_Misc', function () {
 
 	before(function () {
@@ -70,17 +78,10 @@ describe('KOMReviewMaster_Misc', function () {
 
 	describe('KOMReviewMasterListItem', function test_KOMReviewMasterListItem() {
 
-		const uFlatten = function (inputData) {
-			return [].concat.apply([], inputData);
-		};
-
-		const item = {
-			KOMDeckID: 'alfa',
-			KOMDeckName: 'bravo',
-			$KOMDeckSpacings: [],
+		const item = uDeck({
 			$KOMDeckTodayReviewCount: 1,
 			$KOMDeckTodayUnseenCount: 2,
-		};
+		});
 
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
@@ -124,21 +125,33 @@ describe('KOMReviewMaster_Misc', function () {
 
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
-				KOMReviewMasterItems: JSON.stringify([{
+				KOMReviewMasterItems: JSON.stringify([uDeck({
 					KOMDeckID: 'alfa',
-					KOMDeckName: '',
 					$KOMReviewTodayTotalCards: 1,
 					$KOMReviewTodayTimeMinutes: 2,
 					$KOMReviewTodayReviewAccuracy: 3,
 					$KOMDeckGeneralNotUnseenCount: 1,
-				}, {
+					$KOMReviewChartCompositionCollectionData: {
+						KOMSpacingGroupingTotal: 1,
+						KOMSpacingGroupingUnseen: 2,
+						KOMSpacingGroupingDeveloping: 3,
+						KOMSpacingGroupingMature: 4,
+						KOMSpacingGroupingSuspended: 5,
+					},
+				}), uDeck({
 					KOMDeckID: 'bravo',
-					KOMDeckName: '',
 					$KOMReviewTodayTotalCards: 1,
 					$KOMReviewTodayTimeMinutes: 2,
 					$KOMReviewTodayReviewAccuracy: 3,
 					$KOMDeckGeneralNotUnseenCount: 1,
-				}]),
+					$KOMReviewChartCompositionCollectionData: {
+						KOMSpacingGroupingTotal: 1,
+						KOMSpacingGroupingUnseen: 2,
+						KOMSpacingGroupingDeveloping: 3,
+						KOMSpacingGroupingMature: 4,
+						KOMSpacingGroupingSuspended: 5,
+					},
+				})]),
 			});
 		});
 
@@ -152,6 +165,14 @@ describe('KOMReviewMaster_Misc', function () {
 
 		it('sets KOMReviewTodayReviewAccuracy', function () {
 			browser.assert.text('.KOMReviewStats .KOMReviewTodayReviewAccuracyValue', 6);
+		});
+
+		it('sets KOMReviewChartCompositionCollectionData', function () {
+			browser.assert.text('.KOMReviewChartCompositionCollection .KOMReviewChartCompositionCollectionTotalCardsValue', 2);
+			browser.assert.text('.KOMReviewChartCompositionCollection .KOMReviewChartCompositionCollectionUnseenCardsValue', 4);
+			browser.assert.text('.KOMReviewChartCompositionCollection .KOMReviewChartCompositionCollectionDevelopingCardsValue', 6);
+			browser.assert.text('.KOMReviewChartCompositionCollection .KOMReviewChartCompositionCollectionMatureCardsValue', 8);
+			browser.assert.text('.KOMReviewChartCompositionCollection .KOMReviewChartCompositionCollectionSuspendedCardsValue', 10);
 		});
 
 	});

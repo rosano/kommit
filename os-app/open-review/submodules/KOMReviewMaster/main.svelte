@@ -44,6 +44,26 @@ const mod = {
 		});
 	},
 
+	DataGeneralParameters () {
+		return {
+			KOMReviewChartCompositionCollectionData: KOMReviewMasterItems.reduce(function (coll, item) {
+				return Object.assign(coll, {
+					KOMSpacingGroupingTotal: coll.KOMSpacingGroupingTotal + item.$KOMReviewChartCompositionCollectionData.KOMSpacingGroupingTotal,
+					KOMSpacingGroupingUnseen: coll.KOMSpacingGroupingUnseen + item.$KOMReviewChartCompositionCollectionData.KOMSpacingGroupingUnseen,
+					KOMSpacingGroupingDeveloping: coll.KOMSpacingGroupingDeveloping + item.$KOMReviewChartCompositionCollectionData.KOMSpacingGroupingDeveloping,
+					KOMSpacingGroupingMature: coll.KOMSpacingGroupingMature + item.$KOMReviewChartCompositionCollectionData.KOMSpacingGroupingMature,
+					KOMSpacingGroupingSuspended: coll.KOMSpacingGroupingSuspended + item.$KOMReviewChartCompositionCollectionData.KOMSpacingGroupingSuspended,
+				});
+			}, {
+				KOMSpacingGroupingTotal: 0,
+				KOMSpacingGroupingUnseen: 0,
+				KOMSpacingGroupingDeveloping: 0,
+				KOMSpacingGroupingMature: 0,
+				KOMSpacingGroupingSuspended: 0,
+			}),
+		};
+	},
+
 	DataGeneralSpacings () {
 		return KOMReviewMasterItems.reduce(function (coll, item) {
 			return coll.concat(item.$KOMDeckSpacings || []);
@@ -122,6 +142,7 @@ import KOMReviewStats from '../KOMReviewStats/main.svelte';
 
 	<KOMReviewStats
 		{... mod.DataTodayParameters() }
+		{... mod.DataGeneralParameters() }
 		KOMReviewGeneralSpacings={ mod.DataGeneralSpacings() }
 		/>
 {/if}

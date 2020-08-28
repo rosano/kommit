@@ -586,6 +586,14 @@ describe('KOMReviewDetail_Misc', function () {
 
 	describe('KOMReviewStats', function test_KOMReviewStats() {
 
+		const item = {
+			KOMSpacingGroupingTotal: 1,
+			KOMSpacingGroupingUnseen: 2,
+			KOMSpacingGroupingDeveloping: 3,
+			KOMSpacingGroupingMature: 4,
+			KOMSpacingGroupingSuspended: 5,
+		};
+
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMReviewDetailDeck: JSON.stringify(uDeck({
@@ -606,6 +614,7 @@ describe('KOMReviewDetail_Misc', function () {
 					$KOMReviewTodayTotalCards: 1,
 					$KOMReviewTodayTimeMinutes: 2,
 					$KOMReviewTodayReviewAccuracy: 3,
+					$KOMReviewChartCompositionCollectionData: item,
 				})),
 			});
 		});
@@ -620,6 +629,14 @@ describe('KOMReviewDetail_Misc', function () {
 
 		it('sets KOMReviewTodayReviewAccuracy', function () {
 			browser.assert.text('.KOMReviewStats .KOMReviewTodayReviewAccuracyValue', 3);
+		});
+
+		it('sets KOMReviewChartCompositionCollectionData', function () {
+			browser.assert.text('.KOMReviewChartCompositionCollection .KOMReviewChartCompositionCollectionTotalCardsValue', item.KOMSpacingGroupingTotal);
+			browser.assert.text('.KOMReviewChartCompositionCollection .KOMReviewChartCompositionCollectionUnseenCardsValue', item.KOMSpacingGroupingUnseen);
+			browser.assert.text('.KOMReviewChartCompositionCollection .KOMReviewChartCompositionCollectionDevelopingCardsValue', item.KOMSpacingGroupingDeveloping);
+			browser.assert.text('.KOMReviewChartCompositionCollection .KOMReviewChartCompositionCollectionMatureCardsValue', item.KOMSpacingGroupingMature);
+			browser.assert.text('.KOMReviewChartCompositionCollection .KOMReviewChartCompositionCollectionSuspendedCardsValue', item.KOMSpacingGroupingSuspended);
 		});
 
 	});

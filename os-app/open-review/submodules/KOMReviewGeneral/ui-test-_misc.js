@@ -122,6 +122,14 @@ describe('KOMReviewGeneral_Misc', function () {
 
 	describe('KOMReviewChartCompositionCollection', function test_KOMReviewChartCompositionCollection() {
 
+		const item = {
+			KOMSpacingGroupingTotal: 1,
+			KOMSpacingGroupingUnseen: 2,
+			KOMSpacingGroupingDeveloping: 3,
+			KOMSpacingGroupingMature: 4,
+			KOMSpacingGroupingSuspended: 5,
+		};
+
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMReviewGeneralSpacings: JSON.stringify([
@@ -137,14 +145,16 @@ describe('KOMReviewGeneral_Misc', function () {
 						KOMSpacingID: item.KOMSpacingID.replace('forward', 'backward'),
 					})]);
 				}, [])),
+				KOMReviewChartCompositionCollectionData: JSON.stringify(item),
 			});
 		});
 
 		it('sets KOMReviewChartCompositionCollectionData', function () {
-			browser.assert.text('.KOMReviewChartCompositionCollection .KOMReviewChartCompositionCollectionTotalCardsValue', '1');
-			browser.assert.text('.KOMReviewChartCompositionCollection .KOMReviewChartCompositionCollectionUnseenCardsValue', '1');
-			browser.assert.text('.KOMReviewChartCompositionCollection .KOMReviewChartCompositionCollectionDevelopingCardsValue', '1');
-			browser.assert.text('.KOMReviewChartCompositionCollection .KOMReviewChartCompositionCollectionMatureCardsValue', '1');
+			browser.assert.text('.KOMReviewChartCompositionCollection .KOMReviewChartCompositionCollectionTotalCardsValue', item.KOMSpacingGroupingTotal);
+			browser.assert.text('.KOMReviewChartCompositionCollection .KOMReviewChartCompositionCollectionUnseenCardsValue', item.KOMSpacingGroupingUnseen);
+			browser.assert.text('.KOMReviewChartCompositionCollection .KOMReviewChartCompositionCollectionDevelopingCardsValue', item.KOMSpacingGroupingDeveloping);
+			browser.assert.text('.KOMReviewChartCompositionCollection .KOMReviewChartCompositionCollectionMatureCardsValue', item.KOMSpacingGroupingMature);
+			browser.assert.text('.KOMReviewChartCompositionCollection .KOMReviewChartCompositionCollectionSuspendedCardsValue', item.KOMSpacingGroupingSuspended);
 		});
 
 		it('sets KOMReviewChartElementHorizontalStackedBarColors', function () {

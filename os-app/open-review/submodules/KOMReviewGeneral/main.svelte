@@ -1,5 +1,6 @@
 <script>
 export let KOMReviewGeneralSpacings;
+export let KOMReviewChartCompositionCollectionData;
 
 import OLSKInternational from 'OLSKInternational';
 const OLSKLocalized = function(translationConstant) {
@@ -45,14 +46,6 @@ const mod = {
 		});
 	},
 
-	DataCollectionData() {
-		return Object.entries(KOMSpacingModel.KOMSpacingModelGroupByStatus(KOMReviewGeneralSpacings)).reduce(function (coll, item) {
-			coll[item[0]] = KOMSpacingModel.KOMSpacingModelFilterUnique(item[1]).length;
-
-			return coll;
-		}, {});
-	},
-
 };
 
 import KOMReviewChartCompositionCollection from '../KOMReviewChartCompositionCollection/main.svelte';
@@ -84,7 +77,9 @@ import KOMReviewChartElementDateBarTable from '../KOMReviewChartElementDateBarTa
 <div class="KOMReviewGeneralCollection">
 	<h2 class="KOMReviewGeneralCollectionHeading">{ OLSKLocalized('KOMReviewGeneralCollectionHeadingText') }</h2>
 
-	<KOMReviewChartCompositionCollection KOMReviewChartCompositionCollectionData={ mod.DataCollectionData() } KOMReviewChartElementHorizontalStackedBarColors={ KOMReviewGeneralLogic.KOMReviewGeneralCollectionColors() } />
+	<KOMReviewChartCompositionCollection
+		KOMReviewChartCompositionCollectionData={ KOMReviewChartCompositionCollectionData }
+		KOMReviewChartElementHorizontalStackedBarColors={ KOMReviewGeneralLogic.KOMReviewGeneralCollectionColors() } />
 </div>
 
 </div>

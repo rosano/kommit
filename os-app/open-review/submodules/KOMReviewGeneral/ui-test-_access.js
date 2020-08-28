@@ -20,9 +20,7 @@ Object.entries({
 describe('KOMReviewGeneral_Access', function () {
 
 	before(function () {
-		return browser.OLSKVisit(kDefaultRoute, {
-			KOMReviewGeneralSpacings: JSON.stringify([]),
-		});
+		return browser.OLSKVisit(kDefaultRoute);
 	});
 
 	it('shows KOMReviewGeneral', function () {

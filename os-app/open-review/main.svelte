@@ -802,6 +802,12 @@ const mod = {
 				deck.$KOMReviewTodayTotalCards = KOMSpacingModel.KOMSpacingModelFilterUnique(deck.$KOMDeckTodayStudiedSpacings).length;
 				deck.$KOMReviewTodayTimeMinutes = KOMReviewLogic.KOMReviewTotalMinutes(KOMReviewLogic.KOMReviewTodayTotalMilliseconds(deck.$KOMDeckTodayStudiedSpacings));
 				deck.$KOMReviewTodayReviewAccuracy = KOMReviewLogic.KOMReviewTodayPercentage(KOMReviewLogic.KOMReviewTodayReviewAccuracy(deck.$KOMDeckTodayStudiedSpacings));
+
+				deck.$KOMReviewChartCompositionCollectionData = Object.entries(KOMSpacingModel.KOMSpacingModelGroupByStatus(deck.$KOMDeckSpacings)).reduce(function (coll, item) {
+					coll[item[0]] = KOMSpacingModel.KOMSpacingModelFilterUnique(item[1]).length;
+
+					return coll;
+				}, {});
 			};
 
 			$_KOMDeckUpdateToday();

@@ -11,6 +11,13 @@ Object.entries({
 	return global[e.shift()] = e.pop();
 });
 
+const uDeck = function (inputData) {
+	return Object.assign({
+		KOMDeckName: 'alfa',
+		$KOMDeckSpacings: [],
+	}, inputData);
+};
+
 describe('KOMReviewMaster_Access', function () {
 
 	before(function () {
@@ -45,10 +52,7 @@ describe('KOMReviewMaster_Access', function () {
 
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
-				KOMReviewMasterItems: JSON.stringify([{
-					KOMDeckName: 'alfa',
-					$KOMDeckSpacings: [],
-				}]),
+				KOMReviewMasterItems: JSON.stringify([uDeck()]),
 			});
 		});
 
@@ -66,8 +70,7 @@ describe('KOMReviewMaster_Access', function () {
 
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
-				KOMReviewMasterItems: JSON.stringify([{
-					KOMDeckName: 'alfa',
+				KOMReviewMasterItems: JSON.stringify([uDeck({
 					$KOMDeckSpacings: [Object.assign(StubSpacingObjectValid(), {
 						KOMSpacingChronicles: [StubChronicleObjectValid()],
 						KOMSpacingDueDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3),
@@ -76,7 +79,14 @@ describe('KOMReviewMaster_Access', function () {
 					$KOMDeckTodayUnseenCount: 0,
 					$KOMDeckTodayStudiedCount: 1,
 					$KOMDeckGeneralNotUnseenCount: 1,
-				}]),
+					$KOMReviewChartCompositionCollectionData: {
+						KOMSpacingGroupingTotal: 1,
+						KOMSpacingGroupingUnseen: 2,
+						KOMSpacingGroupingDeveloping: 3,
+						KOMSpacingGroupingMature: 4,
+						KOMSpacingGroupingSuspended: 5,
+					},
+				})]),
 			});
 		});
 

@@ -5,9 +5,22 @@ const OLSKRemoteStorage = OLSKRemoteStoragePackage.default || OLSKRemoteStorageP
 
 const KOMReviewGeneral = new RollupStart({
 	target: document.body,
-	props: Object.assign({}, Object.fromEntries(Array.from((new window.URLSearchParams(window.location.search)).entries()).map(function (e) {
+	props: Object.assign({
+		KOMReviewGeneralSpacings: [],
+		KOMReviewChartCompositionCollectionData: {
+			KOMSpacingGroupingTotal: 1,
+			KOMSpacingGroupingUnseen: 2,
+			KOMSpacingGroupingDeveloping: 3,
+			KOMSpacingGroupingMature: 4,
+			KOMSpacingGroupingSuspended: 5,
+		},
+	}, Object.fromEntries(Array.from((new window.URLSearchParams(window.location.search)).entries()).map(function (e) {
+		if (['KOMReviewGeneralSpacings', 'KOMReviewChartCompositionCollectionData'].includes(e[0])) {
+			e[1] = JSON.parse(e[1]);
+		}
+
 		if (['KOMReviewGeneralSpacings'].includes(e[0])) {
-			e[1] = JSON.parse(e[1]).map(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse);
+			e[1] = e[1].map(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse);
 		}
 
 		return e;

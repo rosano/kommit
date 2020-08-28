@@ -338,6 +338,13 @@ describe('KOMReviewDetail_Access', function () {
 					$KOMDeckTodayUnseenCount: 0,
 					$KOMDeckTodayStudiedCount: 1,
 					$KOMDeckGeneralNotUnseenCount: 1,
+					$KOMReviewChartCompositionCollectionData: {
+						KOMSpacingGroupingTotal: 1,
+						KOMSpacingGroupingUnseen: 2,
+						KOMSpacingGroupingDeveloping: 3,
+						KOMSpacingGroupingMature: 4,
+						KOMSpacingGroupingSuspended: 5,
+					},
 				})),
 			});
 		});

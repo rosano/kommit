@@ -319,6 +319,7 @@ import KOMReviewStats from '../KOMReviewStats/main.svelte';
 		KOMReviewTodayTimeMinutes={ KOMReviewDetailDeck.$KOMReviewTodayTimeMinutes }
 		KOMReviewTodayReviewAccuracy={ KOMReviewDetailDeck.$KOMReviewTodayReviewAccuracy }
 		KOMReviewGeneralSpacings={ KOMReviewDetailDeck.$KOMDeckSpacings }
+		KOMReviewChartCompositionCollectionData={ KOMReviewDetailDeck.$KOMReviewChartCompositionCollectionData }
 		/>
 {/if}
 
