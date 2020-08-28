@@ -44,12 +44,20 @@ describe('KOMReviewStats_Misc', function () {
 				}), Object.assign(StubSpacingObjectValid(), {
 					KOMSpacingID: 'bravo-backward',
 				})]),
+				KOMReviewGeneralUpcomingData: JSON.stringify([{
+					KOMReviewChartElementDateBarTableRowDataKey: 'alfa',
+					KOMReviewChartElementDateBarTableRowDataValues: [1, 2],
+				}]),
 				KOMReviewGeneralHistoricalData: JSON.stringify([{
 					KOMReviewChartElementDateBarTableRowDataKey: 'alfa',
 					KOMReviewChartElementDateBarTableRowDataValues: [1, 2, 3, 4],
 				}]),
 				KOMReviewChartCompositionCollectionData: JSON.stringify(item),
 			});
+		});
+
+		it('sets KOMReviewGeneralUpcomingData', function () {
+			browser.assert.text('.KOMReviewGeneralUpcoming .KOMReviewChartElementDateBarTableRow .KOMReviewChartElementDateBarTableRowKey', 'alfa');
 		});
 
 		it('sets KOMReviewGeneralHistoricalData', function () {

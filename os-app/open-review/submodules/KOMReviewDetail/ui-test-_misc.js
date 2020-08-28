@@ -8,6 +8,7 @@ const uDeck = function (inputData) {
 		$KOMDeckTodayReviewCount: 0,
 		$KOMDeckTodayUnseenCount: 0,
 		$KOMDeckTodayStudiedCount: 0,
+		$KOMReviewGeneralUpcomingData: [],
 		$KOMReviewGeneralHistoricalData: [],
 	}, inputData);
 };
@@ -615,6 +616,10 @@ describe('KOMReviewDetail_Misc', function () {
 					$KOMReviewTodayTotalCards: 1,
 					$KOMReviewTodayTimeMinutes: 2,
 					$KOMReviewTodayReviewAccuracy: 3,
+					$KOMReviewGeneralUpcomingData: [{
+						KOMReviewChartElementDateBarTableRowDataKey: 'alfa',
+						KOMReviewChartElementDateBarTableRowDataValues: [1, 2],
+					}],
 					$KOMReviewGeneralHistoricalData: [{
 						KOMReviewChartElementDateBarTableRowDataKey: 'alfa',
 						KOMReviewChartElementDateBarTableRowDataValues: [1, 2, 3, 4],
@@ -634,6 +639,11 @@ describe('KOMReviewDetail_Misc', function () {
 
 		it('sets KOMReviewTodayReviewAccuracy', function () {
 			browser.assert.text('.KOMReviewStats .KOMReviewTodayReviewAccuracyValue', 3);
+		});
+
+		it('sets KOMReviewGeneralUpcomingData', function () {
+			browser.assert.text('.KOMReviewGeneralUpcoming .KOMReviewChartElementDateBarTableRow .KOMReviewChartElementDateBarTableRowKey', 'alfa');
+			browser.assert.text('.KOMReviewGeneralUpcoming .KOMReviewChartElementDateBarTableRow .KOMReviewChartElementDateBarTableRowCount', '3');
 		});
 
 		it('sets KOMReviewGeneralHistoricalData', function () {

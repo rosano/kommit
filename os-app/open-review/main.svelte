@@ -803,6 +803,21 @@ const mod = {
 				deck.$KOMReviewTodayTimeMinutes = KOMReviewLogic.KOMReviewTotalMinutes(KOMReviewLogic.KOMReviewTodayTotalMilliseconds(deck.$KOMDeckTodayStudiedSpacings));
 				deck.$KOMReviewTodayReviewAccuracy = KOMReviewLogic.KOMReviewTodayPercentage(KOMReviewLogic.KOMReviewTodayReviewAccuracy(deck.$KOMDeckTodayStudiedSpacings));
 
+				const upcomingGroupings = KOMReviewLogic.KOMReviewGeneralUpcomingGroupByDate(KOMReviewLogic.KOMReviewGeneralUpcomingFilter(deck.$KOMDeckSpacings));
+
+				deck.$KOMReviewGeneralUpcomingData = KOMReviewLogic.KOMReviewGeneralUpcomingDates().map(function (e) {
+					return {
+						KOMReviewChartElementDateBarTableRowDataKey: KOMSharedLogic.KOMSharedGroupingDay(new Date()) === e ? OLSKLocalized('KOMReviewGeneralTodayText') : e,
+						KOMReviewChartElementDateBarTableRowDataValues: Object.entries(KOMSpacingModel.KOMSpacingModelGroupByStatus(upcomingGroupings[e] || [])).reduce(function (coll, item) {
+							if (['KOMSpacingGroupingDeveloping', 'KOMSpacingGroupingMature'].includes(item[0])) {
+								coll.push(KOMSpacingModel.KOMSpacingModelFilterUnique(item[1]).length);
+							}
+
+							return coll;
+						}, []).reverse(),
+					};
+				});
+
 				const historicalGroupings = KOMReviewLogic.KOMReviewGeneralHistoricalGroupByDate(KOMReviewLogic.KOMReviewGeneralHistoricalFilter(deck.$KOMDeckSpacings));
 				
 				deck.$KOMReviewGeneralHistoricalData = KOMReviewLogic.KOMReviewGeneralHistoricalDates().map(function (e) {

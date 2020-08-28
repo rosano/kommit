@@ -57,6 +57,10 @@ describe('KOMReviewGeneral_Access', function () {
 						KOMSpacingDueDate: new Date(),
 					}),
 				]),
+				KOMReviewGeneralUpcomingData: JSON.stringify([{
+					KOMReviewChartElementDateBarTableRowDataKey: 'alfa',
+					KOMReviewChartElementDateBarTableRowDataValues: [1, 2],
+				}]),
 			});
 		});
 

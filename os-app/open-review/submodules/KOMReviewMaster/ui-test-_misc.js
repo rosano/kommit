@@ -5,6 +5,7 @@ const uDeck = function (inputData) {
 		KOMDeckID: 'alfa',
 		KOMDeckName: 'bravo',
 		$KOMDeckSpacings: [],
+		$KOMReviewGeneralUpcomingData: [],
 		$KOMReviewGeneralHistoricalData: [],
 	}, inputData);
 };
@@ -132,6 +133,10 @@ describe('KOMReviewMaster_Misc', function () {
 					$KOMReviewTodayTimeMinutes: 2,
 					$KOMReviewTodayReviewAccuracy: 3,
 					$KOMDeckGeneralNotUnseenCount: 1,
+					$KOMReviewGeneralUpcomingData: [{
+						KOMReviewChartElementDateBarTableRowDataKey: 'alfa',
+						KOMReviewChartElementDateBarTableRowDataValues: [1, 2],
+					}],
 					$KOMReviewGeneralHistoricalData: [{
 						KOMReviewChartElementDateBarTableRowDataKey: 'alfa',
 						KOMReviewChartElementDateBarTableRowDataValues: [1, 2, 3, 4],
@@ -149,6 +154,10 @@ describe('KOMReviewMaster_Misc', function () {
 					$KOMReviewTodayTimeMinutes: 2,
 					$KOMReviewTodayReviewAccuracy: 3,
 					$KOMDeckGeneralNotUnseenCount: 1,
+					$KOMReviewGeneralUpcomingData: [{
+						KOMReviewChartElementDateBarTableRowDataKey: 'alfa',
+						KOMReviewChartElementDateBarTableRowDataValues: [1, 2],
+					}],
 					$KOMReviewGeneralHistoricalData: [{
 						KOMReviewChartElementDateBarTableRowDataKey: 'alfa',
 						KOMReviewChartElementDateBarTableRowDataValues: [1, 2, 3, 4],
@@ -174,6 +183,22 @@ describe('KOMReviewMaster_Misc', function () {
 
 		it('sets KOMReviewTodayReviewAccuracy', function () {
 			browser.assert.text('.KOMReviewStats .KOMReviewTodayReviewAccuracyValue', 6);
+		});
+
+		context('KOMReviewGeneralUpcomingData', function () {
+
+			it('sets KOMReviewChartElementDateBarTableRowDataKey', function () {
+				browser.assert.elements('.KOMReviewGeneralUpcoming .KOMReviewChartElementDateBarTableRow .KOMReviewChartElementDateBarTableRowKey', 1);
+			});
+			
+			it('sets KOMReviewChartElementDateBarTableRowDataValues', function () {
+				browser.assert.elements('.KOMReviewGeneralUpcoming .KOMReviewChartElementDateBarTableRow .KOMReviewChartElementHorizontalStackedBarSection', 2);
+			});
+
+			it('sets KOMReviewChartElementDateBarTableRowCount', function () {
+				browser.assert.text('.KOMReviewGeneralUpcoming .KOMReviewChartElementDateBarTableRow .KOMReviewChartElementDateBarTableRowCount', '6');
+			});
+		
 		});
 
 		context('KOMReviewGeneralHistoricalData', function () {
