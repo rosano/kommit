@@ -171,7 +171,6 @@ import KOMReviewStats from '../KOMReviewStats/main.svelte';
 	<KOMReviewStats
 		{... mod.DataTodayParameters() }
 		{... mod.DataGeneralParameters() }
-		KOMReviewGeneralSpacings={ mod.DataGeneralSpacings() }
 		/>
 {/if}
 

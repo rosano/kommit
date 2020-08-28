@@ -8,29 +8,6 @@ describe('KOMReviewGeneral_Misc', function () {
 
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
-				KOMReviewGeneralSpacings: JSON.stringify([
-					StubSpacingObjectValid(),
-					Object.assign(StubSpacingObjectValid(), {
-						KOMSpacingInterval: 1,
-						KOMSpacingDueDate: new Date(),
-					}),
-					Object.assign(StubSpacingObjectValid(), {
-						KOMSpacingInterval: 21,
-						KOMSpacingDueDate: new Date(),
-					}),
-					Object.assign(StubSpacingObjectValid(), {
-						KOMSpacingInterval: 21,
-						KOMSpacingDueDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3),
-					}),
-					Object.assign(StubSpacingObjectValid(), {
-						KOMSpacingInterval: 21,
-						KOMSpacingDueDate: new Date(Date.now() - 1000 * 60 * 60 * 24 * 3),
-					}),
-				].reduce(function (coll, item) {
-					return coll.concat([item, Object.assign(Object.assign({}, item), {
-						KOMSpacingID: item.KOMSpacingID.replace('forward', 'backward'),
-					})]);
-				}, [])),
 				KOMReviewGeneralUpcomingData: JSON.stringify([{
 					KOMReviewChartElementDateBarTableRowDataKey: 'alfa',
 					KOMReviewChartElementDateBarTableRowDataValues: [1, 2],
@@ -74,21 +51,6 @@ describe('KOMReviewGeneral_Misc', function () {
 
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
-				KOMReviewGeneralSpacings: JSON.stringify([
-					StubSpacingObjectValid(),
-					StubSpacingObjectHistorical(),
-					Object.assign(StubSpacingObjectHistorical(), {
-						KOMSpacingInterval: 1,
-					}),
-					Object.assign(StubSpacingObjectHistorical(), {
-						KOMSpacingInterval: 21,
-					}),
-					StubSpacingObjectHistorical(new Date(Date.now() - 1000 * 60 * 60 * 24 * KOMReviewGeneralLogic.KOMReviewGeneralTableDays() * 2)),
-				].reduce(function (coll, item) {
-					return coll.concat([item, Object.assign(Object.assign({}, item), {
-						KOMSpacingID: item.KOMSpacingID.replace('forward', 'backward'),
-					})]);
-				}, [])),
 				KOMReviewGeneralHistoricalData: JSON.stringify([{
 					KOMReviewChartElementDateBarTableRowDataKey: 'alfa',
 					KOMReviewChartElementDateBarTableRowDataValues: [1, 2, 3, 4],
@@ -140,19 +102,6 @@ describe('KOMReviewGeneral_Misc', function () {
 
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
-				KOMReviewGeneralSpacings: JSON.stringify([
-					StubSpacingObjectValid(),
-					Object.assign(StubSpacingObjectValid(), {
-						KOMSpacingInterval: 1,
-					}),
-					Object.assign(StubSpacingObjectValid(), {
-						KOMSpacingInterval: 21,
-					}),
-				].reduce(function (coll, item) {
-					return coll.concat([item, Object.assign(Object.assign({}, item), {
-						KOMSpacingID: item.KOMSpacingID.replace('forward', 'backward'),
-					})]);
-				}, [])),
 				KOMReviewChartCompositionCollectionData: JSON.stringify(item),
 			});
 		});

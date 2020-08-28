@@ -1,5 +1,4 @@
 <script>
-export let KOMReviewGeneralSpacings;
 export let KOMReviewGeneralUpcomingData;
 export let KOMReviewGeneralHistoricalData;
 export let KOMReviewChartCompositionCollectionData;

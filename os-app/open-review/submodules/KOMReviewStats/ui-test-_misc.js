@@ -38,12 +38,6 @@ describe('KOMReviewStats_Misc', function () {
 
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
-				KOMReviewGeneralSpacings: JSON.stringify([Object.assign(StubSpacingObjectValid(), {
-					KOMSpacingChronicles: [StubChronicleObjectValid()],
-					KOMSpacingDueDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3),
-				}), Object.assign(StubSpacingObjectValid(), {
-					KOMSpacingID: 'bravo-backward',
-				})]),
 				KOMReviewGeneralUpcomingData: JSON.stringify([{
 					KOMReviewChartElementDateBarTableRowDataKey: 'alfa',
 					KOMReviewChartElementDateBarTableRowDataValues: [1, 2],

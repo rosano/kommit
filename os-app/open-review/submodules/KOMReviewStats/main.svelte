@@ -2,7 +2,6 @@
 export let KOMReviewTodayTotalCards;
 export let KOMReviewTodayTimeMinutes;
 export let KOMReviewTodayReviewAccuracy;
-export let KOMReviewGeneralSpacings;
 export let KOMReviewGeneralUpcomingData;
 export let KOMReviewGeneralHistoricalData;
 export let KOMReviewChartCompositionCollectionData;
@@ -31,5 +30,5 @@ import KOMReviewGeneral from '../KOMReviewGeneral/main.svelte';
 		KOMReviewGeneralUpcomingData={ KOMReviewGeneralUpcomingData }
 		KOMReviewGeneralHistoricalData={ KOMReviewGeneralHistoricalData }
 		KOMReviewChartCompositionCollectionData={ KOMReviewChartCompositionCollectionData }
-		KOMReviewGeneralSpacings={ KOMReviewGeneralSpacings } />
+		/>
 </div>

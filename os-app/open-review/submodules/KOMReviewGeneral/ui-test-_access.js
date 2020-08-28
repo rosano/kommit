@@ -51,12 +51,6 @@ describe('KOMReviewGeneral_Access', function () {
 		
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
-				KOMReviewGeneralSpacings: JSON.stringify([
-					Object.assign(StubSpacingObjectValid(), {
-						KOMSpacingInterval: 1,
-						KOMSpacingDueDate: new Date(),
-					}),
-				]),
 				KOMReviewGeneralUpcomingData: JSON.stringify([{
 					KOMReviewChartElementDateBarTableRowDataKey: 'alfa',
 					KOMReviewChartElementDateBarTableRowDataValues: [1, 2],
@@ -82,9 +76,6 @@ describe('KOMReviewGeneral_Access', function () {
 		
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
-				KOMReviewGeneralSpacings: JSON.stringify([
-					StubSpacingObjectHistorical(),
-				]),
 				KOMReviewGeneralHistoricalData: JSON.stringify([{
 					KOMReviewChartElementDateBarTableRowDataKey: 'alfa',
 					KOMReviewChartElementDateBarTableRowDataValues: [1, 2, 3, 4],
