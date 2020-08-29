@@ -488,8 +488,9 @@ const mod = {
 
 	ControlSpacingSave(inputData) {
 		const deck = mod._ValueDeckSelected;
+		
 		OLSKThrottle.OLSKThrottleMappedTimeout(mod._ValueSpacingUpdateThrottleMap, inputData.KOMSpacingID, {
-			OLSKThrottleDuration: OLSK_TESTING_BEHAVIOUR () ? 0 : 500,
+			OLSKThrottleDuration: OLSK_TESTING_BEHAVIOUR() ? 0 : 500,
 			OLSKThrottleCallback () {
 				return KOMSpacingStorage.KOMSpacingStorageWrite(mod._ValueStorageClient, inputData, inputData.$KOMSpacingCard, deck);
 			},
@@ -571,7 +572,7 @@ const mod = {
 
 	async KOMBrowseListDispatchClose () {
 		if (!window.location.search.match('DebugHotfixThrottleCount')) {
-			mod.ReactThrottle(true);
+			// mod.ReactThrottle(true);
 		}
 
 		mod._ValueDeckSelected = await mod.ReactDeckFigures(mod._ValueDeckSelected); // #purge-svelte-force-update
@@ -594,7 +595,11 @@ const mod = {
 	},
 
 	async KOMPlayDispatchDone () {
-		await mod.ReactDeckFigures(mod._ValueDeckSelected);
+		Object.keys(mod._ValueSpacingUpdateThrottleMap).map(function (e) {
+			return OLSKThrottle.OLSKThrottleSkip(mod._ValueSpacingUpdateThrottleMap[e]);
+		});
+
+		mod._ValueDeckSelected = await mod.ReactDeckFigures(mod._ValueDeckSelected); // #purge-svelte-force-update
 
 		mod._ValuePlayVisible = false;
 	},
@@ -733,6 +738,9 @@ const mod = {
 			return KOMSharedLogic.KOMSharedGroupingDay(e.KOMSpacingChronicles.slice(-1).pop().KOMChronicleResponseDate) === KOMSharedLogic.KOMSharedGroupingDay(new Date());
 		});
 
+		const upcomingGroupings = KOMReviewLogic.KOMReviewGeneralUpcomingGroupByDate(KOMReviewLogic.KOMReviewGeneralUpcomingFilter(activeSpacings));
+		const historicalGroupings = KOMReviewLogic.KOMReviewGeneralHistoricalGroupByDate(KOMReviewLogic.KOMReviewGeneralHistoricalFilter(activeSpacings));
+		
 		return Object.assign(deck, mod.ValueCacheDeckFiguresMap(Object.assign(mod._ValueCacheDeckFiguresMap, {
 			[deck.KOMDeckID]: {
 				$KOMDeckTodayReviewCount: KOMSpacingModel.KOMSpacingModelFilterUnique(todaySpacingsNotStudied.filter(function (e) {
@@ -745,12 +753,31 @@ const mod = {
 				$KOMDeckGeneralNotUnseenCount: activeSpacings.filter(function (e) {
 					return e.KOMSpacingChronicles.length;
 				}).length,
+
 				$KOMReviewTodayTotalCards: KOMSpacingModel.KOMSpacingModelFilterUnique(todaySpacingsStudied).length,
 				$KOMReviewTodayTimeMinutes: KOMReviewLogic.KOMReviewTotalMinutes(KOMReviewLogic.KOMReviewTodayTotalMilliseconds(todaySpacingsStudied)),
 				$KOMReviewTodayReviewAccuracy: KOMReviewLogic.KOMReviewTodayPercentage(KOMReviewLogic.KOMReviewTodayReviewAccuracy(todaySpacingsStudied)),
 
-				$KOMReviewGeneralUpcomingData: [],
-				$KOMReviewGeneralHistoricalData: [],
+				$KOMReviewGeneralUpcomingData: KOMReviewLogic.KOMReviewGeneralUpcomingDates().map(function (e) {
+					return {
+						KOMReviewChartElementDateBarTableRowDataKey: KOMSharedLogic.KOMSharedGroupingDay(new Date()) === e ? OLSKLocalized('KOMReviewGeneralTodayText') : e,
+						KOMReviewChartElementDateBarTableRowDataValues: Object.entries(KOMSpacingModel.KOMSpacingModelGroupByStatus(upcomingGroupings[e] || [])).reduce(function (coll, item) {
+							if (['KOMSpacingGroupingDeveloping', 'KOMSpacingGroupingMature'].includes(item[0])) {
+								coll.push(KOMSpacingModel.KOMSpacingModelFilterUnique(item[1]).length);
+							}
+
+							return coll;
+						}, []).reverse(),
+					};
+				}),
+				$KOMReviewGeneralHistoricalData: KOMReviewLogic.KOMReviewGeneralHistoricalDates().map(function (e) {
+					return {
+						KOMReviewChartElementDateBarTableRowDataKey: KOMSharedLogic.KOMSharedGroupingDay(new Date()) === e ? OLSKLocalized('KOMReviewGeneralTodayText') : e,
+						KOMReviewChartElementDateBarTableRowDataValues: Object.entries(KOMSpacingModel.KOMSpacingModelGroupChroniclesByStatus(historicalGroupings[e] || [], e)).reduce(function (coll, item) {
+							return coll.concat(KOMReviewLogic.KOMReviewTotalMinutes(KOMReviewLogic.KOMReviewGeneralHistoricalTotalMilliseconds(item[1])));
+						}, []).reverse(),
+					};
+				}),
 				$KOMReviewChartCompositionCollectionData: Object.entries(KOMSpacingModel.KOMSpacingModelGroupByStatus(activeSpacings)).reduce(function (coll, item) {
 					coll[item[0]] = KOMSpacingModel.KOMSpacingModelFilterUnique(item[1]).length;
 
@@ -772,8 +799,7 @@ const mod = {
 		OLSKThrottle.OLSKThrottleMappedTimeout(mod._ValueDeckFiguresThrottleMap, inputData, {
 			OLSKThrottleDuration: OLSK_TESTING_BEHAVIOUR () ? 0 : 500,
 			async OLSKThrottleCallback () {
-				const item = await mod.ReactDeckFigures(deck); // #purge-svelte-force-update
-				mod._ValueDecksAll = mod._ValueDecksAll; // #purge-svelte-force-update
+				await mod.ReactDeckFigures(deck); // #purge-svelte-force-update
 			},
 		});
 	},
@@ -885,8 +911,6 @@ const mod = {
 	},
 
 	async SetupValueDecksAll() {
-		const excludeTripleQuestionMark = (await KOMSettingAction.KOMSettingsActionProperty(mod._ValueStorageClient, 'KOMSettingExcludeTripleQuestionMark') || {}).KOMSettingValue === 'true';
-
 		mod.ValueDecksAll(await Promise.all((await KOMDeckAction.KOMDeckActionList(mod._ValueStorageClient)).filter(function (e) {
 			return typeof e === 'object'; // #patch-remotestorage-true
 		}).map(async function (deck) {
@@ -898,117 +922,6 @@ const mod = {
 				$KOMDeckCards: [],
 				$_KOMDeckUpdateToday () {},
 			}, mod._ValueCacheDeckFiguresMap[deck.KOMDeckID] || {});
-			const objectsMap = [] || Object.entries(await KOMDeckStorage.KOMDeckStorageObjectsRecursive(mod._ValueStorageClient, deck));
-
-			const cards = objectsMap.reduce(function (coll, item) {
-				if (KOMCardStorage.KOMCardStorageMatch(item[0])) {
-					return coll.concat(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(item[1]));
-				}
-
-				return coll;
-			}, []);
-
-			const spacings = objectsMap.reduce(function (coll, item) {
-				if (KOMSpacingStorage.KOMSpacingStorageMatch(item[0])) {
-					coll[KOMSpacingModel.KOMSpacingModelIdentifier(item[1].KOMSpacingID)] = (coll[KOMSpacingModel.KOMSpacingModelIdentifier(item[1].KOMSpacingID)] || []).concat(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(item[1]))
-				}
-
-				return coll;
-			}, {});
-
-			await Promise.all(cards.map(async function (e) {
-				if ((spacings[e.KOMCardID] || []).length === 2) {
-					return;
-				}
-
-				spacings[e.KOMCardID] = Object.values(await KOMSpacingStorage.KOMSpacingStorageList(mod._ValueStorageClient, e, deck));
-			}))
-
-			deck.$KOMDeckSpacings = [].concat(...(excludeTripleQuestionMark ? cards.filter(function (e) {
-				return ![e.KOMCardFrontText, e.KOMCardRearText].join(',').includes('???');
-			}) : cards).map(function (card) {
-				return (spacings[card.KOMCardID] || []).map(function (e) {
-					return Object.assign(e, {
-						$KOMSpacingCard: card,
-					});
-				});
-			}));
-
-			const $_KOMDeckUpdateToday = function () {
-				const _ValueSpacingsToday = KOMReviewLogic.KOMReviewSpacingsToday(deck.$KOMDeckSpacings).filter(function (e) {
-					if (deck.KOMDeckIsForwardOnly && KOMSpacingModel.KOMSpacingModelIsBackward(e)) {
-						return false;
-					}
-
-					return true;
-				}).filter(function (e) {
-					return !e.$KOMSpacingCard.KOMCardIsSuspended;
-				});
-
-				const _ValueSpacingsReviewing = KOMSpacingModel.KOMSpacingModelFilterUnique(_ValueSpacingsToday.filter(function (e) {
-					return !KOMSpacingModel.KOMSpacingModelIsUnseen(e);
-				}));
-				const _ValueSpacingsUnseen = KOMSpacingModel.KOMSpacingModelFilterUnique(_ValueSpacingsToday.filter(KOMSpacingModel.KOMSpacingModelIsUnseen));
-				
-				deck.$KOMDeckTodayStudiedSpacings = deck.$KOMDeckSpacings.filter(function (e) {
-					if (!e.KOMSpacingChronicles.length) {
-						return false;
-					}
-					
-					return KOMSharedLogic.KOMSharedGroupingDay(e.KOMSpacingChronicles.slice(-1).pop().KOMChronicleResponseDate) === KOMSharedLogic.KOMSharedGroupingDay(new Date());
-				});
-
-				deck.$KOMDeckGeneralNotUnseenCount = deck.$KOMDeckSpacings.filter(function (e) {
-					return e.KOMSpacingChronicles.length;
-				}).length;
-
-				deck.$KOMDeckTodayReviewCount = _ValueSpacingsReviewing.length;
-				deck.$KOMDeckTodayUnseenCount = _ValueSpacingsUnseen.length;
-				deck.$KOMDeckTodayStudiedCount = deck.$KOMDeckTodayStudiedSpacings.length;
-
-				deck.$KOMReviewTodayTotalCards = KOMSpacingModel.KOMSpacingModelFilterUnique(deck.$KOMDeckTodayStudiedSpacings).length;
-				deck.$KOMReviewTodayTimeMinutes = KOMReviewLogic.KOMReviewTotalMinutes(KOMReviewLogic.KOMReviewTodayTotalMilliseconds(deck.$KOMDeckTodayStudiedSpacings));
-				deck.$KOMReviewTodayReviewAccuracy = KOMReviewLogic.KOMReviewTodayPercentage(KOMReviewLogic.KOMReviewTodayReviewAccuracy(deck.$KOMDeckTodayStudiedSpacings));
-
-				const upcomingGroupings = KOMReviewLogic.KOMReviewGeneralUpcomingGroupByDate(KOMReviewLogic.KOMReviewGeneralUpcomingFilter(deck.$KOMDeckSpacings));
-
-				deck.$KOMReviewGeneralUpcomingData = KOMReviewLogic.KOMReviewGeneralUpcomingDates().map(function (e) {
-					return {
-						KOMReviewChartElementDateBarTableRowDataKey: KOMSharedLogic.KOMSharedGroupingDay(new Date()) === e ? OLSKLocalized('KOMReviewGeneralTodayText') : e,
-						KOMReviewChartElementDateBarTableRowDataValues: Object.entries(KOMSpacingModel.KOMSpacingModelGroupByStatus(upcomingGroupings[e] || [])).reduce(function (coll, item) {
-							if (['KOMSpacingGroupingDeveloping', 'KOMSpacingGroupingMature'].includes(item[0])) {
-								coll.push(KOMSpacingModel.KOMSpacingModelFilterUnique(item[1]).length);
-							}
-
-							return coll;
-						}, []).reverse(),
-					};
-				});
-
-				const historicalGroupings = KOMReviewLogic.KOMReviewGeneralHistoricalGroupByDate(KOMReviewLogic.KOMReviewGeneralHistoricalFilter(deck.$KOMDeckSpacings));
-				
-				deck.$KOMReviewGeneralHistoricalData = KOMReviewLogic.KOMReviewGeneralHistoricalDates().map(function (e) {
-					return {
-						KOMReviewChartElementDateBarTableRowDataKey: KOMSharedLogic.KOMSharedGroupingDay(new Date()) === e ? OLSKLocalized('KOMReviewGeneralTodayText') : e,
-						KOMReviewChartElementDateBarTableRowDataValues: Object.entries(KOMSpacingModel.KOMSpacingModelGroupChroniclesByStatus(historicalGroupings[e] || [], e)).reduce(function (coll, item) {
-							return coll.concat(KOMReviewLogic.KOMReviewTotalMinutes(KOMReviewLogic.KOMReviewGeneralHistoricalTotalMilliseconds(item[1])));
-						}, []).reverse(),
-					};
-				});
-
-				deck.$KOMReviewChartCompositionCollectionData = Object.entries(KOMSpacingModel.KOMSpacingModelGroupByStatus(deck.$KOMDeckSpacings)).reduce(function (coll, item) {
-					coll[item[0]] = KOMSpacingModel.KOMSpacingModelFilterUnique(item[1]).length;
-
-					return coll;
-				}, {});
-			};
-
-			$_KOMDeckUpdateToday();
-
-			return Object.assign(deck, {
-				$KOMDeckCards: cards,
-				$_KOMDeckUpdateToday,
-			})
 		})));
 	},
 
