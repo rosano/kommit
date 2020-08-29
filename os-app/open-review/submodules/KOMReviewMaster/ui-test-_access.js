@@ -14,7 +14,6 @@ Object.entries({
 const uDeck = function (inputData) {
 	return Object.assign({
 		KOMDeckName: 'alfa',
-		$KOMDeckSpacings: [],
 		$KOMReviewGeneralUpcomingData: [],
 		$KOMReviewGeneralHistoricalData: [],
 	}, inputData);
@@ -73,10 +72,6 @@ describe('KOMReviewMaster_Access', function () {
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMReviewMasterItems: JSON.stringify([uDeck({
-					$KOMDeckSpacings: [Object.assign(StubSpacingObjectValid(), {
-						KOMSpacingChronicles: [StubChronicleObjectValid()],
-						KOMSpacingDueDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3),
-					})],
 					$KOMDeckTodayReviewCount: 0,
 					$KOMDeckTodayUnseenCount: 0,
 					$KOMDeckTodayStudiedCount: 1,

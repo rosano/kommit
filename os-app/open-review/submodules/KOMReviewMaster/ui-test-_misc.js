@@ -4,7 +4,6 @@ const uDeck = function (inputData) {
 	return Object.assign({
 		KOMDeckID: 'alfa',
 		KOMDeckName: 'bravo',
-		$KOMDeckSpacings: [],
 		$KOMReviewGeneralUpcomingData: [],
 		$KOMReviewGeneralHistoricalData: [],
 	}, inputData);

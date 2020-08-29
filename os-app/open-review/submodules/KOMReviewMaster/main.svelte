@@ -92,12 +92,6 @@ const mod = {
 		};
 	},
 
-	DataGeneralSpacings (inputData) {
-		return inputData.reduce(function (coll, item) {
-			return coll.concat(item.$KOMDeckSpacings || []);
-		}, []);
-	},
-
 	DataRecipes () {
 		const items = [{
 			LCHRecipeSignature: 'KOMReviewMasterLauncherItemToggleExcludeTripleQuestionMark',
