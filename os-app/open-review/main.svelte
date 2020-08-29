@@ -272,7 +272,9 @@ const mod = {
 				{
 					LCHRecipeName: 'FakeOLSKChangeDelegateUpdateCard',
 					LCHRecipeCallback: async function FakeOLSKChangeDelegateUpdateCard () {
-						return mod.OLSKChangeDelegateUpdateCard(await KOMCardAction.KOMCardActionUpdate(mod._ValueStorageClient, mod.FakeCardObjectValid('FakeOLSKChangeDelegateUpdateCard'), mod.FakeDeckObjectValid()));
+						return mod.OLSKChangeDelegateUpdateCard(await KOMCardAction.KOMCardActionUpdate(mod._ValueStorageClient, Object.assign(mod.FakeCardObjectValid('FakeOLSKChangeDelegateUpdateCard'), {
+							KOMCardIsSuspended: true,
+						}), mod.FakeDeckObjectValid()));
 					},
 				},
 				{
@@ -286,8 +288,8 @@ const mod = {
 				{
 					LCHRecipeName: 'FakeOLSKChangeDelegateConflictCard',
 					LCHRecipeCallback: async function FakeOLSKChangeDelegateConflictCard () {
-						const item = mod._ValueDeckSelected.$KOMDeckCards.filter(function (e) {
-							return e.KOMCardFrontText.match('FakeOLSKChangeDelegate');
+						const item = (await KOMCardAction.KOMCardActionList(mod._ValueStorageClient, mod._ValueDeckSelected)).filter(function (e) {
+							return e.KOMCardFrontText.match('FakeOLSKChangeDelegateConflictCard');
 						}).pop();
 						
 						return mod.OLSKChangeDelegateConflictCard({
@@ -304,16 +306,26 @@ const mod = {
 				{
 					LCHRecipeName: 'FakeOLSKChangeDelegateCreateSpacing',
 					LCHRecipeCallback: async function FakeOLSKChangeDelegateCreateSpacing () {
-						return mod.OLSKChangeDelegateCreateSpacing(await KOMSpacingStorage.KOMSpacingStorageWrite(mod._ValueStorageClient, mod.FakeSpacingObjectValid(), mod.FakeCardObjectValid(), mod.FakeDeckObjectValid()));
+						[false, true].forEach(async function (backward) {
+							const spacing = await KOMSpacingStorage.KOMSpacingStorageWrite(mod._ValueStorageClient, Object.assign(mod.FakeSpacingObjectValid(backward), {
+								KOMSpacingIsLearning: true,
+								KOMSpacingDueDate: new Date(),
+							}), mod.FakeCardObjectValid(), mod.FakeDeckObjectValid());
+
+							if (!backward) {
+								return;
+							}
+
+							mod.OLSKChangeDelegateCreateSpacing(spacing);
+						});
 					},
 				},
 				{
 					LCHRecipeName: 'FakeOLSKChangeDelegateUpdateSpacing',
 					LCHRecipeCallback: function FakeOLSKChangeDelegateUpdateSpacing () {
 						[false, true].map(async function (backward) {
-							const spacing = await KOMSpacingStorage.KOMSpacingStorageWrite(mod._ValueStorageClient, Object.assign(mod.FakeSpacingObjectValid(backward), {
-								KOMSpacingIsLearning: true,
-								KOMSpacingDueDate: new Date(),
+							const spacing = await KOMSpacingStorage.KOMSpacingStorageWrite(mod._ValueStorageClient, Object.assign(mod.FakeSpacingObjectPopulated(new Date(), backward), {
+								KOMSpacingDueDate: new Date(Date.now() + 1000 * 60 * 60 * 24),
 							}), mod.FakeCardObjectValid(), mod.FakeDeckObjectValid());
 
 							if (!backward) {
@@ -390,12 +402,13 @@ const mod = {
 		return {
 			KOMSpacingID: 'FakeCardID-' + (inputData ? 'backward' : 'forward'),
 			KOMSpacingChronicles: [],
+			$KOMSpacingDeckID: 'FakeDeckID',
 		};
 	},
 
-	FakeSpacingObjectPopulated(inputData) {
+	FakeSpacingObjectPopulated(inputData, backward) {
 		const drawDate = new Date(inputData - 1000);
-		return Object.assign(mod.FakeSpacingObjectValid(), {
+		return Object.assign(mod.FakeSpacingObjectValid(backward), {
 			KOMSpacingDrawDate: drawDate,
 			KOMSpacingFlipDate: inputData,
 			KOMSpacingResponseDate: inputData,
