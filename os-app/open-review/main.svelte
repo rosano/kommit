@@ -882,9 +882,7 @@ const mod = {
 				await mod.ReactDeckFigures(deck);
 			}
 
-			return Object.assign(deck, {
-				$_KOMDeckUpdateToday () {},
-			}, mod._ValueCacheDeckFiguresMap[deck.KOMDeckID] || {});
+			return Object.assign(deck, mod._ValueCacheDeckFiguresMap[deck.KOMDeckID] || {});
 		})));
 	},
 
