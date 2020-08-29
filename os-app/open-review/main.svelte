@@ -883,7 +883,6 @@ const mod = {
 			}
 
 			return Object.assign(deck, {
-				$KOMDeckCards: [],
 				$_KOMDeckUpdateToday () {},
 			}, mod._ValueCacheDeckFiguresMap[deck.KOMDeckID] || {});
 		})));

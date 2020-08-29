@@ -195,26 +195,6 @@ describe('KOMDeckModelErrorsFor', function test_KOMDeckModelErrorsFor() {
 
 	});
 
-	context('$KOMDeckCards', function () {
-
-		it('returns object if not array', function () {
-			deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
-				$KOMDeckCards: {},
-			})), {
-				$KOMDeckCards: [
-					'KOMErrorNotArray',
-				],
-			});
-		});
-
-		it('returns null', function () {
-			deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
-				$KOMDeckCards: [],
-			})), null);
-		});
-
-	});
-
 	context('KOMOptionValidateIfNotPresent', function () {
 
 		it('returns object if not valid', function () {
