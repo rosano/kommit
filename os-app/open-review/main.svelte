@@ -675,20 +675,6 @@ const mod = {
 
 	// REACT
 
-	ReactSelected () {
-		if (!mod._ValueDeckSelected) {
-			return;
-		}
-
-		mod._ValueDeckSelected = mod._ValueDecksAll.filter(function (e) {
-			return e.KOMDeckID === mod._ValueDeckSelected.KOMDeckID;
-		}).pop();
-
-		if (OLSK_TESTING_BEHAVIOUR()) {
-			window.TestCallReactSelected.innerHTML = parseInt(window.TestCallReactSelected.innerHTML) + 1;
-		}
-	},
-
 	ReactDeckIfSelected (inputData) {
 		if (!mod._ValueDeckSelected) {
 			return;
