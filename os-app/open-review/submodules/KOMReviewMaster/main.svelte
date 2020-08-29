@@ -24,14 +24,14 @@ const mod = {
 
 	// DATA
 
-	DataUnseenCount () {
-		return KOMReviewMasterItems.reduce(function (coll, item) {
+	DataUnseenCount (inputData) {
+		return inputData.reduce(function (coll, item) {
 			return coll + (item.$KOMDeckGeneralNotUnseenCount || 0);
 		}, 0);
 	},
 
-	DataTodayParameters () {
-		return KOMReviewMasterItems.reduce(function (coll, item) {
+	DataTodayParameters (inputData) {
+		return inputData.reduce(function (coll, item) {
 			return Object.assign(coll, {
 				KOMReviewTodayTotalCards: coll.KOMReviewTodayTotalCards + item.$KOMReviewTodayTotalCards,
 				KOMReviewTodayTimeMinutes: coll.KOMReviewTodayTimeMinutes + item.$KOMReviewTodayTimeMinutes,
@@ -44,9 +44,9 @@ const mod = {
 		});
 	},
 
-	DataGeneralParameters () {
+	DataGeneralParameters (inputData) {
 		return {
-			KOMReviewGeneralUpcomingData: Object.entries(KOMReviewMasterItems.reduce(function (coll, item) {
+			KOMReviewGeneralUpcomingData: Object.entries(inputData.reduce(function (coll, item) {
 				return item.$KOMReviewGeneralUpcomingData.reduce(function (coll, item) {
 					return Object.assign(coll, {
 						[item.KOMReviewChartElementDateBarTableRowDataKey]: coll[item.KOMReviewChartElementDateBarTableRowDataKey] ? coll[item.KOMReviewChartElementDateBarTableRowDataKey].map(function (e, i) {
@@ -60,7 +60,7 @@ const mod = {
 					KOMReviewChartElementDateBarTableRowDataValues: e[1],
 				}
 			}),
-			KOMReviewGeneralHistoricalData: Object.entries(KOMReviewMasterItems.reduce(function (coll, item) {
+			KOMReviewGeneralHistoricalData: Object.entries(inputData.reduce(function (coll, item) {
 				return item.$KOMReviewGeneralHistoricalData.reduce(function (coll, item) {
 					return Object.assign(coll, {
 						[item.KOMReviewChartElementDateBarTableRowDataKey]: coll[item.KOMReviewChartElementDateBarTableRowDataKey] ? coll[item.KOMReviewChartElementDateBarTableRowDataKey].map(function (e, i) {
@@ -74,7 +74,7 @@ const mod = {
 					KOMReviewChartElementDateBarTableRowDataValues: e[1],
 				}
 			}),
-			KOMReviewChartCompositionCollectionData: KOMReviewMasterItems.reduce(function (coll, item) {
+			KOMReviewChartCompositionCollectionData: inputData.reduce(function (coll, item) {
 				return Object.assign(coll, {
 					KOMSpacingGroupingTotal: coll.KOMSpacingGroupingTotal + item.$KOMReviewChartCompositionCollectionData.KOMSpacingGroupingTotal,
 					KOMSpacingGroupingUnseen: coll.KOMSpacingGroupingUnseen + item.$KOMReviewChartCompositionCollectionData.KOMSpacingGroupingUnseen,
@@ -92,8 +92,8 @@ const mod = {
 		};
 	},
 
-	DataGeneralSpacings () {
-		return KOMReviewMasterItems.reduce(function (coll, item) {
+	DataGeneralSpacings (inputData) {
+		return inputData.reduce(function (coll, item) {
 			return coll.concat(item.$KOMDeckSpacings || []);
 		}, []);
 	},
@@ -165,12 +165,12 @@ import KOMReviewStats from '../KOMReviewStats/main.svelte';
 <button class="KOMReviewMasterCreateButton" on:click={ mod.InterfaceCreateButtonDidClick } accesskey="n">{ OLSKLocalized('KOMReviewMasterCreateButtonText') }
 </button>
 
-{#if KOMReviewMasterItems.length && mod.DataUnseenCount() }
+{#if KOMReviewMasterItems.length && mod.DataUnseenCount(KOMReviewMasterItems) }
 	<hr>
 
 	<KOMReviewStats
-		{... mod.DataTodayParameters() }
-		{... mod.DataGeneralParameters() }
+		{... mod.DataTodayParameters(KOMReviewMasterItems) }
+		{... mod.DataGeneralParameters(KOMReviewMasterItems) }
 		/>
 {/if}
 
