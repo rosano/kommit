@@ -62,12 +62,13 @@ const mod = {
 
 	_ValueSpacingUpdateThrottleMap: {},
 	_ValueCountThrottleMap: {},
+	_ValueDeckFiguresThrottleMap: {},
 
 	_ValueSpeechAvailable: 'speechSynthesis' in window,
 
 	_ValueCacheDeckFiguresMap: {},
 	ValueCacheDeckFiguresMap (inputData) {
-		return (mod._ValueCacheDeckFiguresMap = (true || OLSK_TESTING_BEHAVIOUR()) ? inputData : OLSKLocalStorage.OLKSLocalStorageSet(window.localStorage, 'kKOMReviewCacheDeckFiguresMap', inputData));
+		return (mod._ValueCacheDeckFiguresMap = OLSK_TESTING_BEHAVIOUR() ? inputData : OLSKLocalStorage.OLKSLocalStorageSet(window.localStorage, 'kKOMReviewCacheDeckFiguresMap', inputData));
 	},
 	
 	// DATA
@@ -228,7 +229,7 @@ const mod = {
 			items.push(...mod._KOMBrowse.modPublic.KOMBrowseRecipes());
 		}
 
-		if (true || OLSK_TESTING_BEHAVIOUR()) {
+		if (OLSK_TESTING_BEHAVIOUR()) {
 			items.push(...[
 				{
 					LCHRecipeName: 'FakeOLSKConnected',
@@ -350,8 +351,10 @@ const mod = {
 				},
 				{
 					LCHRecipeName: 'KOMReviewLauncherItemDebug_TestSpeedPopulate',
-					LCHRecipeCallback: function KOMReviewLauncherItemDebug_TestSpeedPopulate () {
-						const deck = mod._ValueDecksAll.slice(-1).pop();
+					LCHRecipeCallback: async function KOMReviewLauncherItemDebug_TestSpeedPopulate () {
+						const deck = await KOMDeckAction.KOMDeckActionCreate(mod._ValueStorageClient, {
+							KOMDeckName: 'alfa',
+						});
 						return Promise.all(Array.from(Array(100)).map(function (e, i) {
 							return KOMCardAction.KOMCardActionCreate(mod._ValueStorageClient, Object.assign(mod.FakeCardObjectValid(), {
 								KOMCardID: i.toString(),
@@ -460,11 +463,9 @@ const mod = {
 	async ControlDeckCreate(inputData) {
 		const item = await KOMDeckAction.KOMDeckActionCreate(mod._ValueStorageClient, {
 			KOMDeckName: inputData,
-			$KOMDeckCards: [],
-			$KOMDeckSpacings: [],
-			$KOMDeckTodayReviewCount: 0,
-			$KOMDeckTodayUnseenCount: 0,
 		});
+
+		await mod.ReactDeckFigures(item);
 
 		mod.ValueDecksAll(mod._ValueDecksAll.concat(item));
 	},
@@ -532,7 +533,7 @@ const mod = {
 
 		value ? await KOMSettingAction.KOMSettingsActionDelete(mod._ValueStorageClient, 'KOMSettingExcludeTripleQuestionMark') : await KOMSettingAction.KOMSettingsActionProperty(mod._ValueStorageClient, 'KOMSettingExcludeTripleQuestionMark', 'true');
 
-		mod.ReactThrottle();
+		mod._ValueDecksAll.forEach(mod.ReactDeckFigures);
 	},
 
 	KOMReviewDetailDispatchBack () {
@@ -566,14 +567,7 @@ const mod = {
 		mod._ValuePlayVisible = true;
 	},
 
-	async KOMBrowseDispatchCreate (inputData) {
-		return;
-		mod._ValueDeckSelected.$KOMDeckSpacings.push(...Object.values(await KOMSpacingStorage.KOMSpacingStorageList(mod._ValueStorageClient, inputData, mod._ValueDeckSelected)).map(function (e) {
-			return Object.assign(e, {
-				$KOMSpacingCard: inputData,
-			});
-		}));
-	},
+	async KOMBrowseDispatchCreate (inputData) {},
 
 	async KOMBrowseListDispatchClose () {
 		if (!window.location.search.match('DebugHotfixThrottleCount')) {
@@ -620,38 +614,49 @@ const mod = {
 	},
 
 	OLSKChangeDelegateCreateDeck (inputData) {
-		mod.ReactThrottle();
+		mod.SetupValueDecksAll();
 	},
 
-	OLSKChangeDelegateUpdateDeck (inputData) {
-		mod.ReactThrottle();
+	async OLSKChangeDelegateUpdateDeck (inputData) {
+		await mod.SetupValueDecksAll();
+
+		mod.ReactDeckIfSelected(inputData);
 	},
 
-	OLSKChangeDelegateDeleteDeck (inputData) {
-		mod.ReactThrottle();
-	},
-	OLSKChangeDelegateCreateCard (inputData) {
-		if (mod._KOMBrowse && mod._ValueDeckSelected && inputData.KOMCardDeckID === mod._ValueDeckSelected.KOMDeckID) {
-			mod._KOMBrowse.modPublic.KOMBrowseChangeDelegateCreateCard(inputData);
+	async OLSKChangeDelegateDeleteDeck (inputData) {
+		await mod.SetupValueDecksAll();
+
+		if (!mod._ValueDeckSelected) {
+			return;
 		}
 
-		mod.ReactThrottle();
+		if (mod._ValueDeckSelected.KOMDeckID === inputData.KOMDeckID) {
+			mod._ValueDeckSelected = null;
+		}
+	},
+
+	OLSKChangeDelegateCreateCard (inputData) {
+		if (mod._KOMBrowse && mod._ValueDeckSelected && inputData.KOMCardDeckID === mod._ValueDeckSelected.KOMDeckID) {
+			return mod._KOMBrowse.modPublic.KOMBrowseChangeDelegateCreateCard(inputData);
+		}
+
+		mod.ReactDeckFiguresThrottled(inputData.KOMCardDeckID);
 	},
 
 	OLSKChangeDelegateUpdateCard (inputData) {
 		if (mod._KOMBrowse && mod._ValueDeckSelected && inputData.KOMCardDeckID === mod._ValueDeckSelected.KOMDeckID) {
-			mod._KOMBrowse.modPublic.KOMBrowseChangeDelegateUpdateCard(inputData);
+			return mod._KOMBrowse.modPublic.KOMBrowseChangeDelegateUpdateCard(inputData);
 		}
 		
-		mod.ReactThrottle();
+		mod.ReactDeckFiguresThrottled(inputData.KOMCardDeckID);
 	},
 
 	OLSKChangeDelegateDeleteCard (inputData) {
 		if (mod._KOMBrowse && mod._ValueDeckSelected && inputData.KOMCardDeckID === mod._ValueDeckSelected.KOMDeckID) {
-			mod._KOMBrowse.modPublic.KOMBrowseChangeDelegateDeleteCard(inputData);
+			return mod._KOMBrowse.modPublic.KOMBrowseChangeDelegateDeleteCard(inputData);
 		}
 		
-		mod.ReactThrottle();
+		mod.ReactDeckFiguresThrottled(inputData.KOMCardDeckID);
 	},
 
 	async OLSKChangeDelegateConflictCard (inputData) {
@@ -659,11 +664,11 @@ const mod = {
 	},
 
 	OLSKChangeDelegateCreateSpacing (inputData) {
-		mod.ReactThrottle();
+		mod.ReactDeckFiguresThrottled(inputData.$KOMSpacingDeckID);
 	},
 
 	OLSKChangeDelegateUpdateSpacing (inputData) {
-		mod.ReactThrottle();
+		mod.ReactDeckFiguresThrottled(inputData.$KOMSpacingDeckID);
 	},
 
 	OLSKChangeDelegateDeleteSpacing (inputData) {},
@@ -679,7 +684,6 @@ const mod = {
 				if (OLSK_TESTING_BEHAVIOUR()) {
 					const deck = mod._ValueDecksAll[0];
 					window.TestCardCount.innerHTML = !deck ? 0 : deck.$KOMDeckCards.length;
-					window.TestSpacingCount.innerHTML = !deck ? 0 : deck.$KOMDeckSpacings.length;
 					window.TestCallReactThrottle.innerHTML = parseInt(window.TestCallReactThrottle.innerHTML) + 1;
 				}
 
@@ -700,6 +704,18 @@ const mod = {
 		if (OLSK_TESTING_BEHAVIOUR()) {
 			window.TestCallReactSelected.innerHTML = parseInt(window.TestCallReactSelected.innerHTML) + 1;
 		}
+	},
+
+	ReactDeckIfSelected (inputData) {
+		if (!mod._ValueDeckSelected) {
+			return;
+		}
+
+		if (mod._ValueDeckSelected.KOMDeckID !== inputData.KOMDeckID) {
+			return;
+		}
+
+		mod._ValueDeckSelected = Object.assign(mod._ValueDeckSelected, inputData); // #purge-svelte-force-update
 	},
 
 	async ReactDeckFigures (deck) {
@@ -742,6 +758,24 @@ const mod = {
 				}, {}),
 			},
 		}))[deck.KOMDeckID]);
+	},
+
+	ReactDeckFiguresThrottled (inputData) {
+		const deck = mod._ValueDecksAll.filter(function (e) {
+			return e.KOMDeckID === inputData;
+		}).pop();
+
+		if (!deck) {
+			return;
+		}
+
+		OLSKThrottle.OLSKThrottleMappedTimeout(mod._ValueDeckFiguresThrottleMap, inputData, {
+			OLSKThrottleDuration: OLSK_TESTING_BEHAVIOUR () ? 0 : 500,
+			async OLSKThrottleCallback () {
+				const item = await mod.ReactDeckFigures(deck); // #purge-svelte-force-update
+				mod._ValueDecksAll = mod._ValueDecksAll; // #purge-svelte-force-update
+			},
+		});
 	},
 
 	// SETUP

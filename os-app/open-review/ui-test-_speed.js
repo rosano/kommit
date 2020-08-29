@@ -22,20 +22,6 @@ describe('KOMReview_Speed', function () {
 		return browser.OLSKVisit(kDefaultRoute);
 	});
 
-	before(function () {
-		return browser.OLSKPrompt(function () {
-			return browser.pressButton('.KOMReviewMasterCreateButton');
-		}, function (dialog) {
-			dialog.response = 'alfa';
-
-			return dialog;
-		});
-	});
-
-	it('shows KOMReviewMasterListItem', function () { // #hotfix-invisible-until-assert
-		browser.assert.elements('.KOMReviewMasterListItem', 1);
-	});
-
 	context('TestSpeedPopulate', function () {
 
 		before(function () {

@@ -63,15 +63,11 @@ describe('KOMReview_TripleQuestionMark', function () {
 		});
 
 		before(function () {
-			browser.assert.text('#TestSpacingCount', '6');
-		});
-
-		before(function () {
 			return browser.OLSKLauncherRun('KOMReviewMasterLauncherItemToggleExcludeTripleQuestionMark');
 		});
 
 		it('excludes triple question mark', function () {
-			browser.assert.text('#TestSpacingCount', '2');
+			browser.assert.text('.KOMReviewMasterListItemUnseenValue', '1');
 		});
 	
 	});
@@ -83,7 +79,7 @@ describe('KOMReview_TripleQuestionMark', function () {
 		});
 
 		it('includes triple question mark', function () {
-			browser.assert.text('#TestSpacingCount', '6');
+			browser.assert.text('.KOMReviewMasterListItemUnseenValue', '3');
 		});
 	
 	});
