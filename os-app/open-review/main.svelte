@@ -61,7 +61,6 @@ const mod = {
 	_ValueFooterStorageStatus: '',
 
 	_ValueSpacingUpdateThrottleMap: {},
-	_ValueCountThrottleMap: {},
 	_ValueDeckFiguresThrottleMap: {},
 
 	_ValueSpeechAvailable: 'speechSynthesis' in window,
