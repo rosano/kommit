@@ -571,10 +571,6 @@ const mod = {
 	async KOMBrowseDispatchCreate (inputData) {},
 
 	async KOMBrowseListDispatchClose () {
-		if (!window.location.search.match('DebugHotfixThrottleCount')) {
-			// mod.ReactThrottle(true);
-		}
-
 		mod._ValueDeckSelected = await mod.ReactDeckFigures(mod._ValueDeckSelected); // #purge-svelte-force-update
 
 		mod._ValueBrowseVisible = false;
@@ -679,23 +675,6 @@ const mod = {
 	OLSKChangeDelegateDeleteSpacing (inputData) {},
 
 	// REACT
-
-	ReactThrottle (inputData) {
-		OLSKThrottle.OLSKThrottleMappedTimeout(mod._ValueCountThrottleMap, 'mod._ValueDecksAll', {
-			OLSKThrottleDuration: inputData || OLSK_TESTING_BEHAVIOUR () ? 0 : 500,
-			async OLSKThrottleCallback () {
-				await mod.SetupValueDecksAll();
-
-				if (OLSK_TESTING_BEHAVIOUR()) {
-					const deck = mod._ValueDecksAll[0];
-					window.TestCardCount.innerHTML = !deck ? 0 : deck.$KOMDeckCards.length;
-					window.TestCallReactThrottle.innerHTML = parseInt(window.TestCallReactThrottle.innerHTML) + 1;
-				}
-
-				mod.ReactSelected();
-			},
-		});
-	},
 
 	ReactSelected () {
 		if (!mod._ValueDeckSelected) {
@@ -999,28 +978,6 @@ import OLSKStorageWidget from 'OLSKStorageWidget';
 			/>
 	{/if}
 </div>
-
-{#if OLSK_TESTING_BEHAVIOUR()}
-	<p>
-		<strong>TestCardCount</strong>
-		<span id="TestCardCount">0</span>
-	</p>
-
-	<p>
-		<strong>TestSpacingCount</strong>
-		<span id="TestSpacingCount">0</span>
-	</p>
-
-	<p>
-		<strong>TestCallReactThrottle</strong>
-		<span id="TestCallReactThrottle">0</span>
-	</p>
-
-	<p>
-		<strong>TestCallReactSelected</strong>
-		<span id="TestCallReactSelected">0</span>
-	</p>
-{/if}
 
 {#if !mod._ValuePlayVisible }
 	<footer class="KOMReviewViewportFooter OLSKMobileViewFooter">

@@ -84,37 +84,25 @@ describe('KOMReview_Misc', function () {
 			browser.assert.elements('.KOMBrowseListItem', 1);
 		});
 
-		context('close', function () {
-
-			before(function () {
-				browser.fill('.KOMBrowseInfoFormFrontTextField', 'alfa');
-			});
-
-			before(function () {
-				return browser.pressButton('.KOMBrowseListToolbarCreateButton');
-			});
-
-			before(function () {
-				browser.fill('.KOMBrowseInfoFormFrontTextField', 'bravo');
-			});
-
-			before(function () {
-				browser.assert.text('#TestCallReactThrottle', '0');
-			});
-
-			before(function () {
-				return browser.pressButton('.KOMBrowseListToolbarCloseButton');
-			});
-
-			it('calls ReactThrottle', function () {
-				browser.assert.text('#TestCallReactThrottle', '1');
-			});
-
-		});
-
 	});
 
 	describe('KOMPlay', function test_KOMPlay() {
+
+		before(function () {
+			browser.fill('.KOMBrowseInfoFormFrontTextField', 'alfa');
+		});
+
+		before(function () {
+			return browser.pressButton('.KOMBrowseListToolbarCreateButton');
+		});
+
+		before(function () {
+			browser.fill('.KOMBrowseInfoFormFrontTextField', 'bravo');
+		});
+
+		before(function () {
+			return browser.pressButton('.KOMBrowseListToolbarCloseButton');
+		});
 
 		before(function () {
 			return browser.pressButton('.KOMReviewDetailPlayButtonSingle');

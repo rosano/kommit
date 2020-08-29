@@ -2,19 +2,8 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 describe('KOMReview_Sync', function () {
 
-	let _ThrottleCount = 0;
-	const uThrottleCount = function (inputData) {
-		if (inputData) {
-			_ThrottleCount += 1;
-		}
-
-		return _ThrottleCount.toString();
-	};
-
 	before(function () {
-		return browser.OLSKVisit(kDefaultRoute, {
-			DebugHotfixThrottleCount: true,
-		});
+		return browser.OLSKVisit(kDefaultRoute);
 	});
 
 	describe('OLSKChangeDelegateCreateDeck', function test_OLSKChangeDelegateCreateDeck() {
