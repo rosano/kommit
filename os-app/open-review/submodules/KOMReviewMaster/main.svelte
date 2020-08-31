@@ -31,7 +31,11 @@ const mod = {
 	},
 
 	DataTodayParameters (inputData) {
-		return inputData.reduce(function (coll, item) {
+		return (function(obj) {
+			return Object.assign(obj, {
+				KOMReviewTodayReviewAccuracy: obj.KOMReviewTodayReviewAccuracy / inputData.length,
+			});
+		})(inputData.reduce(function (coll, item) {
 			return Object.assign(coll, {
 				KOMReviewTodayTotalCards: coll.KOMReviewTodayTotalCards + item.$KOMReviewTodayTotalCards,
 				KOMReviewTodayTimeMinutes: coll.KOMReviewTodayTimeMinutes + item.$KOMReviewTodayTimeMinutes,
@@ -41,7 +45,7 @@ const mod = {
 			KOMReviewTodayTotalCards: 0,
 			KOMReviewTodayTimeMinutes: 0,
 			KOMReviewTodayReviewAccuracy: 0,
-		});
+		}));
 	},
 
 	DataGeneralParameters (inputData) {
