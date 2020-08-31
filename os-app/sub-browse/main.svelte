@@ -374,7 +374,7 @@ const mod = {
 		mod.SetupFocus();
 	},
 
-	async SetupValueCardsAll() {
+	SetupValueCardsAll() {
 		mod.ValueCardsAll(mod._ValueCardsAll);
 	},
 
