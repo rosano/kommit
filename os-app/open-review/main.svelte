@@ -72,52 +72,6 @@ const mod = {
 	
 	// DATA
 
-	async DataActiveSpacings (deck) {
-		const excludeTripleQuestionMark = (await KOMSettingAction.KOMSettingsActionProperty(mod._ValueStorageClient, 'KOMSettingExcludeTripleQuestionMark') || {}).KOMSettingValue === 'true';
-		
-		const objectsMap = Object.entries(await KOMDeckStorage.KOMDeckStorageObjectsRecursive(mod._ValueStorageClient, deck));
-
-		const cards = objectsMap.reduce(function (coll, item) {
-			if (KOMCardStorage.KOMCardStorageMatch(item[0])) {
-				return coll.concat(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(item[1]));
-			}
-
-			return coll;
-		}, []);
-
-		const spacings = objectsMap.reduce(function (coll, item) {
-			if (KOMSpacingStorage.KOMSpacingStorageMatch(item[0])) {
-				coll[KOMSpacingModel.KOMSpacingModelIdentifier(item[1].KOMSpacingID)] = (coll[KOMSpacingModel.KOMSpacingModelIdentifier(item[1].KOMSpacingID)] || []).concat(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(item[1]))
-			}
-
-			return coll;
-		}, {});
-
-		await Promise.all(cards.map(async function (e) {
-			if ((spacings[e.KOMCardID] || []).length === 2) {
-				return;
-			}
-
-			spacings[e.KOMCardID] = Object.values(await KOMSpacingStorage.KOMSpacingStorageList(mod._ValueStorageClient, e, deck));
-		}));
-
-		return [].concat(...(excludeTripleQuestionMark ? cards.filter(function (e) {
-			return ![e.KOMCardFrontText, e.KOMCardRearText].join(',').includes('???');
-		}) : cards).map(function (card) {
-			return (spacings[card.KOMCardID] || []).map(function (e) {
-				return Object.assign(e, {
-					$KOMSpacingCard: card,
-				});
-			});
-		})).filter(function (e) {
-			if (deck.KOMDeckIsForwardOnly && KOMSpacingModel.KOMSpacingModelIsBackward(e)) {
-				return false;
-			}
-
-			return true;
-		});
-	},
-
 	DataRecipes () {
 		const items = mod._ValueDecksAll.filter(function (e) {
 			return e !== mod._ValueDeckSelected;
@@ -563,7 +517,7 @@ const mod = {
 	},
 
 	async KOMReviewDetailDispatchPlay (inputData) {
-		mod._ValuePlaySpacings = KOMPlayLogic.KOMPlaySort(KOMReviewLogic.KOMReviewFilter(KOMReviewLogic.KOMReviewSpacingsToday(await mod.DataActiveSpacings(mod._ValueDeckSelected)), inputData, mod._ValueDeckSelected));
+		mod._ValuePlaySpacings = KOMPlayLogic.KOMPlaySort(KOMReviewLogic.KOMReviewFilter(KOMReviewLogic.KOMReviewSpacingsToday((await KOMDeckAction.KOMDeckActionFetchObjects(mod._ValueStorageClient, mod._ValueDeckSelected, (await KOMSettingAction.KOMSettingsActionProperty(mod._ValueStorageClient, 'KOMSettingExcludeTripleQuestionMark') || {}).KOMSettingValue === 'true')).$KOMDeckSpacings), inputData, mod._ValueDeckSelected));
 		mod._ValuePlayVisible = true;
 	},
 
@@ -688,7 +642,7 @@ const mod = {
 	},
 
 	async ReactDeckFigures (deck) {
-		const activeSpacings = await mod.DataActiveSpacings(deck);
+		const activeSpacings = (await KOMDeckAction.KOMDeckActionFetchObjects(mod._ValueStorageClient, deck, (await KOMSettingAction.KOMSettingsActionProperty(mod._ValueStorageClient, 'KOMSettingExcludeTripleQuestionMark') || {}).KOMSettingValue === 'true')).$KOMDeckSpacings;
 
 		const todaySpacingsNotStudied = KOMReviewLogic.KOMReviewSpacingsToday(activeSpacings).filter(function (e) {
 			return !e.$KOMSpacingCard.KOMCardIsSuspended;

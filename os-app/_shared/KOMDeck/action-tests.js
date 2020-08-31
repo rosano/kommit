@@ -2,6 +2,7 @@ const { rejects, deepEqual } = require('assert');
 
 const mainModule = require('./action.js').default;
 const KOMCardAction = require('../KOMCard/action.js').default;
+const KOMSpacingStorage = require('../KOMSpacing/Storage.js').default;
 
 const kTesting = {
 	StubDeckObject() {
@@ -150,6 +151,101 @@ describe('KOMDeckActionList', function test_KOMDeckActionList() {
 		let item = await mainModule.KOMDeckActionCreate(KOMTestingStorageClient, kTesting.StubDeckObject());
 
 		deepEqual(await mainModule.KOMDeckActionList(KOMTestingStorageClient), [item]);
+	});
+
+});
+
+describe('KOMDeckActionFetchObjects', function test_KOMDeckActionFetchObjects() {
+
+	it('rejects if param1 not valid', async function () {
+		await rejects(mainModule.KOMDeckActionFetchObjects(KOMTestingStorageClient, {}), /KOMErrorInputNotValid/);
+	});
+
+	it('rejects if param2 not boolean', async function () {
+		await rejects(mainModule.KOMDeckActionFetchObjects(KOMTestingStorageClient, StubDeckObjectValid(), 'true'), /KOMErrorInputNotValid/);
+	});
+
+	it('returns object', async function () {
+		deepEqual(await mainModule.KOMDeckActionFetchObjects(KOMTestingStorageClient, await mainModule.KOMDeckActionCreate(KOMTestingStorageClient, kTesting.StubDeckObject())), {
+			$KOMDeckCards: [],
+			$KOMDeckSpacings: [],
+		});
+	});
+
+	context('$KOMDeckCards', function () {
+		
+		it('includes KOMCards', async function () {
+			const item = await mainModule.KOMDeckActionCreate(KOMTestingStorageClient, kTesting.StubDeckObject());
+
+			const card = await KOMCardAction.KOMCardActionCreate(KOMTestingStorageClient, {
+				KOMCardFrontText: 'alfa',
+				KOMCardRearText: 'bravo',
+			}, item);
+
+			deepEqual((await mainModule.KOMDeckActionFetchObjects(KOMTestingStorageClient, item)).$KOMDeckCards, [card]);
+		});
+	
+	});
+
+	context('$KOMDeckSpacings', function () {
+		
+		it('includes KOMSpacings', async function () {
+			const item = await mainModule.KOMDeckActionCreate(KOMTestingStorageClient, kTesting.StubDeckObject());
+
+			const card = await KOMCardAction.KOMCardActionCreate(KOMTestingStorageClient, {
+				KOMCardFrontText: 'alfa',
+				KOMCardRearText: 'bravo',
+			}, item);
+
+			deepEqual((await mainModule.KOMDeckActionFetchObjects(KOMTestingStorageClient, item)).$KOMDeckSpacings, Object.values(await KOMSpacingStorage.KOMSpacingStorageList(KOMTestingStorageClient, card, item)).map(function (e) {
+				return Object.assign(e, {
+					$KOMSpacingCard: card,
+				});
+			}));
+		});
+		
+		it('excludes backward if KOMDeckIsForwardOnly', async function () {
+			const item = await mainModule.KOMDeckActionCreate(KOMTestingStorageClient, StubDeckObjectValid({
+				KOMDeckIsForwardOnly: true,
+			}));
+
+			const card = await KOMCardAction.KOMCardActionCreate(KOMTestingStorageClient, {
+				KOMCardFrontText: 'alfa',
+				KOMCardRearText: 'bravo',
+			}, item);
+
+			deepEqual((await mainModule.KOMDeckActionFetchObjects(KOMTestingStorageClient, item)).$KOMDeckSpacings, Object.values(await KOMSpacingStorage.KOMSpacingStorageList(KOMTestingStorageClient, card, item)).slice(0, 1).map(function (e) {
+				return Object.assign(e, {
+					$KOMSpacingCard: card,
+				});
+			}));
+		});
+		
+		it('excludes if KOMCardIsSuspended', async function () {
+			const item = await mainModule.KOMDeckActionCreate(KOMTestingStorageClient, StubDeckObjectValid({
+				KOMDeckIsForwardOnly: true,
+			}));
+
+			const card = await KOMCardAction.KOMCardActionCreate(KOMTestingStorageClient, {
+				KOMCardFrontText: 'alfa',
+				KOMCardRearText: 'bravo',
+				KOMCardIsSuspended: true,
+			}, item);
+
+			deepEqual((await mainModule.KOMDeckActionFetchObjects(KOMTestingStorageClient, item)).$KOMDeckSpacings, []);
+		});
+		
+		it('excludes if param2 true and ???', async function () {
+			const item = await mainModule.KOMDeckActionCreate(KOMTestingStorageClient, StubDeckObjectValid());
+
+			const card = await KOMCardAction.KOMCardActionCreate(KOMTestingStorageClient, {
+				KOMCardFrontText: '???',
+				KOMCardRearText: '???',
+			}, item);
+
+			deepEqual((await mainModule.KOMDeckActionFetchObjects(KOMTestingStorageClient, item, true)).$KOMDeckSpacings, []);
+		});
+	
 	});
 
 });
