@@ -1,6 +1,6 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-const responseShort = 300;
+const responseShort = 400;
 const responseLong = 1000;
 
 const uTime = function (param1, param2) {

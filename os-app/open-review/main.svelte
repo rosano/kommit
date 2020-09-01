@@ -26,6 +26,7 @@ import KOMPlayLogic from '../sub-play/ui-logic.js';
 import OLSKThrottle from 'OLSKThrottle';
 import KOMSpacingModel from '../_shared/KOMSpacing/model.js';
 import OLSKLocalStorage from 'OLSKLocalStorage';
+import OLSKCache from 'OLSKCache';
 
 const mod = {
 
@@ -39,8 +40,15 @@ const mod = {
 	},
 	
 	_ValueDeckSelected: undefined,
+	_ValueDeckSelectedObjectsMap: {},
 	ValueDeckSelected (inputData) {
 		mod._ValueDeckSelected = inputData
+
+		if (!inputData) {
+			mod._ValueDeckSelectedObjectsMap = {};
+		} else {
+			mod.DataDeckSelectedObjects(inputData);
+		}
 	},
 
 	_ValueBrowseVisible: false,
@@ -71,6 +79,12 @@ const mod = {
 	},
 	
 	// DATA
+
+	DataDeckSelectedObjects (inputData) {
+		return OLSKCache.OLSKCacheResultFetchOnceSync(mod._ValueDeckSelectedObjectsMap, inputData.KOMDeckID, async function () {
+			return await KOMDeckAction.KOMDeckActionFetchObjects(mod._ValueStorageClient, inputData, (await KOMSettingAction.KOMSettingsActionProperty(mod._ValueStorageClient, 'KOMSettingExcludeTripleQuestionMark') || {}).KOMSettingValue === 'true');
+		});
+	},
 
 	DataRecipes () {
 		const items = mod._ValueDecksAll.filter(function (e) {
@@ -182,7 +196,7 @@ const mod = {
 			items.push(...mod._KOMBrowse.modPublic.KOMBrowseRecipes());
 		}
 
-		if (OLSK_TESTING_BEHAVIOUR()) {
+		if (true || OLSK_TESTING_BEHAVIOUR()) {
 			items.push(...[
 				{
 					LCHRecipeName: 'FakeOLSKConnected',
@@ -511,17 +525,24 @@ const mod = {
 	},
 
 	async KOMReviewDetailDispatchBrowse () {
-		mod.ValueBrowseCards(await KOMCardAction.KOMCardActionList(mod._ValueStorageClient, mod._ValueDeckSelected));
+		mod.ValueBrowseCards((await mod.DataDeckSelectedObjects(mod._ValueDeckSelected)).$KOMDeckCards);
 
 		mod._ValueBrowseVisible = true;
 	},
 
 	async KOMReviewDetailDispatchPlay (inputData) {
-		mod._ValuePlaySpacings = KOMPlayLogic.KOMPlaySort(KOMReviewLogic.KOMReviewFilter(KOMReviewLogic.KOMReviewSpacingsToday((await KOMDeckAction.KOMDeckActionFetchObjects(mod._ValueStorageClient, mod._ValueDeckSelected, (await KOMSettingAction.KOMSettingsActionProperty(mod._ValueStorageClient, 'KOMSettingExcludeTripleQuestionMark') || {}).KOMSettingValue === 'true')).$KOMDeckSpacings), inputData, mod._ValueDeckSelected));
+		mod._ValuePlaySpacings = KOMPlayLogic.KOMPlaySort(KOMReviewLogic.KOMReviewFilter(KOMReviewLogic.KOMReviewSpacingsToday((await mod.DataDeckSelectedObjects(mod._ValueDeckSelected)).$KOMDeckSpacings), inputData, mod._ValueDeckSelected));
 		mod._ValuePlayVisible = true;
 	},
 
-	async KOMBrowseDispatchCreate (inputData) {},
+	async KOMBrowseDispatchCreate (inputData) {
+		(await mod.DataDeckSelectedObjects(mod._ValueDeckSelected)).$KOMDeckCards.push(inputData);
+		(await mod.DataDeckSelectedObjects(mod._ValueDeckSelected)).$KOMDeckSpacings.push(...Object.values(await KOMSpacingStorage.KOMSpacingStorageList(mod._ValueStorageClient, inputData, mod._ValueDeckSelected)).map(function (e) {
+			return Object.assign(e, {
+				$KOMSpacingCard: inputData,
+			});
+		}));
+	},
 
 	async KOMBrowseListDispatchClose () {
 		mod._ValueDeckSelected = await mod.ReactDeckFigures(mod._ValueDeckSelected); // #purge-svelte-force-update
@@ -642,11 +663,9 @@ const mod = {
 	},
 
 	async ReactDeckFigures (deck) {
-		const activeSpacings = (await KOMDeckAction.KOMDeckActionFetchObjects(mod._ValueStorageClient, deck, (await KOMSettingAction.KOMSettingsActionProperty(mod._ValueStorageClient, 'KOMSettingExcludeTripleQuestionMark') || {}).KOMSettingValue === 'true')).$KOMDeckSpacings;
+		const activeSpacings = (await mod.DataDeckSelectedObjects(deck)).$KOMDeckSpacings;
 
-		const todaySpacingsNotStudied = KOMReviewLogic.KOMReviewSpacingsToday(activeSpacings).filter(function (e) {
-			return !e.$KOMSpacingCard.KOMCardIsSuspended;
-		});
+		const todaySpacingsNotStudied = KOMReviewLogic.KOMReviewSpacingsToday(activeSpacings);
 
 		const todaySpacingsStudied = activeSpacings.filter(function (e) {
 			if (!e.KOMSpacingChronicles.length) {
