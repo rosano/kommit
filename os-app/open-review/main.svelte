@@ -44,9 +44,7 @@ const mod = {
 	ValueDeckSelected (inputData) {
 		mod._ValueDeckSelected = inputData
 
-		if (!inputData) {
-			mod._ValueDeckSelectedObjectsMap = {};
-		} else {
+		if (inputData) {
 			mod.DataDeckSelectedObjects(inputData);
 		}
 	},
