@@ -662,7 +662,9 @@ const mod = {
 	async ReactDeckFigures (deck) {
 		const activeSpacings = (await mod.DataDeckSelectedObjects(deck)).$KOMDeckSpacings;
 
-		const todaySpacingsNotStudied = KOMReviewLogic.KOMReviewSpacingsToday(activeSpacings);
+		const todaySpacingsNotStudied = KOMReviewLogic.KOMReviewSpacingsToday(activeSpacings.filter(function (e) {
+			return !e.$KOMSpacingCard.KOMCardIsSuspended;
+		}));
 
 		const todaySpacingsStudied = activeSpacings.filter(function (e) {
 			if (!e.KOMSpacingChronicles.length) {

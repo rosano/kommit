@@ -93,10 +93,6 @@ const mod = {
 					});
 				});
 			})).filter(function (e) {
-				if (e.$KOMSpacingCard.KOMCardIsSuspended) {
-					return false;
-				}
-
 				if (param1.KOMDeckIsForwardOnly && KOMSpacingModel.KOMSpacingModelIsBackward(e)) {
 					return false;
 				}

@@ -221,7 +221,7 @@ describe('KOMDeckActionFetchObjects', function test_KOMDeckActionFetchObjects() 
 			}));
 		});
 		
-		it('excludes if KOMCardIsSuspended', async function () {
+		it.skip('excludes if KOMCardIsSuspended', async function () {
 			const item = await mainModule.KOMDeckActionCreate(KOMTestingStorageClient, StubDeckObjectValid({
 				KOMDeckIsForwardOnly: true,
 			}));
