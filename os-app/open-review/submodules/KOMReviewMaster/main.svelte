@@ -3,6 +3,7 @@ export let KOMReviewMasterItems;
 export let KOMReviewMasterDispatchCreate;
 export let KOMReviewMasterDispatchSelect;
 export let KOMReviewMasterDispatchToggleExcludeTripleQuestionMark;
+export let KOMReviewMasterDispatchToggleDeckFiguresCaching;
 export let KOMReviewMaster_DebugShowLauncherButton = false;
 
 export const modPublic = {
@@ -111,6 +112,12 @@ const mod = {
 			LCHRecipeName: OLSKLocalized('KOMReviewMasterLauncherItemToggleExcludeTripleQuestionMarkText'),
 			LCHRecipeCallback: function KOMReviewMasterLauncherItemToggleExcludeTripleQuestionMark () {
 				return KOMReviewMasterDispatchToggleExcludeTripleQuestionMark();
+			},
+		}, {
+			LCHRecipeSignature: 'KOMReviewMasterLauncherItemToggleDeckFiguresCaching',
+			LCHRecipeName: OLSKLocalized('KOMReviewMasterLauncherItemToggleDeckFiguresCachingText'),
+			LCHRecipeCallback: function KOMReviewMasterLauncherItemToggleDeckFiguresCaching () {
+				return KOMReviewMasterDispatchToggleDeckFiguresCaching();
 			},
 		}];
 

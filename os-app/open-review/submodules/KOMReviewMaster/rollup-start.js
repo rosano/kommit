@@ -15,6 +15,9 @@ const KOMReviewMaster = new RollupStart({
 		KOMReviewMasterDispatchToggleExcludeTripleQuestionMark: (function _KOMReviewMasterDispatchToggleExcludeTripleQuestionMark() {
 			window.TestKOMReviewMasterDispatchToggleExcludeTripleQuestionMark.innerHTML = parseInt(window.TestKOMReviewMasterDispatchToggleExcludeTripleQuestionMark.innerHTML) + 1;
 		}),
+		KOMReviewMasterDispatchToggleDeckFiguresCaching: (function _KOMReviewMasterDispatchToggleDeckFiguresCaching() {
+			window.TestKOMReviewMasterDispatchToggleDeckFiguresCaching.innerHTML = parseInt(window.TestKOMReviewMasterDispatchToggleDeckFiguresCaching.innerHTML) + 1;
+		}),
 		KOMReviewMaster_DebugShowLauncherButton: true,
 	}, Object.fromEntries(Array.from((new window.URLSearchParams(window.location.search)).entries()).map(function (e) {
 		if (['KOMReviewMasterItems'].includes(e[0])) {

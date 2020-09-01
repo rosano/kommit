@@ -49,6 +49,10 @@ describe('KOMReviewMaster_Access', function () {
 		return browser.assert.OLSKLauncherItems('KOMReviewMasterLauncherItemToggleExcludeTripleQuestionMark', 1);
 	});
 
+	it('shows KOMReviewMasterLauncherItemToggleDeckFiguresCaching', function () {
+		return browser.assert.OLSKLauncherItems('KOMReviewMasterLauncherItemToggleDeckFiguresCaching', 1);
+	});
+
 	context('KOMReviewMasterItems', function () {
 
 		before(function () {

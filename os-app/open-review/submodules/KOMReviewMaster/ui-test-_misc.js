@@ -263,4 +263,20 @@ describe('KOMReviewMaster_Misc', function () {
 
 	});
 
+	describe('KOMReviewMasterLauncherItemToggleDeckFiguresCaching', function test_KOMReviewMasterLauncherItemToggleDeckFiguresCaching() {
+
+		before(function () {
+			browser.assert.text('#TestKOMReviewMasterDispatchToggleDeckFiguresCaching', '0');
+		});
+
+		before(function () {
+			return browser.OLSKLauncherRun('KOMReviewMasterLauncherItemToggleDeckFiguresCaching');
+		});
+
+		it('sends KOMReviewMasterDispatchToggleDeckFiguresCaching', function () {
+			browser.assert.text('#TestKOMReviewMasterDispatchToggleDeckFiguresCaching', '1');
+		});
+
+	});
+
 });

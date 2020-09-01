@@ -26,6 +26,10 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			return browser.assert.OLSKLauncherItemText('KOMReviewMasterLauncherItemToggleExcludeTripleQuestionMark', uLocalized('KOMReviewMasterLauncherItemToggleExcludeTripleQuestionMarkText'));
 		});
 
+		it('localizes KOMReviewMasterLauncherItemToggleDeckFiguresCaching', function () {
+			return browser.assert.OLSKLauncherItemText('KOMReviewMasterLauncherItemToggleDeckFiguresCaching', uLocalized('KOMReviewMasterLauncherItemToggleDeckFiguresCachingText'));
+		});
+
 		context('KOMReviewMasterCreateButton', function () {
 
 			it('localizes KOMReviewMasterCreateButtonPrompt', function () {
