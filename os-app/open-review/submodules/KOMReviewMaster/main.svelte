@@ -37,6 +37,7 @@ const mod = {
 
 		return (function(obj) {
 			return Object.assign(obj, {
+				KOMReviewTodayTimeMinutes: Math.round(obj.KOMReviewTodayTimeMinutes * 10) / 10,
 				KOMReviewTodayReviewAccuracy: Math.round(obj.KOMReviewTodayReviewAccuracy / filtered.length * 10) / 10,
 			});
 		})(filtered.reduce(function (coll, item) {

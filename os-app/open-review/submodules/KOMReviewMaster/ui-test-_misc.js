@@ -129,7 +129,7 @@ describe('KOMReviewMaster_Misc', function () {
 				KOMReviewMasterItems: JSON.stringify([uDeck({
 					KOMDeckID: 'alfa',
 					$KOMReviewTodayTotalCards: 1,
-					$KOMReviewTodayTimeMinutes: 2,
+					$KOMReviewTodayTimeMinutes: 2.125,
 					$KOMReviewTodayReviewAccuracy: 3.25,
 					$KOMDeckGeneralNotUnseenCount: 1,
 					$KOMReviewGeneralUpcomingData: [{
@@ -150,7 +150,7 @@ describe('KOMReviewMaster_Misc', function () {
 				}), uDeck({
 					KOMDeckID: 'bravo',
 					$KOMReviewTodayTotalCards: 1,
-					$KOMReviewTodayTimeMinutes: 2,
+					$KOMReviewTodayTimeMinutes: 2.125,
 					$KOMReviewTodayReviewAccuracy: 3.25,
 					$KOMDeckGeneralNotUnseenCount: 1,
 					$KOMReviewGeneralUpcomingData: [{
@@ -198,7 +198,7 @@ describe('KOMReviewMaster_Misc', function () {
 		});
 
 		it('sets KOMReviewTodayTimeMinutes', function () {
-			browser.assert.text('.KOMReviewStats .KOMReviewTodayTimeMinutesValue', 4);
+			browser.assert.text('.KOMReviewStats .KOMReviewTodayTimeMinutesValue', 4.3);
 		});
 
 		it('sets KOMReviewTodayReviewAccuracy', function () {
