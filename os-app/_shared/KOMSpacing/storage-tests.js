@@ -119,12 +119,14 @@ describe('KOMSpacingStorageWrite', function test_KOMSpacingStorageWrite() {
 		});
 	});
 
-	it('returns KOMSpacing', async function () {
-		let item = await mainModule.KOMSpacingStorageWrite(KOMTestingStorageClient, StubSpacingObjectValid(), StubCardObjectValid(), StubDeckObjectValid());
+	it('returns param1', async function () {
+		let item = StubSpacingObjectValid();
 
-		deepEqual(item, Object.assign(StubSpacingObjectValid(), {
-			'@context': item['@context'],
-		}));
+		deepEqual(await mainModule.KOMSpacingStorageWrite(KOMTestingStorageClient, item, StubCardObjectValid(), StubDeckObjectValid()) === item, true);
+	});
+
+	it('leaves param1 unmodified', async function () {
+		deepEqual(await mainModule.KOMSpacingStorageWrite(KOMTestingStorageClient, StubSpacingObjectValid(), StubCardObjectValid(), StubDeckObjectValid()), StubSpacingObjectValid());
 	});
 
 	context('relations', function () {
@@ -143,9 +145,7 @@ describe('KOMSpacingStorageWrite', function test_KOMSpacingStorageWrite() {
 		});
 
 		it('excludes from storage', function () {
-			deepEqual(storage, Object.assign(StubSpacingObjectValid(), {
-				'@context': memory['@context'],
-			}));
+			deepEqual(storage, StubSpacingObjectValid());
 		});
 
 		it('includes in outputData', function () {

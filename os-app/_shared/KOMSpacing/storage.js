@@ -72,7 +72,7 @@ const mod = {
 
 		const OLSKRemoteStorageCollectionExports = {
 
-			async _KOMSpacingStorageWrite(param1, param2, param3) {
+			_KOMSpacingStorageWrite(param1, param2, param3) {
 				if (typeof param1 !== 'object' || param1 === null) {
 					return Promise.reject(new Error('KOMErrorInputNotValid'));
 				}
@@ -84,11 +84,11 @@ const mod = {
 					});
 				}
 
-				const param1Copy = OLSKRemoteStorage.OLSKRemoteStorageSafeCopy(param1);
-
-				await privateClient.storeObject(mod.KOMSpacingStorageCollectionType(), (KOMSpacingModel.KOMSpacingModelIsBackward(param1Copy) ? mod.KOMSpacingStoragePathBackward : mod.KOMSpacingStoragePathForward)(param2, param3), OLSKRemoteStorage.OLSKRemoteStoragePreJSONSchemaValidate(param1Copy));
-
-				return Object.assign(param1, OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(param1Copy));
+				try {
+					return OLSKRemoteStorage.OLSKRemoteStorageWriteObject(privateClient, (KOMSpacingModel.KOMSpacingModelIsBackward(param1) ? mod.KOMSpacingStoragePathBackward : mod.KOMSpacingStoragePathForward)(param2, param3), param1)
+				} catch (e) {
+					return Promise.reject(e);
+				}
 			},
 
 			async _KOMSpacingStorageList(param1, param2) {
