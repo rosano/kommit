@@ -31,11 +31,15 @@ const mod = {
 	},
 
 	DataTodayParameters (inputData) {
+		const filtered = inputData.filter(function (e) {
+			return e.$KOMReviewTodayTotalCards;
+		});
+
 		return (function(obj) {
 			return Object.assign(obj, {
-				KOMReviewTodayReviewAccuracy: obj.KOMReviewTodayReviewAccuracy / inputData.length,
+				KOMReviewTodayReviewAccuracy: obj.KOMReviewTodayReviewAccuracy / filtered.length,
 			});
-		})(inputData.reduce(function (coll, item) {
+		})(filtered.reduce(function (coll, item) {
 			return Object.assign(coll, {
 				KOMReviewTodayTotalCards: coll.KOMReviewTodayTotalCards + item.$KOMReviewTodayTotalCards,
 				KOMReviewTodayTimeMinutes: coll.KOMReviewTodayTimeMinutes + item.$KOMReviewTodayTimeMinutes,
@@ -49,8 +53,12 @@ const mod = {
 	},
 
 	DataGeneralParameters (inputData) {
+		const filtered = inputData.filter(function (e) {
+			return e.$KOMDeckGeneralNotUnseenCount;
+		});
+
 		return {
-			KOMReviewGeneralUpcomingData: Object.entries(inputData.reduce(function (coll, item) {
+			KOMReviewGeneralUpcomingData: Object.entries(filtered.reduce(function (coll, item) {
 				return item.$KOMReviewGeneralUpcomingData.reduce(function (coll, item) {
 					return Object.assign(coll, {
 						[item.KOMReviewChartElementDateBarTableRowDataKey]: coll[item.KOMReviewChartElementDateBarTableRowDataKey] ? coll[item.KOMReviewChartElementDateBarTableRowDataKey].map(function (e, i) {
@@ -64,7 +72,7 @@ const mod = {
 					KOMReviewChartElementDateBarTableRowDataValues: e[1],
 				}
 			}),
-			KOMReviewGeneralHistoricalData: Object.entries(inputData.reduce(function (coll, item) {
+			KOMReviewGeneralHistoricalData: Object.entries(filtered.reduce(function (coll, item) {
 				return item.$KOMReviewGeneralHistoricalData.reduce(function (coll, item) {
 					return Object.assign(coll, {
 						[item.KOMReviewChartElementDateBarTableRowDataKey]: coll[item.KOMReviewChartElementDateBarTableRowDataKey] ? coll[item.KOMReviewChartElementDateBarTableRowDataKey].map(function (e, i) {
@@ -78,7 +86,7 @@ const mod = {
 					KOMReviewChartElementDateBarTableRowDataValues: e[1],
 				}
 			}),
-			KOMReviewChartCompositionCollectionData: inputData.reduce(function (coll, item) {
+			KOMReviewChartCompositionCollectionData: filtered.reduce(function (coll, item) {
 				return Object.assign(coll, {
 					KOMSpacingGroupingTotal: coll.KOMSpacingGroupingTotal + item.$KOMReviewChartCompositionCollectionData.KOMSpacingGroupingTotal,
 					KOMSpacingGroupingUnseen: coll.KOMSpacingGroupingUnseen + item.$KOMReviewChartCompositionCollectionData.KOMSpacingGroupingUnseen,

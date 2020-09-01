@@ -168,6 +168,27 @@ describe('KOMReviewMaster_Misc', function () {
 						KOMSpacingGroupingMature: 4,
 						KOMSpacingGroupingSuspended: 5,
 					},
+				}), uDeck({
+					KOMDeckID: 'charlie',
+					$KOMReviewTodayTotalCards: 0,
+					$KOMReviewTodayTimeMinutes: 0,
+					$KOMReviewTodayReviewAccuracy: 0,
+					$KOMDeckGeneralNotUnseenCount: 0,
+					$KOMReviewGeneralUpcomingData: [{
+						KOMReviewChartElementDateBarTableRowDataKey: 'alfa',
+						KOMReviewChartElementDateBarTableRowDataValues: [1, 2],
+					}],
+					$KOMReviewGeneralHistoricalData: [{
+						KOMReviewChartElementDateBarTableRowDataKey: 'alfa',
+						KOMReviewChartElementDateBarTableRowDataValues: [1, 2, 3, 4],
+					}],
+					$KOMReviewChartCompositionCollectionData: {
+						KOMSpacingGroupingTotal: 1,
+						KOMSpacingGroupingUnseen: 2,
+						KOMSpacingGroupingDeveloping: 3,
+						KOMSpacingGroupingMature: 4,
+						KOMSpacingGroupingSuspended: 5,
+					},
 				})]),
 			});
 		});
