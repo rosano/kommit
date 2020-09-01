@@ -68,12 +68,13 @@ const mod = {
 
 	_ValueSpacingUpdateThrottleMap: {},
 	_ValueDeckFiguresThrottleMap: {},
+	_ValueDeckCachingEnabled: false,
 
 	_ValueSpeechAvailable: 'speechSynthesis' in window,
 
 	_ValueCacheDeckFiguresMap: {},
 	ValueCacheDeckFiguresMap (inputData) {
-		return (mod._ValueCacheDeckFiguresMap = OLSK_TESTING_BEHAVIOUR() ? inputData : OLSKLocalStorage.OLKSLocalStorageSet(window.localStorage, 'kKOMReviewCacheDeckFiguresMap', inputData));
+		return (mod._ValueCacheDeckFiguresMap = OLSK_TESTING_BEHAVIOUR() || !mod._ValueDeckCachingEnabled ? inputData : OLSKLocalStorage.OLKSLocalStorageSet(window.localStorage, 'kKOMReviewCacheDeckFiguresMap', inputData));
 	},
 	
 	// DATA
@@ -501,6 +502,12 @@ const mod = {
 		mod._ValueDecksAll.forEach(mod.ReactDeckFigures);
 	},
 
+	async KOMReviewMasterDispatchToggleDeckFiguresCaching () {
+		const value = await KOMSettingAction.KOMSettingsActionProperty(mod._ValueStorageClient, 'KOMSettingDeckCachingEnabled');
+
+		value ? await KOMSettingAction.KOMSettingsActionDelete(mod._ValueStorageClient, 'KOMSettingDeckCachingEnabled') : await KOMSettingAction.KOMSettingsActionProperty(mod._ValueStorageClient, 'KOMSettingDeckCachingEnabled', 'true');
+	},
+
 	KOMReviewDetailDispatchBack () {
 		mod.ControlDeckSelect(null);
 	},
@@ -749,6 +756,8 @@ const mod = {
 
 		await mod.SetupStorageNotifications();
 
+		await mod.SetupValueDeckCachingEnabled();
+
 		mod.SetupValueCacheDeckFiguresMap();
 
 		await mod.SetupValueDecksAll();
@@ -842,7 +851,15 @@ const mod = {
 		});
 	},
 
+	async SetupValueDeckCachingEnabled () {
+		mod._ValueDeckCachingEnabled = (await KOMSettingAction.KOMSettingsActionProperty(mod._ValueStorageClient, 'KOMSettingDeckCachingEnabled') || {}).KOMSettingValue === 'true';
+	},
+
 	SetupValueCacheDeckFiguresMap () {
+		if (!mod._ValueDeckCachingEnabled) {
+			return OLSKLocalStorage.OLKSLocalStorageSet(window.localStorage, 'kKOMReviewCacheDeckFiguresMap', null);
+		}
+
 		mod._ValueCacheDeckFiguresMap = OLSKLocalStorage.OLKSLocalStorageGet(window.localStorage, 'kKOMReviewCacheDeckFiguresMap') || {};
 	},
 
@@ -891,6 +908,7 @@ import OLSKStorageWidget from 'OLSKStorageWidget';
 			KOMReviewMasterDispatchCreate={ mod.KOMReviewMasterDispatchCreate }
 			KOMReviewMasterDispatchSelect={ mod.KOMReviewMasterDispatchSelect }
 			KOMReviewMasterDispatchToggleExcludeTripleQuestionMark={ mod.KOMReviewMasterDispatchToggleExcludeTripleQuestionMark }
+			KOMReviewMasterDispatchToggleDeckFiguresCaching={ mod.KOMReviewMasterDispatchToggleDeckFiguresCaching }
 			bind:this={ mod._KOMReviewMaster }
 			/>
 	{/if}
