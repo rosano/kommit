@@ -379,7 +379,6 @@ const mod = {
 		return Object.assign(mod.FakeSpacingObjectValid(backward), {
 			KOMSpacingDrawDate: drawDate,
 			KOMSpacingFlipDate: inputData,
-			KOMSpacingResponseDate: inputData,
 			KOMSpacingInterval: 1,
 			KOMSpacingMultiplier: 2.5,
 			KOMSpacingDueDate: new Date(),
