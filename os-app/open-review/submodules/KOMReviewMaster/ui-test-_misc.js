@@ -130,7 +130,7 @@ describe('KOMReviewMaster_Misc', function () {
 					KOMDeckID: 'alfa',
 					$KOMReviewTodayTotalCards: 1,
 					$KOMReviewTodayTimeMinutes: 2,
-					$KOMReviewTodayReviewAccuracy: 1,
+					$KOMReviewTodayReviewAccuracy: 3.25,
 					$KOMDeckGeneralNotUnseenCount: 1,
 					$KOMReviewGeneralUpcomingData: [{
 						KOMReviewChartElementDateBarTableRowDataKey: 'alfa',
@@ -151,7 +151,7 @@ describe('KOMReviewMaster_Misc', function () {
 					KOMDeckID: 'bravo',
 					$KOMReviewTodayTotalCards: 1,
 					$KOMReviewTodayTimeMinutes: 2,
-					$KOMReviewTodayReviewAccuracy: 3,
+					$KOMReviewTodayReviewAccuracy: 3.25,
 					$KOMDeckGeneralNotUnseenCount: 1,
 					$KOMReviewGeneralUpcomingData: [{
 						KOMReviewChartElementDateBarTableRowDataKey: 'alfa',
@@ -202,7 +202,7 @@ describe('KOMReviewMaster_Misc', function () {
 		});
 
 		it('sets KOMReviewTodayReviewAccuracy', function () {
-			browser.assert.text('.KOMReviewStats .KOMReviewTodayReviewAccuracyValue', 2);
+			browser.assert.text('.KOMReviewStats .KOMReviewTodayReviewAccuracyValue', 3.3);
 		});
 
 		context('KOMReviewGeneralUpcomingData', function () {
