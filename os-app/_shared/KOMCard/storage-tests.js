@@ -137,12 +137,14 @@ describe('KOMCardStorageWrite', function test_KOMCardStorageWrite() {
 		});
 	});
 
-	it('returns KOMCard', async function () {
-		const item = await mainModule.KOMCardStorageWrite(KOMTestingStorageClient, StubCardObjectValid());
+	it('returns input', async function () {
+		const item = StubCardObjectValid();
 
-		deepEqual(item, Object.assign(StubCardObjectValid(), {
-			'@context': item['@context'],
-		}));
+		deepEqual(await mainModule.KOMCardStorageWrite(KOMTestingStorageClient, item) === item, true);
+	});
+
+	it('leaves input unmodified', async function () {
+		deepEqual(await mainModule.KOMCardStorageWrite(KOMTestingStorageClient, StubCardObjectValid()), StubCardObjectValid());
 	});
 
 });

@@ -110,9 +110,11 @@ const mod = {
 					});
 				}
 
-				await privateClient.storeObject(mod.KOMCardStorageCollectionType(), mod.KOMCardStorageObjectPath(inputData), OLSKRemoteStorage.OLSKRemoteStoragePreJSONSchemaValidate(inputData));
-
-				return OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(inputData);
+				try {
+					return OLSKRemoteStorage.OLSKRemoteStorageWriteObject(privateClient, mod.KOMCardStorageObjectPath(inputData), inputData);
+				} catch (e) {
+					return Promise.reject(e);
+				}
 			},
 
 			async _KOMCardStorageList(inputData) {

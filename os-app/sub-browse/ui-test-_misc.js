@@ -78,7 +78,6 @@ describe('KOMBrowse_Misc', function () {
 				'KOMCardFrontText',
 				'KOMCardRearText',
 				'KOMCardNotes',
-				'@context',
 			]));
 		});
 

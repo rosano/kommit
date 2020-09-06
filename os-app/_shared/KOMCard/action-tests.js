@@ -75,7 +75,6 @@ describe('KOMCardActionCreate', function test_KOMCardActionCreate() {
 			KOMCardDeckID: kTesting.StubDeckObjectValid().KOMDeckID,
 			KOMCardCreationDate: item.KOMCardCreationDate,
 			KOMCardModificationDate: item.KOMCardModificationDate,
-			'@context': item['@context'],
 		}));
 	});
 
@@ -137,7 +136,6 @@ describe('KOMCardActionUpdate', function test_KOMCardActionUpdate() {
 			KOMCardDeckID: kTesting.StubDeckObjectValid().KOMDeckID,
 			KOMCardCreationDate: item.KOMCardCreationDate,
 			KOMCardModificationDate: item.KOMCardModificationDate,
-			'@context': item['@context'],
 		}));
 	});
 

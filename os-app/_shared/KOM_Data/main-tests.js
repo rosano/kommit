@@ -94,7 +94,6 @@ describe('KOM_DataImport', function test_KOM_DataImport() {
 			deepEqual(list, [Object.assign(item, {
 				KOMCardID: list[0].KOMCardID,
 				KOMCardDeckID: list[0].KOMCardDeckID,
-				'@context': list[0]['@context'],
 			})]);
 		});
 	
