@@ -128,7 +128,6 @@ const mod = {
 
 		return {
 			OLSKRemoteStorageCollectionName: mod.KOMSpacingStorageCollectionName(),
-			OLSKRemoteStorageCollectionType: mod.KOMSpacingStorageCollectionType(),
 			OLSKRemoteStorageCollectionModelErrors: Object.entries(KOMSpacingModel.KOMSpacingModelErrorsFor({}, {
 				KOMOptionValidateIfNotPresent: true,
 			})).map(function (e) {

@@ -196,7 +196,6 @@ const mod = {
 
 		return {
 			OLSKRemoteStorageCollectionName: mod.KOMCardStorageCollectionName(),
-			OLSKRemoteStorageCollectionType: mod.KOMCardStorageCollectionType(),
 			OLSKRemoteStorageCollectionModelErrors: Object.entries(KOMCardModel.KOMCardModelErrorsFor({}, {
 				KOMOptionValidateIfNotPresent: true,
 			})).map(function (e) {
