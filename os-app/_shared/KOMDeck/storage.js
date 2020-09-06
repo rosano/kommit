@@ -77,11 +77,11 @@ const mod = {
 					});
 				}
 
-				const inputCopy = OLSKRemoteStorage.OLSKRemoteStorageSafeCopy(inputData);
-
-				await privateClient.storeObject(mod.KOMDeckStorageCollectionType(), mod.KOMDeckStorageObjectPath(inputCopy.KOMDeckID), OLSKRemoteStorage.OLSKRemoteStoragePreJSONSchemaValidate(inputCopy));
-
-				return Object.assign(inputData, OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(inputCopy));
+				try {
+					return OLSKRemoteStorage.OLSKRemoteStorageWriteObject(privateClient, mod.KOMDeckStorageObjectPath(inputData.KOMDeckID), inputData);
+				} catch (e) {
+					return Promise.reject(e);
+				}
 			},
 
 			async _KOMDeckStorageList() {

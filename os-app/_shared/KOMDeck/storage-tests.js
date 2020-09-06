@@ -92,12 +92,14 @@ describe('KOMDeckStorageWrite', function test_KOMDeckStorageWrite() {
 		});
 	});
 
-	it('returns KOMDeck', async function () {
-		let item = await mainModule.KOMDeckStorageWrite(KOMTestingStorageClient, StubDeckObjectValid());
+	it('returns input', async function () {
+		const item = StubDeckObjectValid();
 
-		deepEqual(item, Object.assign(StubDeckObjectValid(), {
-			'@context': item['@context'],
-		}));
+		deepEqual(await mainModule.KOMDeckStorageWrite(KOMTestingStorageClient, item) === item, true);
+	});
+
+	it('leaves input unmodified', async function () {
+		deepEqual(await mainModule.KOMDeckStorageWrite(KOMTestingStorageClient, StubDeckObjectValid()), StubDeckObjectValid());
 	});
 
 	context('relations', function () {
@@ -116,9 +118,7 @@ describe('KOMDeckStorageWrite', function test_KOMDeckStorageWrite() {
 		});
 
 		it('excludes from storage', function () {
-			deepEqual(storage, [Object.assign(StubDeckObjectValid(), {
-				'@context': item['@context'],
-			})]);
+			deepEqual(storage, [StubDeckObjectValid()]);
 		});
 
 		it('includes in outputData', function () {

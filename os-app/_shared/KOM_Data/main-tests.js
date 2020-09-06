@@ -47,7 +47,6 @@ describe('KOM_DataImport', function test_KOM_DataImport() {
 				KOMDeckID: item[0].KOMDeckID,
 				KOMDeckCreationDate: item[0].KOMDeckCreationDate,
 				KOMDeckModificationDate: item[0].KOMDeckModificationDate,
-				'@context': item[0]['@context'],
 			})]);
 		});
 

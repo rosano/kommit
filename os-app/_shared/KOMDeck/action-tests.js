@@ -44,7 +44,6 @@ describe('KOMDeckActionCreate', function test_KOMDeckActionCreate() {
 			KOMDeckID: item.KOMDeckID,
 			KOMDeckCreationDate: item.KOMDeckCreationDate,
 			KOMDeckModificationDate: item.KOMDeckModificationDate,
-			'@context': item['@context'],
 		}));
 	});
 
@@ -104,7 +103,6 @@ describe('KOMDeckActionUpdate', function test_KOMDeckActionUpdate() {
 			KOMDeckID: item.KOMDeckID,
 			KOMDeckCreationDate: item.KOMDeckCreationDate,
 			KOMDeckModificationDate: item.KOMDeckModificationDate,
-			'@context': item['@context'],
 		}));
 	});
 
