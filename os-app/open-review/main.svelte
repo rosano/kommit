@@ -195,7 +195,7 @@ const mod = {
 			items.push(...mod._KOMBrowse.modPublic.KOMBrowseRecipes());
 		}
 
-		if (true || OLSK_TESTING_BEHAVIOUR()) {
+		if (OLSK_TESTING_BEHAVIOUR()) {
 			items.push(...[
 				{
 					LCHRecipeName: 'FakeOLSKConnected',
