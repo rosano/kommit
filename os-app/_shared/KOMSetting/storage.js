@@ -1,5 +1,8 @@
 import KOMSettingModel from './model.js';
 
+import * as OLSKRemoteStoragePackage from 'OLSKRemoteStorage';
+const OLSKRemoteStorage = OLSKRemoteStoragePackage.default || OLSKRemoteStoragePackage;
+
 const mod = {
 
 	uFakeSetting(inputData) {
@@ -52,9 +55,11 @@ const mod = {
 					});
 				}
 
-				await privateClient.storeObject(mod.KOMSettingStorageCollectionType(), mod.KOMSettingStorageObjectPath(inputData), inputData);
-
-				return inputData;
+				try {
+					return OLSKRemoteStorage.OLSKRemoteStorageWriteObject(privateClient, mod.KOMSettingStorageObjectPath(inputData), inputData)
+				} catch (e) {
+					return Promise.reject(e);
+				}
 			},
 
 			_KOMSettingStorageRead (inputData) {

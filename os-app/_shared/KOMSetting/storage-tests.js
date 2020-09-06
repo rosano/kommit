@@ -75,12 +75,14 @@ describe('KOMSettingStorageWrite', function test_KOMSettingStorageWrite() {
 		});
 	});
 
-	it('returns KOMSetting', async function() {
-		let item = await mainModule.KOMSettingStorageWrite(KOMTestingStorageClient, StubSettingObjectValid());
+	it('returns input', async function () {
+		const item = StubSettingObjectValid();
 
-		deepEqual(item, Object.assign(StubSettingObjectValid(), {
-			'@context': item['@context'],
-		}));
+		deepEqual(await mainModule.KOMSettingStorageWrite(KOMTestingStorageClient, item) === item, true);
+	});
+
+	it('leaves input unmodified', async function () {
+		deepEqual(await mainModule.KOMSettingStorageWrite(KOMTestingStorageClient, StubSettingObjectValid()), StubSettingObjectValid());
 	});
 
 });
