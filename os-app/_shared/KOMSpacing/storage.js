@@ -10,10 +10,6 @@ const mod = {
 		return 'kom_spacings';
 	},
 
-	KOMSpacingStorageCollectionType() {
-		return 'kom_spacing';
-	},
-
 	KOMSpacingStoragePathForward(param1, param2) {
 		if (KOMDeckModel.KOMDeckModelErrorsFor(param2)) {
 			throw new Error('KOMErrorInputNotValid');

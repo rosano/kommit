@@ -16,10 +16,6 @@ const mod = {
 		return 'kom_settings';
 	},
 
-	KOMSettingStorageCollectionType () {
-		return 'kom_setting';
-	},
-
 	KOMSettingStorageCollectionPath () {
 		return mod.KOMSettingStorageCollectionName() + '/';
 	},

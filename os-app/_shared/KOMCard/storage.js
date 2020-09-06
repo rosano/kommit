@@ -33,10 +33,6 @@ const mod = {
 		return 'kom_cards';
 	},
 
-	KOMCardStorageCollectionType() {
-		return 'kom_card';
-	},
-
 	KOMCardStorageCollectionPath(inputData) {
 		return KOMDeckStorage.KOMDeckStorageFolderPath(inputData) + mod.KOMCardStorageCollectionName() + '/';
 	},

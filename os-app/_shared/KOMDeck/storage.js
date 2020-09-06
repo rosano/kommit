@@ -8,10 +8,6 @@ const mod = {
 		return 'kom_decks';
 	},
 
-	KOMDeckStorageCollectionType() {
-		return 'kom_deck';
-	},
-
 	KOMDeckStorageCollectionPath() {
 		return mod.KOMDeckStorageCollectionName() + '/';
 	},

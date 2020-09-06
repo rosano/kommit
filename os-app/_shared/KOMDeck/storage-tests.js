@@ -10,14 +10,6 @@ describe('KOMDeckStorageCollectionName', function test_KOMDeckStorageCollectionN
 
 });
 
-describe('KOMDeckStorageCollectionType', function test_KOMDeckStorageCollectionType() {
-
-	it('returns string', function () {
-		deepEqual(mainModule.KOMDeckStorageCollectionType(), 'kom_deck');
-	});
-
-});
-
 describe('KOMDeckStorageCollectionPath', function test_KOMDeckStorageCollectionPath() {
 
 	it('returns string', function () {

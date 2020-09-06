@@ -13,14 +13,6 @@ describe('KOMSpacingStorageCollectionName', function test_KOMSpacingStorageColle
 
 });
 
-describe('KOMSpacingStorageCollectionType', function test_KOMSpacingStorageCollectionType() {
-
-	it('returns string', function () {
-		deepEqual(mainModule.KOMSpacingStorageCollectionType(), 'kom_spacing');
-	});
-
-});
-
 describe('KOMSpacingStoragePathForward', function test_KOMSpacingStoragePathForward() {
 
 	it('throws if param1 not valid', function () {

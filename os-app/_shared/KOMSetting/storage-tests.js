@@ -10,14 +10,6 @@ describe('KOMSettingStorageCollectionName', function test_KOMSettingStorageColle
 
 });
 
-describe('KOMSettingStorageCollectionType', function test_KOMSettingStorageCollectionType() {
-
-	it('returns string', function() {
-		deepEqual(mainModule.KOMSettingStorageCollectionType(), 'kom_setting');
-	});
-
-});
-
 describe('KOMSettingStorageCollectionPath', function test_KOMSettingStorageCollectionPath() {
 
 	it('returns string', function() {

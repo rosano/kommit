@@ -12,14 +12,6 @@ describe('KOMCardStorageCollectionName', function test_KOMCardStorageCollectionN
 
 });
 
-describe('KOMCardStorageCollectionType', function test_KOMCardStorageCollectionType() {
-
-	it('returns string', function () {
-		deepEqual(mainModule.KOMCardStorageCollectionType(), 'kom_card');
-	});
-
-});
-
 describe('KOMCardStorageCollectionPath', function test_KOMCardStorageCollectionPath() {
 
 	it('throws if not valid', function () {
