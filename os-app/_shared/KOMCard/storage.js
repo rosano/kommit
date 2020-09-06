@@ -196,19 +196,6 @@ const mod = {
 
 		return {
 			OLSKRemoteStorageCollectionName: mod.KOMCardStorageCollectionName(),
-			OLSKRemoteStorageCollectionModelErrors: Object.entries(KOMCardModel.KOMCardModelErrorsFor({}, {
-				KOMOptionValidateIfNotPresent: true,
-			})).map(function (e) {
-				if (!Object.keys(KOMCardModel.KOMCardModelErrorsFor({})).includes(e[0])) {
-					e[1].push('__RSOptional');
-				}
-
-				return e;
-			}).reduce(function (coll, item) {
-				coll[item[0]] = item[1];
-
-				return coll;
-			}, {}),
 			OLSKRemoteStorageCollectionExports,
 		};
 	},

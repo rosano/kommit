@@ -128,19 +128,6 @@ const mod = {
 
 		return {
 			OLSKRemoteStorageCollectionName: mod.KOMSpacingStorageCollectionName(),
-			OLSKRemoteStorageCollectionModelErrors: Object.entries(KOMSpacingModel.KOMSpacingModelErrorsFor({}, {
-				KOMOptionValidateIfNotPresent: true,
-			})).map(function (e) {
-				if (Object.keys(KOMSpacingModel.KOMSpacingModelErrorsFor({})).indexOf(e[0]) === -1) {
-					e[1].push('__RSOptional');
-				}
-
-				return e;
-			}).reduce(function (coll, item) {
-				coll[item[0]] = item[1];
-
-				return coll;
-			}, {}),
 			OLSKRemoteStorageCollectionExports,
 		};
 	},

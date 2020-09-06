@@ -112,19 +112,6 @@ const mod = {
 
 		return {
 			OLSKRemoteStorageCollectionName: mod.KOMDeckStorageCollectionName(),
-			OLSKRemoteStorageCollectionModelErrors: Object.entries(KOMDeckModel.KOMDeckModelErrorsFor({}, {
-				KOMOptionValidateIfNotPresent: true,
-			})).map(function (e) {
-				if (!Object.keys(KOMDeckModel.KOMDeckModelErrorsFor({})).includes(e[0])) {
-					e[1].push('__RSOptional');
-				}
-
-				return e;
-			}).reduce(function (coll, item) {
-				coll[item[0]] = item[1];
-
-				return coll;
-			}, {}),
 			OLSKRemoteStorageCollectionExports,
 		};
 	},
