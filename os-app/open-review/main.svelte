@@ -58,7 +58,7 @@ const mod = {
 
 	_ValuePlayVisible: false,
 	_ValuePlaySpacings: [],
-	_ValuePlaySimplifiedResponse: !OLSK_TESTING_BEHAVIOUR(),
+	_ValuePlaySimplifiedResponseButtons: !OLSK_TESTING_BEHAVIOUR(),
 
 	_ValueHoldCards: [],
 	_ValueHoldSpacings: [],
@@ -98,10 +98,10 @@ const mod = {
 				},
 			}
 		}).concat([{
-			LCHRecipeSignature: 'KOMReviewLauncherItemToggleSimplifiedResponse',
-			LCHRecipeName: OLSKLocalized('KOMReviewLauncherItemToggleSimplifiedResponseText'),
-			LCHRecipeCallback: async function KOMReviewLauncherItemToggleSimplifiedResponse () {
-				mod._ValuePlaySimplifiedResponse = !mod._ValuePlaySimplifiedResponse;
+			LCHRecipeSignature: 'KOMReviewLauncherItemToggleSimplifiedResponseButtons',
+			LCHRecipeName: OLSKLocalized('KOMReviewLauncherItemToggleSimplifiedResponseButtonsText'),
+			LCHRecipeCallback: async function KOMReviewLauncherItemToggleSimplifiedResponseButtons () {
+				mod._ValuePlaySimplifiedResponseButtons = !mod._ValuePlaySimplifiedResponseButtons;
 			},
 		}, {
 			LCHRecipeSignature: 'KOMReviewLauncherItemDebugForceUpdate',
@@ -953,7 +953,7 @@ import OLSKStorageWidget from 'OLSKStorageWidget';
 			KOMPlayDispatchDone={ mod.KOMPlayDispatchDone }
 			KOMPlayDispatchUpdate={ mod.KOMPlayDispatchUpdate }
 			KOMPlayDispatchFetch={ mod.KOMPlayDispatchFetch }
-			KOMPlaySimplifiedResponse={ mod._ValuePlaySimplifiedResponse }
+			KOMPlaySimplifiedResponseButtons={ mod._ValuePlaySimplifiedResponseButtons }
 			/>
 	{/if}
 </div>

@@ -371,7 +371,7 @@ describe('KOMPlay_Misc', function () {
 
 	});
 
-	context('KOMPlaySimplifiedResponse', function test_KOMPlaySimplifiedResponse () {
+	context('KOMPlaySimplifiedResponseButtons', function test_KOMPlaySimplifiedResponseButtons () {
 
 		const items = kTesting.uSpacings(4);
 
@@ -379,7 +379,7 @@ describe('KOMPlay_Misc', function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMPlaySpacings: JSON.stringify(items),
 				KOMPlayDeck: JSON.stringify(StubDeckObjectValid()),
-				KOMPlaySimplifiedResponse: true,
+				KOMPlaySimplifiedResponseButtons: true,
 			});
 		});
 		

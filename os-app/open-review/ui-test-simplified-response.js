@@ -1,6 +1,6 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-describe('KOMReview_SimplifiedResponse', function () {
+describe('KOMReview_SimplifiedResponseButtons', function () {
 
 	before(function () {
 		return browser.OLSKVisit(kDefaultRoute);
@@ -54,14 +54,14 @@ describe('KOMReview_SimplifiedResponse', function () {
 			browser.assert.elements('.KOMPlayResponseButtonAgain', 1);
 		});
 
-		context('KOMReviewLauncherItemToggleSimplifiedResponse', function () {
+		context('KOMReviewLauncherItemToggleSimplifiedResponseButtons', function () {
 
 			before(function () {
 				return browser.pressButton('.KOMPlayToolbarDoneButton');
 			});
 
 			before(function () {
-				return browser.OLSKLauncherRun('KOMReviewLauncherItemToggleSimplifiedResponse');
+				return browser.OLSKLauncherRun('KOMReviewLauncherItemToggleSimplifiedResponseButtons');
 			});
 
 			before(function () {
