@@ -43,6 +43,9 @@ Object.entries({
 
 	KOMPlayFlipButton: '.KOMPlayFlipButton',
 
+	KOMPlayResponseButtonReset: '.KOMPlayResponseButtonReset',
+	KOMPlayResponseButtonNext: '.KOMPlayResponseButtonNext',
+
 	KOMPlayResponseButtonAgain: '.KOMPlayResponseButtonAgain',
 	KOMPlayResponseButtonHard: '.KOMPlayResponseButtonHard',
 	KOMPlayResponseButtonGood: '.KOMPlayResponseButtonGood',
@@ -102,6 +105,14 @@ describe('KOMPlay_Access', function () {
 
 	it('shows KOMPlayFlipButton', function () {
 		browser.assert.elements(KOMPlayFlipButton, 1);
+	});
+
+	it('hides KOMPlayResponseButtonReset', function () {
+		browser.assert.elements(KOMPlayResponseButtonReset, 0);
+	});
+
+	it('hides KOMPlayResponseButtonNext', function () {
+		browser.assert.elements(KOMPlayResponseButtonNext, 0);
 	});
 
 	it('hides KOMPlayResponseButtonAgain', function () {
@@ -360,6 +371,46 @@ describe('KOMPlay_Access', function () {
 
 		});
 
+	});
+
+	context('KOMPlaySimplifiedResponse', function test_KOMPlaySimplifiedResponse () {
+		
+		before(function () {
+			return browser.OLSKVisit(kDefaultRoute, {
+				KOMPlaySpacings: JSON.stringify(kTesting.uSpacings()),
+				KOMPlayDeck: JSON.stringify(StubDeckObjectValid()),
+				KOMPlaySimplifiedResponse: true,
+			});
+		});
+
+		before(function () {
+			return browser.pressButton(KOMPlayFlipButton);
+		});
+
+		it('shows KOMPlayResponseButtonReset', function () {
+			browser.assert.elements(KOMPlayResponseButtonReset, 1);
+		});
+
+		it('shows KOMPlayResponseButtonNext', function () {
+			browser.assert.elements(KOMPlayResponseButtonNext, 1);
+		});
+
+		it('hides KOMPlayResponseButtonAgain', function () {
+			browser.assert.elements(KOMPlayResponseButtonAgain, 0);
+		});
+
+		it('hides KOMPlayResponseButtonHard', function () {
+			browser.assert.elements(KOMPlayResponseButtonHard, 0);
+		});
+
+		it('hides KOMPlayResponseButtonGood', function () {
+			browser.assert.elements(KOMPlayResponseButtonGood, 0);
+		});
+
+		it('hides KOMPlayResponseButtonEasy', function () {
+			browser.assert.elements(KOMPlayResponseButtonEasy, 0);
+		});
+	
 	});
 
 });

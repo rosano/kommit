@@ -4,6 +4,7 @@ export let KOMPlayDeck;
 export let KOMPlayDispatchDone;
 export let KOMPlayDispatchUpdate;
 export let KOMPlayDispatchFetch;
+export let KOMPlaySimplifiedResponse = false;
 
 import OLSKInternational from 'OLSKInternational';
 const OLSKLocalized = function(translationConstant) {
@@ -458,7 +459,7 @@ OLSK_TESTING_BEHAVIOUR() ? mod.LifecycleModuleWillMount() : onMount(mod.Lifecycl
 		<button class="KOMPlayFlipButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceFlipButtonDidClick }>{ OLSKLocalized('KOMPlayFlipButtonText') }</button>
 	{/if}
 
-	{#if mod._ValueIsFlipped}
+	{#if mod._ValueIsFlipped && !KOMPlaySimplifiedResponse}
 		<button class="KOMPlayResponseButtonAgain OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceResponseButtonDidClickAgain }>{ OLSKLocalized('KOMPlayResponseButtonAgainText') }</button>
 
 		<div class="KOMPlayResponseCorrect">
@@ -467,6 +468,14 @@ OLSK_TESTING_BEHAVIOUR() ? mod.LifecycleModuleWillMount() : onMount(mod.Lifecycl
 			<button class="KOMPlayResponseButtonGood OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceResponseButtonDidClickGood }>{ OLSKLocalized('KOMPlayResponseButtonGoodText') }</button>
 
 			<button class="KOMPlayResponseButtonEasy OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceResponseButtonDidClickEasy }>{ OLSKLocalized('KOMPlayResponseButtonEasyText') }</button>
+		</div>
+	{/if}
+
+	{#if mod._ValueIsFlipped && KOMPlaySimplifiedResponse}
+		<div class="KOMPlayResponseSimple">
+			<button class="KOMPlayResponseButtonReset OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceResponseButtonDidClickAgain }>{ OLSKLocalized('KOMPlayResponseButtonResetText') }</button>
+
+			<button class="KOMPlayResponseButtonNext OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceResponseButtonDidClickGood }>{ OLSKLocalized('KOMPlayResponseButtonNextText') }</button>
 		</div>
 	{/if}
 

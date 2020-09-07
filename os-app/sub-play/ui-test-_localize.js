@@ -108,6 +108,31 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 
 		});
 
+		context('KOMPlaySimplifiedResponse', function test_KOMPlaySimplifiedResponse () {
+			
+			before(function () {
+				return browser.OLSKVisit(kDefaultRoute, {
+					OLSKRoutingLanguage: languageCode,
+					KOMPlaySpacings: JSON.stringify(kTesting.uSpacings()),
+					KOMPlayDeck: JSON.stringify(StubDeckObjectValid()),
+					KOMPlaySimplifiedResponse: true,
+				});
+			});
+
+			before(function () {
+				return browser.pressButton(KOMPlayFlipButton);
+			});
+
+			it('localizes KOMPlayResponseButtonReset', function () {
+				browser.assert.text(KOMPlayResponseButtonReset, uLocalized('KOMPlayResponseButtonResetText'));
+			});
+
+			it('localizes KOMPlayResponseButtonNext', function () {
+				browser.assert.text(KOMPlayResponseButtonNext, uLocalized('KOMPlayResponseButtonNextText'));
+			});
+		
+		});
+
 	});
 
 });

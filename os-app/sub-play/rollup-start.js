@@ -16,16 +16,16 @@ const KOMPlay = new RollupStart({
 		}),
 		KOMPlayDispatchFetch: (function _KOMPlayDispatchFetch() {}),
 	}, Object.fromEntries(Array.from((new window.URLSearchParams(window.location.search)).entries()).map(function (e, index, coll) {
+		if (['KOMPlayDeck', 'KOMPlaySpacings', 'KOMPlaySimplifiedResponse'].includes(e[0])) {
+			e[1] = JSON.parse(e[1]);
+		}
+
 		if (['KOMPlaySpacings'].includes(e[0])) {
-			e[1] = JSON.parse(e[1]).map(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse).map(function (e) {
+			e[1] = e[1].map(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse).map(function (e) {
 				return Object.assign(e, {
 					$KOMSpacingCard: OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(e.$KOMSpacingCard),
 				});
 			});
-		}
-
-		if (['KOMPlayDeck'].includes(e[0])) {
-			e[1] = JSON.parse(e[1]);
 		}
 
 		return e;
