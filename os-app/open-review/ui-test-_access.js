@@ -60,6 +60,10 @@ describe('KOMReview_Access', function () {
 		browser.assert.elements('.KOMPlay', 0);
 	});
 
+	it('show KOMReviewLauncherItemToggleSimplifiedResponse', function () {
+		return browser.assert.OLSKLauncherItems('KOMReviewLauncherItemToggleSimplifiedResponse', 1);
+	});
+
 	it('hides KOMReviewLauncherItemSelectDeck', function () {
 		return browser.assert.OLSKLauncherItems('KOMReviewLauncherItemSelectDeck', 0);
 	});

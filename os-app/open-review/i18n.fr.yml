@@ -2,6 +2,7 @@ KOMReviewTitle: Kommit
 KOMReviewStorageImportErrorNotFilledAlertText: Entrée non remplie
 KOMReviewStorageImportErrorNotValidAlertText: Entrée non valide
 KOMReviewLauncherItemSelectDeckTextFormat: Choisir lot de cartes '%@'
+KOMReviewLauncherItemToggleSimplifiedResponseText: Commuter les boutons de réponse simplifiés
 KOMReviewLauncherItemSendLoginLinkText: Copier lien d'accès privé
 KOMReviewLauncherItemSendLoginLinkSubject: Kommit lien d'accès
 KOMReviewLauncherItemDebugForceUpdateText: Forcer mis à jour

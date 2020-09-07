@@ -58,6 +58,7 @@ const mod = {
 
 	_ValuePlayVisible: false,
 	_ValuePlaySpacings: [],
+	_ValuePlaySimplifiedResponse: !OLSK_TESTING_BEHAVIOUR(),
 
 	_ValueHoldCards: [],
 	_ValueHoldSpacings: [],
@@ -96,7 +97,13 @@ const mod = {
 					return mod.ControlDeckSelect(e);
 				},
 			}
-		}).concat({
+		}).concat([{
+			LCHRecipeSignature: 'KOMReviewLauncherItemToggleSimplifiedResponse',
+			LCHRecipeName: OLSKLocalized('KOMReviewLauncherItemToggleSimplifiedResponseText'),
+			LCHRecipeCallback: async function KOMReviewLauncherItemToggleSimplifiedResponse () {
+				mod._ValuePlaySimplifiedResponse = !mod._ValuePlaySimplifiedResponse;
+			},
+		}, {
 			LCHRecipeSignature: 'KOMReviewLauncherItemDebugForceUpdate',
 			LCHRecipeName: OLSKLocalized('KOMReviewLauncherItemDebugForceUpdateText'),
 			LCHRecipeCallback: async function KOMReviewLauncherItemDebugForceUpdate () {
@@ -114,7 +121,7 @@ const mod = {
 					window.location.reload();
 				}, 1000);
 			},
-		});
+		}]);
 
 		if (mod._ValueStorageClient.connected) {
 			items.push(...[
@@ -946,6 +953,7 @@ import OLSKStorageWidget from 'OLSKStorageWidget';
 			KOMPlayDispatchDone={ mod.KOMPlayDispatchDone }
 			KOMPlayDispatchUpdate={ mod.KOMPlayDispatchUpdate }
 			KOMPlayDispatchFetch={ mod.KOMPlayDispatchFetch }
+			KOMPlaySimplifiedResponse={ mod._ValuePlaySimplifiedResponse }
 			/>
 	{/if}
 </div>
