@@ -88,17 +88,21 @@
 	color: rgba(0, 0, 0, 0.8);
 }
 
-.KOMPlayResponseCorrect {
+.KOMPlaySimplifiedResponseButtons .KOMPlayFlipButton {
+	height: var(--KOMPlayBodyButtonHeight) !important;
+}
+
+.KOMPlayResponseCorrect, .KOMPlayResponseSimple {
 	/* KOMPlayResponseCorrect:Parent */
 	display: flex;
 }
 
-.KOMPlayResponseCorrect button {
+.KOMPlayResponseCorrect button, .KOMPlayResponseSimple button {
 	/* KOMPlayResponseCorrect:Child */
 	flex-grow: 1;
 }
 
-.KOMPlayResponseButtonAgain {
+.KOMPlayResponseButtonAgain, .KOMPlayResponseButtonReset {
 	background: rgba(0, 0, 0, 0.11) !important;
 }
 
@@ -106,7 +110,7 @@
 	background: rgba(0, 0, 0, 0.08) !important;
 }
 
-.KOMPlayResponseButtonGood {
+.KOMPlayResponseButtonGood, .KOMPlayResponseButtonNext {
 	background: rgba(0, 0, 0, 0.05) !important;
 }
 

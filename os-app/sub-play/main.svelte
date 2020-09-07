@@ -426,7 +426,7 @@ OLSK_TESTING_BEHAVIOUR() ? mod.LifecycleModuleWillMount() : onMount(mod.Lifecycl
 	</div>
 </header>
 
-<div class="KOMPlayBody">
+<div class="KOMPlayBody" class:KOMPlaySimplifiedResponseButtons={ KOMPlaySimplifiedResponseButtons }>
 
 {#if mod._ValueState.KOMPlayStateCurrent }
 	<div class="KOMPlayCard OLSKLayoutElementTappable" on:click={ mod.InterfaceCardDidClick }>
