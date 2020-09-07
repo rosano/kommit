@@ -151,6 +151,7 @@ Counting the number of cards based on its state.
 :--- | ---
 | Create new deck | `AccessKey+n` |
 | `KOMReviewLauncherItemSelectDeckText` | Launcher |
+| `KOMReviewLauncherItemToggleSimplifiedResponseButtonsText` | Launcher |
 | `KOMReviewMasterLauncherItemToggleExcludeTripleQuestionMarkText` | Launcher |
 
 | Deck page ||

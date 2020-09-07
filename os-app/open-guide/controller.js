@@ -29,6 +29,7 @@ exports.OLSKControllerRoutes = function () {
 					KOMReviewDetailLauncherItemPlayUnseenText: res.locals.OLSKLocalized('KOMReviewDetailLauncherItemPlayUnseenText'),
 
 					KOMReviewLauncherItemSelectDeckText: res.locals.OLSKFormatted(res.locals.OLSKLocalized('KOMReviewLauncherItemSelectDeckTextFormat'), '…'),
+					KOMReviewLauncherItemToggleSimplifiedResponseButtonsText: res.locals.OLSKLocalized('KOMReviewLauncherItemToggleSimplifiedResponseButtonsText'),
 					KOMReviewMasterLauncherItemToggleExcludeTripleQuestionMarkText: res.locals.OLSKLocalized('KOMReviewMasterLauncherItemToggleExcludeTripleQuestionMarkText'),
 
 					KOMReviewLauncherItemSendLoginLinkText: res.locals.OLSKLocalized('KOMReviewLauncherItemSendLoginLinkText'),
