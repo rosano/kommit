@@ -26,7 +26,7 @@ Object.entries({
 	KOMReviewDetailFormIsForwardOnlyFieldLabel: '.KOMReviewDetailFormIsForwardOnlyFieldLabel',
 
 	KOMReviewDetailPlay: '.KOMReviewDetailPlay',
-	KOMReviewDetailPlayButtonSingle: '.KOMReviewDetailPlayButtonSingle',
+	KOMReviewDetailPlayButton: '.KOMReviewDetailPlayButton',
 
 	KOMReviewDetailNoSpacings: '.KOMReviewDetailNoSpacings',
 
@@ -196,8 +196,8 @@ describe('KOMReviewDetail_Access', function () {
 
 		context('reviewing', function test_reviewing() {
 
-			it('shows KOMReviewDetailPlayButtonSingle', function () {
-				browser.assert.elements(KOMReviewDetailPlayButtonSingle, 1);
+			it('shows KOMReviewDetailPlayButton', function () {
+				browser.assert.elements(KOMReviewDetailPlayButton, 1);
 			});
 
 			it('shows KOMReviewDetailLauncherItemPlayReviewing', function () {
@@ -222,8 +222,8 @@ describe('KOMReviewDetail_Access', function () {
 				});
 			});
 
-			it('shows KOMReviewDetailPlayButtonSingle', function () {
-				browser.assert.elements(KOMReviewDetailPlayButtonSingle, 1);
+			it('shows KOMReviewDetailPlayButton', function () {
+				browser.assert.elements(KOMReviewDetailPlayButton, 1);
 			});
 
 			it('hides KOMReviewDetailLauncherItemPlayReviewing', function () {
@@ -248,8 +248,8 @@ describe('KOMReviewDetail_Access', function () {
 				});
 			});
 
-			it('shows KOMReviewDetailPlayButtonSingle', function () {
-				browser.assert.elements(KOMReviewDetailPlayButtonSingle, 1);
+			it('shows KOMReviewDetailPlayButton', function () {
+				browser.assert.elements(KOMReviewDetailPlayButton, 1);
 			});
 
 			it('shows KOMReviewDetailLauncherItemPlayReviewing', function () {

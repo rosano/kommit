@@ -333,7 +333,7 @@ describe('KOMReview_Access', function () {
 		});
 
 		before(function () {
-			return browser.pressButton('.KOMReviewDetailPlayButtonSingle');
+			return browser.pressButton('.KOMReviewDetailPlayButton');
 		});
 
 		it('hides KOMReviewMaster', function () {

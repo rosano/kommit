@@ -8,7 +8,7 @@ KOMReviewDetailFormRearSpeechIsEnabledFieldLabelText: Read back
 KOMReviewDetailFormIsForwardOnlyFieldLabelText: Skip reversed cards
 KOMReviewDetailLauncherItemPlayReviewingText: Study review cards
 KOMReviewDetailLauncherItemPlayUnseenText: Study new cards
-KOMReviewDetailPlayButtonSingleText: Play
+KOMReviewDetailPlayButtonText: Play
 KOMReviewDetailNoSpacingsText: All cards for today have been reviewed.
 KOMReviewDetailStatisticsHeadingText: Statistics
 KOMReviewDetailDeckHeadingText: Deck

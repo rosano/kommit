@@ -105,7 +105,7 @@ describe('KOMReview_Misc', function () {
 		});
 
 		before(function () {
-			return browser.pressButton('.KOMReviewDetailPlayButtonSingle');
+			return browser.pressButton('.KOMReviewDetailPlayButton');
 		});
 
 		before(function () {
@@ -137,7 +137,7 @@ describe('KOMReview_Misc', function () {
 		});
 
 		before(function () {
-			return browser.pressButton('.KOMReviewDetailPlayButtonSingle');
+			return browser.pressButton('.KOMReviewDetailPlayButton');
 		});
 
 		it('persists responses', function () {
@@ -156,7 +156,7 @@ describe('KOMReview_Misc', function () {
 			});
 
 			before(function () {
-				return browser.pressButton('.KOMReviewDetailPlayButtonSingle');
+				return browser.pressButton('.KOMReviewDetailPlayButton');
 			});
 
 			it('sets KOMReviewDetailDispatchRecount', function () {

@@ -77,7 +77,7 @@ describe('KOMReview_Speed', function () {
 		});
 
 		it('loads data', function () {
-			browser.assert.elements('.KOMReviewDetailPlayButtonSingle', '1');
+			browser.assert.elements('.KOMReviewDetailPlayButton', '1');
 		});
 	
 	});
@@ -137,7 +137,7 @@ describe('KOMReview_Speed', function () {
 		});
 
 		before(function () {
-			return browser.pressButton('.KOMReviewDetailPlayButtonSingle');
+			return browser.pressButton('.KOMReviewDetailPlayButton');
 		});
 
 		it('responds quickly', function () {

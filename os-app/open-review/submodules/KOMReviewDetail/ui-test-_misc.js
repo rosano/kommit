@@ -441,7 +441,7 @@ describe('KOMReviewDetail_Misc', function () {
 
 	});
 
-	describe('KOMReviewDetailPlayButtonSingle', function test_KOMReviewDetailPlayButtonSingle() {
+	describe('KOMReviewDetailPlayButton', function test_KOMReviewDetailPlayButton() {
 
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
@@ -453,7 +453,7 @@ describe('KOMReviewDetail_Misc', function () {
 		});
 
 		it('sets accesskey', function () {
-			browser.assert.attribute(KOMReviewDetailPlayButtonSingle, 'accesskey', 'g');
+			browser.assert.attribute(KOMReviewDetailPlayButton, 'accesskey', 'g');
 		});
 
 		context('click', function () {
@@ -464,7 +464,7 @@ describe('KOMReviewDetail_Misc', function () {
 			});
 
 			before(function () {
-				return browser.pressButton(KOMReviewDetailPlayButtonSingle);
+				return browser.pressButton(KOMReviewDetailPlayButton);
 			});
 
 			it('sends KOMReviewDetailDispatchPlay', function () {

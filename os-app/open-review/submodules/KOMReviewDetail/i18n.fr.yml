@@ -8,7 +8,7 @@ KOMReviewDetailFormRearSpeechIsEnabledFieldLabelText: Lire le verso
 KOMReviewDetailFormIsForwardOnlyFieldLabelText: Ne pas activer la lecture des cartes inversées
 KOMReviewDetailLauncherItemPlayReviewingText: Étudier des cartes à réviser
 KOMReviewDetailLauncherItemPlayUnseenText: Étudier des nouvelles cartes
-KOMReviewDetailPlayButtonSingleText: Jouer
+KOMReviewDetailPlayButtonText: Jouer
 KOMReviewDetailNoSpacingsText: Toutes les cartes pour aujourd'hui ont été révisées.
 KOMReviewDetailStatisticsHeadingText: Statistiques
 KOMReviewDetailDeckHeadingText: Lot de cartes
