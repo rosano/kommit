@@ -5,14 +5,6 @@ const KOMSpacingModel = require('../_shared/KOMSpacing/model.js').default;
 const KOMSharedLogic = require('../_shared/KOMSharedLogic/main.js').default;
 
 const kTesting = {
-	uDeck() {
-		return {
-			KOMDeckID: 'alfa',
-			KOMDeckName: '',
-			KOMDeckCreationDate: new Date('2019-02-23T13:56:36Z'),
-			KOMDeckModificationDate: new Date('2019-02-23T13:56:36Z'),
-		};
-	},
 	uSpacings(inputData) {
 		return KOMPlayLogic._KOMPlaySortShuffle(Array.from(new Array(inputData)).map(function (e, i) {
 			return {
@@ -45,7 +37,7 @@ describe('KOMPlay_Misc', function () {
 	before(function () {
 		return browser.OLSKVisit(kDefaultRoute, {
 			KOMPlaySpacings: JSON.stringify(items),
-			KOMPlayDeck: JSON.stringify(kTesting.uDeck()),
+			KOMPlayDeck: JSON.stringify(StubDeckObjectValid()),
 		});
 	});
 
@@ -386,7 +378,7 @@ describe('KOMPlay_Misc', function () {
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMPlaySpacings: JSON.stringify(items),
-				KOMPlayDeck: JSON.stringify(kTesting.uDeck()),
+				KOMPlayDeck: JSON.stringify(StubDeckObjectValid()),
 			});
 		});
 
@@ -595,7 +587,7 @@ describe('KOMPlay_Misc', function () {
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMPlaySpacings: JSON.stringify(items),
-				KOMPlayDeck: JSON.stringify(kTesting.uDeck()),
+				KOMPlayDeck: JSON.stringify(StubDeckObjectValid()),
 			});
 		});
 
@@ -628,7 +620,7 @@ describe('KOMPlay_Misc', function () {
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMPlaySpacings: JSON.stringify(items),
-				KOMPlayDeck: JSON.stringify(kTesting.uDeck()),
+				KOMPlayDeck: JSON.stringify(StubDeckObjectValid()),
 			});
 		});
 
@@ -675,7 +667,7 @@ describe('KOMPlay_Misc', function () {
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMPlaySpacings: JSON.stringify(kTesting.uSpacings(1)),
-				KOMPlayDeck: JSON.stringify(kTesting.uDeck()),
+				KOMPlayDeck: JSON.stringify(StubDeckObjectValid()),
 			});
 		});
 
@@ -704,7 +696,7 @@ describe('KOMPlay_Misc', function () {
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMPlaySpacings: JSON.stringify(items),
-				KOMPlayDeck: JSON.stringify(kTesting.uDeck()),
+				KOMPlayDeck: JSON.stringify(StubDeckObjectValid()),
 			});
 		});
 
@@ -761,7 +753,7 @@ describe('KOMPlay_Misc', function () {
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMPlaySpacings: JSON.stringify(items),
-				KOMPlayDeck: JSON.stringify(kTesting.uDeck()),
+				KOMPlayDeck: JSON.stringify(StubDeckObjectValid()),
 			});
 		});
 
@@ -847,7 +839,7 @@ describe('KOMPlay_Misc', function () {
 			} : {});
 		});
 
-		const deck = Object.assign(kTesting.uDeck(), {
+		const deck = StubDeckObjectValid({
 			KOMDeckFrontSpeechIsEnabled: true,
 			KOMDeckFrontLanguageCode: 'en',
 		});
@@ -1025,7 +1017,7 @@ describe('KOMPlay_Misc', function () {
 			} : {});
 		});
 
-		const deck = Object.assign(kTesting.uDeck(), {
+		const deck = StubDeckObjectValid({
 			KOMDeckRearSpeechIsEnabled: true,
 			KOMDeckRearLanguageCode: 'en',
 		});
@@ -1155,7 +1147,7 @@ describe('KOMPlay_Misc', function () {
 			} : {});
 		});
 
-		const deck = Object.assign(kTesting.uDeck(), {
+		const deck = StubDeckObjectValid({
 			KOMDeckAudioIsEnabled: true,
 			KOMDeckFrontSpeechIsEnabled: true,
 			KOMDeckFrontLanguageCode: 'en',
@@ -1294,7 +1286,7 @@ describe('KOMPlay_Misc', function () {
 			} : {});
 		});
 
-		const deck = Object.assign(kTesting.uDeck(), {
+		const deck = StubDeckObjectValid({
 			KOMDeckAudioIsEnabled: true,
 			KOMDeckRearSpeechIsEnabled: true,
 			KOMDeckRearLanguageCode: 'en',
