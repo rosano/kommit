@@ -922,7 +922,6 @@ import OLSKStorageWidget from 'OLSKStorageWidget';
 			KOMReviewDetailDispatchRecount={ mod.KOMReviewDetailDispatchRecount }
 			KOMReviewDetailDispatchBrowse={ mod.KOMReviewDetailDispatchBrowse }
 			KOMReviewDetailDispatchPlay={ mod.KOMReviewDetailDispatchPlay }
-			KOMReviewDetailPlaySingle={ true }
 			bind:this={ mod._KOMReviewDetail }
 			/>
 	{/if}

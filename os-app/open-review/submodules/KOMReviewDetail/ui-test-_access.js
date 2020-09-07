@@ -26,9 +26,6 @@ Object.entries({
 	KOMReviewDetailFormIsForwardOnlyFieldLabel: '.KOMReviewDetailFormIsForwardOnlyFieldLabel',
 
 	KOMReviewDetailPlay: '.KOMReviewDetailPlay',
-	KOMReviewDetailPlayButtonReviewing: '.KOMReviewDetailPlayButtonReviewing',
-	KOMReviewDetailPlayButtonUnseen: '.KOMReviewDetailPlayButtonUnseen',
-	KOMReviewDetailPlayButtonMixed: '.KOMReviewDetailPlayButtonMixed',
 	KOMReviewDetailPlayButtonSingle: '.KOMReviewDetailPlayButtonSingle',
 
 	KOMReviewDetailNoSpacings: '.KOMReviewDetailNoSpacings',
@@ -199,16 +196,8 @@ describe('KOMReviewDetail_Access', function () {
 
 		context('reviewing', function test_reviewing() {
 
-			it('shows KOMReviewDetailPlayButtonReviewing', function () {
-				browser.assert.elements(KOMReviewDetailPlayButtonReviewing, 1);
-			});
-
-			it('hides KOMReviewDetailPlayButtonUnseen', function () {
-				browser.assert.elements(KOMReviewDetailPlayButtonUnseen, 0);
-			});
-
-			it('hides KOMReviewDetailPlayButtonMixed', function () {
-				browser.assert.elements(KOMReviewDetailPlayButtonMixed, 0);
+			it('shows KOMReviewDetailPlayButtonSingle', function () {
+				browser.assert.elements(KOMReviewDetailPlayButtonSingle, 1);
 			});
 
 			it('shows KOMReviewDetailLauncherItemPlayReviewing', function () {
@@ -233,16 +222,8 @@ describe('KOMReviewDetail_Access', function () {
 				});
 			});
 
-			it('hides KOMReviewDetailPlayButtonReviewing', function () {
-				browser.assert.elements(KOMReviewDetailPlayButtonReviewing, 0);
-			});
-
-			it('shows KOMReviewDetailPlayButtonUnseen', function () {
-				browser.assert.elements(KOMReviewDetailPlayButtonUnseen, 1);
-			});
-
-			it('hides KOMReviewDetailPlayButtonMixed', function () {
-				browser.assert.elements(KOMReviewDetailPlayButtonMixed, 0);
+			it('shows KOMReviewDetailPlayButtonSingle', function () {
+				browser.assert.elements(KOMReviewDetailPlayButtonSingle, 1);
 			});
 
 			it('hides KOMReviewDetailLauncherItemPlayReviewing', function () {
@@ -265,53 +246,6 @@ describe('KOMReviewDetail_Access', function () {
 						$KOMDeckTodayStudiedCount: 0,
 					})),
 				});
-			});
-
-			it('shows KOMReviewDetailPlayButtonReviewing', function () {
-				browser.assert.elements(KOMReviewDetailPlayButtonReviewing, 1);
-			});
-
-			it('shows KOMReviewDetailPlayButtonUnseen', function () {
-				browser.assert.elements(KOMReviewDetailPlayButtonUnseen, 1);
-			});
-
-			it('shows KOMReviewDetailPlayButtonMixed', function () {
-				browser.assert.elements(KOMReviewDetailPlayButtonMixed, 1);
-			});
-
-			it('shows KOMReviewDetailLauncherItemPlayReviewing', function () {
-				return browser.assert.OLSKLauncherItems('KOMReviewDetailLauncherItemPlayReviewing', 1);
-			});
-
-			it('shows KOMReviewDetailLauncherItemPlayUnseen', function () {
-				return browser.assert.OLSKLauncherItems('KOMReviewDetailLauncherItemPlayUnseen', 1);
-			});
-
-		});
-
-		context('single', function test_single() {
-
-			before(function () {
-				return browser.OLSKVisit(kDefaultRoute, {
-					KOMReviewDetailDeck: JSON.stringify(uDeck({
-						$KOMDeckTodayReviewCount: 1,
-						$KOMDeckTodayUnseenCount: 1,
-						$KOMDeckTodayStudiedCount: 0,
-					})),
-					KOMReviewDetailPlaySingle: true,
-				});
-			});
-
-			it('hides KOMReviewDetailPlayButtonReviewing', function () {
-				browser.assert.elements(KOMReviewDetailPlayButtonReviewing, 0);
-			});
-
-			it('hides KOMReviewDetailPlayButtonUnseen', function () {
-				browser.assert.elements(KOMReviewDetailPlayButtonUnseen, 0);
-			});
-
-			it('hides KOMReviewDetailPlayButtonMixed', function () {
-				browser.assert.elements(KOMReviewDetailPlayButtonMixed, 0);
 			});
 
 			it('shows KOMReviewDetailPlayButtonSingle', function () {

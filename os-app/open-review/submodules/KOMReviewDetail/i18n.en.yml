@@ -6,9 +6,8 @@ KOMReviewDetailFormAudioIsEnabledFieldLabelText: Play audio
 KOMReviewDetailFormFrontSpeechIsEnabledFieldLabelText: Read front
 KOMReviewDetailFormRearSpeechIsEnabledFieldLabelText: Read back
 KOMReviewDetailFormIsForwardOnlyFieldLabelText: Skip reversed cards
-KOMReviewDetailPlayButtonReviewingText: Study review cards
-KOMReviewDetailPlayButtonUnseenText: Study new cards
-KOMReviewDetailPlayButtonMixedText: Study all cards
+KOMReviewDetailLauncherItemPlayReviewingText: Study review cards
+KOMReviewDetailLauncherItemPlayUnseenText: Study new cards
 KOMReviewDetailPlayButtonSingleText: Play
 KOMReviewDetailNoSpacingsText: All cards for today have been reviewed.
 KOMReviewDetailStatisticsHeadingText: Statistics

@@ -441,7 +441,7 @@ describe('KOMReviewDetail_Misc', function () {
 
 	});
 
-	describe('KOMReviewDetailPlayButtonReviewing', function test_KOMReviewDetailPlayButtonReviewing() {
+	describe('KOMReviewDetailPlayButtonSingle', function test_KOMReviewDetailPlayButtonSingle() {
 
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
@@ -449,110 +449,6 @@ describe('KOMReviewDetail_Misc', function () {
 					$KOMDeckTodayReviewCount: 1,
 					$KOMDeckTodayUnseenCount: 1,
 				})),
-			});
-		});
-
-		context('click', function () {
-
-			before(function () {
-				browser.assert.text('#TestKOMReviewDetailDispatchPlay', '0');
-				browser.assert.text('#TestKOMReviewDetailDispatchPlayData', 'undefined');
-			});
-
-			before(function () {
-				return browser.pressButton(KOMReviewDetailPlayButtonReviewing);
-			});
-
-			it('sends KOMReviewDetailDispatchPlay', function () {
-				browser.assert.text('#TestKOMReviewDetailDispatchPlay', '1');
-				browser.assert.text('#TestKOMReviewDetailDispatchPlayData', JSON.stringify({
-					KOMReviewScheme: KOMReviewLogic.KOMReviewSchemeReviewing(),
-				}));
-			});
-
-		});
-
-	});
-
-	describe('KOMReviewDetailLauncherItemPlayReviewing', function test_KOMReviewDetailLauncherItemPlayReviewing() {
-
-		before(function () {
-			return browser.OLSKLauncherRun('KOMReviewDetailLauncherItemPlayReviewing');
-		});
-
-		it('sends KOMReviewDetailDispatchPlay', function () {
-			browser.assert.text('#TestKOMReviewDetailDispatchPlay', '2');
-			browser.assert.text('#TestKOMReviewDetailDispatchPlayData', JSON.stringify({
-				KOMReviewScheme: KOMReviewLogic.KOMReviewSchemeReviewing(),
-			}));
-		});
-
-	});
-
-	describe('KOMReviewDetailPlayButtonUnseen', function test_KOMReviewDetailPlayButtonUnseen() {
-
-		context('click', function () {
-
-			before(function () {
-				return browser.pressButton(KOMReviewDetailPlayButtonUnseen);
-			});
-
-			it('sends KOMReviewDetailDispatchPlay', function () {
-				browser.assert.text('#TestKOMReviewDetailDispatchPlay', '3');
-				browser.assert.text('#TestKOMReviewDetailDispatchPlayData', JSON.stringify({
-					KOMReviewScheme: KOMReviewLogic.KOMReviewSchemeUnseen(),
-					KOMReviewMaxUnseenCards: 10,
-				}));
-			});
-
-		});
-
-	});
-
-	describe('KOMReviewDetailLauncherItemPlayUnseen', function test_KOMReviewDetailLauncherItemPlayUnseen() {
-
-		before(function () {
-			return browser.OLSKLauncherRun('KOMReviewDetailLauncherItemPlayUnseen');
-		});
-
-		it('sends KOMReviewDetailDispatchPlay', function () {
-			browser.assert.text('#TestKOMReviewDetailDispatchPlay', '4');
-			browser.assert.text('#TestKOMReviewDetailDispatchPlayData', JSON.stringify({
-				KOMReviewScheme: KOMReviewLogic.KOMReviewSchemeUnseen(),
-				KOMReviewMaxUnseenCards: 10,
-			}));
-		});
-
-	});
-
-	describe('KOMReviewDetailPlayButtonMixed', function test_KOMReviewDetailPlayButtonMixed() {
-
-		context('click', function () {
-
-			before(function () {
-				return browser.pressButton(KOMReviewDetailPlayButtonMixed);
-			});
-
-			it('sends KOMReviewDetailDispatchPlay', function () {
-				browser.assert.text('#TestKOMReviewDetailDispatchPlay', '5');
-				browser.assert.text('#TestKOMReviewDetailDispatchPlayData', JSON.stringify({
-					KOMReviewScheme: KOMReviewLogic.KOMReviewSchemeMixed(),
-					KOMReviewMaxUnseenCards: 10,
-				}));
-			});
-
-		});
-
-	});
-
-	describe('KOMReviewDetailPlayButtonSingle', function test_KOMReviewDetailPlayButtonSingle() {
-
-		before(function () {
-			return browser.OLSKVisit(kDefaultRoute, {
-				KOMReviewDetailDeck: JSON.stringify(uDeck({
-					$KOMDeckTodayReviewCount: 1,
-				})),
-				KOMReviewDetailPlaySingle: true,
 			});
 		});
 
@@ -579,6 +475,37 @@ describe('KOMReviewDetail_Misc', function () {
 				}));
 			});
 
+		});
+
+	});
+
+	describe('KOMReviewDetailLauncherItemPlayReviewing', function test_KOMReviewDetailLauncherItemPlayReviewing() {
+
+		before(function () {
+			return browser.OLSKLauncherRun('KOMReviewDetailLauncherItemPlayReviewing');
+		});
+
+		it('sends KOMReviewDetailDispatchPlay', function () {
+			browser.assert.text('#TestKOMReviewDetailDispatchPlay', '2');
+			browser.assert.text('#TestKOMReviewDetailDispatchPlayData', JSON.stringify({
+				KOMReviewScheme: KOMReviewLogic.KOMReviewSchemeReviewing(),
+			}));
+		});
+
+	});
+
+	describe('KOMReviewDetailLauncherItemPlayUnseen', function test_KOMReviewDetailLauncherItemPlayUnseen() {
+
+		before(function () {
+			return browser.OLSKLauncherRun('KOMReviewDetailLauncherItemPlayUnseen');
+		});
+
+		it('sends KOMReviewDetailDispatchPlay', function () {
+			browser.assert.text('#TestKOMReviewDetailDispatchPlay', '3');
+			browser.assert.text('#TestKOMReviewDetailDispatchPlayData', JSON.stringify({
+				KOMReviewScheme: KOMReviewLogic.KOMReviewSchemeUnseen(),
+				KOMReviewMaxUnseenCards: 10,
+			}));
 		});
 
 	});

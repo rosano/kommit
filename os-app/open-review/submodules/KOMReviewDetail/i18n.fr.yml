@@ -6,9 +6,8 @@ KOMReviewDetailFormAudioIsEnabledFieldLabelText: Faire entendre la version audio
 KOMReviewDetailFormFrontSpeechIsEnabledFieldLabelText: Lire le recto
 KOMReviewDetailFormRearSpeechIsEnabledFieldLabelText: Lire le verso
 KOMReviewDetailFormIsForwardOnlyFieldLabelText: Ne pas activer la lecture des cartes inversées
-KOMReviewDetailPlayButtonReviewingText: Étudier des cartes à réviser
-KOMReviewDetailPlayButtonUnseenText: Étudier des nouvelles cartes
-KOMReviewDetailPlayButtonMixedText: Étudier toutes les cartes
+KOMReviewDetailLauncherItemPlayReviewingText: Étudier des cartes à réviser
+KOMReviewDetailLauncherItemPlayUnseenText: Étudier des nouvelles cartes
 KOMReviewDetailPlayButtonSingleText: Jouer
 KOMReviewDetailNoSpacingsText: Toutes les cartes pour aujourd'hui ont été révisées.
 KOMReviewDetailStatisticsHeadingText: Statistiques

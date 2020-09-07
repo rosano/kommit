@@ -158,8 +158,8 @@ Counting the number of cards based on its state.
 | Show cards | `AccessKey+c` |
 | Play memory game | `AccessKey+g` |
 | Close | `Escape` |
-| `KOMReviewDetailPlayButtonReviewingText` | Launcher |
-| `KOMReviewDetailPlayButtonUnseenText` | Launcher |
+| `KOMReviewDetailLauncherItemPlayReviewingText` | Launcher |
+| `KOMReviewDetailLauncherItemPlayUnseenText` | Launcher |
 
 | Memory game ||
 :--- | ---

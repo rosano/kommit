@@ -103,51 +103,20 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 						$KOMDeckTodayReviewCount: 1,
 						$KOMDeckTodayUnseenCount: 1,
 						$KOMDeckTodayStudiedCount: 0,
-						$KOMReviewChartCompositionCollectionData: {
-							KOMSpacingGroupingTotal: 1,
-						},
 					})),
-				});
-			});
-
-			it('localizes KOMReviewDetailPlayButtonReviewing', function () {
-				browser.assert.text(KOMReviewDetailPlayButtonReviewing, uLocalized('KOMReviewDetailPlayButtonReviewingText'));
-			});
-
-			it('localizes KOMReviewDetailLauncherItemPlayReviewing', function () {
-				return browser.assert.OLSKLauncherItemText('KOMReviewDetailLauncherItemPlayReviewing', uLocalized('KOMReviewDetailPlayButtonReviewingText'));
-			});
-
-			it('localizes KOMReviewDetailLauncherItemPlayUnseen', function () {
-				return browser.assert.OLSKLauncherItemText('KOMReviewDetailLauncherItemPlayUnseen', uLocalized('KOMReviewDetailPlayButtonUnseenText'));
-			});
-
-			it('localizes KOMReviewDetailPlayButtonUnseen', function () {
-				browser.assert.text(KOMReviewDetailPlayButtonUnseen, uLocalized('KOMReviewDetailPlayButtonUnseenText'));
-			});
-
-			it('localizes KOMReviewDetailPlayButtonMixed', function () {
-				browser.assert.text(KOMReviewDetailPlayButtonMixed, uLocalized('KOMReviewDetailPlayButtonMixedText'));
-			});
-
-		});
-
-		context('single', function test_single() {
-
-			before(function () {
-				return browser.OLSKVisit(kDefaultRoute, {
-					OLSKRoutingLanguage: languageCode,
-					KOMReviewDetailDeck: JSON.stringify(uDeck({
-						$KOMDeckTodayReviewCount: 1,
-						$KOMDeckTodayUnseenCount: 1,
-						$KOMDeckTodayStudiedCount: 0,
-					})),
-					KOMReviewDetailPlaySingle: true,
 				});
 			});
 
 			it('localizes KOMReviewDetailPlayButtonSingle', function () {
 				browser.assert.text(KOMReviewDetailPlayButtonSingle, uLocalized('KOMReviewDetailPlayButtonSingleText'));
+			});
+
+			it('localizes KOMReviewDetailLauncherItemPlayReviewing', function () {
+				return browser.assert.OLSKLauncherItemText('KOMReviewDetailLauncherItemPlayReviewing', uLocalized('KOMReviewDetailLauncherItemPlayReviewingText'));
+			});
+
+			it('localizes KOMReviewDetailLauncherItemPlayUnseen', function () {
+				return browser.assert.OLSKLauncherItemText('KOMReviewDetailLauncherItemPlayUnseen', uLocalized('KOMReviewDetailLauncherItemPlayUnseenText'));
 			});
 
 		});
