@@ -185,7 +185,7 @@ Counting the number of cards based on its state.
 
 | Global ||
 :--- | ---
-| `KOMReviewLauncherItemSendLoginLinkText` | Launcher |
+| `OLSKRemoteStorageLauncherItemCopyLoginLinkText` | Launcher |
 | `KOMReviewLauncherItemDebugForceUpdateText` | Launcher |
 | `KOMReviewLauncherItemDebugFlushDataText` | Launcher |
 | Launcher | `Alt+Enter` |

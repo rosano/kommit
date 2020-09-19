@@ -126,24 +126,6 @@ const mod = {
 		if (mod._ValueStorageClient.connected) {
 			items.push(...[
 				{
-					LCHRecipeSignature: 'KOMReviewLauncherItemSendLoginLink',
-					LCHRecipeName: OLSKLocalized('KOMReviewLauncherItemSendLoginLinkText'),
-					LCHRecipeCallback: function KOMReviewLauncherItemSendLoginLink () {
-						const link = `${ window.location.href }#remotestorage=${ mod._ValueStorageClient.remote.userAddress }&access_token=${ mod._ValueStorageClient.remote.token }`.replace(/#+/g, '#')
-						
-						const url = `mailto:?subject=${ OLSKLocalized('KOMReviewLauncherItemSendLoginLinkSubject') }&body=${ encodeURIComponent(link) }`;
-
-						if (OLSK_TESTING_BEHAVIOUR() && window.FakeOLSKConnected) {
-							window.FakeWindowLocationHref = url;
-							return;
-						}
-
-						// window.location.href = url;
-
-						return this.api.LCHCopyToClipboard(link);
-					},
-				},
-				{
 					LCHRecipeSignature: 'KOMReviewLauncherItemDebugPlungeData',
 					LCHRecipeName: OLSKLocalized('KOMReviewLauncherItemDebugPlungeDataText'),
 					LCHRecipeCallback: async function KOMReviewLauncherItemDebugPlungeData () {
@@ -189,6 +171,8 @@ const mod = {
 				},
 				]);
 		}
+
+		items.push(...OLSKRemoteStorage.OLSKRemoteStorageRecipes(window, mod._ValueStorageClient, OLSKLocalized, OLSK_TESTING_BEHAVIOUR()));
 
 		if (mod._KOMReviewMaster) {
 			items.push(...mod._KOMReviewMaster.modPublic.KOMReviewMasterRecipes());

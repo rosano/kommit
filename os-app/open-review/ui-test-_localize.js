@@ -128,10 +128,6 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 				return browser.OLSKLauncherRun('FakeOLSKConnected');
 			});
 
-			it('localizes KOMReviewLauncherItemSendLoginLink', function () {
-				return browser.assert.OLSKLauncherItemText('KOMReviewLauncherItemSendLoginLink', uLocalized('KOMReviewLauncherItemSendLoginLinkText'));
-			});
-
 			it('localizes KOMReviewLauncherItemDebugPlungeData', function () {
 				return browser.assert.OLSKLauncherItemText('KOMReviewLauncherItemDebugPlungeData', uLocalized('KOMReviewLauncherItemDebugPlungeDataText'));
 			});

@@ -60,16 +60,16 @@ describe('KOMReview_Access', function () {
 		browser.assert.elements('.KOMPlay', 0);
 	});
 
-	it('show KOMReviewLauncherItemToggleSimplifiedResponseButtons', function () {
+	it('shows KOMReviewLauncherItemToggleSimplifiedResponseButtons', function () {
 		return browser.assert.OLSKLauncherItems('KOMReviewLauncherItemToggleSimplifiedResponseButtons', 1);
+	});
+
+	it('shows OLSKRemoteStorageLauncherFakeItemProxy', function () {
+		return browser.assert.OLSKLauncherItems('OLSKRemoteStorageLauncherFakeItemProxy', 1);
 	});
 
 	it('hides KOMReviewLauncherItemSelectDeck', function () {
 		return browser.assert.OLSKLauncherItems('KOMReviewLauncherItemSelectDeck', 0);
-	});
-
-	it('hides KOMReviewLauncherItemSendLoginLink', function () {
-		return browser.assert.OLSKLauncherItems('KOMReviewLauncherItemSendLoginLink', 0);
 	});
 
 	it('hides KOMReviewLauncherItemDebugPlungeData', function () {
@@ -418,10 +418,6 @@ describe('KOMReview_Access', function () {
 
 		before(function () {
 			return browser.OLSKLauncherRun('FakeOLSKConnected');
-		});
-
-		it('shows KOMReviewLauncherItemSendLoginLink', function () {
-			return browser.assert.OLSKLauncherItems('KOMReviewLauncherItemSendLoginLink', 1);
 		});
 
 		it('shows KOMReviewLauncherItemDebugPlungeData', function () {
