@@ -10,6 +10,8 @@ const OLSKFormatted = OLSKString.OLSKStringWithFormat;
 import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting'
 import * as OLSKRemoteStoragePackage from '../_shared/__external/OLSKRemoteStorage/main.js'
 const OLSKRemoteStorage = OLSKRemoteStoragePackage.default || OLSKRemoteStoragePackage;
+import * as OLSKServiceWorkerPackage from '../_shared/__external/OLSKServiceWorker/main.js'
+const OLSKServiceWorker = OLSKServiceWorkerPackage.default || OLSKServiceWorkerPackage;
 import KOM_Data from '../_shared/KOM_Data/main.js';
 import KOMDeckStorage from '../_shared/KOMDeck/storage.js';
 import KOMCardStorage from '../_shared/KOMCard/storage.js';
@@ -86,6 +88,12 @@ const mod = {
 		});
 	},
 
+	DataNavigator () {
+		return navigator.serviceWorker ? navigator : {
+			serviceWorker: {},
+		};
+	},
+
 	DataRecipes () {
 		const items = mod._ValueDecksAll.filter(function (e) {
 			return e !== mod._ValueDeckSelected;
@@ -102,24 +110,6 @@ const mod = {
 			LCHRecipeName: OLSKLocalized('KOMReviewLauncherItemToggleSimplifiedResponseButtonsText'),
 			LCHRecipeCallback: async function KOMReviewLauncherItemToggleSimplifiedResponseButtons () {
 				mod._ValuePlaySimplifiedResponseButtons = !mod._ValuePlaySimplifiedResponseButtons;
-			},
-		}, {
-			LCHRecipeSignature: 'KOMReviewLauncherItemDebugForceUpdate',
-			LCHRecipeName: OLSKLocalized('KOMReviewLauncherItemDebugForceUpdateText'),
-			LCHRecipeCallback: async function KOMReviewLauncherItemDebugForceUpdate () {
-				const item = await navigator.serviceWorker.getRegistration();
-
-				if (item.waiting) {
-					return item.waiting.postMessage({
-						action: 'skipWaiting',
-					});
-				}
-
-				navigator.serviceWorker.controller.postMessage('OLSKServiceWorkerClearVersionCacheMessage');
-
-				setTimeout(function () {
-					window.location.reload();
-				}, 1000);
 			},
 		}]);
 
@@ -151,6 +141,7 @@ const mod = {
 		}
 
 		items.push(...OLSKRemoteStorage.OLSKRemoteStorageRecipes(window, mod._ValueStorageClient, OLSKLocalized, OLSK_TESTING_BEHAVIOUR()));
+		items.push(...OLSKServiceWorker.OLSKServiceWorkerRecipes(window, mod.DataNavigator(), OLSKLocalized, OLSK_TESTING_BEHAVIOUR()));
 
 		if (mod._KOMReviewMaster) {
 			items.push(...mod._KOMReviewMaster.modPublic.KOMReviewMasterRecipes());
@@ -864,7 +855,7 @@ import KOMReviewDetail from './submodules/KOMReviewDetail/main.svelte';
 import KOMBrowse from '../sub-browse/main.svelte';
 import KOMPlay from '../sub-play/main.svelte';
 import OLSKAppToolbar from 'OLSKAppToolbar';
-import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svelte';
+import OLSKServiceWorkerView from '../_shared/__external/OLSKServiceWorker/main.svelte';
 import OLSKStorageWidget from 'OLSKStorageWidget';
 </script>
 
@@ -950,7 +941,7 @@ import OLSKStorageWidget from 'OLSKStorageWidget';
 </div>
 
 {#if !OLSK_TESTING_BEHAVIOUR()}
-	<OLSKServiceWorker OLSKServiceWorkerRegistrationRoute={ window.OLSKCanonicalFor('KOMServiceWorkerRoute') } />
+	<OLSKServiceWorkerView OLSKServiceWorkerRegistrationRoute={ window.OLSKCanonicalFor('KOMServiceWorkerRoute') } />
 {/if}
 
 <style src="./ui-style.css"></style>

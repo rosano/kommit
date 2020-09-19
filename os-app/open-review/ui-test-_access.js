@@ -68,16 +68,16 @@ describe('KOMReview_Access', function () {
 		return browser.assert.OLSKLauncherItems('OLSKRemoteStorageLauncherFakeItemProxy', 1);
 	});
 
+	it('shows OLSKServiceWorkerLauncherFakeItemProxy', function () {
+		return browser.assert.OLSKLauncherItems('OLSKServiceWorkerLauncherFakeItemProxy', 1);
+	});
+
 	it('hides KOMReviewLauncherItemSelectDeck', function () {
 		return browser.assert.OLSKLauncherItems('KOMReviewLauncherItemSelectDeck', 0);
 	});
 
 	it('hides KOMReviewLauncherItemDebugPlungeData', function () {
 		return browser.assert.OLSKLauncherItems('KOMReviewLauncherItemDebugPlungeData', 0);
-	});
-
-	it('shows KOMReviewLauncherItemDebugForceUpdate', function () {
-		return browser.assert.OLSKLauncherItems('KOMReviewLauncherItemDebugForceUpdate', 1);
 	});
 
 	it('shows KOMReviewMasterLauncherFakeItemProxy', function () {

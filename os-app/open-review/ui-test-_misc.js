@@ -312,18 +312,4 @@ describe('KOMReview_Misc', function () {
 
 	});
 
-	describe('KOMReviewLauncherItemDebugForceUpdate', function test_KOMReviewLauncherItemDebugForceUpdate() {
-
-		before(function () {
-			return browser.OLSKLauncherRun('KOMReviewLauncherItemDebugForceUpdate');
-		});
-
-		it.skip('update service worker registration', function () {});
-
-		it.skip('reloads page', function () {
-			browser.assert.evaluate('window.FakeWindowLocationHref', 'reload');
-		});
-
-	});
-
 });

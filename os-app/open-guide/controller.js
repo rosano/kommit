@@ -33,7 +33,7 @@ exports.OLSKControllerRoutes = function () {
 					KOMReviewMasterLauncherItemToggleExcludeTripleQuestionMarkText: res.locals.OLSKLocalized('KOMReviewMasterLauncherItemToggleExcludeTripleQuestionMarkText'),
 
 					OLSKRemoteStorageLauncherItemCopyLoginLinkText: res.locals.OLSKLocalized('OLSKRemoteStorageLauncherItemCopyLoginLinkText'),
-					KOMReviewLauncherItemDebugForceUpdateText: res.locals.OLSKLocalized('KOMReviewLauncherItemDebugForceUpdateText'),
+					OLSKServiceWorkerLauncherItemDebugForceUpdateText: res.locals.OLSKLocalized('OLSKServiceWorkerLauncherItemDebugForceUpdateText'),
 					OLSKRemoteStorageLauncherItemDebugFlushDataText: res.locals.OLSKLocalized('OLSKRemoteStorageLauncherItemDebugFlushDataText'),
 					
 					KOMBrowseInfoLauncherItemToggleSuspendText: res.locals.OLSKLocalized('KOMBrowseInfoLauncherItemToggleSuspendText'),

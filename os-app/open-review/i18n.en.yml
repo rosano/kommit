@@ -3,6 +3,5 @@ KOMReviewStorageImportErrorNotFilledAlertText: Input not filled
 KOMReviewStorageImportErrorNotValidAlertText: Input invalid
 KOMReviewLauncherItemSelectDeckTextFormat: Select deck '%@'
 KOMReviewLauncherItemToggleSimplifiedResponseButtonsText: Toggle simplified response buttons
-KOMReviewLauncherItemDebugForceUpdateText: Force update
 KOMReviewLauncherItemDebugPlungeDataText: Plunge data
 KOMReviewLauncherItemDebugPlungeDataConfirmText: Are you sure?

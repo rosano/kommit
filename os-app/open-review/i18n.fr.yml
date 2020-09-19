@@ -3,6 +3,5 @@ KOMReviewStorageImportErrorNotFilledAlertText: Entrée non remplie
 KOMReviewStorageImportErrorNotValidAlertText: Entrée non valide
 KOMReviewLauncherItemSelectDeckTextFormat: Choisir lot de cartes '%@'
 KOMReviewLauncherItemToggleSimplifiedResponseButtonsText: Commuter les boutons de réponse simplifiés
-KOMReviewLauncherItemDebugForceUpdateText: Forcer mis à jour
 KOMReviewLauncherItemDebugPlungeDataText: Ventouser les données
 KOMReviewLauncherItemDebugPlungeDataConfirmText: Êtes-vous sûr.e?
