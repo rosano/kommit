@@ -187,7 +187,7 @@ Counting the number of cards based on its state.
 :--- | ---
 | `OLSKRemoteStorageLauncherItemCopyLoginLinkText` | Launcher |
 | `KOMReviewLauncherItemDebugForceUpdateText` | Launcher |
-| `KOMReviewLauncherItemDebugFlushDataText` | Launcher |
+| `OLSKRemoteStorageLauncherItemDebugFlushDataText` | Launcher |
 | Launcher | `Alt+Enter` |
 
 # What is remoteStorage?

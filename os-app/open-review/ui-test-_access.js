@@ -76,10 +76,6 @@ describe('KOMReview_Access', function () {
 		return browser.assert.OLSKLauncherItems('KOMReviewLauncherItemDebugPlungeData', 0);
 	});
 
-	it('hides KOMReviewLauncherItemDebugFlushData', function () {
-		return browser.assert.OLSKLauncherItems('KOMReviewLauncherItemDebugFlushData', 0);
-	});
-
 	it('shows KOMReviewLauncherItemDebugForceUpdate', function () {
 		return browser.assert.OLSKLauncherItems('KOMReviewLauncherItemDebugForceUpdate', 1);
 	});
@@ -422,10 +418,6 @@ describe('KOMReview_Access', function () {
 
 		it('shows KOMReviewLauncherItemDebugPlungeData', function () {
 			return browser.assert.OLSKLauncherItems('KOMReviewLauncherItemDebugPlungeData', 1);
-		});
-
-		it('shows KOMReviewLauncherItemDebugFlushData', function () {
-			return browser.assert.OLSKLauncherItems('KOMReviewLauncherItemDebugFlushData', 1);
 		});
 
 	});
