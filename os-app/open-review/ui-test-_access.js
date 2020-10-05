@@ -36,6 +36,10 @@ describe('KOMReview_Access', function () {
 		browser.assert.elements('.KOMBrowseInfo', 0);
 	});
 
+	it('hides KOMPlay', function () {
+		browser.assert.elements('.KOMPlay', 0);
+	});
+
 	it('shows KOMReviewViewportFooter', function () {
 		browser.assert.elements(KOMReviewViewportFooter, 1);
 	});
@@ -54,10 +58,6 @@ describe('KOMReview_Access', function () {
 
 	it('shows OLSKAppToolbarLauncherButton', function () {
 		browser.assert.elements('.OLSKAppToolbarLauncherButton', 1);
-	});
-
-	it('hides KOMPlay', function () {
-		browser.assert.elements('.KOMPlay', 0);
 	});
 
 	it('shows KOMReviewLauncherItemToggleSimplifiedResponseButtons', function () {
