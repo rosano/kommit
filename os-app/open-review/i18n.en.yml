@@ -1,6 +1,6 @@
 KOMReviewTitle: Kommit
 KOMReviewStorageImportErrorNotFilledAlertText: Input not filled
-KOMReviewStorageImportErrorNotValidAlertText: Input invalid
+KOMReviewStorageImportErrorNotValidAlertText: Input not valid
 KOMReviewLauncherItemSelectDeckTextFormat: Select deck '%@'
 KOMReviewLauncherItemToggleSimplifiedResponseButtonsText: Toggle simplified response buttons
 KOMReviewLauncherItemDebugPlungeDataText: Plunge data

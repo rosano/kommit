@@ -131,7 +131,7 @@ describe('KOMReviewDetail_Misc', function () {
 
 		context('click', function () {
 
-			context('response invalid', function () {
+			context('response not valid', function () {
 
 				before(function () {
 					return browser.OLSKPrompt(function () {
@@ -150,7 +150,7 @@ describe('KOMReviewDetail_Misc', function () {
 
 			});
 
-			context('response invalid', function () {
+			context('response valid', function () {
 
 				before(function () {
 					return browser.OLSKPrompt(function () {
