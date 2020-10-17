@@ -217,7 +217,7 @@ mod.SetupEverything();
 
 {#if OLSK_TESTING_BEHAVIOUR() }
 	<p>
-		<strong>TestKOMBrowseInfoAudioLog</strong>
+		<strong>KOMBrowseInfoAudioLog</strong>
 		<span id="TestKOMBrowseInfoAudioLog"></span>
 	</p>
 {/if}
