@@ -4,15 +4,15 @@ const KOMBrowseInfoAudio = new RollupStart({
 	target: document.body,
 	props: Object.assign({
 		KOMBrowseInfoAudioAvailable: true,
-		KOMBrowseInfoAudioDispatchCapture: (function _KOMBrowseInfoAudioDispatchCapture(inputData) {
+		KOMBrowseInfoAudioDispatchCapture: (function (inputData) {
 			window.TestKOMBrowseInfoAudioDispatchCapture.innerHTML = parseInt(window.TestKOMBrowseInfoAudioDispatchCapture.innerHTML) + 1;
 			window.TestKOMBrowseInfoAudioDispatchCaptureData.innerHTML = JSON.stringify(inputData);
 		}),
-		KOMBrowseInfoAudioDispatchFetch: (function _KOMBrowseInfoAudioDispatchFetch(inputData) {
+		KOMBrowseInfoAudioDispatchFetch: (function (inputData) {
 			window.TestKOMBrowseInfoAudioDispatchFetch.innerHTML = parseInt(window.TestKOMBrowseInfoAudioDispatchFetch.innerHTML) + 1;
 			window.TestKOMBrowseInfoAudioDispatchFetchData.innerHTML = JSON.stringify(inputData);
 		}),
-		KOMBrowseInfoAudioDispatchClear: (function _KOMBrowseInfoAudioDispatchClear(inputData) {
+		KOMBrowseInfoAudioDispatchClear: (function (inputData) {
 			window.TestKOMBrowseInfoAudioDispatchClear.innerHTML = parseInt(window.TestKOMBrowseInfoAudioDispatchClear.innerHTML) + 1;
 			window.TestKOMBrowseInfoAudioDispatchClearData.innerHTML = JSON.stringify(inputData);
 		}),

@@ -4,18 +4,18 @@ const KOMReviewMaster = new RollupStart({
 	target: document.body,
 	props: Object.assign({
 		KOMReviewMasterItems: [],
-		KOMReviewMasterDispatchCreate: (function _KOMReviewMasterDispatchCreate(inputData) {
+		KOMReviewMasterDispatchCreate: (function (inputData) {
 			window.TestKOMReviewMasterDispatchCreate.innerHTML = parseInt(window.TestKOMReviewMasterDispatchCreate.innerHTML) + 1;
 			window.TestKOMReviewMasterDispatchCreateData.innerHTML = inputData;
 		}),
-		KOMReviewMasterDispatchSelect: (function _KOMReviewMasterDispatchSelect(inputData) {
+		KOMReviewMasterDispatchSelect: (function (inputData) {
 			window.TestKOMReviewMasterDispatchSelect.innerHTML = parseInt(window.TestKOMReviewMasterDispatchSelect.innerHTML) + 1;
 			window.TestKOMReviewMasterDispatchSelectData.innerHTML = JSON.stringify(inputData);
 		}),
-		KOMReviewMasterDispatchToggleExcludeTripleQuestionMark: (function _KOMReviewMasterDispatchToggleExcludeTripleQuestionMark() {
+		KOMReviewMasterDispatchToggleExcludeTripleQuestionMark: (function () {
 			window.TestKOMReviewMasterDispatchToggleExcludeTripleQuestionMark.innerHTML = parseInt(window.TestKOMReviewMasterDispatchToggleExcludeTripleQuestionMark.innerHTML) + 1;
 		}),
-		KOMReviewMasterDispatchToggleDeckFiguresCaching: (function _KOMReviewMasterDispatchToggleDeckFiguresCaching() {
+		KOMReviewMasterDispatchToggleDeckFiguresCaching: (function () {
 			window.TestKOMReviewMasterDispatchToggleDeckFiguresCaching.innerHTML = parseInt(window.TestKOMReviewMasterDispatchToggleDeckFiguresCaching.innerHTML) + 1;
 		}),
 		KOMReviewMaster_DebugShowLauncherButton: true,

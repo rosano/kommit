@@ -7,14 +7,14 @@ const KOMPlay = new RollupStart({
 	target: document.getElementById('Target'),
 	props: Object.assign({
 		KOMPlaySpacings: [],
-		KOMPlayDispatchDone: (function _KOMPlayDispatchDone() {
+		KOMPlayDispatchDone: (function () {
 			window.TestKOMPlayDispatchDone.innerHTML = parseInt(window.TestKOMPlayDispatchDone.innerHTML) + 1;
 		}),
-		KOMPlayDispatchUpdate: (function _KOMPlayDispatchUpdate(inputData) {
+		KOMPlayDispatchUpdate: (function (inputData) {
 			window.TestKOMPlayDispatchUpdate.innerHTML = parseInt(window.TestKOMPlayDispatchUpdate.innerHTML) + 1;
 			window.TestKOMPlayDispatchUpdateData.innerHTML = JSON.stringify(Object.keys(inputData));
 		}),
-		KOMPlayDispatchFetch: (function _KOMPlayDispatchFetch() {}),
+		KOMPlayDispatchFetch: (function () {}),
 	}, Object.fromEntries(Array.from((new window.URLSearchParams(window.location.search)).entries()).map(function (e, index, coll) {
 		if (['KOMPlayDeck', 'KOMPlaySpacings', 'KOMPlaySimplifiedResponseButtons'].includes(e[0])) {
 			e[1] = JSON.parse(e[1]);

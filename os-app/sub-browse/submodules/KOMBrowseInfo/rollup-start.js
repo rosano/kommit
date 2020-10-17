@@ -37,36 +37,36 @@ const KOMBrowseInfo = new RollupStart({
 	props: Object.assign({
 		KOMBrowseInfoDeck: {},
 		KOMBrowseInfoTagsSuggestions: [],
-		KOMBrowseInfoDispatchBack: (function _KOMBrowseInfoDispatchBack() {
+		KOMBrowseInfoDispatchBack: (function () {
 			window.TestKOMBrowseInfoDispatchBack.innerHTML = parseInt(window.TestKOMBrowseInfoDispatchBack.innerHTML) + 1;
 		}),
-		KOMBrowseInfoDispatchDiscard: (function _KOMBrowseInfoDispatchDiscard(inputData) {
+		KOMBrowseInfoDispatchDiscard: (function (inputData) {
 			window.TestKOMBrowseInfoDispatchDiscard.innerHTML = parseInt(window.TestKOMBrowseInfoDispatchDiscard.innerHTML) + 1;
 			window.TestKOMBrowseInfoDispatchDiscardData.innerHTML = JSON.stringify(inputData);
 		}),
-		KOMBrowseInfoDispatchUpdate: (function _KOMBrowseInfoDispatchUpdate() {
+		KOMBrowseInfoDispatchUpdate: (function () {
 			window.TestKOMBrowseInfoDispatchUpdate.innerHTML = parseInt(window.TestKOMBrowseInfoDispatchUpdate.innerHTML) + 1;
 
 			mod.ReactDetailItem(params.KOMBrowseInfoItem);
 		}),
-		KOMBrowseInfoDispatchTemplate: (function _KOMBrowseInfoDispatchTemplate(inputData) {
+		KOMBrowseInfoDispatchTemplate: (function (inputData) {
 			window.TestKOMBrowseInfoDispatchTemplate.innerHTML = parseInt(window.TestKOMBrowseInfoDispatchTemplate.innerHTML) + 1;
 			window.TestKOMBrowseInfoDispatchTemplateData.innerHTML = JSON.stringify(inputData);
 		}),
-		KOMBrowseInfoDispatchRead: (function _KOMBrowseInfoDispatchRead() {
+		KOMBrowseInfoDispatchRead: (function () {
 			window.TestKOMBrowseInfoDispatchRead.innerHTML = parseInt(window.TestKOMBrowseInfoDispatchRead.innerHTML) + 1;
 			window.TestKOMBrowseInfoDispatchReadData.innerHTML = Array.from(arguments).join(',');
 		}),
-		KOMBrowseInfoAudioDispatchCapture: (function _KOMBrowseInfoAudioDispatchCapture() {
+		KOMBrowseInfoAudioDispatchCapture: (function () {
 			window.TestKOMBrowseInfoAudioDispatchCapture.innerHTML = parseInt(window.TestKOMBrowseInfoAudioDispatchCapture.innerHTML) + 1;
 		}),
-		KOMBrowseInfoAudioDispatchFetch: (function _KOMBrowseInfoAudioDispatchFetch() {
+		KOMBrowseInfoAudioDispatchFetch: (function () {
 			window.TestKOMBrowseInfoAudioDispatchFetch.innerHTML = parseInt(window.TestKOMBrowseInfoAudioDispatchFetch.innerHTML) + 1;
 		}),
-		KOMBrowseInfoAudioDispatchClear: (function _KOMBrowseInfoAudioDispatchClear() {
+		KOMBrowseInfoAudioDispatchClear: (function () {
 			window.TestKOMBrowseInfoAudioDispatchClear.innerHTML = parseInt(window.TestKOMBrowseInfoAudioDispatchClear.innerHTML) + 1;
 		}),
-		KOMBrowseInfoDispatchDebug: (function _KOMBrowseInfoDispatchDebug(inputData) {
+		KOMBrowseInfoDispatchDebug: (function (inputData) {
 			window.TestKOMBrowseInfoDispatchDebug.innerHTML = parseInt(window.TestKOMBrowseInfoDispatchDebug.innerHTML) + 1;
 			window.TestKOMBrowseInfoDispatchDebugData.innerHTML = JSON.stringify(inputData);
 		}),
