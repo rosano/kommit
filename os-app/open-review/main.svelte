@@ -7,11 +7,9 @@ const OLSKLocalized = function(translationConstant) {
 import OLSKString from 'OLSKString';
 const OLSKFormatted = OLSKString.OLSKStringWithFormat;
 
-import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting'
-import * as OLSKRemoteStoragePackage from '../_shared/__external/OLSKRemoteStorage/main.js'
-const OLSKRemoteStorage = OLSKRemoteStoragePackage.default || OLSKRemoteStoragePackage;
-import * as OLSKServiceWorkerPackage from '../_shared/__external/OLSKServiceWorker/main.js'
-const OLSKServiceWorker = OLSKServiceWorkerPackage.default || OLSKServiceWorkerPackage;
+import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting';
+import OLSKRemoteStorage from 'OLSKRemoteStorage';
+import OLSKServiceWorker from 'OLSKServiceWorker';
 import KOM_Data from '../_shared/KOM_Data/main.js';
 import KOMDeckStorage from '../_shared/KOMDeck/storage.js';
 import KOMCardStorage from '../_shared/KOMCard/storage.js';
