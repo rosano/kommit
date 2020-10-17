@@ -1,4 +1,3 @@
-t
 import RollupStart from './main.svelte';
 
 import * as OLSKRemoteStoragePackage from 'OLSKRemoteStorage';
