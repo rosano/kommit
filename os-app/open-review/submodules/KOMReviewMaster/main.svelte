@@ -9,7 +9,7 @@ export let KOMReviewMaster_DebugShowLauncherButton = false;
 export const modPublic = {
 
 	KOMReviewMasterRecipes () {
-		return mod.DataRecipes();
+		return mod.DataReviewMasterRecipes();
 	},
 
 };
@@ -106,7 +106,7 @@ const mod = {
 		};
 	},
 
-	DataRecipes () {
+	DataReviewMasterRecipes () {
 		const items = [{
 			LCHRecipeSignature: 'KOMReviewMasterLauncherItemToggleExcludeTripleQuestionMark',
 			LCHRecipeName: OLSKLocalized('KOMReviewMasterLauncherItemToggleExcludeTripleQuestionMarkText'),
@@ -147,7 +147,7 @@ const mod = {
 
 	_OLSKAppToolbarDispatchLauncher () {
 		window.Launchlet.LCHSingletonCreate({
-			LCHOptionRecipes: mod.DataRecipes(),
+			LCHOptionRecipes: mod.DataReviewMasterRecipes(),
 		});
 	},
 

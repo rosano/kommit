@@ -94,7 +94,7 @@ const mod = {
 		};
 	},
 
-	DataRecipes () {
+	DataReviewRecipes () {
 		const items = mod._ValueDecksAll.filter(function (e) {
 			return e !== mod._ValueDeckSelected;
 		}).map(function (e) {
@@ -548,7 +548,7 @@ const mod = {
 		}
 
 		window.Launchlet.LCHSingletonCreate({
-			LCHOptionRecipes: mod.DataRecipes(),
+			LCHOptionRecipes: mod.DataReviewRecipes(),
 		});
 	},
 

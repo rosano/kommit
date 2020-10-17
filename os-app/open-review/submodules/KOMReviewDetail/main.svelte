@@ -11,7 +11,7 @@ export let KOMReviewDetail_DebugShowLauncherButton = false;
 export const modPublic = {
 
 	KOMReviewDetailRecipes () {
-		return mod.DataRecipes();
+		return mod.DataReviewDetailRecipes();
 	},
 
 };
@@ -43,7 +43,7 @@ const mod = {
 
 	// DATA
 
-	DataRecipes () {
+	DataReviewDetailRecipes () {
 		const items = [];
 
 		if (KOMReviewDetailDeck.$KOMDeckTodayReviewCount) {
@@ -164,7 +164,7 @@ const mod = {
 
 	_OLSKAppToolbarDispatchLauncher () {
 		window.Launchlet.LCHSingletonCreate({
-			LCHOptionRecipes: mod.DataRecipes(),
+			LCHOptionRecipes: mod.DataReviewDetailRecipes(),
 		});
 	},
 

@@ -18,7 +18,7 @@ export let KOMBrowseInfo_DebugShowLauncherButton = false;
 export const modPublic = {
 
 	KOMBrowseInfoRecipes () {
-		return mod.DataRecipes();
+		return mod.DataBrowseInfoRecipes();
 	},
 
 };
@@ -34,7 +34,7 @@ const mod = {
 
 	// DATA
 
-	DataRecipes () {
+	DataBrowseInfoRecipes () {
 		if (!KOMBrowseInfoItem) {
 			return [];
 		}
@@ -95,7 +95,7 @@ const mod = {
 
 	_OLSKAppToolbarDispatchLauncher () {
 		window.Launchlet.LCHSingletonCreate({
-			LCHOptionRecipes: mod.DataRecipes(),
+			LCHOptionRecipes: mod.DataBrowseInfoRecipes(),
 		});
 	},
 
