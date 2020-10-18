@@ -191,6 +191,13 @@ describe('KOM_DataExport', function test_KOM_DataExport() {
 		deepEqual((await mainModule.KOM_DataExport(KOMTestingStorageClient, [item]))[0] !== item, true);
 	});
 
+	it('strips dynamic attributes', async function () {
+		const item = StubDeckObjectValid({
+			$alfa: 'bravo',
+		});
+		deepEqual((await mainModule.KOM_DataExport(KOMTestingStorageClient, [item]))[0].$alfa, undefined);
+	});
+
 	context('$KOMDeckCards', function () {
 		
 		it('sets to KOMCard objects', async function () {

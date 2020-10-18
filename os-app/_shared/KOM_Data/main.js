@@ -76,7 +76,7 @@ const mod = {
 		}
 
 		return Promise.all(inputData.map(async function (deck) {
-			return Object.assign(Object.assign({}, deck), {
+			return Object.assign(OLSKRemoteStorage.OLSKRemoteStorageSafeCopy(deck), {
 				$KOMDeckCards: await Promise.all((await KOMCardAction.KOMCardActionList(storageClient, deck)).map(async function (e) {
 					return Object.entries(await KOMSpacingStorage.KOMSpacingStorageList(storageClient, e, deck)).reduce(function (coll, item) {
 						if (item[1].KOMSpacingChronicles.length) {
