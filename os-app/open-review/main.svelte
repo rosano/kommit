@@ -448,7 +448,15 @@ const mod = {
 	},
 
 	KOMReviewMasterDispatchImportData (inputData) {
-		mod.ControlImportData(inputData);
+		Launchlet.LCHTasksRun([{
+			async LCHRecipeCallback () {
+				return mod.ControlImportData(await this.api.LCHReadTextFile({
+					accept: '.json',
+				}));
+			},
+			LCHRecipeURLFilter: '*',
+		  LCHRecipeIsAutomatic: true,
+		}]);
 	},
 
 	async KOMReviewMasterDispatchToggleExcludeTripleQuestionMark () {

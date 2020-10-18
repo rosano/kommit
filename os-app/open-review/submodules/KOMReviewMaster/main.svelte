@@ -124,9 +124,7 @@ const mod = {
 			LCHRecipeSignature: 'KOMReviewMasterLauncherItemImportData',
 			LCHRecipeName: OLSKLocalized('KOMReviewMasterLauncherItemImportDataText'),
 			LCHRecipeCallback: function KOMReviewMasterLauncherItemImportData () {
-				return this.api.LCHReadTextFile({
-					accept: '.json',
-				}).then(KOMReviewMasterDispatchImportData);
+				return KOMReviewMasterDispatchImportData();
 			},
 		}];
 
