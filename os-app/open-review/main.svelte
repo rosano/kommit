@@ -920,7 +920,6 @@ import OLSKStorageWidget from 'OLSKStorageWidget';
 			OLSKAppToolbarStorageStatus={ mod._ValueFooterStorageStatus }
 			OLSKAppToolbarDispatchStorage={ mod.OLSKAppToolbarDispatchStorage }
 			_OLSKAppToolbarDispatchExport={ mod._OLSKAppToolbarDispatchExport }
-			_OLSKAppToolbarDispatchImport={ mod._OLSKAppToolbarDispatchImport }
 			OLSKAppToolbarDispatchLauncher={ mod.OLSKAppToolbarDispatchLauncher }
 			/>
 	</footer>
