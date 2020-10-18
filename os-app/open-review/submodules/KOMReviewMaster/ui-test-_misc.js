@@ -279,7 +279,7 @@ describe('KOMReviewMaster_Misc', function () {
 
 	});
 
-	describe.skip('KOMReviewMasterLauncherItemImportData', function test_KOMReviewMasterLauncherItemImportData() {
+	describe('KOMReviewMasterLauncherItemImportData', function test_KOMReviewMasterLauncherItemImportData() {
 
 		before(function () {
 			browser.assert.text('#TestKOMReviewMasterDispatchImportData', '0');
@@ -291,6 +291,22 @@ describe('KOMReviewMaster_Misc', function () {
 
 		it('sends KOMReviewMasterDispatchImportData', function () {
 			browser.assert.text('#TestKOMReviewMasterDispatchImportData', '1');
+		});
+
+	});
+
+	describe('KOMReviewMasterLauncherItemExportData', function test_KOMReviewMasterLauncherItemExportData() {
+
+		before(function () {
+			browser.assert.text('#TestKOMReviewMasterDispatchExportData', '0');
+		});
+
+		before(function () {
+			return browser.OLSKLauncherRun('KOMReviewMasterLauncherItemExportData');
+		});
+
+		it('sends KOMReviewMasterDispatchExportData', function () {
+			browser.assert.text('#TestKOMReviewMasterDispatchExportData', '1');
 		});
 
 	});

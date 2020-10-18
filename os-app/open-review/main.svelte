@@ -459,6 +459,10 @@ const mod = {
 		}]);
 	},
 
+	KOMReviewMasterDispatchExportData () {
+		mod.ControlExportData(mod._ValueDecksAll);
+	},
+
 	async KOMReviewMasterDispatchToggleExcludeTripleQuestionMark () {
 		const value = await KOMSettingAction.KOMSettingsActionProperty(mod._ValueStorageClient, 'KOMSettingExcludeTripleQuestionMark');
 
@@ -879,6 +883,7 @@ import OLSKStorageWidget from 'OLSKStorageWidget';
 			KOMReviewMasterDispatchToggleExcludeTripleQuestionMark={ mod.KOMReviewMasterDispatchToggleExcludeTripleQuestionMark }
 			KOMReviewMasterDispatchToggleDeckFiguresCaching={ mod.KOMReviewMasterDispatchToggleDeckFiguresCaching }
 			KOMReviewMasterDispatchImportData={ mod.KOMReviewMasterDispatchImportData }
+			KOMReviewMasterDispatchExportData={ mod.KOMReviewMasterDispatchExportData }
 			bind:this={ mod._KOMReviewMaster }
 			/>
 	{/if}

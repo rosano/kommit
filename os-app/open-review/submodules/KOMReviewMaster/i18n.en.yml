@@ -3,4 +3,5 @@ KOMReviewMasterCreateButtonText: Create deck
 KOMReviewMasterCreateButtonPromptText: Name
 KOMReviewMasterLauncherItemToggleExcludeTripleQuestionMarkText: Toggle exclude triple question marks
 KOMReviewMasterLauncherItemToggleDeckFiguresCachingText: Toggle deck figures caching
-KOMReviewMasterLauncherItemImportDataText: Import
+KOMReviewMasterLauncherItemImportDataText: Import data
+KOMReviewMasterLauncherItemExportDataText: Export all decks

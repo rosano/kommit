@@ -3,4 +3,5 @@ KOMReviewMasterCreateButtonText: Créer lot de cartes
 KOMReviewMasterCreateButtonPromptText: Nom
 KOMReviewMasterLauncherItemToggleExcludeTripleQuestionMarkText: Commuter l'exclusion des point d'interrogation triple
 KOMReviewMasterLauncherItemToggleDeckFiguresCachingText: Commuter la cache des lot de cartes
-KOMReviewMasterLauncherItemImportDataText: Importer
+KOMReviewMasterLauncherItemImportDataText: Importer des données
+KOMReviewMasterLauncherItemExportDataText: Exporter tous les lots de cartes
