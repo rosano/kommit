@@ -30,6 +30,10 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			return browser.assert.OLSKLauncherItemText('KOMReviewMasterLauncherItemToggleDeckFiguresCaching', uLocalized('KOMReviewMasterLauncherItemToggleDeckFiguresCachingText'));
 		});
 
+		it('localizes KOMReviewMasterLauncherItemImportData', function () {
+			return browser.assert.OLSKLauncherItemText('KOMReviewMasterLauncherItemImportData', uLocalized('KOMReviewMasterLauncherItemImportDataText'));
+		});
+
 		context('KOMReviewMasterCreateButton', function () {
 
 			it('localizes KOMReviewMasterCreateButtonPrompt', function () {

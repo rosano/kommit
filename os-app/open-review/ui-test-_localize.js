@@ -24,7 +24,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			return browser.assert.OLSKLauncherItemText('KOMReviewLauncherItemToggleSimplifiedResponseButtons', uLocalized('KOMReviewLauncherItemToggleSimplifiedResponseButtonsText'));
 		});
 
-		describe('KOMReviewStorageImportField', function test_KOMReviewStorageImportField() {
+		describe('ImportData', function test_ImportData() {
 
 			context('not filled', function () {
 				

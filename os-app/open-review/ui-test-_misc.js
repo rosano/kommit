@@ -228,58 +228,50 @@ describe('KOMReview_Misc', function () {
 
 	});
 
-	describe('KOMReviewStorageImportField', function test_KOMReviewStorageImportField() {
+	describe('ImportData', function test_ImportData() {
 
-		it('sets type', function () {
-			browser.assert.attribute(KOMReviewStorageImportField, 'type', 'file');
+		before(function () {
+			return browser.pressButton('.OLSKAppToolbarLauncherButton');
 		});
 
-		context('valid', function () {
-			
-			before(function () {
-				return browser.pressButton('.OLSKAppToolbarLauncherButton');
+		before(function () {
+			return browser.fill('.LCHLauncherFilterInput', 'KOMReviewLauncherItemDebug_ImportFileData');
+		});
+
+		before(function () {
+			return browser.OLSKPrompt(function () {
+				return browser.click('.LCHLauncherPipeItem');
+			}, function (dialog) {
+				dialog.response = JSON.stringify([StubDeckObjectValid({
+					KOMDeckName: 'zulu',
+					$KOMDeckCards: [StubCardObjectValid({
+						$KOMCardSpacingForward: StubSpacingObjectValid(),
+						$KOMCardSpacingBackward: StubSpacingObjectValid({
+							KOMSpacingDueDate: new Date(),
+							// KOMSpacingChronicles: [StubChronicleObjectValid()],
+						}),
+					}), StubCardObjectValid({
+						KOMCardIsSuspended: true,
+						$KOMCardSpacingForward: StubSpacingObjectValid(),
+						$KOMCardSpacingBackward: StubSpacingObjectValid(),
+					})],
+				})]);
+
+				return dialog;
 			});
+		});
 
-			before(function () {
-				return browser.fill('.LCHLauncherFilterInput', 'KOMReviewLauncherItemDebug_ImportFileData');
-			});
+		it('creates deck', function () {
+			browser.assert.text('.KOMReviewMasterListItem:nth-child(2) .KOMReviewMasterListItemName', 'zulu');
+		});
 
-			before(function () {
-				return browser.OLSKPrompt(function () {
-					return browser.click('.LCHLauncherPipeItem');
-				}, function (dialog) {
-					dialog.response = JSON.stringify([StubDeckObjectValid({
-						KOMDeckName: 'zulu',
-						$KOMDeckCards: [StubCardObjectValid({
-							$KOMCardSpacingForward: StubSpacingObjectValid(),
-							$KOMCardSpacingBackward: StubSpacingObjectValid({
-								KOMSpacingDueDate: new Date(),
-								// KOMSpacingChronicles: [StubChronicleObjectValid()],
-							}),
-						}), StubCardObjectValid({
-							KOMCardIsSuspended: true,
-							$KOMCardSpacingForward: StubSpacingObjectValid(),
-							$KOMCardSpacingBackward: StubSpacingObjectValid(),
-						})],
-					})]);
+		it.skip('creates spacing', function () {
+			browser.assert.text('.KOMReviewMasterListItem:nth-child(2) .KOMReviewMasterListItemReviewValue', '1');
+			browser.assert.text('.KOMReviewMasterListItem:nth-child(2) .KOMReviewMasterListItemUnseenValue', '1');
+		});
 
-					return dialog;
-				});
-			});
-
-			it('creates deck', function () {
-				browser.assert.text('.KOMReviewMasterListItem:nth-child(2) .KOMReviewMasterListItemName', 'zulu');
-			});
-
-			it.skip('creates spacing', function () {
-				browser.assert.text('.KOMReviewMasterListItem:nth-child(2) .KOMReviewMasterListItemReviewValue', '1');
-				browser.assert.text('.KOMReviewMasterListItem:nth-child(2) .KOMReviewMasterListItemUnseenValue', '1');
-			});
-
-			it.skip('creates card', function () {
-				browser.assert.text('.KOMReviewChartCompositionCollectionSuspendedCardsValue', '1');
-			});
-
+		it.skip('creates card', function () {
+			browser.assert.text('.KOMReviewChartCompositionCollectionSuspendedCardsValue', '1');
 		});
 		
 	});

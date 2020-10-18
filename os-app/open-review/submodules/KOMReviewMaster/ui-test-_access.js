@@ -53,6 +53,10 @@ describe('KOMReviewMaster_Access', function () {
 		return browser.assert.OLSKLauncherItems('KOMReviewMasterLauncherItemToggleDeckFiguresCaching', 1);
 	});
 
+	it('shows KOMReviewMasterLauncherItemImportData', function () {
+		return browser.assert.OLSKLauncherItems('KOMReviewMasterLauncherItemImportData', 1);
+	});
+
 	context('KOMReviewMasterItems', function () {
 
 		before(function () {

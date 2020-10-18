@@ -355,19 +355,6 @@ const mod = {
 
 	// INTERFACE
 
-	InterfaceStorageInputFieldDidInput (event) {
-		const inputElement = event.target;
-		const fileReader = new FileReader();
-		
-		fileReader.onload = function (event) {
-			mod.InterfaceStorageInputFieldDidRead(event.target.result);
-			
-			inputElement.value = null;
-		};
-
-		fileReader.readAsText(inputElement.files[0]);
-	},
-
 	async InterfaceStorageInputFieldDidRead (inputData) {
 		if (!inputData.trim()) {
 			return window.alert(OLSKLocalized('KOMReviewStorageImportErrorNotFilledAlertText'))
@@ -450,6 +437,10 @@ const mod = {
 
 	KOMReviewMasterDispatchSelect (inputData) {
 		mod.ControlDeckSelect(inputData);
+	},
+
+	KOMReviewMasterDispatchImportData (inputData) {
+		mod.InterfaceStorageInputFieldDidRead(inputData);
 	},
 
 	async KOMReviewMasterDispatchToggleExcludeTripleQuestionMark () {
@@ -867,6 +858,7 @@ import OLSKStorageWidget from 'OLSKStorageWidget';
 			KOMReviewMasterDispatchSelect={ mod.KOMReviewMasterDispatchSelect }
 			KOMReviewMasterDispatchToggleExcludeTripleQuestionMark={ mod.KOMReviewMasterDispatchToggleExcludeTripleQuestionMark }
 			KOMReviewMasterDispatchToggleDeckFiguresCaching={ mod.KOMReviewMasterDispatchToggleDeckFiguresCaching }
+			KOMReviewMasterDispatchImportData={ mod.KOMReviewMasterDispatchImportData }
 			bind:this={ mod._KOMReviewMaster }
 			/>
 	{/if}
@@ -914,9 +906,7 @@ import OLSKStorageWidget from 'OLSKStorageWidget';
 
 		{#if !mod._ValueStorageToolbarHidden }
 			<div class="KOMReviewStorageToolbar OLSKToolbar OLSKToolbarJustify OLSKStorageToolbar">
-				<div class="OLSKToolbarElementGroup">
-					<input class="KOMReviewStorageImportField" type="file" on:change={ mod.InterfaceStorageInputFieldDidInput } />
-				</div>
+				<div class="OLSKToolbarElementGroup"></div>
 
 				<div class="OLSKToolbarElementGroup">
 					<OLSKStorageWidget StorageClient={ mod._ValueStorageClient } />
