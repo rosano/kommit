@@ -6,6 +6,7 @@ export let KOMReviewDetailDispatchUpdate;
 export let KOMReviewDetailDispatchRecount;
 export let KOMReviewDetailDispatchPlay;
 export let KOMReviewDetailDispatchDiscard;
+export let KOMReviewDetailDispatchExport;
 export let KOMReviewDetail_DebugShowLauncherButton = false;
 
 export const modPublic = {
@@ -44,7 +45,13 @@ const mod = {
 	// DATA
 
 	DataReviewDetailRecipes () {
-		const items = [];
+		const items = [{
+			LCHRecipeSignature: 'KOMReviewDetailLauncherItemExport',
+			LCHRecipeName: OLSKLocalized('KOMReviewDetailLauncherItemExportText'),
+			LCHRecipeCallback: (function KOMReviewDetailLauncherItemExport () {
+				return KOMReviewDetailDispatchExport();
+			}),
+		}];
 
 		if (KOMReviewDetailDeck.$KOMDeckTodayReviewCount) {
 			items.push({

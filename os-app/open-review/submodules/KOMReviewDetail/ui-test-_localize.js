@@ -74,6 +74,10 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			browser.assert.text(KOMReviewDetailFormIsForwardOnlyFieldLabel, uLocalized('KOMReviewDetailFormIsForwardOnlyFieldLabelText'));
 		});
 
+		it('localizes KOMReviewDetailLauncherItemExport', function () {
+			return browser.assert.OLSKLauncherItemText('KOMReviewDetailLauncherItemExport', uLocalized('KOMReviewDetailLauncherItemExportText'));
+		});
+
 		context('on discard', function () {
 
 			it('localizes KOMReviewDetailDiscardPrompt', function () {

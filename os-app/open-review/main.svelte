@@ -270,7 +270,7 @@ const mod = {
 				{
 					LCHRecipeName: 'KOMReviewLauncherItemDebug_ImportFileData',
 					LCHRecipeCallback: function KOMReviewLauncherItemDebug_ImportFileData () {
-						mod.InterfaceStorageInputFieldDidRead(window.prompt());
+						mod.ControlImportData(window.prompt());
 					},
 				},
 				{
@@ -353,21 +353,6 @@ const mod = {
 		});
 	},
 
-	// INTERFACE
-
-	async InterfaceStorageInputFieldDidRead (inputData) {
-		if (!inputData.trim()) {
-			return window.alert(OLSKLocalized('KOMReviewStorageImportErrorNotFilledAlertText'))
-		}
-
-		try {
-			await KOM_Data.KOM_DataImport(mod._ValueStorageClient, OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(JSON.parse(inputData)));
-			await mod.SetupValueDecksAll();
-		} catch (e) {
-			window.alert(OLSKLocalized('KOMReviewStorageImportErrorNotValidAlertText'));
-		}
-	},
-
 	// CONTROL
 
 	async ControlDeckCreate(inputData) {
@@ -429,6 +414,29 @@ const mod = {
 		speechSynthesis.speak(item);
 	},
 
+	async ControlImportData (inputData) {
+		if (!inputData.trim()) {
+			return window.alert(OLSKLocalized('KOMReviewStorageImportErrorNotFilledAlertText'))
+		}
+
+		try {
+			await KOM_Data.KOM_DataImport(mod._ValueStorageClient, OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(JSON.parse(inputData)));
+			await mod.SetupValueDecksAll();
+		} catch (e) {
+			window.alert(OLSKLocalized('KOMReviewStorageImportErrorNotValidAlertText'));
+		}
+	},
+
+	ControlExportData (inputData) {
+		Launchlet.LCHTasksRun([{
+			async LCHRecipeCallback () {
+				return this.api.LCHSaveFile(JSON.stringify(await KOM_Data.KOM_DataExport(mod._ValueStorageClient, inputData)), `${ window.location.host }-${ Date.now() }.json`)
+			},
+			LCHRecipeURLFilter: '*',
+		  LCHRecipeIsAutomatic: true,
+		}]);
+	},
+
 	// MESSAGE
 
 	KOMReviewMasterDispatchCreate (inputData) {
@@ -440,7 +448,7 @@ const mod = {
 	},
 
 	KOMReviewMasterDispatchImportData (inputData) {
-		mod.InterfaceStorageInputFieldDidRead(inputData);
+		mod.ControlImportData(inputData);
 	},
 
 	async KOMReviewMasterDispatchToggleExcludeTripleQuestionMark () {
@@ -486,6 +494,10 @@ const mod = {
 	async KOMReviewDetailDispatchPlay (inputData) {
 		mod._ValuePlaySpacings = KOMPlayLogic.KOMPlaySort(KOMReviewLogic.KOMReviewFilter(KOMReviewLogic.KOMReviewSpacingsToday((await mod.DataDeckSelectedObjects(mod._ValueDeckSelected)).$KOMDeckSpacings), inputData, mod._ValueDeckSelected));
 		mod._ValuePlayVisible = true;
+	},
+
+	KOMReviewDetailDispatchExport () {
+		mod.ControlExportData([mod._ValueDeckSelected]);
 	},
 
 	async KOMBrowseDispatchCreate (inputData) {
@@ -872,6 +884,7 @@ import OLSKStorageWidget from 'OLSKStorageWidget';
 			KOMReviewDetailDispatchRecount={ mod.KOMReviewDetailDispatchRecount }
 			KOMReviewDetailDispatchBrowse={ mod.KOMReviewDetailDispatchBrowse }
 			KOMReviewDetailDispatchPlay={ mod.KOMReviewDetailDispatchPlay }
+			KOMReviewDetailDispatchExport={ mod.KOMReviewDetailDispatchExport }
 			bind:this={ mod._KOMReviewDetail }
 			/>
 	{/if}

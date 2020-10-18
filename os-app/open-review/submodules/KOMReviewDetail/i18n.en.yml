@@ -16,3 +16,4 @@ KOMReviewDetailRenameButtonText: Rename
 KOMReviewDetailRenameButtonPromptText: Name
 KOMReviewDetailDiscardButtonText: Delete deck and all cards inside
 KOMReviewDetailDiscardPromptText: Are you sure? Please type the name of the deck to confirm and delete.
+KOMReviewDetailLauncherItemExportText: Export selected deck
