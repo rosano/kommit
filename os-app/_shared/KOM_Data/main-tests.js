@@ -167,3 +167,67 @@ describe('KOM_DataImport', function test_KOM_DataImport() {
 	});
 
 });
+
+describe('KOM_DataExport', function test_KOM_DataExport() {
+
+	it('throws if not array', function () {
+		throws(function () {
+			mainModule.KOM_DataExport(KOMTestingStorageClient, null);
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('throws if not filled', function () {
+		throws(function () {
+			mainModule.KOM_DataExport(KOMTestingStorageClient, []);
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns array', async function () {
+		deepEqual(Array.isArray(await mainModule.KOM_DataExport(KOMTestingStorageClient, [StubDeckObjectValid()])), true);
+	});
+
+	it('copies input', async function () {
+		const item = StubDeckObjectValid();
+		deepEqual((await mainModule.KOM_DataExport(KOMTestingStorageClient, [item]))[0] !== item, true);
+	});
+
+	context('$KOMDeckCards', function () {
+		
+		it('sets to KOMCard objects', async function () {
+			const item = await KOMCardAction.KOMCardActionCreate(KOMTestingStorageClient, StubCardObjectValid(), StubDeckObjectValid());
+
+			deepEqual(await mainModule.KOM_DataExport(KOMTestingStorageClient, [StubDeckObjectValid()]), [Object.assign(StubDeckObjectValid(), {
+				$KOMDeckCards: await KOMCardAction.KOMCardActionList(KOMTestingStorageClient, StubDeckObjectValid()),
+			})]);
+		});
+	
+	});
+
+	context('$KOMCardSpacingForward', function () {
+		
+		it('sets to KOMSpacing object', async function () {
+			const card = await KOMCardAction.KOMCardActionCreate(KOMTestingStorageClient, StubCardObjectValid(), StubDeckObjectValid());
+			const spacing = await KOMSpacingStorage.KOMSpacingStorageWrite(KOMTestingStorageClient, StubSpacingObjectValid({
+				KOMSpacingChronicles: [StubChronicleObjectValid()],
+			}), StubCardObjectValid(), StubDeckObjectValid());
+
+			deepEqual((await mainModule.KOM_DataExport(KOMTestingStorageClient, [StubDeckObjectValid()]))[0].$KOMDeckCards[0].$KOMCardSpacingForward, spacing);
+		});
+	
+	});
+
+	context('$KOMCardSpacingBackward', function () {
+		
+		it('sets to KOMSpacing object', async function () {
+			const card = await KOMCardAction.KOMCardActionCreate(KOMTestingStorageClient, StubCardObjectValid(), StubDeckObjectValid());
+			const spacing = await KOMSpacingStorage.KOMSpacingStorageWrite(KOMTestingStorageClient, StubSpacingObjectValid({
+				KOMSpacingID: 'alfa-backward',
+				KOMSpacingChronicles: [StubChronicleObjectValid()],
+			}), StubCardObjectValid(), StubDeckObjectValid());
+
+			deepEqual((await mainModule.KOM_DataExport(KOMTestingStorageClient, [StubDeckObjectValid()]))[0].$KOMDeckCards[0].$KOMCardSpacingBackward, spacing);
+		});
+	
+	});
+
+});

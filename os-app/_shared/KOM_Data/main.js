@@ -66,6 +66,30 @@ const mod = {
 		}));
 	},
 
+	KOM_DataExport (storageClient, inputData) {
+		if (!Array.isArray(inputData)) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		if (!inputData.length) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		return Promise.all(inputData.map(async function (deck) {
+			return Object.assign(Object.assign({}, deck), {
+				$KOMDeckCards: await Promise.all((await KOMCardAction.KOMCardActionList(storageClient, deck)).map(async function (e) {
+					return Object.entries(await KOMSpacingStorage.KOMSpacingStorageList(storageClient, e, deck)).reduce(function (coll, item) {
+						if (item[1].KOMSpacingChronicles.length) {
+							coll['$' + item[0]] = item[1];
+						}
+
+						return coll;
+					}, e);
+				})),
+			});
+		}));
+	},
+
 };
 
 export default mod;
