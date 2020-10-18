@@ -14,7 +14,7 @@ const KOMReviewDetail = new RollupStart({
 			window.TestKOMReviewDetailDispatchUpdateData.innerHTML = JSON.stringify(inputData);
 		}),
 		KOMReviewDetailDispatchRecount: (function () {
-			window.TestKOMReviewDetailDispatchRecount.innerHTML = parseInt(window.TestKOMReviewDetailDispatchPlay.innerHTML) + 1;
+			window.TestKOMReviewDetailDispatchRecount.innerHTML = parseInt(window.TestKOMReviewDetailDispatchRecount.innerHTML) + 1;
 		}),
 		KOMReviewDetailDispatchPlay: (function (inputData) {
 			window.TestKOMReviewDetailDispatchPlay.innerHTML = parseInt(window.TestKOMReviewDetailDispatchPlay.innerHTML) + 1;
