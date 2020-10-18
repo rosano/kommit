@@ -919,7 +919,6 @@ import OLSKStorageWidget from 'OLSKStorageWidget';
 			OLSKAppToolbarGuideURL={ window.OLSKCanonicalFor('KOMGuideRoute') }
 			OLSKAppToolbarStorageStatus={ mod._ValueFooterStorageStatus }
 			OLSKAppToolbarDispatchStorage={ mod.OLSKAppToolbarDispatchStorage }
-			_OLSKAppToolbarDispatchExport={ mod._OLSKAppToolbarDispatchExport }
 			OLSKAppToolbarDispatchLauncher={ mod.OLSKAppToolbarDispatchLauncher }
 			/>
 	</footer>
