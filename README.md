@@ -6,6 +6,8 @@ _Augment your memory_
 
 <a href="https://kommit.dev">Kommit</a> is an app to help you with memorization. Inspired by [Anki](https://apps.ankiweb.net) and other spaced-repetition learning systems, it presents flashcards to you just before your brain is likely to forget, thereby strengthening memory while reducing study time.
 
+<a href="https://kommit.dev/review"><img alt="Go to app" src="http://rosano.s3.amazonaws.com/public/_RCSAppButton.svg" /></a>
+
 ## Architecture
 
 The project is a large collection of mostly small modules and functions that are put together using [Svelte](https://svelte.dev) and [Rollup](https://rollupjs.org). With the exception of a few 'global' or 'magic' things such as the localization function `OLSKLocalized`, most resources used by a module should be in the same folder or referenced by path name.
