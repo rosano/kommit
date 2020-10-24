@@ -21,4 +21,4 @@ Le projet est librement accessible, mais si vous êtes en mesure de donner, veui
 - Interface simple
 - Pas d'instructions compliquées
 - Pas de publicité, analyse comportementale, traqueurs tiers
-- Fonctionne sur les appareils mobiles, les tablettes et les ordinateurs de bureau
+- Fonctionne sur des appareils mobiles, les tablettes et les ordinateurs de bureau
