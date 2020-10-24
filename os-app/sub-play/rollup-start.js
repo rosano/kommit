@@ -1,7 +1,6 @@
 import RollupStart from './main.svelte';
 
-import * as OLSKRemoteStoragePackage from 'OLSKRemoteStorage';
-const OLSKRemoteStorage = OLSKRemoteStoragePackage.default || OLSKRemoteStoragePackage;
+import OLSKRemoteStorage from 'OLSKRemoteStorage';
 
 const KOMPlay = new RollupStart({
 	target: document.getElementById('Target'),

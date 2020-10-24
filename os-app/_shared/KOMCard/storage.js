@@ -1,7 +1,6 @@
 import KOMDeckStorage from '../KOMDeck/storage.js';
 import KOMCardModel from './model.js';
-import * as OLSKRemoteStoragePackage from 'OLSKRemoteStorage';
-const OLSKRemoteStorage = OLSKRemoteStoragePackage.default || OLSKRemoteStoragePackage;
+import OLSKRemoteStorage from 'OLSKRemoteStorage';
 
 const uFlatten = function (inputData) {
 	return [].concat.apply([], inputData);

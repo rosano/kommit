@@ -6,8 +6,7 @@ import KOMCardAction from '../KOMCard/action.js';
 import KOMCardStorage from '../KOMCard/storage.js';
 import KOMSpacingStorage from '../KOMSpacing/storage.js';
 import KOMSpacingModel from '../KOMSpacing/model.js';
-import * as OLSKRemoteStoragePackage from 'OLSKRemoteStorage';
-const OLSKRemoteStorage = OLSKRemoteStoragePackage.default || OLSKRemoteStoragePackage;
+import OLSKRemoteStorage from 'OLSKRemoteStorage';
 
 const mod = {
 

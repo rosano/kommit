@@ -1,6 +1,5 @@
 import KOMDeckModel from './model.js';
-import * as OLSKRemoteStoragePackage from 'OLSKRemoteStorage';
-const OLSKRemoteStorage = OLSKRemoteStoragePackage.default || OLSKRemoteStoragePackage;
+import OLSKRemoteStorage from 'OLSKRemoteStorage';
 
 const mod = {
 

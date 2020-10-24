@@ -2,10 +2,8 @@ import RollupStart from './main.svelte';
 
 import KOM_Data from '../_shared/KOM_Data/main.js';
 import KOMCardStorage from '../_shared/KOMCard/storage.js';
-import * as RemoteStoragePackage from 'remotestoragejs';
-const RemoteStorage = RemoteStoragePackage.default || RemoteStoragePackage;
-import * as OLSKRemoteStoragePackage from 'OLSKRemoteStorage';
-const OLSKRemoteStorage = OLSKRemoteStoragePackage.default || OLSKRemoteStoragePackage;
+import RemoteStorage from 'remotestoragejs';
+import OLSKRemoteStorage from 'OLSKRemoteStorage';
 
 const mod = {
 
