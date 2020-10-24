@@ -8,6 +8,7 @@ Object.entries({
 	KOMVitrineIdentityName: '.KOMVitrineIdentityName',
 
 	KOMVitrineContent: '.KOMVitrineContent',
+	KOMVitrineContentAppButton: '.KOMVitrineContentAppButton',
 
 	KOMVitrineVideoHeading: '.KOMVitrineVideoHeading',
 	KOMVitrineVideoFrame: '.KOMVitrineVideoFrame',
@@ -43,6 +44,10 @@ describe('KOMVitrine_Access', function () {
 
 	it('shows KOMVitrineContent', function () {
 		browser.assert.elements(KOMVitrineContent, 1);
+	});
+
+	it('shows KOMVitrineContentAppButton', function () {
+		browser.assert.elements(KOMVitrineContentAppButton, 1);
 	});
 
 	it('shows KOMVitrineVideoHeading', function () {

@@ -24,6 +24,7 @@ exports.OLSKControllerRoutes = function () {
 					KOMVitrineDescription: res.locals.OLSKLocalized('KOMVitrineDescription'),
 					KOMVitrineTokenGuideURL: res.locals.OLSKCanonicalFor('KOMGuideRoute'),
 					KOMVitrineTokenReviewURL: res.locals.OLSKCanonicalLocalizedFor('KOMReviewRoute'),
+					KOMVitrineContentAppButtonText: res.locals.OLSKLocalized('KOMVitrineContentAppButtonText'),
 					KOM_VITRINE_ANKI_URL: process.env.KOM_VITRINE_ANKI_URL,
 					KOM_SHARED_DONATE_URL: process.env.KOM_SHARED_DONATE_URL,
 					KOM_SHARED_GITHUB_URL: process.env.KOM_SHARED_GITHUB_URL,

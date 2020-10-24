@@ -45,12 +45,6 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			browser.assert.element(`a[href="${ OLSKTestingCanonical(require('../open-guide/controller.js').OLSKControllerRoutes().shift()) }"]`);
 		});
 
-		it('localizes KOMReviewRoute', function () {
-			browser.assert.element(`a[href="${ OLSKTestingCanonical(require('../open-review/controller.js').OLSKControllerRoutes().shift(), {
-				OLSKRoutingLanguage: languageCode,
-			}) }"]`);
-		});
-
 		it('localizes KOM_SHARED_GITHUB_URL', function () {
 			browser.assert.element(`a[href="${ process.env.KOM_SHARED_GITHUB_URL }"]`);
 		});
@@ -59,8 +53,26 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			browser.assert.element(`a[href="${ process.env.KOM_SHARED_DONATE_URL }"]`);
 		});
 
+		it('localizes KOMVitrineContentAppButton', function () {
+			browser.assert.text(KOMVitrineContentAppButton, uLocalized('KOMVitrineContentAppButtonText'));
+		});
+
 		it('localizes KOMVitrineVideoHeading', function () {
 			browser.assert.text(KOMVitrineVideoHeading, uLocalized('KOMVitrineVideoHeadingText'));
+		});
+
+		context('KOMVitrineContentAppButton', function test_KOMVitrineContentAppButton () {
+
+			it('classes OLSKCommonButton', function () {
+				browser.assert.hasClass(KOMVitrineContentAppButton, 'OLSKCommonButton');
+			});
+			
+			it('sets href', function () {
+				browser.assert.attribute(KOMVitrineContentAppButton, 'href', OLSKTestingCanonical(require('../open-review/controller.js').OLSKControllerRoutes().shift(), {
+					OLSKRoutingLanguage: languageCode,
+				}));
+			});
+		
 		});
 
 	});
