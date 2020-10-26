@@ -460,10 +460,6 @@ describe('KOMReviewDetail_Misc', function () {
 			browser.assert.hasClass(KOMReviewDetailPlayButton, 'OLSKCommonButton');
 		});
 
-		it('classes OLSKCommonButtonPrimary', function () {
-			browser.assert.hasClass(KOMReviewDetailPlayButton, 'OLSKCommonButtonPrimary');
-		});
-
 		it('sets accesskey', function () {
 			browser.assert.attribute(KOMReviewDetailPlayButton, 'accesskey', 'g');
 		});
