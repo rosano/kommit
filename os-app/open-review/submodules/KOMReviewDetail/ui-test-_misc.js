@@ -452,6 +452,10 @@ describe('KOMReviewDetail_Misc', function () {
 			});
 		});
 
+		it('classes OLSKCommonButton', function () {
+			browser.assert.hasClass(KOMReviewDetailPlayButton, 'OLSKCommonButton');
+		});
+
 		it('sets accesskey', function () {
 			browser.assert.attribute(KOMReviewDetailPlayButton, 'accesskey', 'g');
 		});

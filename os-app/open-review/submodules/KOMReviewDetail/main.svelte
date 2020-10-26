@@ -288,7 +288,7 @@ import KOMReviewStats from '../KOMReviewStats/main.svelte';
 {#if KOMReviewDetailDeck.$KOMDeckTodayReviewCount || KOMReviewDetailDeck.$KOMDeckTodayUnseenCount}
 	<div class="KOMReviewDetailPlay">
 		<p>
-			<button class="KOMReviewDetailPlayButton" on:click={ mod.InterfaceMixedButtonDidClick } accesskey="g">{ OLSKLocalized('KOMReviewDetailPlayButtonText') }</button>
+			<button class="KOMReviewDetailPlayButton OLSKCommonButton" on:click={ mod.InterfaceMixedButtonDidClick } accesskey="g">{ OLSKLocalized('KOMReviewDetailPlayButtonText') }</button>
 		</p>
 	</div>
 {/if}
