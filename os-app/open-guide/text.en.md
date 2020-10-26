@@ -103,7 +103,7 @@ Cards are visually encoded based on the following states:
 <tr>
 	<td><span style="background: KOMGuideTokenColorRelearning;"></span></td>
 	<td>Relearning</td>
-	<td>the *Relearn* button was pressed</td>
+	<td>the *Reset* button was pressed</td>
 </tr>
 
 <tr>
@@ -174,7 +174,7 @@ Counting the number of cards based on its state.
 | Memory game ||
 :--- | ---
 | Flip card | `Space` |
-| Respond *Relearn* | `1` or `x` |
+| Respond *Reset* | `1` or `x` |
 | Respond *Closer* | `2` |
 | Respond *Normal* | `3` or `Space` |
 | Respond *Farther* | `4` |
