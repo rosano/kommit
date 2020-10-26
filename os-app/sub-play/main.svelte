@@ -459,26 +459,26 @@ OLSK_TESTING_BEHAVIOUR() ? mod.LifecycleModuleWillMount() : onMount(mod.Lifecycl
 	{/if}
 
 	{#if !mod._ValueIsFlipped}
-		<button class="KOMPlayFlipButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceFlipButtonDidClick }>{ OLSKLocalized('KOMPlayFlipButtonText') }</button>
+		<button class="KOMPlayFlipButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceFlipButtonDidClick }><span class="OLSKCommonButton">{ OLSKLocalized('KOMPlayFlipButtonText') }</span></button>
 	{/if}
 
 	{#if mod._ValueIsFlipped && !KOMPlaySimplifiedResponseButtons}
-		<button class="KOMPlayResponseButtonAgain OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceResponseButtonDidClickAgain }>{ OLSKLocalized('KOMPlayResponseButtonAgainText') }</button>
+		<button class="KOMPlayResponseButtonAgain OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceResponseButtonDidClickAgain }><span class="OLSKCommonButton">{ OLSKLocalized('KOMPlayResponseButtonAgainText') }</span></button>
 
 		<div class="KOMPlayResponseCorrect">
-			<button class="KOMPlayResponseButtonHard OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceResponseButtonDidClickHard }>{ OLSKLocalized('KOMPlayResponseButtonHardText') }</button>
+			<button class="KOMPlayResponseButtonHard OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceResponseButtonDidClickHard }><span class="OLSKCommonButton">{ OLSKLocalized('KOMPlayResponseButtonHardText') }</span></button>
 
-			<button class="KOMPlayResponseButtonGood OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceResponseButtonDidClickGood }>{ OLSKLocalized('KOMPlayResponseButtonGoodText') }</button>
+			<button class="KOMPlayResponseButtonGood OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceResponseButtonDidClickGood }><span class="OLSKCommonButton">{ OLSKLocalized('KOMPlayResponseButtonGoodText') }</span></button>
 
-			<button class="KOMPlayResponseButtonEasy OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceResponseButtonDidClickEasy }>{ OLSKLocalized('KOMPlayResponseButtonEasyText') }</button>
+			<button class="KOMPlayResponseButtonEasy OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceResponseButtonDidClickEasy }><span class="OLSKCommonButton">{ OLSKLocalized('KOMPlayResponseButtonEasyText') }</span></button>
 		</div>
 	{/if}
 
 	{#if mod._ValueIsFlipped && KOMPlaySimplifiedResponseButtons}
 		<div class="KOMPlayResponseSimple">
-			<button class="KOMPlayResponseButtonReset OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceResponseButtonDidClickAgain }>{ OLSKLocalized('KOMPlayResponseButtonResetText') }</button>
+			<button class="KOMPlayResponseButtonReset OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceResponseButtonDidClickAgain }><span class="OLSKCommonButton">{ OLSKLocalized('KOMPlayResponseButtonResetText') }</span></button>
 
-			<button class="KOMPlayResponseButtonNext OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceResponseButtonDidClickGood }>{ OLSKLocalized('KOMPlayResponseButtonNextText') }</button>
+			<button class="KOMPlayResponseButtonNext OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceResponseButtonDidClickGood }><span class="OLSKCommonButton">{ OLSKLocalized('KOMPlayResponseButtonNextText') }</span></button>
 		</div>
 	{/if}
 

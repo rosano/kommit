@@ -117,3 +117,16 @@
 .KOMPlayResponseButtonEasy {
 	background: rgba(0, 0, 0, 0.02) !important;
 }
+
+.OLSKCommonButton {
+	font-size: 150%;
+	padding: 8px;
+	opacity: 0.8;
+	border-width: 2px;
+	background: none;
+}
+
+.KOMPlayFlipButton .OLSKCommonButton, .KOMPlayResponseSimple .OLSKCommonButton {
+	font-size: 250%;
+	padding: 16px;
+}
