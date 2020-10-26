@@ -32,7 +32,18 @@ By default, the cards will be presented both front-to-back and back-to-front, bu
 
 During a review, the cards will be presented in a random order. Try to recall the opposite side without looking, then *Flip* the card to reveal the following response buttons to schedule the card's next appearance:
 
-- *Relearn*: within the next ten minutes, restart the schedule
+- *Reset*: Clear the schedule and start from scratch
+- *Next*
+    - First time: within the next ten minutes
+    - Second time: after a few days
+    - Subsequently: after progressively larger periods
+
+A maximum of 10 unseen cards will be presented in one game.
+
+## Additional buttons
+
+Optionally, it is possible to enable the following buttons by launching the *KOMReviewLauncherItemToggleSimplifiedResponseButtonsText* command:
+
 - *Closer*
     - First time: within the next ten minutes
     - Second time: after a day or so
@@ -44,8 +55,6 @@ During a review, the cards will be presented in a random order. Try to recall th
 - *Farther*
     - First time: after four days
     - Subsequently: after progressively larger periods, moreso than *Normal*
-
-A maximum of 10 unseen cards will be presented in one game.
 
 ## Tips
 
