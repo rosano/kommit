@@ -190,8 +190,9 @@ import KOMReviewStats from '../KOMReviewStats/main.svelte';
 		/>
 {/each}
 
-<button class="KOMReviewMasterCreateButton OLSKCommonButton" on:click={ mod.InterfaceCreateButtonDidClick } accesskey="n">{ OLSKLocalized('KOMReviewMasterCreateButtonText') }
-</button>
+<p>
+	<button class="KOMReviewMasterCreateButton OLSKCommonButton" on:click={ mod.InterfaceCreateButtonDidClick } accesskey="n">{ OLSKLocalized('KOMReviewMasterCreateButtonText') }</button>
+</p>
 
 {#if KOMReviewMasterItems.length && mod.DataUnseenCount(KOMReviewMasterItems) }
 	<hr>
