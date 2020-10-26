@@ -125,8 +125,8 @@ describe('KOMReviewDetail_Misc', function () {
 			browser.assert.hasClass(KOMReviewDetailDiscardButton, 'OLSKCommonButton');
 		});
 
-		it('classes OLSKLayoutElementTappable', function () {
-			browser.assert.hasClass(KOMReviewDetailDiscardButton, 'OLSKLayoutElementTappable');
+		it('classes OLSKCommonButtonDestructive', function () {
+			browser.assert.hasClass(KOMReviewDetailDiscardButton, 'OLSKCommonButtonDestructive');
 		});
 
 		context('click', function () {
