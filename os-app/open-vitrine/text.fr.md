@@ -8,7 +8,7 @@ Le code est open-source et disponible sur [GitHub](KOM_SHARED_GITHUB_URL).
 
 Le projet est librement accessible, mais si vous êtes en mesure de donner, veuillez [faire un don](KOM_SHARED_DONATE_URL) pour soutenir le développement à l'avenir.
 
-<a class="KOMVitrineContentAppButton OLSKCommonButton" href="KOMVitrineTokenReviewURL">KOMVitrineContentAppButtonText</a>
+<a class="KOMVitrineContentAppButton OLSKCommonButton OLSKCommonButtonPrimary" href="KOMVitrineTokenReviewURL">KOMVitrineContentAppButtonText</a>
 
 * * *
 
