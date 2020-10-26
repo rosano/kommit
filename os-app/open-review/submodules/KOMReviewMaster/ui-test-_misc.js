@@ -33,6 +33,10 @@ describe('KOMReviewMaster_Misc', function () {
 
 	describe('KOMReviewMasterCreateButton', function test_KOMReviewMasterCreateButton() {
 
+		it('classes OLSKCommonButton', function () {
+			browser.assert.hasClass(KOMReviewMasterCreateButton, 'OLSKCommonButton');
+		});
+
 		it('sets accesskey', function () {
 			browser.assert.attribute(KOMReviewMasterCreateButton, 'accesskey', 'n');
 		});
