@@ -177,6 +177,9 @@ const mod = {
 
 				mod.InterfaceHearAnswerButtonDidClick();
 			},
+			x () {
+				mod._ValueIsFlipped && mod.ControlRespond(KOMPlayLogic.KOMPlayResponseTypeAgain());
+			},
 		};
 
 		handlersForKey[event.key] && handlersForKey[event.key]();
