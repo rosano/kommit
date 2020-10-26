@@ -357,6 +357,11 @@ hr {
 	background: #e6e6e6;
 }
 
+.KOMReviewDetailPlayButton {
+	padding: 4px 16px;
+	font-size: 120%;
+}
+
 .KOMReviewDetailDiscardButton {
 	padding: 5px;
 
