@@ -264,7 +264,7 @@ describe('KOMReview_Access', function () {
 			return browser.OLSKPrompt(function () {
 				return browser.pressButton('.KOMReviewDetailDiscardButton');
 			}, function (dialog) {
-				dialog.response = 'alfa';
+				dialog.response = '0';
 
 				return dialog;
 			});

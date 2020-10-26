@@ -137,7 +137,7 @@ describe('KOMReviewDetail_Misc', function () {
 					return browser.OLSKPrompt(function () {
 						return browser.pressButton(KOMReviewDetailDiscardButton);
 					}, function (dialog) {
-						dialog.response = 'bravo';
+						dialog.response = '1';
 
 						return dialog;
 					});
@@ -156,7 +156,7 @@ describe('KOMReviewDetail_Misc', function () {
 					return browser.OLSKPrompt(function () {
 						return browser.pressButton(KOMReviewDetailDiscardButton);
 					}, function (dialog) {
-						dialog.response = 'alfa';
+						dialog.response = '0';
 
 						return dialog;
 					});
