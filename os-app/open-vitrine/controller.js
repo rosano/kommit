@@ -33,7 +33,7 @@ exports.OLSKControllerRoutes = function () {
 				IsTestingBehaviour: req.hostname.match('loc.tests'),
 			});
 		},
-		OLSKRouteLanguages: ['en', 'fr'],
+		OLSKRouteLanguages: ['en', 'fr', 'es'],
 		OLSKRouteMiddlewares: [
 			'KOMVitrineRouteGuardMiddleware',
 			'KOMSharedGitHubLinkGuardMiddleware',

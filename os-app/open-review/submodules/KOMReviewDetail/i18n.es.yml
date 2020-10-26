@@ -1,0 +1,18 @@
+KOMReviewDetailToolbarBackButtonText: Back
+KOMReviewDetailToolbarCardsButtonText: Tarjetas
+KOMReviewDetailGameOptionsHeadingText: Opciones de juego
+KOMReviewDetailNoCardsText: No hay tarjetas en ese mazo
+KOMReviewDetailFormAudioIsEnabledFieldLabelText: Tocar audio
+KOMReviewDetailFormFrontSpeechIsEnabledFieldLabelText: Leer frente
+KOMReviewDetailFormRearSpeechIsEnabledFieldLabelText: Leer atrás
+KOMReviewDetailFormIsForwardOnlyFieldLabelText: Saltar tarjetas inversas
+KOMReviewDetailLauncherItemPlayReviewingText: Estudiar tarjetas de revisión
+KOMReviewDetailLauncherItemPlayUnseenText: Estudiar tarjetas nuevas
+KOMReviewDetailPlayButtonText: Jugar
+KOMReviewDetailNoSpacingsText: Todas las tarjetas para hoy han sido revisados.
+KOMReviewDetailDeckHeadingText: Mazo
+KOMReviewDetailRenameButtonText: Renombrar
+KOMReviewDetailRenameButtonPromptText: Nombre
+KOMReviewDetailDiscardButtonText: Eliminar mazo y todas las tarjetas en dentro
+KOMReviewDetailDiscardPromptText: ¿Est@as segur@? Por favor entra el número de tarjetas para eliminar el mazo.
+KOMReviewDetailLauncherItemExportText: Exportar mazo seleccionado
