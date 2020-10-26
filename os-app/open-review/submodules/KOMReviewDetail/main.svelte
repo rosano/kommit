@@ -321,7 +321,7 @@ import KOMReviewStats from '../KOMReviewStats/main.svelte';
 <hr>
 
 <p>
-	<button class="KOMReviewDetailDiscardButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ () => (window.prompt(OLSKLocalized('KOMReviewDetailDiscardPromptText')) === KOMReviewDetailDeck.KOMDeckName) && KOMReviewDetailDispatchDiscard(KOMReviewDetailDeck) }>{ OLSKLocalized('KOMReviewDetailDiscardButtonText') }</button>
+	<button class="KOMReviewDetailDiscardButton OLSKCommonButton" on:click={ () => (window.prompt(OLSKLocalized('KOMReviewDetailDiscardPromptText')) === KOMReviewDetailDeck.KOMDeckName) && KOMReviewDetailDispatchDiscard(KOMReviewDetailDeck) }>{ OLSKLocalized('KOMReviewDetailDiscardButtonText') }</button>
 </p>
 
 </div>
