@@ -41,8 +41,8 @@ const mod = {
 <form class="KOMBrowseInfoTagsForm" on:submit={ mod.InterfaceFormDidSubmit }>
 	<p>
 		<input class="KOMBrowseInfoTagsInputField OLSKMobileSafariRemoveDefaultInputStyle" type="text" bind:value={ mod._ValueNewTagName } placeholder={ OLSKLocalized('KOMBrowseInfoTagsInputFieldText') } />
-		<button class="KOMBrowseInfoTagsCreateButton" type="submit" disabled={ !mod._ValueNewTagName }>{ OLSKLocalized('KOMBrowseInfoTagsCreateButtonText') }</button>
 	</p>
+	<button class="KOMBrowseInfoTagsCreateButton" type="submit" disabled={ !mod._ValueNewTagName }>{ OLSKLocalized('KOMBrowseInfoTagsCreateButtonText') }</button>
 </form>
 
 <p>
