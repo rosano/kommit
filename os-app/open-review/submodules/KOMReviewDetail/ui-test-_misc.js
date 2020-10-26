@@ -175,6 +175,10 @@ describe('KOMReviewDetail_Misc', function () {
 
 	describe('KOMReviewDetailRenameButton', function test_KOMReviewDetailRenameButton() {
 
+		it('classes OLSKCommonButton', function () {
+			browser.assert.hasClass(KOMReviewDetailRenameButton, 'OLSKCommonButton');
+		});
+
 		context('click', function () {
 
 			before(function () {

@@ -315,7 +315,7 @@ import KOMReviewStats from '../KOMReviewStats/main.svelte';
 <h1 class="KOMReviewDetailDeckHeading">{ OLSKLocalized('KOMReviewDetailDeckHeadingText') }</h1>
 
 <p>
-	<button class="KOMReviewDetailRenameButton" on:click={ mod.InterfaceRenameButtonDidClick }>{ OLSKLocalized('KOMReviewDetailRenameButtonText') }</button>
+	<button class="KOMReviewDetailRenameButton OLSKCommonButton" on:click={ mod.InterfaceRenameButtonDidClick }>{ OLSKLocalized('KOMReviewDetailRenameButtonText') }</button>
 </p>
 
 <hr>
