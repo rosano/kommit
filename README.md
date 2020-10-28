@@ -51,19 +51,25 @@ npm install -g mocha supervisor
 ### Run logic tests
 
 ```
-olsk-spec
+npm test 
 ```
 
 ### Run interface tests
 
 ```
-olsk-spec-ui
+npm test ui
 ```
 
 To filter test paths by string:
 
 ```
-olsk-spec-ui -os-match=browse
+npm test ui match=browse
+```
+
+To filter ui test paths by JavaScript regular expressions:
+
+```
+npm test ui match='/browse/i'
 ```
 
 ## License
