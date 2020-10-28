@@ -14,21 +14,21 @@ The project is a large collection of mostly small modules and functions that are
 
 Routing, rendering markdown content, and serving pages is done via a Node.js server (usually configured in the *controller.js* files).
 
-## Installing
+## Development Setup
 
 ```
-npm install --no-save
+npm i --no-save
 ```
 
 ## Running
 
-### Start the Rollup build/reload process
+### Start the Rollup process to build and reload automatically
 
 ```
 npm run watch
 ```
 
-### Start the Node.js server
+### Start the Node.js server to view in the browser
 
 ```
 npm start
@@ -39,14 +39,6 @@ It should be accessible at <a href="http://localhost:3000" target="_blank">http:
 ## Testing
 
 Restart the test runner when creating new files so that they will be included (specifically test files, and localization files).
-
-### Setup
-
-Install mocha and supervisor
-
-```
-npm install -g mocha supervisor
-```
 
 ### Run logic tests
 
@@ -63,13 +55,13 @@ npm test ui
 To filter test paths by string:
 
 ```
-npm test ui match=browse
+npm test ui match=Browse
 ```
 
 To filter ui test paths by JavaScript regular expressions:
 
 ```
-npm test ui match='/browse/i'
+npm test ui match='/(play|browse)/'
 ```
 
 ## License
