@@ -70,16 +70,8 @@
   },
   "devDependencies": {
     "// TESTS": null,
-    "mocha": "latest",
-    "supervisor": "latest",
     "cross-blob": "latest",
     "filereader": "latest",
-
-    "// INTERFACE TESTS": null,
-    "zombie": "latest",
-
-    "// MOCHA PREPROCESS": null,
-    "OLSKTesting": "olsk/OLSKTesting",
 
     "// SVELTE": null,
     "OLSKRollupScaffold": "olsk/OLSKRollupScaffold",
