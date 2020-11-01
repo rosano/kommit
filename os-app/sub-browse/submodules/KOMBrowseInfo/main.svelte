@@ -42,7 +42,7 @@ const mod = {
 		const items = [{
 			LCHRecipeSignature: 'KOMBrowseInfoLauncherItemToggleRetire',
 			LCHRecipeName: OLSKLocalized('KOMBrowseInfoLauncherItemToggleRetireText'),
-			LCHRecipeCallback () {
+			LCHRecipeCallback: function KOMBrowseInfoLauncherItemToggleRetire () {
 				if (KOMBrowseInfoItem.KOMCardIsRetired) {
 					delete KOMBrowseInfoItem.KOMCardIsRetired;
 				} else {
@@ -54,7 +54,7 @@ const mod = {
 		}, {
 			LCHRecipeSignature: 'KOMBrowseInfoLauncherItemToggleSuspend',
 			LCHRecipeName: OLSKLocalized('KOMBrowseInfoLauncherItemToggleSuspendText'),
-			LCHRecipeCallback () {
+			LCHRecipeCallback: function KOMBrowseInfoLauncherItemToggleSuspend () {
 				if (KOMBrowseInfoItem.KOMCardIsSuspended) {
 					delete KOMBrowseInfoItem.KOMCardIsSuspended;
 				} else {
@@ -66,7 +66,7 @@ const mod = {
 		}, {
 			LCHRecipeSignature: 'KOMBrowseInfoLauncherItemDebug',
 			LCHRecipeName: OLSKLocalized('KOMBrowseInfoLauncherItemDebugText'),
-			LCHRecipeCallback () {
+			LCHRecipeCallback: function KOMBrowseInfoLauncherItemDebug () {
 				KOMBrowseInfoDispatchDebug(KOMBrowseInfoItem);
 			},
 		}];
