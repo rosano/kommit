@@ -171,6 +171,7 @@ describe('KOMReviewGeneralCollectionColors', function test_KOMReviewGeneralColle
 			KOMSharedLogic.KOMSharedColorUnseen(),
 			KOMSharedLogic.KOMSharedColorDeveloping(),
 			KOMSharedLogic.KOMSharedColorMature(),
+			KOMSharedLogic.KOMSharedColorRetired(),
 			KOMSharedLogic.KOMSharedColorSuspended(),
 			]);
 	});

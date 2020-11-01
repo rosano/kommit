@@ -23,6 +23,7 @@ exports.OLSKControllerRoutes = function () {
 					KOMGuideTokenColorRelearning: KOMSharedLogic.KOMSharedColorRelearning(),
 					KOMGuideTokenColorDeveloping: KOMSharedLogic.KOMSharedColorDeveloping(),
 					KOMGuideTokenColorMature: KOMSharedLogic.KOMSharedColorMature(),
+					KOMGuideTokenColorRetired: KOMSharedLogic.KOMSharedColorRetired(),
 					KOMGuideTokenColorSuspended: KOMSharedLogic.KOMSharedColorSuspended(),
 
 					KOMReviewDetailLauncherItemPlayReviewingText: res.locals.OLSKLocalized('KOMReviewDetailLauncherItemPlayReviewingText'),
