@@ -49,7 +49,7 @@ const mod = {
 			return Promise.reject(new Error('KOMErrorInputNotValid'));
 		}
 
-		if (!(param2 instanceof Blob)) {
+		if (!param2 || !(param2 instanceof Blob)) {
 			return Promise.reject(new Error('KOMErrorInputNotValid'));
 		}
 
