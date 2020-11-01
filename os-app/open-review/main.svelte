@@ -541,9 +541,9 @@ const mod = {
 	},
 
 	async KOMPlayDispatchDone () {
-		Object.keys(mod._ValueSpacingUpdateThrottleMap).map(function (e) {
+		await Promise.all(Object.keys(mod._ValueSpacingUpdateThrottleMap).map(function (e) {
 			return OLSKThrottle.OLSKThrottleSkip(mod._ValueSpacingUpdateThrottleMap[e]);
-		});
+		}));
 
 		mod._ValueDeckSelected = await mod.ReactDeckFigures(mod._ValueDeckSelected); // #purge-svelte-force-update
 
