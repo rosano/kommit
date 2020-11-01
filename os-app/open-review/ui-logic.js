@@ -88,6 +88,10 @@ const mod = {
 
 		const cardsNew = [];
 		return param1.filter(function (e, i) {
+			if (e.$KOMSpacingCard.KOMCardIsRetired) {
+				return false;
+			}
+
 			if (e.$KOMSpacingCard.KOMCardIsSuspended) {
 				return false;
 			}

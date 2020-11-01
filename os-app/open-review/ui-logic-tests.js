@@ -277,6 +277,17 @@ describe('KOMReviewFilter', function test_KOMReviewFilter() {
 		deepEqual(mainModule.KOMReviewFilter([], kTesting.StubReviewObjectValid(), kTesting.StubDeckObjectValid()), []);
 	});
 
+	it('excludes if KOMCardIsRetired', function () {
+		deepEqual(mainModule.KOMReviewFilter(uItems().map(function (e) {
+			e.$KOMSpacingCard.KOMCardIsRetired = true;
+
+			return e;
+		}), Object.assign(kTesting.StubReviewObjectValid(), {
+			KOMReviewScheme: mainModule.KOMReviewSchemeMixed(),
+			KOMReviewMaxUnseenCards: Infinity,
+		}), kTesting.StubDeckObjectValid()), []);
+	});
+
 	it('excludes if KOMCardIsSuspended', function () {
 		deepEqual(mainModule.KOMReviewFilter(uItems().map(function (e) {
 			e.$KOMSpacingCard.KOMCardIsSuspended = true;
