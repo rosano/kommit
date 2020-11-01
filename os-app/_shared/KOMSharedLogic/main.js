@@ -35,8 +35,12 @@ const mod = {
 		return mod.KOMSharedColorScheme()[3];
 	},
 
-	KOMSharedColorSuspended () {
+	KOMSharedColorRetired () {
 		return mod.KOMSharedColorScheme()[4];
+	},
+
+	KOMSharedColorSuspended () {
+		return mod.KOMSharedColorScheme()[5];
 	},
 
 };

@@ -77,10 +77,18 @@ describe('KOMSharedColorMature', function test_KOMSharedColorMature() {
 
 });
 
+describe('KOMSharedColorRetired', function test_KOMSharedColorRetired() {
+
+	it('returns string', function () {
+		deepEqual(mainModule.KOMSharedColorRetired(), mainModule.KOMSharedColorScheme()[4]);
+	});
+
+});
+
 describe('KOMSharedColorSuspended', function test_KOMSharedColorSuspended() {
 
 	it('returns string', function () {
-		deepEqual(mainModule.KOMSharedColorSuspended(), mainModule.KOMSharedColorScheme()[4]);
+		deepEqual(mainModule.KOMSharedColorSuspended(), mainModule.KOMSharedColorScheme()[5]);
 	});
 
 });
