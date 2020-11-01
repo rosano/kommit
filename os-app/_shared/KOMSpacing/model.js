@@ -222,6 +222,12 @@ const mod = {
 				return coll;
 			}
 
+			if ((item.$KOMSpacingCard || {}).KOMCardIsRetired) {
+				coll.KOMSpacingGroupingRetired.push(item);
+				
+				return coll;
+			}
+
 			if (mod.KOMSpacingModelIsUnseen(item)) {
 				coll.KOMSpacingGroupingUnseen.push(item);
 			}
@@ -240,6 +246,7 @@ const mod = {
 			KOMSpacingGroupingUnseen: [],
 			KOMSpacingGroupingDeveloping: [],
 			KOMSpacingGroupingMature: [],
+			KOMSpacingGroupingRetired: [],
 			KOMSpacingGroupingSuspended: [],
 		});
 	},

@@ -494,6 +494,7 @@ describe('KOMSpacingModelGroupByStatus', function test_KOMSpacingModelGroupBySta
 			KOMSpacingGroupingUnseen: [],
 			KOMSpacingGroupingDeveloping: [],
 			KOMSpacingGroupingMature: [],
+			KOMSpacingGroupingRetired: [],
 			KOMSpacingGroupingSuspended: [],
 		}, inputData);
 	};
@@ -535,6 +536,18 @@ describe('KOMSpacingModelGroupByStatus', function test_KOMSpacingModelGroupBySta
 		deepEqual(mainModule.KOMSpacingModelGroupByStatus([item]), uGrouping({
 			KOMSpacingGroupingTotal: [item],
 			KOMSpacingGroupingMature: [item],
+		}));
+	});
+
+	it('groups retired', function () {
+		const item = Object.assign(StubSpacingObjectValid(), {
+			$KOMSpacingCard: StubCardObjectValid({
+				KOMCardIsRetired: true,
+			}),
+		});
+		deepEqual(mainModule.KOMSpacingModelGroupByStatus([item]), uGrouping({
+			KOMSpacingGroupingTotal: [item],
+			KOMSpacingGroupingRetired: [item],
 		}));
 	});
 
