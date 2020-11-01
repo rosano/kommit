@@ -395,6 +395,101 @@ describe('KOMReviewFilter', function test_KOMReviewFilter() {
 
 });
 
+describe('KOMReviewRetireCards', function test_KOMReviewRetireCards() {
+
+	const uSpacing = function (inputData = {}) {
+		const item = new Date();
+
+		return StubSpacingObjectValid(Object.assign({
+			KOMSpacingID: 'bravo-forward',
+			KOMSpacingChronicles: [StubChronicleObjectValid(item)],
+			KOMSpacingDrawDate: new Date(inputData.valueOf() - 10000),
+			KOMSpacingFlipDate: new Date(inputData.valueOf() - 10000),
+			KOMSpacingDueDate: new Date(inputData.valueOf() + 1000 * 60 * 60 * 24),
+			KOMSpacingInterval: 29,
+		}, inputData));
+	};
+
+	it('throws if param1 not valid', function () {
+		throws(function () {
+			mainModule.KOMReviewRetireCards({}, []);
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('throws if param2 not array', function () {
+		throws(function () {
+			mainModule.KOMReviewRetireCards(StubDeckObjectValid(), null);
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns array', function () {
+		deepEqual(mainModule.KOMReviewRetireCards(StubDeckObjectValid(), []), []);
+	});
+
+	it('excludes if no KOMDeckRetireCardsMonths', function () {
+		const KOMDeckRetireCardsMonths = parseInt(Math.random() * 10);
+		
+		deepEqual(mainModule.KOMReviewRetireCards(StubDeckObjectValid({
+			KOMDeckRetireCardsMonths: 0,
+		}), [uSpacing({
+			KOMSpacingID: 'alfa-forward',
+			KOMSpacingInterval: (365 / 12 * KOMDeckRetireCardsMonths),
+			$KOMSpacingCard: {},
+		}), uSpacing({
+			KOMSpacingID: 'alfa-backward',
+			KOMSpacingInterval: (365 / 12 * KOMDeckRetireCardsMonths),
+			$KOMSpacingCard: {},
+		})]), []);
+	});
+
+	it('excludes if KOMDeckIsForwardOnly and under threshold ', function () {
+		const KOMDeckRetireCardsMonths = parseInt(Math.random() * 10);
+		
+		deepEqual(mainModule.KOMReviewRetireCards(StubDeckObjectValid({
+			KOMDeckRetireCardsMonths,
+			KOMDeckIsForwardOnly: true,
+		}), [uSpacing({
+			KOMSpacingID: 'alfa-forward',
+			KOMSpacingInterval: (365 / 12 * KOMDeckRetireCardsMonths * 0.9),
+			$KOMSpacingCard: {},
+		})]), []);
+	});
+
+	it('excludes if one under threshold', function () {
+		const KOMDeckRetireCardsMonths = parseInt(Math.random() * 10);
+		
+		deepEqual(mainModule.KOMReviewRetireCards(StubDeckObjectValid({
+			KOMDeckRetireCardsMonths,
+		}), [uSpacing({
+			KOMSpacingID: 'alfa-forward',
+			KOMSpacingInterval: (365 / 12 * KOMDeckRetireCardsMonths),
+			$KOMSpacingCard: {},
+		}), uSpacing({
+			KOMSpacingID: 'alfa-backward',
+			KOMSpacingInterval: (365 / 12 * KOMDeckRetireCardsMonths * 0.9),
+			$KOMSpacingCard: {},
+		})]), []);
+	});
+
+	it('retires $KOMSpacingCard', function () {
+		const KOMDeckRetireCardsMonths = parseInt(Math.random() * 10);
+		const $KOMSpacingCard = {};
+		
+		deepEqual(mainModule.KOMReviewRetireCards(StubDeckObjectValid({
+			KOMDeckRetireCardsMonths,
+		}), [uSpacing({
+			KOMSpacingID: 'alfa-forward',
+			KOMSpacingInterval: (365 / 12 * KOMDeckRetireCardsMonths * 1.2),
+			$KOMSpacingCard,
+		}), uSpacing({
+			KOMSpacingID: 'alfa-backward',
+			KOMSpacingInterval: (365 / 12 * KOMDeckRetireCardsMonths * 1.2),
+			$KOMSpacingCard,
+		})]), [$KOMSpacingCard]);
+	});
+
+});
+
 describe('KOMReviewDeckSort', function test_KOMReviewDeckSort() {
 
 	it('throws if not array', function () {

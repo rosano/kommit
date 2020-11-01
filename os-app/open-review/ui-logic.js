@@ -121,6 +121,33 @@ const mod = {
 		});
 	},
 
+	KOMReviewRetireCards (param1, param2) {
+		if (KOMDeckModel.KOMDeckModelErrorsFor(param1)) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		if (!Array.isArray(param2)) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+
+		if (!param1.KOMDeckRetireCardsMonths) {
+			return [];
+		}
+
+		return Object.values(param2.reduce(function (coll, item) {
+			return Object.assign(coll, {
+				[KOMSpacingModel.KOMSpacingModelIdentifier(item.KOMSpacingID)]: (coll[[KOMSpacingModel.KOMSpacingModelIdentifier(item.KOMSpacingID)]] || []).concat(item),
+			});
+		}, {})).filter(function (e) {
+			return e.filter(function (e) {
+				return e.KOMSpacingInterval > (365 / 12.0 * param1.KOMDeckRetireCardsMonths);
+			}).length;
+		}).map(function (e) {
+			return e[0].$KOMSpacingCard;
+		})
+	},
+
 	KOMReviewDeckSort(inputData) {
 		if (!Array.isArray(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
