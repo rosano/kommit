@@ -642,7 +642,15 @@ const mod = {
 		const activeSpacings = (await mod.DataDeckSelectedObjects(deck)).$KOMDeckSpacings;
 
 		const todaySpacingsNotStudied = KOMReviewLogic.KOMReviewSpacingsToday(activeSpacings.filter(function (e) {
-			return !e.$KOMSpacingCard.KOMCardIsSuspended;
+			if (e.$KOMSpacingCard.KOMCardIsRetired) {
+				return false;
+			}
+
+			if (e.$KOMSpacingCard.KOMCardIsSuspended) {
+				return false;
+			}
+
+			return true;
 		}));
 
 		const todaySpacingsStudied = activeSpacings.filter(function (e) {
