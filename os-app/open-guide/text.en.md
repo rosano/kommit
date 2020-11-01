@@ -119,8 +119,8 @@ Cards are visually encoded based on the following states:
 </tr>
 
 <tr>
-	<td><span style="background: KOMGuideTokenColorSuspended;"></span></td>
-	<td>Suspended</td>
+	<td><span style="background: KOMGuideTokenColorRetired;"></span></td>
+	<td>Retired</td>
 	<td>the card was removed from the schedule</td>
 </tr>
 
@@ -190,7 +190,6 @@ Counting the number of cards based on its state.
 | Clear filter text and selected card, focus filter field | `Escape` |
 | Close, if filter field is focused | `Escape` |
 | `KOMBrowseInfoLauncherItemToggleRetireText` | Launcher |
-| `KOMBrowseInfoLauncherItemToggleSuspendText` | Launcher |
 | `KOMBrowseInfoLauncherItemDebugText` | Launcher |
 
 | Global ||

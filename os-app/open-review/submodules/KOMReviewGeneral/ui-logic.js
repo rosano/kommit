@@ -28,7 +28,6 @@ const mod = {
 			KOMSharedLogic.KOMSharedColorDeveloping(),
 			KOMSharedLogic.KOMSharedColorMature(),
 			KOMSharedLogic.KOMSharedColorRetired(),
-			KOMSharedLogic.KOMSharedColorSuspended(),
 			];
 	},
 

@@ -15,17 +15,12 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 					KOMCardFrontText: 'alfa',
 					KOMCardRearText: 'bravo',
 					KOMCardIsRetired: true,
-					KOMCardIsSuspended: true,
 				}),
 			});
 		});
 
 		it('localizes KOMBrowseListItemRetired', function () {
 			browser.assert.text(KOMBrowseListItemRetired, uLocalized('KOMBrowseListItemRetiredText'));
-		});
-
-		it('localizes KOMBrowseListItemSuspended', function () {
-			browser.assert.text(KOMBrowseListItemSuspended, uLocalized('KOMBrowseListItemSuspendedText'));
 		});
 
 	});

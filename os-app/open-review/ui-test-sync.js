@@ -85,7 +85,7 @@ describe('KOMReview_Sync', function () {
 	describe('OLSKChangeDelegateUpdateCard', function test_OLSKChangeDelegateUpdateCard() {
 
 		before(function () {
-			browser.assert.text('.KOMReviewChartCompositionCollection .KOMReviewChartCompositionCollectionSuspendedCardsValue', '0');
+			browser.assert.text('.KOMReviewChartCompositionCollection .KOMReviewChartCompositionCollectionRetiredCardsValue', '0');
 		});
 
 		before(function () {
@@ -93,7 +93,7 @@ describe('KOMReview_Sync', function () {
 		});
 
 		it('sets KOMReviewChartCompositionCollectionData', function () {
-			browser.assert.text('.KOMReviewChartCompositionCollection .KOMReviewChartCompositionCollectionSuspendedCardsValue', '1');
+			browser.assert.text('.KOMReviewChartCompositionCollection .KOMReviewChartCompositionCollectionRetiredCardsValue', '1');
 		});
 
 	});
@@ -319,7 +319,7 @@ describe('KOMReview_Sync', function () {
 				});
 
 				it('updates card', function () {
-					browser.assert.text('.KOMBrowseListItem', '[suspended] FakeOLSKChangeDelegateUpdateCard');
+					browser.assert.text('.KOMBrowseListItem', '[retired] FakeOLSKChangeDelegateUpdateCard');
 				});
 
 			});

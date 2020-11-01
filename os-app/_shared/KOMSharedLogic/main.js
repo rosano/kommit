@@ -13,8 +13,7 @@ const mod = {
 			'#252525',
 			'#636363',
 			'#969696',
-			'#bdbdbd',
-			'#d9d9d9',
+			'#cccccc',
 			'#f7f7f7',
 		];
 	},
@@ -37,10 +36,6 @@ const mod = {
 
 	KOMSharedColorRetired () {
 		return mod.KOMSharedColorScheme()[4];
-	},
-
-	KOMSharedColorSuspended () {
-		return mod.KOMSharedColorScheme()[5];
 	},
 
 };

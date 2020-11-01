@@ -251,7 +251,7 @@ describe('KOMReview_Misc', function () {
 							// KOMSpacingChronicles: [StubChronicleObjectValid()],
 						}),
 					}), StubCardObjectValid({
-						KOMCardIsSuspended: true,
+						KOMCardIsRetired: true,
 						$KOMCardSpacingForward: StubSpacingObjectValid(),
 						$KOMCardSpacingBackward: StubSpacingObjectValid(),
 					})],
@@ -271,7 +271,7 @@ describe('KOMReview_Misc', function () {
 		});
 
 		it.skip('creates card', function () {
-			browser.assert.text('.KOMReviewChartCompositionCollectionSuspendedCardsValue', '1');
+			browser.assert.text('.KOMReviewChartCompositionCollectionRetiredCardsValue', '1');
 		});
 		
 	});

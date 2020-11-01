@@ -41,7 +41,6 @@ describe('KOMReviewGeneralCollectionColors', function test_KOMReviewGeneralColle
 			KOMSharedLogic.KOMSharedColorDeveloping(),
 			KOMSharedLogic.KOMSharedColorMature(),
 			KOMSharedLogic.KOMSharedColorRetired(),
-			KOMSharedLogic.KOMSharedColorSuspended(),
 			]);
 	});
 

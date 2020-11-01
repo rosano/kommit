@@ -9,9 +9,8 @@ const KOMReviewChartCompositionCollection = new RollupStart({
 			KOMSpacingGroupingDeveloping: 3,
 			KOMSpacingGroupingMature: 4,
 			KOMSpacingGroupingRetired: 5,
-			KOMSpacingGroupingSuspended: 6,
 		},
-		KOMReviewChartElementHorizontalStackedBarColors: ['alfa', 'bravo', 'charlie', 'delta', 'echo'],
+		KOMReviewChartElementHorizontalStackedBarColors: ['alfa', 'bravo', 'charlie', 'delta'],
 	}, Object.fromEntries(Array.from((new window.URLSearchParams(window.location.search)).entries()).map(function (e) {
 		if (['KOMReviewChartCompositionCollectionData'].includes(e[0])) {
 			e[1] = JSON.parse(e[1]);

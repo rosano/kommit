@@ -52,18 +52,6 @@ const mod = {
 				KOMBrowseInfoDispatchUpdate();
 			},
 		}, {
-			LCHRecipeSignature: 'KOMBrowseInfoLauncherItemToggleSuspend',
-			LCHRecipeName: OLSKLocalized('KOMBrowseInfoLauncherItemToggleSuspendText'),
-			LCHRecipeCallback: function KOMBrowseInfoLauncherItemToggleSuspend () {
-				if (KOMBrowseInfoItem.KOMCardIsSuspended) {
-					delete KOMBrowseInfoItem.KOMCardIsSuspended;
-				} else {
-					KOMBrowseInfoItem.KOMCardIsSuspended = true;
-				}
-
-				KOMBrowseInfoDispatchUpdate();
-			},
-		}, {
 			LCHRecipeSignature: 'KOMBrowseInfoLauncherItemDebug',
 			LCHRecipeName: OLSKLocalized('KOMBrowseInfoLauncherItemDebugText'),
 			LCHRecipeCallback: function KOMBrowseInfoLauncherItemDebug () {

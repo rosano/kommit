@@ -219,20 +219,6 @@ describe('KOMDeckActionFetchObjects', function test_KOMDeckActionFetchObjects() 
 			}));
 		});
 		
-		it.skip('excludes if KOMCardIsSuspended', async function () {
-			const item = await mainModule.KOMDeckActionCreate(KOMTestingStorageClient, StubDeckObjectValid({
-				KOMDeckIsForwardOnly: true,
-			}));
-
-			const card = await KOMCardAction.KOMCardActionCreate(KOMTestingStorageClient, {
-				KOMCardFrontText: 'alfa',
-				KOMCardRearText: 'bravo',
-				KOMCardIsSuspended: true,
-			}, item);
-
-			deepEqual((await mainModule.KOMDeckActionFetchObjects(KOMTestingStorageClient, item)).$KOMDeckSpacings, []);
-		});
-		
 		it('excludes if param2 true and ???', async function () {
 			const item = await mainModule.KOMDeckActionCreate(KOMTestingStorageClient, StubDeckObjectValid());
 

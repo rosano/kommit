@@ -4,7 +4,6 @@ Object.entries({
 	KOMBrowseListItem: '.KOMBrowseListItem',
 
 	KOMBrowseListItemRetired: '.KOMBrowseListItemRetired',
-	KOMBrowseListItemSuspended: '.KOMBrowseListItemSuspended',
 	KOMBrowseListItemFront: '.KOMBrowseListItemFront',
 	KOMBrowseListItemRear: '.KOMBrowseListItemRear',
 	KOMBrowseListItemTags: '.KOMBrowseListItemTags',
@@ -29,10 +28,6 @@ describe('KOMBrowseListItem_Access', function () {
 
 	it('hides KOMBrowseListItemRetired', function () {
 		browser.assert.elements(KOMBrowseListItemRetired, 0);
-	});
-
-	it('hides KOMBrowseListItemSuspended', function () {
-		browser.assert.elements(KOMBrowseListItemSuspended, 0);
 	});
 
 	it('shows KOMBrowseListItemFront', function () {
@@ -61,24 +56,6 @@ describe('KOMBrowseListItem_Access', function () {
 
 		it('shows KOMBrowseListItemRetired', function () {
 			browser.assert.elements(KOMBrowseListItemRetired, 1);
-		});
-	
-	});
-
-	context('KOMCardIsSuspended', function () {
-		
-		before(function () {
-			return browser.OLSKVisit(kDefaultRoute, {
-				KOMBrowseListItemObject: JSON.stringify({
-					KOMCardFrontText: 'alfa',
-					KOMCardRearText: 'bravo',
-					KOMCardIsSuspended: true,
-				}),
-			});
-		});
-
-		it('shows KOMBrowseListItemSuspended', function () {
-			browser.assert.elements(KOMBrowseListItemSuspended, 1);
 		});
 	
 	});

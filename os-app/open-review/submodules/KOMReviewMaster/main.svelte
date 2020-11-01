@@ -97,7 +97,6 @@ const mod = {
 					KOMSpacingGroupingDeveloping: coll.KOMSpacingGroupingDeveloping + item.$KOMReviewChartCompositionCollectionData.KOMSpacingGroupingDeveloping,
 					KOMSpacingGroupingMature: coll.KOMSpacingGroupingMature + item.$KOMReviewChartCompositionCollectionData.KOMSpacingGroupingMature,
 					KOMSpacingGroupingRetired: coll.KOMSpacingGroupingRetired + item.$KOMReviewChartCompositionCollectionData.KOMSpacingGroupingRetired,
-					KOMSpacingGroupingSuspended: coll.KOMSpacingGroupingSuspended + item.$KOMReviewChartCompositionCollectionData.KOMSpacingGroupingSuspended,
 				});
 			}, {
 				KOMSpacingGroupingTotal: 0,
@@ -105,7 +104,6 @@ const mod = {
 				KOMSpacingGroupingDeveloping: 0,
 				KOMSpacingGroupingMature: 0,
 				KOMSpacingGroupingRetired: 0,
-				KOMSpacingGroupingSuspended: 0,
 			}),
 		};
 	},

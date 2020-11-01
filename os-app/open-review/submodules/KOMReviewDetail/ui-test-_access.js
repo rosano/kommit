@@ -319,7 +319,6 @@ describe('KOMReviewDetail_Access', function () {
 						KOMSpacingGroupingDeveloping: 3,
 						KOMSpacingGroupingMature: 4,
 						KOMSpacingGroupingRetired: 5,
-						KOMSpacingGroupingSuspended: 6,
 					},
 				})),
 			});

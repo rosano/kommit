@@ -150,7 +150,6 @@ describe('KOMReviewMaster_Misc', function () {
 						KOMSpacingGroupingDeveloping: 3,
 						KOMSpacingGroupingMature: 4,
 						KOMSpacingGroupingRetired: 5,
-						KOMSpacingGroupingSuspended: 6,
 					},
 				}), uDeck({
 					KOMDeckID: 'bravo',
@@ -172,7 +171,6 @@ describe('KOMReviewMaster_Misc', function () {
 						KOMSpacingGroupingDeveloping: 3,
 						KOMSpacingGroupingMature: 4,
 						KOMSpacingGroupingRetired: 5,
-						KOMSpacingGroupingSuspended: 6,
 					},
 				}), uDeck({
 					KOMDeckID: 'charlie',
@@ -194,7 +192,6 @@ describe('KOMReviewMaster_Misc', function () {
 						KOMSpacingGroupingDeveloping: 3,
 						KOMSpacingGroupingMature: 4,
 						KOMSpacingGroupingRetired: 5,
-						KOMSpacingGroupingSuspended: 6,
 					},
 				})]),
 			});
@@ -250,7 +247,6 @@ describe('KOMReviewMaster_Misc', function () {
 			browser.assert.text('.KOMReviewChartCompositionCollection .KOMReviewChartCompositionCollectionDevelopingCardsValue', 6);
 			browser.assert.text('.KOMReviewChartCompositionCollection .KOMReviewChartCompositionCollectionMatureCardsValue', 8);
 			browser.assert.text('.KOMReviewChartCompositionCollection .KOMReviewChartCompositionCollectionRetiredCardsValue', 10);
-			browser.assert.text('.KOMReviewChartCompositionCollection .KOMReviewChartCompositionCollectionSuspendedCardsValue', 12);
 		});
 
 	});

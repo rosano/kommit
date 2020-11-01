@@ -207,26 +207,6 @@ describe('KOMCardModelErrorsFor', function test_KOMCardModelErrorsFor() {
 
 	});
 
-	context('KOMCardIsSuspended', function () {
-
-		it('returns object if not boolean', function () {
-			deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubCardObjectValid(), {
-				KOMCardIsSuspended: 'true',
-			})), {
-				KOMCardIsSuspended: [
-					'KOMErrorNotBoolean',
-				],
-			});
-		});
-
-		it('returns null', function () {
-			deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubCardObjectValid(), {
-				KOMCardIsSuspended: true,
-			})), null);
-		});
-
-	});
-
 	context('KOMOptionValidateIfNotPresent', function () {
 
 		it('returns object if not valid', function () {
@@ -244,7 +224,6 @@ describe('KOMCardModelErrorsFor', function test_KOMCardModelErrorsFor() {
 				'KOMCardRearAudio',
 				'KOMCardTags',
 				'KOMCardIsRetired',
-				'KOMCardIsSuspended',
 			]);
 		});
 

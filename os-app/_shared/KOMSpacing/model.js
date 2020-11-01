@@ -216,12 +216,6 @@ const mod = {
 		return inputData.reduce(function (coll, item) {
 			coll.KOMSpacingGroupingTotal.push(item);
 
-			if ((item.$KOMSpacingCard || {}).KOMCardIsSuspended) {
-				coll.KOMSpacingGroupingSuspended.push(item);
-				
-				return coll;
-			}
-
 			if ((item.$KOMSpacingCard || {}).KOMCardIsRetired) {
 				coll.KOMSpacingGroupingRetired.push(item);
 				
@@ -247,7 +241,6 @@ const mod = {
 			KOMSpacingGroupingDeveloping: [],
 			KOMSpacingGroupingMature: [],
 			KOMSpacingGroupingRetired: [],
-			KOMSpacingGroupingSuspended: [],
 		});
 	},
 

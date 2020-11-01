@@ -53,10 +53,6 @@ describe('KOMBrowseInfo_Access', function () {
 		return browser.assert.OLSKLauncherItems('KOMBrowseInfoLauncherItemToggleRetire', 0);
 	});
 
-	it('hides KOMBrowseInfoLauncherItemToggleSuspend', function () {
-		return browser.assert.OLSKLauncherItems('KOMBrowseInfoLauncherItemToggleSuspend', 0);
-	});
-
 	it('hides KOMBrowseInfoLauncherItemDebug', function () {
 		return browser.assert.OLSKLauncherItems('KOMBrowseInfoLauncherItemDebug', 0);
 	});
@@ -139,10 +135,6 @@ describe('KOMBrowseInfo_Access', function () {
 
 		it('shows KOMBrowseInfoLauncherItemToggleRetire', function () {
 			return browser.assert.OLSKLauncherItems('KOMBrowseInfoLauncherItemToggleRetire', 1);
-		});
-
-		it('shows KOMBrowseInfoLauncherItemToggleSuspend', function () {
-			return browser.assert.OLSKLauncherItems('KOMBrowseInfoLauncherItemToggleSuspend', 1);
 		});
 
 		it('shows KOMBrowseInfoLauncherItemDebug', function () {

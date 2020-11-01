@@ -24,7 +24,6 @@ exports.OLSKControllerRoutes = function () {
 					KOMGuideTokenColorDeveloping: KOMSharedLogic.KOMSharedColorDeveloping(),
 					KOMGuideTokenColorMature: KOMSharedLogic.KOMSharedColorMature(),
 					KOMGuideTokenColorRetired: KOMSharedLogic.KOMSharedColorRetired(),
-					KOMGuideTokenColorSuspended: KOMSharedLogic.KOMSharedColorSuspended(),
 
 					KOMReviewDetailLauncherItemPlayReviewingText: res.locals.OLSKLocalized('KOMReviewDetailLauncherItemPlayReviewingText'),
 					KOMReviewDetailLauncherItemPlayUnseenText: res.locals.OLSKLocalized('KOMReviewDetailLauncherItemPlayUnseenText'),
@@ -38,7 +37,6 @@ exports.OLSKControllerRoutes = function () {
 					OLSKRemoteStorageLauncherItemDebugFlushDataText: res.locals.OLSKLocalized('OLSKRemoteStorageLauncherItemDebugFlushDataText'),
 					
 					KOMBrowseInfoLauncherItemToggleRetireText: res.locals.OLSKLocalized('KOMBrowseInfoLauncherItemToggleRetireText'),
-					KOMBrowseInfoLauncherItemToggleSuspendText: res.locals.OLSKLocalized('KOMBrowseInfoLauncherItemToggleSuspendText'),
 					KOMBrowseInfoLauncherItemDebugText: res.locals.OLSKLocalized('KOMBrowseInfoLauncherItemDebugText'),
 				}),
 				OLSKStringReplaceTokens: require('OLSKString').OLSKStringReplaceTokens,

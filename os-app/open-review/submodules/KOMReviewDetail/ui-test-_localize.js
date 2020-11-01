@@ -165,7 +165,6 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 							KOMSpacingGroupingDeveloping: 3,
 							KOMSpacingGroupingMature: 4,
 							KOMSpacingGroupingRetired: 5,
-							KOMSpacingGroupingSuspended: 6,
 						},
 					})),
 				});

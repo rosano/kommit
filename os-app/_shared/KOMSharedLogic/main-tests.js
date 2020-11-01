@@ -37,8 +37,7 @@ describe('KOMSharedColorScheme', function test_KOMSharedColorScheme() {
 			'#252525',
 			'#636363',
 			'#969696',
-			'#bdbdbd',
-			'#d9d9d9',
+			'#cccccc',
 			'#f7f7f7',
 			]);
 	});
@@ -81,14 +80,6 @@ describe('KOMSharedColorRetired', function test_KOMSharedColorRetired() {
 
 	it('returns string', function () {
 		deepEqual(mainModule.KOMSharedColorRetired(), mainModule.KOMSharedColorScheme()[4]);
-	});
-
-});
-
-describe('KOMSharedColorSuspended', function test_KOMSharedColorSuspended() {
-
-	it('returns string', function () {
-		deepEqual(mainModule.KOMSharedColorSuspended(), mainModule.KOMSharedColorScheme()[5]);
 	});
 
 });

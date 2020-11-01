@@ -495,7 +495,6 @@ describe('KOMSpacingModelGroupByStatus', function test_KOMSpacingModelGroupBySta
 			KOMSpacingGroupingDeveloping: [],
 			KOMSpacingGroupingMature: [],
 			KOMSpacingGroupingRetired: [],
-			KOMSpacingGroupingSuspended: [],
 		}, inputData);
 	};
 
@@ -548,18 +547,6 @@ describe('KOMSpacingModelGroupByStatus', function test_KOMSpacingModelGroupBySta
 		deepEqual(mainModule.KOMSpacingModelGroupByStatus([item]), uGrouping({
 			KOMSpacingGroupingTotal: [item],
 			KOMSpacingGroupingRetired: [item],
-		}));
-	});
-
-	it('groups suspended', function () {
-		const item = Object.assign(StubSpacingObjectValid(), {
-			$KOMSpacingCard: StubCardObjectValid({
-				KOMCardIsSuspended: true,
-			}),
-		});
-		deepEqual(mainModule.KOMSpacingModelGroupByStatus([item]), uGrouping({
-			KOMSpacingGroupingTotal: [item],
-			KOMSpacingGroupingSuspended: [item],
 		}));
 	});
 

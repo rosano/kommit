@@ -197,7 +197,7 @@ const mod = {
 					LCHRecipeName: 'FakeOLSKChangeDelegateUpdateCard',
 					LCHRecipeCallback: async function FakeOLSKChangeDelegateUpdateCard () {
 						return mod.OLSKChangeDelegateUpdateCard(await KOMCardAction.KOMCardActionUpdate(mod._ValueStorageClient, Object.assign(mod.FakeCardObjectValid('FakeOLSKChangeDelegateUpdateCard'), {
-							KOMCardIsSuspended: true,
+							KOMCardIsRetired: true,
 						}), mod.FakeDeckObjectValid()));
 					},
 				},
@@ -672,15 +672,7 @@ const mod = {
 		const activeSpacings = (await mod.DataDeckSelectedObjects(deck)).$KOMDeckSpacings;
 
 		const todaySpacingsNotStudied = KOMReviewLogic.KOMReviewSpacingsToday(activeSpacings.filter(function (e) {
-			if (e.$KOMSpacingCard.KOMCardIsRetired) {
-				return false;
-			}
-
-			if (e.$KOMSpacingCard.KOMCardIsSuspended) {
-				return false;
-			}
-
-			return true;
+			return !e.$KOMSpacingCard.KOMCardIsRetired;
 		}));
 
 		const todaySpacingsStudied = activeSpacings.filter(function (e) {

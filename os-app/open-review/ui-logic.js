@@ -93,10 +93,6 @@ const mod = {
 				return false;
 			}
 
-			if (e.$KOMSpacingCard.KOMCardIsSuspended) {
-				return false;
-			}
-
 			if (param2.KOMReviewScheme === mod.KOMReviewSchemeReviewing() && KOMSpacingModel.KOMSpacingModelIsUnseen(e)) {
 				return false;
 			}
