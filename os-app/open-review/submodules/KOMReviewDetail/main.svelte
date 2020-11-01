@@ -279,6 +279,18 @@ import KOMReviewStats from '../KOMReviewStats/main.svelte';
 			<span class="KOMReviewDetailFormIsForwardOnlyFieldLabel">{ OLSKLocalized('KOMReviewDetailFormIsForwardOnlyFieldLabelText') }</span>
 		</label>
 	</p>
+	<p>
+		<label>
+			<span class="KOMReviewDetailFormRetireCardsFieldLabel">{ OLSKLocalized('KOMReviewDetailFormRetireCardsFieldLabelText') }</span>
+			<select class="KOMReviewDetailFormRetireCardsField" bind:value={ KOMReviewDetailDeck.KOMDeckRetireAfterMonths } on:input={ mod.InterfaceFormDidUpdate }>
+				<option class="KOMReviewDetailFormRetireCardsFieldOptionNever" value={ 0 }>{ OLSKLocalized('KOMReviewDetailFormRetireCardsFieldOptionNeverText') }</option>
+				<option class="KOMReviewDetailFormRetireCardsFieldOptionOneMonth" value={ 1 }>{ OLSKLocalized('KOMReviewDetailFormRetireCardsFieldOptionOneMonthText') }</option>
+				<option class="KOMReviewDetailFormRetireCardsFieldOptionThreeMonths" value={ 3 }>{ OLSKLocalized('KOMReviewDetailFormRetireCardsFieldOptionThreeMonthsText') }</option>
+				<option class="KOMReviewDetailFormRetireCardsFieldOptionSixMonths" value={ 6 }>{ OLSKLocalized('KOMReviewDetailFormRetireCardsFieldOptionSixMonthsText') }</option>
+				<option class="KOMReviewDetailFormRetireCardsFieldOptionTwelveMonths" value={ 12 }>{ OLSKLocalized('KOMReviewDetailFormRetireCardsFieldOptionTwelveMonthsText') }</option>
+			</select>
+		</label>
+	</p>
 </div>
 
 {#if !KOMReviewDetailDeck.$KOMReviewChartCompositionCollectionData.KOMSpacingGroupingTotal }

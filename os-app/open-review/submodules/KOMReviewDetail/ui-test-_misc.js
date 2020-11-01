@@ -4,6 +4,7 @@ const KOMReviewLogic = require('../../ui-logic.js').default;
 const uDeck = function (inputData) {
 	return Object.assign({
 		KOMDeckName: 'alfa',
+		KOMDeckRetireAfterMonths: 0,
 		$KOMDeckTodayReviewCount: 0,
 		$KOMDeckTodayUnseenCount: 0,
 		$KOMDeckTodayStudiedCount: 0,
@@ -439,6 +440,80 @@ describe('KOMReviewDetail_Misc', function () {
 
 			it('sends KOMReviewDetailDispatchRecount', function () {
 				browser.assert.text('#TestKOMReviewDetailDispatchRecount', '1');
+			});
+
+		});
+
+	});
+
+	describe('KOMReviewDetailFormRetireCardsField', function test_KOMReviewDetailFormRetireCardsField() {
+
+		before(function () {
+			return browser.OLSKVisit(kDefaultRoute, {
+				KOMReviewDetailDeck: JSON.stringify(uDeck()),
+			});
+		});
+
+		it('binds KOMDeckRetireAfterMonths', function () {
+			browser.assert.input(KOMReviewDetailFormRetireCardsField, '0');
+		});
+
+		context('KOMReviewDetailFormRetireCardsFieldOptionNever', function () {
+			
+			it('sets value', function () {
+				browser.assert.attribute(KOMReviewDetailFormRetireCardsFieldOptionNever, 'value', '0');
+			});
+		
+		});
+
+		context('KOMReviewDetailFormRetireCardsFieldOptionOneMonth', function () {
+			
+			it('sets value', function () {
+				browser.assert.attribute(KOMReviewDetailFormRetireCardsFieldOptionOneMonth, 'value', '1');
+			});
+		
+		});
+
+		context('KOMReviewDetailFormRetireCardsFieldOptionThreeMonths', function () {
+			
+			it('sets value', function () {
+				browser.assert.attribute(KOMReviewDetailFormRetireCardsFieldOptionThreeMonths, 'value', '3');
+			});
+		
+		});
+
+		context('KOMReviewDetailFormRetireCardsFieldOptionSixMonths', function () {
+			
+			it('sets value', function () {
+				browser.assert.attribute(KOMReviewDetailFormRetireCardsFieldOptionSixMonths, 'value', '6');
+			});
+		
+		});
+
+		context('KOMReviewDetailFormRetireCardsFieldOptionTwelveMonths', function () {
+			
+			it('sets value', function () {
+				browser.assert.attribute(KOMReviewDetailFormRetireCardsFieldOptionTwelveMonths, 'value', '12');
+			});
+		
+		});
+
+		context('click', function () {
+
+			before(function () {
+				browser.assert.text('#TestKOMReviewDetailDispatchUpdate', '0');
+				browser.assert.text('#TestKOMReviewDetailDispatchUpdateData', 'undefined');
+			});
+
+			before(function () {
+				return browser.select(KOMReviewDetailFormRetireCardsField, '3');
+			});
+
+			it.skip('sends KOMReviewDetailDispatchUpdate', function () {
+				browser.assert.text('#TestKOMReviewDetailDispatchUpdate', '1');
+				browser.assert.text('#TestKOMReviewDetailDispatchUpdateData', JSON.stringify(uDeck({
+					KOMDeckRetireAfterMonths: 3,
+				})));
 			});
 
 		});

@@ -24,6 +24,13 @@ Object.entries({
 	KOMReviewDetailFormRearLanguageCode: '.KOMReviewDetailFormRearLanguageCode .KOMReviewDetailLanguageCode',
 	KOMReviewDetailFormIsForwardOnlyField: '.KOMReviewDetailFormIsForwardOnlyField',
 	KOMReviewDetailFormIsForwardOnlyFieldLabel: '.KOMReviewDetailFormIsForwardOnlyFieldLabel',
+	KOMReviewDetailFormRetireCardsField: '.KOMReviewDetailFormRetireCardsField',
+	KOMReviewDetailFormRetireCardsFieldLabel: '.KOMReviewDetailFormRetireCardsFieldLabel',
+	KOMReviewDetailFormRetireCardsFieldOptionNever: '.KOMReviewDetailFormRetireCardsFieldOptionNever',
+	KOMReviewDetailFormRetireCardsFieldOptionOneMonth: '.KOMReviewDetailFormRetireCardsFieldOptionOneMonth',
+	KOMReviewDetailFormRetireCardsFieldOptionThreeMonths: '.KOMReviewDetailFormRetireCardsFieldOptionThreeMonths',
+	KOMReviewDetailFormRetireCardsFieldOptionSixMonths: '.KOMReviewDetailFormRetireCardsFieldOptionSixMonths',
+	KOMReviewDetailFormRetireCardsFieldOptionTwelveMonths: '.KOMReviewDetailFormRetireCardsFieldOptionTwelveMonths',
 
 	KOMReviewDetailPlay: '.KOMReviewDetailPlay',
 	KOMReviewDetailPlayButton: '.KOMReviewDetailPlayButton',
@@ -133,6 +140,34 @@ describe('KOMReviewDetail_Access', function () {
 
 	it('shows KOMReviewDetailFormIsForwardOnlyFieldLabel', function () {
 		browser.assert.elements(KOMReviewDetailFormIsForwardOnlyFieldLabel, 1);
+	});
+
+	it('shows KOMReviewDetailFormRetireCardsField', function () {
+		browser.assert.elements(KOMReviewDetailFormRetireCardsField, 1);
+	});
+
+	it('shows KOMReviewDetailFormRetireCardsFieldLabel', function () {
+		browser.assert.elements(KOMReviewDetailFormRetireCardsFieldLabel, 1);
+	});
+
+	it('shows KOMReviewDetailFormRetireCardsFieldOptionNever', function () {
+		browser.assert.elements(KOMReviewDetailFormRetireCardsFieldOptionNever, 1);
+	});
+
+	it('shows KOMReviewDetailFormRetireCardsFieldOptionOneMonth', function () {
+		browser.assert.elements(KOMReviewDetailFormRetireCardsFieldOptionOneMonth, 1);
+	});
+
+	it('shows KOMReviewDetailFormRetireCardsFieldOptionThreeMonths', function () {
+		browser.assert.elements(KOMReviewDetailFormRetireCardsFieldOptionThreeMonths, 1);
+	});
+
+	it('shows KOMReviewDetailFormRetireCardsFieldOptionSixMonths', function () {
+		browser.assert.elements(KOMReviewDetailFormRetireCardsFieldOptionSixMonths, 1);
+	});
+
+	it('shows KOMReviewDetailFormRetireCardsFieldOptionTwelveMonths', function () {
+		browser.assert.elements(KOMReviewDetailFormRetireCardsFieldOptionTwelveMonths, 1);
 	});
 
 	it('hides KOMReviewDetailPlay', function () {

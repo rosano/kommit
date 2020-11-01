@@ -74,6 +74,30 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			browser.assert.text(KOMReviewDetailFormIsForwardOnlyFieldLabel, uLocalized('KOMReviewDetailFormIsForwardOnlyFieldLabelText'));
 		});
 
+		it('localizes KOMReviewDetailFormRetireCardsFieldLabel', function () {
+			browser.assert.text(KOMReviewDetailFormRetireCardsFieldLabel, uLocalized('KOMReviewDetailFormRetireCardsFieldLabelText'));
+		});
+
+		it('localizes KOMReviewDetailFormRetireCardsFieldOptionNever', function () {
+			browser.assert.text(KOMReviewDetailFormRetireCardsFieldOptionNever, uLocalized('KOMReviewDetailFormRetireCardsFieldOptionNeverText'));
+		});
+
+		it('localizes KOMReviewDetailFormRetireCardsFieldOptionOneMonth', function () {
+			browser.assert.text(KOMReviewDetailFormRetireCardsFieldOptionOneMonth, uLocalized('KOMReviewDetailFormRetireCardsFieldOptionOneMonthText'));
+		});
+
+		it('localizes KOMReviewDetailFormRetireCardsFieldOptionThreeMonths', function () {
+			browser.assert.text(KOMReviewDetailFormRetireCardsFieldOptionThreeMonths, uLocalized('KOMReviewDetailFormRetireCardsFieldOptionThreeMonthsText'));
+		});
+
+		it('localizes KOMReviewDetailFormRetireCardsFieldOptionSixMonths', function () {
+			browser.assert.text(KOMReviewDetailFormRetireCardsFieldOptionSixMonths, uLocalized('KOMReviewDetailFormRetireCardsFieldOptionSixMonthsText'));
+		});
+
+		it('localizes KOMReviewDetailFormRetireCardsFieldOptionTwelveMonths', function () {
+			browser.assert.text(KOMReviewDetailFormRetireCardsFieldOptionTwelveMonths, uLocalized('KOMReviewDetailFormRetireCardsFieldOptionTwelveMonthsText'));
+		});
+
 		it('localizes KOMReviewDetailLauncherItemExport', function () {
 			return browser.assert.OLSKLauncherItemText('KOMReviewDetailLauncherItemExport', uLocalized('KOMReviewDetailLauncherItemExportText'));
 		});
