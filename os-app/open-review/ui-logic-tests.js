@@ -4,6 +4,7 @@ const mainModule = require('./ui-logic.js').default;
 
 const KOMPlayLogic = require('../sub-play/ui-logic.js').default;
 const KOMSharedLogic = require('../_shared/KOMSharedLogic/main.js').default;
+const KOMReviewGeneral = require('./submodules/KOMReviewGeneral/ui-logic.js').default;
 
 const uGroup = function (param1, param2 = []) {
 	const outputData = {};
@@ -574,18 +575,10 @@ describe('KOMReviewTodayPercentage', function test_KOMReviewTodayPercentage() {
 
 });
 
-describe('KOMReviewGeneralTableDays', function test_KOMReviewGeneralTableDays() {
-
-	it('returns number', function () {
-		deepEqual(mainModule.KOMReviewGeneralTableDays(), 7);
-	});
-
-});
-
 describe('KOMReviewGeneralUpcomingDates', function test_KOMReviewGeneralUpcomingDates() {
 
 	it('returns array', function () {
-		deepEqual(mainModule.KOMReviewGeneralUpcomingDates(), Array.from(Array(mainModule.KOMReviewGeneralTableDays())).map(function (e, i) {
+		deepEqual(mainModule.KOMReviewGeneralUpcomingDates(), Array.from(Array(KOMReviewGeneral.KOMReviewGeneralTableDays())).map(function (e, i) {
 			return KOMSharedLogic.KOMSharedGroupingDay(new Date(Date.now() + 1000 * 60 * 60 * 24 * i));
 		}));
 	});
@@ -624,7 +617,7 @@ describe('KOMReviewGeneralUpcomingFilter', function test_KOMReviewGeneralUpcomin
 
 	it('excludes if after KOMReviewGeneralTableDays', function () {
 		deepEqual(mainModule.KOMReviewGeneralUpcomingFilter([Object.assign(StubSpacingObjectValid(), {
-			KOMSpacingDueDate: uGroupingDate(1000 * 60 * 60 * 24 * mainModule.KOMReviewGeneralTableDays()),
+			KOMSpacingDueDate: uGroupingDate(1000 * 60 * 60 * 24 * KOMReviewGeneral.KOMReviewGeneralTableDays()),
 		})]), []);
 	});
 
@@ -637,7 +630,7 @@ describe('KOMReviewGeneralUpcomingFilter', function test_KOMReviewGeneralUpcomin
 
 	it('includes if KOMReviewGeneralTableDays', function () {
 		const item = Object.assign(StubSpacingObjectValid(), {
-			KOMSpacingDueDate: uGroupingDate(1000 * 60 * 60 * 24 * mainModule.KOMReviewGeneralTableDays() - 1),
+			KOMSpacingDueDate: uGroupingDate(1000 * 60 * 60 * 24 * KOMReviewGeneral.KOMReviewGeneralTableDays() - 1),
 		});
 		deepEqual(mainModule.KOMReviewGeneralUpcomingFilter([item]), [item]);
 	});
@@ -685,21 +678,10 @@ describe('KOMReviewGeneralUpcomingGroupByDate', function test_KOMReviewGeneralUp
 
 });
 
-describe('KOMReviewGeneralUpcomingColors', function test_KOMReviewGeneralUpcomingColors() {
-
-	it('returns array', function () {
-		deepEqual(mainModule.KOMReviewGeneralUpcomingColors(), [
-			KOMSharedLogic.KOMSharedColorMature(),
-			KOMSharedLogic.KOMSharedColorDeveloping(),
-			]);
-	});
-
-});
-
 describe('KOMReviewGeneralHistoricalDates', function test_KOMReviewGeneralHistoricalDates() {
 
 	it('returns array', function () {
-		deepEqual(mainModule.KOMReviewGeneralHistoricalDates(), Array.from(Array(mainModule.KOMReviewGeneralTableDays())).map(function (e, i) {
+		deepEqual(mainModule.KOMReviewGeneralHistoricalDates(), Array.from(Array(KOMReviewGeneral.KOMReviewGeneralTableDays())).map(function (e, i) {
 			return KOMSharedLogic.KOMSharedGroupingDay(new Date(Date.now() - 1000 * 60 * 60 * 24 * i));
 		}));
 	});
@@ -735,7 +717,7 @@ describe('KOMReviewGeneralHistoricalFilter', function test_KOMReviewGeneralHisto
 	});
 
 	it('excludes if before KOMReviewGeneralTableDays', function () {
-		deepEqual(mainModule.KOMReviewGeneralHistoricalFilter([StubSpacingObjectHistorical(uGroupingDate(-1000 * 60 * 60 * 24 * mainModule.KOMReviewGeneralTableDays() - 1))]), []);
+		deepEqual(mainModule.KOMReviewGeneralHistoricalFilter([StubSpacingObjectHistorical(uGroupingDate(-1000 * 60 * 60 * 24 * KOMReviewGeneral.KOMReviewGeneralTableDays() - 1))]), []);
 	});
 
 	it('includes if today', function () {
@@ -744,7 +726,7 @@ describe('KOMReviewGeneralHistoricalFilter', function test_KOMReviewGeneralHisto
 	});
 
 	it('includes if KOMReviewGeneralTableDays', function () {
-		const item = StubSpacingObjectHistorical(uGroupingDate(-1000 * 60 * 60 * 24 * mainModule.KOMReviewGeneralTableDays()));
+		const item = StubSpacingObjectHistorical(uGroupingDate(-1000 * 60 * 60 * 24 * KOMReviewGeneral.KOMReviewGeneralTableDays()));
 		deepEqual(mainModule.KOMReviewGeneralHistoricalFilter([item]), [item]);
 	});
 

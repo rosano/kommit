@@ -2,6 +2,7 @@ import KOMSpacingModel from '../_shared/KOMSpacing/model.js';
 import KOMDeckModel from '../_shared/KOMDeck/model.js';
 import KOMPlayLogic from '../sub-play/ui-logic.js';
 import KOMSharedLogic from '../_shared/KOMSharedLogic/main.js';
+import KOMReviewGeneral from './submodules/KOMReviewGeneral/ui-logic.js';
 
 const mod = {
 
@@ -202,12 +203,8 @@ const mod = {
 		return Math.round(inputData * 100 * 10) / 10;
 	},
 
-	KOMReviewGeneralTableDays() {
-		return 7;
-	},
-
 	KOMReviewGeneralUpcomingDates() {
-		return Array.from(Array(mod.KOMReviewGeneralTableDays())).map(function (e, i) {
+		return Array.from(Array(KOMReviewGeneral.KOMReviewGeneralTableDays())).map(function (e, i) {
 			return KOMSharedLogic.KOMSharedGroupingDay(new Date(Date.now() + 1000 * 60 * 60 * 24 * i));
 		});
 	},
@@ -226,7 +223,7 @@ const mod = {
 				return false;
 			}
 
-			if (KOMSharedLogic.KOMSharedGroupingDay(e.KOMSpacingDueDate) >= KOMSharedLogic.KOMSharedGroupingDay(new Date(Date.now() + 1000 * 60 * 60 * 24 * mod.KOMReviewGeneralTableDays()))) {
+			if (KOMSharedLogic.KOMSharedGroupingDay(e.KOMSpacingDueDate) >= KOMSharedLogic.KOMSharedGroupingDay(new Date(Date.now() + 1000 * 60 * 60 * 24 * KOMReviewGeneral.KOMReviewGeneralTableDays()))) {
 				return false;
 			}
 
@@ -246,15 +243,8 @@ const mod = {
 		}, {});
 	},
 
-	KOMReviewGeneralUpcomingColors() {
-		return [
-			KOMSharedLogic.KOMSharedColorMature(),
-			KOMSharedLogic.KOMSharedColorDeveloping(),
-			];
-	},
-
 	KOMReviewGeneralHistoricalDates() {
-		return Array.from(Array(mod.KOMReviewGeneralTableDays())).map(function (e, i) {
+		return Array.from(Array(KOMReviewGeneral.KOMReviewGeneralTableDays())).map(function (e, i) {
 			return KOMSharedLogic.KOMSharedGroupingDay(new Date(Date.now() - 1000 * 60 * 60 * 24 * i));
 		});
 	},
@@ -274,7 +264,7 @@ const mod = {
 					return false;
 				}
 
-				if (KOMSharedLogic.KOMSharedGroupingDay(e.KOMChronicleResponseDate) < KOMSharedLogic.KOMSharedGroupingDay(new Date(Date.now() - 1000 * 60 * 60 * 24 * mod.KOMReviewGeneralTableDays()))) {
+				if (KOMSharedLogic.KOMSharedGroupingDay(e.KOMChronicleResponseDate) < KOMSharedLogic.KOMSharedGroupingDay(new Date(Date.now() - 1000 * 60 * 60 * 24 * KOMReviewGeneral.KOMReviewGeneralTableDays()))) {
 					return false;
 				}
 
