@@ -187,6 +187,26 @@ describe('KOMCardModelErrorsFor', function test_KOMCardModelErrorsFor() {
 
 	});	
 
+	context('KOMCardIsRetired', function () {
+
+		it('returns object if not boolean', function () {
+			deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubCardObjectValid(), {
+				KOMCardIsRetired: 'true',
+			})), {
+				KOMCardIsRetired: [
+					'KOMErrorNotBoolean',
+				],
+			});
+		});
+
+		it('returns null', function () {
+			deepEqual(mainModule.KOMCardModelErrorsFor(Object.assign(kTesting.StubCardObjectValid(), {
+				KOMCardIsRetired: true,
+			})), null);
+		});
+
+	});
+
 	context('KOMCardIsSuspended', function () {
 
 		it('returns object if not boolean', function () {
@@ -223,6 +243,7 @@ describe('KOMCardModelErrorsFor', function test_KOMCardModelErrorsFor() {
 				'KOMCardFrontAudio',
 				'KOMCardRearAudio',
 				'KOMCardTags',
+				'KOMCardIsRetired',
 				'KOMCardIsSuspended',
 			]);
 		});

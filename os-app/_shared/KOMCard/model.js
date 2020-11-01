@@ -83,6 +83,14 @@ const mod = {
 			}
 		}
 
+		if (inputData.KOMCardIsRetired !== undefined || options.KOMOptionValidateIfNotPresent) {
+			if (typeof inputData.KOMCardIsRetired !== 'boolean') {
+				errors.KOMCardIsRetired = [
+					'KOMErrorNotBoolean',
+				];
+			}
+		}
+
 		if (inputData.KOMCardIsSuspended !== undefined || options.KOMOptionValidateIfNotPresent) {
 			if (typeof inputData.KOMCardIsSuspended !== 'boolean') {
 				errors.KOMCardIsSuspended = [
