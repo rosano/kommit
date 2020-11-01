@@ -49,6 +49,10 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 				browser.assert.attribute(KOMBrowseInfoFormNotesField, 'placeholder', uLocalized('KOMBrowseInfoFormNotesFieldText'));
 			});
 
+			it('localizes KOMBrowseInfoLauncherItemToggleRetire', function () {
+				return browser.assert.OLSKLauncherItemText('KOMBrowseInfoLauncherItemToggleRetire', uLocalized('KOMBrowseInfoLauncherItemToggleRetireText'));
+			});
+
 			it('localizes KOMBrowseInfoLauncherItemToggleSuspend', function () {
 				return browser.assert.OLSKLauncherItemText('KOMBrowseInfoLauncherItemToggleSuspend', uLocalized('KOMBrowseInfoLauncherItemToggleSuspendText'));
 			});

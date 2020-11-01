@@ -714,6 +714,55 @@ describe('KOMBrowseInfo_Misc', function () {
 
 	});
 
+	describe('KOMBrowseInfoLauncherItemToggleRetire', function test_KOMBrowseInfoLauncherItemToggleRetire() {
+
+		before(function () {
+			return browser.OLSKVisit(kDefaultRoute, {
+				KOMBrowseInfoItem: JSON.stringify({
+					KOMCardNotes: 'alfa',
+				}),
+			});
+		});
+
+		before(function () {
+			browser.assert.text('#TestKOMBrowseInfoDispatchUpdate', '0');
+		});
+
+		before(function () {
+			return browser.OLSKLauncherRun('KOMBrowseInfoLauncherItemToggleRetire');
+		});
+
+		it('updates KOMBrowseInfoItem', function () {
+			browser.assert.text('#TestKOMBrowseInfoItem', JSON.stringify({
+				KOMCardNotes: 'alfa',
+				KOMCardIsRetired: true,
+			}));
+		});
+
+		it('sends KOMBrowseInfoDispatchToggleRetire', function () {
+			browser.assert.text('#TestKOMBrowseInfoDispatchUpdate', '1');
+		});
+
+		context('KOMCardIsRetired', function () {
+
+			before(function () {
+				return browser.OLSKLauncherRun('KOMBrowseInfoLauncherItemToggleRetire');
+			});
+
+			it('updates KOMBrowseInfoItem', function () {
+				browser.assert.text('#TestKOMBrowseInfoItem', JSON.stringify({
+					KOMCardNotes: 'alfa',
+				}));
+			});
+
+			it('sends KOMBrowseInfoDispatchToggleRetire', function () {
+				browser.assert.text('#TestKOMBrowseInfoDispatchUpdate', '2');
+			});
+		
+		});
+
+	});
+
 	describe('KOMBrowseInfoLauncherItemToggleSuspend', function test_KOMBrowseInfoLauncherItemToggleSuspend() {
 
 		before(function () {

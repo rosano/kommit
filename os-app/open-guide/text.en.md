@@ -189,6 +189,7 @@ Counting the number of cards based on its state.
 | Copy tags to new card | `AccessKey+t` |
 | Clear filter text and selected card, focus filter field | `Escape` |
 | Close, if filter field is focused | `Escape` |
+| `KOMBrowseInfoLauncherItemToggleRetireText` | Launcher |
 | `KOMBrowseInfoLauncherItemToggleSuspendText` | Launcher |
 | `KOMBrowseInfoLauncherItemDebugText` | Launcher |
 

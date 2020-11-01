@@ -49,6 +49,10 @@ describe('KOMBrowseInfo_Access', function () {
 		browser.assert.elements(KOMBrowseInfoForm, 0);
 	});
 
+	it('hides KOMBrowseInfoLauncherItemToggleRetire', function () {
+		return browser.assert.OLSKLauncherItems('KOMBrowseInfoLauncherItemToggleRetire', 0);
+	});
+
 	it('hides KOMBrowseInfoLauncherItemToggleSuspend', function () {
 		return browser.assert.OLSKLauncherItems('KOMBrowseInfoLauncherItemToggleSuspend', 0);
 	});
@@ -131,6 +135,10 @@ describe('KOMBrowseInfo_Access', function () {
 
 		it('shows KOMBrowseInfoFormTagsField', function () {
 			browser.assert.elements(KOMBrowseInfoFormTagsField, 1);
+		});
+
+		it('shows KOMBrowseInfoLauncherItemToggleRetire', function () {
+			return browser.assert.OLSKLauncherItems('KOMBrowseInfoLauncherItemToggleRetire', 1);
 		});
 
 		it('shows KOMBrowseInfoLauncherItemToggleSuspend', function () {

@@ -37,6 +37,7 @@ exports.OLSKControllerRoutes = function () {
 					OLSKServiceWorkerLauncherItemDebugForceUpdateText: res.locals.OLSKLocalized('OLSKServiceWorkerLauncherItemDebugForceUpdateText'),
 					OLSKRemoteStorageLauncherItemDebugFlushDataText: res.locals.OLSKLocalized('OLSKRemoteStorageLauncherItemDebugFlushDataText'),
 					
+					KOMBrowseInfoLauncherItemToggleRetireText: res.locals.OLSKLocalized('KOMBrowseInfoLauncherItemToggleRetireText'),
 					KOMBrowseInfoLauncherItemToggleSuspendText: res.locals.OLSKLocalized('KOMBrowseInfoLauncherItemToggleSuspendText'),
 					KOMBrowseInfoLauncherItemDebugText: res.locals.OLSKLocalized('KOMBrowseInfoLauncherItemDebugText'),
 				}),
