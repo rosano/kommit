@@ -30,6 +30,10 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			browser.assert.text(KOMReviewChartCompositionCollectionMatureCardsLabel, uLocalized('KOMReviewChartCompositionCollectionMatureCardsLabelText'));
 		});
 
+		it('localizes KOMReviewChartCompositionCollectionRetiredCardsLabel', function () {
+			browser.assert.text(KOMReviewChartCompositionCollectionRetiredCardsLabel, uLocalized('KOMReviewChartCompositionCollectionRetiredCardsLabelText'));
+		});
+
 		it('localizes KOMReviewChartCompositionCollectionSuspendedCardsLabel', function () {
 			browser.assert.text(KOMReviewChartCompositionCollectionSuspendedCardsLabel, uLocalized('KOMReviewChartCompositionCollectionSuspendedCardsLabelText'));
 		});

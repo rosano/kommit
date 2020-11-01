@@ -57,7 +57,13 @@ import KOMReviewChartElementHorizontalStackedBar from '../KOMReviewChartElementH
 </tr>
 
 <tr>
-	<td><span class="KOMReviewChartCompositionCollectionSuspendedCardsColor" style="background: { mod.DataScaleColor(3) };"></span></td>
+	<td><span class="KOMReviewChartCompositionCollectionRetiredCardsColor" style="background: { mod.DataScaleColor(3) };"></span></td>
+	<td class="KOMReviewChartCompositionCollectionRetiredCardsLabel">{ OLSKLocalized('KOMReviewChartCompositionCollectionRetiredCardsLabelText') }</td>
+	<td class="KOMReviewChartCompositionCollectionRetiredCardsValue">{ KOMReviewChartCompositionCollectionData.KOMSpacingGroupingRetired }</td>
+</tr>
+
+<tr>
+	<td><span class="KOMReviewChartCompositionCollectionSuspendedCardsColor" style="background: { mod.DataScaleColor(4) };"></span></td>
 	<td class="KOMReviewChartCompositionCollectionSuspendedCardsLabel">{ OLSKLocalized('KOMReviewChartCompositionCollectionSuspendedCardsLabelText') }</td>
 	<td class="KOMReviewChartCompositionCollectionSuspendedCardsValue">{ KOMReviewChartCompositionCollectionData.KOMSpacingGroupingSuspended }</td>
 </tr>

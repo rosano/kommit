@@ -18,6 +18,10 @@ Object.entries({
 	KOMReviewChartCompositionCollectionMatureCardsLabel: '.KOMReviewChartCompositionCollectionMatureCardsLabel',
 	KOMReviewChartCompositionCollectionMatureCardsValue: '.KOMReviewChartCompositionCollectionMatureCardsValue',
 
+	KOMReviewChartCompositionCollectionRetiredCardsColor: '.KOMReviewChartCompositionCollectionRetiredCardsColor',
+	KOMReviewChartCompositionCollectionRetiredCardsLabel: '.KOMReviewChartCompositionCollectionRetiredCardsLabel',
+	KOMReviewChartCompositionCollectionRetiredCardsValue: '.KOMReviewChartCompositionCollectionRetiredCardsValue',
+
 	KOMReviewChartCompositionCollectionSuspendedCardsColor: '.KOMReviewChartCompositionCollectionSuspendedCardsColor',
 	KOMReviewChartCompositionCollectionSuspendedCardsLabel: '.KOMReviewChartCompositionCollectionSuspendedCardsLabel',
 	KOMReviewChartCompositionCollectionSuspendedCardsValue: '.KOMReviewChartCompositionCollectionSuspendedCardsValue',
@@ -77,6 +81,18 @@ describe('KOMReviewChartCompositionCollection_Access', function () {
 
 	it('shows KOMReviewChartCompositionCollectionMatureCardsValue', function () {
 		browser.assert.elements(KOMReviewChartCompositionCollectionMatureCardsValue, 1);
+	});
+
+	it('shows KOMReviewChartCompositionCollectionRetiredCardsColor', function () {
+		browser.assert.elements(KOMReviewChartCompositionCollectionRetiredCardsColor, 1);
+	});
+
+	it('shows KOMReviewChartCompositionCollectionRetiredCardsLabel', function () {
+		browser.assert.elements(KOMReviewChartCompositionCollectionRetiredCardsLabel, 1);
+	});
+
+	it('shows KOMReviewChartCompositionCollectionRetiredCardsValue', function () {
+		browser.assert.elements(KOMReviewChartCompositionCollectionRetiredCardsValue, 1);
 	});
 
 	it('shows KOMReviewChartCompositionCollectionSuspendedCardsColor', function () {
