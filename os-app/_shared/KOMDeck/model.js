@@ -75,6 +75,32 @@ const mod = {
 			}
 		}
 
+		if (inputData.KOMDeckRetireAfterMonths !== undefined) {
+			const error = (function() {
+				if (typeof inputData.KOMDeckRetireAfterMonths !== 'number') {
+					return [
+						'KOMErrorNotNumber',
+					];
+				}
+
+				if (parseInt(inputData.KOMDeckRetireAfterMonths) !== inputData.KOMDeckRetireAfterMonths) {
+					return [
+						'KOMErrorNotInteger',
+					];
+				}
+
+				if (inputData.KOMDeckRetireAfterMonths < 0) {
+					return [
+						'KOMErrorNotValid',
+					];
+				}
+			})();
+
+			if (error) {
+				errors.KOMDeckRetireAfterMonths = error;
+			};
+		}
+
 		if (inputData.KOMDeckIsForwardOnly !== undefined) {
 			if (typeof inputData.KOMDeckIsForwardOnly !== 'boolean') {
 				errors.KOMDeckIsForwardOnly = [

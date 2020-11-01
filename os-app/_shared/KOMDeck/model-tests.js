@@ -195,6 +195,46 @@ describe('KOMDeckModelErrorsFor', function test_KOMDeckModelErrorsFor() {
 
 	});
 
+	context('KOMDeckRetireAfterMonths', function () {
+
+		it('returns object if not number', function () {
+			deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
+				KOMDeckRetireAfterMonths: null,
+			})), {
+				KOMDeckRetireAfterMonths: [
+					'KOMErrorNotNumber',
+				],
+			});
+		});
+
+		it('returns object if not integer', function () {
+			deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
+				KOMDeckRetireAfterMonths: 1.2,
+			})), {
+				KOMDeckRetireAfterMonths: [
+					'KOMErrorNotInteger',
+				],
+			});
+		});
+
+		it('returns object if not above 0', function () {
+			deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
+				KOMDeckRetireAfterMonths: -1,
+			})), {
+				KOMDeckRetireAfterMonths: [
+					'KOMErrorNotValid',
+				],
+			});
+		});
+
+		it('returns null', function () {
+			deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
+				KOMDeckRetireAfterMonths: 0,
+			})), null);
+		});
+
+	});
+
 	context('KOMOptionValidateIfNotPresent', function () {
 
 		it('returns object if not valid', function () {
