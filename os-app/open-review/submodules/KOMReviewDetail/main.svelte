@@ -282,7 +282,7 @@ import KOMReviewStats from '../KOMReviewStats/main.svelte';
 	<p>
 		<label>
 			<span class="KOMReviewDetailFormRetireCardsFieldLabel">{ OLSKLocalized('KOMReviewDetailFormRetireCardsFieldLabelText') }</span>
-			<select class="KOMReviewDetailFormRetireCardsField" bind:value={ KOMReviewDetailDeck.KOMDeckRetireAfterMonths } on:input={ mod.InterfaceFormDidUpdate }>
+			<select class="KOMReviewDetailFormRetireCardsField" bind:value={ KOMReviewDetailDeck.KOMDeckRetireCardsMonths } on:input={ mod.InterfaceFormDidUpdate }>
 				<option class="KOMReviewDetailFormRetireCardsFieldOptionNever" value={ 0 }>{ OLSKLocalized('KOMReviewDetailFormRetireCardsFieldOptionNeverText') }</option>
 				<option class="KOMReviewDetailFormRetireCardsFieldOptionOneMonth" value={ 1 }>{ OLSKLocalized('KOMReviewDetailFormRetireCardsFieldOptionOneMonthText') }</option>
 				<option class="KOMReviewDetailFormRetireCardsFieldOptionThreeMonths" value={ 3 }>{ OLSKLocalized('KOMReviewDetailFormRetireCardsFieldOptionThreeMonthsText') }</option>

@@ -195,13 +195,13 @@ describe('KOMDeckModelErrorsFor', function test_KOMDeckModelErrorsFor() {
 
 	});
 
-	context('KOMDeckRetireAfterMonths', function () {
+	context('KOMDeckRetireCardsMonths', function () {
 
 		it('returns object if not number', function () {
 			deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
-				KOMDeckRetireAfterMonths: null,
+				KOMDeckRetireCardsMonths: null,
 			})), {
-				KOMDeckRetireAfterMonths: [
+				KOMDeckRetireCardsMonths: [
 					'KOMErrorNotNumber',
 				],
 			});
@@ -209,9 +209,9 @@ describe('KOMDeckModelErrorsFor', function test_KOMDeckModelErrorsFor() {
 
 		it('returns object if not integer', function () {
 			deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
-				KOMDeckRetireAfterMonths: 1.2,
+				KOMDeckRetireCardsMonths: 1.2,
 			})), {
-				KOMDeckRetireAfterMonths: [
+				KOMDeckRetireCardsMonths: [
 					'KOMErrorNotInteger',
 				],
 			});
@@ -219,9 +219,9 @@ describe('KOMDeckModelErrorsFor', function test_KOMDeckModelErrorsFor() {
 
 		it('returns object if not above 0', function () {
 			deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
-				KOMDeckRetireAfterMonths: -1,
+				KOMDeckRetireCardsMonths: -1,
 			})), {
-				KOMDeckRetireAfterMonths: [
+				KOMDeckRetireCardsMonths: [
 					'KOMErrorNotValid',
 				],
 			});
@@ -229,7 +229,7 @@ describe('KOMDeckModelErrorsFor', function test_KOMDeckModelErrorsFor() {
 
 		it('returns null', function () {
 			deepEqual(mainModule.KOMDeckModelErrorsFor(Object.assign(kTesting.StubDeckObjectValid(), {
-				KOMDeckRetireAfterMonths: 0,
+				KOMDeckRetireCardsMonths: 0,
 			})), null);
 		});
 

@@ -75,21 +75,21 @@ const mod = {
 			}
 		}
 
-		if (inputData.KOMDeckRetireAfterMonths !== undefined) {
+		if (inputData.KOMDeckRetireCardsMonths !== undefined) {
 			const error = (function() {
-				if (typeof inputData.KOMDeckRetireAfterMonths !== 'number') {
+				if (typeof inputData.KOMDeckRetireCardsMonths !== 'number') {
 					return [
 						'KOMErrorNotNumber',
 					];
 				}
 
-				if (parseInt(inputData.KOMDeckRetireAfterMonths) !== inputData.KOMDeckRetireAfterMonths) {
+				if (parseInt(inputData.KOMDeckRetireCardsMonths) !== inputData.KOMDeckRetireCardsMonths) {
 					return [
 						'KOMErrorNotInteger',
 					];
 				}
 
-				if (inputData.KOMDeckRetireAfterMonths < 0) {
+				if (inputData.KOMDeckRetireCardsMonths < 0) {
 					return [
 						'KOMErrorNotValid',
 					];
@@ -97,7 +97,7 @@ const mod = {
 			})();
 
 			if (error) {
-				errors.KOMDeckRetireAfterMonths = error;
+				errors.KOMDeckRetireCardsMonths = error;
 			};
 		}
 

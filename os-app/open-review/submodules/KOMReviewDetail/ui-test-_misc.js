@@ -4,7 +4,7 @@ const KOMReviewLogic = require('../../ui-logic.js').default;
 const uDeck = function (inputData) {
 	return Object.assign({
 		KOMDeckName: 'alfa',
-		KOMDeckRetireAfterMonths: 0,
+		KOMDeckRetireCardsMonths: 0,
 		$KOMDeckTodayReviewCount: 0,
 		$KOMDeckTodayUnseenCount: 0,
 		$KOMDeckTodayStudiedCount: 0,
@@ -454,7 +454,7 @@ describe('KOMReviewDetail_Misc', function () {
 			});
 		});
 
-		it('binds KOMDeckRetireAfterMonths', function () {
+		it('binds KOMDeckRetireCardsMonths', function () {
 			browser.assert.input(KOMReviewDetailFormRetireCardsField, '0');
 		});
 
@@ -512,7 +512,7 @@ describe('KOMReviewDetail_Misc', function () {
 			it.skip('sends KOMReviewDetailDispatchUpdate', function () {
 				browser.assert.text('#TestKOMReviewDetailDispatchUpdate', '1');
 				browser.assert.text('#TestKOMReviewDetailDispatchUpdateData', JSON.stringify(uDeck({
-					KOMDeckRetireAfterMonths: 3,
+					KOMDeckRetireCardsMonths: 3,
 				})));
 			});
 
