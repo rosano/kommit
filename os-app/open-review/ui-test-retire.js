@@ -77,6 +77,78 @@ describe('KOMReview_Retire', function () {
 			});
 		
 		});
+
+		context('KOMDeckRetireCardsMonths', function () {
+
+			before(function () {
+				return browser.pressButton('.KOMPlayFlipButton');
+			});
+
+			before(function () {
+				return browser.pressButton('.KOMPlayResponseButtonEasy');
+			});
+
+			before(function () {
+				return browser.pressButton('.KOMPlayFlipButton');
+			});
+
+			before(function () {
+				return browser.pressButton('.KOMPlayResponseButtonEasy');
+			});
+
+			before(function () {
+				return browser.pressButton('.KOMReviewDetailToolbarCardsButton');
+			});
+
+			before(function () {
+				return browser.pressButton('.KOMBrowseListToolbarCreateButton');
+			});
+
+			before(function () {
+				browser.fill('.KOMBrowseInfoFormFrontTextField', 'charlie');
+			});
+
+			before(function () {
+				return browser.OLSKLauncherRun('FakeRetireInterval');
+			});
+
+			before(function () {
+				return browser.pressButton('.KOMBrowseListToolbarCloseButton');
+			});
+
+			before(function () {
+				browser.assert.text('.KOMReviewChartCompositionCollectionRetiredCardsValue', '1');
+			});
+
+			before(function () {
+				return browser.select('.KOMReviewDetailFormRetireCardsField', '1');
+			});
+
+			before(function () {
+				return browser.pressButton('.KOMReviewDetailPlayButton');
+			});
+
+			before(function () {
+				return browser.pressButton('.KOMPlayFlipButton');
+			});
+
+			before(function () {
+				return browser.pressButton('.KOMPlayResponseButtonHard');
+			});
+
+			before(function () {
+				return browser.pressButton('.KOMPlayFlipButton');
+			});
+
+			before(function () {
+				return browser.pressButton('.KOMPlayResponseButtonHard');
+			});
+
+			it('retires card', function () {
+				browser.assert.text('.KOMReviewChartCompositionCollectionRetiredCardsValue', '2');
+			});									
+		
+		});
 	
 	});
 

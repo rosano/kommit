@@ -298,6 +298,30 @@ const mod = {
 						return mod.SetupValueDecksAll();
 					},
 				},
+				{
+					LCHRecipeName: 'FakeRetireInterval',
+					LCHRecipeCallback: async function FakeRetireInterval () {
+						return (await mod.DataDeckSelectedObjects(mod._ValueDeckSelected)).$KOMDeckSpacings.slice(-2).forEach(function (e) {
+							Object.assign(e, {
+								KOMSpacingChronicles: [{	
+									KOMChronicleDrawDate: new Date(),
+									KOMChronicleFlipDate: new Date(),
+									KOMChronicleResponseDate: new Date(),
+									KOMChronicleResponseType: 'RESPONSE_EASY',
+									KOMChronicleInterval: 29,
+									KOMChronicleMultiplier: 1.2,
+									KOMChronicleDueDate: new Date(),
+								}],
+								KOMSpacingDrawDate: new Date(),
+								KOMSpacingFlipDate: new Date(),
+								KOMSpacingResponseDate: new Date(),
+								KOMSpacingInterval: 29,
+								KOMSpacingMultiplier: 1.2,
+								KOMSpacingDueDate: new Date(),
+							})
+						});
+					},
+				},
 			]);
 		}
 
@@ -543,6 +567,12 @@ const mod = {
 	async KOMPlayDispatchDone () {
 		await Promise.all(Object.keys(mod._ValueSpacingUpdateThrottleMap).map(function (e) {
 			return OLSKThrottle.OLSKThrottleSkip(mod._ValueSpacingUpdateThrottleMap[e]);
+		}));
+
+		await Promise.all(KOMReviewLogic.KOMReviewRetireCards(mod._ValueDeckSelected, (await mod.DataDeckSelectedObjects(mod._ValueDeckSelected)).$KOMDeckSpacings).map(function (e) {
+			return KOMCardAction.KOMCardActionUpdate(mod._ValueStorageClient, Object.assign(e, {
+				KOMCardIsRetired: true,
+			}), mod._ValueDeckSelected);
 		}));
 
 		mod._ValueDeckSelected = await mod.ReactDeckFigures(mod._ValueDeckSelected); // #purge-svelte-force-update
