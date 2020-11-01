@@ -37,7 +37,8 @@ describe('KOMSharedColorScheme', function test_KOMSharedColorScheme() {
 			'#252525',
 			'#636363',
 			'#969696',
-			'#cccccc',
+			'#bdbdbd',
+			'#d9d9d9',
 			'#f7f7f7',
 			]);
 	});
