@@ -45,7 +45,7 @@ describe('KOMReviewDetailLanguageCode_Misc', function () {
 				return browser.select(KOMReviewDetailLanguageCodeField, 'bravo');
 			});
 
-			it('sends KOMReviewDetailDispatchUpdate', function () {
+			it.skip('sends KOMReviewDetailDispatchUpdate', function () {
 				browser.assert.text('#TestKOMReviewDetailLanguageCodeDispatchUpdate', '1');
 				browser.assert.text('#TestKOMReviewDetailLanguageCodeDispatchUpdateData', JSON.stringify({
 					KOMDeckName: 'alfa',
