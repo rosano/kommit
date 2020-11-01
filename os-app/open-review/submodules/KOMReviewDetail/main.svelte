@@ -98,13 +98,11 @@ const mod = {
 
 		setTimeout(function () {
 			KOMReviewDetailDispatchUpdate(KOMReviewDetailDeck);
-		});
-	},
 
-	InterfaceForwardOnlyDidInput () {
-		mod.InterfaceFormDidUpdate();
-		
-		KOMReviewDetailDispatchRecount();
+			setTimeout(function () {
+				KOMReviewDetailDispatchRecount();
+			}, 100);
+		});
 	},
 
 	InterfaceReviewingButtonDidClick() {
@@ -275,7 +273,7 @@ import KOMReviewStats from '../KOMReviewStats/main.svelte';
 	</p>
 	<p>
 		<label>
-			<input class="KOMReviewDetailFormIsForwardOnlyField" type="checkbox" bind:checked={ KOMReviewDetailDeck.KOMDeckIsForwardOnly } on:input={ mod.InterfaceForwardOnlyDidInput } />
+			<input class="KOMReviewDetailFormIsForwardOnlyField" type="checkbox" bind:checked={ KOMReviewDetailDeck.KOMDeckIsForwardOnly } on:input={ mod.InterfaceFormDidUpdate } />
 			<span class="KOMReviewDetailFormIsForwardOnlyFieldLabel">{ OLSKLocalized('KOMReviewDetailFormIsForwardOnlyFieldLabelText') }</span>
 		</label>
 	</p>
