@@ -96,6 +96,7 @@ const mod = {
 					KOMSpacingGroupingUnseen: coll.KOMSpacingGroupingUnseen + item.$KOMReviewChartCompositionCollectionData.KOMSpacingGroupingUnseen,
 					KOMSpacingGroupingDeveloping: coll.KOMSpacingGroupingDeveloping + item.$KOMReviewChartCompositionCollectionData.KOMSpacingGroupingDeveloping,
 					KOMSpacingGroupingMature: coll.KOMSpacingGroupingMature + item.$KOMReviewChartCompositionCollectionData.KOMSpacingGroupingMature,
+					KOMSpacingGroupingRetired: coll.KOMSpacingGroupingRetired + item.$KOMReviewChartCompositionCollectionData.KOMSpacingGroupingRetired,
 					KOMSpacingGroupingSuspended: coll.KOMSpacingGroupingSuspended + item.$KOMReviewChartCompositionCollectionData.KOMSpacingGroupingSuspended,
 				});
 			}, {
@@ -103,6 +104,7 @@ const mod = {
 				KOMSpacingGroupingUnseen: 0,
 				KOMSpacingGroupingDeveloping: 0,
 				KOMSpacingGroupingMature: 0,
+				KOMSpacingGroupingRetired: 0,
 				KOMSpacingGroupingSuspended: 0,
 			}),
 		};
