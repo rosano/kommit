@@ -90,6 +90,20 @@ const mod = {
 	DataBrowseRecipes () {
 		const items = [];
 
+		if (mod._ValueCardsVisible.filter(function (e) {
+			return e.KOMCardIsRetired;
+		}).length) {
+			items.push(...[
+				{
+					LCHRecipeSignature: 'KOMBrowseLauncherItemDiscardRetiredCards',
+					LCHRecipeName: OLSKLocalized('KOMBrowseLauncherItemDiscardRetiredCardsText'),
+					LCHRecipeCallback: function KOMBrowseLauncherItemDiscardRetiredCards () {
+						return mod.ControlDiscardRetiredCards();
+					},
+				},
+			]);
+		}
+
 		if (OLSK_TESTING_BEHAVIOUR()) {
 			items.push(...[
 				{
@@ -214,6 +228,30 @@ const mod = {
 		await KOMCardAction.KOMCardActionDelete(KOMBrowseStorageClient, param1, param2);
 
 		mod.ControlCardSelect(null);
+	},
+
+	async ControlDiscardRetiredCards () {
+		if (window.prompt(OLSKLocalized('KOMBrowseLauncherItemDiscardRetiredCardsPromptText')) !== KOMBrowseDeckSelected.$KOMReviewChartCompositionCollectionData.KOMSpacingGroupingRetired.toString()) {
+			return;
+		}
+
+		const retired = mod._ValueCardsAll.filter(function (e) {
+			return e.KOMCardIsRetired;
+		});
+
+		const selectedIsRetired = retired.includes(mod._ValueCardSelected);
+
+		mod.ValueCardsAll(mod._ValueCardsAll.filter(function (e) {
+			return !retired.includes(e);
+		}), false);
+
+		await Promise.all(retired.map(function (e) {
+			return KOMCardAction.KOMCardActionDelete(KOMBrowseStorageClient, e, KOMBrowseDeckSelected);
+		}));
+
+		if (selectedIsRetired) {
+			mod.ControlCardSelect(null);
+		}
 	},
 
 	ControlFocusMaster () {

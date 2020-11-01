@@ -4,22 +4,15 @@ Object.entries({}).map(function (e) {
 	return global[e.shift()] = e.pop();
 });
 
-const kTesting = {
-	StubDeckObjectValid() {
-		return {
-			KOMDeckID: 'alfa',
-			KOMDeckName: '',
-			KOMDeckCreationDate: new Date('2019-02-23T13:56:36Z'),
-			KOMDeckModificationDate: new Date('2019-02-23T13:56:36Z'),
-		};
-	},
-};
-
 describe('KOMBrowse_Access', function () {
 
 	before(function () {
 		return browser.OLSKVisit(kDefaultRoute, {
-			KOMBrowseDeckSelected: JSON.stringify(kTesting.StubDeckObjectValid()),
+			KOMBrowseDeckSelected: JSON.stringify(StubDeckObjectValid({
+				$KOMReviewChartCompositionCollectionData: {
+					KOMSpacingGroupingRetired: 1,
+				},
+			})),
 		});
 	});
 
@@ -41,6 +34,10 @@ describe('KOMBrowse_Access', function () {
 
 	it('hides KOMBrowseInfoForm', function () {
 		browser.assert.elements('.KOMBrowseInfoForm', 0);
+	});
+
+	it('hides KOMBrowseLauncherItemDiscardRetiredCards', function () {
+		return browser.assert.OLSKLauncherItems('KOMBrowseLauncherItemDiscardRetiredCards', 0);
 	});
 
 	it('hides KOMBrowseInfoLauncherFakeItemProxy', function () {
@@ -91,6 +88,52 @@ describe('KOMBrowse_Access', function () {
 
 		it('hides KOMBrowseInfoForm', function () {
 			browser.assert.elements('.KOMBrowseInfoForm', 0);
+		});
+
+	});
+
+	context('retire', function test_retire() {
+
+		before(function () {
+			return browser.pressButton('.KOMBrowseListToolbarCreateButton');
+		});
+
+		before(function () {
+			return browser.pressButton('.KOMBrowseListToolbarCreateButton');
+		});
+
+		before(function () {
+			return browser.OLSKLauncherRun('KOMBrowseInfoLauncherItemToggleRetire');
+		});
+
+		it('shows KOMBrowseLauncherItemDiscardRetiredCards', function () {
+			return browser.assert.OLSKLauncherItems('KOMBrowseLauncherItemDiscardRetiredCards', 1);
+		});
+
+		context('KOMBrowseLauncherItemDiscardRetiredCards', function () {
+			
+			before(function () {
+				return browser.pressButton('.OLSKAppToolbarLauncherButton');
+			});
+
+			before(async function () {
+				return browser.fill('.LCHLauncherFilterInput', 'KOMBrowseLauncherItemDiscardRetiredCards');
+			});
+
+			it('localizes KOMBrowseLauncherItemDiscardRetiredCardsPrompt', function () {
+				return browser.OLSKPrompt(function () {
+					return browser.click('.LCHLauncherPipeItem');
+				}, function (dialog) {
+					return Object.assign(dialog, {
+						response: '1',
+					});
+				});
+			});
+
+			it('hides KOMBrowseListItem', function () {
+				browser.assert.elements('.KOMBrowseListItem', 1);
+			});
+		
 		});
 
 	});
