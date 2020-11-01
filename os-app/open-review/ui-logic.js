@@ -309,25 +309,6 @@ const mod = {
 		}, 0);
 	},
 
-	KOMReviewGeneralHistoricalColors() {
-		return [
-			KOMSharedLogic.KOMSharedColorMature(),
-			KOMSharedLogic.KOMSharedColorDeveloping(),
-			KOMSharedLogic.KOMSharedColorRelearning(),
-			KOMSharedLogic.KOMSharedColorUnseen(),
-			];
-	},
-
-	KOMReviewGeneralCollectionColors() {
-		return [
-			KOMSharedLogic.KOMSharedColorUnseen(),
-			KOMSharedLogic.KOMSharedColorDeveloping(),
-			KOMSharedLogic.KOMSharedColorMature(),
-			KOMSharedLogic.KOMSharedColorRetired(),
-			KOMSharedLogic.KOMSharedColorSuspended(),
-			];
-	},
-
 };
 
 export default mod;

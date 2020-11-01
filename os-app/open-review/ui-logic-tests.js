@@ -815,30 +815,3 @@ describe('KOMReviewGeneralHistoricalTotalMilliseconds', function test_KOMReviewG
 	});
 
 });
-
-describe('KOMReviewGeneralHistoricalColors', function test_KOMReviewGeneralHistoricalColors() {
-
-	it('returns array', function () {
-		deepEqual(mainModule.KOMReviewGeneralHistoricalColors(), [
-			KOMSharedLogic.KOMSharedColorMature(),
-			KOMSharedLogic.KOMSharedColorDeveloping(),
-			KOMSharedLogic.KOMSharedColorRelearning(),
-			KOMSharedLogic.KOMSharedColorUnseen(),
-			]);
-	});
-
-});
-
-describe('KOMReviewGeneralCollectionColors', function test_KOMReviewGeneralCollectionColors() {
-
-	it('returns array', function () {
-		deepEqual(mainModule.KOMReviewGeneralCollectionColors(), [
-			KOMSharedLogic.KOMSharedColorUnseen(),
-			KOMSharedLogic.KOMSharedColorDeveloping(),
-			KOMSharedLogic.KOMSharedColorMature(),
-			KOMSharedLogic.KOMSharedColorRetired(),
-			KOMSharedLogic.KOMSharedColorSuspended(),
-			]);
-	});
-
-});
