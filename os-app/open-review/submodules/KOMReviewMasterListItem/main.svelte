@@ -28,9 +28,11 @@ const OLSKLocalized = function(translationConstant) {
 
 <style>
 .KOMReviewMasterListItem {
+	--KOMReviewMasterListItemSize: 110px;
+
 	padding: var(--KOMCommonPadding);
-	height: 110px;
-	width: 110px;
+	height: var(--KOMReviewMasterListItemSize);
+	width: var(--KOMReviewMasterListItemSize);
 
 	margin-right: var(--KOMCommonPadding);
 	margin-bottom: var(--KOMCommonPadding);
@@ -42,6 +44,14 @@ const OLSKLocalized = function(translationConstant) {
 	flex-direction: column;
 	align-items: stretch;
 	justify-content: center;
+}
+
+@media screen and (max-width: 760px) {
+
+.KOMReviewMasterListItem {
+	--KOMReviewMasterListItemSize: 100px;
+}
+
 }
 
 .KOMReviewMasterListItem p {
@@ -56,5 +66,13 @@ const OLSKLocalized = function(translationConstant) {
 	margin-bottom: var(--KOMCommonPadding);
 
 	font-size: 16pt;
+}
+
+@media screen and (max-width: 760px) {
+
+.KOMReviewMasterListItemName {
+	font-size: 14pt;
+}
+
 }
 </style>
