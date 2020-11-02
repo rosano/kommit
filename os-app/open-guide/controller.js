@@ -27,7 +27,7 @@ exports.OLSKControllerRoutes = function () {
 
 					KOMReviewLauncherItemSelectDeckText: res.locals.OLSKFormatted(res.locals.OLSKLocalized('KOMReviewLauncherItemSelectDeckTextFormat'), '…'),
 
-					KOMReviewRoute: res.locals.OLSKCanonicalLocalizedFor('KOMReviewRoute'),
+					KOMReviewRoute: res.locals.OLSKCanonicalFor('KOMReviewRoute'),
 				}, res.locals.OLSKLocalizedStringKeys().reduce(function (coll, item) {
 					return Object.assign(coll, {
 						[item]: res.locals.OLSKLocalized(item),
