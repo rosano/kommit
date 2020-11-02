@@ -54,8 +54,4 @@ const OLSKLocalized = function(translationConstant) {
 .KOMReviewMasterListItem:active {
 	color: inherit;
 }
-
-.KOMReviewMasterListItemTitle {
-	display: inline-block;
-}
 </style>
