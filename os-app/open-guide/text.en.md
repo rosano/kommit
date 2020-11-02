@@ -18,22 +18,22 @@ This is the starting screen of the app. From here you can create a new deck or s
 
 # Deck page
 
-Once you have selected a deck, you can customize how to present the cards, see some statistics from your reviews, and rename or delete the deck. Click on *Cards* to manage cards. Click *Play* to start the memory game.
+Once you have selected a deck, you can customize how to present the cards, see some statistics from your reviews, and rename or delete the deck. Click on *KOMReviewDetailToolbarCardsButtonText* to manage cards. Click *KOMReviewDetailPlayButtonText* to start the memory game.
 
 ## Game options
 
-*Play audio* will automatically play any recorded audio for the card.
+*KOMReviewDetailFormAudioIsEnabledFieldLabelText* will automatically play any recorded audio for the card.
 
-*Read front* or *Read back* will speak the text using any language available on your device. By default it uses the language of your computer, but you can set a [language code](https://www.w3schools.com/tags/ref_language_codes.asp) if your cards use multiple languages. If *Play audio* is enabled and there is recorded audio for the same side, only the audio will play.
+*KOMReviewDetailFormFrontSpeechIsEnabledFieldLabelText* or *KOMReviewDetailFormRearSpeechIsEnabledFieldLabelText* will speak the text using any language available on your device. By default it uses the language of your computer, but you can set a [language code](https://www.w3schools.com/tags/ref_language_codes.asp) if your cards use multiple languages. If *KOMReviewDetailFormAudioIsEnabledFieldLabelText* is enabled and there is recorded audio for the same side, only the audio will play.
 
-By default, the cards will be presented both front-to-back and back-to-front, but *Skip reversed cards* will disable the latter.
+By default, the cards will be presented both front-to-back and back-to-front, but *KOMReviewDetailFormIsForwardOnlyFieldLabelText* will disable the latter.
 
 # Memory game
 
-During a review, the cards will be presented in a random order. Try to recall the opposite side without looking, then *Flip* the card to reveal the following response buttons to schedule the card's next appearance:
+During a review, the cards will be presented in a random order. Try to recall the opposite side without looking, then *KOMPlayFlipButtonText* the card to reveal the following response buttons to schedule the card's next appearance:
 
-- *Reset*: Clear the schedule and start from scratch
-- *Next*
+- *KOMPlayResponseButtonAgainText*: Clear the schedule and start from scratch
+- *KOMPlayResponseButtonNextText*
     - First time: within the next ten minutes
     - Second time: after a few days
     - Subsequently: after progressively larger periods
@@ -44,17 +44,17 @@ A maximum of 10 unseen cards will be presented in one game.
 
 Optionally, it is possible to enable the following buttons by launching the *KOMReviewLauncherItemToggleSimplifiedResponseButtonsText* command:
 
-- *Closer*
+- *KOMPlayResponseButtonHardText*
     - First time: within the next ten minutes
     - Second time: after a day or so
     - Subsequently: after progressively larger periods
-- *Normal*
+- *KOMPlayResponseButtonGoodText*
     - First time: within the next ten minutes
     - Second time: after a few days
-    - Subsequently: after progressively larger periods, moreso than *Closer*
-- *Farther*
+    - Subsequently: after progressively larger periods, moreso than *KOMPlayResponseButtonHardText*
+- *KOMPlayResponseButtonEasyText*
     - First time: after four days
-    - Subsequently: after progressively larger periods, moreso than *Normal*
+    - Subsequently: after progressively larger periods, moreso than *KOMPlayResponseButtonGoodText*
 
 ## Tips
 
@@ -74,13 +74,13 @@ Editing the same card on multiple devices at the same time can result in data lo
 
 </div>
 
-*Front text* or *Back text* can be used for the question or answer
+*KOMBrowseInfoFormFrontTextFieldText* or *KOMBrowseInfoFormRearTextFieldText* can be used for the question or answer
 
-Each side can have a short audio recording. Click *Record* and allow microphone access to begin recording, then click again to end.
+Each side can have a short audio recording. Click *KOMBrowseInfoAudioRecordButtonText* and allow microphone access to begin recording, then click again to end.
 
-The *Read* button speaks the text using the language chosen on the deck page.
+The *KOMBrowseInfoFormFrontReadButtonText* button speaks the text using the language chosen on the deck page.
 
-*Notes* can be used for any personal comments or memory aids.
+*KOMBrowseInfoFormNotesFieldText* can be used for any personal comments or memory aids.
 
 *Tags* can be used to organize cards and make them easier to find.
 
@@ -96,7 +96,7 @@ Cards are visually encoded based on the following states:
 
 <tr>
 	<td><span style="background: KOMGuideTokenColorUnseen;"></span></td>
-	<td>Unseen</td>
+	<td>KOMReviewChartCompositionCollectionUnseenCardsLabelText</td>
 	<td>without any reviews, not scheduled</td>
 </tr>
 
@@ -108,41 +108,41 @@ Cards are visually encoded based on the following states:
 
 <tr>
 	<td><span style="background: KOMGuideTokenColorDeveloping;"></span></td>
-	<td>Developing</td>
+	<td>KOMReviewChartCompositionCollectionDevelopingCardsLabelText</td>
 	<td>scheduled to appear within 21 days</td>
 </tr>
 
 <tr>
 	<td><span style="background: KOMGuideTokenColorMature;"></span></td>
-	<td>Mature</td>
+	<td>KOMReviewChartCompositionCollectionMatureCardsLabelText</td>
 	<td>scheduled to appear after 21 days</td>
 </tr>
 
 <tr>
 	<td><span style="background: KOMGuideTokenColorRetired;"></span></td>
-	<td>Retired</td>
+	<td>KOMReviewChartCompositionCollectionRetiredCardsLabelText</td>
 	<td>removed from the schedule</td>
 </tr>
 
 </table>
 
-## Today
+## KOMReviewGeneralTodayText
 
 All statistics in this section are for the current day.
 
-- *Total cards*: number of cards reviewed.
+- *KOMReviewTodayTotalCardsLabelText*: number of cards reviewed.
 - *Time*: minutes passed during the memory game.
 - *Review accuracy*: percentage of review cards remembered correctly; new cards are not counted.
 
-## Upcoming cards
+## KOMReviewGeneralUpcomingHeadingText
 
-The number of *Developing* and *Mature* cards scheduled on a given day.
+The number of *KOMReviewChartCompositionCollectionDevelopingCardsLabelText* and *Mature* cards scheduled on a given day.
 
 ## Time
 
-Minutes passed on a given day during the memory game on Unseen, Relearning, Developing, and Mature cards.
+Minutes passed on a given day during the memory game on *KOMReviewChartCompositionCollectionUnseenCardsLabelText*, *Relearning*, *KOMReviewChartCompositionCollectionDevelopingCardsLabelText*, and *KOMReviewChartCompositionCollectionMatureCardsLabelText* cards.
 
-## Collection
+## KOMReviewGeneralCollectionHeadingText
 
 Counting the number of cards based on its state.
 
@@ -158,7 +158,7 @@ Counting the number of cards based on its state.
 
 | List of decks ||
 :--- | ---
-| Create new deck | `AccessKey+n` |
+| KOMReviewMasterCreateButtonText | `AccessKey+n` |
 | `KOMReviewLauncherItemSelectDeckText` | Launcher |
 | `KOMReviewLauncherItemToggleSimplifiedResponseButtonsText` | Launcher |
 | `KOMReviewMasterLauncherItemToggleExcludeTripleQuestionMarkText` | Launcher |
@@ -174,10 +174,10 @@ Counting the number of cards based on its state.
 | Memory game ||
 :--- | ---
 | Flip card | `Space` |
-| Respond *Reset* | `1` or `x` |
-| Respond *Closer* | `2` |
-| Respond *Normal* | `3` or `Space` |
-| Respond *Farther* | `4` |
+| Respond *KOMPlayResponseButtonAgainText* | `1` or `x` |
+| Respond *KOMPlayResponseButtonHardText* | `2` |
+| Respond *KOMPlayResponseButtonGoodText* | `3` or `Space` |
+| Respond *KOMPlayResponseButtonEasyText* | `4` |
 | Repeat Question | `q` |
 | Repeat Answer | `a` |
 | Close | `Escape` |
@@ -186,7 +186,7 @@ Counting the number of cards based on its state.
 :--- | ---
 | Create new card | `AccessKey+n` |
 | Select previous or next card, if filter field is focused | `Up` or `Down` |
-| Copy tags to new card | `AccessKey+t` |
+| KOMBrowseInfoToolbarTemplateButtonText | `AccessKey+t` |
 | Clear filter text and selected card, focus filter field | `Escape` |
 | Close, if filter field is focused | `Escape` |
 | `KOMBrowseInfoLauncherItemToggleRetireText` | Launcher |
