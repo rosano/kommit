@@ -121,7 +121,7 @@ Cards are visually encoded based on the following states:
 <tr>
 	<td><span style="background: KOMGuideTokenColorRetired;"></span></td>
 	<td>Retired</td>
-	<td>the card was removed from the schedule</td>
+	<td>removed from the schedule</td>
 </tr>
 
 </table>
