@@ -18,27 +18,19 @@ exports.OLSKControllerRoutes = function () {
 				KOMGuideContent: require('OLSKString').OLSKStringReplaceTokens(require('marked').setOptions({
 					gfm: true,
 					headerIds: true,
-				})(require('fs').readFileSync(require('path').join(__dirname, `text.${ res.locals.OLSKSharedPageCurrentLanguage }.md`), 'utf-8')), {
+				})(require('fs').readFileSync(require('path').join(__dirname, `text.${ res.locals.OLSKSharedPageCurrentLanguage }.md`), 'utf-8')), Object.assign({
 					KOMGuideTokenColorUnseen: KOMSharedLogic.KOMSharedColorUnseen(),
 					KOMGuideTokenColorRelearning: KOMSharedLogic.KOMSharedColorRelearning(),
 					KOMGuideTokenColorDeveloping: KOMSharedLogic.KOMSharedColorDeveloping(),
 					KOMGuideTokenColorMature: KOMSharedLogic.KOMSharedColorMature(),
 					KOMGuideTokenColorRetired: KOMSharedLogic.KOMSharedColorRetired(),
 
-					KOMReviewDetailLauncherItemPlayReviewingText: res.locals.OLSKLocalized('KOMReviewDetailLauncherItemPlayReviewingText'),
-					KOMReviewDetailLauncherItemPlayUnseenText: res.locals.OLSKLocalized('KOMReviewDetailLauncherItemPlayUnseenText'),
-
 					KOMReviewLauncherItemSelectDeckText: res.locals.OLSKFormatted(res.locals.OLSKLocalized('KOMReviewLauncherItemSelectDeckTextFormat'), '…'),
-					KOMReviewLauncherItemToggleSimplifiedResponseButtonsText: res.locals.OLSKLocalized('KOMReviewLauncherItemToggleSimplifiedResponseButtonsText'),
-					KOMReviewMasterLauncherItemToggleExcludeTripleQuestionMarkText: res.locals.OLSKLocalized('KOMReviewMasterLauncherItemToggleExcludeTripleQuestionMarkText'),
-
-					OLSKRemoteStorageLauncherItemCopyLoginLinkText: res.locals.OLSKLocalized('OLSKRemoteStorageLauncherItemCopyLoginLinkText'),
-					OLSKServiceWorkerLauncherItemDebugForceUpdateText: res.locals.OLSKLocalized('OLSKServiceWorkerLauncherItemDebugForceUpdateText'),
-					OLSKRemoteStorageLauncherItemDebugFlushDataText: res.locals.OLSKLocalized('OLSKRemoteStorageLauncherItemDebugFlushDataText'),
-					
-					KOMBrowseInfoLauncherItemToggleRetireText: res.locals.OLSKLocalized('KOMBrowseInfoLauncherItemToggleRetireText'),
-					KOMBrowseInfoLauncherItemDebugText: res.locals.OLSKLocalized('KOMBrowseInfoLauncherItemDebugText'),
-				}),
+				}, res.locals.OLSKLocalizedStringKeys().reduce(function (coll, item) {
+					return Object.assign(coll, {
+						[item]: res.locals.OLSKLocalized(item),
+					});
+				}, {}))),
 				OLSKStringReplaceTokens: require('OLSKString').OLSKStringReplaceTokens,
 			});
 		},
