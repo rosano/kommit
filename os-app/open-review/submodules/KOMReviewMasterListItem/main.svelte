@@ -10,15 +10,17 @@ const OLSKLocalized = function(translationConstant) {
 };
 </script>
 
-<button class="KOMReviewMasterListItem OLSKLayoutButtonNoStyle" aria-label={ KOMReviewMasterListItemName } on:click={ KOMReviewMasterListItemDispatchClick }>
+<button class="KOMReviewMasterListItem OLSKCommonButton" aria-label={ KOMReviewMasterListItemName } on:click={ KOMReviewMasterListItemDispatchClick }>
 
-<strong class="KOMReviewMasterListItemName">{ KOMReviewMasterListItemName }</strong><br>
+<strong class="KOMReviewMasterListItemName">{ KOMReviewMasterListItemName }</strong>
 
-<span class="KOMReviewMasterListItemReviewValue">{ KOMReviewMasterListItemReviewCount }</span>
-<span class="KOMReviewMasterListItemReviewLabel">{ OLSKLocalized('KOMReviewMasterListItemReviewLabelText') }</span><br>
+<div>
+	<span class="KOMReviewMasterListItemReviewValue">{ KOMReviewMasterListItemReviewCount }</span>
+	<span class="KOMReviewMasterListItemReviewLabel">{ OLSKLocalized('KOMReviewMasterListItemReviewLabelText') }</span><br>
 
-<span class="KOMReviewMasterListItemUnseenValue">{ KOMReviewMasterListItemUnseenCount }</span>
-<span class="KOMReviewMasterListItemUnseenLabel">{ OLSKLocalized('KOMReviewMasterListItemUnseenLabelText') }</span>
+	<span class="KOMReviewMasterListItemUnseenValue">{ KOMReviewMasterListItemUnseenCount }</span>
+	<span class="KOMReviewMasterListItemUnseenLabel">{ OLSKLocalized('KOMReviewMasterListItemUnseenLabelText') }</span>
+</div>
 
 </button>
 
@@ -33,6 +35,20 @@ const OLSKLocalized = function(translationConstant) {
 	margin-bottom: var(--KOMCommonPadding);
 
 	text-align: left;
+
+	/* KOMReviewMasterListItemFlexbox:Parent */
+	display: flex;
+}
+
+.KOMReviewMasterListItemName {
+	padding-right: var(--KOMCommonPadding);
+
+	text-align: right;
+	font-size: 14pt;
+
+	/* KOMReviewMasterListItemFlexbox:Parent */
+	flex-basis: 30%;
+	align-self: center;
 }
 
 .KOMReviewMasterListItem:active {

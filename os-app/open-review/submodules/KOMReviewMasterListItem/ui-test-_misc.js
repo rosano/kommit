@@ -16,8 +16,8 @@ describe('KOMReviewMasterListItem_Misc', function () {
 			browser.assert.attribute(KOMReviewMasterListItem, 'aria-label', 'bravo');
 		});
 
-		it('classes OLSKLayoutButtonNoStyle', function () {
-			browser.assert.hasClass(KOMReviewMasterListItem, 'OLSKLayoutButtonNoStyle');
+		it('classes OLSKCommonButton', function () {
+			browser.assert.hasClass(KOMReviewMasterListItem, 'OLSKCommonButton');
 		});
 
 		context('click', function () {
