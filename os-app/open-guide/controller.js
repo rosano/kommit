@@ -26,6 +26,8 @@ exports.OLSKControllerRoutes = function () {
 					KOMGuideTokenColorRetired: KOMSharedLogic.KOMSharedColorRetired(),
 
 					KOMReviewLauncherItemSelectDeckText: res.locals.OLSKFormatted(res.locals.OLSKLocalized('KOMReviewLauncherItemSelectDeckTextFormat'), '…'),
+
+					KOMReviewRoute: res.locals.OLSKCanonicalLocalizedFor('KOMReviewRoute'),
 				}, res.locals.OLSKLocalizedStringKeys().reduce(function (coll, item) {
 					return Object.assign(coll, {
 						[item]: res.locals.OLSKLocalized(item),
