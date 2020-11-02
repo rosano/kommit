@@ -12,46 +12,49 @@ const OLSKLocalized = function(translationConstant) {
 
 <button class="KOMReviewMasterListItem OLSKCommonButton" aria-label={ KOMReviewMasterListItemName } on:click={ KOMReviewMasterListItemDispatchClick }>
 
-<strong class="KOMReviewMasterListItemName">{ KOMReviewMasterListItemName }</strong>
+	<strong class="KOMReviewMasterListItemName" >{ KOMReviewMasterListItemName }</strong>
 
-<div>
-	<span class="KOMReviewMasterListItemReviewValue">{ KOMReviewMasterListItemReviewCount }</span>
-	<span class="KOMReviewMasterListItemReviewLabel">{ OLSKLocalized('KOMReviewMasterListItemReviewLabelText') }</span><br>
+	<p>
+		<span class="KOMReviewMasterListItemReviewValue">{ KOMReviewMasterListItemReviewCount }</span>
+		<span class="KOMReviewMasterListItemReviewLabel">{ OLSKLocalized('KOMReviewMasterListItemReviewLabelText') }</span>
+	</p>
 
-	<span class="KOMReviewMasterListItemUnseenValue">{ KOMReviewMasterListItemUnseenCount }</span>
-	<span class="KOMReviewMasterListItemUnseenLabel">{ OLSKLocalized('KOMReviewMasterListItemUnseenLabelText') }</span>
-</div>
+	<p>
+		<span class="KOMReviewMasterListItemUnseenValue">{ KOMReviewMasterListItemUnseenCount }</span>
+		<span class="KOMReviewMasterListItemUnseenLabel">{ OLSKLocalized('KOMReviewMasterListItemUnseenLabelText') }</span>
+	</p>
 
 </button>
 
 <style>
 .KOMReviewMasterListItem {
-	display: block;
-	width: 100%;
-	min-height: 46px;
 	padding: var(--KOMCommonPadding);
-	border: 1px solid rgba(0, 0, 0, 0.1);
+	height: 110px;
+	width: 110px;
 
+	margin-right: var(--KOMCommonPadding);
 	margin-bottom: var(--KOMCommonPadding);
 
 	text-align: left;
 
 	/* KOMReviewMasterListItemFlexbox:Parent */
 	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	justify-content: center;
 }
 
-.KOMReviewMasterListItemName {
-	padding-right: var(--KOMCommonPadding);
-
-	text-align: right;
-	font-size: 14pt;
-
-	/* KOMReviewMasterListItemFlexbox:Parent */
-	flex-basis: 30%;
-	align-self: center;
+.KOMReviewMasterListItem p {
+	margin: 0;
 }
 
 .KOMReviewMasterListItem:active {
 	color: inherit;
+}
+
+.KOMReviewMasterListItemName {
+	margin-bottom: var(--KOMCommonPadding);
+
+	font-size: 16pt;
 }
 </style>

@@ -181,14 +181,16 @@ import KOMReviewStats from '../KOMReviewStats/main.svelte';
 
 <div class="KOMReviewMasterBody">
 
-{#each KOMReviewMasterItems as e}
-	<KOMReviewMasterListItem
-		KOMReviewMasterListItemName={ e.KOMDeckName }
-		KOMReviewMasterListItemReviewCount={ e.$KOMDeckTodayReviewCount }
-		KOMReviewMasterListItemUnseenCount={ e.$KOMDeckTodayUnseenCount }
-		KOMReviewMasterListItemDispatchClick={ () => KOMReviewMasterDispatchSelect(e) }
-		/>
-{/each}
+<div class="KOMReviewMasterBodyItems">
+	{#each KOMReviewMasterItems as e}
+		<KOMReviewMasterListItem
+			KOMReviewMasterListItemName={ e.KOMDeckName }
+			KOMReviewMasterListItemReviewCount={ e.$KOMDeckTodayReviewCount }
+			KOMReviewMasterListItemUnseenCount={ e.$KOMDeckTodayUnseenCount }
+			KOMReviewMasterListItemDispatchClick={ () => KOMReviewMasterDispatchSelect(e) }
+			/>
+	{/each}
+</div>
 
 <p>
 	<button class="KOMReviewMasterCreateButton OLSKCommonButton" on:click={ mod.InterfaceCreateButtonDidClick } accesskey="n">{ OLSKLocalized('KOMReviewMasterCreateButtonText') }</button>
@@ -235,6 +237,12 @@ import KOMReviewStats from '../KOMReviewStats/main.svelte';
 
 .KOMReviewMasterBody {
 	padding: var(--KOMCommonPadding);
+}
+
+.KOMReviewMasterBodyItems {
+	/* KOMReviewMasterBodyItemsFlexbox:Parent */
+	display: flex;
+	flex-wrap: wrap;
 }
 
 :global(.OLSKIsLoading) .KOMReviewMasterBody {
