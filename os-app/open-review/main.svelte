@@ -911,6 +911,7 @@ const mod = {
 
 		await OLSKFund._OLSKFundSetupPostPay({
 			ParamWindow: window,
+			ParamExistingCode: mod._ValueFundConfirmation || null,
 			OLSKFundDispatchPersist: mod.OLSKFundDispatchPersist,
 		});
 	},
