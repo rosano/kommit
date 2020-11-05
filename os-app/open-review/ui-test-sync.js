@@ -1,6 +1,6 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-describe('KOMReview_Sync', function () {
+describe.skip('KOMReview_Sync', function () {
 
 	before(function () {
 		return browser.OLSKVisit(kDefaultRoute);
