@@ -147,7 +147,7 @@ const mod = {
 				ParamWindow: window,
 				OLSKLocalized: OLSKLocalized,
 				ParamAuthorized: !!mod._ValueGrant,
-				ParamDispatchGrant: mod.OLSKFundDispatchGrant,
+				OLSKFundDispatchGrant: mod.OLSKFundDispatchGrant,
 				ParamDispatchPersist: mod.OLSKFundDispatchPersist,
 				OLSK_TESTING_BEHAVIOUR: OLSK_TESTING_BEHAVIOUR(),
 			}));
