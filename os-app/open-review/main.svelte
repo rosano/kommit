@@ -615,7 +615,7 @@ const mod = {
 
 	OLSKFundDispatchPersist (inputData) {
 		mod._ValueFundConfirmation = inputData;
-		
+
 		return (!inputData ? KOMSettingAction.KOMSettingsActionDelete(mod._ValueStorageClient, 'KOMSettingFundConfirmation') : KOMSettingAction.KOMSettingsActionProperty(mod._ValueStorageClient, 'KOMSettingFundConfirmation', inputData))
 	},
 
@@ -791,7 +791,7 @@ const mod = {
 
 		await mod.SetupValueDecksAll();
 
-		await mod.SetupValueFundConfirmation();
+		mod.SetupFund();
 
 		mod._ValueIsLoading = false;
 	},
@@ -906,8 +906,13 @@ const mod = {
 		})));
 	},
 
-	async SetupValueFundConfirmation () {
+	async SetupFund () {
 		mod._ValueFundConfirmation = (await KOMSettingAction.KOMSettingsActionProperty(mod._ValueStorageClient, 'KOMSettingFundConfirmation') || {}).KOMSettingValue;
+
+		await OLSKFund._OLSKFundSetupPostPay({
+			ParamWindow: window,
+			OLSKFundDispatchPersist: mod.OLSKFundDispatchPersist,
+		});
 	},
 
 	// LIFECYCLE
