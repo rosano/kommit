@@ -490,7 +490,8 @@ const mod = {
 		const value = await KOMSettingAction.KOMSettingsActionProperty(mod._ValueStorageClient, 'KOMSettingExcludeTripleQuestionMark');
 
 		value ? await KOMSettingAction.KOMSettingsActionDelete(mod._ValueStorageClient, 'KOMSettingExcludeTripleQuestionMark') : await KOMSettingAction.KOMSettingsActionProperty(mod._ValueStorageClient, 'KOMSettingExcludeTripleQuestionMark', 'true');
-
+		
+		mod._ValueDeckSelectedObjectsMap = {};
 		mod._ValueDecksAll.forEach(mod.ReactDeckFigures);
 	},
 
