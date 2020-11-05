@@ -148,7 +148,7 @@ const mod = {
 				OLSKLocalized: OLSKLocalized,
 				ParamAuthorized: !!mod._ValueGrant,
 				OLSKFundDispatchGrant: mod.OLSKFundDispatchGrant,
-				ParamDispatchPersist: mod.OLSKFundDispatchPersist,
+				OLSKFundDispatchPersist: mod.OLSKFundDispatchPersist,
 				OLSK_TESTING_BEHAVIOUR: OLSK_TESTING_BEHAVIOUR(),
 			}));
 		}
