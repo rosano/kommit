@@ -580,6 +580,8 @@ const mod = {
 		mod._ValuePlayVisible = false;
 	},
 
+	OLSKAppToolbarDispatchFund () {},
+
 	OLSKAppToolbarDispatchStorage () {
 		mod._ValueStorageToolbarHidden = !mod._ValueStorageToolbarHidden;
 	},
@@ -971,6 +973,7 @@ import OLSKStorageWidget from 'OLSKStorageWidget';
 
 		<OLSKAppToolbar
 			OLSKAppToolbarGuideURL={ window.OLSKCanonicalFor('KOMGuideRoute') }
+			OLSKAppToolbarDispatchFund={ mod.OLSKAppToolbarDispatchFund }
 			OLSKAppToolbarStorageStatus={ mod._ValueFooterStorageStatus }
 			OLSKAppToolbarDispatchStorage={ mod.OLSKAppToolbarDispatchStorage }
 			OLSKAppToolbarDispatchLauncher={ mod.OLSKAppToolbarDispatchLauncher }

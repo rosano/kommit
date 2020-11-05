@@ -54,6 +54,10 @@ describe('KOMReview_Access', function () {
 		browser.assert.elements('.OLSKAppToolbarGuideLink', 1);
 	});
 
+	it('shows OLSKAppToolbarFundButton', function () {
+		browser.assert.elements('.OLSKAppToolbarFundButton', 1);
+	});
+
 	it('shows OLSKAppToolbarLauncherButton', function () {
 		browser.assert.elements('.OLSKAppToolbarLauncherButton', 1);
 	});
