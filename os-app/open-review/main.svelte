@@ -140,7 +140,7 @@ const mod = {
 			items.push(...OLSKFund.OLSKFundRecipes({
 				ParamWindow: window,
 				OLSKLocalized: OLSKLocalized,
-				ParamAuthorized: !!mod._ValueGrant,
+				ParamAuthorized: !!mod._ValueFundConfirmation,
 				OLSKFundDispatchGrant: mod.OLSKFundDispatchGrant,
 				OLSKFundDispatchPersist: mod.OLSKFundDispatchPersist,
 				OLSK_TESTING_BEHAVIOUR: OLSK_TESTING_BEHAVIOUR(),
@@ -613,7 +613,11 @@ const mod = {
 		});
 	},
 
-	OLSKFundDispatchPersist () {},
+	OLSKFundDispatchPersist (inputData) {
+		mod._ValueFundConfirmation = inputData;
+		
+		return (!inputData ? KOMSettingAction.KOMSettingsActionDelete(mod._ValueStorageClient, 'KOMSettingFundConfirmation') : KOMSettingAction.KOMSettingsActionProperty(mod._ValueStorageClient, 'KOMSettingFundConfirmation', inputData))
+	},
 
 	OLSKFundDispatchGrant () {},
 
@@ -787,6 +791,8 @@ const mod = {
 
 		await mod.SetupValueDecksAll();
 
+		await mod.SetupValueFundConfirmation();
+
 		mod._ValueIsLoading = false;
 	},
 
@@ -898,6 +904,10 @@ const mod = {
 
 			return Object.assign(deck, mod._ValueCacheDeckFiguresMap[deck.KOMDeckID] || {});
 		})));
+	},
+
+	async SetupValueFundConfirmation () {
+		mod._ValueFundConfirmation = (await KOMSettingAction.KOMSettingsActionProperty(mod._ValueStorageClient, 'KOMSettingFundConfirmation') || {}).KOMSettingValue;
 	},
 
 	// LIFECYCLE
