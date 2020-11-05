@@ -62,6 +62,19 @@
 	));
 })();
 
+(function ROCOHotfixRemoteStorageForClearHash() {
+	if (process.env.NODE_ENV === 'production') {
+		return;
+	}
+
+	const filePath = './node_modules/remotestoragejs/release/remotestorage.js';
+	require('fs').writeFileSync(filePath, require('OLSKString').OLSKStringPatch(
+		require('fs').readFileSync(filePath, 'utf8'),
+		'r&&((t=u.getLocation()).hash',
+		'r.access_token&&((t=u.getLocation()).hash',
+	));
+})();
+
 (function OLSKPostinstallExternalAssets() {
 	require('./node_modules/OLSKExpress/modules/OLSKAssets/main.js').OLSKAssetsCopyAssetsFromTo([
 		'd3-scale',
