@@ -74,8 +74,8 @@ describe('KOMReview_Access', function () {
 		return browser.assert.OLSKLauncherItems('OLSKServiceWorkerLauncherFakeItemProxy', 1);
 	});
 
-	it('shows OLSKFundLauncherFakeItemProxy', function () {
-		return browser.assert.OLSKLauncherItems('OLSKFundLauncherFakeItemProxy', 1);
+	it('hides OLSKFundLauncherFakeItemProxy', function () {
+		return browser.assert.OLSKLauncherItems('OLSKFundLauncherFakeItemProxy', 0);
 	});
 
 	it('hides KOMReviewLauncherItemSelectDeck', function () {
@@ -416,6 +416,10 @@ describe('KOMReview_Access', function () {
 
 		before(function () {
 			return browser.OLSKLauncherRun('FakeOLSKConnected');
+		});
+
+		it('shows OLSKFundLauncherFakeItemProxy', function () {
+			return browser.assert.OLSKLauncherItems('OLSKFundLauncherFakeItemProxy', 1);
 		});
 
 		it('shows KOMReviewLauncherItemDebugPlungeData', function () {

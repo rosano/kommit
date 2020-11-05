@@ -136,13 +136,7 @@ const mod = {
 					},
 				},
 				]);
-		}
 
-		items.push(...OLSKRemoteStorage.OLSKRemoteStorageRecipes(window, mod._ValueStorageClient, OLSKLocalized, OLSK_TESTING_BEHAVIOUR()));
-		items.push(...OLSKServiceWorker.OLSKServiceWorkerRecipes(window, mod.DataNavigator(), OLSKLocalized, OLSK_TESTING_BEHAVIOUR()));
-
-		if (mod._KOMReviewMaster) {
-			items.push(...mod._KOMReviewMaster.modPublic.KOMReviewMasterRecipes());
 			items.push(...OLSKFund.OLSKFundRecipes({
 				ParamWindow: window,
 				OLSKLocalized: OLSKLocalized,
@@ -151,6 +145,13 @@ const mod = {
 				OLSKFundDispatchPersist: mod.OLSKFundDispatchPersist,
 				OLSK_TESTING_BEHAVIOUR: OLSK_TESTING_BEHAVIOUR(),
 			}));
+		}
+
+		items.push(...OLSKRemoteStorage.OLSKRemoteStorageRecipes(window, mod._ValueStorageClient, OLSKLocalized, OLSK_TESTING_BEHAVIOUR()));
+		items.push(...OLSKServiceWorker.OLSKServiceWorkerRecipes(window, mod.DataNavigator(), OLSKLocalized, OLSK_TESTING_BEHAVIOUR()));
+
+		if (mod._KOMReviewMaster) {
+			items.push(...mod._KOMReviewMaster.modPublic.KOMReviewMasterRecipes());
 		}
 
 		if (mod._KOMReviewDetail) {
