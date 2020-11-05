@@ -580,7 +580,13 @@ const mod = {
 		mod._ValuePlayVisible = false;
 	},
 
-	OLSKAppToolbarDispatchFund () {},
+	OLSKAppToolbarDispatchFund () {
+		if (!window.confirm(OLSKLocalized('OLSKRemoteStorageConnectConfirmText'))) {
+			return;
+		}
+
+		mod._ValueStorageToolbarHidden = false;
+	},
 
 	OLSKAppToolbarDispatchStorage () {
 		mod._ValueStorageToolbarHidden = !mod._ValueStorageToolbarHidden;

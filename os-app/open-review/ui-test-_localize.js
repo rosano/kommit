@@ -118,6 +118,16 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 
 		});
 
+		context('OLSKAppToolbarFundButton', function test_OLSKAppToolbarFundButton() {
+
+			it('localizes KOMReviewConnectConfirm', function() {
+				browser.assert.OLSKConfirmQuestion(function () {
+					return browser.pressButton('.OLSKAppToolbarFundButton');
+				}, uLocalized('OLSKRemoteStorageConnectConfirmText'));
+			});
+
+		});
+
 		context('connected', function test_connected () {
 
 			before(function () {
