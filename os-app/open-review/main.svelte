@@ -26,6 +26,7 @@ import OLSKThrottle from 'OLSKThrottle';
 import KOMSpacingModel from '../_shared/KOMSpacing/model.js';
 import OLSKLocalStorage from 'OLSKLocalStorage';
 import OLSKCache from 'OLSKCache';
+import OLSKFund from 'OLSKFund';
 
 const mod = {
 
@@ -142,6 +143,14 @@ const mod = {
 
 		if (mod._KOMReviewMaster) {
 			items.push(...mod._KOMReviewMaster.modPublic.KOMReviewMasterRecipes());
+			items.push(...OLSKFund.OLSKFundRecipes({
+				ParamWindow: window,
+				OLSKLocalized: OLSKLocalized,
+				ParamAuthorized: !!mod._ValueGrant,
+				ParamDispatchGrant: mod.OLSKFundDispatchGrant,
+				ParamDispatchPersist: mod.OLSKFundDispatchPersist,
+				OLSK_TESTING_BEHAVIOUR: OLSK_TESTING_BEHAVIOUR(),
+			}));
 		}
 
 		if (mod._KOMReviewDetail) {
@@ -602,6 +611,10 @@ const mod = {
 			LCHOptionRecipes: mod.DataReviewRecipes(),
 		});
 	},
+
+	OLSKFundDispatchPersist () {},
+
+	OLSKFundDispatchGrant () {},
 
 	OLSKChangeDelegateCreateDeck (inputData) {
 		mod.SetupValueDecksAll();

@@ -66,6 +66,9 @@
     "// DATA VISUALISATION": null,
     "d3-scale": "latest",
 
+    "// FUND": null,
+    "OLSKFund": "olsk/OLSKFund",
+
     "// I sacrifice myself for the commas of others": null
   },
   "devDependencies": {
