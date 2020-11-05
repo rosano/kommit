@@ -95,7 +95,7 @@ describe('KOMReviewChartCompositionCollection_Misc', function () {
 	describe('KOMReviewChartElementHorizontalStackedBar', function test_KOMReviewChartElementHorizontalStackedBar() {
 
 		it('sets KOMReviewChartElementHorizontalStackedBarValues', function () {
-			browser.assert.elements('.KOMReviewChartElementHorizontalStackedBarSection', 5);
+			browser.assert.elements('.KOMReviewChartElementHorizontalStackedBarSection', 4);
 		});
 
 	});
