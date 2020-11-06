@@ -8,7 +8,7 @@
 	require('fs').writeFileSync(filePath, require('OLSKString').OLSKStringPatch(
 		require('fs').readFileSync(filePath, 'utf8'),
 		"const openpgp = require('openpgp');",
-		"const openpgp = {};"
+		"const openpgp = window.openpgp;"
 	));
 })();
 
@@ -89,5 +89,6 @@
 		'OLSKUIAssets',
 		'ROCORootLink',
 		'vmsg',
+		'openpgp',
 	], require('path').join(__dirname, 'node_modules'), require('path').join(__dirname, 'os-app/_shared/__external'));
 })();
