@@ -27,6 +27,7 @@ import KOMSpacingModel from '../_shared/KOMSpacing/model.js';
 import OLSKLocalStorage from 'OLSKLocalStorage';
 import OLSKCache from 'OLSKCache';
 import OLSKFund from 'OLSKFund';
+import OLSKPact from 'OLSKPact';
 
 const mod = {
 
@@ -624,12 +625,18 @@ const mod = {
 			if (OLSK_TESTING_BEHAVIOUR()) {
 				return;
 			}
-			
+
 			window.location.reload();
 		});
 	},
 
-	OLSKFundDispatchGrant () {},
+	OLSKFundDispatchFail () {
+		mod.OLSKFundDispatchPersist(null);
+	},
+
+	OLSKFundDispatchGrant (inputData) {
+		mod._ValueFundGrant = inputData;
+	},
 
 	OLSKChangeDelegateCreateDeck (inputData) {
 		mod.SetupValueDecksAll();
@@ -924,6 +931,39 @@ const mod = {
 			ParamExistingCode: mod._ValueFundConfirmation || null,
 			OLSKFundDispatchPersist: mod.OLSKFundDispatchPersist,
 		});
+
+		if (!mod._ValueStorageClient.connected) {
+			return;
+		}
+
+		if (!mod._ValueFundConfirmation) {
+			return;
+		}
+		
+		const item = {
+			OLSK_CRYPTO_PAIR_RECEIVER_PRIVATE: 'OLSK_CRYPTO_PAIR_RECEIVER_PRIVATE_SWAP_TOKEN',
+			OLSK_CRYPTO_PAIR_SENDER_PUBLIC: 'OLSK_CRYPTO_PAIR_SENDER_PUBLIC_SWAP_TOKEN',
+			ParamWindow: window,
+			OLSK_FUND_API_URL: 'OLSK_FUND_API_URL_SWAP_TOKEN',
+			ParamBody: {
+				OLSKPactAuthType: OLSKPact.OLSKPactAuthTypeStorage(),
+				OLSKPactAuthIdentity: mod._ValueStorageClient.remote.userAddress,
+				OLSKPactAuthProof: mod._ValueStorageClient.remote.token,
+				OLSKPactAuthMetadata: {
+					OLSKPactAuthMetadataModuleName: KOM_Data.KOM_DataModuleName(),
+					OLSKPactAuthMetadataFolderPath: KOMDeckStorage.KOMDeckStorageCollectionPath(),
+				},
+				OLSKPactPayIdentity: mod._ValueStorageClient.remote.userAddress,
+				OLSKPactPayTransaction: mod._ValueFundConfirmation,
+			},
+			OLSKLocalized,
+			OLSKFundDispatchFail: mod.OLSKFundDispatchFail,
+			OLSKFundDispatchGrant: mod.OLSKFundDispatchGrant,
+		};
+
+		console.log(item);
+
+		await OLSKFund._OLSKFundSetupGrant(item);
 	},
 
 	// LIFECYCLE
@@ -1020,7 +1060,7 @@ import OLSKStorageWidget from 'OLSKStorageWidget';
 
 		<OLSKAppToolbar
 			OLSKAppToolbarGuideURL={ window.OLSKCanonicalFor('KOMGuideRoute') }
-			OLSKAppToolbarDispatchFund={ mod.OLSKAppToolbarDispatchFund }
+			OLSKAppToolbarDispatchFund={ mod._ValueFundGrant ? null : mod.OLSKAppToolbarDispatchFund }
 			OLSKAppToolbarStorageStatus={ mod._ValueFooterStorageStatus }
 			OLSKAppToolbarDispatchStorage={ mod.OLSKAppToolbarDispatchStorage }
 			OLSKAppToolbarDispatchLauncher={ mod.OLSKAppToolbarDispatchLauncher }
