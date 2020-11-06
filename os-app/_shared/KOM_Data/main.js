@@ -6,8 +6,12 @@ import KOMSpacingStorage from '../KOMSpacing/storage.js';
 
 const mod = {
 
+	KOM_DataModuleName () {
+		return 'kommit';
+	},
+
 	KOM_DataModule(inputData, options) {
-		return OLSKRemoteStorage.OLSKRemoteStorageDataModuleGenerator('kommit', options)(inputData);
+		return OLSKRemoteStorage.OLSKRemoteStorageDataModuleGenerator(mod.KOM_DataModuleName(), options)(inputData);
 	},
 
 	KOM_DataImport (storageClient, inputData) {

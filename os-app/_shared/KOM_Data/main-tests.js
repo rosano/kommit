@@ -5,6 +5,14 @@ const KOMDeckAction = require('../KOMDeck/action.js').default;
 const KOMCardAction = require('../KOMCard/action.js').default;
 const KOMSpacingStorage = require('../KOMSpacing/storage.js').default;
 
+describe('KOM_DataModuleName', function test_KOM_DataModuleName() {
+
+	it('returns string', function () {
+		deepEqual(mainModule.KOM_DataModuleName(), 'kommit');
+	});
+
+});
+
 describe('KOM_DataImport', function test_KOM_DataImport() {
 
 	it('throws if not array', function () {
