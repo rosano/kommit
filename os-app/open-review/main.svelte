@@ -616,7 +616,17 @@ const mod = {
 	OLSKFundDispatchPersist (inputData) {
 		mod._ValueFundConfirmation = inputData;
 
-		return (!inputData ? KOMSettingAction.KOMSettingsActionDelete(mod._ValueStorageClient, 'KOMSettingFundConfirmation') : KOMSettingAction.KOMSettingsActionProperty(mod._ValueStorageClient, 'KOMSettingFundConfirmation', inputData))
+		if (!inputData) {
+			return KOMSettingAction.KOMSettingsActionDelete(mod._ValueStorageClient, 'KOMSettingFundConfirmation');
+		}
+
+		return KOMSettingAction.KOMSettingsActionProperty(mod._ValueStorageClient, 'KOMSettingFundConfirmation', inputData).then(function () {
+			if (OLSK_TESTING_BEHAVIOUR()) {
+				return;
+			}
+			
+			window.location.reload();
+		});
 	},
 
 	OLSKFundDispatchGrant () {},
