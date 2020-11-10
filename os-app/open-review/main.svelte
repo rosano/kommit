@@ -28,6 +28,8 @@ import OLSKLocalStorage from 'OLSKLocalStorage';
 import OLSKCache from 'OLSKCache';
 import OLSKFund from 'OLSKFund';
 import OLSKPact from 'OLSKPact';
+import OLSKChain from 'OLSKChain';
+import OLSKBeacon from 'OLSKBeacon';
 
 const mod = {
 
@@ -78,6 +80,8 @@ const mod = {
 	ValueCacheDeckFiguresMap (inputData) {
 		return (mod._ValueCacheDeckFiguresMap = OLSK_TESTING_BEHAVIOUR() || !mod._ValueDeckCachingEnabled ? inputData : OLSKLocalStorage.OLKSLocalStorageSet(window.localStorage, 'kKOMReviewCacheDeckFiguresMap', inputData));
 	},
+
+	_IsRunningDemo: false,
 	
 	// DATA
 
@@ -471,6 +475,84 @@ const mod = {
 		}]);
 	},
 
+	async ControlDemo () {
+		mod._IsRunningDemo = true;
+
+		// await mod.ControlDeckCreate('alfa');
+
+		return OLSKChain.OLSKChainGather(Object.assign({
+			Wait: OLSKBeacon.OLSKBeaconWait,
+			Point: (function (inputData) {
+				return OLSKBeacon._OLSKBeaconAnimate(OLSKBeacon.OLSKBeaconPointFunction('.OLSKPointer', inputData));
+			}),
+			Click: (function (inputData) {
+				return OLSKBeacon._OLSKBeaconAnimate(OLSKBeacon.OLSKBeaconClickFunction(inputData, '.OLSKPointer', 'OLSKPointerActive'));
+			}),
+			Defer: (function (inputData) {
+				return OLSKBeacon.OLSKBeaconDeferFunction(inputData);
+			}),
+			Focus: (function (inputData) {
+				return new Promise(function (resolve) {
+					resolve(document.querySelector(inputData).focus());
+				});
+			}),
+			Fill: (function (param1, param2) {
+				return OLSKBeacon._OLSKBeaconAnimate(OLSKBeacon.OLSKBeaconFillFunction(param1, param2));
+			}),
+			Set: (function (param1, param2) {
+				return OLSKBeacon._OLSKBeaconAnimate(OLSKBeacon.OLSKBeaconSetFunction(param1, param2));
+			}),
+			Nudge: (function () {
+				return OLSKBeacon._OLSKBeaconAnimate(OLSKBeacon.OLSKBeaconNudgeFunction('.OLSKPointer', ...arguments));
+			}),
+		}, mod))
+			.Point('.KOMReviewMasterCreateButton')
+			.Nudge(0, 50)
+			.Wait()
+			.Point('.KOMReviewMasterCreateButton')
+			.Click('.KOMReviewMasterCreateButton')
+			.Wait(300)
+			.Point('.KOMReviewMasterListItem')
+			.Click('.KOMReviewMasterListItem')
+			.Point('.KOMReviewDetailToolbarCardsButton')
+			.Click('.KOMReviewDetailToolbarCardsButton')
+			.Point('.KOMBrowseListToolbarCreateButton')
+			.Click('.KOMBrowseListToolbarCreateButton')
+			.Point('.KOMBrowseInfoFormFrontTextField')
+			.Focus('.KOMBrowseInfoFormFrontTextField')
+			.Fill('.KOMBrowseInfoFormFrontTextField', 'bonjour')
+			.Point('.KOMBrowseInfoFormRearTextField')
+			.Focus('.KOMBrowseInfoFormRearTextField')
+			.Fill('.KOMBrowseInfoFormRearTextField', 'hello')
+			.Point('.KOMBrowseInfoToolbarBackButton')
+			.Click('.KOMBrowseInfoToolbarBackButton')
+			.Click('.KOMBrowseListToolbarCloseButton')
+			.Point('.KOMReviewDetailFormFrontSpeechIsEnabledField')
+			.Click('.KOMReviewDetailFormFrontSpeechIsEnabledFieldLabel')
+			.Point('.KOMReviewDetailFormFrontLanguageCode .KOMReviewDetailLanguageCodeField')
+			.Focus('.KOMReviewDetailFormFrontLanguageCode .KOMReviewDetailLanguageCodeField')
+			.Set('.KOMReviewDetailFormFrontLanguageCode .KOMReviewDetailLanguageCodeField', 'fr-FR')
+			.Point('.KOMReviewDetailFormRearSpeechIsEnabledField')
+			.Click('.KOMReviewDetailFormRearSpeechIsEnabledFieldLabel')
+			.Point('.KOMReviewDetailFormRearLanguageCode .KOMReviewDetailLanguageCodeField')
+			.Focus('.KOMReviewDetailFormRearLanguageCode .KOMReviewDetailLanguageCodeField')
+			.Set('.KOMReviewDetailFormRearLanguageCode .KOMReviewDetailLanguageCodeField', 'en-US')
+			.Point('.KOMReviewDetailPlayButton')
+			.Defer('.KOMReviewDetailPlayButton')
+			.Wait(1200)
+			.Point('.KOMPlayFlipButton')
+			.Click('.KOMPlayFlipButton')
+			.Wait()
+			.Point('.KOMPlayResponseButtonNext')
+			.Click('.KOMPlayResponseButtonNext')
+			.Wait()
+			.Point('.KOMPlayFlipButton')
+			.Click('.KOMPlayFlipButton')
+			.Wait()
+			.Nudge(0, 100)
+			.OLSKChainExecute();
+	},
+
 	// MESSAGE
 
 	KOMReviewMasterDispatchCreate (inputData) {
@@ -809,6 +891,8 @@ const mod = {
 		await mod.SetupValueDecksAll();
 
 		mod._ValueIsLoading = false;
+
+		// mod.ControlDemo();
 	},
 
 	SetupStorageClient() {
@@ -986,6 +1070,7 @@ import KOMPlay from '../sub-play/main.svelte';
 import OLSKAppToolbar from 'OLSKAppToolbar';
 import OLSKServiceWorkerView from '../_shared/__external/OLSKServiceWorker/main.svelte';
 import OLSKStorageWidget from 'OLSKStorageWidget';
+import OLSKPointer from 'OLSKPointer';
 </script>
 
 <div class="KOMReview OLSKViewport" class:OLSKIsLoading={ mod._ValueIsLoading }>
@@ -1069,6 +1154,10 @@ import OLSKStorageWidget from 'OLSKStorageWidget';
 
 {#if !OLSK_TESTING_BEHAVIOUR()}
 	<OLSKServiceWorkerView OLSKServiceWorkerRegistrationRoute={ window.OLSKCanonicalFor('KOMServiceWorkerRoute') } />
+{/if}
+
+{#if mod._IsRunningDemo }
+	<OLSKPointer />
 {/if}
 
 <style src="./ui-style.css"></style>

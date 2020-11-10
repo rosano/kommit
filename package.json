@@ -69,6 +69,11 @@
     "// FUND": null,
     "OLSKFund": "olsk/OLSKFund",
 
+    "// DEMO": null,
+    "OLSKChain": "olsk/OLSKChain",
+    "OLSKBeacon": "olsk/OLSKBeacon",
+    "OLSKPointer": "olsk/OLSKPointer",
+
     "// I sacrifice myself for the commas of others": null
   },
   "devDependencies": {
