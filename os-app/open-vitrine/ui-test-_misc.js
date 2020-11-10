@@ -36,6 +36,18 @@ describe('KOMVitrine_Misc', function () {
 			browser.assert.attribute(KOMVitrineVideoFrame, 'fake-src', process.env.KOM_VITRINE_VIDEO_URL);
 		});
 
+		it('sets width', function () {
+			browser.assert.attribute(KOMVitrineVideoFrame, 'width', '320');
+		});
+
+		it('sets height', function () {
+			browser.assert.attribute(KOMVitrineVideoFrame, 'height', '568');
+		});
+
+		it('sets frameborder', function () {
+			browser.assert.attribute(KOMVitrineVideoFrame, 'frameborder', '0');
+		});
+
 	});
 
 });
