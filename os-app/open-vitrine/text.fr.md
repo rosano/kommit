@@ -12,7 +12,7 @@ Le projet est librement accessible, mais si vous êtes en mesure de donner, veui
 
 * * *
 
-## Caractéristiques
+# Caractéristiques
 - Écouter des cartes oralement avec synthèse vocale
 - Enregistrer d'audio
 - Organiser des cartes avec des tags
@@ -22,3 +22,5 @@ Le projet est librement accessible, mais si vous êtes en mesure de donner, veui
 - Pas d'instructions compliquées
 - Pas de publicité, analyse comportementale, traqueurs tiers
 - Fonctionne sur des appareils mobiles, les tablettes et les ordinateurs de bureau
+
+* * *

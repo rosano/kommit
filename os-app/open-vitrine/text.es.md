@@ -12,7 +12,7 @@ El proyecto es libremente accesible y gratis, pero si estás en posición a dar,
 
 * * *
 
-## Características
+# Características
 - Escuchar tarjetas oralmente con text-to-speech
 - Grabar audio
 - Organizar tarjetas con etiquetas
@@ -23,3 +23,5 @@ El proyecto es libremente accesible y gratis, pero si estás en posición a dar,
 - Sin anuncios molestos
 - Sin análisis comportamental o rastreadores terceros
 - Foncione en dispositivos mobiles, tabletas y computadoras
+
+* * *

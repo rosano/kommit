@@ -12,7 +12,7 @@ The project is freely accessible but if you are in a position to give, please [d
 
 * * *
 
-## Features
+# Features
 - Hear cards orally with text-to-speech
 - Record audio
 - Organize cards with tags
@@ -22,3 +22,5 @@ The project is freely accessible but if you are in a position to give, please [d
 - No complicated instructions
 - No ads, behavioural analytics, 3rd party trackers
 - Works on mobile, tablet, and desktop devices
+
+* * *
