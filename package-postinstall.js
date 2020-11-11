@@ -1,17 +1,3 @@
-(function OLSKPostinstallPatchOLSKCryptoForUITests() {
-	if (process.env.NODE_ENV === 'production') {
-		return;
-	}
-
-	let filePath = './node_modules/OLSKCrypto/main.js';
-
-	require('fs').writeFileSync(filePath, require('OLSKString').OLSKStringPatch(
-		require('fs').readFileSync(filePath, 'utf8'),
-		"const openpgp = require('openpgp');",
-		"const openpgp = window.openpgp;"
-	));
-})();
-
 (function OLSKPostinstallPatchZombieForUITests() {
 	if (process.env.NODE_ENV === 'production') {
 		return;
