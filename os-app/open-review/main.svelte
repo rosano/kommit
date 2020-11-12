@@ -1045,8 +1045,6 @@ const mod = {
 			OLSKFundDispatchGrant: mod.OLSKFundDispatchGrant,
 		};
 
-		console.log(item);
-
 		await OLSKFund._OLSKFundSetupGrant(item);
 	},
 
