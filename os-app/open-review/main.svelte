@@ -1143,7 +1143,7 @@ import OLSKPointer from 'OLSKPointer';
 
 		<OLSKAppToolbar
 			OLSKAppToolbarGuideURL={ window.OLSKCanonicalFor('KOMGuideRoute') }
-			OLSKAppToolbarDispatchFund={ mod._ValueFundGrant ? null : mod.OLSKAppToolbarDispatchFund }
+			OLSKAppToolbarDispatchFund={ mod._ValueFundGrant || OLSKFund.OLSKFundResponseIsPresent() ? null : mod.OLSKAppToolbarDispatchFund }
 			OLSKAppToolbarStorageStatus={ mod._ValueFooterStorageStatus }
 			OLSKAppToolbarDispatchStorage={ mod.OLSKAppToolbarDispatchStorage }
 			OLSKAppToolbarDispatchLauncher={ mod.OLSKAppToolbarDispatchLauncher }

@@ -428,6 +428,18 @@ describe('KOMReview_Access', function () {
 
 	});
 
+	context('response', function test_response () {
+
+		before(function () {
+			return browser.OLSKLauncherRun('OLSKFundLauncherFakeItemSetResponse');
+		});
+
+		it.skip('hides OLSKAppToolb©arFundButton', function () {
+			browser.assert.elements('.OLSKAppToolbarFundButton', 0);
+		});
+
+	});
+
 	context('confirmation', function test_confirmation () {
 
 		before(function () {
