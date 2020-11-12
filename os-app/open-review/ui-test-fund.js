@@ -18,4 +18,16 @@ describe('KOMReview_Fund', function () {
 	
 	});
 
+	context('OLSKFundDispatchProgress', function () {
+
+		before(function () {
+			return browser.OLSKLauncherRun('FakeFundProgress');
+		});
+
+		it('sets OLSKAppToolbarFundShowProgress', function () {
+			return browser.assert.elements('.OLSKAppToolbarFundProgress', 1);
+		});
+	
+	});
+
 });
