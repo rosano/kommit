@@ -683,6 +683,19 @@ const mod = {
 	},
 
 	OLSKAppToolbarDispatchFund () {
+		if (!mod._ValueStorageClient.connected) {
+			return mod._OLSKAppToolbarDispatchFundNotConnected();
+		}
+
+		window.open(OLSKFund.OLSKFundURL({
+			ParamFormURL: 'OLSK_FUND_FORM_URL_SWAP_TOKEN',
+			ParamProject: 'RP_004',
+			ParamIdentity: mod._ValueStorageClient.remote.userAddress,
+			ParamHomeURL: window.location.href,
+		}));
+	},
+
+	_OLSKAppToolbarDispatchFundNotConnected () {
 		if (!window.confirm(OLSKLocalized('OLSKRemoteStorageConnectConfirmText'))) {
 			return;
 		}
@@ -1020,6 +1033,10 @@ const mod = {
 	},
 
 	async SetupFund () {
+		if (OLSK_TESTING_BEHAVIOUR() && window.location.search.match('OLSKFundResponseIsPresent=true')) {
+			OLSKFund._OLSKFundFakeGrantResponseRandom();
+		}
+
 		mod._ValueFundConfirmation = (await KOMSettingAction.KOMSettingsActionProperty(mod._ValueStorageClient, 'KOMSettingFundConfirmation') || {}).KOMSettingValue;
 
 		await OLSKFund._OLSKFundSetupPostPay({

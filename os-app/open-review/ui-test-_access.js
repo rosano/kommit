@@ -428,46 +428,4 @@ describe('KOMReview_Access', function () {
 
 	});
 
-	context('response', function test_response () {
-
-		before(function () {
-			return browser.OLSKLauncherRun('OLSKFundLauncherFakeItemSetResponse');
-		});
-
-		it.skip('hides OLSKAppToolb©arFundButton', function () {
-			browser.assert.elements('.OLSKAppToolbarFundButton', 0);
-		});
-
-	});
-
-	context('confirmation', function test_confirmation () {
-
-		before(function () {
-			return browser.assert.OLSKLauncherItems('OLSKFundLauncherItemClearAuthorization', 0);
-		});
-
-		before(function () {
-			return browser.pressButton('.OLSKAppToolbarLauncherButton');
-		});
-
-		before(function () {
-			return browser.fill('.LCHLauncherFilterInput', 'OLSKFundLauncherItemEnterConfirmation');
-		});
-
-		before(function () {
-			return browser.OLSKPrompt(function () {
-				return browser.click('.LCHLauncherPipeItem');
-			}, function (dialog) {
-				dialog.response = Math.random().toString();
-
-				return dialog;
-			});
-		});
-
-		it.skip('shows OLSKFundLauncherItemClearAuthorization', function () {
-			return browser.assert.OLSKLauncherItems('OLSKFundLauncherItemClearAuthorization', 1);
-		});
-
-	});
-
 });
