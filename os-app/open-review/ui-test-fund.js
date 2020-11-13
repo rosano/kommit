@@ -230,4 +230,40 @@ describe('KOMReview_Fund', function () {
 
 	});
 
+	context('FakeFundTier2Proxy', function () {
+		
+		before(function () {
+			return browser.OLSKVisit(kDefaultRoute);
+		});
+
+		it('hides FakeFundTier2Proxy', function () {
+			return browser.assert.OLSKLauncherItems('FakeFundTier2Proxy', 0);
+		});
+
+		context('Tier2 no bundle', function () {
+			
+			before(function () {
+				return browser.OLSKLauncherRun('FakeFundTier2WithNoBundle');
+			});
+
+			it('hides FakeFundTier2Proxy', function () {
+				return browser.assert.OLSKLauncherItems('FakeFundTier2Proxy', 0);
+			});
+		
+		});
+
+		context('Tier2', function () {
+			
+			before(function () {
+				return browser.OLSKLauncherRun('FakeFundTier2WithBundle');
+			});
+
+			it('show FakeFundTier2Proxy', function () {
+				return browser.assert.OLSKLauncherItems('FakeFundTier2Proxy', 1);
+			});
+		
+		});
+	
+	});
+
 });

@@ -362,7 +362,36 @@ const mod = {
 						return mod.SetupValueDecksAll();
 					},
 				},
+				{
+					LCHRecipeName: 'FakeFundTier2WithNoBundle',
+					LCHRecipeCallback: function FakeFundTier2WithNoBundle () {
+						mod._ValueFundGrant = mod.FakeGrantObjectValid({
+							OLSKPactGrantContribution: 900,
+							OLSKPactGrantFrequencyOption: OLSKPact.OLSKPactGrantFrequencyOptionYearly(),
+							OLSKPactGrantProject: Math.random().toString(),
+						});
+					},
+				},
+				{
+					LCHRecipeName: 'FakeFundTier2WithBundle',
+					LCHRecipeCallback: function FakeFundTier2WithBundle () {
+						mod._ValueFundGrant = mod.FakeGrantObjectValid({
+							OLSKPactGrantContribution: 900,
+							OLSKPactGrantFrequencyOption: OLSKPact.OLSKPactGrantFrequencyOptionYearly(),
+							OLSKPactGrantProject: 'FakeBundleProject',
+						});
+					},
+				},
 			]);
+
+			if (mod.ControlConfirmEligible({
+				ParamMinimumTier: 2,
+			})) {
+				items.push({
+					LCHRecipeName: 'FakeFundTier2Proxy',
+					LCHRecipeCallback: function FakeFundTier2Proxy () {},
+				});
+			}
 		}
 
 		return items;
@@ -414,6 +443,21 @@ const mod = {
 				KOMChronicleDueDate: new Date(),
 			}],
 		});
+	},
+
+	FakeGrantObjectValid (inputData) {
+		return Object.assign({
+			OLSKPactGrantPublicNumbers: [Math.random().toString()],
+			OLSKPactGrantIdentity: Math.random().toString(),
+			OLSKPactGrantProject: Math.random().toString(),
+			OLSKPactGrantStartDate: new Date(),
+			OLSKPactGrantEndDate: new Date(),
+			OLSKPactGrantContribution: 100,
+			OLSKPactGrantFrequencyOption: OLSKPact.OLSKPactGrantFrequencyOptions()[Date.now() % OLSKPact.OLSKPactGrantFrequencyOptions().length],
+			OLSKPactGrantProcessor: OLSKPact.OLSKPactPayProcessors()[Date.now() % OLSKPact.OLSKPactPayProcessors().length],
+			OLSKPactGrantProcessorReference: Math.random().toString(),
+			OLSKPactGrantActive: true,
+		}, inputData);
 	},
 
 	// CONTROL
