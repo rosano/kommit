@@ -6,6 +6,20 @@ import KOMReviewGeneral from './submodules/KOMReviewGeneral/ui-logic.js';
 
 const mod = {
 
+	KOMReviewDocumentCount (inputData) {
+		if (!Array.isArray(inputData)) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		return inputData.reduce(function (coll, item) {
+			if (!item || !item.$KOMReviewChartCompositionCollectionData) {
+				return coll;
+			}
+
+			return coll + item.$KOMReviewChartCompositionCollectionData.KOMSpacingGroupingTotal;
+		}, inputData.length);
+	},
+
 	KOMReviewSpacingsToday(inputData) {
 		if (!Array.isArray(inputData)) {
 			throw new Error('KOMErrorInputNotValid');

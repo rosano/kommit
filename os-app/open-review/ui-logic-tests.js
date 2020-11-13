@@ -64,6 +64,37 @@ const kTesting = {
 	},
 };
 
+describe('KOMReviewDocumentCount', function test_KOMReviewDocumentCount() {
+
+	it('throws if not array', function () {
+		throws(function () {
+			mainModule.KOMReviewDocumentCount(null);
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns number', function () {
+		deepEqual(mainModule.KOMReviewDocumentCount([]), 0);
+	});
+
+	it('counts parent objects', function () {
+		const parents = Date.now() % 1000;
+		deepEqual(mainModule.KOMReviewDocumentCount(Array.from(Array(parents))), parents);
+	});
+
+	it('counts child objects', function () {
+		const parents = Date.now() % 1000;
+		const children = Date.now() % 1000;
+		deepEqual(mainModule.KOMReviewDocumentCount(Array.from(Array(parents)).map(function () {
+			return {
+				$KOMReviewChartCompositionCollectionData: {
+					KOMSpacingGroupingTotal: children,
+				},
+			};
+		})), parents + children * parents);
+	});
+
+});
+
 describe('KOMReviewSpacingsToday', function test_KOMReviewSpacingsToday() {
 
 	it('throws if not valid', function () {
