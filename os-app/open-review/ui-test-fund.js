@@ -129,10 +129,14 @@ describe('KOMReview_Fund', function () {
 	
 	});
 
-	context.skip('confirmation', function test_confirmation () {
+	context('confirmation', function test_confirmation () {
 
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute);
+		});
+
+		before(function () {
+			return browser.OLSKLauncherRun('FakeOLSKConnected');
 		});
 
 		before(function () {
@@ -151,9 +155,9 @@ describe('KOMReview_Fund', function () {
 			return browser.OLSKPrompt(function () {
 				return browser.click('.LCHLauncherPipeItem');
 			}, function (dialog) {
-				dialog.response = Math.random().toString();
-
-				return dialog;
+				return Object.assign(dialog, {
+					response: Math.random().toString(),
+				});
 			});
 		});
 
