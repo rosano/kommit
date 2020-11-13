@@ -1,4 +1,5 @@
 KOMReviewTitle: Kommit
+KOMReviewCreatePromptText: Name
 KOMReviewStorageImportErrorNotFilledAlertText: Input not filled
 KOMReviewStorageImportErrorNotValidAlertText: Input not valid
 KOMReviewLauncherItemSelectDeckTextFormat: Select deck '%@'

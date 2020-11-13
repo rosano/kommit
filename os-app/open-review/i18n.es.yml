@@ -1,4 +1,5 @@
 KOMReviewTitle: Kommit
+KOMReviewCreatePromptText: Nombre
 KOMReviewStorageImportErrorNotFilledAlertText: Entrada no cargado
 KOMReviewStorageImportErrorNotValidAlertText: Entrada no válido
 KOMReviewLauncherItemSelectDeckTextFormat: Escoger mazo '%@'

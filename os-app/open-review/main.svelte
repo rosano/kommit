@@ -402,6 +402,12 @@ const mod = {
 	// CONTROL
 
 	async ControlDeckCreate(inputData) {
+		inputData = inputData || window.prompt(OLSKLocalized('KOMReviewCreatePromptText'));
+		
+		if (!inputData) {
+			return;
+		}
+
 		const item = await KOMDeckAction.KOMDeckActionCreate(mod._ValueStorageClient, {
 			KOMDeckName: inputData,
 		});
@@ -563,8 +569,8 @@ const mod = {
 
 	// MESSAGE
 
-	KOMReviewMasterDispatchCreate (inputData) {
-		mod.ControlDeckCreate(inputData);
+	KOMReviewMasterDispatchCreate () {
+		mod.ControlDeckCreate();
 	},
 
 	KOMReviewMasterDispatchSelect (inputData) {

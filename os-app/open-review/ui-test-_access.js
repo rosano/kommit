@@ -138,22 +138,40 @@ describe('KOMReview_Access', function () {
 
 	context('create', function test_create() {
 
-		before(function () {
-			return browser.OLSKPrompt(function () {
-				return browser.pressButton('.KOMReviewMasterCreateButton');
-			}, function (dialog) {
-				dialog.response = 'alfa';
-
-				return dialog;
+		context('empty', function () {
+			
+			before(function () {
+				return browser.OLSKPromptSync(function () {
+					return browser.pressButton('.KOMReviewMasterCreateButton');
+				});
 			});
+
+			it('hides KOMReviewMasterListItem', function () {
+				browser.assert.elements('.KOMReviewMasterListItem', 0);
+			});
+		
 		});
 
-		it('shows KOMReviewMasterListItem', function () {
-			browser.assert.elements('.KOMReviewMasterListItem', 1);
-		});
+		context('filled', function () {
+			
+			before(function () {
+				return browser.OLSKPrompt(function () {
+					return browser.pressButton('.KOMReviewMasterCreateButton');
+				}, function (dialog) {
+					return Object.assign(dialog, {
+						response: 'alfa'
+					});
+				});
+			});
 
-		it('shows KOMReviewLauncherItemSelectDeck', function () {
-			return browser.assert.OLSKLauncherItems('KOMReviewLauncherItemSelectDeck', 1);
+			it('shows KOMReviewMasterListItem', function () {
+				browser.assert.elements('.KOMReviewMasterListItem', 1);
+			});
+
+			it('shows KOMReviewLauncherItemSelectDeck', function () {
+				return browser.assert.OLSKLauncherItems('KOMReviewLauncherItemSelectDeck', 1);
+			});
+		
 		});
 
 	});

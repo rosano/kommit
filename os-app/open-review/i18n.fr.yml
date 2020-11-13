@@ -1,4 +1,5 @@
 KOMReviewTitle: Kommit
+KOMReviewCreatePromptText: Nom
 KOMReviewStorageImportErrorNotFilledAlertText: Entrée non remplie
 KOMReviewStorageImportErrorNotValidAlertText: Entrée non valide
 KOMReviewLauncherItemSelectDeckTextFormat: Choisir lot de cartes '%@'

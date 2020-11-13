@@ -145,18 +145,6 @@ const mod = {
 		return items;
 	},
 
-	// INTERFACE
-
-	InterfaceCreateButtonDidClick() {
-		let outputData = window.prompt(OLSKLocalized('KOMReviewMasterCreateButtonPromptText'));
-		
-		if (!outputData) {
-			return;
-		}
-
-		KOMReviewMasterDispatchCreate(outputData);
-	},
-
 	// MESSAGES
 
 	_OLSKAppToolbarDispatchLauncher () {
@@ -193,7 +181,7 @@ import KOMReviewStats from '../KOMReviewStats/main.svelte';
 </div>
 
 <p>
-	<button class="KOMReviewMasterCreateButton OLSKCommonButton" on:click={ mod.InterfaceCreateButtonDidClick } accesskey="n">{ OLSKLocalized('KOMReviewMasterCreateButtonText') }</button>
+	<button class="KOMReviewMasterCreateButton OLSKCommonButton" on:click={ KOMReviewMasterDispatchCreate } accesskey="n">{ OLSKLocalized('KOMReviewMasterCreateButtonText') }</button>
 </p>
 
 {#if KOMReviewMasterItems.length && mod.DataUnseenCount(KOMReviewMasterItems) }

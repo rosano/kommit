@@ -100,6 +100,16 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			
 		});
 
+		context('KOMReviewMasterCreateButton', function () {
+
+			it('localizes KOMReviewCreatePrompt', function () {
+				browser.assert.OLSKPromptQuestion(function () {
+					return browser.pressButton('.KOMReviewMasterCreateButton');
+				}, uLocalized('KOMReviewCreatePromptText'));
+			});
+
+		});
+
 		context('select_deck', function test_select_deck() {
 
 			before(function () {

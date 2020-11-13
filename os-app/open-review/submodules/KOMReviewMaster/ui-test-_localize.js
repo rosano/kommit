@@ -38,16 +38,6 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			return browser.assert.OLSKLauncherItemText('KOMReviewMasterLauncherItemExportData', uLocalized('KOMReviewMasterLauncherItemExportDataText'));
 		});
 
-		context('KOMReviewMasterCreateButton', function () {
-
-			it('localizes KOMReviewMasterCreateButtonPrompt', function () {
-				browser.assert.OLSKPromptQuestion(function () {
-					return browser.pressButton(KOMReviewMasterCreateButton);
-				}, uLocalized('KOMReviewMasterCreateButtonPromptText'));
-			});
-
-		});
-
 	});
 
 });

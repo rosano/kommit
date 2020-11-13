@@ -43,38 +43,18 @@ describe('KOMReviewMaster_Misc', function () {
 
 		context('click', function () {
 
-			context('response empty', function () {
-
-				before(function () {
-					return browser.OLSKPromptSync(function () {
-						browser.pressButton(KOMReviewMasterCreateButton);
-					});
-				});
-
-				it('does nothing', function () {
-					browser.assert.text('#TestKOMReviewMasterDispatchCreate', '0');
-					browser.assert.text('#TestKOMReviewMasterDispatchCreateData', 'undefined');
-				});
-
+			before(function () {
+				browser.assert.text('#TestKOMReviewMasterDispatchCreate', '0');
 			});
 
-			context('response not empty', function () {
-
-				before(function () {
-					return browser.OLSKPrompt(function () {
-						return browser.pressButton(KOMReviewMasterCreateButton);
-					}, function (dialog) {
-						dialog.response = 'alfa';
-
-						return dialog;
-					});
+			before(function () {
+				return browser.OLSKPromptSync(function () {
+					browser.pressButton(KOMReviewMasterCreateButton);
 				});
+			});
 
-				it('sends KOMReviewMasterDispatchCreate', function () {
-					browser.assert.text('#TestKOMReviewMasterDispatchCreate', '1');
-					browser.assert.text('#TestKOMReviewMasterDispatchCreateData', 'alfa');
-				});
-
+			it('sends KOMReviewMasterDispatchCreate', function () {
+				browser.assert.text('#TestKOMReviewMasterDispatchCreate', '1');
 			});
 
 		});
