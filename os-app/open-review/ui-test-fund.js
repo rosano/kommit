@@ -167,4 +167,67 @@ describe('KOMReview_Fund', function () {
 
 	});
 
+	context('document_limit', function test_document_limit () {
+
+		before(function () {
+			return browser.OLSKVisit(kDefaultRoute);
+		});
+
+		before(function () {
+			return browser.OLSKLauncherRun('FakeFundDocumentLimit');
+		});
+
+		before(function () {
+			browser.assert.elements('.KOMReviewMasterListItem', 1);
+		});
+
+		it('alerts', function() {
+			browser.assert.OLSKConfirmQuestion(function () {
+				return browser.OLSKPrompt(function () {
+					return browser.pressButton('.KOMReviewMasterCreateButton');
+				}, function (dialog) {
+					return Object.assign(dialog, {
+						response: Math.random().toString(),
+					});
+				});
+			}, uLocalized('OLSKFundConfirmText'));
+		});
+
+		it('shows KOMReviewStorageToolbar', function () {
+			browser.assert.elements('.KOMReviewStorageToolbar', 1);
+		});
+
+		it('creates no document', function () {
+			browser.assert.elements('.KOMReviewMasterListItem', 1);
+		});
+
+		context('cancel', function () {
+
+			before(function () {
+				return browser.pressButton('.OLSKAppToolbarStorageButton');
+			});
+
+			before(function () {
+				browser.assert.elements('.KOMReviewStorageToolbar', 0);
+			});
+			
+			before(function () {
+				return browser.OLSKConfirm(function () {
+					return browser.pressButton('.KOMReviewMasterCreateButton');
+				}, function (dialog) {
+					return Object.assign(dialog, {
+						response: false,
+					});
+				});
+			});
+
+			it('does nothing', function () {
+				browser.assert.elements('.KOMReviewStorageToolbar', 0);
+				browser.assert.elements('.KOMReviewMasterListItem', 1);
+			});
+		
+		});
+
+	});
+
 });

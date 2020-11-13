@@ -345,6 +345,23 @@ const mod = {
 						return mod.OLSKFundDispatchProgress(!mod._ValueFundProgress);
 					},
 				},
+				{
+					LCHRecipeName: 'FakeFundDocumentLimit',
+					LCHRecipeCallback: async function FakeFundDocumentLimit () {
+						const deck = await KOMDeckAction.KOMDeckActionCreate(mod._ValueStorageClient, {
+							KOMDeckName: Math.random().toString(),
+						});
+
+						await Promise.all(Array.from(Array(parseInt('KOM_FUND_DOCUMENT_LIMIT_SWAP_TOKEN'))).map(function (e) {
+							return KOMCardAction.KOMCardActionCreate(mod._ValueStorageClient, Object.assign(mod.FakeCardObjectValid(), {
+								KOMCardID: Math.random().toString(),
+								KOMCardDeckID: deck.KOMDeckID,
+							}), deck);
+						}));
+
+						return mod.SetupValueDecksAll();
+					},
+				},
 			]);
 		}
 
@@ -401,7 +418,29 @@ const mod = {
 
 	// CONTROL
 
+	ControlConfirmEligible (inputData = {}) {
+		return OLSKFund.OLSKFundIsEligible(Object.assign({
+			ParamMinimumTier: 1,
+			ParamCurrentProject: 'RP_004',
+			ParamBundleProjects: [],
+			ParamGrantTier: 0,
+			ParamGrantProject: mod._ValueFundGrant ? mod._ValueFundGrant.OLSKPactGrantProject : '',
+		}, inputData));
+	},
+
+	ControlConfirmFund () {
+		if (!window.confirm(OLSKLocalized('OLSKFundConfirmText'))) {
+			return;
+		}
+
+		mod.OLSKAppToolbarDispatchFund();
+	},
+
 	async ControlDeckCreate(inputData) {
+		if (KOMReviewLogic.KOMReviewDocumentCount(mod._ValueDecksAll) >= parseInt('KOM_FUND_DOCUMENT_LIMIT_SWAP_TOKEN') && !mod.ControlConfirmEligible()) {
+			return mod.ControlConfirmFund();
+		}
+
 		inputData = inputData || window.prompt(OLSKLocalized('KOMReviewCreatePromptText'));
 		
 		if (!inputData) {
