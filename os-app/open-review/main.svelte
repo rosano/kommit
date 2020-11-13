@@ -422,8 +422,8 @@ const mod = {
 		return OLSKFund.OLSKFundIsEligible(Object.assign({
 			ParamMinimumTier: 1,
 			ParamCurrentProject: 'RP_004',
-			ParamBundleProjects: [],
-			ParamGrantTier: 0,
+			ParamBundleProjects: ['FakeBundleProject'],
+			ParamGrantTier: OLSKFund.OLSKFundTier('OLSK_FUND_PRICING_STRING_SWAP_TOKEN', mod._ValueFundGrant),
 			ParamGrantProject: mod._ValueFundGrant ? mod._ValueFundGrant.OLSKPactGrantProject : '',
 		}, inputData));
 	},
