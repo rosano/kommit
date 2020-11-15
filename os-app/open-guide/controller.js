@@ -15,10 +15,7 @@ exports.OLSKControllerRoutes = function () {
 			const KOMSharedLogic = require(filePath);
 
 			return res.OLSKLayoutRender(require('path').join(__dirname, 'ui-view'), {
-				KOMGuideContent: require('OLSKString').OLSKStringReplaceTokens(require('marked').setOptions({
-					gfm: true,
-					headerIds: true,
-				})(require('fs').readFileSync(require('path').join(__dirname, `text.${ res.locals.OLSKSharedPageCurrentLanguage }.md`), 'utf-8')), Object.assign({
+				KOMGuideContent: res.OLSKMarkdownContent(require('path').join(__dirname, `text.${ res.locals.OLSKSharedPageCurrentLanguage }.md`), {
 					KOMGuideTokenColorUnseen: KOMSharedLogic.KOMSharedColorUnseen(),
 					KOMGuideTokenColorRelearning: KOMSharedLogic.KOMSharedColorRelearning(),
 					KOMGuideTokenColorDeveloping: KOMSharedLogic.KOMSharedColorDeveloping(),
@@ -28,11 +25,7 @@ exports.OLSKControllerRoutes = function () {
 					KOMReviewLauncherItemSelectDeckText: require('OLSKString').OLSKStringWithFormat(res.locals.OLSKLocalized('KOMReviewLauncherItemSelectDeckTextFormat'), '…'),
 
 					KOMReviewRoute: res.locals.OLSKCanonicalFor('KOMReviewRoute'),
-				}, res.locals.OLSKLocalizedStringKeys().reduce(function (coll, item) {
-					return Object.assign(coll, {
-						[item]: res.locals.OLSKLocalized(item),
-					});
-				}, {}))),
+				}),
 				OLSKStringReplaceTokens: require('OLSKString').OLSKStringReplaceTokens,
 			});
 		},

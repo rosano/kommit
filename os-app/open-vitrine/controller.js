@@ -17,14 +17,10 @@ exports.OLSKControllerRoutes = function () {
 		OLSKRouteSignature: 'KOMVitrineRoute',
 		OLSKRouteFunction(req, res, next) {
 			return res.OLSKLayoutRender(require('path').join(__dirname, 'ui-view'), {
-				KOMVitrineContent: require('OLSKString').OLSKStringReplaceTokens(require('marked').setOptions({
-					gfm: true,
-					headerIds: false,
-				})(require('fs').readFileSync(require('path').join(__dirname, `text.${ res.locals.OLSKSharedPageCurrentLanguage }.md`), 'utf-8')), {
-					KOMVitrineDescription: res.locals.OLSKLocalized('KOMVitrineDescription'),
+				KOMVitrineContent: res.OLSKMarkdownContent(require('path').join(__dirname, `text.${ res.locals.OLSKSharedPageCurrentLanguage }.md`), {
 					KOMVitrineTokenGuideURL: res.locals.OLSKCanonicalFor('KOMGuideRoute'),
 					KOMVitrineTokenReviewURL: res.locals.OLSKCanonicalLocalizedFor('KOMReviewRoute'),
-					KOMVitrineContentAppButtonText: res.locals.OLSKLocalized('KOMVitrineContentAppButtonText'),
+
 					KOM_VITRINE_ANKI_URL: process.env.KOM_VITRINE_ANKI_URL,
 					KOM_SHARED_DONATE_URL: process.env.KOM_SHARED_DONATE_URL,
 					KOM_SHARED_GITHUB_URL: process.env.KOM_SHARED_GITHUB_URL,
