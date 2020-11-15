@@ -10,6 +10,10 @@ describe('KOMVitrine_Misc', function () {
 		browser.assert.attribute('meta[name=viewport]', 'content', 'width=device-width');
 	});
 
+	it('assigns apple-touch-icon', function () {
+		browser.assert.attribute('link[rel=apple-touch-icon]', 'href', process.env.KOM_TOUCH_ICON_URL);
+	});
+
 	describe('KOMVitrine', function () {
 
 		it('classes OLSKCommon', function () {
