@@ -4,7 +4,7 @@ exports.OLSKControllerRoutes = function () {
 		OLSKRouteMethod: 'get',
 		OLSKRouteSignature: 'KOMReviewRoute',
 		OLSKRouteFunction(req, res, next) {
-			return res.render(require('path').join(__dirname, 'ui-view'));
+			return res.OLSKLayoutRender(require('path').join(__dirname, 'ui-view'));
 		},
 		OLSKRouteLanguages: ['en', 'fr', 'es'],
 	}];

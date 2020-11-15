@@ -1,20 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<link rel="stylesheet" type="text/css" href="/_shared/__external/normalize.css/normalize.css">
-	<link rel="stylesheet" type="text/css" href="/<%= OLSKSharedPageControllerSlug %>/__compiled/ui-style.css">
-
-	<script type="text/javascript">
-		window.OLSKPublicConstants = function (inputData) {
-			return <%- JSON.stringify({
-				OLSKSharedPageCurrentLanguage,
-			}) %>[inputData];
-		};
-	</script>
-</head>
-<body>
+<%
+locals.OLSKPageAssets = [
+	'/_shared/__external/normalize.css/normalize.css',
+	'__compiled/ui-style.css',
+];
+locals.OLSKPagePublicConstants = {
+	OLSKSharedPageCurrentLanguage,
+};
+%>
 
 <div id="Target"></div>
+<script src="/<%= OLSKSharedPageControllerSlug %>/__compiled/ui-behaviour.js"></script>
 
 <p>
 	<strong>KOMPlayDispatchDone</strong>
@@ -35,8 +30,3 @@
 	<strong>KOMPlayAudioLog</strong>
 	<span id="TestKOMPlayAudioLog"></span>
 </p>
-
-<script src="/<%= OLSKSharedPageControllerSlug %>/__compiled/ui-behaviour.js"></script>
-
-</body>
-</html>

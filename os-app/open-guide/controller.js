@@ -14,7 +14,7 @@ exports.OLSKControllerRoutes = function () {
 
 			const KOMSharedLogic = require(filePath);
 
-			return res.render(require('path').join(__dirname, 'ui-view'), {
+			return res.OLSKLayoutRender(require('path').join(__dirname, 'ui-view'), {
 				KOMGuideContent: require('OLSKString').OLSKStringReplaceTokens(require('marked').setOptions({
 					gfm: true,
 					headerIds: true,

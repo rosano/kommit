@@ -3,7 +3,7 @@ exports.OLSKControllerRoutes = function () {
 		OLSKRoutePath: '/stub/KOMRootLinkEJS',
 		OLSKRouteMethod: 'get',
 		OLSKRouteFunction(req, res, next) {
-			return res.render(require('path').join(__dirname, 'stub-view'));
+			return res.OLSKLayoutRender(require('path').join(__dirname, 'stub-view'));
 		},
 		OLSKRouteSignature: 'KOMRootLinkEJSStubRoute',
 		OLSKRouteLanguages: ['en', 'fr', 'es'],
@@ -12,7 +12,7 @@ exports.OLSKControllerRoutes = function () {
 		OLSKRoutePath: '/stub/KOMRootLinkSvelte',
 		OLSKRouteMethod: 'get',
 		OLSKRouteFunction(req, res, next) {
-			return res.render(require('path').join(__dirname, 'stub-view'));
+			return res.OLSKLayoutRender(require('path').join(__dirname, 'stub-view'));
 		},
 		OLSKRouteSignature: 'KOMRootLinkSvelteStubRoute',
 		OLSKRouteLanguages: ['en', 'fr', 'es'],
