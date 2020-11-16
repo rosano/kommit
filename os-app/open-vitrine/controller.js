@@ -2,14 +2,6 @@ exports.OLSKControllerUseLivereload = function () {
 	return process.env.NODE_ENV === 'development';
 };
 
-exports.OLSKControllerSharedMiddlewares = function () {
-	return {
-		KOMVitrineRouteGuardMiddleware(req, res, next) {
-			return next(require('./logic.js').KOMVitrineRouteGuard(process.env));
-		},
-	};
-};
-
 exports.OLSKControllerRoutes = function () {
 	return [{
 		OLSKRoutePath: '/',
@@ -30,10 +22,5 @@ exports.OLSKControllerRoutes = function () {
 			});
 		},
 		OLSKRouteLanguages: ['en', 'fr', 'es'],
-		OLSKRouteMiddlewares: [
-			'KOMVitrineRouteGuardMiddleware',
-			'KOMSharedGitHubLinkGuardMiddleware',
-			'KOMSharedDonateLinkGuardMiddleware',
-		],
 	}];
 };
