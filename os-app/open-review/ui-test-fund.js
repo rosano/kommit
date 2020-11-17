@@ -8,11 +8,11 @@ const uLocalized = function (inputData) {
 
 describe('KOMReview_Fund', function () {
 
-	before(function () {
-		return browser.OLSKVisit(kDefaultRoute);
-	});
+	describe('OLSKAppToolbarFundButton', function test_OLSKAppToolbarFundButton() {
 
-	context('OLSKAppToolbarFundButton', function test_OLSKAppToolbarFundButton() {
+		before(function () {
+			return browser.OLSKVisit(kDefaultRoute);
+		});
 
 		context('not connected', function () {
 
@@ -83,7 +83,7 @@ describe('KOMReview_Fund', function () {
 
 	});
 
-	context('OLSKFundDispatchProgress', function () {
+	context('OLSKFundDispatchProgress', function test_OLSKFundDispatchProgress () {
 
 		before(function () {
 			return browser.OLSKLauncherRun('FakeFundProgress');
@@ -99,7 +99,7 @@ describe('KOMReview_Fund', function () {
 	
 	});
 
-	context('OLSKFundResponseIsPresent', function test_OLSKFundResponseIsPresent () {
+	describe('OLSKFundResponseIsPresent', function test_OLSKFundResponseIsPresent () {
 
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
@@ -111,9 +111,13 @@ describe('KOMReview_Fund', function () {
 			browser.assert.elements('.OLSKAppToolbarFundButton', 0);
 		});
 
+		it('hides OLSKAppToolbarFundLimit', function () {
+			browser.assert.elements('.OLSKAppToolbarFundLimit', 0);
+		});
+
 	});
 
-	context('_OLSKFundSetupPostPay', function () {
+	describe('_OLSKFundSetupPostPay', function test__OLSKFundSetupPostPay () {
 
 		before(function () {
 			return browser.visit(OLSKTestingCanonical(kDefaultRoute) + '#confirmation=' + Math.random().toString());
@@ -129,7 +133,7 @@ describe('KOMReview_Fund', function () {
 	
 	});
 
-	context('confirmation', function test_confirmation () {
+	describe('confirmation', function test_confirmation () {
 
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute);
@@ -167,7 +171,7 @@ describe('KOMReview_Fund', function () {
 
 	});
 
-	context('document_limit', function test_document_limit () {
+	describe('document_limit', function test_document_limit () {
 
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute);
@@ -230,7 +234,7 @@ describe('KOMReview_Fund', function () {
 
 	});
 
-	context('FakeFundTier2Proxy', function () {
+	describe('FakeFundTier2Proxy', function test_FakeFundTier2Proxy () {
 		
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute);
