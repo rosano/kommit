@@ -294,7 +294,7 @@ describe('KOMReview_Fund', function () {
 						response: Math.random().toString(),
 					});
 				});
-			}, uLocalized('OLSKFundConfirmText'));
+			}, uLocalized('OLSKFundGateText'));
 		});
 
 		it('shows KOMReviewStorageToolbar', function () {

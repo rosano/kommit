@@ -475,7 +475,7 @@ const mod = {
 	},
 
 	ControlConfirmFund () {
-		if (!window.confirm(OLSKLocalized('OLSKFundConfirmText'))) {
+		if (!window.confirm(OLSKLocalized('OLSKFundGateText'))) {
 			return;
 		}
 
