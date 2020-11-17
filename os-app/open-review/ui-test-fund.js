@@ -83,6 +83,106 @@ describe('KOMReview_Fund', function () {
 
 	});
 
+	describe('OLSKAppToolbarFundLimit', function test_OLSKAppToolbarFundLimit() {
+
+		before(function () {
+			return browser.OLSKVisit(kDefaultRoute);
+		});
+
+		it('starts at KOM_FUND_DOCUMENT_LIMIT', function () {
+			browser.assert.text('.OLSKAppToolbarFundLimit', process.env.KOM_FUND_DOCUMENT_LIMIT);
+		});
+
+		context('create_deck', function () {
+			
+			before(function () {
+				return browser.OLSKPrompt(function () {
+					return browser.pressButton('.KOMReviewMasterCreateButton');
+				}, function (dialog) {
+					return Object.assign(dialog, {
+						response: 'alfa'
+					});
+				});
+			});
+
+			it('shows KOMReviewMasterListItem', function () { // #hotfix-invisible-until-assert
+				browser.assert.elements('.KOMReviewMasterListItem', 1);
+			});
+
+			it('updates number', function () {
+				browser.assert.text('.OLSKAppToolbarFundLimit', (process.env.KOM_FUND_DOCUMENT_LIMIT - 1).toString());
+			});
+		
+		});
+
+		context('create_card', function () {
+			
+			before(function () {
+				return browser.pressButton('.KOMReviewMasterListItem');
+			});
+
+			before(function () {
+				return browser.pressButton('.KOMReviewDetailToolbarCardsButton');
+			});
+
+			before(function () {
+				return browser.pressButton('.KOMBrowseListToolbarCreateButton');
+			});
+
+			it('updates number', function () {
+				browser.assert.text('.OLSKAppToolbarFundLimit', (process.env.KOM_FUND_DOCUMENT_LIMIT - 2).toString());
+			});
+		
+		});
+
+		context('remove_card', function () {
+			
+			before(function () {
+				return browser.pressButton('.KOMBrowseInfoToolbarDiscardButton');
+			});
+
+			it('updates number', function () {
+				browser.assert.text('.OLSKAppToolbarFundLimit', (process.env.KOM_FUND_DOCUMENT_LIMIT - 1).toString());
+			});
+		
+		});
+
+		context('remove_deck', function () {
+			
+			before(function () {
+				return browser.pressButton('.KOMBrowseListToolbarCloseButton');
+			});
+
+			before(function () {
+				return browser.OLSKPrompt(function () {
+					return browser.pressButton('.KOMReviewDetailDiscardButton');
+				}, function (dialog) {
+					dialog.response = '0';
+
+					return dialog;
+				});
+			});
+
+			it('updates number', function () {
+				browser.assert.elements('.OLSKAppToolbarFundLimit', process.env.KOM_FUND_DOCUMENT_LIMIT);
+			});
+		
+		});
+
+		context.skip('sync', function () {
+
+			before(function () {
+				return browser.OLSKLauncherRun('FakeOLSKChangeDelegateCreateDeck');
+			});			
+
+			it('updates number', function () {
+				browser.assert.elements('.OLSKAppToolbarFundLimit', process.env.KOM_FUND_DOCUMENT_LIMIT - 1);
+			});
+
+		});
+
+	});
+
 	context('OLSKFundDispatchProgress', function test_OLSKFundDispatchProgress () {
 
 		before(function () {

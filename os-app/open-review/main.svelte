@@ -40,6 +40,8 @@ const mod = {
 	_ValueDecksAll: [],
 	ValueDecksAll (inputData) {
 		mod._ValueDecksAll = KOMReviewLogic.KOMReviewDeckSort(inputData);
+
+		mod.ReactDocumentRemainder();
 	},
 	
 	_ValueDeckSelected: undefined,
@@ -352,7 +354,7 @@ const mod = {
 							KOMDeckName: Math.random().toString(),
 						});
 
-						await Promise.all(Array.from(Array(parseInt('KOM_FUND_DOCUMENT_LIMIT_SWAP_TOKEN'))).map(function (e) {
+						await Promise.all(Array.from(Array(mod._ValueDocumentRemainder)).map(function (e) {
 							return KOMCardAction.KOMCardActionCreate(mod._ValueStorageClient, Object.assign(mod.FakeCardObjectValid(), {
 								KOMCardID: Math.random().toString(),
 								KOMCardDeckID: deck.KOMDeckID,
@@ -481,7 +483,7 @@ const mod = {
 	},
 
 	async ControlDeckCreate(inputData) {
-		if (KOMReviewLogic.KOMReviewDocumentCount(mod._ValueDecksAll) > parseInt('KOM_FUND_DOCUMENT_LIMIT_SWAP_TOKEN') && !mod.ControlConfirmEligible()) {
+		if (mod._ValueDocumentRemainder < 1 && !mod.ControlConfirmEligible()) {
 			return mod.ControlConfirmFund();
 		}
 
@@ -733,6 +735,19 @@ const mod = {
 				$KOMSpacingCard: inputData,
 			});
 		}));
+
+		mod.ReactDocumentRemainder();
+	},
+
+	async KOMBrowseDispatchDiscard (inputData) {
+		(await mod.DataDeckSelectedObjects(mod._ValueDeckSelected)).$KOMDeckCards = (await mod.DataDeckSelectedObjects(mod._ValueDeckSelected)).$KOMDeckCards.filter(function (e) {
+			return e !== inputData;
+		});
+		(await mod.DataDeckSelectedObjects(mod._ValueDeckSelected)).$KOMDeckSpacings = (await mod.DataDeckSelectedObjects(mod._ValueDeckSelected)).$KOMDeckSpacings.filter(function (e) {
+			return e.$KOMSpacingCard !== inputData;
+		})
+
+		mod.ReactDocumentRemainder();
 	},
 
 	async KOMBrowseListDispatchClose () {
@@ -895,6 +910,12 @@ const mod = {
 	OLSKChangeDelegateDeleteSpacing (inputData) {},
 
 	// REACT
+
+	async ReactDocumentRemainder () {
+		mod._ValueDocumentRemainder = OLSKFund.OLSKFundRemainder(KOMReviewLogic.KOMReviewDocumentCount(mod._ValueDecksAll, Object.fromEntries(await Promise.all(Object.entries(mod._ValueDeckSelectedObjectsMap).map(async function (e) {
+			return [e[0], await e[1]];
+		})))), parseInt('KOM_FUND_DOCUMENT_LIMIT_SWAP_TOKEN'));
+	},
 
 	ReactDeckIfSelected (inputData) {
 		if (!mod._ValueDeckSelected) {
@@ -1228,6 +1249,7 @@ import OLSKPointer from 'OLSKPointer';
 			KOMBrowseDeckSelected={ mod._ValueDeckSelected }
 			KOMBrowseDeckCards={ mod._ValueBrowseCards }
 			KOMBrowseDispatchCreate={ mod.KOMBrowseDispatchCreate }
+			KOMBrowseDispatchDiscard={ mod.KOMBrowseDispatchDiscard }
 			KOMBrowseListDispatchClose={ mod.KOMBrowseListDispatchClose }
 			KOMBrowseInfoSpeechAvailable={ mod._ValueSpeechAvailable }
 			KOMBrowseInfoDispatchRead={ mod.KOMBrowseInfoDispatchRead }
@@ -1263,6 +1285,7 @@ import OLSKPointer from 'OLSKPointer';
 		<OLSKAppToolbar
 			OLSKAppToolbarGuideURL={ window.OLSKCanonicalFor('KOMGuideRoute') }
 			OLSKAppToolbarFundShowProgress={ mod._ValueFundProgress }
+			OLSKAppToolbarFundLimitText={ mod._ValueDocumentRemainder ? mod._ValueDocumentRemainder.toString() : '' }
 			OLSKAppToolbarDispatchFund={ mod._ValueFundGrant || OLSKFund.OLSKFundResponseIsPresent() ? null : mod.OLSKAppToolbarDispatchFund }
 			OLSKAppToolbarStorageStatus={ mod._ValueFooterStorageStatus }
 			OLSKAppToolbarDispatchStorage={ mod.OLSKAppToolbarDispatchStorage }
