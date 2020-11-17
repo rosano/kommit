@@ -4,6 +4,7 @@ export let KOMBrowseStorageClient;
 export let KOMBrowseDeckSelected;
 export let KOMBrowseDeckCards;
 export let KOMBrowseDispatchCreate;
+export let KOMBrowseDispatchDiscard;
 export let KOMBrowseListDispatchClose;
 export let KOMBrowseInfoSpeechAvailable;
 export let KOMBrowseInfoDispatchRead;
@@ -228,6 +229,8 @@ const mod = {
 		await KOMCardAction.KOMCardActionDelete(KOMBrowseStorageClient, param1, param2);
 
 		mod.ControlCardSelect(null);
+
+		KOMBrowseDispatchDiscard(param1);
 	},
 
 	async ControlDiscardRetiredCards () {

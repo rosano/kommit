@@ -559,6 +559,42 @@ describe('KOMBrowse_Misc', function () {
 
 	});
 
+	context('discard', function test_discard() {
+
+		before(function () {
+			browser.assert.text('#TestKOMBrowseDispatchDiscard', '0');
+			browser.assert.text('#TestKOMBrowseDispatchDiscardData', 'undefined');
+		});
+
+		before(function () {
+			return browser.pressButton('.KOMBrowseInfoToolbarDiscardButton');
+		});
+
+		it('classes OLSKMobileViewInactive', function () {
+			browser.assert.hasNoClass('.KOMBrowseList', 'OLSKMobileViewInactive');
+			browser.assert.hasClass('.KOMBrowseInfo', 'OLSKMobileViewInactive');
+		});
+
+		it('sets KOMBrowseInfoItem', function () {
+			browser.assert.elements('.OLSKDetailPlaceholder', 1);
+		});
+
+		it('sends KOMBrowseDispatchDiscard', function () {
+			browser.assert.text('#TestKOMBrowseDispatchDiscard', '1');
+			browser.assert.text('#TestKOMBrowseDispatchDiscardData', JSON.stringify([
+				'KOMCardID',
+				'KOMCardDeckID',
+				'KOMCardCreationDate',
+				'KOMCardModificationDate',
+				'KOMCardFrontText',
+				'KOMCardRearText',
+				'KOMCardNotes',
+				'KOMCardTags',
+			]));
+		});
+
+	});
+
 	context('close', function test_close() {
 
 		before(function () {
@@ -575,13 +611,13 @@ describe('KOMBrowse_Misc', function () {
 
 	});
 
-	describe('KOMBrowseInfoLauncherItemDebug', function test_KOMBrowseInfoLauncherItemDebug() {
+	describe.skip('KOMBrowseInfoLauncherItemDebug', function test_KOMBrowseInfoLauncherItemDebug() {
 
 		before(function () {
 			return browser.OLSKLauncherRun('KOMBrowseInfoLauncherItemDebug');
 		});
 
-		it.skip('sets window location', function () {
+		it('sets window location', function () {
 			browser.assert.evaluate('window.FakeWindowOpen', 'https://inspektor.5apps.com/inspect?path=kommit%2Fkom_decks%2F01EB9SZTJRC76TNBQRZSFQ3N6T%2Fkom_cards%2F2020-06-25%2F01EBPK47QV90N1WFJ4W9QMN0Z3%2F');
 		});
 

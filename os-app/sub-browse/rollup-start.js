@@ -45,6 +45,10 @@ const KOMBrowse = new RollupStart({
 			window.TestKOMBrowseDispatchCreate.innerHTML = parseInt(window.TestKOMBrowseDispatchCreate.innerHTML) + 1;
 			window.TestKOMBrowseDispatchCreateData.innerHTML = JSON.stringify(Object.keys(inputData));
 		}),
+		KOMBrowseDispatchDiscard: (function (inputData) {
+			window.TestKOMBrowseDispatchDiscard.innerHTML = parseInt(window.TestKOMBrowseDispatchDiscard.innerHTML) + 1;
+			window.TestKOMBrowseDispatchDiscardData.innerHTML = JSON.stringify(Object.keys(inputData));
+		}),
 		KOMBrowseListDispatchClose: (function () {
 			window.TestKOMBrowseListDispatchClose.innerHTML = parseInt(window.TestKOMBrowseListDispatchClose.innerHTML) + 1;
 		}),
