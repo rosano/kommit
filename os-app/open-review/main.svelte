@@ -481,7 +481,7 @@ const mod = {
 	},
 
 	async ControlDeckCreate(inputData) {
-		if (KOMReviewLogic.KOMReviewDocumentCount(mod._ValueDecksAll) >= parseInt('KOM_FUND_DOCUMENT_LIMIT_SWAP_TOKEN') && !mod.ControlConfirmEligible()) {
+		if (KOMReviewLogic.KOMReviewDocumentCount(mod._ValueDecksAll) > parseInt('KOM_FUND_DOCUMENT_LIMIT_SWAP_TOKEN') && !mod.ControlConfirmEligible()) {
 			return mod.ControlConfirmFund();
 		}
 
