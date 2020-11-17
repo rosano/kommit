@@ -6,7 +6,7 @@ const KOMBrowseList = new RollupStart({
 		KOMBrowseListItems: [],
 		KOMBrowseListFilterText: '',
 		KOMBrowseListDispatchClose: (function (inputData) {
-			window.TestKOMBrowseListDispatchClose.innerHTML = parseInt(window.TestKOMBrowseListDispatchCreate.innerHTML) + 1;
+			window.TestKOMBrowseListDispatchClose.innerHTML = parseInt(window.TestKOMBrowseListDispatchClose.innerHTML) + 1;
 		}),
 		KOMBrowseListDispatchCreate: (function (inputData) {
 			window.TestKOMBrowseListDispatchCreate.innerHTML = parseInt(window.TestKOMBrowseListDispatchCreate.innerHTML) + 1;
