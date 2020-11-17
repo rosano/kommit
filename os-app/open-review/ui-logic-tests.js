@@ -81,16 +81,36 @@ describe('KOMReviewDocumentCount', function test_KOMReviewDocumentCount() {
 		deepEqual(mainModule.KOMReviewDocumentCount(Array.from(Array(parents))), parents);
 	});
 
-	it('counts child objects', function () {
-		const parents = Date.now() % 1000;
-		const children = Date.now() % 1000;
-		deepEqual(mainModule.KOMReviewDocumentCount(Array.from(Array(parents)).map(function () {
-			return {
-				$KOMReviewChartCompositionCollectionData: {
-					KOMSpacingGroupingTotal: children,
-				},
-			};
-		})), parents + children * parents);
+	context('child objects', function () {
+
+		it('counts $KOMDeckCards if present in param2', function () {
+			const parents = Date.now() % 1000;
+			const children = Date.now() % 1000;
+			deepEqual(mainModule.KOMReviewDocumentCount(Array.from(Array(parents)).map(function (e, KOMDeckID) {
+				return {
+					KOMDeckID,
+				};
+			}), Array.from(Array(parents)).reduce(function (coll, item, i) {
+				return Object.assign(coll, {
+					[i]: {
+						$KOMDeckCards: Array.from(Array(children)),
+					},
+				});
+			}, {})), parents + children * parents);
+		});
+		
+		it('counts $KOMReviewChartCompositionCollectionData', function () {
+			const parents = Date.now() % 1000;
+			const children = Date.now() % 1000;
+			deepEqual(mainModule.KOMReviewDocumentCount(Array.from(Array(parents)).map(function () {
+				return {
+					$KOMReviewChartCompositionCollectionData: {
+						KOMSpacingGroupingTotal: children,
+					},
+				};
+			})), parents + children * parents);
+		});
+	
 	});
 
 });

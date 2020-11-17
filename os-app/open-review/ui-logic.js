@@ -6,14 +6,22 @@ import KOMReviewGeneral from './submodules/KOMReviewGeneral/ui-logic.js';
 
 const mod = {
 
-	KOMReviewDocumentCount (inputData) {
+	KOMReviewDocumentCount (inputData, param2) {
 		if (!Array.isArray(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
 		return inputData.reduce(function (coll, item) {
-			if (!item || !item.$KOMReviewChartCompositionCollectionData) {
+			if (!item) {
 				return coll;
+			}
+
+			if (!param2 && !item.$KOMReviewChartCompositionCollectionData) {
+				return coll;
+			}
+
+			if (param2 && (param2[item.KOMDeckID] || {}).$KOMDeckCards) {
+				return coll + param2[item.KOMDeckID].$KOMDeckCards.length;
 			}
 
 			return coll + item.$KOMReviewChartCompositionCollectionData.KOMSpacingGroupingTotal;
