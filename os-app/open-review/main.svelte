@@ -95,6 +95,16 @@ const mod = {
 		});
 	},
 
+	DataIsEligible (inputData = {}) {
+		return OLSKFund.OLSKFundIsEligible(Object.assign({
+			ParamMinimumTier: 1,
+			ParamCurrentProject: 'RP_004',
+			ParamBundleProjects: ['FakeBundleProject'],
+			ParamGrantTier: OLSKFund.OLSKFundTier('OLSK_FUND_PRICING_STRING_SWAP_TOKEN', mod._ValueFundGrant),
+			ParamGrantProject: mod._ValueFundGrant ? mod._ValueFundGrant.OLSKPactGrantProject : '',
+		}, inputData));
+	},
+
 	DataNavigator () {
 		return navigator.serviceWorker ? navigator : {
 			serviceWorker: {},
@@ -386,7 +396,7 @@ const mod = {
 				},
 			]);
 
-			if (mod.ControlConfirmEligible({
+			if (mod.DataIsEligible({
 				ParamMinimumTier: 2,
 			})) {
 				items.push({
@@ -464,16 +474,6 @@ const mod = {
 
 	// CONTROL
 
-	ControlConfirmEligible (inputData = {}) {
-		return OLSKFund.OLSKFundIsEligible(Object.assign({
-			ParamMinimumTier: 1,
-			ParamCurrentProject: 'RP_004',
-			ParamBundleProjects: ['FakeBundleProject'],
-			ParamGrantTier: OLSKFund.OLSKFundTier('OLSK_FUND_PRICING_STRING_SWAP_TOKEN', mod._ValueFundGrant),
-			ParamGrantProject: mod._ValueFundGrant ? mod._ValueFundGrant.OLSKPactGrantProject : '',
-		}, inputData));
-	},
-
 	ControlConfirmFund () {
 		if (!window.confirm(OLSKLocalized('OLSKFundGateText'))) {
 			return;
@@ -483,7 +483,7 @@ const mod = {
 	},
 
 	async ControlDeckCreate(inputData) {
-		if (mod._ValueDocumentRemainder < 1 && !mod.ControlConfirmEligible()) {
+		if (mod._ValueDocumentRemainder < 1 && !mod.DataIsEligible()) {
 			return mod.ControlConfirmFund();
 		}
 
