@@ -217,7 +217,7 @@ describe('KOMReview_Fund', function () {
 
 	});
 
-	describe('_OLSKFundSetupPostPay', function test__OLSKFundSetupPostPay () {
+	describe('OLSKFundSetupPostPay', function test_OLSKFundSetupPostPay () {
 
 		before(function () {
 			return browser.visit(OLSKTestingCanonical(kDefaultRoute) + '#confirmation=' + Math.random().toString());

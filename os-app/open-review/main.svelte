@@ -1149,7 +1149,7 @@ const mod = {
 
 		mod._ValueFundConfirmation = (await KOMSettingAction.KOMSettingsActionProperty(mod._ValueStorageClient, 'KOMSettingFundConfirmation') || {}).KOMSettingValue;
 
-		await OLSKFund._OLSKFundSetupPostPay({
+		await OLSKFund.OLSKFundSetupPostPay({
 			ParamWindow: window,
 			ParamExistingCode: mod._ValueFundConfirmation || null,
 			OLSKFundDispatchPersist: mod.OLSKFundDispatchPersist,
