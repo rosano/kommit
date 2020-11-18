@@ -1177,7 +1177,7 @@ const mod = {
 			ParamWindow: window,
 			OLSK_FUND_API_URL: 'OLSK_FUND_API_URL_SWAP_TOKEN',
 			ParamBody: {
-				OLSKPactAuthType: OLSKPact.OLSKPactAuthTypeStorage(),
+				OLSKPactAuthType: OLSKPact.OLSKPactAuthTypeRemoteStorage(),
 				OLSKPactAuthIdentity: mod._ValueStorageClient.remote.userAddress,
 				OLSKPactAuthProof: mod._ValueStorageClient.remote.token,
 				OLSKPactAuthMetadata: {
