@@ -1294,7 +1294,7 @@ import OLSKPointer from 'OLSKPointer';
 		<OLSKAppToolbar
 			OLSKAppToolbarGuideURL={ window.OLSKCanonicalFor('KOMGuideRoute') }
 			OLSKAppToolbarFundShowProgress={ mod._ValueFundProgress }
-			OLSKAppToolbarFundLimitText={ mod._ValueDocumentRemainder ? mod._ValueDocumentRemainder.toString() : '' }
+			OLSKAppToolbarFundLimitText={ mod._ValueDocumentRemainder }
 			OLSKAppToolbarDispatchFund={ mod._ValueFundGrant || OLSKFund.OLSKFundResponseIsPresent() ? null : mod.OLSKAppToolbarDispatchFund }
 			OLSKAppToolbarStorageStatus={ mod._ValueFooterStorageStatus }
 			OLSKAppToolbarDispatchStorage={ mod.OLSKAppToolbarDispatchStorage }
