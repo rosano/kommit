@@ -378,7 +378,7 @@ const mod = {
 					LCHRecipeName: 'FakeFundTier2WithNoBundle',
 					LCHRecipeCallback: function FakeFundTier2WithNoBundle () {
 						mod._ValueFundGrant = mod.FakeGrantObjectValid({
-							OLSKPactGrantContribution: 900,
+							OLSKPactGrantContribution: 1000,
 							OLSKPactGrantFrequencyOption: OLSKPact.OLSKPactGrantFrequencyOptionYearly(),
 							OLSKPactGrantProject: Math.random().toString(),
 						});
@@ -388,7 +388,7 @@ const mod = {
 					LCHRecipeName: 'FakeFundTier2WithBundle',
 					LCHRecipeCallback: function FakeFundTier2WithBundle () {
 						mod._ValueFundGrant = mod.FakeGrantObjectValid({
-							OLSKPactGrantContribution: 900,
+							OLSKPactGrantContribution: 1000,
 							OLSKPactGrantFrequencyOption: OLSKPact.OLSKPactGrantFrequencyOptionYearly(),
 							OLSKPactGrantProject: 'FakeBundleProject',
 						});
