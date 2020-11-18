@@ -1185,7 +1185,7 @@ const mod = {
 			OLSKFundDispatchGrant: mod.OLSKFundDispatchGrant,
 		};
 
-		await OLSKFund._OLSKFundSetupGrant(item);
+		await OLSKFund.OLSKFundSetupGrant(item);
 	},
 
 	// LIFECYCLE
