@@ -240,28 +240,16 @@ const mod = {
 		KOMBrowseDispatchDiscard(param1);
 	},
 
-	async ControlDiscardRetiredCards () {
+	ControlDiscardRetiredCards () {
 		if (window.prompt(OLSKLocalized('KOMBrowseLauncherItemDiscardRetiredCardsPromptText')) !== KOMBrowseDeckSelected.$KOMReviewChartCompositionCollectionData.KOMSpacingGroupingRetired.toString()) {
 			return;
 		}
 
-		const retired = mod._ValueCardsAll.filter(function (e) {
+		return mod._ValueCardsAll.filter(function (e) {
 			return e.KOMCardIsRetired;
+		}).map(function (e) {
+			return mod.ControlCardDiscard(e, KOMBrowseDeckSelected);
 		});
-
-		const selectedIsRetired = retired.includes(mod._ValueCardSelected);
-
-		mod.ValueCardsAll(mod._ValueCardsAll.filter(function (e) {
-			return !retired.includes(e);
-		}), false);
-
-		await Promise.all(retired.map(function (e) {
-			return KOMCardAction.KOMCardActionDelete(KOMBrowseStorageClient, e, KOMBrowseDeckSelected);
-		}));
-
-		if (selectedIsRetired) {
-			mod.ControlCardSelect(null);
-		}
 	},
 
 	ControlFocusMaster () {
