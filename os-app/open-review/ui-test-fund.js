@@ -271,7 +271,7 @@ describe('KOMReview_Fund', function () {
 
 	});
 
-	describe('document_limit', function test_document_limit () {
+	describe('OLSKFundGate', function test_OLSKFundGate () {
 
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute);
@@ -279,10 +279,6 @@ describe('KOMReview_Fund', function () {
 
 		before(function () {
 			return browser.OLSKLauncherRun('FakeFundDocumentLimit');
-		});
-
-		before(function () {
-			browser.assert.elements('.KOMReviewMasterListItem', 1);
 		});
 
 		it('alerts', function() {
@@ -301,7 +297,7 @@ describe('KOMReview_Fund', function () {
 			browser.assert.elements('.KOMReviewStorageToolbar', 1);
 		});
 
-		it('creates no document', function () {
+		it('exits', function () {
 			browser.assert.elements('.KOMReviewMasterListItem', 1);
 		});
 
