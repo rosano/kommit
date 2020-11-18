@@ -233,7 +233,9 @@ const mod = {
 
 		await KOMCardAction.KOMCardActionDelete(KOMBrowseStorageClient, param1, param2);
 
-		mod.ControlCardSelect(null);
+		if (param1 === mod._ValueCardSelected) {
+			mod.ControlCardSelect(null);
+		}
 
 		KOMBrowseDispatchDiscard(param1);
 	},
