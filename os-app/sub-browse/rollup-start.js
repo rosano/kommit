@@ -41,6 +41,7 @@ const KOMBrowse = new RollupStart({
 	target: document.body,
 	props: Object.assign({
 		KOMBrowseStorageClient: mod._ValueStorageClient,
+		KOMBrowseDispatchEligible: (function () {}),
 		KOMBrowseDispatchCreate: (function (inputData) {
 			window.TestKOMBrowseDispatchCreate.innerHTML = parseInt(window.TestKOMBrowseDispatchCreate.innerHTML) + 1;
 			window.TestKOMBrowseDispatchCreateData.innerHTML = JSON.stringify(Object.keys(inputData));

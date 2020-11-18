@@ -330,6 +330,52 @@ describe('KOMReview_Fund', function () {
 
 	});
 
+	describe('document_limit', function test_document_limit () {
+
+		before(function () {
+			return browser.OLSKVisit(kDefaultRoute);
+		});
+
+		before(function () {
+			return browser.OLSKLauncherRun('FakeFundDocumentLimit');
+		});
+
+		context('create_deck', function () {
+			
+			it('shows OLSKFundGate', function() {
+				browser.assert.OLSKConfirmQuestion(function () {
+					return browser.OLSKPrompt(function () {
+						return browser.pressButton('.KOMReviewMasterCreateButton');
+					}, function (dialog) {
+						return Object.assign(dialog, {
+							response: Math.random().toString(),
+						});
+					});
+				}, uLocalized('OLSKFundGateText'));
+			});
+		
+		});
+
+		context('create_card', function () {
+			
+			before(function () {
+				return browser.pressButton('.KOMReviewMasterListItem');
+			});
+
+			before(function () {
+				return browser.pressButton('.KOMReviewDetailToolbarCardsButton');
+			});
+
+			it('shows OLSKFundGate', function() {
+				browser.assert.OLSKConfirmQuestion(function () {
+					return browser.pressButton('.KOMBrowseListToolbarCreateButton');
+				}, uLocalized('OLSKFundGateText'));
+			});
+		
+		});
+
+	});
+
 	describe('FakeFundTier2Proxy', function test_FakeFundTier2Proxy () {
 		
 		before(function () {

@@ -728,6 +728,14 @@ const mod = {
 		mod.ControlExportData([mod._ValueDeckSelected]);
 	},
 
+	KOMBrowseDispatchEligible () {
+		if (mod._ValueDocumentRemainder < 1 && !mod.DataIsEligible()) {
+			return mod.ControlConfirmFund();
+		}
+
+		return true;
+	},
+
 	async KOMBrowseDispatchCreate (inputData) {
 		(await mod.DataDeckSelectedObjects(mod._ValueDeckSelected)).$KOMDeckCards.push(inputData);
 		(await mod.DataDeckSelectedObjects(mod._ValueDeckSelected)).$KOMDeckSpacings.push(...Object.values(await KOMSpacingStorage.KOMSpacingStorageList(mod._ValueStorageClient, inputData, mod._ValueDeckSelected)).map(function (e) {
@@ -1248,6 +1256,7 @@ import OLSKPointer from 'OLSKPointer';
 			KOMBrowseStorageClient={ mod._ValueStorageClient }
 			KOMBrowseDeckSelected={ mod._ValueDeckSelected }
 			KOMBrowseDeckCards={ mod._ValueBrowseCards }
+			KOMBrowseDispatchEligible={ mod.KOMBrowseDispatchEligible }
 			KOMBrowseDispatchCreate={ mod.KOMBrowseDispatchCreate }
 			KOMBrowseDispatchDiscard={ mod.KOMBrowseDispatchDiscard }
 			KOMBrowseListDispatchClose={ mod.KOMBrowseListDispatchClose }

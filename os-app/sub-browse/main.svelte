@@ -3,6 +3,7 @@ export let KOMBrowseStorageClient;
 
 export let KOMBrowseDeckSelected;
 export let KOMBrowseDeckCards;
+export let KOMBrowseDispatchEligible;
 export let KOMBrowseDispatchCreate;
 export let KOMBrowseDispatchDiscard;
 export let KOMBrowseListDispatchClose;
@@ -191,6 +192,10 @@ const mod = {
 	// CONTROL
 
 	async ControlCardCreate(param1, param2 = {}) {
+		if (!KOMBrowseDispatchEligible()) {
+			return;
+		}
+
 		const item = await KOMCardAction.KOMCardActionCreate(KOMBrowseStorageClient, Object.assign(mod.DataCardObjectTemplate(), param2), param1);
 
 		mod.ValueCardsAll(mod._ValueCardsAll.concat(item));
