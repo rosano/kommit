@@ -2,11 +2,7 @@
 export let KOMReviewChartCompositionCollectionData;
 export let KOMReviewChartElementHorizontalStackedBarColors;
 
-import OLSKInternational from 'OLSKInternational';
-const OLSKLocalized = function(translationConstant) {
-	return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, JSON.parse(`{"OLSK_I18N_SEARCH_REPLACE":"OLSK_I18N_SEARCH_REPLACE"}`)[window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage')]);
-};
-
+import { OLSKLocalized } from 'OLSKInternational';
 import KOMReviewChartElementHorizontalStackedBarLogic from '../KOMReviewChartElementHorizontalStackedBar/ui-logic.js';
 
 import d3 from '../../../_shared/__external/d3-scale/dist/d3-scale.min.js';

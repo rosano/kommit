@@ -4,10 +4,7 @@ export let KOMReviewMasterListItemReviewCount;
 export let KOMReviewMasterListItemUnseenCount;
 export let KOMReviewMasterListItemDispatchClick;
 
-import OLSKInternational from 'OLSKInternational';
-const OLSKLocalized = function(translationConstant) {
-	return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, JSON.parse(`{"OLSK_I18N_SEARCH_REPLACE":"OLSK_I18N_SEARCH_REPLACE"}`)[window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage')]);
-};
+import { OLSKLocalized } from 'OLSKInternational';
 </script>
 
 <button class="KOMReviewMasterListItem OLSKCommonButton" aria-label={ KOMReviewMasterListItemName } on:click={ KOMReviewMasterListItemDispatchClick }>
