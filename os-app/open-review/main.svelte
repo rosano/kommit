@@ -86,6 +86,8 @@ const mod = {
 	_IsRunningDemo: false,
 
 	_ValueFundProgress: false,
+
+	_ValueDocumentRemainder: '',
 	
 	// DATA
 
