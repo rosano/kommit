@@ -73,12 +73,16 @@ describe('KOMReview_Fund', function () {
 			});
 
 			it('opens OLSKWebView', function () {
-				return browser.assert.attribute('.OLSKWebViewWindowButton', 'href', OLSKFund.OLSKFundURL({
+				browser.assert.attribute('.OLSKWebViewWindowButton', 'href', OLSKFund.OLSKFundURL({
 					ParamFormURL: process.env.OLSK_FUND_FORM_URL,
 					ParamProject: 'RP_004',
 					ParamIdentity: 'alfa',
 					ParamHomeURL: browser.window.location.href,
 				}));
+			});
+
+			it('sets OLSKModalViewTitleText', function () {
+				browser.assert.text('.OLSKModalViewTitle', uLocalized('OLSKFundWebViewTitleText'));
 			});
 
 			context('receive_message', function () {

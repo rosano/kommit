@@ -1313,7 +1313,7 @@ import OLSKWebView from 'OLSKWebView';
 {/if}
 
 {#if mod._ValueStorageClient && mod._ValueStorageClient.connected }
-	<OLSKWebView OLSKModalViewTitleText={ '' } OLSKWebViewURL={ mod._ValueFundURL } bind:this={ mod._OLSKWebView } DEBUG_OLSKWebViewDataSource={ OLSK_TESTING_BEHAVIOUR() } />
+	<OLSKWebView OLSKModalViewTitleText={ OLSKLocalized('OLSKFundWebViewTitleText') } OLSKWebViewURL={ mod._ValueFundURL } bind:this={ mod._OLSKWebView } DEBUG_OLSKWebViewDataSource={ OLSK_TESTING_BEHAVIOUR() } />
 {/if}
 
 </div>
