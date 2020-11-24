@@ -73,6 +73,9 @@
     "OLSKBeacon": "olsk/OLSKBeacon",
     "OLSKPointer": "olsk/OLSKPointer",
 
+    "// TECH ROBOTS": null,
+    "OLSKRobots": "olsk/OLSKRobots",
+
     "// I sacrifice myself for the commas of others": null
   },
   "devDependencies": {
