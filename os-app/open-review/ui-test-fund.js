@@ -85,7 +85,7 @@ describe('KOMReview_Fund', function () {
 				
 				before(function () {
 					return browser.evaluate(`window.postMessage({
-						OLSK_FUND_CONFIRMATION_CODE: Math.random().toString(),
+						OLSK_FUND_CLUE: Math.random().toString(),
 					}, window.location.href)`);
 				});
 
