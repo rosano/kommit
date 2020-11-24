@@ -68,15 +68,35 @@ describe('KOMReview_Fund', function () {
 				return browser.OLSKLauncherRun('FakeOLSKConnected');
 			});
 
-			it.skip('opens URL', function () {
-				return browser.assert.OLSKAlertText(function () {
-					return browser.pressButton('.OLSKAppToolbarFundButton');
-				}, OLSKFund.OLSKFundURL({
-					ParamFormURL: process.env.OLSK_FUND_FORM_URL_SWAP_TOKEN,
+			before(function () {
+				return browser.pressButton('.OLSKAppToolbarFundButton');
+			});
+
+			it('opens OLSKWebView', function () {
+				return browser.assert.attribute('.OLSKWebViewWindowButton', 'href', OLSKFund.OLSKFundURL({
+					ParamFormURL: process.env.OLSK_FUND_FORM_URL,
 					ParamProject: 'RP_004',
 					ParamIdentity: 'alfa',
 					ParamHomeURL: browser.window.location.href,
 				}));
+			});
+
+			context('receive_message', function () {
+				
+				before(function () {
+					return browser.evaluate(`window.postMessage({
+						OLSK_FUND_CONFIRMATION_CODE: Math.random().toString(),
+					}, window.location.href)`);
+				});
+
+				before(function () {
+					return browser.wait({ duration: 500 });
+				});
+
+				it('closes OLSKWebView', function () {
+					browser.assert.elements('.OLSKWebView', 0);
+				});
+			
 			});
 
 		});

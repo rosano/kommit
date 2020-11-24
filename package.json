@@ -66,6 +66,7 @@
 
     "// FUND": null,
     "OLSKFund": "olsk/OLSKFund",
+    "OLSKWebView": "olsk/OLSKWebView",
 
     "// DEMO": null,
     "OLSKChain": "olsk/OLSKChain",

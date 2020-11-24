@@ -796,12 +796,19 @@ const mod = {
 			return mod._OLSKAppToolbarDispatchFundNotConnected();
 		}
 
-		window.open(OLSKFund.OLSKFundURL({
+		mod._ValueFundURL = OLSKFund.OLSKFundURL({
 			ParamFormURL: 'OLSK_FUND_FORM_URL_SWAP_TOKEN',
 			ParamProject: 'RP_004',
 			ParamIdentity: mod._ValueStorageClient.remote.userAddress,
 			ParamHomeURL: window.location.href,
-		}));
+		});
+
+		mod._OLSKWebView.modPublic.OLSKModalViewShow();
+
+		OLSKFund.OLSKFundListen({
+			ParamWindow: window,
+			OLSKFundDispatchConfirm: mod.OLSKFundDispatchConfirm,
+		});
 	},
 
 	_OLSKAppToolbarDispatchFundNotConnected () {
@@ -824,6 +831,10 @@ const mod = {
 		window.Launchlet.LCHSingletonCreate({
 			LCHOptionRecipes: mod.DataReviewRecipes(),
 		});
+	},
+
+	OLSKFundDispatchConfirm (inputData) {
+		mod._OLSKWebView.modPublic.OLSKModalViewClose();
 	},
 
 	OLSKFundDispatchPersist (inputData) {
@@ -1216,6 +1227,7 @@ import OLSKAppToolbar from 'OLSKAppToolbar';
 import OLSKServiceWorkerView from '../_shared/__external/OLSKServiceWorker/main.svelte';
 import OLSKStorageWidget from 'OLSKStorageWidget';
 import OLSKPointer from 'OLSKPointer';
+import OLSKWebView from 'OLSKWebView';
 </script>
 
 <div class="KOMReview OLSKViewport" class:OLSKIsLoading={ mod._ValueIsLoading }>
@@ -1298,6 +1310,10 @@ import OLSKPointer from 'OLSKPointer';
 			OLSKAppToolbarDispatchLauncher={ mod.OLSKAppToolbarDispatchLauncher }
 			/>
 	</footer>
+{/if}
+
+{#if mod._ValueStorageClient && mod._ValueStorageClient.connected }
+	<OLSKWebView OLSKModalViewTitleText={ '' } OLSKWebViewURL={ mod._ValueFundURL } bind:this={ mod._OLSKWebView } DEBUG_OLSKWebViewDataSource={ OLSK_TESTING_BEHAVIOUR() } />
 {/if}
 
 </div>
