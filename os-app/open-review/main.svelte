@@ -1193,7 +1193,7 @@ const mod = {
 					OLSKPactAuthMetadataFolderPath: KOMDeckStorage.KOMDeckStorageCollectionPath(),
 				},
 				OLSKPactPayIdentity: mod._ValueStorageClient.remote.userAddress,
-				OLSKPactPayTransaction: mod._ValueFundClue,
+				OLSKPactPayClue: mod._ValueFundClue,
 			},
 			OLSKLocalized,
 			OLSKFundDispatchProgress: mod.OLSKFundDispatchProgress,
