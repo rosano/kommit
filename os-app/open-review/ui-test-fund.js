@@ -272,7 +272,7 @@ describe('KOMReview_Fund', function () {
 		});
 
 		before(function () {
-			return browser.fill('.LCHLauncherFilterInput', 'OLSKFundLauncherItemEnterConfirmation');
+			return browser.fill('.LCHLauncherFilterInput', 'OLSKFundLauncherItemEnterClue');
 		});
 
 		before(function () {
