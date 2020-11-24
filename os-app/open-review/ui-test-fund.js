@@ -240,7 +240,7 @@ describe('KOMReview_Fund', function () {
 	describe('OLSKFundSetupPostPay', function test_OLSKFundSetupPostPay () {
 
 		before(function () {
-			return browser.visit(OLSKTestingCanonical(kDefaultRoute) + '#confirmation=' + Math.random().toString());
+			return browser.visit(OLSKTestingCanonical(kDefaultRoute) + '#clue=' + Math.random().toString());
 		});
 		
 		before(function () {
@@ -253,7 +253,7 @@ describe('KOMReview_Fund', function () {
 	
 	});
 
-	describe('confirmation', function test_confirmation () {
+	describe('clue', function test_clue () {
 
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute);

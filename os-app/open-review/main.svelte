@@ -156,7 +156,7 @@ const mod = {
 			items.push(...OLSKFund.OLSKFundRecipes({
 				ParamWindow: window,
 				OLSKLocalized: OLSKLocalized,
-				ParamAuthorized: !!mod._ValueFundConfirmation,
+				ParamAuthorized: !!mod._ValueFundClue,
 				OLSKFundDispatchGrant: mod.OLSKFundDispatchGrant,
 				OLSKFundDispatchPersist: mod.OLSKFundDispatchPersist,
 				OLSK_TESTING_BEHAVIOUR: OLSK_TESTING_BEHAVIOUR(),
@@ -838,13 +838,13 @@ const mod = {
 	},
 
 	OLSKFundDispatchPersist (inputData) {
-		mod._ValueFundConfirmation = inputData;
+		mod._ValueFundClue = inputData;
 
 		if (!inputData) {
-			return KOMSettingAction.KOMSettingsActionDelete(mod._ValueStorageClient, 'KOMSettingFundConfirmation');
+			return KOMSettingAction.KOMSettingsActionDelete(mod._ValueStorageClient, 'KOMSettingFundClue');
 		}
 
-		return KOMSettingAction.KOMSettingsActionProperty(mod._ValueStorageClient, 'KOMSettingFundConfirmation', inputData).then(function () {
+		return KOMSettingAction.KOMSettingsActionProperty(mod._ValueStorageClient, 'KOMSettingFundClue', inputData).then(function () {
 			if (OLSK_TESTING_BEHAVIOUR()) {
 				return;
 			}
@@ -1163,11 +1163,11 @@ const mod = {
 			OLSKFund._OLSKFundFakeGrantResponseRandom();
 		}
 
-		mod._ValueFundConfirmation = (await KOMSettingAction.KOMSettingsActionProperty(mod._ValueStorageClient, 'KOMSettingFundConfirmation') || {}).KOMSettingValue;
+		mod._ValueFundClue = (await KOMSettingAction.KOMSettingsActionProperty(mod._ValueStorageClient, 'KOMSettingFundClue') || {}).KOMSettingValue;
 
 		await OLSKFund.OLSKFundSetupPostPay({
 			ParamWindow: window,
-			ParamExistingCode: mod._ValueFundConfirmation || null,
+			ParamExistingCode: mod._ValueFundClue || null,
 			OLSKFundDispatchPersist: mod.OLSKFundDispatchPersist,
 		});
 
@@ -1175,7 +1175,7 @@ const mod = {
 			return;
 		}
 
-		if (!mod._ValueFundConfirmation) {
+		if (!mod._ValueFundClue) {
 			return;
 		}
 		
@@ -1193,7 +1193,7 @@ const mod = {
 					OLSKPactAuthMetadataFolderPath: KOMDeckStorage.KOMDeckStorageCollectionPath(),
 				},
 				OLSKPactPayIdentity: mod._ValueStorageClient.remote.userAddress,
-				OLSKPactPayTransaction: mod._ValueFundConfirmation,
+				OLSKPactPayTransaction: mod._ValueFundClue,
 			},
 			OLSKLocalized,
 			OLSKFundDispatchProgress: mod.OLSKFundDispatchProgress,
