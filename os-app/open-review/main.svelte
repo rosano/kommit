@@ -471,7 +471,7 @@ const mod = {
 
 	// CONTROL
 
-	ControlConfirmFund () {
+	ControlFundGate () {
 		if (!window.confirm(OLSKLocalized('OLSKFundGateText'))) {
 			return;
 		}
@@ -481,7 +481,7 @@ const mod = {
 
 	async ControlDeckCreate(inputData) {
 		if (mod._ValueDocumentRemainder < 1 && !mod.DataIsEligible()) {
-			return mod.ControlConfirmFund();
+			return mod.ControlFundGate();
 		}
 
 		inputData = inputData || window.prompt(OLSKLocalized('KOMReviewCreatePromptText'));
@@ -727,7 +727,7 @@ const mod = {
 
 	KOMBrowseDispatchEligible () {
 		if (mod._ValueDocumentRemainder < 1 && !mod.DataIsEligible()) {
-			return mod.ControlConfirmFund();
+			return mod.ControlFundGate();
 		}
 
 		return true;
