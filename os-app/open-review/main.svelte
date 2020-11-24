@@ -807,7 +807,7 @@ const mod = {
 
 		OLSKFund.OLSKFundListen({
 			ParamWindow: window,
-			OLSKFundDispatchConfirm: mod.OLSKFundDispatchConfirm,
+			OLSKFundDispatchReceive: mod.OLSKFundDispatchReceive,
 		});
 	},
 
@@ -833,7 +833,7 @@ const mod = {
 		});
 	},
 
-	OLSKFundDispatchConfirm (inputData) {
+	OLSKFundDispatchReceive (inputData) {
 		mod._OLSKWebView.modPublic.OLSKModalViewClose();
 	},
 
