@@ -251,8 +251,8 @@ describe('KOMReview_Fund', function () {
 			return browser.OLSKLauncherRun('FakeOLSKConnected');
 		});
 
-		it('shows OLSKFundLauncherItemClearAuthorization', function () {
-			return browser.assert.OLSKLauncherItems('OLSKFundLauncherItemClearAuthorization', 1);
+		it('shows OLSKFundLauncherItemClearClue', function () {
+			return browser.assert.OLSKLauncherItems('OLSKFundLauncherItemClearClue', 1);
 		});
 	
 	});
@@ -268,7 +268,7 @@ describe('KOMReview_Fund', function () {
 		});
 
 		before(function () {
-			return browser.assert.OLSKLauncherItems('OLSKFundLauncherItemClearAuthorization', 0);
+			return browser.assert.OLSKLauncherItems('OLSKFundLauncherItemClearClue', 0);
 		});
 
 		before(function () {
@@ -289,8 +289,8 @@ describe('KOMReview_Fund', function () {
 			});
 		});
 
-		it('shows OLSKFundLauncherItemClearAuthorization', function () {
-			browser.assert.OLSKLauncherItems('OLSKFundLauncherItemClearAuthorization', 1);
+		it('shows OLSKFundLauncherItemClearClue', function () {
+			browser.assert.OLSKLauncherItems('OLSKFundLauncherItemClearClue', 1);
 		});
 
 	});

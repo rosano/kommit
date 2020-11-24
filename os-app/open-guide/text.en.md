@@ -198,7 +198,7 @@ Counting the number of cards based on its state.
 :--- | ---
 | `OLSKRemoteStorageLauncherItemCopyLoginLinkText` | Launcher |
 | `OLSKFundLauncherItemEnterClueText` | Launcher |
-| `OLSKFundLauncherItemClearAuthorizationText` | Launcher |
+| `OLSKFundLauncherItemClearClueText` | Launcher |
 | `OLSKServiceWorkerLauncherItemDebugForceUpdateText` | Launcher |
 | `OLSKRemoteStorageLauncherItemDebugFlushDataText` | Launcher |
 | Launcher | `Alt+Enter` |
