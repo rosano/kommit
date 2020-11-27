@@ -800,7 +800,7 @@ const mod = {
 			ParamFormURL: 'OLSK_FUND_FORM_URL_SWAP_TOKEN',
 			ParamProject: 'RP_004',
 			ParamIdentity: mod._ValueStorageClient.remote.userAddress,
-			ParamHomeURL: window.location.href,
+			ParamHomeURL: window.location.origin + window.location.pathname,
 		});
 
 		mod._OLSKWebView.modPublic.OLSKModalViewShow();

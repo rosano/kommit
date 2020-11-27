@@ -69,6 +69,10 @@ describe('KOMReview_Fund', function () {
 			});
 
 			before(function () {
+				return browser.evaluate(`window.location.hash = Math.random().toString();`);
+			});
+
+			before(function () {
 				return browser.pressButton('.OLSKAppToolbarFundButton');
 			});
 
@@ -77,7 +81,7 @@ describe('KOMReview_Fund', function () {
 					ParamFormURL: process.env.OLSK_FUND_FORM_URL,
 					ParamProject: 'RP_004',
 					ParamIdentity: 'alfa',
-					ParamHomeURL: browser.window.location.href,
+					ParamHomeURL: browser.window.location.origin + browser.window.location.pathname,
 				}));
 			});
 
@@ -94,7 +98,7 @@ describe('KOMReview_Fund', function () {
 				});
 
 				before(function () {
-					return browser.wait({ duration: 500 });
+					return browser.wait({ duration: 1000 });
 				});
 
 				it('closes OLSKWebView', function () {
