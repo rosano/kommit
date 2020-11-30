@@ -6,6 +6,7 @@ Object.entries({
 	KOMVitrineIdentity: '.KOMVitrineIdentity',
 	KOMVitrineIdentityLogo: '.KOMVitrineIdentityLogo',
 	KOMVitrineIdentityName: '.KOMVitrineIdentityName',
+	KOMVitrineIdentityBlurb: '.KOMVitrineIdentityBlurb',
 
 	KOMVitrineContent: '.KOMVitrineContent',
 	KOMVitrineContentAppButton: '.KOMVitrineContentAppButton',
@@ -40,6 +41,10 @@ describe('KOMVitrine_Access', function () {
 
 	it('shows KOMVitrineIdentityName', function () {
 		browser.assert.elements(KOMVitrineIdentityName, 1);
+	});
+
+	it('shows KOMVitrineIdentityBlurb', function () {
+		browser.assert.elements(KOMVitrineIdentityBlurb, 1);
 	});
 
 	it('shows KOMVitrineContent', function () {

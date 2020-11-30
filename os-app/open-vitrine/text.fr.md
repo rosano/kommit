@@ -1,5 +1,3 @@
-_KOMVitrineDescription_
-
 Kommit est une application pour vous aider à mémoriser. Inspirée par [Anki](KOM_VITRINE_ANKI_URL) et d'autres systèmes d'apprentissage à répétition espacée, elle vous présente des cartes mémoire juste avant que votre cerveau soit susceptible d'oublier, renforçant ainsi la mémoire tout en réduisant le temps d'étude.
 
 Veuillez découvrir les fonctionnalités ci-dessous ou lire le [guide](KOMVitrineTokenGuideURL) pour en apprendre plus.

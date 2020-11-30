@@ -26,6 +26,10 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			browser.assert.text(KOMVitrineIdentityName, uLocalized('KOMVitrineTitle'));
 		});
 
+		it('localizes KOMVitrineIdentityBlurb', function () {
+			browser.assert.text(KOMVitrineIdentityBlurb, uLocalized('KOMVitrineDescription'));
+		});
+
 		it('localizes KOMVitrineContent', function () {
 			const item = require('OLSKString').OLSKStringReplaceTokens(require('fs').readFileSync(require('path').join(__dirname, `text.${ languageCode }.md`), 'utf-8'), {
 				'_': '',

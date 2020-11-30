@@ -22,6 +22,14 @@ describe('KOMVitrine_Misc', function () {
 
 	});
 
+	describe('KOMVitrineIdentity', function test_KOMVitrineIdentity() {
+
+		it('classes OLSKCommonIdentityCard', function () {
+			browser.assert.hasClass(KOMVitrineIdentity, 'OLSKCommonIdentityCard');
+		});
+		
+	});
+
 	describe('KOMVitrineIdentityLogo', function () {
 
 		it('sets role', function () {

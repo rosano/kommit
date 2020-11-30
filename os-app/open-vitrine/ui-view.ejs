@@ -23,9 +23,13 @@ locals.OLSKPageTouchIconURL = process.env.KOM_TOUCH_ICON_URL;
 
 <hr>
 
-<div class="KOMVitrineIdentity">
+<div class="KOMVitrineIdentity OLSKCommonIdentityCard">
 	<img class="KOMVitrineIdentityLogo" src="/_shared/KOMRootLink/ui-assets/identity.svg" role="presentation" />
-	<h1 class="KOMVitrineIdentityName"><%= OLSKLocalized('KOMVitrineTitle') %></h1>
+	<section>
+		<span class="KOMVitrineIdentityName"><%= OLSKLocalized('KOMVitrineTitle') %></span>
+		<br />
+		<span class="KOMVitrineIdentityBlurb"><%= OLSKLocalized('KOMVitrineDescription') %></span>
+	</section>
 </div>
 
 <article class="KOMVitrineContent">
