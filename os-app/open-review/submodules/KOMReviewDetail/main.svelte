@@ -304,7 +304,7 @@ import KOMReviewStats from '../KOMReviewStats/main.svelte';
 {/if}
 
 {#if KOMReviewDetailDeck.$KOMDeckGeneralNotUnseenCount }
-	<hr>
+	<hr role="presentation" />
 
 	<KOMReviewStats
 		KOMReviewTodayTotalCards={ KOMReviewDetailDeck.$KOMReviewTodayTotalCards }
@@ -316,7 +316,7 @@ import KOMReviewStats from '../KOMReviewStats/main.svelte';
 		/>
 {/if}
 
-<hr>
+<hr role="presentation" />
 
 <h1 class="KOMReviewDetailDeckHeading">{ OLSKLocalized('KOMReviewDetailDeckHeadingText') }</h1>
 
@@ -324,7 +324,7 @@ import KOMReviewStats from '../KOMReviewStats/main.svelte';
 	<button class="KOMReviewDetailRenameButton OLSKCommonButton" on:click={ mod.InterfaceRenameButtonDidClick }>{ OLSKLocalized('KOMReviewDetailRenameButtonText') }</button>
 </p>
 
-<hr>
+<hr role="presentation" />
 
 <p>
 	<button class="KOMReviewDetailDiscardButton OLSKCommonButton OLSKCommonButtonDestructive" on:click={ () => (window.prompt(OLSKLocalized('KOMReviewDetailDiscardPromptText')) === KOMReviewDetailDeck.$KOMReviewChartCompositionCollectionData.KOMSpacingGroupingTotal.toString()) && KOMReviewDetailDispatchDiscard(KOMReviewDetailDeck) }>{ OLSKLocalized('KOMReviewDetailDiscardButtonText') }</button>

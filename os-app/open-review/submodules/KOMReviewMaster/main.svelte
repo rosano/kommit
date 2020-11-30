@@ -181,7 +181,7 @@ import KOMReviewStats from '../KOMReviewStats/main.svelte';
 </p>
 
 {#if KOMReviewMasterItems.length && mod.DataUnseenCount(KOMReviewMasterItems) }
-	<hr>
+	<hr role="presentation" />
 
 	<KOMReviewStats
 		{... mod.DataTodayParameters(KOMReviewMasterItems) }

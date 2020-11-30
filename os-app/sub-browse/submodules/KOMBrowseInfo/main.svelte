@@ -172,7 +172,7 @@ import KOMBrowseInfoTags from '../KOMBrowseInfoTags/main.svelte';
 	<input class="KOMBrowseInfoFormNotesField OLSKMobileSafariRemoveDefaultInputStyle" placeholder="{ OLSKLocalized('KOMBrowseInfoFormNotesFieldText') }" type="text" bind:value={ KOMBrowseInfoItem.KOMCardNotes } on:input={ KOMBrowseInfoDispatchUpdate } />
 </p>
 
-<hr />
+<hr role="presentation" />
 
 <p class="KOMBrowseInfoFormTags">
 	<KOMBrowseInfoTags
