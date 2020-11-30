@@ -11,7 +11,7 @@ const uDeck = function (inputData) {
 	}, inputData);
 };
 
-kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
+kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (languageCode) {
 
 	const uLocalized = function (inputData) {
 		return OLSKTestingLocalized(inputData, languageCode);
