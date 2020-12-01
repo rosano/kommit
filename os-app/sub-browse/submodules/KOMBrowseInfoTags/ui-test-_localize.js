@@ -1,7 +1,5 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-const uFormatted = require('OLSKString').OLSKStringWithFormat;
-
 kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 
 	const uLocalized = function (inputData) {
@@ -27,11 +25,11 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 		});
 
 		it('localizes KOMBrowseInfoTagsRemoveButton', function () {
-			browser.assert.text(KOMBrowseInfoTagsRemoveButton, uFormatted(uLocalized('KOMBrowseInfoTagsRemoveButtonTextFormat'), 'bravo'));
+			browser.assert.text(KOMBrowseInfoTagsRemoveButton, OLSKTestingFormatted(uLocalized('KOMBrowseInfoTagsRemoveButtonTextFormat'), 'bravo'));
 		});
 
 		it('localizes KOMBrowseInfoTagsSuggestButton', function () {
-			browser.assert.text(KOMBrowseInfoTagsSuggestButton, uFormatted(uLocalized('KOMBrowseInfoTagsSuggestButtonTextFormat'), 'charlie'));
+			browser.assert.text(KOMBrowseInfoTagsSuggestButton, OLSKTestingFormatted(uLocalized('KOMBrowseInfoTagsSuggestButtonTextFormat'), 'charlie'));
 		});
 
 	});

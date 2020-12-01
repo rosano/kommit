@@ -1,6 +1,6 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-const uStringWithFormat = require('OLSKString').OLSKStringWithFormat;
+const uStringWithFormat = OLSKTestingFormatted;
 
 kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 
