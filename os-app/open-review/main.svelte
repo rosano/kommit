@@ -835,6 +835,8 @@ const mod = {
 
 	OLSKFundDispatchReceive (inputData) {
 		mod._OLSKWebView.modPublic.OLSKModalViewClose();
+
+		return mod.OLSKFundDispatchPersist(inputData);
 	},
 
 	OLSKFundDispatchPersist (inputData) {
