@@ -159,7 +159,7 @@ const mod = {
 				ParamAuthorized: !!mod._ValueFundClue,
 				OLSKFundDispatchGrant: mod.OLSKFundDispatchGrant,
 				OLSKFundDispatchPersist: mod.OLSKFundDispatchPersist,
-				OLSK_TESTING_BEHAVIOUR: OLSK_SPEC_UI(),
+				ParamSpecUI: OLSK_SPEC_UI(),
 			}));
 		}
 
