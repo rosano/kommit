@@ -1,7 +1,7 @@
 <script>
 import { OLSKLocalized } from 'OLSKInternational';
 import OLSKString from 'OLSKString';
-const OLSKFormatted = OLSKString.OLSKStringWithFormat;
+const OLSKFormatted = OLSKString.OLSKStringFormatted;
 import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting';
 import OLSKRemoteStorage from 'OLSKRemoteStorage';
 import OLSKServiceWorker from 'OLSKServiceWorker';

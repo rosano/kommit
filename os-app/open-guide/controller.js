@@ -22,7 +22,7 @@ exports.OLSKControllerRoutes = function () {
 					KOMGuideTokenColorMature: KOMSharedLogic.KOMSharedColorMature(),
 					KOMGuideTokenColorRetired: KOMSharedLogic.KOMSharedColorRetired(),
 
-					KOMReviewLauncherItemSelectDeckText: require('OLSKString').OLSKStringWithFormat(res.locals.OLSKLocalized('KOMReviewLauncherItemSelectDeckTextFormat'), '…'),
+					KOMReviewLauncherItemSelectDeckText: require('OLSKString').OLSKStringFormatted(res.locals.OLSKLocalized('KOMReviewLauncherItemSelectDeckTextFormat'), '…'),
 
 					KOMReviewRoute: res.locals.OLSKCanonicalFor('KOMReviewRoute'),
 				}),

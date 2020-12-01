@@ -30,7 +30,7 @@ const mod = {
 
 <p>
 	{#each KOMBrowseInfoTagsItems as item }
-		<button class="KOMBrowseInfoTagsRemoveButton" on:click={ () =>  KOMBrowseInfoTagsDispatchRemove(item) }>{ OLSKString.OLSKStringWithFormat(OLSKLocalized('KOMBrowseInfoTagsRemoveButtonTextFormat'), item) }</button>
+		<button class="KOMBrowseInfoTagsRemoveButton" on:click={ () =>  KOMBrowseInfoTagsDispatchRemove(item) }>{ OLSKString.OLSKStringFormatted(OLSKLocalized('KOMBrowseInfoTagsRemoveButtonTextFormat'), item) }</button>
 	{/each}
 </p>
 
@@ -43,7 +43,7 @@ const mod = {
 
 <p>
 	{#each KOMBrowseInfoTagsSuggestions as item }
-		<button class="KOMBrowseInfoTagsSuggestButton" on:click={ () =>  KOMBrowseInfoTagsDispatchAdd(item) }>{ OLSKString.OLSKStringWithFormat(OLSKLocalized('KOMBrowseInfoTagsSuggestButtonTextFormat'), item) }</button>
+		<button class="KOMBrowseInfoTagsSuggestButton" on:click={ () =>  KOMBrowseInfoTagsDispatchAdd(item) }>{ OLSKString.OLSKStringFormatted(OLSKLocalized('KOMBrowseInfoTagsSuggestButtonTextFormat'), item) }</button>
 	{/each}
 </p>
 
