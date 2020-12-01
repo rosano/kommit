@@ -10,7 +10,7 @@ const KOMSpacingStorage = require('./os-app/_shared/KOMSpacing/storage.js').defa
 const KOMSettingStorage = require('./os-app/_shared/KOMSetting/storage.js').default;
 
 (function KOMMochaStorage() {
-	if (process.env.OLSK_TESTING_BEHAVIOUR === 'true') {
+	if (process.env.OLSK_SPEC_MOCHA_INTERFACE === 'true') {
 		return;
 	}
 
