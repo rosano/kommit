@@ -318,7 +318,6 @@ describe('KOMReviewFilter', function test_KOMReviewFilter() {
 		}, /KOMErrorInputNotValid/);
 	});
 
-
 	it('throws if param3 not valid', function () {
 		throws(function () {
 			mainModule.KOMReviewFilter([], kTesting.StubReviewObjectValid(), {});

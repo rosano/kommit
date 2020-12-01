@@ -148,7 +148,6 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-
 		if (!param1.KOMDeckRetireCardsMonths) {
 			return [];
 		}
