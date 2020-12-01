@@ -10,7 +10,7 @@ export let KOMBrowseListDispatchFilter;
 export let OLSKMobileViewInactive = false;
 
 import { OLSKLocalized } from 'OLSKInternational';
-import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting'
+import { OLSK_SPEC_UI } from 'OLSKSpec'
 
 import KOMBrowseListLogic from './ui-logic.js';
 

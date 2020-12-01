@@ -18,7 +18,7 @@ export const modPublic = {
 };
 
 import { OLSKLocalized } from 'OLSKInternational';
-import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting';
+import { OLSK_SPEC_UI } from 'OLSKSpec';
 
 import KOMReviewLogic from '../../ui-logic.js';
 
@@ -69,7 +69,7 @@ const mod = {
 			});
 		}
 
-		if (OLSK_TESTING_BEHAVIOUR()) {
+		if (OLSK_SPEC_UI()) {
 			items.push({
 				LCHRecipeName: 'KOMReviewDetailLauncherFakeItemProxy',
 				LCHRecipeCallback: function KOMReviewDetailLauncherFakeItemProxy () {},
@@ -334,7 +334,7 @@ import KOMReviewStats from '../KOMReviewStats/main.svelte';
 
 </div>
 
-{#if OLSK_TESTING_BEHAVIOUR() && KOMReviewDetail_DebugShowLauncherButton }
+{#if OLSK_SPEC_UI() && KOMReviewDetail_DebugShowLauncherButton }
 	<button class="OLSKAppToolbarLauncherButton" on:click={ mod._OLSKAppToolbarDispatchLauncher }></button>
 {/if}
 

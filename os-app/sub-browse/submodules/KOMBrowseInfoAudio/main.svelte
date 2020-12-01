@@ -10,7 +10,7 @@ export let DebugFakeChangeObject = null;
 const kMaxLengthSeconds = 10;
 
 import { OLSKLocalized } from 'OLSKInternational';
-import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting';
+import { OLSK_SPEC_UI } from 'OLSKSpec';
 import record from 'vmsg';
 
 const mod = {
@@ -49,7 +49,7 @@ const mod = {
 	},
 
 	InterfacePlaybackButtonDidClick () {
-		if (OLSK_TESTING_BEHAVIOUR() && DebugFakeChangeObject && mod._ValueAudioIsPlaying) {
+		if (OLSK_SPEC_UI() && DebugFakeChangeObject && mod._ValueAudioIsPlaying) {
 			KOMBrowseInfoAudioItem = DebugFakeChangeObject;
 		}
 
@@ -75,7 +75,7 @@ const mod = {
 		  await mod._ValueRecorder.initAudio();
 		  await mod._ValueRecorder.initWorker();
 
-		  if (OLSK_TESTING_BEHAVIOUR()) {
+		  if (OLSK_SPEC_UI()) {
 		  	mod.DebugLog('record');
 		  }
 
@@ -96,7 +96,7 @@ const mod = {
 			return;
 		}
 
-		if (OLSK_TESTING_BEHAVIOUR()) {
+		if (OLSK_SPEC_UI()) {
 			mod.DebugLog('stop');
 		}
 
@@ -125,13 +125,13 @@ const mod = {
 		delete mod._ValueAudio;
 		delete mod._ValueAudioID;
 
-		if (OLSK_TESTING_BEHAVIOUR()) {
+		if (OLSK_SPEC_UI()) {
 			mod.DebugLog('clear');
 		}
 	},
 
 	async ControlPlaybackStart () {
-		if (!mod._ValueAudio && OLSK_TESTING_BEHAVIOUR()) {
+		if (!mod._ValueAudio && OLSK_SPEC_UI()) {
 			mod._ValueAudio = mod.DataFakeAudio(await KOMBrowseInfoAudioDispatchFetch(KOMBrowseInfoAudioItemProperty) || KOMBrowseInfoAudioItem[KOMBrowseInfoAudioItemProperty]);
 		}
 
@@ -144,7 +144,7 @@ const mod = {
 			});
 		}
 
-		if (OLSK_TESTING_BEHAVIOUR()) {
+		if (OLSK_SPEC_UI()) {
 			mod.DebugLog('play:' + mod._ValueAudio.src);
 		}
 
@@ -155,7 +155,7 @@ const mod = {
 	},
 
 	ControlPlaybackStop () {
-		if (OLSK_TESTING_BEHAVIOUR()) {
+		if (OLSK_SPEC_UI()) {
 			mod.DebugLog('stop');
 		}
 
@@ -171,7 +171,7 @@ const mod = {
 	},
 
 	SetupRecorder() {
-		mod._ValueRecorder = OLSK_TESTING_BEHAVIOUR() ? mod.DataFakeRecorder() : new record.Recorder({
+		mod._ValueRecorder = OLSK_SPEC_UI() ? mod.DataFakeRecorder() : new record.Recorder({
 		  wasmURL: '/_shared/__external/vmsg/vmsg.wasm',
 		});
 	},
@@ -211,7 +211,7 @@ mod.SetupEverything();
 	<span class="KOMBrowseInfoAudioNotAvailableAlert">{ OLSKLocalized('KOMBrowseInfoAudioNotAvailableAlertText') }</span>
 {/if}
 
-{#if OLSK_TESTING_BEHAVIOUR() }
+{#if OLSK_SPEC_UI() }
 	<p>
 		<strong>KOMBrowseInfoAudioLog</strong>
 		<span id="TestKOMBrowseInfoAudioLog"></span>

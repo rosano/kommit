@@ -7,7 +7,7 @@ export let KOMPlayDispatchFetch;
 export let KOMPlaySimplifiedResponseButtons = false;
 
 import { OLSKLocalized } from 'OLSKInternational';
-import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting';
+import { OLSK_SPEC_UI } from 'OLSKSpec';
 import KOMPlayLogic from './ui-logic.js';
 import KOMSpacingModel from '../_shared/KOMSpacing/model.js';
 import KOMSharedLogic from '../_shared/KOMSharedLogic/main.js';
@@ -244,7 +244,7 @@ const mod = {
 	},
 
 	ControlReadStart (param1, param2) {
-		if (OLSK_TESTING_BEHAVIOUR()) {
+		if (OLSK_SPEC_UI()) {
 			mod.DebugAudioLog(`read:${ param2 }:${ param1 }`);
 		}
 
@@ -266,7 +266,7 @@ const mod = {
 	},
 
 	ControlReadStop () {
-		if (OLSK_TESTING_BEHAVIOUR()) {
+		if (OLSK_SPEC_UI()) {
 			mod.DebugAudioLog(mod._ValueAudioPlaying ? 'stop:audio' : 'stop');
 		}
 
@@ -288,7 +288,7 @@ const mod = {
 	},
 
 	async ControlAudioStart (inputData) {
-		if (!mod._ValueAudioCache[inputData] && OLSK_TESTING_BEHAVIOUR()) {
+		if (!mod._ValueAudioCache[inputData] && OLSK_SPEC_UI()) {
 			mod.DebugAudioLog('fetch');
 
 			mod._ValueAudioCache[inputData] = mod.DataFakeAudio(await KOMPlayDispatchFetch(inputData, mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard));
@@ -298,7 +298,7 @@ const mod = {
 			(mod._ValueAudioCache[inputData] = new Audio()).src = URL.createObjectURL(await KOMPlayDispatchFetch(inputData, mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard));
 		}
 
-		if (OLSK_TESTING_BEHAVIOUR()) {
+		if (OLSK_SPEC_UI()) {
 			mod.DebugAudioLog('play:' + inputData);
 		}
 
@@ -309,7 +309,7 @@ const mod = {
 	},
 
 	ControlFlush() {
-		if (OLSK_TESTING_BEHAVIOUR()) {
+		if (OLSK_SPEC_UI()) {
 			mod.DebugAudioLog('flush');
 		}
 
@@ -409,7 +409,7 @@ const mod = {
 };
 
 import { onMount } from 'svelte';
-OLSK_TESTING_BEHAVIOUR() ? mod.LifecycleModuleWillMount() : onMount(mod.LifecycleModuleWillMount);
+OLSK_SPEC_UI() ? mod.LifecycleModuleWillMount() : onMount(mod.LifecycleModuleWillMount);
 </script>
 <svelte:window on:keydown={ mod.InterfaceWindowDidKeydown } />
 
@@ -479,7 +479,7 @@ OLSK_TESTING_BEHAVIOUR() ? mod.LifecycleModuleWillMount() : onMount(mod.Lifecycl
 		</div>
 	{/if}
 
-	{#if OLSK_TESTING_BEHAVIOUR()}
+	{#if OLSK_SPEC_UI()}
 		<div id="TestKOMPlayStateQueueCount">{ mod._ValueState.KOMPlayStateQueue.length }</div>
 		<div id="TestKOMPlayStateWaitCount">{ mod._ValueState.KOMPlayStateWait.length }</div>
 		<div id="TestKOMSpacingDrawDate">{ mod._ValueState.KOMPlayStateCurrent.KOMSpacingDrawDate ? KOMSharedLogic.KOMSharedGroupingDay(mod._ValueState.KOMPlayStateCurrent.KOMSpacingDrawDate) : 'undefined' }</div>

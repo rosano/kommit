@@ -2,7 +2,7 @@
 import { OLSKLocalized } from 'OLSKInternational';
 import OLSKString from 'OLSKString';
 const OLSKFormatted = OLSKString.OLSKStringFormatted;
-import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting';
+import { OLSK_SPEC_UI } from 'OLSKSpec';
 import OLSKRemoteStorage from 'OLSKRemoteStorage';
 import OLSKServiceWorker from 'OLSKServiceWorker';
 import KOM_Data from '../_shared/KOM_Data/main.js';
@@ -58,7 +58,7 @@ const mod = {
 
 	_ValuePlayVisible: false,
 	_ValuePlaySpacings: [],
-	_ValuePlaySimplifiedResponseButtons: !OLSK_TESTING_BEHAVIOUR(),
+	_ValuePlaySimplifiedResponseButtons: !OLSK_SPEC_UI(),
 
 	_ValueHoldCards: [],
 	_ValueHoldSpacings: [],
@@ -75,7 +75,7 @@ const mod = {
 
 	_ValueCacheDeckFiguresMap: {},
 	ValueCacheDeckFiguresMap (inputData) {
-		return (mod._ValueCacheDeckFiguresMap = OLSK_TESTING_BEHAVIOUR() || !mod._ValueDeckCachingEnabled ? inputData : OLSKLocalStorage.OLKSLocalStorageSet(window.localStorage, 'KOM_REVIEW_CACHE_DeckFiguresMap', inputData));
+		return (mod._ValueCacheDeckFiguresMap = OLSK_SPEC_UI() || !mod._ValueDeckCachingEnabled ? inputData : OLSKLocalStorage.OLKSLocalStorageSet(window.localStorage, 'KOM_REVIEW_CACHE_DeckFiguresMap', inputData));
 	},
 
 	_IsRunningDemo: false,
@@ -141,7 +141,7 @@ const mod = {
 
 						mod.ControlDeckSelect(null);
 
-						if (OLSK_TESTING_BEHAVIOUR() && window.FakeOLSKConnected) {
+						if (OLSK_SPEC_UI() && window.FakeOLSKConnected) {
 							window.FakeWindowLocationHref = 'reload';
 							return;
 						}
@@ -159,12 +159,12 @@ const mod = {
 				ParamAuthorized: !!mod._ValueFundClue,
 				OLSKFundDispatchGrant: mod.OLSKFundDispatchGrant,
 				OLSKFundDispatchPersist: mod.OLSKFundDispatchPersist,
-				OLSK_TESTING_BEHAVIOUR: OLSK_TESTING_BEHAVIOUR(),
+				OLSK_TESTING_BEHAVIOUR: OLSK_SPEC_UI(),
 			}));
 		}
 
-		items.push(...OLSKRemoteStorage.OLSKRemoteStorageRecipes(window, mod._ValueStorageClient, OLSKLocalized, OLSK_TESTING_BEHAVIOUR()));
-		items.push(...OLSKServiceWorker.OLSKServiceWorkerRecipes(window, mod.DataNavigator(), OLSKLocalized, OLSK_TESTING_BEHAVIOUR()));
+		items.push(...OLSKRemoteStorage.OLSKRemoteStorageRecipes(window, mod._ValueStorageClient, OLSKLocalized, OLSK_SPEC_UI()));
+		items.push(...OLSKServiceWorker.OLSKServiceWorkerRecipes(window, mod.DataNavigator(), OLSKLocalized, OLSK_SPEC_UI()));
 
 		if (mod._KOMReviewMaster) {
 			items.push(...mod._KOMReviewMaster.modPublic.KOMReviewMasterRecipes());
@@ -178,7 +178,7 @@ const mod = {
 			items.push(...mod._KOMBrowse.modPublic.KOMBrowseRecipes());
 		}
 
-		if (OLSK_TESTING_BEHAVIOUR()) {
+		if (OLSK_SPEC_UI()) {
 			items.push(...[
 				{
 					LCHRecipeName: 'FakeOLSKConnected',
@@ -519,7 +519,7 @@ const mod = {
 		const deck = mod._ValueDeckSelected;
 		
 		OLSKThrottle.OLSKThrottleMappedTimeout(mod._ValueSpacingUpdateThrottleMap, inputData.KOMSpacingID, {
-			OLSKThrottleDuration: OLSK_TESTING_BEHAVIOUR() ? 0 : 500,
+			OLSKThrottleDuration: OLSK_SPEC_UI() ? 0 : 500,
 			OLSKThrottleCallback () {
 				return KOMSpacingStorage.KOMSpacingStorageWrite(mod._ValueStorageClient, inputData, inputData.$KOMSpacingCard, deck);
 			},
@@ -527,7 +527,7 @@ const mod = {
 	},
 
 	ControlReadStart (param1, param2) {
-		if (OLSK_TESTING_BEHAVIOUR()) {
+		if (OLSK_SPEC_UI()) {
 			mod.DebugAudioLog(`read:${ param2 }:${ param1 }`);
 		}
 
@@ -847,7 +847,7 @@ const mod = {
 		}
 
 		return KOMSettingAction.KOMSettingsActionProperty(mod._ValueStorageClient, 'KOMSettingFundClue', inputData).then(function () {
-			if (OLSK_TESTING_BEHAVIOUR()) {
+			if (OLSK_SPEC_UI()) {
 				return;
 			}
 
@@ -1021,7 +1021,7 @@ const mod = {
 		}
 
 		OLSKThrottle.OLSKThrottleMappedTimeout(mod._ValueDeckFiguresThrottleMap, inputData, {
-			OLSKThrottleDuration: OLSK_TESTING_BEHAVIOUR () ? 0 : 500,
+			OLSKThrottleDuration: OLSK_SPEC_UI() ? 0 : 500,
 			async OLSKThrottleCallback () {
 				await mod.ReactDeckFigures(deck); // #purge-svelte-force-update
 			},
@@ -1076,7 +1076,7 @@ const mod = {
 			}),
 			KOMSettingStorage.KOMSettingStorageBuild,
 			], {
-			OLSKOptionIncludeDebug: OLSK_TESTING_BEHAVIOUR() || window.OLSKPublicConstants('OLSKDebugRemoteStorage'),
+			OLSKOptionIncludeDebug: OLSK_SPEC_UI() || window.OLSKPublicConstants('OLSKDebugRemoteStorage'),
 		});
 		
 		mod._ValueStorageClient = new RemoteStorage({ modules: [ storageModule ] });
@@ -1098,7 +1098,7 @@ const mod = {
 
 	async SetupStorageNotifications () {
 		mod._ValueStorageClient.on('sync-done', () => {
-			if (!OLSK_TESTING_BEHAVIOUR()) {
+			if (!OLSK_SPEC_UI()) {
 				console.debug('sync-done', arguments);
 			}
 		});
@@ -1106,7 +1106,7 @@ const mod = {
 		let isOffline;
 
 		mod._ValueStorageClient.on('network-offline', () => {
-			if (!OLSK_TESTING_BEHAVIOUR()) {
+			if (!OLSK_SPEC_UI()) {
 				console.debug('network-offline', arguments);
 			}
 
@@ -1114,7 +1114,7 @@ const mod = {
 		});
 
 		mod._ValueStorageClient.on('network-online', () => {
-			if (!OLSK_TESTING_BEHAVIOUR()) {
+			if (!OLSK_SPEC_UI()) {
 				console.debug('network-online', arguments);
 			}
 			
@@ -1126,7 +1126,7 @@ const mod = {
 				return;
 			};
 
-			if (!OLSK_TESTING_BEHAVIOUR()) {
+			if (!OLSK_SPEC_UI()) {
 				console.debug('error', error);
 			}
 		});
@@ -1161,7 +1161,7 @@ const mod = {
 	},
 
 	async SetupFund () {
-		if (OLSK_TESTING_BEHAVIOUR() && window.location.search.match('OLSKFundResponseIsPresent=true')) {
+		if (OLSK_SPEC_UI() && window.location.search.match('OLSKFundResponseIsPresent=true')) {
 			OLSKFund._OLSKFundFakeGrantResponseRandom();
 		}
 
@@ -1315,12 +1315,12 @@ import OLSKWebView from 'OLSKWebView';
 {/if}
 
 {#if mod._ValueStorageClient && mod._ValueStorageClient.connected }
-	<OLSKWebView OLSKModalViewTitleText={ OLSKLocalized('OLSKFundWebViewTitleText') } OLSKWebViewURL={ mod._ValueFundURL } bind:this={ mod._OLSKWebView } DEBUG_OLSKWebViewDataSource={ OLSK_TESTING_BEHAVIOUR() } />
+	<OLSKWebView OLSKModalViewTitleText={ OLSKLocalized('OLSKFundWebViewTitleText') } OLSKWebViewURL={ mod._ValueFundURL } bind:this={ mod._OLSKWebView } DEBUG_OLSKWebViewDataSource={ OLSK_SPEC_UI() } />
 {/if}
 
 </div>
 
-{#if !OLSK_TESTING_BEHAVIOUR()}
+{#if !OLSK_SPEC_UI()}
 	<OLSKServiceWorkerView OLSKServiceWorkerRegistrationRoute={ window.OLSKCanonicalFor('KOMServiceWorkerRoute') } />
 {/if}
 

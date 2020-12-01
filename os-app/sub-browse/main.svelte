@@ -31,7 +31,7 @@ export const modPublic = {
 };
 
 import { OLSKLocalized } from 'OLSKInternational';
-import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting';
+import { OLSK_SPEC_UI } from 'OLSKSpec';
 import OLSKThrottle from 'OLSKThrottle';
 import KOMBrowseLogic from './ui-logic.js';
 import KOMCardAction from '../_shared/KOMCard/action.js';
@@ -102,7 +102,7 @@ const mod = {
 			]);
 		}
 
-		if (OLSK_TESTING_BEHAVIOUR()) {
+		if (OLSK_SPEC_UI()) {
 			items.push(...[
 				{
 					LCHRecipeName: 'FakeChangeDelegateCreateCard',
@@ -163,7 +163,7 @@ const mod = {
 
 				mod.ControlFilter('');
 
-				if (!OLSK_TESTING_BEHAVIOUR()) {
+				if (!OLSK_SPEC_UI()) {
 					document.querySelector('.OLSKMasterListBody').scrollTo(0, 0);
 				}
 			},
@@ -203,7 +203,7 @@ const mod = {
 
 	ControlCardUpdate(param1, param2) {
 		OLSKThrottle.OLSKThrottleMappedTimeout(mod._ValueCardUpdateThrottleMap, param1.KOMCardID, {
-			OLSKThrottleDuration: OLSK_TESTING_BEHAVIOUR () ? 0 : 500,
+			OLSKThrottleDuration: OLSK_SPEC_UI() ? 0 : 500,
 			OLSKThrottleCallback () {
 				return KOMCardAction.KOMCardActionUpdate(KOMBrowseStorageClient, param1, param2);
 			},
@@ -341,7 +341,7 @@ const mod = {
 	KOMBrowseInfoDispatchDebug (inputData) {
 		const url = `https://inspektor.5apps.com/?path=kommit%2F${ encodeURIComponent(KOMCardStorage.KOMCardStorageFolderPath(inputData, KOMBrowseDeckSelected)) }`;
 
-		if (OLSK_TESTING_BEHAVIOUR()) {
+		if (OLSK_SPEC_UI()) {
 			window.FakeWindowOpen = url;
 			return;
 		}
@@ -462,6 +462,6 @@ import KOMBrowseInfo from './submodules/KOMBrowseInfo/main.svelte';
 	bind:this={ mod._KOMBrowseInfo }
 	/>
 
-{#if OLSK_TESTING_BEHAVIOUR() && KOMBrowseStorageClient.FakeStorageClient }
+{#if OLSK_SPEC_UI() && KOMBrowseStorageClient.FakeStorageClient }
 	 <button class="OLSKAppToolbarLauncherButton" on:click={ mod._OLSKAppToolbarDispatchLauncher }></button>
 {/if}
