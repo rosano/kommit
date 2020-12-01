@@ -75,7 +75,7 @@ const mod = {
 
 	_ValueCacheDeckFiguresMap: {},
 	ValueCacheDeckFiguresMap (inputData) {
-		return (mod._ValueCacheDeckFiguresMap = OLSK_TESTING_BEHAVIOUR() || !mod._ValueDeckCachingEnabled ? inputData : OLSKLocalStorage.OLKSLocalStorageSet(window.localStorage, 'kKOMReviewCacheDeckFiguresMap', inputData));
+		return (mod._ValueCacheDeckFiguresMap = OLSK_TESTING_BEHAVIOUR() || !mod._ValueDeckCachingEnabled ? inputData : OLSKLocalStorage.OLKSLocalStorageSet(window.localStorage, 'KOM_REVIEW_CACHE_DeckFiguresMap', inputData));
 	},
 
 	_IsRunningDemo: false,
@@ -1140,10 +1140,10 @@ const mod = {
 
 	SetupValueCacheDeckFiguresMap () {
 		if (!mod._ValueDeckCachingEnabled) {
-			return OLSKLocalStorage.OLKSLocalStorageSet(window.localStorage, 'kKOMReviewCacheDeckFiguresMap', null);
+			return OLSKLocalStorage.OLKSLocalStorageSet(window.localStorage, 'KOM_REVIEW_CACHE_DeckFiguresMap', null);
 		}
 
-		mod._ValueCacheDeckFiguresMap = OLSKLocalStorage.OLKSLocalStorageGet(window.localStorage, 'kKOMReviewCacheDeckFiguresMap') || {};
+		mod._ValueCacheDeckFiguresMap = OLSKLocalStorage.OLKSLocalStorageGet(window.localStorage, 'KOM_REVIEW_CACHE_DeckFiguresMap') || {};
 	},
 
 	async SetupValueDecksAll() {
