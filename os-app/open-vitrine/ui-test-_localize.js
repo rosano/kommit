@@ -1,16 +1,16 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (languageCode) {
+kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 
 	const uLocalized = function (inputData) {
-		return OLSKTestingLocalized(inputData, languageCode);
+		return OLSKTestingLocalized(inputData, OLSKRoutingLanguage);
 	};
 
-	describe(`KOMVitrine_Localize-${ languageCode }`, function () {
+	describe(`KOMVitrine_Localize-${ OLSKRoutingLanguage }`, function () {
 
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
-				OLSKRoutingLanguage: languageCode,
+				OLSKRoutingLanguage,
 			});
 		});
 
@@ -31,7 +31,7 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (languageCode) {
 		});
 
 		it('localizes KOMVitrineContent', function () {
-			const item = require('OLSKString').OLSKStringReplaceTokens(require('fs').readFileSync(require('path').join(__dirname, `text.${ languageCode }.md`), 'utf-8'), {
+			const item = require('OLSKString').OLSKStringReplaceTokens(require('fs').readFileSync(require('path').join(__dirname, `text.${ OLSKRoutingLanguage }.md`), 'utf-8'), {
 				'_': '',
 				'\n\n': '\n',
 				'KOMVitrineDescription': uLocalized('KOMVitrineDescription'),
@@ -77,7 +77,7 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (languageCode) {
 			
 			it('sets href', function () {
 				browser.assert.attribute(KOMVitrineContentAppButton, 'href', OLSKTestingCanonical(require('../open-review/controller.js').OLSKControllerRoutes().shift(), {
-					OLSKRoutingLanguage: languageCode,
+					OLSKRoutingLanguage,
 				}));
 			});
 		

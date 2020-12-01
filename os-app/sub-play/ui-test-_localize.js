@@ -23,17 +23,17 @@ const kTesting = {
 	},
 };
 
-kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (languageCode) {
+kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 
 	const uLocalized = function (inputData) {
-		return OLSKTestingLocalized(inputData, languageCode);
+		return OLSKTestingLocalized(inputData, OLSKRoutingLanguage);
 	};
 
-	describe(`KOMPlay_Localize-${ languageCode }`, function () {
+	describe(`KOMPlay_Localize-${ OLSKRoutingLanguage }`, function () {
 
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
-				OLSKRoutingLanguage: languageCode,
+				OLSKRoutingLanguage,
 				KOMPlaySpacings: JSON.stringify(kTesting.uSpacings()),
 				KOMPlayDeck: JSON.stringify(StubDeckObjectValid()),
 			});
@@ -81,7 +81,7 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (languageCode) {
 
 			before(function () {
 				return browser.OLSKVisit(kDefaultRoute, {
-					OLSKRoutingLanguage: languageCode,
+					OLSKRoutingLanguage,
 					KOMPlaySpacings: JSON.stringify(items),
 					KOMPlayDeck: JSON.stringify(StubDeckObjectValid({
 						KOMDeckFrontSpeechIsEnabled: true,
@@ -112,7 +112,7 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (languageCode) {
 			
 			before(function () {
 				return browser.OLSKVisit(kDefaultRoute, {
-					OLSKRoutingLanguage: languageCode,
+					OLSKRoutingLanguage,
 					KOMPlaySpacings: JSON.stringify(kTesting.uSpacings()),
 					KOMPlayDeck: JSON.stringify(StubDeckObjectValid()),
 					KOMPlaySimplifiedResponseButtons: true,

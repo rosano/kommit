@@ -11,17 +11,17 @@ const uDeck = function (inputData) {
 	}, inputData);
 };
 
-kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (languageCode) {
+kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 
 	const uLocalized = function (inputData) {
-		return OLSKTestingLocalized(inputData, languageCode);
+		return OLSKTestingLocalized(inputData, OLSKRoutingLanguage);
 	};
 
-	describe(`KOMReviewDetail_Localize-${ languageCode }`, function () {
+	describe(`KOMReviewDetail_Localize-${ OLSKRoutingLanguage }`, function () {
 
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
-				OLSKRoutingLanguage: languageCode,
+				OLSKRoutingLanguage,
 				KOMReviewDetailDeck: JSON.stringify(uDeck({
 					$KOMDeckTodayReviewCount: 0,
 					$KOMDeckTodayUnseenCount: 0,
@@ -126,7 +126,7 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (languageCode) {
 
 			before(function () {
 				return browser.OLSKVisit(kDefaultRoute, {
-					OLSKRoutingLanguage: languageCode,
+					OLSKRoutingLanguage,
 					KOMReviewDetailDeck: JSON.stringify(uDeck({
 						$KOMDeckTodayReviewCount: 1,
 						$KOMDeckTodayUnseenCount: 1,
@@ -153,7 +153,7 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (languageCode) {
 
 			before(function () {
 				return browser.OLSKVisit(kDefaultRoute, {
-					OLSKRoutingLanguage: languageCode,
+					OLSKRoutingLanguage,
 					KOMReviewDetailDeck: JSON.stringify(uDeck({
 						$KOMDeckTodayReviewCount: 0,
 						$KOMDeckTodayUnseenCount: 0,

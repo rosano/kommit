@@ -2,17 +2,17 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 const uFormatted = require('OLSKString').OLSKStringWithFormat;
 
-kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (languageCode) {
+kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 
 	const uLocalized = function (inputData) {
-		return OLSKTestingLocalized(inputData, languageCode);
+		return OLSKTestingLocalized(inputData, OLSKRoutingLanguage);
 	};
 
-	describe(`KOMBrowseInfoTags_Localize-${ languageCode }`, function () {
+	describe(`KOMBrowseInfoTags_Localize-${ OLSKRoutingLanguage }`, function () {
 
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
-				OLSKRoutingLanguage: languageCode,
+				OLSKRoutingLanguage,
 				KOMBrowseInfoTagsItems: JSON.stringify(['bravo']),
 				KOMBrowseInfoTagsSuggestions: JSON.stringify(['charlie']),
 			});

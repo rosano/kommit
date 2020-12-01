@@ -1,16 +1,16 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (languageCode) {
+kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 
 	const uLocalized = function (inputData) {
-		return OLSKTestingLocalized(inputData, languageCode);
+		return OLSKTestingLocalized(inputData, OLSKRoutingLanguage);
 	};
 
-	describe(`KOMBrowseInfoAudio_Localize-${ languageCode }`, function () {
+	describe(`KOMBrowseInfoAudio_Localize-${ OLSKRoutingLanguage }`, function () {
 
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
-				OLSKRoutingLanguage: languageCode,
+				OLSKRoutingLanguage,
 				KOMBrowseInfoAudioItem: JSON.stringify({
 					KOMCardID: 'alfa',
 				}),
@@ -38,7 +38,7 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (languageCode) {
 
 			before(function () {
 				return browser.OLSKVisit(kDefaultRoute, {
-					OLSKRoutingLanguage: languageCode,
+					OLSKRoutingLanguage,
 					KOMBrowseInfoAudioItem: JSON.stringify({
 						KOMCardID: 'alfa',
 						KOMCardFrontAudio: 'bravo',
@@ -61,7 +61,7 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (languageCode) {
 
 			before(function () {
 				return browser.OLSKVisit(kDefaultRoute, {
-					OLSKRoutingLanguage: languageCode,
+					OLSKRoutingLanguage,
 					KOMBrowseInfoAudioAvailable: false,
 					KOMBrowseInfoAudioItem: JSON.stringify({
 						KOMCardID: 'alfa',
