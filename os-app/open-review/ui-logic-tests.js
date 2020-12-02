@@ -14,6 +14,10 @@ const uGroup = function (param1, param2 = []) {
 	return outputData;
 };
 
+const uRandomInt = function (inputData) {
+	return Math.max(Date.now() % 1000, 1);
+};
+
 const kTesting = {
 	StubSpacingObjectValid() {
 		return {
@@ -76,16 +80,16 @@ describe('KOMReviewDocumentCount', function test_KOMReviewDocumentCount() {
 		deepEqual(mainModule.KOMReviewDocumentCount([]), 0);
 	});
 
-	it('counts parent objects', function () {
-		const parents = Date.now() % 1000;
-		deepEqual(mainModule.KOMReviewDocumentCount(Array.from(Array(parents))), parents);
+	it('counts no parent objects', function () {
+		const parents = uRandomInt();
+		deepEqual(mainModule.KOMReviewDocumentCount(Array.from(Array(parents))), 0);
 	});
 
 	context('child objects', function () {
 
 		it('counts $KOMDeckCards if present in param2', function () {
-			const parents = Date.now() % 1000;
-			const children = Date.now() % 1000;
+			const parents = uRandomInt();
+			const children = uRandomInt();
 			deepEqual(mainModule.KOMReviewDocumentCount(Array.from(Array(parents)).map(function (e, KOMDeckID) {
 				return {
 					KOMDeckID,
@@ -96,19 +100,19 @@ describe('KOMReviewDocumentCount', function test_KOMReviewDocumentCount() {
 						$KOMDeckCards: Array.from(Array(children)),
 					},
 				});
-			}, {})), parents + children * parents);
+			}, {})), children * parents);
 		});
 		
 		it('counts $KOMReviewChartCompositionCollectionData', function () {
-			const parents = Date.now() % 1000;
-			const children = Date.now() % 1000;
+			const parents = uRandomInt();
+			const children = uRandomInt();
 			deepEqual(mainModule.KOMReviewDocumentCount(Array.from(Array(parents)).map(function () {
 				return {
 					$KOMReviewChartCompositionCollectionData: {
 						KOMSpacingGroupingTotal: children,
 					},
 				};
-			})), parents + children * parents);
+			})), children * parents);
 		});
 	
 	});

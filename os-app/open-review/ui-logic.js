@@ -25,7 +25,7 @@ const mod = {
 			}
 
 			return coll + item.$KOMReviewChartCompositionCollectionData.KOMSpacingGroupingTotal;
-		}, inputData.length);
+		}, 0);
 	},
 
 	KOMReviewSpacingsToday(inputData) {
