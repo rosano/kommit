@@ -49,10 +49,6 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 			browser.assert.element(`a[href="${ OLSKTestingCanonical(require('../open-guide/controller.js').OLSKControllerRoutes().shift()) }"]`);
 		});
 
-		it('localizes KOM_SHARED_GITHUB_URL', function () {
-			browser.assert.element(`a[href="${ process.env.KOM_SHARED_GITHUB_URL }"]`);
-		});
-
 		it('localizes KOMVitrineContentAppButton', function () {
 			browser.assert.text(KOMVitrineContentAppButton, uLocalized('KOMVitrineContentAppButtonText'));
 		});
