@@ -15,7 +15,11 @@ locals.OLSKPageMetaTags = {
 
 <div class="KOMGuide OLSKCommon">
 
-<h1 class="KOMGuideTitleHeading"><%= OLSKLocalized('KOMGuideTitle') %></h1>
+<div class="KOMGuideIdentity OLSKCommonCard OLSKCommonIdentityCard">
+	<section>
+		<span class="KOMGuideIdentityName"><%= OLSKLocalized('KOMGuideTitle') %></span>
+	</section>
+</div>
 
 <div class="KOMGuideContent">
 <%- OLSKStringReplaceTokens(KOMGuideContent, {}) %>

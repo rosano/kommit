@@ -9,10 +9,6 @@ body {
 	color: var(--KOMCommonForeground);
 }
 
-.KOMGuideTitleHeading {
-	font-size: 24pt;
-}
-
 .KOMGuideNotice {
 	padding: 10px;
 	border: 1px solid var(--KOMCommonForeground);

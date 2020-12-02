@@ -45,7 +45,7 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 			browser.assert.element(`a[href="${ process.env.KOM_VITRINE_ANKI_URL }"]`);
 		});
 
-		it('localizes LCHGuideRoute', function() {
+		it('localizes KOMGuideRoute', function() {
 			browser.assert.element(`a[href="${ OLSKTestingCanonical(require('../open-guide/controller.js').OLSKControllerRoutes().shift()) }"]`);
 		});
 
