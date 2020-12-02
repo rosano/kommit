@@ -797,6 +797,7 @@ const mod = {
 			return window.Launchlet.LCHSingletonDestroy();
 		}
 
+		// #hotfix launchlet show all items
 		let selected;
 
 		window.Launchlet.LCHSingletonCreate({
