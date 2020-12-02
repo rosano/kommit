@@ -4,8 +4,6 @@ Lea el [guide](KOMVitrineTokenGuideURL) para aprender más.
 
 <a class="KOMVitrineContentAppButton OLSKCommonButton OLSKCommonButtonPrimary" href="KOMVitrineTokenReviewURL">KOMVitrineContentAppButtonText</a>
 
-* * *
-
 # Características
 - Escuchar tarjetas oralmente con text-to-speech
 - Grabar audio
@@ -17,5 +15,3 @@ Lea el [guide](KOMVitrineTokenGuideURL) para aprender más.
 - Sin anuncios molestos
 - Sin análisis comportamental o rastreadores terceros
 - Foncione en dispositivos mobiles, tabletas y computadoras
-
-* * *

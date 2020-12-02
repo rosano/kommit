@@ -4,8 +4,6 @@ Veuillez lire le [guide](KOMVitrineTokenGuideURL) pour en apprendre plus.
 
 <a class="KOMVitrineContentAppButton OLSKCommonButton OLSKCommonButtonPrimary" href="KOMVitrineTokenReviewURL">KOMVitrineContentAppButtonText</a>
 
-* * *
-
 # Caractéristiques
 - Écouter des cartes oralement avec synthèse vocale
 - Enregistrer d'audio
@@ -16,5 +14,3 @@ Veuillez lire le [guide](KOMVitrineTokenGuideURL) pour en apprendre plus.
 - Pas d'instructions compliquées
 - Pas de publicité, analyse comportementale, traqueurs tiers
 - Fonctionne sur des appareils mobiles, les tablettes et les ordinateurs de bureau
-
-* * *
