@@ -14,10 +14,6 @@ const uGroup = function (param1, param2 = []) {
 	return outputData;
 };
 
-const uRandomInt = function () {
-	return Math.max(Date.now() % 1000, 1);
-};
-
 const kTesting = {
 	StubSpacingObjectValid() {
 		return {
