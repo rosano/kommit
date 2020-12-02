@@ -138,7 +138,7 @@ describe('KOMReview_Fund', function () {
 			});
 
 			it('updates number', function () {
-				browser.assert.text('.OLSKAppToolbarFundLimit', (process.env.KOM_FUND_DOCUMENT_LIMIT - 1).toString());
+				browser.assert.text('.OLSKAppToolbarFundLimit', (process.env.KOM_FUND_DOCUMENT_LIMIT - 0).toString());
 			});
 		
 		});
@@ -158,7 +158,7 @@ describe('KOMReview_Fund', function () {
 			});
 
 			it('updates number', function () {
-				browser.assert.text('.OLSKAppToolbarFundLimit', (process.env.KOM_FUND_DOCUMENT_LIMIT - 2).toString());
+				browser.assert.text('.OLSKAppToolbarFundLimit', (process.env.KOM_FUND_DOCUMENT_LIMIT - 1).toString());
 			});
 		
 		});
@@ -170,7 +170,7 @@ describe('KOMReview_Fund', function () {
 			});
 
 			it('updates number', function () {
-				browser.assert.text('.OLSKAppToolbarFundLimit', (process.env.KOM_FUND_DOCUMENT_LIMIT - 1).toString());
+				browser.assert.text('.OLSKAppToolbarFundLimit', (process.env.KOM_FUND_DOCUMENT_LIMIT - 0).toString());
 			});
 		
 		});
@@ -192,7 +192,7 @@ describe('KOMReview_Fund', function () {
 			});
 
 			it('updates number', function () {
-				browser.assert.elements('.OLSKAppToolbarFundLimit', process.env.KOM_FUND_DOCUMENT_LIMIT);
+				browser.assert.text('.OLSKAppToolbarFundLimit', process.env.KOM_FUND_DOCUMENT_LIMIT - 0);
 			});
 		
 		});
@@ -201,6 +201,10 @@ describe('KOMReview_Fund', function () {
 
 			before(function () {
 				return browser.OLSKLauncherRun('FakeOLSKChangeDelegateCreateDeck');
+			});			
+
+			before(function () {
+				return browser.OLSKLauncherRun('FakeOLSKChangeDelegateCreateCard');
 			});			
 
 			it('updates number', function () {

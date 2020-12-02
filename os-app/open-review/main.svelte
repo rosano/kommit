@@ -184,7 +184,11 @@ const mod = {
 				{
 					LCHRecipeName: 'FakeOLSKConnected',
 					LCHRecipeCallback () {
-						mod._ValueStorageClient = Object.assign({}, mod._ValueStorageClient);
+						mod._ValueStorageClient = Object.assign({}, mod._ValueStorageClient, mod._ValueStorageClient.access.scopes.reduce(function (coll, item) {
+							return {
+								[item.name]: mod._ValueStorageClient[item.name],
+							};
+						}, {}));
 						mod._ValueStorageClient.connected = true;
 						mod._ValueStorageClient.remote = Object.assign(mod._ValueStorageClient.remote, {
 							userAddress: 'alfa',
@@ -1123,6 +1127,8 @@ const mod = {
 		if (window.OLSKPublicConstants('OLSKDebugRemoteStorage')) {
 			window.OLSKDebugRemoteStorage = mod._ValueStorageClient;
 		}
+
+		window.alfa = mod._ValueStorageClient
 	},
 
 	SetupStorageStatus () {
