@@ -14,7 +14,6 @@ exports.OLSKControllerRoutes = function () {
 					KOMVitrineTokenReviewURL: res.locals.OLSKCanonicalLocalizedFor('KOMReviewRoute'),
 
 					KOM_VITRINE_ANKI_URL: process.env.KOM_VITRINE_ANKI_URL,
-					KOM_SHARED_DONATE_URL: process.env.KOM_SHARED_DONATE_URL,
 					KOM_SHARED_GITHUB_URL: process.env.KOM_SHARED_GITHUB_URL,
 				}),
 				OLSKStringReplaceTokens: require('OLSKString').OLSKStringReplaceTokens,
