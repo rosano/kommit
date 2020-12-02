@@ -25,6 +25,7 @@ import OLSKFund from 'OLSKFund';
 import OLSKPact from 'OLSKPact';
 import OLSKChain from 'OLSKChain';
 import OLSKBeacon from 'OLSKBeacon';
+import OLSKLanguageSwitcher from 'OLSKLanguageSwitcher';
 
 const mod = {
 
@@ -791,6 +792,39 @@ const mod = {
 		mod._ValuePlayVisible = false;
 	},
 
+	OLSKAppToolbarDispatchLanguage () {
+		if (window.Launchlet.LCHSingletonExists()) {
+			return window.Launchlet.LCHSingletonDestroy();
+		}
+
+		let selected;
+
+		window.Launchlet.LCHSingletonCreate({
+			LCHOptionRecipes: OLSKLanguageSwitcher.OLSKLanguageSwitcherRecipes({
+				ParamLanguageCodes: window.OLSKPublicConstants('OLSKSharedPageLanguagesAvailable'),
+				ParamCurrentLanguage: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
+				ParamSpecUI: OLSK_SPEC_UI(),
+				ParamWindow: window,
+				OLSKLocalized,
+				ParamRouteConstant: window.OLSKPublicConstants('OLSKSharedActiveRouteConstant'),
+				OLSKFormatted,
+				OLSKCanonicalFor: window.OLSKCanonicalFor,
+			}).map(function (e) {
+				const item = e.LCHRecipeCallback;
+
+				return Object.assign(e, {
+					LCHRecipeCallback () {
+						selected = item;
+					},
+				})
+			}),
+			LCHOptionCompletionHandler () {
+			  selected && selected();
+			},
+			LCHOptionMode: Launchlet.LCHModePreview,
+		});
+	},
+
 	OLSKAppToolbarDispatchFund () {
 		if (!mod._ValueStorageClient.connected) {
 			return mod._OLSKAppToolbarDispatchFundNotConnected();
@@ -1303,6 +1337,7 @@ import OLSKWebView from 'OLSKWebView';
 		{/if}
 
 		<OLSKAppToolbar
+			OLSKAppToolbarDispatchLanguage={ mod.OLSKAppToolbarDispatchLanguage }
 			OLSKAppToolbarGuideURL={ window.OLSKCanonicalFor('KOMGuideRoute') }
 			OLSKAppToolbarFundShowProgress={ mod._ValueFundProgress }
 			OLSKAppToolbarFundLimitText={ mod._ValueDocumentRemainder }

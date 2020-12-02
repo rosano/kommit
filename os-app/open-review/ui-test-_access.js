@@ -50,6 +50,10 @@ describe('KOMReview_Access', function () {
 		browser.assert.elements('.OLSKAppToolbar', 1);
 	});
 
+	it('shows OLSKAppToolbarLanguageButton', function () {
+		browser.assert.elements('.OLSKAppToolbarLanguageButton', 1);
+	});
+
 	it('shows OLSKAppToolbarGuideLink', function () {
 		browser.assert.elements('.OLSKAppToolbarGuideLink', 1);
 	});
@@ -96,6 +100,26 @@ describe('KOMReview_Access', function () {
 
 	it('hides KOMReviewDetailLauncherFakeItemProxy', function () {
 		return browser.assert.OLSKLauncherItems('KOMReviewDetailLauncherFakeItemProxy', 0);
+	});
+
+	describe('languages', function test_languages() {
+
+		before(function () {
+			return browser.pressButton('.OLSKAppToolbarLanguageButton');
+		});
+
+		before(function () {
+			return browser.fill('.LCHLauncherFilterInput', 'OLSKLanguageSwitcherLauncherFakeItemProxy');
+		});
+
+		it('shows OLSKLanguageSwitcherLauncherFakeItemProxy', function () {
+			browser.assert.elements('.LCHLauncherPipeItem', 1);
+		});
+
+		after(function () {
+			browser.pressButton('#TestLCHDebugCloseButton');
+		});
+
 	});
 
 	context('click OLSKAppToolbarStorageButton', function () {

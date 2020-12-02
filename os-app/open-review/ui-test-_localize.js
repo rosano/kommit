@@ -140,6 +140,34 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 
 		});
 
+		describe('languages', function test_languages() {
+
+			before(function () {
+				return browser.pressButton('.OLSKAppToolbarLanguageButton');
+			});
+
+			kDefaultRoute.OLSKRouteLanguageCodes.filter(function (e) {
+				return e !== OLSKRoutingLanguage;
+			}).forEach(function (e) {
+
+				const signature = 'OLSKLanguageSwitcherLauncherItemSwitch-' + e;
+
+				before(function () {
+					return browser.fill('.LCHLauncherFilterInput', signature);
+				});
+
+				it(`shows ${ signature }`, function () {
+					browser.assert.elements('.LCHLauncherPipeItem', 1);
+				});
+
+			});
+
+			after(function () {
+				browser.pressButton('#TestLCHDebugCloseButton');
+			});
+
+		});
+
 	});
 
 });
