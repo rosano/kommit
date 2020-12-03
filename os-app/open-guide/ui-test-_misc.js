@@ -6,10 +6,6 @@ describe('KOMGuide_Misc', function () {
 		return browser.OLSKVisit(kDefaultRoute);
 	});
 
-	it('assigns meta:viewport', function () {
-		browser.assert.attribute('meta[name=viewport]', 'content', 'width=device-width');
-	});
-
 	context('KOMGuide', function () {
 		
 		it('classes OLSKCommon', function () {
