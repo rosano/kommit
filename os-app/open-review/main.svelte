@@ -462,7 +462,6 @@ const mod = {
 	FakeGrantObjectValid (inputData) {
 		return Object.assign({
 			OLSKPactGrantPublicNumbers: [Math.random().toString()],
-			OLSKPactGrantIdentity: Math.random().toString(),
 			OLSKPactGrantProject: Math.random().toString(),
 			OLSKPactGrantStartDate: new Date(),
 			OLSKPactGrantEndDate: new Date(),
