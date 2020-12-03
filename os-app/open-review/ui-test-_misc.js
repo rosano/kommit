@@ -18,6 +18,14 @@ describe('KOMReview_Misc', function () {
 		browser.assert.attribute('meta[name=apple-mobile-web-app-capable]', 'content', 'yes');
 	});
 
+	context('KOMReview', function () {
+		
+		it('classes OLSKViewport', function () {
+			browser.assert.hasClass(KOMReview, 'OLSKViewport');
+		});
+	
+	});
+
 	context('create', function () {
 
 		before(function () {

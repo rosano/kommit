@@ -1,6 +1,8 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 Object.entries({
+	KOMReview: '.KOMReview',
+
 	KOMReviewViewportFooter: '.KOMReviewViewportFooter',
 
 	KOMReviewStorageToolbar: '.KOMReviewStorageToolbar',
@@ -12,6 +14,10 @@ describe('KOMReview_Access', function () {
 
 	before(function () {
 		return browser.OLSKVisit(kDefaultRoute);
+	});
+
+	it('shows KOMReview', function () {
+		browser.assert.elements(KOMReview, 1);
 	});
 
 	it('shows KOMReviewMaster', function () {
