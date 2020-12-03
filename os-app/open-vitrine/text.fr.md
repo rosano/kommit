@@ -8,6 +8,7 @@ Veuillez lire le [guide](KOMVitrineTokenGuideURL) pour en apprendre plus.
 - Écouter des cartes oralement avec synthèse vocale
 - Enregistrer d'audio
 - Organiser des cartes avec des tags
+- Importer et exporter des données (béta)
 - Synchroniser avec plusieurs appareils avec remoteStorage
 - Travailler hors ligne sans accès à l'Internet
 - Interface simple

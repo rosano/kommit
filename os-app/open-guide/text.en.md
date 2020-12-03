@@ -163,6 +163,8 @@ Counting the number of cards based on its state.
 | KOMReviewMasterCreateButtonText | `AccessKey+n` |
 | `KOMReviewLauncherItemSelectDeckText` | Launcher |
 | `KOMReviewLauncherItemToggleSimplifiedResponseButtonsText` | Launcher |
+| `KOMReviewMasterLauncherItemImportDataText` | Launcher |
+| `KOMReviewMasterLauncherItemExportDataText` | Launcher |
 | `KOMReviewMasterLauncherItemToggleExcludeTripleQuestionMarkText` | Launcher |
 
 | Deck page ||
@@ -172,6 +174,7 @@ Counting the number of cards based on its state.
 | Close | `Escape` |
 | `KOMReviewDetailLauncherItemPlayReviewingText` | Launcher |
 | `KOMReviewDetailLauncherItemPlayUnseenText` | Launcher |
+| `KOMReviewDetailLauncherItemExportText` | Launcher |
 
 | Memory game ||
 :--- | ---

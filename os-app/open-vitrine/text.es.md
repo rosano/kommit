@@ -8,6 +8,7 @@ Lea el [guide](KOMVitrineTokenGuideURL) para aprender más.
 - Escuchar tarjetas oralmente con text-to-speech
 - Grabar audio
 - Organizar tarjetas con etiquetas
+- Importar y exportar datos (beta)
 - Sincronizar com múltiples dispositivos con remoteStorage
 - Foncione offline sin acceso al internet
 - Interfaz sencilla

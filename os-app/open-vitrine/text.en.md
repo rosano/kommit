@@ -8,6 +8,7 @@ Read the [guide](KOMVitrineTokenGuideURL) to learn more.
 - Hear cards orally with text-to-speech
 - Record audio
 - Organize cards with tags
+- Import and export data (beta)
 - Sync with multiple devices via remoteStorage
 - Works offline without internet access
 - Simple interface
