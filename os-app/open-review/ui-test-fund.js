@@ -267,6 +267,8 @@ describe('KOMReview_Fund', function () {
 
 	describe('clue', function test_clue () {
 
+		const clue = Math.random().toString();
+
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute);
 		});
@@ -292,13 +294,30 @@ describe('KOMReview_Fund', function () {
 				return browser.click('.LCHLauncherPipeItem');
 			}, function (dialog) {
 				return Object.assign(dialog, {
-					response: Math.random().toString(),
+					response: clue,
 				});
 			});
 		});
 
 		it('shows OLSKFundLauncherItemClearClue', function () {
 			browser.assert.OLSKLauncherItems('OLSKFundLauncherItemClearClue', 1);
+		});
+
+		describe('OLSKApropos', function test_OLSKApropos() {
+
+			before(function () {
+				return browser.pressButton('.OLSKAppToolbarAproposButton');
+			});
+
+			it('sets OLSKAproposFeedbackEmail', function () {
+				const item = OLSKTestingFormatted(process.env.OLSK_APROPOS_FEEDBACK_EMAIL, 'RP_004+' + clue);
+				browser.assert.deepEqual(browser.query('.OLSKAproposFeedbackButton').href.slice(7).slice(0, item.length), item);
+			});
+
+			after(function () {
+				browser.pressButton('.OLSKModalViewCloseButton');
+			});
+
 		});
 
 	});

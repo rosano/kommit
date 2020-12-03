@@ -202,6 +202,23 @@ describe('KOMReview_Misc', function () {
 			browser.assert.hasClass(KOMReviewViewportFooter, 'OLSKMobileViewFooter');
 		});
 
+	});	
+
+	describe('OLSKApropos', function test_OLSKApropos() {
+
+		before(function () {
+			return browser.pressButton('.OLSKAppToolbarAproposButton');
+		});
+
+		it('sets OLSKAproposFeedbackEmail', function () {
+			const item = OLSKTestingFormatted(process.env.OLSK_APROPOS_FEEDBACK_EMAIL, 'RP_004');
+			browser.assert.deepEqual(browser.query('.OLSKAproposFeedbackButton').href.slice(7).slice(0, item.length), item);
+		});
+
+		after(function () {
+			browser.pressButton('.OLSKModalViewCloseButton');
+		});
+
 	});
 
 	describe('OLSKAppToolbarGuideLink', function test_OLSKAppToolbarGuideLink() {

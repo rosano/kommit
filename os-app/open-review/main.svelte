@@ -796,6 +796,10 @@ const mod = {
 		mod._ValuePlayVisible = false;
 	},
 
+	OLSKAppToolbarDispatchApropos () {
+		mod._OLSKModalView.modPublic.OLSKModalViewShow();
+	},
+
 	OLSKAppToolbarDispatchLanguage () {
 		if (window.Launchlet.LCHSingletonExists()) {
 			return window.Launchlet.LCHSingletonDestroy();
@@ -1271,6 +1275,8 @@ import OLSKServiceWorkerView from '../_shared/__external/OLSKServiceWorker/main.
 import OLSKStorageWidget from 'OLSKStorageWidget';
 import OLSKPointer from 'OLSKPointer';
 import OLSKWebView from 'OLSKWebView';
+import OLSKModalView from 'OLSKModalView';
+import OLSKApropos from 'OLSKApropos';
 </script>
 
 <div class="KOMReview OLSKViewport" class:OLSKIsLoading={ mod._ValueIsLoading }>
@@ -1344,6 +1350,7 @@ import OLSKWebView from 'OLSKWebView';
 		{/if}
 
 		<OLSKAppToolbar
+			OLSKAppToolbarDispatchApropos={ mod.OLSKAppToolbarDispatchApropos }
 			OLSKAppToolbarDispatchLanguage={ mod.OLSKAppToolbarDispatchLanguage }
 			OLSKAppToolbarGuideURL={ window.OLSKCanonicalFor('KOMGuideRoute') }
 			OLSKAppToolbarFundShowProgress={ mod._ValueFundProgress }
@@ -1359,6 +1366,12 @@ import OLSKWebView from 'OLSKWebView';
 {#if mod._ValueStorageClient && mod._ValueStorageClient.connected }
 	<OLSKWebView OLSKModalViewTitleText={ OLSKLocalized('OLSKFundWebViewTitleText') } OLSKWebViewURL={ mod._ValueFundURL } bind:this={ mod._OLSKWebView } DEBUG_OLSKWebViewDataSource={ OLSK_SPEC_UI() } />
 {/if}
+
+<OLSKModalView OLSKModalViewTitleText={ OLSKLocalized('OLSKAproposHeadingText') } bind:this={ mod._OLSKModalView }>
+	<OLSKApropos
+		OLSKAproposFeedbackEmail={ OLSKFormatted('OLSK_APROPOS_FEEDBACK_EMAIL_SWAP_TOKEN', 'RP_004' + (mod._ValueFundClue ? '+' + mod._ValueFundClue : '')) }
+		/>
+</OLSKModalView>
 
 </div>
 

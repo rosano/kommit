@@ -38,6 +38,9 @@
     "// FRONTEND APP TOOLBAR": null,
     "OLSKAppToolbar": "olsk/OLSKAppToolbar",
 
+    "// APROPOS": null,
+    "OLSKApropos": "olsk/OLSKApropos",
+
     "// FRONTEND SERVICE WORKER": null,
     "OLSKServiceWorker": "olsk/OLSKServiceWorker",
 

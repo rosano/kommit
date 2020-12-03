@@ -56,6 +56,10 @@ describe('KOMReview_Access', function () {
 		browser.assert.elements('.OLSKAppToolbar', 1);
 	});
 
+	it('shows OLSKAppToolbarAproposButton', function () {
+		browser.assert.elements('.OLSKAppToolbarAproposButton', 1);
+	});
+
 	it('shows OLSKAppToolbarLanguageButton', function () {
 		browser.assert.elements('.OLSKAppToolbarLanguageButton', 1);
 	});
@@ -106,6 +110,22 @@ describe('KOMReview_Access', function () {
 
 	it('hides KOMReviewDetailLauncherFakeItemProxy', function () {
 		return browser.assert.OLSKLauncherItems('KOMReviewDetailLauncherFakeItemProxy', 0);
+	});
+
+	describe('OLSKAppToolbarAproposButton', function test_OLSKAppToolbarAproposButton() {
+
+		before(function () {
+			return browser.pressButton('.OLSKAppToolbarAproposButton');
+		});
+
+		it('shows OLSKApropos', function () {
+			browser.assert.elements('.OLSKModalView .OLSKApropos', 1);
+		});
+
+		it('shows OLSKAproposFeedbackButton', function () {
+			browser.assert.elements('.OLSKAproposFeedbackButton', 1);
+		});
+
 	});
 
 	describe('languages', function test_languages() {

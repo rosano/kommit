@@ -140,6 +140,22 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 
 		});
 
+		describe('OLSKApropos', function test_OLSKApropos() {
+
+			before(function () {
+				return browser.pressButton('.OLSKAppToolbarAproposButton');
+			});
+
+			it('sets OLSKModalViewTitleText', function () {
+				browser.assert.text('.OLSKModalViewTitle', uLocalized('OLSKAproposHeadingText'));
+			});
+
+			after(function () {
+				browser.pressButton('.OLSKModalViewCloseButton');
+			});
+
+		});
+
 		describe('languages', function test_languages() {
 
 			before(function () {
