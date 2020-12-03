@@ -907,7 +907,7 @@ const mod = {
 	},
 
 	OLSKFundDispatchGrant (inputData) {
-		mod._ValueFundGrant = inputData;
+		mod._ValueFundGrant = OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(inputData);
 	},
 
 	OLSKChangeDelegateCreateDeck (inputData) {
