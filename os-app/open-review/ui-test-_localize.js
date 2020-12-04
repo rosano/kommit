@@ -156,7 +156,7 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 
 		});
 
-		describe('languages', function test_languages() {
+		describe('OLSKLanguageSwitcherLauncher', function test_OLSKLanguageSwitcherLauncher() {
 
 			before(function () {
 				return browser.pressButton('.OLSKAppToolbarLanguageButton');
