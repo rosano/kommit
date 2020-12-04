@@ -309,9 +309,8 @@ describe('KOMReview_Fund', function () {
 				return browser.pressButton('.OLSKAppToolbarAproposButton');
 			});
 
-			it('sets OLSKAproposFeedbackEmail', function () {
-				const item = OLSKTestingFormatted(process.env.OLSK_APROPOS_FEEDBACK_EMAIL, 'RP_004+' + clue);
-				browser.assert.deepEqual(browser.query('.OLSKAproposFeedbackButton').href.slice(7).slice(0, item.length), item);
+			it('sets OLSKAproposFeedbackValue', function () {
+				browser.assert.attribute('.OLSKAproposFeedbackButton', 'href', `javascript:window.location.href = window.atob('${ browser.window.btoa('mailto:' + OLSKTestingFormatted(process.env.OLSK_APROPOS_FEEDBACK_EMAIL, 'RP_004+' + clue)) }')`);
 			});
 
 			after(function () {
