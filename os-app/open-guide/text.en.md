@@ -24,7 +24,7 @@ Once you have selected a deck, you can customize how to present the cards, see s
 
 *KOMReviewDetailFormAudioIsEnabledFieldLabelText* will automatically play any recorded audio for the card.
 
-*KOMReviewDetailFormFrontSpeechIsEnabledFieldLabelText* or *KOMReviewDetailFormRearSpeechIsEnabledFieldLabelText* will speak the text using any language available on your device. By default it uses the language of your computer, but you can set a [language code](https://www.w3schools.com/tags/ref_language_codes.asp) if your cards use multiple languages. If *KOMReviewDetailFormAudioIsEnabledFieldLabelText* is enabled and there is recorded audio for the same side, only the audio will play.
+*KOMReviewDetailFormFrontSpeechIsEnabledFieldLabelText* or *KOMReviewDetailFormRearSpeechIsEnabledFieldLabelText* will speak the text using any language available on your device. By default it uses the current language, but you can set a [language code](https://www.w3schools.com/tags/ref_language_codes.asp) if your cards use multiple languages. If *KOMReviewDetailFormAudioIsEnabledFieldLabelText* is enabled and there is recorded audio for the same side, only the audio will play.
 
 By default, the cards will be presented both front-to-back and back-to-front, but *KOMReviewDetailFormIsForwardOnlyFieldLabelText* will disable the latter.
 
