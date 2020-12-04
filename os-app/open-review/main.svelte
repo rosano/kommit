@@ -799,7 +799,7 @@ const mod = {
 		mod._OLSKModalView.modPublic.OLSKModalViewShow();
 	},
 
-	OLSKAppToolbarDispatchLanguage () {
+	OLSKAppToolbarDispatchTongue () {
 		if (window.Launchlet.LCHSingletonExists()) {
 			return window.Launchlet.LCHSingletonDestroy();
 		}
@@ -1350,7 +1350,7 @@ import OLSKApropos from 'OLSKApropos';
 
 		<OLSKAppToolbar
 			OLSKAppToolbarDispatchApropos={ mod.OLSKAppToolbarDispatchApropos }
-			OLSKAppToolbarDispatchLanguage={ mod.OLSKAppToolbarDispatchLanguage }
+			OLSKAppToolbarDispatchTongue={ mod.OLSKAppToolbarDispatchTongue }
 			OLSKAppToolbarGuideURL={ window.OLSKCanonicalFor('KOMGuideRoute') }
 			OLSKAppToolbarFundShowProgress={ mod._ValueFundProgress }
 			OLSKAppToolbarFundLimitText={ mod._ValueDocumentRemainder }

@@ -128,7 +128,7 @@ describe('KOMReview_Access', function () {
 
 	});
 
-	describe('OLSKLanguageSwitcherLauncher', function test_OLSKLanguageSwitcherLauncher() {
+	describe('tongue', function test_tongue() {
 
 		before(function () {
 			return browser.pressButton('.OLSKAppToolbarLanguageButton');
