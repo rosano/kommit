@@ -39,6 +39,7 @@
     "OLSKAppToolbar": "olsk/OLSKAppToolbar",
 
     "// APROPOS": null,
+    "OLSKModalView": "olsk/OLSKModalView",
     "OLSKApropos": "olsk/OLSKApropos",
 
     "// FRONTEND SERVICE WORKER": null,
