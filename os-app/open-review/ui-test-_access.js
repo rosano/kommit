@@ -112,22 +112,6 @@ describe('KOMReview_Access', function () {
 		return browser.assert.OLSKLauncherItems('KOMReviewDetailLauncherFakeItemProxy', 0);
 	});
 
-	describe('OLSKAppToolbarAproposButton', function test_OLSKAppToolbarAproposButton() {
-
-		before(function () {
-			return browser.pressButton('.OLSKAppToolbarAproposButton');
-		});
-
-		it('shows OLSKApropos', function () {
-			browser.assert.elements('.OLSKModalView .OLSKApropos', 1);
-		});
-
-		it('shows OLSKAproposFeedbackButton', function () {
-			browser.assert.elements('.OLSKAproposFeedbackButton', 1);
-		});
-
-	});
-
 	describe('tongue', function test_tongue() {
 
 		before(function () {
