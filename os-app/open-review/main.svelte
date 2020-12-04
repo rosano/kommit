@@ -1366,7 +1366,7 @@ import OLSKApropos from 'OLSKApropos';
 	<OLSKWebView OLSKModalViewTitleText={ OLSKLocalized('OLSKFundWebViewTitleText') } OLSKWebViewURL={ mod._ValueFundURL } bind:this={ mod._OLSKWebView } DEBUG_OLSKWebViewDataSource={ OLSK_SPEC_UI() } />
 {/if}
 
-<OLSKModalView OLSKModalViewTitleText={ OLSKLocalized('OLSKAproposHeadingText') } bind:this={ mod._OLSKModalView }>
+<OLSKModalView OLSKModalViewTitleText={ OLSKLocalized('OLSKAproposHeadingText') } bind:this={ mod._OLSKModalView } OLSKModalViewIsCapped={ true }>
 	<OLSKApropos
 		OLSKAproposFeedbackEmail={ OLSKFormatted('OLSK_APROPOS_FEEDBACK_EMAIL_SWAP_TOKEN', 'RP_004' + (mod._ValueFundClue ? '+' + mod._ValueFundClue : '')) }
 		/>
