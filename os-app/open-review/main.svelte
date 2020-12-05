@@ -370,16 +370,6 @@ const mod = {
 						return mod.SetupValueDecksAll();
 					},
 				},
-				{
-					LCHRecipeName: 'FakeFundTier2WithBundle',
-					LCHRecipeCallback: function FakeFundTier2WithBundle () {
-						mod._ValueOLSKFundGrant = OLSKPact.OLSKPactDataGrantObjectValid({
-							OLSKPactGrantContribution: 1000,
-							OLSKPactGrantFrequencyOption: OLSKPact.OLSKPactGrantFrequencyOptionYearly(),
-							OLSKPactGrantProject: 'FakeBundleProject',
-						});
-					},
-				},
 			]);
 
 			if (mod.DataIsEligible({
