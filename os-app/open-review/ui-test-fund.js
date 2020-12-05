@@ -218,7 +218,7 @@ describe('KOMReview_Fund', function () {
 	context('OLSKFundDispatchProgress', function test_OLSKFundDispatchProgress () {
 
 		before(function () {
-			return browser.OLSKLauncherRun('FakeFundProgress');
+			return browser.OLSKLauncherRun('OLSKFundLauncherItemFakeFlipProgress');
 		});
 
 		it('sets OLSKAppToolbarFundShowProgress', function () {
@@ -226,7 +226,7 @@ describe('KOMReview_Fund', function () {
 		});
 
 		after(function () {
-			return browser.OLSKLauncherRun('FakeFundProgress');
+			return browser.OLSKLauncherRun('OLSKFundLauncherItemFakeFlipProgress');
 		});
 	
 	});

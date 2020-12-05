@@ -81,7 +81,7 @@ const mod = {
 
 	_IsRunningDemo: false,
 
-	_ValueFundProgress: false,
+	_ValueOLSKFundProgress: false,
 
 	_ValueDocumentRemainder: '',
 	
@@ -351,12 +351,6 @@ const mod = {
 								KOMSpacingDueDate: new Date(),
 							})
 						});
-					},
-				},
-				{
-					LCHRecipeName: 'FakeFundProgress',
-					LCHRecipeCallback: function FakeFundProgress () {
-						return mod.OLSKFundDispatchProgress(!mod._ValueFundProgress);
 					},
 				},
 				{
@@ -898,7 +892,7 @@ const mod = {
 	},
 
 	OLSKFundDispatchProgress (inputData) {
-		mod._ValueFundProgress = inputData;
+		mod._ValueOLSKFundProgress = inputData;
 	},
 
 	OLSKFundDispatchFail () {
@@ -1352,7 +1346,7 @@ import OLSKApropos from 'OLSKApropos';
 			OLSKAppToolbarDispatchApropos={ mod.OLSKAppToolbarDispatchApropos }
 			OLSKAppToolbarDispatchTongue={ mod.OLSKAppToolbarDispatchTongue }
 			OLSKAppToolbarGuideURL={ window.OLSKCanonicalFor('KOMGuideRoute') }
-			OLSKAppToolbarFundShowProgress={ mod._ValueFundProgress }
+			OLSKAppToolbarFundShowProgress={ mod._ValueOLSKFundProgress }
 			OLSKAppToolbarFundLimitText={ mod._ValueDocumentRemainder }
 			OLSKAppToolbarDispatchFund={ mod._ValueFundGrant || OLSKFund.OLSKFundResponseIsPresent() ? null : mod.OLSKAppToolbarDispatchFund }
 			OLSKAppToolbarStorageStatus={ mod._ValueFooterStorageStatus }
