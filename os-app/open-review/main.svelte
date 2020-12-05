@@ -371,15 +371,6 @@ const mod = {
 					},
 				},
 			]);
-
-			if (mod.DataIsEligible({
-				ParamMinimumTier: 2,
-			})) {
-				items.push({
-					LCHRecipeName: 'FakeFundTier2Proxy',
-					LCHRecipeCallback: function FakeFundTier2Proxy () {},
-				});
-			}
 		}
 
 		return items;

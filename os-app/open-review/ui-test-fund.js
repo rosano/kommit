@@ -426,14 +426,14 @@ describe('KOMReview_Fund', function () {
 
 	});
 
-	describe('FakeFundTier2Proxy', function test_FakeFundTier2Proxy () {
+	describe('OLSKFundLauncherItemFakeTier2Proxy', function test_OLSKFundLauncherItemFakeTier2Proxy () {
 		
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute);
 		});
 
-		it('hides FakeFundTier2Proxy', function () {
-			return browser.assert.OLSKLauncherItems('FakeFundTier2Proxy', 0);
+		it('hides OLSKFundLauncherItemFakeTier2Proxy', function () {
+			return browser.assert.OLSKLauncherItems('OLSKFundLauncherItemFakeTier2Proxy', 0);
 		});
 
 		context('Tier2 no bundle', function () {
@@ -442,8 +442,8 @@ describe('KOMReview_Fund', function () {
 				return browser.OLSKLauncherRun('OLSKFundLauncherItemFakeTier2WithNoBundle');
 			});
 
-			it('hides FakeFundTier2Proxy', function () {
-				return browser.assert.OLSKLauncherItems('FakeFundTier2Proxy', 0);
+			it('hides OLSKFundLauncherItemFakeTier2Proxy', function () {
+				return browser.assert.OLSKLauncherItems('OLSKFundLauncherItemFakeTier2Proxy', 0);
 			});
 		
 		});
@@ -454,8 +454,8 @@ describe('KOMReview_Fund', function () {
 				return browser.OLSKLauncherRun('OLSKFundLauncherItemFakeTier2WithBundle');
 			});
 
-			it('show FakeFundTier2Proxy', function () {
-				return browser.assert.OLSKLauncherItems('FakeFundTier2Proxy', 1);
+			it('show OLSKFundLauncherItemFakeTier2Proxy', function () {
+				return browser.assert.OLSKLauncherItems('OLSKFundLauncherItemFakeTier2Proxy', 1);
 			});
 		
 		});
