@@ -454,7 +454,7 @@ describe('KOMReview_Fund', function () {
 				return browser.OLSKLauncherRun('OLSKFundLauncherItemFakeTier2WithBundle');
 			});
 
-			it('show OLSKFundLauncherItemFakeTier2Proxy', function () {
+			it('shows OLSKFundLauncherItemFakeTier2Proxy', function () {
 				return browser.assert.OLSKLauncherItems('OLSKFundLauncherItemFakeTier2Proxy', 1);
 			});
 		

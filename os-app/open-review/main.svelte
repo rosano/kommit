@@ -158,9 +158,11 @@ const mod = {
 		items.push(...OLSKFund.OLSKFundRecipes({
 			ParamWindow: window,
 			OLSKLocalized: OLSKLocalized,
+			ParamConnected: mod._ValueStorageClient.connected,
 			ParamAuthorized: !!mod._ValueFundClue,
 			OLSKFundDispatchGrant: mod.OLSKFundDispatchGrant,
 			OLSKFundDispatchPersist: mod.OLSKFundDispatchPersist,
+			ParamMod: mod,
 			ParamSpecUI: OLSK_SPEC_UI(),
 		}));
 
