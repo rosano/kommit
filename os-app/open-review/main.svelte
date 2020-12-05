@@ -89,7 +89,7 @@ const mod = {
 
 	DataDeckSelectedObjects (inputData) {
 		return OLSKCache.OLSKCacheResultFetchOnceSync(mod._ValueDeckSelectedObjectsMap, inputData.KOMDeckID, async function () {
-			return await KOMDeckAction.KOMDeckActionFetchObjects(mod._ValueStorageClient, inputData, (await KOMSettingAction.KOMSettingsActionProperty(mod._ValueStorageClient, 'KOMSettingExcludeTripleQuestionMark') || {}).KOMSettingValue === 'true');
+			return await KOMDeckAction.KOMDeckActionFetchObjects(mod._ValueOLSKRemoteStorage, inputData, (await KOMSettingAction.KOMSettingsActionProperty(mod._ValueOLSKRemoteStorage, 'KOMSettingExcludeTripleQuestionMark') || {}).KOMSettingValue === 'true');
 		});
 	},
 
@@ -128,7 +128,7 @@ const mod = {
 			},
 		}]);
 
-		if (mod._ValueStorageClient.connected) {
+		if (mod._ValueOLSKRemoteStorage.connected) {
 			items.push(...[
 				{
 					LCHRecipeSignature: 'KOMReviewLauncherItemDebugPlungeData',
@@ -138,7 +138,7 @@ const mod = {
 							return;
 						}
 
-						console.log(Object.keys(await mod._ValueStorageClient.kommit.__HOTFIX.__OLSKRemoteStorageHotfixPlungeData()));
+						console.log(Object.keys(await mod._ValueOLSKRemoteStorage.kommit.__HOTFIX.__OLSKRemoteStorageHotfixPlungeData()));
 
 						mod.ControlDeckSelect(null);
 
@@ -158,7 +158,7 @@ const mod = {
 		items.push(...OLSKFund.OLSKFundRecipes({
 			ParamWindow: window,
 			OLSKLocalized: OLSKLocalized,
-			ParamConnected: mod._ValueStorageClient.connected,
+			ParamConnected: mod._ValueOLSKRemoteStorage.connected,
 			ParamAuthorized: !!mod._ValueFundClue,
 			OLSKFundDispatchGrant: mod.OLSKFundDispatchGrant,
 			OLSKFundDispatchPersist: mod.OLSKFundDispatchPersist,
@@ -166,7 +166,7 @@ const mod = {
 			ParamSpecUI: OLSK_SPEC_UI(),
 		}));
 
-		items.push(...OLSKRemoteStorage.OLSKRemoteStorageRecipes(window, mod._ValueStorageClient, OLSKLocalized, OLSK_SPEC_UI()));
+		items.push(...OLSKRemoteStorage.OLSKRemoteStorageRecipes(window, mod._ValueOLSKRemoteStorage, OLSKLocalized, OLSK_SPEC_UI()));
 		items.push(...OLSKServiceWorker.OLSKServiceWorkerRecipes(window, mod.DataNavigator(), OLSKLocalized, OLSK_SPEC_UI()));
 
 		if (mod._KOMReviewMaster) {
@@ -186,13 +186,13 @@ const mod = {
 				{
 					LCHRecipeName: 'FakeOLSKConnected',
 					LCHRecipeCallback () {
-						mod._ValueStorageClient = Object.assign({}, mod._ValueStorageClient, mod._ValueStorageClient.access.scopes.reduce(function (coll, item) {
+						mod._ValueOLSKRemoteStorage = Object.assign({}, mod._ValueOLSKRemoteStorage, mod._ValueOLSKRemoteStorage.access.scopes.reduce(function (coll, item) {
 							return {
-								[item.name]: mod._ValueStorageClient[item.name],
+								[item.name]: mod._ValueOLSKRemoteStorage[item.name],
 							};
 						}, {}));
-						mod._ValueStorageClient.connected = true;
-						mod._ValueStorageClient.remote = Object.assign(mod._ValueStorageClient.remote, {
+						mod._ValueOLSKRemoteStorage.connected = true;
+						mod._ValueOLSKRemoteStorage.remote = Object.assign(mod._ValueOLSKRemoteStorage.remote, {
 							userAddress: 'alfa',
 							token: 'bravo',
 						});
@@ -203,33 +203,33 @@ const mod = {
 				{
 					LCHRecipeName: 'FakeOLSKChangeDelegateCreateDeck',
 					LCHRecipeCallback: async function FakeOLSKChangeDelegateCreateDeck () {
-						return mod.OLSKChangeDelegateCreateDeck(await KOMDeckAction.KOMDeckActionCreate(mod._ValueStorageClient, mod.FakeDeckObjectValid('FakeOLSKChangeDelegateCreateDeck')));
+						return mod.OLSKChangeDelegateCreateDeck(await KOMDeckAction.KOMDeckActionCreate(mod._ValueOLSKRemoteStorage, mod.FakeDeckObjectValid('FakeOLSKChangeDelegateCreateDeck')));
 					},
 				},
 				{
 					LCHRecipeName: 'FakeOLSKChangeDelegateUpdateDeck',
 					LCHRecipeCallback: async function FakeOLSKChangeDelegateUpdateDeck () {
-						return mod.OLSKChangeDelegateUpdateDeck(await KOMDeckAction.KOMDeckActionUpdate(mod._ValueStorageClient, mod.FakeDeckObjectValid('FakeOLSKChangeDelegateUpdateDeck')));
+						return mod.OLSKChangeDelegateUpdateDeck(await KOMDeckAction.KOMDeckActionUpdate(mod._ValueOLSKRemoteStorage, mod.FakeDeckObjectValid('FakeOLSKChangeDelegateUpdateDeck')));
 					},
 				},
 				{
 					LCHRecipeName: 'FakeOLSKChangeDelegateDeleteDeck',
 					LCHRecipeCallback: async function FakeOLSKChangeDelegateDeleteDeck () {
 						const deck = mod.FakeDeckObjectValid();
-						await KOMDeckAction.KOMDeckActionDelete(mod._ValueStorageClient, deck)
+						await KOMDeckAction.KOMDeckActionDelete(mod._ValueOLSKRemoteStorage, deck)
 						return mod.OLSKChangeDelegateDeleteDeck(deck);
 					},
 				},
 				{
 					LCHRecipeName: 'FakeOLSKChangeDelegateCreateCard',
 					LCHRecipeCallback: async function FakeOLSKChangeDelegateCreateCard () {
-						return mod.OLSKChangeDelegateCreateCard(await KOMCardAction.KOMCardActionCreate(mod._ValueStorageClient, mod.FakeCardObjectValid('FakeOLSKChangeDelegateCreateCard'), mod.FakeDeckObjectValid()));
+						return mod.OLSKChangeDelegateCreateCard(await KOMCardAction.KOMCardActionCreate(mod._ValueOLSKRemoteStorage, mod.FakeCardObjectValid('FakeOLSKChangeDelegateCreateCard'), mod.FakeDeckObjectValid()));
 					},
 				},
 				{
 					LCHRecipeName: 'FakeOLSKChangeDelegateUpdateCard',
 					LCHRecipeCallback: async function FakeOLSKChangeDelegateUpdateCard () {
-						return mod.OLSKChangeDelegateUpdateCard(await KOMCardAction.KOMCardActionUpdate(mod._ValueStorageClient, Object.assign(mod.FakeCardObjectValid('FakeOLSKChangeDelegateUpdateCard'), {
+						return mod.OLSKChangeDelegateUpdateCard(await KOMCardAction.KOMCardActionUpdate(mod._ValueOLSKRemoteStorage, Object.assign(mod.FakeCardObjectValid('FakeOLSKChangeDelegateUpdateCard'), {
 							KOMCardIsRetired: true,
 						}), mod.FakeDeckObjectValid()));
 					},
@@ -238,20 +238,20 @@ const mod = {
 					LCHRecipeName: 'FakeOLSKChangeDelegateDeleteCard',
 					LCHRecipeCallback: async function FakeOLSKChangeDelegateDeleteCard () {
 						const card = mod.FakeCardObjectValid();
-						await KOMCardAction.KOMCardActionDelete(mod._ValueStorageClient, card, mod.FakeDeckObjectValid());
+						await KOMCardAction.KOMCardActionDelete(mod._ValueOLSKRemoteStorage, card, mod.FakeDeckObjectValid());
 						return mod.OLSKChangeDelegateDeleteCard(card);
 					},
 				},
 				{
 					LCHRecipeName: 'FakeOLSKChangeDelegateConflictCard',
 					LCHRecipeCallback: async function FakeOLSKChangeDelegateConflictCard () {
-						const item = (await KOMCardAction.KOMCardActionList(mod._ValueStorageClient, mod._ValueDeckSelected)).filter(function (e) {
+						const item = (await KOMCardAction.KOMCardActionList(mod._ValueOLSKRemoteStorage, mod._ValueDeckSelected)).filter(function (e) {
 							return e.KOMCardFrontText.match('FakeOLSKChangeDelegateConflictCard');
 						}).pop();
 						
 						return mod.OLSKChangeDelegateConflictCard({
 							origin: 'conflict',
-							oldValue: await KOMCardAction.KOMCardActionUpdate(mod._ValueStorageClient, Object.assign({}, item, {
+							oldValue: await KOMCardAction.KOMCardActionUpdate(mod._ValueOLSKRemoteStorage, Object.assign({}, item, {
 								KOMCardFrontText: item.KOMCardFrontText + '-local',
 							})),
 							newValue: Object.assign({}, item, {
@@ -264,7 +264,7 @@ const mod = {
 					LCHRecipeName: 'FakeOLSKChangeDelegateCreateSpacing',
 					LCHRecipeCallback: async function FakeOLSKChangeDelegateCreateSpacing () {
 						[false, true].forEach(async function (backward) {
-							const spacing = await KOMSpacingStorage.KOMSpacingStorageWrite(mod._ValueStorageClient, Object.assign(mod.FakeSpacingObjectValid(backward), {
+							const spacing = await KOMSpacingStorage.KOMSpacingStorageWrite(mod._ValueOLSKRemoteStorage, Object.assign(mod.FakeSpacingObjectValid(backward), {
 								KOMSpacingIsLearning: true,
 								KOMSpacingDueDate: new Date(),
 							}), mod.FakeCardObjectValid(), mod.FakeDeckObjectValid());
@@ -281,7 +281,7 @@ const mod = {
 					LCHRecipeName: 'FakeOLSKChangeDelegateUpdateSpacing',
 					LCHRecipeCallback: function FakeOLSKChangeDelegateUpdateSpacing () {
 						[false, true].map(async function (backward) {
-							const spacing = await KOMSpacingStorage.KOMSpacingStorageWrite(mod._ValueStorageClient, Object.assign(mod.FakeSpacingObjectPopulated(new Date(), backward), {
+							const spacing = await KOMSpacingStorage.KOMSpacingStorageWrite(mod._ValueOLSKRemoteStorage, Object.assign(mod.FakeSpacingObjectPopulated(new Date(), backward), {
 								KOMSpacingDueDate: new Date(Date.now() + 1000 * 60 * 60 * 24),
 							}), mod.FakeCardObjectValid(), mod.FakeDeckObjectValid());
 
@@ -308,16 +308,16 @@ const mod = {
 				{
 					LCHRecipeName: 'KOMReviewLauncherItemDebug_TestSpeedPopulate',
 					LCHRecipeCallback: async function KOMReviewLauncherItemDebug_TestSpeedPopulate () {
-						const deck = await KOMDeckAction.KOMDeckActionCreate(mod._ValueStorageClient, {
+						const deck = await KOMDeckAction.KOMDeckActionCreate(mod._ValueOLSKRemoteStorage, {
 							KOMDeckName: 'alfa',
 						});
 						return Promise.all(Array.from(Array(100)).map(function (e, i) {
-							return KOMCardAction.KOMCardActionCreate(mod._ValueStorageClient, Object.assign(mod.FakeCardObjectValid(), {
+							return KOMCardAction.KOMCardActionCreate(mod._ValueOLSKRemoteStorage, Object.assign(mod.FakeCardObjectValid(), {
 								KOMCardID: i.toString(),
 								KOMCardDeckID: deck.KOMDeckID,
 							}), deck).then(function (card) {
 								return Promise.all([true, false].map(function (e, i) {
-									return KOMSpacingStorage.KOMSpacingStorageWrite(mod._ValueStorageClient, Object.assign(mod.FakeSpacingObjectPopulated(new Date(Date.now() - 1000 * 60 * 60 * 24)), {
+									return KOMSpacingStorage.KOMSpacingStorageWrite(mod._ValueOLSKRemoteStorage, Object.assign(mod.FakeSpacingObjectPopulated(new Date(Date.now() - 1000 * 60 * 60 * 24)), {
 										KOMSpacingID: card.KOMCardID + '-' + (i ? 'backward' : 'forward'),
 									}), card, deck)
 								}));
@@ -358,12 +358,12 @@ const mod = {
 				{
 					LCHRecipeName: 'FakeFundDocumentLimit',
 					LCHRecipeCallback: async function FakeFundDocumentLimit () {
-						const deck = await KOMDeckAction.KOMDeckActionCreate(mod._ValueStorageClient, {
+						const deck = await KOMDeckAction.KOMDeckActionCreate(mod._ValueOLSKRemoteStorage, {
 							KOMDeckName: Math.random().toString(),
 						});
 
 						await Promise.all(Array.from(Array(mod._ValueDocumentRemainder)).map(function (e) {
-							return KOMCardAction.KOMCardActionCreate(mod._ValueStorageClient, Object.assign(mod.FakeCardObjectValid(), {
+							return KOMCardAction.KOMCardActionCreate(mod._ValueOLSKRemoteStorage, Object.assign(mod.FakeCardObjectValid(), {
 								KOMCardID: Math.random().toString(),
 								KOMCardDeckID: deck.KOMDeckID,
 							}), deck);
@@ -447,7 +447,7 @@ const mod = {
 			return;
 		}
 
-		const item = await KOMDeckAction.KOMDeckActionCreate(mod._ValueStorageClient, {
+		const item = await KOMDeckAction.KOMDeckActionCreate(mod._ValueOLSKRemoteStorage, {
 			KOMDeckName: inputData,
 		});
 
@@ -457,7 +457,7 @@ const mod = {
 	},
 	
 	async ControlDeckSave(inputData) {
-		await KOMDeckAction.KOMDeckActionUpdate(mod._ValueStorageClient, inputData);
+		await KOMDeckAction.KOMDeckActionUpdate(mod._ValueOLSKRemoteStorage, inputData);
 	},
 
 	async ControlDeckDiscard (inputData) {
@@ -465,7 +465,7 @@ const mod = {
 			return e !== inputData;
 		}))
 
-		await KOMDeckAction.KOMDeckActionDelete(mod._ValueStorageClient, inputData);
+		await KOMDeckAction.KOMDeckActionDelete(mod._ValueOLSKRemoteStorage, inputData);
 	},
 
 	ControlDeckSelect(inputData) {
@@ -478,7 +478,7 @@ const mod = {
 		OLSKThrottle.OLSKThrottleMappedTimeout(mod._ValueSpacingUpdateThrottleMap, inputData.KOMSpacingID, {
 			OLSKThrottleDuration: OLSK_SPEC_UI() ? 0 : 500,
 			OLSKThrottleCallback () {
-				return KOMSpacingStorage.KOMSpacingStorageWrite(mod._ValueStorageClient, inputData, inputData.$KOMSpacingCard, deck);
+				return KOMSpacingStorage.KOMSpacingStorageWrite(mod._ValueOLSKRemoteStorage, inputData, inputData.$KOMSpacingCard, deck);
 			},
 		});
 	},
@@ -511,7 +511,7 @@ const mod = {
 		}
 
 		try {
-			await KOM_Data.KOM_DataImport(mod._ValueStorageClient, OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(JSON.parse(inputData)));
+			await KOM_Data.KOM_DataImport(mod._ValueOLSKRemoteStorage, OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(JSON.parse(inputData)));
 			await mod.SetupValueDecksAll();
 		} catch (e) {
 			window.alert(OLSKLocalized('KOMReviewStorageImportErrorNotValidAlertText'));
@@ -521,7 +521,7 @@ const mod = {
 	ControlExportData (inputData) {
 		Launchlet.LCHTasksRun([{
 			async LCHRecipeCallback () {
-				return this.api.LCHSaveFile(JSON.stringify(await KOM_Data.KOM_DataExport(mod._ValueStorageClient, inputData)), `${ window.location.host }-${ Date.now() }.json`)
+				return this.api.LCHSaveFile(JSON.stringify(await KOM_Data.KOM_DataExport(mod._ValueOLSKRemoteStorage, inputData)), `${ window.location.host }-${ Date.now() }.json`)
 			},
 			LCHRecipeURLFilter: '*',
 		  LCHRecipeIsAutomatic: true,
@@ -633,18 +633,18 @@ const mod = {
 	},
 
 	async KOMReviewMasterDispatchToggleExcludeTripleQuestionMark () {
-		const value = await KOMSettingAction.KOMSettingsActionProperty(mod._ValueStorageClient, 'KOMSettingExcludeTripleQuestionMark');
+		const value = await KOMSettingAction.KOMSettingsActionProperty(mod._ValueOLSKRemoteStorage, 'KOMSettingExcludeTripleQuestionMark');
 
-		value ? await KOMSettingAction.KOMSettingsActionDelete(mod._ValueStorageClient, 'KOMSettingExcludeTripleQuestionMark') : await KOMSettingAction.KOMSettingsActionProperty(mod._ValueStorageClient, 'KOMSettingExcludeTripleQuestionMark', 'true');
+		value ? await KOMSettingAction.KOMSettingsActionDelete(mod._ValueOLSKRemoteStorage, 'KOMSettingExcludeTripleQuestionMark') : await KOMSettingAction.KOMSettingsActionProperty(mod._ValueOLSKRemoteStorage, 'KOMSettingExcludeTripleQuestionMark', 'true');
 		
 		mod._ValueDeckSelectedObjectsMap = {};
 		mod._ValueDecksAll.forEach(mod.ReactDeckFigures);
 	},
 
 	async KOMReviewMasterDispatchToggleDeckFiguresCaching () {
-		const value = await KOMSettingAction.KOMSettingsActionProperty(mod._ValueStorageClient, 'KOMSettingDeckCachingEnabled');
+		const value = await KOMSettingAction.KOMSettingsActionProperty(mod._ValueOLSKRemoteStorage, 'KOMSettingDeckCachingEnabled');
 
-		value ? await KOMSettingAction.KOMSettingsActionDelete(mod._ValueStorageClient, 'KOMSettingDeckCachingEnabled') : await KOMSettingAction.KOMSettingsActionProperty(mod._ValueStorageClient, 'KOMSettingDeckCachingEnabled', 'true');
+		value ? await KOMSettingAction.KOMSettingsActionDelete(mod._ValueOLSKRemoteStorage, 'KOMSettingDeckCachingEnabled') : await KOMSettingAction.KOMSettingsActionProperty(mod._ValueOLSKRemoteStorage, 'KOMSettingDeckCachingEnabled', 'true');
 	},
 
 	KOMReviewDetailDispatchBack () {
@@ -692,7 +692,7 @@ const mod = {
 
 	async KOMBrowseDispatchCreate (inputData) {
 		(await mod.DataDeckSelectedObjects(mod._ValueDeckSelected)).$KOMDeckCards.push(inputData);
-		(await mod.DataDeckSelectedObjects(mod._ValueDeckSelected)).$KOMDeckSpacings.push(...Object.values(await KOMSpacingStorage.KOMSpacingStorageList(mod._ValueStorageClient, inputData, mod._ValueDeckSelected)).map(function (e) {
+		(await mod.DataDeckSelectedObjects(mod._ValueDeckSelected)).$KOMDeckSpacings.push(...Object.values(await KOMSpacingStorage.KOMSpacingStorageList(mod._ValueOLSKRemoteStorage, inputData, mod._ValueDeckSelected)).map(function (e) {
 			return Object.assign(e, {
 				$KOMSpacingCard: inputData,
 			});
@@ -729,7 +729,7 @@ const mod = {
 	},
 
 	async KOMPlayDispatchFetch (param1, param2) {
-		return await KOMCardAction.KOMCardActionAudioFetch(mod._ValueStorageClient, param1, param2, mod._ValueDeckSelected);
+		return await KOMCardAction.KOMCardActionAudioFetch(mod._ValueOLSKRemoteStorage, param1, param2, mod._ValueDeckSelected);
 	},
 
 	async KOMPlayDispatchDone () {
@@ -738,7 +738,7 @@ const mod = {
 		}));
 
 		await Promise.all(KOMReviewLogic.KOMReviewRetireCards(mod._ValueDeckSelected, (await mod.DataDeckSelectedObjects(mod._ValueDeckSelected)).$KOMDeckSpacings).map(function (e) {
-			return KOMCardAction.KOMCardActionUpdate(mod._ValueStorageClient, Object.assign(e, {
+			return KOMCardAction.KOMCardActionUpdate(mod._ValueOLSKRemoteStorage, Object.assign(e, {
 				KOMCardIsRetired: true,
 			}), mod._ValueDeckSelected);
 		}));
@@ -787,14 +787,14 @@ const mod = {
 	},
 
 	OLSKAppToolbarDispatchFund () {
-		if (!mod._ValueStorageClient.connected) {
+		if (!mod._ValueOLSKRemoteStorage.connected) {
 			return mod._OLSKAppToolbarDispatchFundNotConnected();
 		}
 
 		mod._ValueFundURL = OLSKFund.OLSKFundURL({
 			ParamFormURL: 'OLSK_FUND_FORM_URL_SWAP_TOKEN',
 			ParamProject: 'RP_004',
-			ParamIdentity: mod._ValueStorageClient.remote.userAddress,
+			ParamIdentity: mod._ValueOLSKRemoteStorage.remote.userAddress,
 			ParamHomeURL: window.location.origin + window.location.pathname,
 		});
 
@@ -838,10 +838,10 @@ const mod = {
 		mod._ValueFundClue = inputData;
 
 		if (!inputData) {
-			return KOMSettingAction.KOMSettingsActionDelete(mod._ValueStorageClient, 'KOMSettingFundClue');
+			return KOMSettingAction.KOMSettingsActionDelete(mod._ValueOLSKRemoteStorage, 'KOMSettingFundClue');
 		}
 
-		return KOMSettingAction.KOMSettingsActionProperty(mod._ValueStorageClient, 'KOMSettingFundClue', inputData).then(function () {
+		return KOMSettingAction.KOMSettingsActionProperty(mod._ValueOLSKRemoteStorage, 'KOMSettingFundClue', inputData).then(function () {
 			if (OLSK_SPEC_UI()) {
 				return;
 			}
@@ -909,7 +909,7 @@ const mod = {
 	},
 
 	async OLSKChangeDelegateConflictCard (inputData) {
-		return mod.OLSKChangeDelegateUpdateCard(await KOMCardAction.KOMCardActionUpdate(mod._ValueStorageClient, OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateConflictSelectRecent(inputData)));
+		return mod.OLSKChangeDelegateUpdateCard(await KOMCardAction.KOMCardActionUpdate(mod._ValueOLSKRemoteStorage, OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateConflictSelectRecent(inputData)));
 	},
 
 	OLSKChangeDelegateCreateSpacing (inputData) {
@@ -1074,27 +1074,27 @@ const mod = {
 			OLSKOptionIncludeDebug: OLSK_SPEC_UI() || window.OLSKPublicConstants('OLSKDebugRemoteStorage'),
 		});
 		
-		mod._ValueStorageClient = new RemoteStorage({ modules: [ storageModule ] });
+		mod._ValueOLSKRemoteStorage = new RemoteStorage({ modules: [ storageModule ] });
 
-		mod._ValueStorageClient.access.claim(storageModule.name, 'rw');
+		mod._ValueOLSKRemoteStorage.access.claim(storageModule.name, 'rw');
 
-		mod._ValueStorageClient.caching.enable(`/${ storageModule.name }/`);
+		mod._ValueOLSKRemoteStorage.caching.enable(`/${ storageModule.name }/`);
 
 		if (window.OLSKPublicConstants('OLSKDebugRemoteStorage')) {
-			window.OLSKDebugRemoteStorage = mod._ValueStorageClient;
+			window.OLSKDebugRemoteStorage = mod._ValueOLSKRemoteStorage;
 		}
 
-		window.alfa = mod._ValueStorageClient
+		window.alfa = mod._ValueOLSKRemoteStorage
 	},
 
 	SetupStorageStatus () {
-		OLSKRemoteStorage.OLSKRemoteStorageStatus(mod._ValueStorageClient, function (inputData) {
+		OLSKRemoteStorage.OLSKRemoteStorageStatus(mod._ValueOLSKRemoteStorage, function (inputData) {
 			mod._ValueFooterStorageStatus = inputData;
 		}, OLSKLocalized)
 	},
 
 	async SetupStorageNotifications () {
-		mod._ValueStorageClient.on('sync-done', () => {
+		mod._ValueOLSKRemoteStorage.on('sync-done', () => {
 			if (!OLSK_SPEC_UI()) {
 				console.debug('sync-done', arguments);
 			}
@@ -1102,7 +1102,7 @@ const mod = {
 
 		let isOffline;
 
-		mod._ValueStorageClient.on('network-offline', () => {
+		mod._ValueOLSKRemoteStorage.on('network-offline', () => {
 			if (!OLSK_SPEC_UI()) {
 				console.debug('network-offline', arguments);
 			}
@@ -1110,7 +1110,7 @@ const mod = {
 			isOffline = true;
 		});
 
-		mod._ValueStorageClient.on('network-online', () => {
+		mod._ValueOLSKRemoteStorage.on('network-online', () => {
 			if (!OLSK_SPEC_UI()) {
 				console.debug('network-online', arguments);
 			}
@@ -1118,7 +1118,7 @@ const mod = {
 			isOffline = false;
 		});
 
-		mod._ValueStorageClient.on('error', (error) => {
+		mod._ValueOLSKRemoteStorage.on('error', (error) => {
 			if (isOffline && inputData.message === 'Sync failed: Network request failed.') {
 				return;
 			};
@@ -1129,12 +1129,12 @@ const mod = {
 		});
 
 		return new Promise(function (res, rej) {
-			return mod._ValueStorageClient.on('ready', res);
+			return mod._ValueOLSKRemoteStorage.on('ready', res);
 		});
 	},
 
 	async SetupValueDeckCachingEnabled () {
-		mod._ValueDeckCachingEnabled = (await KOMSettingAction.KOMSettingsActionProperty(mod._ValueStorageClient, 'KOMSettingDeckCachingEnabled') || {}).KOMSettingValue === 'true';
+		mod._ValueDeckCachingEnabled = (await KOMSettingAction.KOMSettingsActionProperty(mod._ValueOLSKRemoteStorage, 'KOMSettingDeckCachingEnabled') || {}).KOMSettingValue === 'true';
 	},
 
 	SetupValueCacheDeckFiguresMap () {
@@ -1146,7 +1146,7 @@ const mod = {
 	},
 
 	async SetupValueDecksAll() {
-		mod.ValueDecksAll(await Promise.all((await KOMDeckAction.KOMDeckActionList(mod._ValueStorageClient)).filter(function (e) {
+		mod.ValueDecksAll(await Promise.all((await KOMDeckAction.KOMDeckActionList(mod._ValueOLSKRemoteStorage)).filter(function (e) {
 			return typeof e === 'object'; // #patch-remotestorage-true
 		}).map(async function (deck) {
 			if (!mod._ValueCacheDeckFiguresMap[deck.KOMDeckID]) {
@@ -1162,7 +1162,7 @@ const mod = {
 			OLSKFund._OLSKFundFakeGrantResponseRandom();
 		}
 
-		mod._ValueFundClue = (await KOMSettingAction.KOMSettingsActionProperty(mod._ValueStorageClient, 'KOMSettingFundClue') || {}).KOMSettingValue;
+		mod._ValueFundClue = (await KOMSettingAction.KOMSettingsActionProperty(mod._ValueOLSKRemoteStorage, 'KOMSettingFundClue') || {}).KOMSettingValue;
 
 		await OLSKFund.OLSKFundSetupPostPay({
 			ParamWindow: window,
@@ -1170,7 +1170,7 @@ const mod = {
 			OLSKFundDispatchPersist: mod.OLSKFundDispatchPersist,
 		});
 
-		if (!mod._ValueStorageClient.connected) {
+		if (!mod._ValueOLSKRemoteStorage.connected) {
 			return;
 		}
 
@@ -1185,13 +1185,13 @@ const mod = {
 			OLSK_FUND_API_URL: 'OLSK_FUND_API_URL_SWAP_TOKEN',
 			ParamBody: {
 				OLSKPactAuthType: OLSKPact.OLSKPactAuthTypeRemoteStorage(),
-				OLSKPactAuthIdentity: mod._ValueStorageClient.remote.userAddress,
-				OLSKPactAuthProof: mod._ValueStorageClient.remote.token,
+				OLSKPactAuthIdentity: mod._ValueOLSKRemoteStorage.remote.userAddress,
+				OLSKPactAuthProof: mod._ValueOLSKRemoteStorage.remote.token,
 				OLSKPactAuthMetadata: {
 					OLSKPactAuthMetadataModuleName: KOM_Data.KOM_DataModuleName(),
 					OLSKPactAuthMetadataFolderPath: KOMDeckStorage.KOMDeckStorageCollectionPath(),
 				},
-				OLSKPactPayIdentity: mod._ValueStorageClient.remote.userAddress,
+				OLSKPactPayIdentity: mod._ValueOLSKRemoteStorage.remote.userAddress,
 				OLSKPactPayClue: mod._ValueFundClue,
 			},
 			OLSKLocalized,
@@ -1263,7 +1263,7 @@ import OLSKApropos from 'OLSKApropos';
 
 	{#if mod._ValueDeckSelected && mod._ValueBrowseVisible && !mod._ValuePlayVisible }
 		<KOMBrowse
-			KOMBrowseStorageClient={ mod._ValueStorageClient }
+			KOMBrowseStorageClient={ mod._ValueOLSKRemoteStorage }
 			KOMBrowseDeckSelected={ mod._ValueDeckSelected }
 			KOMBrowseDeckCards={ mod._ValueBrowseCards }
 			KOMBrowseDispatchEligible={ mod.KOMBrowseDispatchEligible }
@@ -1296,7 +1296,7 @@ import OLSKApropos from 'OLSKApropos';
 				<div class="OLSKToolbarElementGroup"></div>
 
 				<div class="OLSKToolbarElementGroup">
-					<OLSKStorageWidget StorageClient={ mod._ValueStorageClient } />
+					<OLSKStorageWidget StorageClient={ mod._ValueOLSKRemoteStorage } />
 				</div>
 			</div>
 		{/if}
@@ -1315,7 +1315,7 @@ import OLSKApropos from 'OLSKApropos';
 	</footer>
 {/if}
 
-{#if mod._ValueStorageClient && mod._ValueStorageClient.connected }
+{#if mod._ValueOLSKRemoteStorage && mod._ValueOLSKRemoteStorage.connected }
 	<OLSKWebView OLSKModalViewTitleText={ OLSKLocalized('OLSKFundWebViewTitleText') } OLSKWebViewURL={ mod._ValueFundURL } bind:this={ mod._OLSKWebView } DEBUG_OLSKWebViewDataSource={ OLSK_SPEC_UI() } />
 {/if}
 
