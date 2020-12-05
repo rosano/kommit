@@ -98,8 +98,8 @@ const mod = {
 			ParamMinimumTier: 1,
 			ParamCurrentProject: 'RP_004',
 			ParamBundleProjects: ['FakeBundleProject'],
-			ParamGrantTier: OLSKFund.OLSKFundTier('OLSK_FUND_PRICING_STRING_SWAP_TOKEN', mod._ValueFundGrant),
-			ParamGrantProject: mod._ValueFundGrant ? mod._ValueFundGrant.OLSKPactGrantProject : '',
+			ParamGrantTier: OLSKFund.OLSKFundTier('OLSK_FUND_PRICING_STRING_SWAP_TOKEN', mod._ValueOLSKFundGrant),
+			ParamGrantProject: mod._ValueOLSKFundGrant ? mod._ValueOLSKFundGrant.OLSKPactGrantProject : '',
 		}, inputData));
 	},
 
@@ -373,7 +373,7 @@ const mod = {
 				{
 					LCHRecipeName: 'FakeFundTier2WithNoBundle',
 					LCHRecipeCallback: function FakeFundTier2WithNoBundle () {
-						mod._ValueFundGrant = OLSKPact.OLSKPactDataGrantObjectValid({
+						mod._ValueOLSKFundGrant = OLSKPact.OLSKPactDataGrantObjectValid({
 							OLSKPactGrantContribution: 1000,
 							OLSKPactGrantFrequencyOption: OLSKPact.OLSKPactGrantFrequencyOptionYearly(),
 							OLSKPactGrantProject: Math.random().toString(),
@@ -383,7 +383,7 @@ const mod = {
 				{
 					LCHRecipeName: 'FakeFundTier2WithBundle',
 					LCHRecipeCallback: function FakeFundTier2WithBundle () {
-						mod._ValueFundGrant = OLSKPact.OLSKPactDataGrantObjectValid({
+						mod._ValueOLSKFundGrant = OLSKPact.OLSKPactDataGrantObjectValid({
 							OLSKPactGrantContribution: 1000,
 							OLSKPactGrantFrequencyOption: OLSKPact.OLSKPactGrantFrequencyOptionYearly(),
 							OLSKPactGrantProject: 'FakeBundleProject',
@@ -886,7 +886,7 @@ const mod = {
 	},
 
 	OLSKFundDispatchGrant (inputData) {
-		mod._ValueFundGrant = OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(inputData);
+		mod._ValueOLSKFundGrant = OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(inputData);
 	},
 
 	OLSKChangeDelegateCreateDeck (inputData) {
@@ -1334,7 +1334,7 @@ import OLSKApropos from 'OLSKApropos';
 			OLSKAppToolbarGuideURL={ window.OLSKCanonicalFor('KOMGuideRoute') }
 			OLSKAppToolbarFundShowProgress={ mod._ValueOLSKFundProgress }
 			OLSKAppToolbarFundLimitText={ mod._ValueDocumentRemainder }
-			OLSKAppToolbarDispatchFund={ mod._ValueFundGrant || OLSKFund.OLSKFundResponseIsPresent() ? null : mod.OLSKAppToolbarDispatchFund }
+			OLSKAppToolbarDispatchFund={ mod._ValueOLSKFundGrant || OLSKFund.OLSKFundResponseIsPresent() ? null : mod.OLSKAppToolbarDispatchFund }
 			OLSKAppToolbarStorageStatus={ mod._ValueFooterStorageStatus }
 			OLSKAppToolbarDispatchStorage={ mod.OLSKAppToolbarDispatchStorage }
 			OLSKAppToolbarDispatchLauncher={ mod.OLSKAppToolbarDispatchLauncher }
