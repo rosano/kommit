@@ -153,16 +153,16 @@ const mod = {
 					},
 				},
 				]);
-
-			items.push(...OLSKFund.OLSKFundRecipes({
-				ParamWindow: window,
-				OLSKLocalized: OLSKLocalized,
-				ParamAuthorized: !!mod._ValueFundClue,
-				OLSKFundDispatchGrant: mod.OLSKFundDispatchGrant,
-				OLSKFundDispatchPersist: mod.OLSKFundDispatchPersist,
-				ParamSpecUI: OLSK_SPEC_UI(),
-			}));
 		}
+
+		items.push(...OLSKFund.OLSKFundRecipes({
+			ParamWindow: window,
+			OLSKLocalized: OLSKLocalized,
+			ParamAuthorized: !!mod._ValueFundClue,
+			OLSKFundDispatchGrant: mod.OLSKFundDispatchGrant,
+			OLSKFundDispatchPersist: mod.OLSKFundDispatchPersist,
+			ParamSpecUI: OLSK_SPEC_UI(),
+		}));
 
 		items.push(...OLSKRemoteStorage.OLSKRemoteStorageRecipes(window, mod._ValueStorageClient, OLSKLocalized, OLSK_SPEC_UI()));
 		items.push(...OLSKServiceWorker.OLSKServiceWorkerRecipes(window, mod.DataNavigator(), OLSKLocalized, OLSK_SPEC_UI()));
