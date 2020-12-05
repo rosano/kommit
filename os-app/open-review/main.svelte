@@ -911,6 +911,10 @@ const mod = {
 
 	OLSKChangeDelegateDeleteSpacing (inputData) {},
 
+	OLSKRemoteStorageLauncherItemFakeFlipConnectedDidFinish () {
+		mod._ValueOLSKRemoteStorage = mod._ValueOLSKRemoteStorage; // #purge-svelte-force-update
+	},
+
 	// REACT
 
 	async ReactDocumentRemainder () {
