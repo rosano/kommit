@@ -311,7 +311,7 @@ describe('KOMReview_Misc', function () {
 	describe('KOMReviewLauncherItemDebugPlungeData', function test_KOMReviewLauncherItemDebugPlungeData() {
 
 		before(function () {
-			return browser.OLSKLauncherRun('FakeOLSKConnected');
+			return browser.OLSKLauncherRun('OLSKRemoteStorageLauncherItemFakeFlipConnected');
 		});
 
 		before(function () {

@@ -190,23 +190,6 @@ const mod = {
 		if (OLSK_SPEC_UI()) {
 			items.push(...[
 				{
-					LCHRecipeName: 'FakeOLSKConnected',
-					LCHRecipeCallback () {
-						mod._ValueOLSKRemoteStorage = Object.assign({}, mod._ValueOLSKRemoteStorage, mod._ValueOLSKRemoteStorage.access.scopes.reduce(function (coll, item) {
-							return {
-								[item.name]: mod._ValueOLSKRemoteStorage[item.name],
-							};
-						}, {}));
-						mod._ValueOLSKRemoteStorage.connected = true;
-						mod._ValueOLSKRemoteStorage.remote = Object.assign(mod._ValueOLSKRemoteStorage.remote, {
-							userAddress: 'alfa',
-							token: 'bravo',
-						});
-
-						window.FakeOLSKConnected = true;
-					},
-				},
-				{
 					LCHRecipeName: 'FakeOLSKChangeDelegateCreateDeck',
 					LCHRecipeCallback: async function FakeOLSKChangeDelegateCreateDeck () {
 						return mod.OLSKChangeDelegateCreateDeck(await KOMDeckAction.KOMDeckActionCreate(mod._ValueOLSKRemoteStorage, mod.FakeDeckObjectValid('FakeOLSKChangeDelegateCreateDeck')));

@@ -65,7 +65,7 @@ describe('KOMReview_Fund', function () {
 		context('connected', function () {
 
 			before(function () {
-				return browser.OLSKLauncherRun('FakeOLSKConnected');
+				return browser.OLSKLauncherRun('OLSKRemoteStorageLauncherItemFakeFlipConnected');
 			});
 
 			before(function () {
@@ -256,7 +256,7 @@ describe('KOMReview_Fund', function () {
 		});
 		
 		before(function () {
-			return browser.OLSKLauncherRun('FakeOLSKConnected');
+			return browser.OLSKLauncherRun('OLSKRemoteStorageLauncherItemFakeFlipConnected');
 		});
 
 		it('shows OLSKFundLauncherItemClearClue', function () {
@@ -274,7 +274,7 @@ describe('KOMReview_Fund', function () {
 		});
 
 		before(function () {
-			return browser.OLSKLauncherRun('FakeOLSKConnected');
+			return browser.OLSKLauncherRun('OLSKRemoteStorageLauncherItemFakeFlipConnected');
 		});
 
 		before(function () {

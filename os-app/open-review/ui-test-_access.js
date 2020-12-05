@@ -471,7 +471,7 @@ describe('KOMReview_Access', function () {
 	context('connected', function test_connected () {
 
 		before(function () {
-			return browser.OLSKLauncherRun('FakeOLSKConnected');
+			return browser.OLSKLauncherRun('OLSKRemoteStorageLauncherItemFakeFlipConnected');
 		});
 
 		it('shows KOMReviewLauncherItemDebugPlungeData', function () {
