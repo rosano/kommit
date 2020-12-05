@@ -371,16 +371,6 @@ const mod = {
 					},
 				},
 				{
-					LCHRecipeName: 'FakeFundTier2WithNoBundle',
-					LCHRecipeCallback: function FakeFundTier2WithNoBundle () {
-						mod._ValueOLSKFundGrant = OLSKPact.OLSKPactDataGrantObjectValid({
-							OLSKPactGrantContribution: 1000,
-							OLSKPactGrantFrequencyOption: OLSKPact.OLSKPactGrantFrequencyOptionYearly(),
-							OLSKPactGrantProject: Math.random().toString(),
-						});
-					},
-				},
-				{
 					LCHRecipeName: 'FakeFundTier2WithBundle',
 					LCHRecipeCallback: function FakeFundTier2WithBundle () {
 						mod._ValueOLSKFundGrant = OLSKPact.OLSKPactDataGrantObjectValid({

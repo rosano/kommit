@@ -439,7 +439,7 @@ describe('KOMReview_Fund', function () {
 		context('Tier2 no bundle', function () {
 			
 			before(function () {
-				return browser.OLSKLauncherRun('FakeFundTier2WithNoBundle');
+				return browser.OLSKLauncherRun('OLSKFundLauncherItemFakeTier2WithNoBundle');
 			});
 
 			it('hides FakeFundTier2Proxy', function () {
