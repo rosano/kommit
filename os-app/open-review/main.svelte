@@ -373,7 +373,7 @@ const mod = {
 				{
 					LCHRecipeName: 'FakeFundTier2WithNoBundle',
 					LCHRecipeCallback: function FakeFundTier2WithNoBundle () {
-						mod._ValueFundGrant = mod.FakeGrantObjectValid({
+						mod._ValueFundGrant = OLSKPact.OLSKPactDataGrantObjectValid({
 							OLSKPactGrantContribution: 1000,
 							OLSKPactGrantFrequencyOption: OLSKPact.OLSKPactGrantFrequencyOptionYearly(),
 							OLSKPactGrantProject: Math.random().toString(),
@@ -383,7 +383,7 @@ const mod = {
 				{
 					LCHRecipeName: 'FakeFundTier2WithBundle',
 					LCHRecipeCallback: function FakeFundTier2WithBundle () {
-						mod._ValueFundGrant = mod.FakeGrantObjectValid({
+						mod._ValueFundGrant = OLSKPact.OLSKPactDataGrantObjectValid({
 							OLSKPactGrantContribution: 1000,
 							OLSKPactGrantFrequencyOption: OLSKPact.OLSKPactGrantFrequencyOptionYearly(),
 							OLSKPactGrantProject: 'FakeBundleProject',
@@ -451,20 +451,6 @@ const mod = {
 				KOMChronicleDueDate: new Date(),
 			}],
 		});
-	},
-
-	FakeGrantObjectValid (inputData) {
-		return Object.assign({
-			OLSKPactGrantPublicNumbers: [Math.random().toString()],
-			OLSKPactGrantProject: Math.random().toString(),
-			OLSKPactGrantStartDate: new Date(),
-			OLSKPactGrantEndDate: new Date(),
-			OLSKPactGrantContribution: 100,
-			OLSKPactGrantFrequencyOption: OLSKPact.OLSKPactGrantFrequencyOptions()[Date.now() % OLSKPact.OLSKPactGrantFrequencyOptions().length],
-			OLSKPactGrantProcessor: OLSKPact.OLSKPactPayProcessors()[Date.now() % OLSKPact.OLSKPactPayProcessors().length],
-			OLSKPactGrantProcessorReference: Math.random().toString(),
-			OLSKPactGrantActive: true,
-		}, inputData);
 	},
 
 	// CONTROL
