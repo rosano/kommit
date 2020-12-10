@@ -1,13 +1,13 @@
 const { rejects, throws, deepEqual } = require('assert');
 
-const mainModule = require('./storage.js').default;
+const mod = require('./storage.js').default;
 const KOMDeckStorage = require('../KOMDeck/storage.js').default;
 const KOMSettingStorage = require('../KOMSetting/storage.js').default;
 
 describe('KOMCardStorageCollectionName', function test_KOMCardStorageCollectionName() {
 
 	it('returns string', function () {
-		deepEqual(mainModule.KOMCardStorageCollectionName(), 'kom_cards');
+		deepEqual(mod.KOMCardStorageCollectionName(), 'kom_cards');
 	});
 
 });
@@ -16,12 +16,12 @@ describe('KOMCardStorageCollectionPath', function test_KOMCardStorageCollectionP
 
 	it('throws if not valid', function () {
 		throws(function () {
-			mainModule.KOMCardStorageCollectionPath('');
+			mod.KOMCardStorageCollectionPath('');
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns string', function () {
-		deepEqual(mainModule.KOMCardStorageCollectionPath('alfa'), KOMDeckStorage.KOMDeckStorageFolderPath('alfa') + mainModule.KOMCardStorageCollectionName() + '/');
+		deepEqual(mod.KOMCardStorageCollectionPath('alfa'), KOMDeckStorage.KOMDeckStorageFolderPath('alfa') + mod.KOMCardStorageCollectionName() + '/');
 	});
 
 });
@@ -30,12 +30,12 @@ describe('KOMCardStorageFolderPath', function test_KOMCardStorageFolderPath() {
 
 	it('throws if param2 not valid', function () {
 		throws(function () {
-			mainModule.KOMCardStorageFolderPath({});
+			mod.KOMCardStorageFolderPath({});
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns string', function () {
-		deepEqual(mainModule.KOMCardStorageFolderPath(StubCardObjectValid()), mainModule.KOMCardStorageCollectionPath(StubDeckObjectValid().KOMDeckID) + StubCardObjectValid().KOMCardCreationDate.toJSON().split('T').shift() + '/charlie/');
+		deepEqual(mod.KOMCardStorageFolderPath(StubCardObjectValid()), mod.KOMCardStorageCollectionPath(StubDeckObjectValid().KOMDeckID) + StubCardObjectValid().KOMCardCreationDate.toJSON().split('T').shift() + '/charlie/');
 	});
 
 });
@@ -44,12 +44,12 @@ describe('KOMCardStorageObjectPath', function test_KOMCardStorageObjectPath() {
 
 	it('throws if not valid', function () {
 		throws(function () {
-			mainModule.KOMCardStorageObjectPath({});
+			mod.KOMCardStorageObjectPath({});
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns string', function () {
-		deepEqual(mainModule.KOMCardStorageObjectPath(StubCardObjectValid()), mainModule.KOMCardStorageFolderPath(StubCardObjectValid()) + 'main');
+		deepEqual(mod.KOMCardStorageObjectPath(StubCardObjectValid()), mod.KOMCardStorageFolderPath(StubCardObjectValid()) + 'main');
 	});
 
 });
@@ -58,12 +58,12 @@ describe('KOMCardStorageAudioPathFront', function test_KOMCardStorageAudioPathFr
 
 	it('throws if not valid', function () {
 		throws(function () {
-			mainModule.KOMCardStorageAudioPathFront({});
+			mod.KOMCardStorageAudioPathFront({});
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns string', function () {
-		deepEqual(mainModule.KOMCardStorageAudioPathFront(StubCardObjectValid()), mainModule.KOMCardStorageFolderPath(StubCardObjectValid()) + 'side-front/audio');
+		deepEqual(mod.KOMCardStorageAudioPathFront(StubCardObjectValid()), mod.KOMCardStorageFolderPath(StubCardObjectValid()) + 'side-front/audio');
 	});
 
 });
@@ -72,12 +72,12 @@ describe('KOMCardStorageAudioPathRear', function test_KOMCardStorageAudioPathRea
 
 	it('throws if not valid', function () {
 		throws(function () {
-			mainModule.KOMCardStorageAudioPathRear({});
+			mod.KOMCardStorageAudioPathRear({});
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns string', function () {
-		deepEqual(mainModule.KOMCardStorageAudioPathRear(StubCardObjectValid()), mainModule.KOMCardStorageFolderPath(StubCardObjectValid()) + 'side-rear/audio');
+		deepEqual(mod.KOMCardStorageAudioPathRear(StubCardObjectValid()), mod.KOMCardStorageFolderPath(StubCardObjectValid()) + 'side-rear/audio');
 	});
 
 });
@@ -86,29 +86,29 @@ describe('KOMCardStorageMatch', function test_KOMCardStorageMatch() {
 
 	it('throws error if not string', function () {
 		throws(function () {
-			mainModule.KOMCardStorageMatch(null);
+			mod.KOMCardStorageMatch(null);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns false if KOMDeckStorageObjectPath', function () {
-		deepEqual(mainModule.KOMCardStorageMatch(KOMDeckStorage.KOMDeckStorageObjectPath('alfa')), false);
+		deepEqual(mod.KOMCardStorageMatch(KOMDeckStorage.KOMDeckStorageObjectPath('alfa')), false);
 	});
 
 	it('returns false if KOMSettingStorageObjectPath', function () {
-		deepEqual(mainModule.KOMCardStorageMatch(KOMSettingStorage.KOMSettingStorageObjectPath(StubSettingObjectValid())), false);
+		deepEqual(mod.KOMCardStorageMatch(KOMSettingStorage.KOMSettingStorageObjectPath(StubSettingObjectValid())), false);
 	});
 
 	it('returns false if no KOMCardStorageCollectionPath', function () {
-		const item = mainModule.KOMCardStorageCollectionPath(StubDeckObjectValid().KOMDeckID);
-		deepEqual(mainModule.KOMCardStorageMatch(mainModule.KOMCardStorageObjectPath(StubCardObjectValid()).replace(item, item.slice(0, -2) + '/')), false);
+		const item = mod.KOMCardStorageCollectionPath(StubDeckObjectValid().KOMDeckID);
+		deepEqual(mod.KOMCardStorageMatch(mod.KOMCardStorageObjectPath(StubCardObjectValid()).replace(item, item.slice(0, -2) + '/')), false);
 	});
 
 	it('returns false if no KOMCardStorageObjectPath', function () {
-		deepEqual(mainModule.KOMCardStorageMatch(mainModule.KOMCardStorageObjectPath(StubCardObjectValid()).slice(0, -1)), false);
+		deepEqual(mod.KOMCardStorageMatch(mod.KOMCardStorageObjectPath(StubCardObjectValid()).slice(0, -1)), false);
 	});
 
 	it('returns true', function () {
-		deepEqual(mainModule.KOMCardStorageMatch(mainModule.KOMCardStorageObjectPath(StubCardObjectValid())), true);
+		deepEqual(mod.KOMCardStorageMatch(mod.KOMCardStorageObjectPath(StubCardObjectValid())), true);
 	});
 
 });
@@ -116,11 +116,11 @@ describe('KOMCardStorageMatch', function test_KOMCardStorageMatch() {
 describe('KOMCardStorageWrite', function test_KOMCardStorageWrite() {
 
 	it('rejects if not object', async function () {
-		await rejects(mainModule.KOMCardStorageWrite(KOMTestingStorageClient, null), /KOMErrorInputNotValid/);
+		await rejects(mod.KOMCardStorageWrite(KOMTestingStorageClient, null), /KOMErrorInputNotValid/);
 	});
 
 	it('returns object with KOMErrors if not valid', async function () {
-		deepEqual((await mainModule.KOMCardStorageWrite(KOMTestingStorageClient, Object.assign(StubCardObjectValid(), {
+		deepEqual((await mod.KOMCardStorageWrite(KOMTestingStorageClient, Object.assign(StubCardObjectValid(), {
 			KOMCardID: null,
 		}))).KOMErrors, {
 			KOMCardID: [
@@ -132,11 +132,11 @@ describe('KOMCardStorageWrite', function test_KOMCardStorageWrite() {
 	it('returns input', async function () {
 		const item = StubCardObjectValid();
 
-		deepEqual(await mainModule.KOMCardStorageWrite(KOMTestingStorageClient, item) === item, true);
+		deepEqual(await mod.KOMCardStorageWrite(KOMTestingStorageClient, item) === item, true);
 	});
 
 	it('leaves input unmodified', async function () {
-		deepEqual(await mainModule.KOMCardStorageWrite(KOMTestingStorageClient, StubCardObjectValid()), StubCardObjectValid());
+		deepEqual(await mod.KOMCardStorageWrite(KOMTestingStorageClient, StubCardObjectValid()), StubCardObjectValid());
 	});
 
 });
@@ -144,17 +144,17 @@ describe('KOMCardStorageWrite', function test_KOMCardStorageWrite() {
 describe('KOMCardStorageList', function test_KOMCardStorageList() {
 
 	it('rejects if not valid', async function () {
-		await rejects(mainModule.KOMCardStorageList(KOMTestingStorageClient, {}), /KOMErrorInputNotValid/);
+		await rejects(mod.KOMCardStorageList(KOMTestingStorageClient, {}), /KOMErrorInputNotValid/);
 	});
 
 	it('returns empty array if none', async function () {
-		deepEqual(await mainModule.KOMCardStorageList(KOMTestingStorageClient, StubDeckObjectValid()), {});
+		deepEqual(await mod.KOMCardStorageList(KOMTestingStorageClient, StubDeckObjectValid()), {});
 	});
 
 	it('returns existing KOMCards', async function () {
-		const item = await mainModule.KOMCardStorageWrite(KOMTestingStorageClient, StubCardObjectValid());
-		deepEqual(Object.values(await mainModule.KOMCardStorageList(KOMTestingStorageClient, StubDeckObjectValid())), [item]);
-		deepEqual(Object.keys(await mainModule.KOMCardStorageList(KOMTestingStorageClient, StubDeckObjectValid())), [item.KOMCardID]);
+		const item = await mod.KOMCardStorageWrite(KOMTestingStorageClient, StubCardObjectValid());
+		deepEqual(Object.values(await mod.KOMCardStorageList(KOMTestingStorageClient, StubDeckObjectValid())), [item]);
+		deepEqual(Object.keys(await mod.KOMCardStorageList(KOMTestingStorageClient, StubDeckObjectValid())), [item.KOMCardID]);
 	});
 
 });
@@ -162,18 +162,18 @@ describe('KOMCardStorageList', function test_KOMCardStorageList() {
 describe('KOMCardStorageDelete', function test_KOMCardStorageDelete() {
 
 	it('rejects if param1 not valid', async function () {
-		await rejects(mainModule.KOMCardStorageDelete(KOMTestingStorageClient, {}), /KOMErrorInputNotValid/);
+		await rejects(mod.KOMCardStorageDelete(KOMTestingStorageClient, {}), /KOMErrorInputNotValid/);
 	});
 
 	it('returns statusCode', async function () {
-		deepEqual(await mainModule.KOMCardStorageDelete(KOMTestingStorageClient, await mainModule.KOMCardStorageWrite(KOMTestingStorageClient, StubCardObjectValid())), {
+		deepEqual(await mod.KOMCardStorageDelete(KOMTestingStorageClient, await mod.KOMCardStorageWrite(KOMTestingStorageClient, StubCardObjectValid())), {
 			statusCode: 200,
 		});
 	});
 
 	it('deletes KOMCard', async function () {
-		await mainModule.KOMCardStorageDelete(KOMTestingStorageClient, await mainModule.KOMCardStorageWrite(KOMTestingStorageClient, StubCardObjectValid()));
-		deepEqual(await mainModule.KOMCardStorageList(KOMTestingStorageClient, StubDeckObjectValid()), {});
+		await mod.KOMCardStorageDelete(KOMTestingStorageClient, await mod.KOMCardStorageWrite(KOMTestingStorageClient, StubCardObjectValid()));
+		deepEqual(await mod.KOMCardStorageList(KOMTestingStorageClient, StubDeckObjectValid()), {});
 	});
 
 });
@@ -183,15 +183,15 @@ describe('KOMCardStorageFileWrite', function test_KOMCardStorageFileWrite() {
 	const blob = new Blob(['alfa'], { type: 'text/plain' });
 
 	it('rejects if param1 not blob', async function () {
-		await rejects(mainModule.KOMCardStorageFileWrite(KOMTestingStorageClient, 'alfa', 'bravo'), /KOMErrorInputNotValid/);
+		await rejects(mod.KOMCardStorageFileWrite(KOMTestingStorageClient, 'alfa', 'bravo'), /KOMErrorInputNotValid/);
 	});
 
 	it('rejects if param2 not path', async function () {
-		await rejects(mainModule.KOMCardStorageFileWrite(KOMTestingStorageClient, blob, null), /KOMErrorInputNotValid/);
+		await rejects(mod.KOMCardStorageFileWrite(KOMTestingStorageClient, blob, null), /KOMErrorInputNotValid/);
 	});
 
 	it('returns param1', async function () {
-		const item = await mainModule.KOMCardStorageFileWrite(KOMTestingStorageClient, blob, 'bravo');
+		const item = await mod.KOMCardStorageFileWrite(KOMTestingStorageClient, blob, 'bravo');
 
 		deepEqual(item === blob, true);
 	});
@@ -203,17 +203,17 @@ describe('KOMCardStorageFileRead', function test_KOMCardStorageFileRead() {
 	const blob = new Blob(['alfa'], { type: 'text/plain' });
 
 	it('rejects if not path', async function () {
-		await rejects(mainModule.KOMCardStorageFileRead(KOMTestingStorageClient, null), /KOMErrorInputNotValid/);
+		await rejects(mod.KOMCardStorageFileRead(KOMTestingStorageClient, null), /KOMErrorInputNotValid/);
 	});
 
 	it('returns null if non-existing', async function () {
-		deepEqual(await mainModule.KOMCardStorageFileRead(KOMTestingStorageClient, 'bravo'), null);
+		deepEqual(await mod.KOMCardStorageFileRead(KOMTestingStorageClient, 'bravo'), null);
 	});
 
 	it('returns blob', async function () {
-		await mainModule.KOMCardStorageFileWrite(KOMTestingStorageClient, blob, 'bravo');
+		await mod.KOMCardStorageFileWrite(KOMTestingStorageClient, blob, 'bravo');
 
-		deepEqual(await (await mainModule.KOMCardStorageFileRead(KOMTestingStorageClient, 'bravo')).text(), await blob.text());
+		deepEqual(await (await mod.KOMCardStorageFileRead(KOMTestingStorageClient, 'bravo')).text(), await blob.text());
 	});
 
 });
@@ -223,19 +223,19 @@ describe('KOMCardStorageFileDelete', function test_KOMCardStorageFileDelete() {
 	const blob = new Blob(['alfa'], { type: 'text/plain' });
 
 	it('rejects if not path', async function () {
-		await rejects(mainModule.KOMCardStorageFileDelete(KOMTestingStorageClient, null), /KOMErrorInputNotValid/);
+		await rejects(mod.KOMCardStorageFileDelete(KOMTestingStorageClient, null), /KOMErrorInputNotValid/);
 	});
 
 	it('returns status if non-existing', async function () {
-		deepEqual(await mainModule.KOMCardStorageFileDelete(KOMTestingStorageClient, 'bravo'), {
+		deepEqual(await mod.KOMCardStorageFileDelete(KOMTestingStorageClient, 'bravo'), {
 			statusCode: 200,
 		});
 	});
 
 	it('returns status', async function () {
-		await mainModule.KOMCardStorageFileWrite(KOMTestingStorageClient, blob, 'bravo');
+		await mod.KOMCardStorageFileWrite(KOMTestingStorageClient, blob, 'bravo');
 
-		deepEqual(await mainModule.KOMCardStorageFileDelete(KOMTestingStorageClient, 'bravo'), {
+		deepEqual(await mod.KOMCardStorageFileDelete(KOMTestingStorageClient, 'bravo'), {
 			statusCode: 200,
 		});
 	});

@@ -1,6 +1,6 @@
 const { throws, deepEqual } = require('assert');
 
-const mainModule = require('./main.js').default;
+const mod = require('./main.js').default;
 
 const offset = (function (inputData) {
 	return inputData < 10 ? `0${ inputData }` : inputData;
@@ -10,22 +10,22 @@ describe('KOMSharedGroupingDay', function test_KOMSharedGroupingDay() {
 
 	it('throws if not valid', function () {
 		throws(function () {
-			mainModule.KOMSharedGroupingDay(new Date('alfa'));
+			mod.KOMSharedGroupingDay(new Date('alfa'));
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns day in current timezone', function () {
-		deepEqual(mainModule.KOMSharedGroupingDay(new Date(`2020-05-02T12:00:00-${ offset }:00`)), '2020-05-02');
+		deepEqual(mod.KOMSharedGroupingDay(new Date(`2020-05-02T12:00:00-${ offset }:00`)), '2020-05-02');
 	});
 
 	it('previous day if before 4am', function () {
 		const date = new Date(`2020-05-02T03:59:00-${ offset }:00`);
-		deepEqual(mainModule.KOMSharedGroupingDay(date), '2020-05-01');
+		deepEqual(mod.KOMSharedGroupingDay(date), '2020-05-01');
 	});
 
 	it('same day if 4am', function () {
 		const date = new Date(`2020-05-02T04:00:00-${ offset }:00`);
-		deepEqual(mainModule.KOMSharedGroupingDay(date), '2020-05-02');
+		deepEqual(mod.KOMSharedGroupingDay(date), '2020-05-02');
 	});
 
 });
@@ -33,7 +33,7 @@ describe('KOMSharedGroupingDay', function test_KOMSharedGroupingDay() {
 describe('KOMSharedColorScheme', function test_KOMSharedColorScheme() {
 
 	it('returns array', function () {
-		deepEqual(mainModule.KOMSharedColorScheme(), [
+		deepEqual(mod.KOMSharedColorScheme(), [
 			'#252525',
 			'#636363',
 			'#969696',
@@ -47,7 +47,7 @@ describe('KOMSharedColorScheme', function test_KOMSharedColorScheme() {
 describe('KOMSharedColorUnseen', function test_KOMSharedColorUnseen() {
 
 	it('returns string', function () {
-		deepEqual(mainModule.KOMSharedColorUnseen(), mainModule.KOMSharedColorScheme()[0]);
+		deepEqual(mod.KOMSharedColorUnseen(), mod.KOMSharedColorScheme()[0]);
 	});
 
 });
@@ -55,7 +55,7 @@ describe('KOMSharedColorUnseen', function test_KOMSharedColorUnseen() {
 describe('KOMSharedColorRelearning', function test_KOMSharedColorRelearning() {
 
 	it('returns string', function () {
-		deepEqual(mainModule.KOMSharedColorRelearning(), mainModule.KOMSharedColorScheme()[1]);
+		deepEqual(mod.KOMSharedColorRelearning(), mod.KOMSharedColorScheme()[1]);
 	});
 
 });
@@ -63,7 +63,7 @@ describe('KOMSharedColorRelearning', function test_KOMSharedColorRelearning() {
 describe('KOMSharedColorDeveloping', function test_KOMSharedColorDeveloping() {
 
 	it('returns string', function () {
-		deepEqual(mainModule.KOMSharedColorDeveloping(), mainModule.KOMSharedColorScheme()[2]);
+		deepEqual(mod.KOMSharedColorDeveloping(), mod.KOMSharedColorScheme()[2]);
 	});
 
 });
@@ -71,7 +71,7 @@ describe('KOMSharedColorDeveloping', function test_KOMSharedColorDeveloping() {
 describe('KOMSharedColorMature', function test_KOMSharedColorMature() {
 
 	it('returns string', function () {
-		deepEqual(mainModule.KOMSharedColorMature(), mainModule.KOMSharedColorScheme()[3]);
+		deepEqual(mod.KOMSharedColorMature(), mod.KOMSharedColorScheme()[3]);
 	});
 
 });
@@ -79,7 +79,7 @@ describe('KOMSharedColorMature', function test_KOMSharedColorMature() {
 describe('KOMSharedColorRetired', function test_KOMSharedColorRetired() {
 
 	it('returns string', function () {
-		deepEqual(mainModule.KOMSharedColorRetired(), mainModule.KOMSharedColorScheme()[4]);
+		deepEqual(mod.KOMSharedColorRetired(), mod.KOMSharedColorScheme()[4]);
 	});
 
 });

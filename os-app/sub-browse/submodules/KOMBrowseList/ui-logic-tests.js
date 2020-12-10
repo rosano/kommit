@@ -1,6 +1,6 @@
 const { throws, deepEqual } = require('assert');
 
-const mainModule = require('./ui-logic.js');
+const mod = require('./ui-logic.js');
 
 describe('KOMBrowseListItemAccessibilitySummary', function test_KOMBrowseListItemAccessibilitySummary() {
 
@@ -11,16 +11,16 @@ describe('KOMBrowseListItemAccessibilitySummary', function test_KOMBrowseListIte
 
 	it('throws if not object', function () {
 		throws(function () {
-			mainModule.KOMBrowseListItemAccessibilitySummary(null);
+			mod.KOMBrowseListItemAccessibilitySummary(null);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns KOMCardFrontText', function () {
-		deepEqual(mainModule.KOMBrowseListItemAccessibilitySummary(item), 'bravo');
+		deepEqual(mod.KOMBrowseListItemAccessibilitySummary(item), 'bravo');
 	});
 
 	it('returns KOMBrowseListItemUntitledText if no KOMCardFrontText', function () {
-		deepEqual(mainModule.KOMBrowseListItemAccessibilitySummary(Object.assign(item, {
+		deepEqual(mod.KOMBrowseListItemAccessibilitySummary(Object.assign(item, {
 			KOMCardFrontText: undefined,
 		}), function (inputData) {
 			return inputData;

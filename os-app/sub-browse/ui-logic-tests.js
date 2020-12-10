@@ -1,6 +1,6 @@
 const { throws, deepEqual } = require('assert');
 
-const mainModule = require('./ui-logic.js').default;
+const mod = require('./ui-logic.js').default;
 
 const kTesting = {
 	uCard(inputData = {}) {
@@ -25,11 +25,11 @@ describe('KOMBrowseSort', function test_KOMBrowseSort() {
 	};
 
 	it('sorts by KOMCardModificationDate descending', function () {
-		deepEqual([item1, item2].sort(mainModule.KOMBrowseSort), [item2, item1]);
+		deepEqual([item1, item2].sort(mod.KOMBrowseSort), [item2, item1]);
 	});
 
 	it('sorts by KOMCardCreationDate descending if no KOMCardModificationDate', function () {
-		deepEqual([item1, item2].sort(mainModule.KOMBrowseSort), [item2, item1]);
+		deepEqual([item1, item2].sort(mod.KOMBrowseSort), [item2, item1]);
 	});
 
 });
@@ -38,12 +38,12 @@ describe('KOMBrowseFilterFunction', function test_KOMBrowseFilterFunction() {
 
 	it('throws error if not string', function () {
 		throws(function () {
-			mainModule.KOMBrowseFilterFunction(null);
+			mod.KOMBrowseFilterFunction(null);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns function', function () {
-		deepEqual(typeof mainModule.KOMBrowseFilterFunction('alfa'), 'function');
+		deepEqual(typeof mod.KOMBrowseFilterFunction('alfa'), 'function');
 	});
 
 	context('function', function () {
@@ -51,13 +51,13 @@ describe('KOMBrowseFilterFunction', function test_KOMBrowseFilterFunction() {
 		context('KOMCardFrontText', function () {
 
 			it('returns false if not OLSKStringMatch', function () {
-				deepEqual(mainModule.KOMBrowseFilterFunction('alfa')(kTesting.uCard({
+				deepEqual(mod.KOMBrowseFilterFunction('alfa')(kTesting.uCard({
 					KOMCardFrontText: 'bravo',
 				})), false);
 			});
 
 			it('returns true', function () {
-				deepEqual(mainModule.KOMBrowseFilterFunction('alf')(kTesting.uCard({
+				deepEqual(mod.KOMBrowseFilterFunction('alf')(kTesting.uCard({
 					KOMCardFrontText: 'álfa',
 				})), true);
 			});
@@ -67,13 +67,13 @@ describe('KOMBrowseFilterFunction', function test_KOMBrowseFilterFunction() {
 		context('KOMCardRearText', function () {
 
 			it('returns false if not OLSKStringMatch', function () {
-				deepEqual(mainModule.KOMBrowseFilterFunction('alfa')(kTesting.uCard({
+				deepEqual(mod.KOMBrowseFilterFunction('alfa')(kTesting.uCard({
 					KOMCardRearText: 'bravo',
 				})), false);
 			});
 
 			it('returns true', function () {
-				deepEqual(mainModule.KOMBrowseFilterFunction('alf')(kTesting.uCard({
+				deepEqual(mod.KOMBrowseFilterFunction('alf')(kTesting.uCard({
 					KOMCardRearText: 'álfa',
 				})), true);
 			});
@@ -83,13 +83,13 @@ describe('KOMBrowseFilterFunction', function test_KOMBrowseFilterFunction() {
 		context('KOMCardTags', function () {
 
 			it('returns false if not OLSKStringMatch', function () {
-				deepEqual(mainModule.KOMBrowseFilterFunction('alfa')(kTesting.uCard({
+				deepEqual(mod.KOMBrowseFilterFunction('alfa')(kTesting.uCard({
 					KOMCardTags: ['bravo'],
 				})), false);
 			});
 
 			it('returns true', function () {
-				deepEqual(mainModule.KOMBrowseFilterFunction('alf')(kTesting.uCard({
+				deepEqual(mod.KOMBrowseFilterFunction('alf')(kTesting.uCard({
 					KOMCardTags: ['álfa'],
 				})), true);
 			});
@@ -99,13 +99,13 @@ describe('KOMBrowseFilterFunction', function test_KOMBrowseFilterFunction() {
 		context('KOMCardNotes', function () {
 
 			it('returns false if not OLSKStringMatch', function () {
-				deepEqual(mainModule.KOMBrowseFilterFunction('alfa')(kTesting.uCard({
+				deepEqual(mod.KOMBrowseFilterFunction('alfa')(kTesting.uCard({
 					KOMCardNotes: 'bravo',
 				})), false);
 			});
 
 			it('returns true', function () {
-				deepEqual(mainModule.KOMBrowseFilterFunction('alf')(kTesting.uCard({
+				deepEqual(mod.KOMBrowseFilterFunction('alf')(kTesting.uCard({
 					KOMCardNotes: 'álfa',
 				})), true);
 			});
@@ -120,23 +120,23 @@ describe('KOMBrowseExactMatchFirst', function test_KOMBrowseExactMatchFirst() {
 
 	it('throws error if param1 not string', function () {
 		throws(function () {
-			mainModule.KOMBrowseExactMatchFirst(null, []);
+			mod.KOMBrowseExactMatchFirst(null, []);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('throws error if param2 not array', function () {
 		throws(function () {
-			mainModule.KOMBrowseExactMatchFirst('', null);
+			mod.KOMBrowseExactMatchFirst('', null);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns array', function () {
-		deepEqual(mainModule.KOMBrowseExactMatchFirst('alfa', []), []);
+		deepEqual(mod.KOMBrowseExactMatchFirst('alfa', []), []);
 	});
 
 	it('creates copy', function () {
 		const item = [];
-		deepEqual(mainModule.KOMBrowseExactMatchFirst('alfa', item) !== item, true);
+		deepEqual(mod.KOMBrowseExactMatchFirst('alfa', item) !== item, true);
 	});
 
 	context('KOMCardFrontText', function () {
@@ -147,7 +147,7 @@ describe('KOMBrowseExactMatchFirst', function test_KOMBrowseExactMatchFirst() {
 			}), kTesting.uCard({
 				KOMCardFrontText: 'álf',
 			})];
-			deepEqual(mainModule.KOMBrowseExactMatchFirst('alf', items), items.reverse());
+			deepEqual(mod.KOMBrowseExactMatchFirst('alf', items), items.reverse());
 		});
 
 	});
@@ -160,7 +160,7 @@ describe('KOMBrowseExactMatchFirst', function test_KOMBrowseExactMatchFirst() {
 			}), kTesting.uCard({
 				KOMCardRearText: 'álf',
 			})];
-			deepEqual(mainModule.KOMBrowseExactMatchFirst('alf', items), items.reverse());
+			deepEqual(mod.KOMBrowseExactMatchFirst('alf', items), items.reverse());
 		});
 
 	});

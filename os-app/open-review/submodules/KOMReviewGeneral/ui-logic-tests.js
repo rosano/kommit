@@ -1,6 +1,6 @@
 const { throws, deepEqual } = require('assert');
 
-const mainModule = require('./ui-logic.js').default;
+const mod = require('./ui-logic.js').default;
 
 const KOMSharedLogic = require('../../../_shared/KOMSharedLogic/main.js').default;
 
@@ -15,7 +15,7 @@ const uGroup = function (param1, param2 = []) {
 describe('KOMReviewGeneralTableDays', function test_KOMReviewGeneralTableDays() {
 
 	it('returns number', function () {
-		deepEqual(mainModule.KOMReviewGeneralTableDays(), 7);
+		deepEqual(mod.KOMReviewGeneralTableDays(), 7);
 	});
 
 });
@@ -23,7 +23,7 @@ describe('KOMReviewGeneralTableDays', function test_KOMReviewGeneralTableDays() 
 describe('KOMReviewGeneralHistoricalColors', function test_KOMReviewGeneralHistoricalColors() {
 
 	it('returns array', function () {
-		deepEqual(mainModule.KOMReviewGeneralHistoricalColors(), [
+		deepEqual(mod.KOMReviewGeneralHistoricalColors(), [
 			KOMSharedLogic.KOMSharedColorMature(),
 			KOMSharedLogic.KOMSharedColorDeveloping(),
 			KOMSharedLogic.KOMSharedColorRelearning(),
@@ -36,7 +36,7 @@ describe('KOMReviewGeneralHistoricalColors', function test_KOMReviewGeneralHisto
 describe('KOMReviewGeneralCollectionColors', function test_KOMReviewGeneralCollectionColors() {
 
 	it('returns array', function () {
-		deepEqual(mainModule.KOMReviewGeneralCollectionColors(), [
+		deepEqual(mod.KOMReviewGeneralCollectionColors(), [
 			KOMSharedLogic.KOMSharedColorUnseen(),
 			KOMSharedLogic.KOMSharedColorDeveloping(),
 			KOMSharedLogic.KOMSharedColorMature(),

@@ -1,6 +1,6 @@
 const { rejects, deepEqual } = require('assert');
 
-const mainModule = require('./action.js').default;
+const mod = require('./action.js').default;
 const KOMCardStorage = require('./storage.js').default;
 const KOMSpacingStorage = require('../KOMSpacing/storage.js').default;
 const OLSKRemoteStorage = require('OLSKRemoteStorage');
@@ -50,15 +50,15 @@ const kTesting = {
 describe('KOMCardActionCreate', function test_KOMCardActionCreate() {
 
 	it('rejects if param1 not object', async function () {
-		await rejects(mainModule.KOMCardActionCreate(KOMTestingStorageClient, null, kTesting.StubDeckObjectValid()), /KOMErrorInputNotValid/);
+		await rejects(mod.KOMCardActionCreate(KOMTestingStorageClient, null, kTesting.StubDeckObjectValid()), /KOMErrorInputNotValid/);
 	});
 
 	it('rejects if param2 not valid', async function () {
-		await rejects(mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), {}), /KOMErrorInputNotValid/);
+		await rejects(mod.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), {}), /KOMErrorInputNotValid/);
 	});
 
 	it('returns object with KOMErrors if param1 not valid', async function () {
-		deepEqual((await mainModule.KOMCardActionCreate(KOMTestingStorageClient, Object.assign(kTesting.StubCardObject(), {
+		deepEqual((await mod.KOMCardActionCreate(KOMTestingStorageClient, Object.assign(kTesting.StubCardObject(), {
 			KOMCardFrontText: null,
 		}), kTesting.StubDeckObjectValid())).KOMErrors, {
 			KOMCardFrontText: [
@@ -68,7 +68,7 @@ describe('KOMCardActionCreate', function test_KOMCardActionCreate() {
 	});
 
 	it('returns KOMCard', async function () {
-		let item = await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObjectValid());
+		let item = await mod.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObjectValid());
 
 		deepEqual(item, Object.assign(kTesting.StubCardObject(), {
 			KOMCardID: item.KOMCardID,
@@ -80,17 +80,17 @@ describe('KOMCardActionCreate', function test_KOMCardActionCreate() {
 
 	it('sets KOMCardID to unique value', async function () {
 		let items = await kTesting.uSerial(Array.from(Array(10)).map(async function (e) {
-			return (await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObjectValid())).KOMCardID;
+			return (await mod.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObjectValid())).KOMCardID;
 		}));
 		deepEqual([...(new Set(items))], items);
 	});
 
 	it('sets KOMCardCreationDate to now', async function () {
-		deepEqual(new Date() - (await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObjectValid())).KOMCardCreationDate < 100, true);
+		deepEqual(new Date() - (await mod.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObjectValid())).KOMCardCreationDate < 100, true);
 	});
 
 	it('sets KOMCardModificationDate to now', async function () {
-		deepEqual(new Date() - (await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObjectValid())).KOMCardModificationDate < 100, true);
+		deepEqual(new Date() - (await mod.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObjectValid())).KOMCardModificationDate < 100, true);
 	});
 
 });
@@ -98,11 +98,11 @@ describe('KOMCardActionCreate', function test_KOMCardActionCreate() {
 describe('KOMCardActionUpdate', function test_KOMCardActionUpdate() {
 
 	it('rejects if not object', async function () {
-		await rejects(mainModule.KOMCardActionUpdate(KOMTestingStorageClient, null), /KOMErrorInputNotValid/);
+		await rejects(mod.KOMCardActionUpdate(KOMTestingStorageClient, null), /KOMErrorInputNotValid/);
 	});
 
 	it('returns object with KOMErrors if not valid', async function () {
-		deepEqual((await mainModule.KOMCardActionUpdate(KOMTestingStorageClient, Object.assign(await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObjectValid()), {
+		deepEqual((await mod.KOMCardActionUpdate(KOMTestingStorageClient, Object.assign(await mod.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObjectValid()), {
 			KOMCardID: null,
 		}))).KOMErrors, {
 			KOMCardID: [
@@ -112,9 +112,9 @@ describe('KOMCardActionUpdate', function test_KOMCardActionUpdate() {
 	});
 
 	it('returns KOMCard', async function () {
-		let itemCreated = await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObjectValid());
+		let itemCreated = await mod.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObjectValid());
 
-		let item = await mainModule.KOMCardActionUpdate(KOMTestingStorageClient, itemCreated);
+		let item = await mod.KOMCardActionUpdate(KOMTestingStorageClient, itemCreated);
 
 		deepEqual(item, Object.assign(itemCreated, {
 			KOMCardModificationDate: item.KOMCardModificationDate,
@@ -122,11 +122,11 @@ describe('KOMCardActionUpdate', function test_KOMCardActionUpdate() {
 	});
 
 	it('sets KOMCardModificationDate to now', async function () {
-		deepEqual(new Date() - (await mainModule.KOMCardActionUpdate(KOMTestingStorageClient, await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObjectValid()))).KOMCardModificationDate < 100, true);
+		deepEqual(new Date() - (await mod.KOMCardActionUpdate(KOMTestingStorageClient, await mod.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObjectValid()))).KOMCardModificationDate < 100, true);
 	});
 
 	it('writes inputData if not found', async function () {
-		let item = await mainModule.KOMCardActionUpdate(KOMTestingStorageClient, Object.assign(kTesting.StubCardObject(), {
+		let item = await mod.KOMCardActionUpdate(KOMTestingStorageClient, Object.assign(kTesting.StubCardObject(), {
 			KOMCardID: 'alfa',
 			KOMCardCreationDate: new Date(),
 			KOMCardDeckID: kTesting.StubDeckObjectValid().KOMDeckID,
@@ -144,33 +144,33 @@ describe('KOMCardActionUpdate', function test_KOMCardActionUpdate() {
 describe('KOMCardActionDelete', function test_KOMCardActionDelete() {
 
 	it('rejects if param1 not valid', async function () {
-		await rejects(mainModule.KOMCardActionDelete(KOMTestingStorageClient, {}), /KOMErrorInputNotValid/);
+		await rejects(mod.KOMCardActionDelete(KOMTestingStorageClient, {}), /KOMErrorInputNotValid/);
 	});
 
 	it('rejects if param2 not valid', async function () {
-		await rejects(mainModule.KOMCardActionDelete(KOMTestingStorageClient, kTesting.StubCardObject(), {}), /KOMErrorInputNotValid/);
+		await rejects(mod.KOMCardActionDelete(KOMTestingStorageClient, kTesting.StubCardObject(), {}), /KOMErrorInputNotValid/);
 	});
 
 	it('returns statusCode', async function () {
-		deepEqual(await mainModule.KOMCardActionDelete(KOMTestingStorageClient, await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObjectValid())), {
+		deepEqual(await mod.KOMCardActionDelete(KOMTestingStorageClient, await mod.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObjectValid())), {
 			statusCode: 200,
 		});
 	});
 
 	it('deletes KOMCard', async function () {
-		await mainModule.KOMCardActionDelete(KOMTestingStorageClient, await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObjectValid()));
-		deepEqual(await mainModule.KOMCardActionList(KOMTestingStorageClient, kTesting.StubDeckObjectValid()), []);
+		await mod.KOMCardActionDelete(KOMTestingStorageClient, await mod.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObjectValid()));
+		deepEqual(await mod.KOMCardActionList(KOMTestingStorageClient, kTesting.StubDeckObjectValid()), []);
 	});
 
 	it('deletes KOMSpacings', async function () {
-		const item = await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObjectValid());
+		const item = await mod.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObjectValid());
 
 		await KOMSpacingStorage.KOMSpacingStorageWrite(KOMTestingStorageClient, {
 			KOMSpacingID: `${ item.KOMCardID }-forward`,
 			KOMSpacingDueDate: new Date(),
 		}, item, kTesting.StubDeckObjectValid());
 
-		await mainModule.KOMCardActionDelete(KOMTestingStorageClient, item);
+		await mod.KOMCardActionDelete(KOMTestingStorageClient, item);
 		deepEqual(await KOMSpacingStorage.KOMSpacingStorageList(KOMTestingStorageClient, item, kTesting.StubDeckObjectValid()), {
 			KOMCardSpacingForward: Object.assign(kTesting.StubSpacingObjectValid(), {
 				KOMSpacingID: `${ item.KOMCardID }-forward`,
@@ -186,13 +186,13 @@ describe('KOMCardActionDelete', function test_KOMCardActionDelete() {
 describe('KOMCardActionList', function test_KOMCardActionList() {
 
 	it('returns array', async function () {
-		deepEqual(await mainModule.KOMCardActionList(KOMTestingStorageClient, kTesting.StubDeckObjectValid()), []);
+		deepEqual(await mod.KOMCardActionList(KOMTestingStorageClient, kTesting.StubDeckObjectValid()), []);
 	});
 
 	it('returns array with existing KOMCards', async function () {
-		let item = await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObjectValid());
+		let item = await mod.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObjectValid());
 
-		deepEqual(await mainModule.KOMCardActionList(KOMTestingStorageClient, kTesting.StubDeckObjectValid()), [item]);
+		deepEqual(await mod.KOMCardActionList(KOMTestingStorageClient, kTesting.StubDeckObjectValid()), [item]);
 	});
 
 });
@@ -202,38 +202,38 @@ describe('KOMCardActionAudioCapture', function test_KOMCardActionAudioCapture() 
 	const blob = new Blob(['alfa'], { type: 'text/plain' });
 
 	it('rejects if param1 not valid', async function () {
-		await rejects(mainModule.KOMCardActionAudioCapture(KOMTestingStorageClient, 'alfa', blob, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()), /KOMErrorInputNotValid/);
+		await rejects(mod.KOMCardActionAudioCapture(KOMTestingStorageClient, 'alfa', blob, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()), /KOMErrorInputNotValid/);
 	});
 
 	it('rejects if param2 not blob', async function () {
-		await rejects(mainModule.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardFrontAudio', null, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()), /KOMErrorInputNotValid/);
+		await rejects(mod.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardFrontAudio', null, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()), /KOMErrorInputNotValid/);
 	});
 
 	it('rejects if param3 not valid', async function () {
-		await rejects(mainModule.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardFrontAudio', blob, {}, kTesting.StubDeckObjectValid()), /KOMErrorInputNotValid/);
+		await rejects(mod.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardFrontAudio', blob, {}, kTesting.StubDeckObjectValid()), /KOMErrorInputNotValid/);
 	});
 
 	it('rejects if param4 not valid', async function () {
-		await rejects(mainModule.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardFrontAudio', blob, kTesting.StubCardObjectValid(), {}), /KOMErrorInputNotValid/);
+		await rejects(mod.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardFrontAudio', blob, kTesting.StubCardObjectValid(), {}), /KOMErrorInputNotValid/);
 	});
 
 	it('returns param3', async function () {
-		let item = await mainModule.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObjectValid());
+		let item = await mod.KOMCardActionCreate(KOMTestingStorageClient, kTesting.StubCardObject(), kTesting.StubDeckObjectValid());
 
-		deepEqual(await mainModule.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardFrontAudio', blob, item, kTesting.StubDeckObjectValid()) === item, true);
+		deepEqual(await mod.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardFrontAudio', blob, item, kTesting.StubDeckObjectValid()) === item, true);
 	});
 
 	context('KOMCardFrontAudio', function () {
 
 		it('writes KOMCardStorageAudioPathFront', async function () {
-			await mainModule.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardFrontAudio', blob, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid());
+			await mod.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardFrontAudio', blob, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid());
 			deepEqual(await OLSKRemoteStorage.OLSKRemoteStorageListingRecursive(OLSKRemoteStorage._OLSKRemoteStoragePrivateClient(KOMTestingStorageClient.kommit), ''), [
 				KOMCardStorage.KOMCardStorageAudioPathFront(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()),
 			]);
 		});
 
 		it('sets KOMCardFrontAudio to true', async function () {
-			deepEqual((await mainModule.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardFrontAudio', blob, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid())).KOMCardFrontAudio, true);
+			deepEqual((await mod.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardFrontAudio', blob, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid())).KOMCardFrontAudio, true);
 		});
 
 	});
@@ -241,14 +241,14 @@ describe('KOMCardActionAudioCapture', function test_KOMCardActionAudioCapture() 
 	context('KOMCardRearAudio', function () {
 
 		it('writes KOMCardStorageAudioPathRear', async function () {
-			await mainModule.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardRearAudio', blob, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid());
+			await mod.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardRearAudio', blob, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid());
 			deepEqual(await OLSKRemoteStorage.OLSKRemoteStorageListingRecursive(OLSKRemoteStorage._OLSKRemoteStoragePrivateClient(KOMTestingStorageClient.kommit), ''), [
 				KOMCardStorage.KOMCardStorageAudioPathRear(kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()),
 			]);
 		});
 
 		it('sets KOMCardRearAudio to true', async function () {
-			deepEqual((await mainModule.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardRearAudio', blob, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid())).KOMCardRearAudio, true);
+			deepEqual((await mod.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardRearAudio', blob, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid())).KOMCardRearAudio, true);
 		});
 
 	});
@@ -260,31 +260,31 @@ describe('KOMCardActionAudioClear', function test_KOMCardActionAudioClear() {
 	const blob = new Blob(['alfa'], { type: 'text/plain' });
 
 	it('rejects if param1 not valid', async function () {
-		await rejects(mainModule.KOMCardActionAudioClear(KOMTestingStorageClient, 'alfa', kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()), /KOMErrorInputNotValid/);
+		await rejects(mod.KOMCardActionAudioClear(KOMTestingStorageClient, 'alfa', kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()), /KOMErrorInputNotValid/);
 	});
 
 	it('rejects if param2 not valid', async function () {
-		await rejects(mainModule.KOMCardActionAudioClear(KOMTestingStorageClient, 'KOMCardFrontAudio', {}, kTesting.StubDeckObjectValid()), /KOMErrorInputNotValid/);
+		await rejects(mod.KOMCardActionAudioClear(KOMTestingStorageClient, 'KOMCardFrontAudio', {}, kTesting.StubDeckObjectValid()), /KOMErrorInputNotValid/);
 	});
 
 	it('rejects if param3 not valid', async function () {
-		await rejects(mainModule.KOMCardActionAudioClear(KOMTestingStorageClient, 'KOMCardFrontAudio', kTesting.StubCardObjectValid(), {}), /KOMErrorInputNotValid/);
+		await rejects(mod.KOMCardActionAudioClear(KOMTestingStorageClient, 'KOMCardFrontAudio', kTesting.StubCardObjectValid(), {}), /KOMErrorInputNotValid/);
 	});
 
 	it('returns param2', async function () {
 		const item = kTesting.StubCardObjectValid();
 
-		await mainModule.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardFrontAudio', blob, item, kTesting.StubDeckObjectValid());
+		await mod.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardFrontAudio', blob, item, kTesting.StubDeckObjectValid());
 
-		deepEqual(await mainModule.KOMCardActionAudioClear(KOMTestingStorageClient, 'KOMCardFrontAudio', item, kTesting.StubDeckObjectValid()) === item, true);
+		deepEqual(await mod.KOMCardActionAudioClear(KOMTestingStorageClient, 'KOMCardFrontAudio', item, kTesting.StubDeckObjectValid()) === item, true);
 	});
 
 	context('KOMCardFrontAudio', function () {
 
 		it('deletes KOMCardStorageAudioPathFront', async function () {
-			await mainModule.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardFrontAudio', blob, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid());
+			await mod.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardFrontAudio', blob, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid());
 
-			await mainModule.KOMCardActionAudioClear(KOMTestingStorageClient, 'KOMCardFrontAudio', kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid());
+			await mod.KOMCardActionAudioClear(KOMTestingStorageClient, 'KOMCardFrontAudio', kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid());
 
 			deepEqual(await OLSKRemoteStorage.OLSKRemoteStorageListingRecursive(OLSKRemoteStorage._OLSKRemoteStoragePrivateClient(KOMTestingStorageClient.kommit), ''), []);
 		});
@@ -292,9 +292,9 @@ describe('KOMCardActionAudioClear', function test_KOMCardActionAudioClear() {
 		it('deletes KOMCardFrontAudio', async function () {
 			const item = kTesting.StubCardObjectValid();
 
-			await mainModule.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardFrontAudio', blob, item, kTesting.StubDeckObjectValid());
+			await mod.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardFrontAudio', blob, item, kTesting.StubDeckObjectValid());
 
-			deepEqual(typeof (await mainModule.KOMCardActionAudioClear(KOMTestingStorageClient, 'KOMCardFrontAudio', item, kTesting.StubDeckObjectValid())).KOMCardFrontAudio, 'undefined');
+			deepEqual(typeof (await mod.KOMCardActionAudioClear(KOMTestingStorageClient, 'KOMCardFrontAudio', item, kTesting.StubDeckObjectValid())).KOMCardFrontAudio, 'undefined');
 		});
 
 	});
@@ -302,9 +302,9 @@ describe('KOMCardActionAudioClear', function test_KOMCardActionAudioClear() {
 	context('KOMCardRearAudio', function () {
 
 		it('deletes KOMCardStorageAudioPathRear', async function () {
-			await mainModule.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardRearAudio', blob, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid());
+			await mod.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardRearAudio', blob, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid());
 
-			await mainModule.KOMCardActionAudioClear(KOMTestingStorageClient, 'KOMCardRearAudio', kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid());
+			await mod.KOMCardActionAudioClear(KOMTestingStorageClient, 'KOMCardRearAudio', kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid());
 
 			deepEqual(await OLSKRemoteStorage.OLSKRemoteStorageListingRecursive(OLSKRemoteStorage._OLSKRemoteStoragePrivateClient(KOMTestingStorageClient.kommit), ''), []);
 		});
@@ -312,9 +312,9 @@ describe('KOMCardActionAudioClear', function test_KOMCardActionAudioClear() {
 		it('deletes KOMCardRearAudio', async function () {
 			const item = kTesting.StubCardObjectValid();
 
-			await mainModule.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardRearAudio', blob, item, kTesting.StubDeckObjectValid());
+			await mod.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardRearAudio', blob, item, kTesting.StubDeckObjectValid());
 
-			deepEqual(typeof (await mainModule.KOMCardActionAudioClear(KOMTestingStorageClient, 'KOMCardRearAudio', item, kTesting.StubDeckObjectValid())).KOMCardRearAudio, 'undefined');
+			deepEqual(typeof (await mod.KOMCardActionAudioClear(KOMTestingStorageClient, 'KOMCardRearAudio', item, kTesting.StubDeckObjectValid())).KOMCardRearAudio, 'undefined');
 		});
 
 	});
@@ -326,15 +326,15 @@ describe('KOMCardActionAudioFetch', function test_KOMCardActionAudioFetch() {
 	const blob = new Blob(['alfa'], { type: 'text/plain' });
 
 	it('rejects if param1 not valid', async function () {
-		await rejects(mainModule.KOMCardActionAudioFetch(KOMTestingStorageClient, 'alfa', kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()), /KOMErrorInputNotValid/);
+		await rejects(mod.KOMCardActionAudioFetch(KOMTestingStorageClient, 'alfa', kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()), /KOMErrorInputNotValid/);
 	});
 
 	it('rejects if param2 not valid', async function () {
-		await rejects(mainModule.KOMCardActionAudioFetch(KOMTestingStorageClient, 'KOMCardFrontAudio', {}, kTesting.StubDeckObjectValid()), /KOMErrorInputNotValid/);
+		await rejects(mod.KOMCardActionAudioFetch(KOMTestingStorageClient, 'KOMCardFrontAudio', {}, kTesting.StubDeckObjectValid()), /KOMErrorInputNotValid/);
 	});
 
 	it('rejects if param3 not valid', async function () {
-		await rejects(mainModule.KOMCardActionAudioFetch(KOMTestingStorageClient, 'KOMCardFrontAudio', kTesting.StubCardObjectValid(), {}), /KOMErrorInputNotValid/);
+		await rejects(mod.KOMCardActionAudioFetch(KOMTestingStorageClient, 'KOMCardFrontAudio', kTesting.StubCardObjectValid(), {}), /KOMErrorInputNotValid/);
 	});
 
 	context('KOMCardFrontAudio', function () {
@@ -342,9 +342,9 @@ describe('KOMCardActionAudioFetch', function test_KOMCardActionAudioFetch() {
 		it('returns blob', async function () {
 			const item = kTesting.StubCardObjectValid();
 
-			await mainModule.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardFrontAudio', blob, item, kTesting.StubDeckObjectValid());
+			await mod.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardFrontAudio', blob, item, kTesting.StubDeckObjectValid());
 
-			deepEqual(await mainModule.KOMCardActionAudioFetch(KOMTestingStorageClient, 'KOMCardFrontAudio', item, kTesting.StubDeckObjectValid()), blob);
+			deepEqual(await mod.KOMCardActionAudioFetch(KOMTestingStorageClient, 'KOMCardFrontAudio', item, kTesting.StubDeckObjectValid()), blob);
 		});
 
 	});
@@ -354,9 +354,9 @@ describe('KOMCardActionAudioFetch', function test_KOMCardActionAudioFetch() {
 		it('returns blob', async function () {
 			const item = kTesting.StubCardObjectValid();
 
-			await mainModule.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardRearAudio', blob, item, kTesting.StubDeckObjectValid());
+			await mod.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardRearAudio', blob, item, kTesting.StubDeckObjectValid());
 
-			deepEqual(await mainModule.KOMCardActionAudioFetch(KOMTestingStorageClient, 'KOMCardRearAudio', item, kTesting.StubDeckObjectValid()), blob);
+			deepEqual(await mod.KOMCardActionAudioFetch(KOMTestingStorageClient, 'KOMCardRearAudio', item, kTesting.StubDeckObjectValid()), blob);
 		});
 
 	});
@@ -368,23 +368,23 @@ describe('KOMCardActionAudioList', function test_KOMCardActionAudioList() {
 	const blob = new Blob(['alfa'], { type: 'text/plain' });
 
 	it('rejects if param1 not valid', async function() {
-		await rejects(mainModule.KOMCardActionAudioList(KOMTestingStorageClient, {}, kTesting.StubDeckObjectValid()), /KOMErrorInputNotValid/);
+		await rejects(mod.KOMCardActionAudioList(KOMTestingStorageClient, {}, kTesting.StubDeckObjectValid()), /KOMErrorInputNotValid/);
 	});
 
 	it('rejects if param2 not valid', async function () {
-		await rejects(mainModule.KOMCardActionAudioList(KOMTestingStorageClient, kTesting.StubCardObjectValid(), {}), /KOMErrorInputNotValid/);
+		await rejects(mod.KOMCardActionAudioList(KOMTestingStorageClient, kTesting.StubCardObjectValid(), {}), /KOMErrorInputNotValid/);
 	});
 
 	it('returns object', async function () {
-		deepEqual(await mainModule.KOMCardActionAudioList(KOMTestingStorageClient, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()), {});
+		deepEqual(await mod.KOMCardActionAudioList(KOMTestingStorageClient, kTesting.StubCardObjectValid(), kTesting.StubDeckObjectValid()), {});
 	});
 
 	it('returns KOMCardFrontAudio', async function () {
 		const item = kTesting.StubCardObjectValid();
 
-		await mainModule.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardFrontAudio', blob, item, kTesting.StubDeckObjectValid());
+		await mod.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardFrontAudio', blob, item, kTesting.StubDeckObjectValid());
 
-		deepEqual(await mainModule.KOMCardActionAudioList(KOMTestingStorageClient, item, kTesting.StubDeckObjectValid()), {
+		deepEqual(await mod.KOMCardActionAudioList(KOMTestingStorageClient, item, kTesting.StubDeckObjectValid()), {
 			KOMCardFrontAudio: blob,
 		});
 	});
@@ -392,9 +392,9 @@ describe('KOMCardActionAudioList', function test_KOMCardActionAudioList() {
 	it('returns KOMCardRearAudio', async function () {
 		const item = kTesting.StubCardObjectValid();
 
-		await mainModule.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardRearAudio', blob, item, kTesting.StubDeckObjectValid());
+		await mod.KOMCardActionAudioCapture(KOMTestingStorageClient, 'KOMCardRearAudio', blob, item, kTesting.StubDeckObjectValid());
 
-		deepEqual(await mainModule.KOMCardActionAudioList(KOMTestingStorageClient, item, kTesting.StubDeckObjectValid()), {
+		deepEqual(await mod.KOMCardActionAudioList(KOMTestingStorageClient, item, kTesting.StubDeckObjectValid()), {
 			KOMCardRearAudio: blob,
 		});
 	});

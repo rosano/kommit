@@ -1,6 +1,6 @@
 const { throws, rejects, deepEqual } = require('assert');
 
-const mainModule = require('./main.js').default;
+const mod = require('./main.js').default;
 const KOMDeckAction = require('../KOMDeck/action.js').default;
 const KOMCardAction = require('../KOMCard/action.js').default;
 const KOMSpacingStorage = require('../KOMSpacing/storage.js').default;
@@ -8,7 +8,7 @@ const KOMSpacingStorage = require('../KOMSpacing/storage.js').default;
 describe('KOM_DataModuleName', function test_KOM_DataModuleName() {
 
 	it('returns string', function () {
-		deepEqual(mainModule.KOM_DataModuleName(), 'kommit');
+		deepEqual(mod.KOM_DataModuleName(), 'kommit');
 	});
 
 });
@@ -17,13 +17,13 @@ describe('KOM_DataImport', function test_KOM_DataImport() {
 
 	it('throws if not array', function () {
 		throws(function () {
-			mainModule.KOM_DataImport(KOMTestingStorageClient, null);
+			mod.KOM_DataImport(KOMTestingStorageClient, null);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('throws if not filled', function () {
 		throws(function () {
-			mainModule.KOM_DataImport(KOMTestingStorageClient, []);
+			mod.KOM_DataImport(KOMTestingStorageClient, []);
 		}, /KOMErrorInputNotValid/);
 	});
 
@@ -43,13 +43,13 @@ describe('KOM_DataImport', function test_KOM_DataImport() {
 	context('KOMDeck', function () {
 		
 		it('rejects if not valid', async function () {
-			await rejects(mainModule.KOM_DataImport(KOMTestingStorageClient, [uDeck({
+			await rejects(mod.KOM_DataImport(KOMTestingStorageClient, [uDeck({
 				KOMDeckName: null,
 			})]), /KOMErrorInputNotValid/);
 		});
 
 		it('returns array', async function () {
-			const item = await mainModule.KOM_DataImport(KOMTestingStorageClient, [uDeck()]);
+			const item = await mod.KOM_DataImport(KOMTestingStorageClient, [uDeck()]);
 
 			deepEqual(item, [StubDeckObjectValid({
 				KOMDeckID: item[0].KOMDeckID,
@@ -59,13 +59,13 @@ describe('KOM_DataImport', function test_KOM_DataImport() {
 		});
 
 		it('removes $KOMDeckCards', async function () {
-			const item = await mainModule.KOM_DataImport(KOMTestingStorageClient, [uDeck()]);
+			const item = await mod.KOM_DataImport(KOMTestingStorageClient, [uDeck()]);
 
 			deepEqual(item[0].$KOMDeckCards, undefined);
 		});
 
 		it('creates KOMDeck objects', async function () {
-			const item = await mainModule.KOM_DataImport(KOMTestingStorageClient, [uDeck()]);
+			const item = await mod.KOM_DataImport(KOMTestingStorageClient, [uDeck()]);
 
 			deepEqual(await KOMDeckAction.KOMDeckActionList(KOMTestingStorageClient), item);
 		});
@@ -75,13 +75,13 @@ describe('KOM_DataImport', function test_KOM_DataImport() {
 	context('$KOMDeckCards', function () {
 		
 		it('rejects if not array', async function () {
-			await rejects(mainModule.KOM_DataImport(KOMTestingStorageClient, [uDeck({
+			await rejects(mod.KOM_DataImport(KOMTestingStorageClient, [uDeck({
 				$KOMDeckCards: null,
 			})]), /KOMErrorInputNotValid/);
 		});
 
 		it('rejects if not valid', async function () {
-			await rejects(mainModule.KOM_DataImport(KOMTestingStorageClient, [uDeck({
+			await rejects(mod.KOM_DataImport(KOMTestingStorageClient, [uDeck({
 				$KOMDeckCards: [StubCardObjectValid({
 					KOMCardFrontText: null,
 				})],
@@ -94,7 +94,7 @@ describe('KOM_DataImport', function test_KOM_DataImport() {
 			delete item.KOMCardID;
 			delete item.KOMCardDeckID;
 
-			const list = await KOMCardAction.KOMCardActionList(KOMTestingStorageClient, (await mainModule.KOM_DataImport(KOMTestingStorageClient, [uDeck({
+			const list = await KOMCardAction.KOMCardActionList(KOMTestingStorageClient, (await mod.KOM_DataImport(KOMTestingStorageClient, [uDeck({
 				$KOMDeckCards: [item],
 			})]))[0]);
 
@@ -109,7 +109,7 @@ describe('KOM_DataImport', function test_KOM_DataImport() {
 	context('$KOMCardSpacingForward', function () {
 		
 		it('rejects if not valid', async function () {
-			await rejects(mainModule.KOM_DataImport(KOMTestingStorageClient, [uDeck({
+			await rejects(mod.KOM_DataImport(KOMTestingStorageClient, [uDeck({
 				$KOMDeckCards: [uCard({
 					$KOMCardSpacingForward: StubSpacingObjectValid({
 						KOMSpacingChronicles: null,
@@ -129,7 +129,7 @@ describe('KOM_DataImport', function test_KOM_DataImport() {
 			delete card.KOMCardID;
 			delete card.KOMCardDeckID;
 
-			const deck = (await mainModule.KOM_DataImport(KOMTestingStorageClient, [uDeck({
+			const deck = (await mod.KOM_DataImport(KOMTestingStorageClient, [uDeck({
 				$KOMDeckCards: [card],
 			})]))[0];
 
@@ -143,7 +143,7 @@ describe('KOM_DataImport', function test_KOM_DataImport() {
 	context('$KOMCardSpacingBackward', function () {
 		
 		it('rejects if not valid', async function () {
-			await rejects(mainModule.KOM_DataImport(KOMTestingStorageClient, [uDeck({
+			await rejects(mod.KOM_DataImport(KOMTestingStorageClient, [uDeck({
 				$KOMDeckCards: [uCard({
 					$KOMCardSpacingBackward: StubSpacingObjectValid({
 						KOMSpacingChronicles: null,
@@ -163,7 +163,7 @@ describe('KOM_DataImport', function test_KOM_DataImport() {
 			delete card.KOMCardID;
 			delete card.KOMCardDeckID;
 
-			const deck = (await mainModule.KOM_DataImport(KOMTestingStorageClient, [uDeck({
+			const deck = (await mod.KOM_DataImport(KOMTestingStorageClient, [uDeck({
 				$KOMDeckCards: [card],
 			})]))[0];
 
@@ -180,30 +180,30 @@ describe('KOM_DataExport', function test_KOM_DataExport() {
 
 	it('throws if not array', function () {
 		throws(function () {
-			mainModule.KOM_DataExport(KOMTestingStorageClient, null);
+			mod.KOM_DataExport(KOMTestingStorageClient, null);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('throws if not filled', function () {
 		throws(function () {
-			mainModule.KOM_DataExport(KOMTestingStorageClient, []);
+			mod.KOM_DataExport(KOMTestingStorageClient, []);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns array', async function () {
-		deepEqual(Array.isArray(await mainModule.KOM_DataExport(KOMTestingStorageClient, [StubDeckObjectValid()])), true);
+		deepEqual(Array.isArray(await mod.KOM_DataExport(KOMTestingStorageClient, [StubDeckObjectValid()])), true);
 	});
 
 	it('copies input', async function () {
 		const item = StubDeckObjectValid();
-		deepEqual((await mainModule.KOM_DataExport(KOMTestingStorageClient, [item]))[0] !== item, true);
+		deepEqual((await mod.KOM_DataExport(KOMTestingStorageClient, [item]))[0] !== item, true);
 	});
 
 	it('strips dynamic attributes', async function () {
 		const item = StubDeckObjectValid({
 			$alfa: 'bravo',
 		});
-		deepEqual((await mainModule.KOM_DataExport(KOMTestingStorageClient, [item]))[0].$alfa, undefined);
+		deepEqual((await mod.KOM_DataExport(KOMTestingStorageClient, [item]))[0].$alfa, undefined);
 	});
 
 	context('$KOMDeckCards', function () {
@@ -211,7 +211,7 @@ describe('KOM_DataExport', function test_KOM_DataExport() {
 		it('sets to KOMCard objects', async function () {
 			const item = await KOMCardAction.KOMCardActionCreate(KOMTestingStorageClient, StubCardObjectValid(), StubDeckObjectValid());
 
-			deepEqual(await mainModule.KOM_DataExport(KOMTestingStorageClient, [StubDeckObjectValid()]), [Object.assign(StubDeckObjectValid(), {
+			deepEqual(await mod.KOM_DataExport(KOMTestingStorageClient, [StubDeckObjectValid()]), [Object.assign(StubDeckObjectValid(), {
 				$KOMDeckCards: await KOMCardAction.KOMCardActionList(KOMTestingStorageClient, StubDeckObjectValid()),
 			})]);
 		});
@@ -226,7 +226,7 @@ describe('KOM_DataExport', function test_KOM_DataExport() {
 				KOMSpacingChronicles: [StubChronicleObjectValid()],
 			}), StubCardObjectValid(), StubDeckObjectValid());
 
-			deepEqual((await mainModule.KOM_DataExport(KOMTestingStorageClient, [StubDeckObjectValid()]))[0].$KOMDeckCards[0].$KOMCardSpacingForward, spacing);
+			deepEqual((await mod.KOM_DataExport(KOMTestingStorageClient, [StubDeckObjectValid()]))[0].$KOMDeckCards[0].$KOMCardSpacingForward, spacing);
 		});
 	
 	});
@@ -240,7 +240,7 @@ describe('KOM_DataExport', function test_KOM_DataExport() {
 				KOMSpacingChronicles: [StubChronicleObjectValid()],
 			}), StubCardObjectValid(), StubDeckObjectValid());
 
-			deepEqual((await mainModule.KOM_DataExport(KOMTestingStorageClient, [StubDeckObjectValid()]))[0].$KOMDeckCards[0].$KOMCardSpacingBackward, spacing);
+			deepEqual((await mod.KOM_DataExport(KOMTestingStorageClient, [StubDeckObjectValid()]))[0].$KOMDeckCards[0].$KOMCardSpacingBackward, spacing);
 		});
 	
 	});

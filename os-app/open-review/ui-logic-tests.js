@@ -1,6 +1,6 @@
 const { throws, deepEqual } = require('assert');
 
-const mainModule = require('./ui-logic.js').default;
+const mod = require('./ui-logic.js').default;
 
 const KOMPlayLogic = require('../sub-play/ui-logic.js').default;
 const KOMSharedLogic = require('../_shared/KOMSharedLogic/main.js').default;
@@ -41,7 +41,7 @@ const kTesting = {
 	},
 	StubReviewObjectValid() {
 		return {
-			KOMReviewScheme: mainModule.KOMReviewSchemeReviewing(),
+			KOMReviewScheme: mod.KOMReviewSchemeReviewing(),
 		};
 	},
 	StubPastDate() {
@@ -68,17 +68,17 @@ describe('KOMReviewDocumentCount', function test_KOMReviewDocumentCount() {
 
 	it('throws if not array', function () {
 		throws(function () {
-			mainModule.KOMReviewDocumentCount(null);
+			mod.KOMReviewDocumentCount(null);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns number', function () {
-		deepEqual(mainModule.KOMReviewDocumentCount([]), 0);
+		deepEqual(mod.KOMReviewDocumentCount([]), 0);
 	});
 
 	it('counts no parent objects', function () {
 		const parents = uRandomInt();
-		deepEqual(mainModule.KOMReviewDocumentCount(Array.from(Array(parents))), 0);
+		deepEqual(mod.KOMReviewDocumentCount(Array.from(Array(parents))), 0);
 	});
 
 	context('child objects', function () {
@@ -86,7 +86,7 @@ describe('KOMReviewDocumentCount', function test_KOMReviewDocumentCount() {
 		it('counts $KOMDeckCards if present in param2', function () {
 			const parents = uRandomInt();
 			const children = uRandomInt();
-			deepEqual(mainModule.KOMReviewDocumentCount(Array.from(Array(parents)).map(function (e, KOMDeckID) {
+			deepEqual(mod.KOMReviewDocumentCount(Array.from(Array(parents)).map(function (e, KOMDeckID) {
 				return {
 					KOMDeckID,
 				};
@@ -102,7 +102,7 @@ describe('KOMReviewDocumentCount', function test_KOMReviewDocumentCount() {
 		it('counts $KOMReviewChartCompositionCollectionData', function () {
 			const parents = uRandomInt();
 			const children = uRandomInt();
-			deepEqual(mainModule.KOMReviewDocumentCount(Array.from(Array(parents)).map(function () {
+			deepEqual(mod.KOMReviewDocumentCount(Array.from(Array(parents)).map(function () {
 				return {
 					$KOMReviewChartCompositionCollectionData: {
 						KOMSpacingGroupingTotal: children,
@@ -119,24 +119,24 @@ describe('KOMReviewSpacingsToday', function test_KOMReviewSpacingsToday() {
 
 	it('throws if not valid', function () {
 		throws(function () {
-			mainModule.KOMReviewSpacingsToday(null);
+			mod.KOMReviewSpacingsToday(null);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns array', function () {
-		deepEqual(mainModule.KOMReviewSpacingsToday([]), []);
+		deepEqual(mod.KOMReviewSpacingsToday([]), []);
 	});
 
 	it('includes unseen', function () {
 		const item = kTesting.StubSpacingObjectValid();
-		deepEqual(mainModule.KOMReviewSpacingsToday([item]), [item]);
+		deepEqual(mod.KOMReviewSpacingsToday([item]), [item]);
 	});
 
 	it('includes learning', function () {
 		const item = Object.assign(kTesting.StubSpacingObjectValid(), {
 			KOMSpacingIsLearning: true,
 		});
-		deepEqual(mainModule.KOMReviewSpacingsToday([item]), [item]);
+		deepEqual(mod.KOMReviewSpacingsToday([item]), [item]);
 	});
 
 	it('includes reviewing due past', function () {
@@ -144,7 +144,7 @@ describe('KOMReviewSpacingsToday', function test_KOMReviewSpacingsToday() {
 			KOMSpacingInterval: 1,
 			KOMSpacingDueDate: new Date(Date.now() - 1000 * 60 * 60 * 24 * 3),
 		});
-		deepEqual(mainModule.KOMReviewSpacingsToday([item]), [item]);
+		deepEqual(mod.KOMReviewSpacingsToday([item]), [item]);
 	});
 
 	it('includes reviewing due present', function () {
@@ -152,11 +152,11 @@ describe('KOMReviewSpacingsToday', function test_KOMReviewSpacingsToday() {
 			KOMSpacingInterval: 1,
 			KOMSpacingDueDate: new Date(),
 		});
-		deepEqual(mainModule.KOMReviewSpacingsToday([item]), [item]);
+		deepEqual(mod.KOMReviewSpacingsToday([item]), [item]);
 	});
 
 	it('excludes reviewing due future', function () {
-		deepEqual(mainModule.KOMReviewSpacingsToday([Object.assign(kTesting.StubSpacingObjectValid(), {
+		deepEqual(mod.KOMReviewSpacingsToday([Object.assign(kTesting.StubSpacingObjectValid(), {
 			KOMSpacingInterval: 1,
 			KOMSpacingDueDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3),
 		})]), []);
@@ -167,7 +167,7 @@ describe('KOMReviewSpacingsToday', function test_KOMReviewSpacingsToday() {
 describe('KOMReviewSchemeReviewing', function test_KOMReviewSchemeReviewing() {
 
 	it('returns string', function () {
-		deepEqual(mainModule.KOMReviewSchemeReviewing(), 'kKOMReviewSchemeReviewing');
+		deepEqual(mod.KOMReviewSchemeReviewing(), 'kKOMReviewSchemeReviewing');
 	});
 
 });
@@ -175,7 +175,7 @@ describe('KOMReviewSchemeReviewing', function test_KOMReviewSchemeReviewing() {
 describe('KOMReviewSchemeUnseen', function test_KOMReviewSchemeUnseen() {
 
 	it('returns string', function () {
-		deepEqual(mainModule.KOMReviewSchemeUnseen(), 'kKOMReviewSchemeUnseen');
+		deepEqual(mod.KOMReviewSchemeUnseen(), 'kKOMReviewSchemeUnseen');
 	});
 
 });
@@ -183,7 +183,7 @@ describe('KOMReviewSchemeUnseen', function test_KOMReviewSchemeUnseen() {
 describe('KOMReviewSchemeMixed', function test_KOMReviewSchemeMixed() {
 
 	it('returns string', function () {
-		deepEqual(mainModule.KOMReviewSchemeMixed(), 'kKOMReviewSchemeMixed');
+		deepEqual(mod.KOMReviewSchemeMixed(), 'kKOMReviewSchemeMixed');
 	});
 
 });
@@ -191,10 +191,10 @@ describe('KOMReviewSchemeMixed', function test_KOMReviewSchemeMixed() {
 describe('KOMReviewSchemes', function test_KOMReviewSchemes() {
 
 	it('returns string', function () {
-		deepEqual(mainModule.KOMReviewSchemes(), [
-			mainModule.KOMReviewSchemeReviewing(),
-			mainModule.KOMReviewSchemeUnseen(),
-			mainModule.KOMReviewSchemeMixed(),
+		deepEqual(mod.KOMReviewSchemes(), [
+			mod.KOMReviewSchemeReviewing(),
+			mod.KOMReviewSchemeUnseen(),
+			mod.KOMReviewSchemeMixed(),
 		]);
 	});
 
@@ -204,12 +204,12 @@ describe('KOMReviewModelErrorsFor', function test_KOMReviewModelErrorsFor() {
 
 	it('throws error if not object', function () {
 		throws(function () {
-			mainModule.KOMReviewModelErrorsFor(null);
+			mod.KOMReviewModelErrorsFor(null);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns object if KOMReviewScheme not valid', function () {
-		deepEqual(mainModule.KOMReviewModelErrorsFor(Object.assign(kTesting.StubReviewObjectValid(), {
+		deepEqual(mod.KOMReviewModelErrorsFor(Object.assign(kTesting.StubReviewObjectValid(), {
 			KOMReviewScheme: 'alfa',
 		})), {
 			KOMReviewScheme: [
@@ -219,13 +219,13 @@ describe('KOMReviewModelErrorsFor', function test_KOMReviewModelErrorsFor() {
 	});
 
 	it('returns null', function () {
-		deepEqual(mainModule.KOMReviewModelErrorsFor(kTesting.StubReviewObjectValid()), null);
+		deepEqual(mod.KOMReviewModelErrorsFor(kTesting.StubReviewObjectValid()), null);
 	});
 
 	context('KOMReviewMaxUnseenCards', function () {
 
 		it('returns object if not number', function () {
-			deepEqual(mainModule.KOMReviewModelErrorsFor(Object.assign(kTesting.StubReviewObjectValid(), {
+			deepEqual(mod.KOMReviewModelErrorsFor(Object.assign(kTesting.StubReviewObjectValid(), {
 				KOMReviewMaxUnseenCards: '1',
 			})), {
 				KOMReviewMaxUnseenCards: [
@@ -235,7 +235,7 @@ describe('KOMReviewModelErrorsFor', function test_KOMReviewModelErrorsFor() {
 		});
 
 		it('returns object if 0', function () {
-			deepEqual(mainModule.KOMReviewModelErrorsFor(Object.assign(kTesting.StubReviewObjectValid(), {
+			deepEqual(mod.KOMReviewModelErrorsFor(Object.assign(kTesting.StubReviewObjectValid(), {
 				KOMReviewMaxUnseenCards: 0,
 			})), {
 				KOMReviewMaxUnseenCards: [
@@ -245,7 +245,7 @@ describe('KOMReviewModelErrorsFor', function test_KOMReviewModelErrorsFor() {
 		});
 
 		it('returns object if negative', function () {
-			deepEqual(mainModule.KOMReviewModelErrorsFor(Object.assign(kTesting.StubReviewObjectValid(), {
+			deepEqual(mod.KOMReviewModelErrorsFor(Object.assign(kTesting.StubReviewObjectValid(), {
 				KOMReviewMaxUnseenCards: -1,
 			})), {
 				KOMReviewMaxUnseenCards: [
@@ -255,8 +255,8 @@ describe('KOMReviewModelErrorsFor', function test_KOMReviewModelErrorsFor() {
 		});
 
 		it('returns object if KOMReviewScheme KOMReviewSchemeUnseen', function () {
-			deepEqual(mainModule.KOMReviewModelErrorsFor(Object.assign(kTesting.StubReviewObjectValid(), {
-				KOMReviewScheme: mainModule.KOMReviewSchemeUnseen(),
+			deepEqual(mod.KOMReviewModelErrorsFor(Object.assign(kTesting.StubReviewObjectValid(), {
+				KOMReviewScheme: mod.KOMReviewSchemeUnseen(),
 			})), {
 				KOMReviewMaxUnseenCards: [
 					'KOMErrorNotDefined',
@@ -265,8 +265,8 @@ describe('KOMReviewModelErrorsFor', function test_KOMReviewModelErrorsFor() {
 		});
 
 		it('returns object if KOMReviewScheme KOMReviewSchemeMixed', function () {
-			deepEqual(mainModule.KOMReviewModelErrorsFor(Object.assign(kTesting.StubReviewObjectValid(), {
-				KOMReviewScheme: mainModule.KOMReviewSchemeMixed(),
+			deepEqual(mod.KOMReviewModelErrorsFor(Object.assign(kTesting.StubReviewObjectValid(), {
+				KOMReviewScheme: mod.KOMReviewSchemeMixed(),
 			})), {
 				KOMReviewMaxUnseenCards: [
 					'KOMErrorNotDefined',
@@ -275,7 +275,7 @@ describe('KOMReviewModelErrorsFor', function test_KOMReviewModelErrorsFor() {
 		});
 
 		it('returns null', function () {
-			deepEqual(mainModule.KOMReviewModelErrorsFor(Object.assign(kTesting.StubReviewObjectValid(), {
+			deepEqual(mod.KOMReviewModelErrorsFor(Object.assign(kTesting.StubReviewObjectValid(), {
 				KOMReviewMaxUnseenCards: 1,
 			})), null);
 		});
@@ -308,33 +308,33 @@ describe('KOMReviewFilter', function test_KOMReviewFilter() {
 
 	it('throws if param1 not array', function () {
 		throws(function () {
-			mainModule.KOMReviewFilter(null, kTesting.StubReviewObjectValid(), kTesting.StubDeckObjectValid());
+			mod.KOMReviewFilter(null, kTesting.StubReviewObjectValid(), kTesting.StubDeckObjectValid());
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('throws if param2 not valid', function () {
 		throws(function () {
-			mainModule.KOMReviewFilter([], {}, kTesting.StubDeckObjectValid());
+			mod.KOMReviewFilter([], {}, kTesting.StubDeckObjectValid());
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('throws if param3 not valid', function () {
 		throws(function () {
-			mainModule.KOMReviewFilter([], kTesting.StubReviewObjectValid(), {});
+			mod.KOMReviewFilter([], kTesting.StubReviewObjectValid(), {});
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns array', function () {
-		deepEqual(mainModule.KOMReviewFilter([], kTesting.StubReviewObjectValid(), kTesting.StubDeckObjectValid()), []);
+		deepEqual(mod.KOMReviewFilter([], kTesting.StubReviewObjectValid(), kTesting.StubDeckObjectValid()), []);
 	});
 
 	it('excludes if KOMCardIsRetired', function () {
-		deepEqual(mainModule.KOMReviewFilter(uItems().map(function (e) {
+		deepEqual(mod.KOMReviewFilter(uItems().map(function (e) {
 			e.$KOMSpacingCard.KOMCardIsRetired = true;
 
 			return e;
 		}), Object.assign(kTesting.StubReviewObjectValid(), {
-			KOMReviewScheme: mainModule.KOMReviewSchemeMixed(),
+			KOMReviewScheme: mod.KOMReviewSchemeMixed(),
 			KOMReviewMaxUnseenCards: Infinity,
 		}), kTesting.StubDeckObjectValid()), []);
 	});
@@ -342,45 +342,45 @@ describe('KOMReviewFilter', function test_KOMReviewFilter() {
 	context('KOMReviewScheme', function () {
 
 		it('excludes unseen if KOMReviewSchemeReviewing', function () {
-			deepEqual(mainModule.KOMReviewFilter(uItems(), Object.assign(kTesting.StubReviewObjectValid(), {
-				KOMReviewScheme: mainModule.KOMReviewSchemeReviewing(),
+			deepEqual(mod.KOMReviewFilter(uItems(), Object.assign(kTesting.StubReviewObjectValid(), {
+				KOMReviewScheme: mod.KOMReviewSchemeReviewing(),
 			}), kTesting.StubDeckObjectValid()), []);
 		});
 
 		it('includes reviewing if KOMReviewSchemeReviewing', function () {
 			const items = uItems(true);
-			deepEqual(mainModule.KOMReviewFilter(items, Object.assign(kTesting.StubReviewObjectValid(), {
-				KOMReviewScheme: mainModule.KOMReviewSchemeReviewing(),
+			deepEqual(mod.KOMReviewFilter(items, Object.assign(kTesting.StubReviewObjectValid(), {
+				KOMReviewScheme: mod.KOMReviewSchemeReviewing(),
 			}), kTesting.StubDeckObjectValid()), items);
 		});
 
 		it('excludes reviewing if KOMReviewSchemeUnseen', function () {
-			deepEqual(mainModule.KOMReviewFilter(uItems(true), Object.assign(kTesting.StubReviewObjectValid(), {
-				KOMReviewScheme: mainModule.KOMReviewSchemeUnseen(),
+			deepEqual(mod.KOMReviewFilter(uItems(true), Object.assign(kTesting.StubReviewObjectValid(), {
+				KOMReviewScheme: mod.KOMReviewSchemeUnseen(),
 				KOMReviewMaxUnseenCards: Infinity,
 			}), kTesting.StubDeckObjectValid()), []);
 		});
 
 		it('includes unseen if KOMReviewSchemeUnseen', function () {
 			const items = uItems();
-			deepEqual(mainModule.KOMReviewFilter(items, Object.assign(kTesting.StubReviewObjectValid(), {
-				KOMReviewScheme: mainModule.KOMReviewSchemeUnseen(),
+			deepEqual(mod.KOMReviewFilter(items, Object.assign(kTesting.StubReviewObjectValid(), {
+				KOMReviewScheme: mod.KOMReviewSchemeUnseen(),
 				KOMReviewMaxUnseenCards: Infinity,
 			}), kTesting.StubDeckObjectValid()), items);
 		});
 
 		it('includes reviewing if KOMReviewSchemeMixed', function () {
 			const items = uItems(true);
-			deepEqual(mainModule.KOMReviewFilter(items, Object.assign(kTesting.StubReviewObjectValid(), {
-				KOMReviewScheme: mainModule.KOMReviewSchemeMixed(),
+			deepEqual(mod.KOMReviewFilter(items, Object.assign(kTesting.StubReviewObjectValid(), {
+				KOMReviewScheme: mod.KOMReviewSchemeMixed(),
 				KOMReviewMaxUnseenCards: Infinity,
 			}), kTesting.StubDeckObjectValid()), items);
 		});
 
 		it('includes unseen if KOMReviewSchemeMixed', function () {
 			const items = uItems();
-			deepEqual(mainModule.KOMReviewFilter(items, Object.assign(kTesting.StubReviewObjectValid(), {
-				KOMReviewScheme: mainModule.KOMReviewSchemeMixed(),
+			deepEqual(mod.KOMReviewFilter(items, Object.assign(kTesting.StubReviewObjectValid(), {
+				KOMReviewScheme: mod.KOMReviewSchemeMixed(),
 				KOMReviewMaxUnseenCards: Infinity,
 			}), kTesting.StubDeckObjectValid()), items);
 		});
@@ -391,24 +391,24 @@ describe('KOMReviewFilter', function test_KOMReviewFilter() {
 
 		it('includes all if KOMReviewSchemeReviewing', function () {
 			const items = uItems(true);
-			deepEqual(mainModule.KOMReviewFilter(items, Object.assign(kTesting.StubReviewObjectValid(), {
-				KOMReviewScheme: mainModule.KOMReviewSchemeReviewing(),
+			deepEqual(mod.KOMReviewFilter(items, Object.assign(kTesting.StubReviewObjectValid(), {
+				KOMReviewScheme: mod.KOMReviewSchemeReviewing(),
 				KOMReviewMaxUnseenCards: Infinity,
 			}), kTesting.StubDeckObjectValid()), items);
 		});
 
 		it('excludes unseen beyond KOMReviewMaxUnseenCards if KOMReviewSchemeUnseen', function () {
 			const items = uItems();
-			deepEqual(mainModule.KOMReviewFilter(items, Object.assign(kTesting.StubReviewObjectValid(), {
-				KOMReviewScheme: mainModule.KOMReviewSchemeUnseen(),
+			deepEqual(mod.KOMReviewFilter(items, Object.assign(kTesting.StubReviewObjectValid(), {
+				KOMReviewScheme: mod.KOMReviewSchemeUnseen(),
 				KOMReviewMaxUnseenCards: 5,
 			}), kTesting.StubDeckObjectValid()), items.slice(0, 10));
 		});
 
 		it('excludes unseen beyond KOMReviewMaxUnseenCards if and KOMReviewSchemeMixed', function () {
 			const items = uItems(true).concat(uItems());
-			deepEqual(mainModule.KOMReviewFilter(items, Object.assign(kTesting.StubReviewObjectValid(), {
-				KOMReviewScheme: mainModule.KOMReviewSchemeMixed(),
+			deepEqual(mod.KOMReviewFilter(items, Object.assign(kTesting.StubReviewObjectValid(), {
+				KOMReviewScheme: mod.KOMReviewSchemeMixed(),
 				KOMReviewMaxUnseenCards: 5,
 			}), kTesting.StubDeckObjectValid()), items.slice(0, 30));
 		});
@@ -420,8 +420,8 @@ describe('KOMReviewFilter', function test_KOMReviewFilter() {
 		it('excludes backward if true', function () {
 			const items = uItems();
 
-			deepEqual(mainModule.KOMReviewFilter(items, Object.assign(kTesting.StubReviewObjectValid(), {
-				KOMReviewScheme: mainModule.KOMReviewSchemeUnseen(),
+			deepEqual(mod.KOMReviewFilter(items, Object.assign(kTesting.StubReviewObjectValid(), {
+				KOMReviewScheme: mod.KOMReviewSchemeUnseen(),
 				KOMReviewMaxUnseenCards: 10,
 			}), Object.assign(kTesting.StubDeckObjectValid(), {
 				KOMDeckIsForwardOnly: true,
@@ -451,24 +451,24 @@ describe('KOMReviewRetireCards', function test_KOMReviewRetireCards() {
 
 	it('throws if param1 not valid', function () {
 		throws(function () {
-			mainModule.KOMReviewRetireCards({}, []);
+			mod.KOMReviewRetireCards({}, []);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('throws if param2 not array', function () {
 		throws(function () {
-			mainModule.KOMReviewRetireCards(StubDeckObjectValid(), null);
+			mod.KOMReviewRetireCards(StubDeckObjectValid(), null);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns array', function () {
-		deepEqual(mainModule.KOMReviewRetireCards(StubDeckObjectValid(), []), []);
+		deepEqual(mod.KOMReviewRetireCards(StubDeckObjectValid(), []), []);
 	});
 
 	it('excludes if no KOMDeckRetireCardsMonths', function () {
 		const KOMDeckRetireCardsMonths = parseInt(Math.random() * 10);
 		
-		deepEqual(mainModule.KOMReviewRetireCards(StubDeckObjectValid({
+		deepEqual(mod.KOMReviewRetireCards(StubDeckObjectValid({
 			KOMDeckRetireCardsMonths: 0,
 		}), [uSpacing({
 			KOMSpacingID: 'alfa-forward',
@@ -484,7 +484,7 @@ describe('KOMReviewRetireCards', function test_KOMReviewRetireCards() {
 	it('excludes if KOMDeckIsForwardOnly and under threshold ', function () {
 		const KOMDeckRetireCardsMonths = parseInt(Math.random() * 10);
 		
-		deepEqual(mainModule.KOMReviewRetireCards(StubDeckObjectValid({
+		deepEqual(mod.KOMReviewRetireCards(StubDeckObjectValid({
 			KOMDeckRetireCardsMonths,
 			KOMDeckIsForwardOnly: true,
 		}), [uSpacing({
@@ -497,7 +497,7 @@ describe('KOMReviewRetireCards', function test_KOMReviewRetireCards() {
 	it('excludes if one under threshold', function () {
 		const KOMDeckRetireCardsMonths = parseInt(Math.random() * 10);
 		
-		deepEqual(mainModule.KOMReviewRetireCards(StubDeckObjectValid({
+		deepEqual(mod.KOMReviewRetireCards(StubDeckObjectValid({
 			KOMDeckRetireCardsMonths,
 		}), [uSpacing({
 			KOMSpacingID: 'alfa-forward',
@@ -514,7 +514,7 @@ describe('KOMReviewRetireCards', function test_KOMReviewRetireCards() {
 		const KOMDeckRetireCardsMonths = parseInt(Math.random() * 10);
 		const $KOMSpacingCard = {};
 		
-		deepEqual(mainModule.KOMReviewRetireCards(StubDeckObjectValid({
+		deepEqual(mod.KOMReviewRetireCards(StubDeckObjectValid({
 			KOMDeckRetireCardsMonths,
 		}), [uSpacing({
 			KOMSpacingID: 'alfa-forward',
@@ -533,12 +533,12 @@ describe('KOMReviewDeckSort', function test_KOMReviewDeckSort() {
 
 	it('throws if not array', function () {
 		throws(function () {
-			mainModule.KOMReviewDeckSort(null);
+			mod.KOMReviewDeckSort(null);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns array', function () {
-		deepEqual(mainModule.KOMReviewDeckSort([]), []);
+		deepEqual(mod.KOMReviewDeckSort([]), []);
 	});
 
 	it('returns array', function () {
@@ -550,7 +550,7 @@ describe('KOMReviewDeckSort', function test_KOMReviewDeckSort() {
 				KOMDeckName: 'alfa',
 			}),
 		];
-		deepEqual(mainModule.KOMReviewDeckSort(items), items.reverse());
+		deepEqual(mod.KOMReviewDeckSort(items), items.reverse());
 	});
 
 });
@@ -559,20 +559,20 @@ describe('KOMReviewTotalMinutes', function test_KOMReviewTotalMinutes() {
 
 	it('throws if not number', function () {
 		throws(function () {
-			mainModule.KOMReviewTotalMinutes('10000');
+			mod.KOMReviewTotalMinutes('10000');
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns number', function () {
-		deepEqual(mainModule.KOMReviewTotalMinutes(60000), 1);
+		deepEqual(mod.KOMReviewTotalMinutes(60000), 1);
 	});
 
 	it('calculates fraction', function () {
-		deepEqual(mainModule.KOMReviewTotalMinutes(30000), 0.5);
+		deepEqual(mod.KOMReviewTotalMinutes(30000), 0.5);
 	});
 
 	it('rounds to first decimal', function () {
-		deepEqual(mainModule.KOMReviewTotalMinutes(15000), 0.3);
+		deepEqual(mod.KOMReviewTotalMinutes(15000), 0.3);
 	});
 
 });
@@ -581,31 +581,31 @@ describe('KOMReviewTodayTotalMilliseconds', function test_KOMReviewTodayTotalMil
 
 	it('throws if not array', function () {
 		throws(function () {
-			mainModule.KOMReviewTodayTotalMilliseconds(null);
+			mod.KOMReviewTodayTotalMilliseconds(null);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns number', function () {
-		deepEqual(mainModule.KOMReviewTodayTotalMilliseconds([]), 0);
+		deepEqual(mod.KOMReviewTodayTotalMilliseconds([]), 0);
 	});
 
 	it('counts time until response', function () {
-		deepEqual(mainModule.KOMReviewTodayTotalMilliseconds([kTesting.StubSpacingObjectValid()]), 10000);
+		deepEqual(mod.KOMReviewTodayTotalMilliseconds([kTesting.StubSpacingObjectValid()]), 10000);
 	});
 
 	it('counts multiple spacings', function () {
-		deepEqual(mainModule.KOMReviewTodayTotalMilliseconds([kTesting.StubSpacingObjectValid(), kTesting.StubSpacingObjectValid()]), 20000);
+		deepEqual(mod.KOMReviewTodayTotalMilliseconds([kTesting.StubSpacingObjectValid(), kTesting.StubSpacingObjectValid()]), 20000);
 	});
 
 	it('counts multiple chronicles from today', function () {
-		deepEqual(mainModule.KOMReviewTodayTotalMilliseconds([kTesting.StubSpacingObjectValid([
+		deepEqual(mod.KOMReviewTodayTotalMilliseconds([kTesting.StubSpacingObjectValid([
 			kTesting.StubChronicleObjectValid(),
 			kTesting.StubChronicleObjectValid(),
 		])]), 20000);
 	});
 
 	it('ignores chronicle from other days', function () {
-		deepEqual(mainModule.KOMReviewTodayTotalMilliseconds([kTesting.StubSpacingObjectValid([
+		deepEqual(mod.KOMReviewTodayTotalMilliseconds([kTesting.StubSpacingObjectValid([
 			kTesting.StubChronicleObjectValid(kTesting.StubPastDate()),
 		])]), 0);
 	});
@@ -616,24 +616,24 @@ describe('KOMReviewTodayReviewAccuracy', function test_KOMReviewTodayReviewAccur
 
 	it('throws if not array', function () {
 		throws(function () {
-			mainModule.KOMReviewTodayReviewAccuracy(null);
+			mod.KOMReviewTodayReviewAccuracy(null);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns number', function () {
-		deepEqual(mainModule.KOMReviewTodayReviewAccuracy([]), 0);
+		deepEqual(mod.KOMReviewTodayReviewAccuracy([]), 0);
 	});
 
 	it('excludes if no KOMChronicleMultiplier', function () {
-		deepEqual(mainModule.KOMReviewTodayReviewAccuracy([kTesting.StubSpacingObjectValid()]), 0);
+		deepEqual(mod.KOMReviewTodayReviewAccuracy([kTesting.StubSpacingObjectValid()]), 0);
 	});
 
 	it('excludes if unseen today', function () {
-		deepEqual(mainModule.KOMReviewTodayReviewAccuracy([kTesting.StubSpacingObjectValid()]), 0);
+		deepEqual(mod.KOMReviewTodayReviewAccuracy([kTesting.StubSpacingObjectValid()]), 0);
 	});
 
 	it('excludes if not today', function () {
-		deepEqual(mainModule.KOMReviewTodayReviewAccuracy([kTesting.StubSpacingObjectValid([
+		deepEqual(mod.KOMReviewTodayReviewAccuracy([kTesting.StubSpacingObjectValid([
 			Object.assign(kTesting.StubChronicleObjectValid(kTesting.StubPastDate()), {
 				KOMChronicleMultiplier: 1,
 			}),
@@ -642,7 +642,7 @@ describe('KOMReviewTodayReviewAccuracy', function test_KOMReviewTodayReviewAccur
 	});
 
 	it('excludes if not first error', function () {
-		deepEqual(mainModule.KOMReviewTodayReviewAccuracy([kTesting.StubSpacingObjectValid([
+		deepEqual(mod.KOMReviewTodayReviewAccuracy([kTesting.StubSpacingObjectValid([
 			Object.assign(kTesting.StubChronicleObjectValid(), {
 				KOMChronicleResponseType: KOMPlayLogic.KOMPlayResponseTypeAgain(),
 			}),
@@ -650,7 +650,7 @@ describe('KOMReviewTodayReviewAccuracy', function test_KOMReviewTodayReviewAccur
 	});
 
 	it('calculates if correct', function () {
-		deepEqual(mainModule.KOMReviewTodayReviewAccuracy([kTesting.StubSpacingObjectValid([
+		deepEqual(mod.KOMReviewTodayReviewAccuracy([kTesting.StubSpacingObjectValid([
 			Object.assign(kTesting.StubChronicleObjectValid(kTesting.StubPastDate()), {
 				KOMChronicleMultiplier: 1,
 			}),
@@ -659,7 +659,7 @@ describe('KOMReviewTodayReviewAccuracy', function test_KOMReviewTodayReviewAccur
 	});
 
 	it('calculates if not correct', function () {
-		deepEqual(mainModule.KOMReviewTodayReviewAccuracy([kTesting.StubSpacingObjectValid([
+		deepEqual(mod.KOMReviewTodayReviewAccuracy([kTesting.StubSpacingObjectValid([
 			Object.assign(kTesting.StubChronicleObjectValid(kTesting.StubPastDate()), {
 				KOMChronicleMultiplier: 1,
 			}),
@@ -670,7 +670,7 @@ describe('KOMReviewTodayReviewAccuracy', function test_KOMReviewTodayReviewAccur
 	});
 
 	it('calculates if multiple', function () {
-		deepEqual(mainModule.KOMReviewTodayReviewAccuracy([kTesting.StubSpacingObjectValid([
+		deepEqual(mod.KOMReviewTodayReviewAccuracy([kTesting.StubSpacingObjectValid([
 			Object.assign(kTesting.StubChronicleObjectValid(kTesting.StubPastDate()), {
 				KOMChronicleMultiplier: 1,
 			}),
@@ -691,20 +691,20 @@ describe('KOMReviewTodayPercentage', function test_KOMReviewTodayPercentage() {
 
 	it('throws if not number', function () {
 		throws(function () {
-			mainModule.KOMReviewTodayPercentage('10000');
+			mod.KOMReviewTodayPercentage('10000');
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns number', function () {
-		deepEqual(mainModule.KOMReviewTodayPercentage(1), 100);
+		deepEqual(mod.KOMReviewTodayPercentage(1), 100);
 	});
 
 	it('calculates fraction', function () {
-		deepEqual(mainModule.KOMReviewTodayPercentage(0.5), 50);
+		deepEqual(mod.KOMReviewTodayPercentage(0.5), 50);
 	});
 
 	it('rounds to first decimal', function () {
-		deepEqual(mainModule.KOMReviewTodayPercentage(1.0 / 3), 33.3);
+		deepEqual(mod.KOMReviewTodayPercentage(1.0 / 3), 33.3);
 	});
 
 });
@@ -712,7 +712,7 @@ describe('KOMReviewTodayPercentage', function test_KOMReviewTodayPercentage() {
 describe('KOMReviewGeneralUpcomingDates', function test_KOMReviewGeneralUpcomingDates() {
 
 	it('returns array', function () {
-		deepEqual(mainModule.KOMReviewGeneralUpcomingDates(), Array.from(Array(KOMReviewGeneral.KOMReviewGeneralTableDays())).map(function (e, i) {
+		deepEqual(mod.KOMReviewGeneralUpcomingDates(), Array.from(Array(KOMReviewGeneral.KOMReviewGeneralTableDays())).map(function (e, i) {
 			return KOMSharedLogic.KOMSharedGroupingDay(new Date(Date.now() + 1000 * 60 * 60 * 24 * i));
 		}));
 	});
@@ -731,26 +731,26 @@ describe('KOMReviewGeneralUpcomingFilter', function test_KOMReviewGeneralUpcomin
 
 	it('throws if not array', function () {
 		throws(function () {
-			mainModule.KOMReviewGeneralUpcomingFilter(null);
+			mod.KOMReviewGeneralUpcomingFilter(null);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns array', function () {
-		deepEqual(mainModule.KOMReviewGeneralUpcomingFilter([]), []);
+		deepEqual(mod.KOMReviewGeneralUpcomingFilter([]), []);
 	});
 
 	it('excludes if unseen', function () {
-		deepEqual(mainModule.KOMReviewGeneralUpcomingFilter([StubSpacingObjectValid()]), []);
+		deepEqual(mod.KOMReviewGeneralUpcomingFilter([StubSpacingObjectValid()]), []);
 	});
 
 	it('excludes if before today', function () {
-		deepEqual(mainModule.KOMReviewGeneralUpcomingFilter([Object.assign(StubSpacingObjectValid(), {
+		deepEqual(mod.KOMReviewGeneralUpcomingFilter([Object.assign(StubSpacingObjectValid(), {
 			KOMSpacingDueDate: uGroupingDate(-1),
 		})]), []);
 	});
 
 	it('excludes if after KOMReviewGeneralTableDays', function () {
-		deepEqual(mainModule.KOMReviewGeneralUpcomingFilter([Object.assign(StubSpacingObjectValid(), {
+		deepEqual(mod.KOMReviewGeneralUpcomingFilter([Object.assign(StubSpacingObjectValid(), {
 			KOMSpacingDueDate: uGroupingDate(1000 * 60 * 60 * 24 * KOMReviewGeneral.KOMReviewGeneralTableDays()),
 		})]), []);
 	});
@@ -759,14 +759,14 @@ describe('KOMReviewGeneralUpcomingFilter', function test_KOMReviewGeneralUpcomin
 		const item = Object.assign(StubSpacingObjectValid(), {
 			KOMSpacingDueDate: uGroupingDate(),
 		});
-		deepEqual(mainModule.KOMReviewGeneralUpcomingFilter([item]), [item]);
+		deepEqual(mod.KOMReviewGeneralUpcomingFilter([item]), [item]);
 	});
 
 	it('includes if KOMReviewGeneralTableDays', function () {
 		const item = Object.assign(StubSpacingObjectValid(), {
 			KOMSpacingDueDate: uGroupingDate(1000 * 60 * 60 * 24 * KOMReviewGeneral.KOMReviewGeneralTableDays() - 1),
 		});
-		deepEqual(mainModule.KOMReviewGeneralUpcomingFilter([item]), [item]);
+		deepEqual(mod.KOMReviewGeneralUpcomingFilter([item]), [item]);
 	});
 
 });
@@ -775,19 +775,19 @@ describe('KOMReviewGeneralUpcomingGroupByDate', function test_KOMReviewGeneralUp
 
 	it('throws if not array', function () {
 		throws(function () {
-			mainModule.KOMReviewGeneralUpcomingGroupByDate(null);
+			mod.KOMReviewGeneralUpcomingGroupByDate(null);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns object', function () {
-		deepEqual(mainModule.KOMReviewGeneralUpcomingGroupByDate([]), {});
+		deepEqual(mod.KOMReviewGeneralUpcomingGroupByDate([]), {});
 	});
 
 	it('groups by date if single', function () {
 		const item = Object.assign(StubSpacingObjectValid(), {
 			KOMSpacingDueDate: new Date(),
 		});
-		deepEqual(mainModule.KOMReviewGeneralUpcomingGroupByDate([item]), uGroup(item.KOMSpacingDueDate, item));
+		deepEqual(mod.KOMReviewGeneralUpcomingGroupByDate([item]), uGroup(item.KOMSpacingDueDate, item));
 	});
 
 	it('groups by date if multiple', function () {
@@ -797,7 +797,7 @@ describe('KOMReviewGeneralUpcomingGroupByDate', function test_KOMReviewGeneralUp
 		const item2 = Object.assign(StubSpacingObjectValid(), {
 			KOMSpacingDueDate: new Date('2019-04-13T00:00:00Z'),
 		});
-		deepEqual(mainModule.KOMReviewGeneralUpcomingGroupByDate([item1, item2]), Object.assign(uGroup(item1.KOMSpacingDueDate, item1), uGroup(item2.KOMSpacingDueDate, item2)));
+		deepEqual(mod.KOMReviewGeneralUpcomingGroupByDate([item1, item2]), Object.assign(uGroup(item1.KOMSpacingDueDate, item1), uGroup(item2.KOMSpacingDueDate, item2)));
 	});
 
 	it('groups by date if duplicate', function () {
@@ -807,7 +807,7 @@ describe('KOMReviewGeneralUpcomingGroupByDate', function test_KOMReviewGeneralUp
 		const item2 = Object.assign(StubSpacingObjectValid(), {
 			KOMSpacingDueDate: new Date(),
 		});
-		deepEqual(mainModule.KOMReviewGeneralUpcomingGroupByDate([item1, item2]), uGroup(item1.KOMSpacingDueDate, [item1, item2]));
+		deepEqual(mod.KOMReviewGeneralUpcomingGroupByDate([item1, item2]), uGroup(item1.KOMSpacingDueDate, [item1, item2]));
 	});
 
 });
@@ -815,7 +815,7 @@ describe('KOMReviewGeneralUpcomingGroupByDate', function test_KOMReviewGeneralUp
 describe('KOMReviewGeneralHistoricalDates', function test_KOMReviewGeneralHistoricalDates() {
 
 	it('returns array', function () {
-		deepEqual(mainModule.KOMReviewGeneralHistoricalDates(), Array.from(Array(KOMReviewGeneral.KOMReviewGeneralTableDays())).map(function (e, i) {
+		deepEqual(mod.KOMReviewGeneralHistoricalDates(), Array.from(Array(KOMReviewGeneral.KOMReviewGeneralTableDays())).map(function (e, i) {
 			return KOMSharedLogic.KOMSharedGroupingDay(new Date(Date.now() - 1000 * 60 * 60 * 24 * i));
 		}));
 	});
@@ -834,34 +834,34 @@ describe('KOMReviewGeneralHistoricalFilter', function test_KOMReviewGeneralHisto
 
 	it('throws if not array', function () {
 		throws(function () {
-			mainModule.KOMReviewGeneralHistoricalFilter(null);
+			mod.KOMReviewGeneralHistoricalFilter(null);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns array', function () {
-		deepEqual(mainModule.KOMReviewGeneralHistoricalFilter([]), []);
+		deepEqual(mod.KOMReviewGeneralHistoricalFilter([]), []);
 	});
 
 	it('excludes if unseen', function () {
-		deepEqual(mainModule.KOMReviewGeneralHistoricalFilter([StubSpacingObjectValid()]), []);
+		deepEqual(mod.KOMReviewGeneralHistoricalFilter([StubSpacingObjectValid()]), []);
 	});
 
 	it('excludes if after today', function () {
-		deepEqual(mainModule.KOMReviewGeneralHistoricalFilter([StubSpacingObjectHistorical(uGroupingDate(1000 * 60 * 60 * 24))]), []);
+		deepEqual(mod.KOMReviewGeneralHistoricalFilter([StubSpacingObjectHistorical(uGroupingDate(1000 * 60 * 60 * 24))]), []);
 	});
 
 	it('excludes if before KOMReviewGeneralTableDays', function () {
-		deepEqual(mainModule.KOMReviewGeneralHistoricalFilter([StubSpacingObjectHistorical(uGroupingDate(-1000 * 60 * 60 * 24 * KOMReviewGeneral.KOMReviewGeneralTableDays() - 1))]), []);
+		deepEqual(mod.KOMReviewGeneralHistoricalFilter([StubSpacingObjectHistorical(uGroupingDate(-1000 * 60 * 60 * 24 * KOMReviewGeneral.KOMReviewGeneralTableDays() - 1))]), []);
 	});
 
 	it('includes if today', function () {
 		const item = StubSpacingObjectHistorical(uGroupingDate());
-		deepEqual(mainModule.KOMReviewGeneralHistoricalFilter([item]), [item]);
+		deepEqual(mod.KOMReviewGeneralHistoricalFilter([item]), [item]);
 	});
 
 	it('includes if KOMReviewGeneralTableDays', function () {
 		const item = StubSpacingObjectHistorical(uGroupingDate(-1000 * 60 * 60 * 24 * KOMReviewGeneral.KOMReviewGeneralTableDays()));
-		deepEqual(mainModule.KOMReviewGeneralHistoricalFilter([item]), [item]);
+		deepEqual(mod.KOMReviewGeneralHistoricalFilter([item]), [item]);
 	});
 
 });
@@ -870,31 +870,31 @@ describe('KOMReviewGeneralHistoricalGroupByDate', function test_KOMReviewGeneral
 
 	it('throws if not array', function () {
 		throws(function () {
-			mainModule.KOMReviewGeneralHistoricalGroupByDate(null);
+			mod.KOMReviewGeneralHistoricalGroupByDate(null);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns object', function () {
-		deepEqual(mainModule.KOMReviewGeneralHistoricalGroupByDate([]), {});
+		deepEqual(mod.KOMReviewGeneralHistoricalGroupByDate([]), {});
 	});
 
 	it('groups by date if single object', function () {
 		const item = StubSpacingObjectHistorical();
-		deepEqual(mainModule.KOMReviewGeneralHistoricalGroupByDate([item]), uGroup(item.KOMSpacingChronicles[0].KOMChronicleResponseDate, item));
+		deepEqual(mod.KOMReviewGeneralHistoricalGroupByDate([item]), uGroup(item.KOMSpacingChronicles[0].KOMChronicleResponseDate, item));
 	});
 
 	it('groups by date if multiple objects', function () {
 		const item1 = StubSpacingObjectHistorical(new Date('2019-04-12T00:00:00Z'));
 		const item2 = StubSpacingObjectHistorical(new Date('2019-04-13T00:00:00Z'));
 
-		deepEqual(mainModule.KOMReviewGeneralHistoricalGroupByDate([item1, item2]), Object.assign(uGroup(item1.KOMSpacingChronicles[0].KOMChronicleResponseDate, item1), uGroup(item2.KOMSpacingChronicles[0].KOMChronicleResponseDate, item2)));
+		deepEqual(mod.KOMReviewGeneralHistoricalGroupByDate([item1, item2]), Object.assign(uGroup(item1.KOMSpacingChronicles[0].KOMChronicleResponseDate, item1), uGroup(item2.KOMSpacingChronicles[0].KOMChronicleResponseDate, item2)));
 	});
 
 	it('groups by date if duplicate', function () {
 		const item1 = StubSpacingObjectHistorical();
 		const item2 = StubSpacingObjectHistorical();
 		
-		deepEqual(mainModule.KOMReviewGeneralHistoricalGroupByDate([item1, item2]), uGroup(item1.KOMSpacingChronicles[0].KOMChronicleResponseDate, [item1, item2]));
+		deepEqual(mod.KOMReviewGeneralHistoricalGroupByDate([item1, item2]), uGroup(item1.KOMSpacingChronicles[0].KOMChronicleResponseDate, [item1, item2]));
 	});
 
 	it('groups by date if multiple chronicle objects', function () {
@@ -905,7 +905,7 @@ describe('KOMReviewGeneralHistoricalGroupByDate', function test_KOMReviewGeneral
 			],
 		});
 
-		deepEqual(mainModule.KOMReviewGeneralHistoricalGroupByDate([item]), Object.assign(uGroup(item.KOMSpacingChronicles[0].KOMChronicleResponseDate, item), uGroup(item.KOMSpacingChronicles[1].KOMChronicleResponseDate, item)));
+		deepEqual(mod.KOMReviewGeneralHistoricalGroupByDate([item]), Object.assign(uGroup(item.KOMSpacingChronicles[0].KOMChronicleResponseDate, item), uGroup(item.KOMSpacingChronicles[1].KOMChronicleResponseDate, item)));
 	});
 
 	it('groups by date if multiple chronicle objects with duplicate date', function () {
@@ -916,7 +916,7 @@ describe('KOMReviewGeneralHistoricalGroupByDate', function test_KOMReviewGeneral
 			],
 		});
 
-		deepEqual(mainModule.KOMReviewGeneralHistoricalGroupByDate([item]), Object.assign(uGroup(item.KOMSpacingChronicles[0].KOMChronicleResponseDate, item)));
+		deepEqual(mod.KOMReviewGeneralHistoricalGroupByDate([item]), Object.assign(uGroup(item.KOMSpacingChronicles[0].KOMChronicleResponseDate, item)));
 	});
 
 });
@@ -925,20 +925,20 @@ describe('KOMReviewGeneralHistoricalTotalMilliseconds', function test_KOMReviewG
 
 	it('throws if not array', function () {
 		throws(function () {
-			mainModule.KOMReviewGeneralHistoricalTotalMilliseconds(null);
+			mod.KOMReviewGeneralHistoricalTotalMilliseconds(null);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns number', function () {
-		deepEqual(mainModule.KOMReviewGeneralHistoricalTotalMilliseconds([]), 0);
+		deepEqual(mod.KOMReviewGeneralHistoricalTotalMilliseconds([]), 0);
 	});
 
 	it('counts single', function () {
-		deepEqual(mainModule.KOMReviewGeneralHistoricalTotalMilliseconds([StubChronicleObjectValid()]), 10000);
+		deepEqual(mod.KOMReviewGeneralHistoricalTotalMilliseconds([StubChronicleObjectValid()]), 10000);
 	});
 
 	it('counts multiple', function () {
-		deepEqual(mainModule.KOMReviewGeneralHistoricalTotalMilliseconds([StubChronicleObjectValid(), StubChronicleObjectValid()]), 20000);
+		deepEqual(mod.KOMReviewGeneralHistoricalTotalMilliseconds([StubChronicleObjectValid(), StubChronicleObjectValid()]), 20000);
 	});
 
 });
