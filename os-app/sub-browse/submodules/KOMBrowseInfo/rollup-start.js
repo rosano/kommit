@@ -55,7 +55,7 @@ const KOMBrowseInfo = new RollupStart({
 		}),
 		KOMBrowseInfoDispatchRead: (function () {
 			window.TestKOMBrowseInfoDispatchRead.innerHTML = parseInt(window.TestKOMBrowseInfoDispatchRead.innerHTML) + 1;
-			window.TestKOMBrowseInfoDispatchReadData.innerHTML = Array.from(arguments).join(',');
+			window.TestKOMBrowseInfoDispatchReadData.innerHTML = [...arguments].join(',');
 		}),
 		KOMBrowseInfoAudioDispatchCapture: (function () {
 			window.TestKOMBrowseInfoAudioDispatchCapture.innerHTML = parseInt(window.TestKOMBrowseInfoAudioDispatchCapture.innerHTML) + 1;
