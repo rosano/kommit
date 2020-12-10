@@ -16,7 +16,6 @@ exports.OLSKControllerRoutes = function () {
 					KOM_VITRINE_ANKI_URL: process.env.KOM_VITRINE_ANKI_URL,
 				}),
 				OLSKStringReplaceTokens: require('OLSKString').OLSKStringReplaceTokens,
-				IsTestingBehaviour: req.hostname.match('loc.tests'),
 			});
 		},
 		OLSKRouteLanguageCodes: ['en', 'fr', 'es'],

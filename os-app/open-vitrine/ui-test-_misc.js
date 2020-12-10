@@ -40,8 +40,8 @@ describe('KOMVitrine_Misc', function () {
 
 	describe('KOMVitrineVideoFrame', function () {
 
-		it('sets fake-src', function () {
-			browser.assert.attribute(KOMVitrineVideoFrame, 'fake-src', process.env.KOM_VITRINE_VIDEO_URL);
+		it('sets src', function () {
+			browser.assert.attribute(KOMVitrineVideoFrame, 'src', process.env.KOM_VITRINE_VIDEO_URL);
 		});
 
 		it('sets width', function () {
