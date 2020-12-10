@@ -15,10 +15,6 @@
 
 }
 
-.KOMPlayToolbar {
-	border-bottom: var(--KOMBorderStyle);
-}
-
 .KOMPlayBody {
 	--KOMPlayBodyButtonHeight: 100px;
 	

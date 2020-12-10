@@ -157,7 +157,7 @@ import KOMReviewStats from '../KOMReviewStats/main.svelte';
 
 <div class="KOMReviewMaster">
 
-<header class="KOMReviewMasterToolbar OLSKToolbar OLSKToolbarJustify OLSKMobileViewHeader">
+<header class="KOMReviewMasterToolbar OLSKToolbar OLSKToolbarJustify OLSKCommonEdgeBottom OLSKMobileViewHeader">
 	<div class="OLSKToolbarElementGroup">
 		<span class="KOMReviewMasterToolbarTitle">{ OLSKLocalized('KOMReviewMasterToolbarTitleText') }</span>
 	</div>
@@ -201,10 +201,6 @@ import KOMReviewStats from '../KOMReviewStats/main.svelte';
 .KOMReviewMaster {
 	/* OLSKViewportContentFlexbox:Child */
 	flex-grow: 1;
-}
-
-.KOMReviewMasterToolbar {
-	border-bottom: var(--KOMBorderStyle);
 }
 
 .KOMReviewMasterToolbar.OLSKToolbar {

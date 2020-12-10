@@ -50,7 +50,7 @@ const mod = {
 <style>	
 .KOMReviewDetailLanguageCode {
 	padding: 5px;
-	border: var(--KOMBorderStyle);
+	border: var(--OLSKCommonEdgeBorder);
 
 	margin: 0 5px;
 }

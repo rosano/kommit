@@ -415,7 +415,7 @@ OLSK_SPEC_UI() ? mod.LifecycleModuleWillMount() : onMount(mod.LifecycleModuleWil
 
 <div class="KOMPlay">
 
-<header class="KOMPlayToolbar OLSKToolbar OLSKToolbarJustify">
+<header class="KOMPlayToolbar OLSKToolbar OLSKToolbarJustify OLSKCommonEdgeBottom">
 	<div class="OLSKToolbarElementGroup">
 	</div>
 

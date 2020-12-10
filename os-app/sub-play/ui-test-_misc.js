@@ -51,6 +51,10 @@ describe('KOMPlay_Misc', function () {
 			browser.assert.hasClass(KOMPlayToolbar, 'OLSKToolbarJustify');
 		});
 
+		it('classes OLSKCommonEdgeBottom', function () {
+			browser.assert.hasClass(KOMPlayToolbar, 'OLSKCommonEdgeBottom');
+		});
+
 	});
 
 	describe('KOMPlayToolbarDoneButton', function test_KOMPlayToolbarDoneButton() {

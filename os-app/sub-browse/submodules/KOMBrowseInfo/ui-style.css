@@ -22,8 +22,6 @@
 }
 
 .KOMBrowseInfoToolbar {
-	border-bottom: var(--KOMBorderStyle);
-
 	/* KOMBrowseInfoFlexbox:Child */
 	flex-shrink: 0;
 }
@@ -54,7 +52,7 @@
 
 .KOMBrowseInfoForm :global(input[type=text]) {
 	width: 50%;
-	border: var(--KOMBorderStyle);
+	border: var(--OLSKCommonEdgeColor);
 	border-radius: 5px;
 	padding: 5px 7px;
 

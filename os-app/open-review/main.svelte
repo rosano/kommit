@@ -1285,7 +1285,7 @@ import OLSKApropos from 'OLSKApropos';
 	<footer class="KOMReviewViewportFooter OLSKMobileViewFooter">
 
 		{#if !mod._ValueStorageToolbarHidden }
-			<div class="KOMReviewStorageToolbar OLSKToolbar OLSKToolbarJustify OLSKStorageToolbar">
+			<div class="KOMReviewStorageToolbar OLSKToolbar OLSKToolbarJustify OLSKCommonEdgeTop OLSKStorageToolbar">
 				<div class="OLSKToolbarElementGroup"></div>
 
 				<div class="OLSKToolbarElementGroup">

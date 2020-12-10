@@ -25,6 +25,10 @@ describe('KOMReviewMaster_Misc', function () {
 			browser.assert.hasClass(KOMReviewMasterToolbar, 'OLSKToolbarJustify');
 		});
 
+		it('classes OLSKCommonEdgeBottom', function () {
+			browser.assert.hasClass(KOMReviewMasterToolbar, 'OLSKCommonEdgeBottom');
+		});
+
 		it('classes OLSKMobileViewHeader', function () {
 			browser.assert.hasClass(KOMReviewMasterToolbar, 'OLSKMobileViewHeader');
 		});

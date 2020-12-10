@@ -12,6 +12,14 @@ describe('KOMBrowseListItem_Misc', function () {
 		});
 	});
 
+	describe('KOMBrowseListItem', function test_KOMBrowseListItem() {
+
+		it('classes OLSKCommonEdgeBottom', function () {
+			browser.assert.hasClass(KOMBrowseListItem, 'OLSKCommonEdgeBottom');
+		});
+
+	});
+
 	describe('KOMBrowseListItemFront', function test_KOMBrowseListItemFront() {
 
 		it('sets aria-hidden', function () {

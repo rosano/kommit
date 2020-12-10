@@ -1,6 +1,4 @@
 .KOMReview {
-	--KOMBorderStyle: 1px solid #ddd;
-	
 	font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
 	font-size: 9pt;
 
@@ -10,8 +8,4 @@
 
 .KOMReview :global(.OLSKToolbar) {
 	--OLSKToolbarBackground: var(--KOMCommonBackground);
-}
-
-.KOMReviewStorageToolbar {
-	border-top: var(--KOMBorderStyle)
 }

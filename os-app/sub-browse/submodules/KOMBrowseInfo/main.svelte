@@ -112,7 +112,7 @@ import KOMBrowseInfoTags from '../KOMBrowseInfoTags/main.svelte';
 {/if}
 
 {#if KOMBrowseInfoItem}
-<header class="KOMBrowseInfoToolbar OLSKMobileViewHeader OLSKToolbar OLSKToolbarJustify">
+<header class="KOMBrowseInfoToolbar OLSKMobileViewHeader OLSKToolbar OLSKToolbarJustify OLSKCommonEdgeBottom">
 	<div class="OLSKToolbarElementGroup">
 		<button class="KOMBrowseInfoToolbarBackButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton OLSKVisibilityMobile" title={ OLSKLocalized('KOMBrowseInfoToolbarBackButtonText') } on:click={ KOMBrowseInfoDispatchBack }>
 			<div class="KOMBrowseInfoToolbarBackButtonImage">{@html _OLSKSharedBack }</div>

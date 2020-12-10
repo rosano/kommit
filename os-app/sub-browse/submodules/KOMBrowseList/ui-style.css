@@ -1,13 +1,3 @@
-:global(.KOMBrowseList) {
-	border-right: var(--KOMBorderStyle);
-
-	/*--OLSKViewportMasterWidth: 60%;*/
-}
-
-:global(.KOMBrowseList .OLSKMasterListToolbar) {
-	border-bottom: var(--KOMBorderStyle);
-}
-
 .KOMBrowseListToolbarCreateButton {
 	margin-left: 4px !important;
 }

@@ -210,7 +210,7 @@ import KOMReviewStats from '../KOMReviewStats/main.svelte';
 
 <div class="KOMReviewDetail">
 
-<header class="KOMReviewDetailToolbar OLSKToolbar OLSKToolbarJustify OLSKMobileViewHeader">
+<header class="KOMReviewDetailToolbar OLSKToolbar OLSKToolbarJustify OLSKCommonEdgeBottom OLSKMobileViewHeader">
 	<div class="OLSKToolbarElementGroup">
 		<button class="KOMReviewDetailToolbarBackButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton" title={ OLSKLocalized('KOMReviewDetailToolbarBackButtonText') } on:click={ KOMReviewDetailDispatchBack }>
 			<div class="KOMReviewDetailToolbarBackButtonImage">{@html _OLSKSharedBack }</div>
@@ -346,10 +346,6 @@ import KOMReviewStats from '../KOMReviewStats/main.svelte';
 	/* KOMReviewDetailFlexbox:Parent */
 	display: flex;
 	flex-direction: column;
-}
-
-.KOMReviewDetailToolbar {
-	border-bottom: var(--KOMBorderStyle);
 }
 
 .KOMReviewDetailBody {

@@ -63,6 +63,10 @@ describe('KOMBrowseInfo_Misc', function () {
 			browser.assert.hasClass(KOMBrowseInfoToolbar, 'OLSKToolbarJustify');
 		});
 
+		it('classes OLSKCommonEdgeBottom', function () {
+			browser.assert.hasClass(KOMBrowseInfoToolbar, 'OLSKCommonEdgeBottom');
+		});
+
 	});
 
 	describe('KOMBrowseInfoToolbarBackButton', function test_KOMBrowseInfoToolbarBackButton() {

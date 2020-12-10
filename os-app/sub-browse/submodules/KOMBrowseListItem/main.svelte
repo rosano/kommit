@@ -4,7 +4,7 @@ export let KOMBrowseListItemObject;
 import { OLSKLocalized } from 'OLSKInternational';
 </script>
 
-<div class="KOMBrowseListItem">
+<div class="KOMBrowseListItem OLSKCommonEdgeBottom">
 
 {#if KOMBrowseListItemObject.KOMCardIsRetired }
 	<span class="KOMBrowseListItemRetired">{ OLSKLocalized('KOMBrowseListItemRetiredText') }</span>
@@ -20,7 +20,6 @@ import { OLSKLocalized } from 'OLSKInternational';
 .KOMBrowseListItem {
 	min-height: 46px;
 	padding: 10px;
-	border-bottom: var(--KOMBorderStyle);
 
 	overflow: hidden;
 	text-overflow: ellipsis;
