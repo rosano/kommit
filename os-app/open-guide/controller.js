@@ -24,7 +24,7 @@ exports.OLSKControllerRoutes = function () {
 
 					KOMReviewLauncherItemSelectDeckText: require('OLSKString').OLSKStringFormatted(res.locals.OLSKLocalized('KOMReviewLauncherItemSelectDeckTextFormat'), '…'),
 
-					KOMReviewRoute: res.locals.OLSKCanonicalFor('KOMReviewRoute'),
+					KOMReviewRoute: res.locals.OLSKCanonical('KOMReviewRoute'),
 				}),
 				OLSKStringReplaceTokens: require('OLSKString').OLSKStringReplaceTokens,
 			});

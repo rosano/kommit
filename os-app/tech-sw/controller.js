@@ -10,7 +10,7 @@ exports.OLSKControllerRoutes = function () {
 			OLSKRouteFunction(req, res, next) {
 				return res.type('js').send(OLSKServiceWorker.OLSKServiceWorkerView({
 					VERSION_ID_TOKEN: kKOMServiceWorkerVersionID,
-					ORIGIN_PAGE_PATH_TOKEN: res.locals.OLSKCanonicalFor('KOMReviewRoute'),
+					ORIGIN_PAGE_PATH_TOKEN: res.locals.OLSKCanonical('KOMReviewRoute'),
 				}));
 			},
 		},

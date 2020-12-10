@@ -758,7 +758,7 @@ const mod = {
 				OLSKLocalized,
 				ParamRouteConstant: window.OLSKPublicConstants('OLSKSharedActiveRouteConstant'),
 				OLSKFormatted,
-				OLSKCanonicalFor: window.OLSKCanonicalFor,
+				OLSKCanonical: window.OLSKCanonical,
 			}).map(function (e) {
 				const item = e.LCHRecipeCallback;
 
@@ -1297,7 +1297,7 @@ import OLSKApropos from 'OLSKApropos';
 		<OLSKAppToolbar
 			OLSKAppToolbarDispatchApropos={ mod.OLSKAppToolbarDispatchApropos }
 			OLSKAppToolbarDispatchTongue={ mod.OLSKAppToolbarDispatchTongue }
-			OLSKAppToolbarGuideURL={ window.OLSKCanonicalFor('KOMGuideRoute') }
+			OLSKAppToolbarGuideURL={ window.OLSKCanonical('KOMGuideRoute') }
 			OLSKAppToolbarFundShowProgress={ mod._ValueOLSKFundProgress }
 			OLSKAppToolbarFundLimitText={ mod._ValueDocumentRemainder }
 			OLSKAppToolbarDispatchFund={ mod._ValueOLSKFundGrant || OLSKFund.OLSKFundResponseIsPresent() ? null : mod.OLSKAppToolbarDispatchFund }
@@ -1321,7 +1321,7 @@ import OLSKApropos from 'OLSKApropos';
 </div>
 
 {#if !OLSK_SPEC_UI()}
-	<OLSKServiceWorkerView OLSKServiceWorkerRegistrationRoute={ window.OLSKCanonicalFor('KOMServiceWorkerRoute') } />
+	<OLSKServiceWorkerView OLSKServiceWorkerRegistrationRoute={ window.OLSKCanonical('KOMServiceWorkerRoute') } />
 {/if}
 
 {#if mod._IsRunningDemo }

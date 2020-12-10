@@ -4,7 +4,7 @@ import OLSKRootLink from 'OLSKRootLink';
 
 <div class="KOMRootLink">
 
-<OLSKRootLink OLSKRootLinkURL={ window.OLSKCanonicalFor('KOMVitrineRoute', {
+<OLSKRootLink OLSKRootLinkURL={ window.OLSKCanonical('KOMVitrineRoute', {
 	OLSKRoutingLanguage: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
 }) }
 	OLSKRootLinkImageURL={ '/_shared/KOMRootLink/ui-assets/identity.svg' } />
