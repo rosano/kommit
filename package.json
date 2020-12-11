@@ -32,6 +32,9 @@
     "normalize.css": "latest",
     "OLSKLayout": "olsk/OLSKLayout",
 
+    "// VITRINE": null,
+    "OLSKStandardFeatures": "olsk/OLSKStandardFeatures",
+
     "// FRONTEND APP LAYOUT": null,
     "OLSKLayout": "olsk/OLSKLayout",
     "OLSKMasterList": "olsk/OLSKMasterList",

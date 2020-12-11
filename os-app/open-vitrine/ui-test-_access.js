@@ -61,6 +61,10 @@ describe('KOMVitrine_Access', function () {
 		browser.assert.elements(KOMVitrineFeaturesHeading, 1);
 	});
 
+	it('shows OLSKStandardFeatures', function () {
+		browser.assert.elements('.OLSKStandardFeatures', 1);
+	});
+
 	it('shows KOMVitrineVideoHeading', function () {
 		browser.assert.elements(KOMVitrineVideoHeading, 1);
 	});
