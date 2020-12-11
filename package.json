@@ -25,6 +25,9 @@
     "// UNIQUE IDS": null,
     "ulid": "latest",
 
+    "// WORDING": null,
+    "OLSKWording": "olsk/OLSKWording",
+
     "// FRONTEND NORMALIZE CSS": null,
     "normalize.css": "latest",
     "OLSKLayout": "olsk/OLSKLayout",

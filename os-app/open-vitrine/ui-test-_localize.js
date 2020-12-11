@@ -54,7 +54,7 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 		});
 
 		it('localizes KOMVitrineVideoHeading', function () {
-			browser.assert.text(KOMVitrineVideoHeading, uLocalized('KOMVitrineVideoHeadingText'));
+			browser.assert.text(KOMVitrineVideoHeading, uLocalized('OLSKWordingVideo'));
 		});
 
 		context('KOMVitrineContentAppButton', function test_KOMVitrineContentAppButton () {
