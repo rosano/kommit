@@ -11,6 +11,8 @@ Object.entries({
 	KOMVitrineContent: '.KOMVitrineContent',
 	KOMVitrineContentAppButton: '.KOMVitrineContentAppButton',
 
+	KOMVitrineFeaturesHeading: '.KOMVitrineFeaturesHeading',
+
 	KOMVitrineVideoHeading: '.KOMVitrineVideoHeading',
 	KOMVitrineVideoFrame: '.KOMVitrineVideoFrame',
 }).map(function (e) {
@@ -53,6 +55,10 @@ describe('KOMVitrine_Access', function () {
 
 	it('shows KOMVitrineContentAppButton', function () {
 		browser.assert.elements(KOMVitrineContentAppButton, 1);
+	});
+
+	it('shows KOMVitrineFeaturesHeading', function () {
+		browser.assert.elements(KOMVitrineFeaturesHeading, 1);
 	});
 
 	it('shows KOMVitrineVideoHeading', function () {
