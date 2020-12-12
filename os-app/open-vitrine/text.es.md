@@ -3,16 +3,3 @@ Inspirado por [Anki](KOM_VITRINE_ANKI_URL) y otros sistemos de repaso espaciado,
 Lea el [guide](KOMVitrineTokenGuideURL) para aprender más.
 
 <a class="KOMVitrineContentAppButton OLSKCommonButton OLSKCommonButtonPrimary" href="KOMVitrineTokenReviewURL">OLSKWordingOpenApp</a>
-
-# Características
-- Escuchar tarjetas oralmente con text-to-speech
-- Grabar audio
-- Organizar tarjetas con etiquetas
-- Importar y exportar datos (beta)
-- Sincronizar com múltiples dispositivos con remoteStorage
-- Foncione offline sin acceso al internet
-- Interfaz sencilla
-- Sin instrucciones complicadas
-- Sin anuncios molestos
-- Sin análisis comportamental o rastreadores terceros
-- Foncione en dispositivos mobiles, tabletas y computadoras
