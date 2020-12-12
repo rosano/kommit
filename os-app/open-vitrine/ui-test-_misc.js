@@ -24,8 +24,8 @@ describe('KOMVitrine_Misc', function () {
 			browser.assert.hasClass(KOMVitrineIdentity, 'OLSKCommonCard');
 		});
 
-		it('classes OLSKCommonIdentityCard', function () {
-			browser.assert.hasClass(KOMVitrineIdentity, 'OLSKCommonIdentityCard');
+		it('classes OLSKCommonCrownCard', function () {
+			browser.assert.hasClass(KOMVitrineIdentity, 'OLSKCommonCrownCard');
 		});
 		
 	});

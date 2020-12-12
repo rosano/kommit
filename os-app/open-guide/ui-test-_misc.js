@@ -24,8 +24,8 @@ describe('KOMGuide_Misc', function () {
 			browser.assert.hasClass(KOMGuideIdentity, 'OLSKCommonCard');
 		});
 
-		it('classes OLSKCommonIdentityCard', function () {
-			browser.assert.hasClass(KOMGuideIdentity, 'OLSKCommonIdentityCard');
+		it('classes OLSKCommonCrownCard', function () {
+			browser.assert.hasClass(KOMGuideIdentity, 'OLSKCommonCrownCard');
 		});
 		
 	});
