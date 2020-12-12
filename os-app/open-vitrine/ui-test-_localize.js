@@ -54,7 +54,7 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 		});
 
 		it('localizes KOMVitrineContentAppButton', function () {
-			browser.assert.text(KOMVitrineContentAppButton, uLocalized('KOMVitrineContentAppButtonText'));
+			browser.assert.text(KOMVitrineContentAppButton, uLocalized('OLSKWordingOpenApp'));
 		});
 
 		it('localizes KOMVitrineFeaturesHeading', function () {

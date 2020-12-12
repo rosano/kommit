@@ -2,7 +2,7 @@ Inspired by [Anki](KOM_VITRINE_ANKI_URL) and other spaced-repetition learning sy
 
 Read the [guide](KOMVitrineTokenGuideURL) to learn more.
 
-<a class="KOMVitrineContentAppButton OLSKCommonButton OLSKCommonButtonPrimary" href="KOMVitrineTokenReviewURL">KOMVitrineContentAppButtonText</a>
+<a class="KOMVitrineContentAppButton OLSKCommonButton OLSKCommonButtonPrimary" href="KOMVitrineTokenReviewURL">OLSKWordingOpenApp</a>
 
 # Features
 - Hear cards orally with text-to-speech

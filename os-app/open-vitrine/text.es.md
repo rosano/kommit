@@ -2,7 +2,7 @@ Inspirado por [Anki](KOM_VITRINE_ANKI_URL) y otros sistemos de repaso espaciado,
 
 Lea el [guide](KOMVitrineTokenGuideURL) para aprender más.
 
-<a class="KOMVitrineContentAppButton OLSKCommonButton OLSKCommonButtonPrimary" href="KOMVitrineTokenReviewURL">KOMVitrineContentAppButtonText</a>
+<a class="KOMVitrineContentAppButton OLSKCommonButton OLSKCommonButtonPrimary" href="KOMVitrineTokenReviewURL">OLSKWordingOpenApp</a>
 
 # Características
 - Escuchar tarjetas oralmente con text-to-speech
