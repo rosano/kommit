@@ -33,7 +33,7 @@
     "OLSKLayout": "olsk/OLSKLayout",
 
     "// VITRINE": null,
-    "OLSKStandardFeatures": "olsk/OLSKStandardFeatures",
+    "OLSKAppFeatureList": "olsk/OLSKAppFeatureList",
 
     "// FRONTEND APP LAYOUT": null,
     "OLSKLayout": "olsk/OLSKLayout",
