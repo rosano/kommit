@@ -11,6 +11,10 @@ describe('KOMGuide_Misc', function () {
 		it('classes OLSKCommon', function () {
 			browser.assert.hasClass(KOMGuide, 'OLSKCommon');
 		});
+
+		it('classes OLSKCommonCapped', function () {
+			browser.assert.hasClass(KOMGuide, 'OLSKCommonCapped');
+		});
 	
 	});
 

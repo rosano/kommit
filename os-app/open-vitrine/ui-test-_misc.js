@@ -12,6 +12,10 @@ describe('KOMVitrine_Misc', function () {
 			browser.assert.hasClass(KOMVitrine, 'OLSKCommon');
 		});
 
+		it('classes OLSKCommonCapped', function () {
+			browser.assert.hasClass(KOMVitrine, 'OLSKCommonCapped');
+		});
+
 	});
 
 	describe('KOMVitrineIdentity', function test_KOMVitrineIdentity() {
