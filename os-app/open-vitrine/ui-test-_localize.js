@@ -40,8 +40,8 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 				'\n\n': '\n',
 				'KOMVitrineDescription': uLocalized('KOMVitrineDescription'),
 			});
-			browser.assert.OLSKTextContent(KOMVitrineContent, item.slice(0, 20), function (inputData) {
-				return inputData.slice(0, 20);
+			browser.assert.OLSKTextContent(KOMVitrineContent, item.slice(0, 10), function (inputData) {
+				return inputData.slice(0, 10);
 			});
 		});
 
