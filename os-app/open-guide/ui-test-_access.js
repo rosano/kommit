@@ -3,8 +3,8 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 Object.entries({
 	KOMGuide: '.KOMGuide',
 
-	KOMGuideIdentity: '.KOMGuideIdentity',
-	KOMGuideIdentityName: '.KOMGuideIdentityName',
+	KOMGuideCrown: '.KOMGuideCrown',
+	KOMGuideCrownName: '.KOMGuideCrownName',
 
 	KOMGuideContent: '.KOMGuideContent',
 }).map(function (e) {
@@ -21,12 +21,12 @@ describe('KOMGuide_Access', function () {
 		browser.assert.elements(KOMGuide, 1);
 	});
 
-	it('shows KOMGuideIdentity', function () {
-		browser.assert.elements(KOMGuideIdentity, 1);
+	it('shows KOMGuideCrown', function () {
+		browser.assert.elements(KOMGuideCrown, 1);
 	});
 
-	it('shows KOMGuideIdentityName', function () {
-		browser.assert.elements(KOMGuideIdentityName, 1);
+	it('shows KOMGuideCrownName', function () {
+		browser.assert.elements(KOMGuideCrownName, 1);
 	});
 
 	it('shows KOMGuideContent', function () {

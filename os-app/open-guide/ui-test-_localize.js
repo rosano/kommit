@@ -20,8 +20,8 @@ kDefaultRoute._OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 			browser.assert.attribute('meta[name=description]', 'content', uLocalized('KOMGuideDescription'));
 		});
 
-		it('localizes KOMGuideIdentityName', function () {
-			browser.assert.text(KOMGuideIdentityName, uLocalized('KOMGuideTitle'));
+		it('localizes KOMGuideCrownName', function () {
+			browser.assert.text(KOMGuideCrownName, uLocalized('KOMGuideTitle'));
 		});
 
 	});

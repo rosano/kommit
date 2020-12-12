@@ -18,14 +18,14 @@ describe('KOMGuide_Misc', function () {
 	
 	});
 
-	describe('KOMGuideIdentity', function test_KOMGuideIdentity() {
+	describe('KOMGuideCrown', function test_KOMGuideCrown() {
 
 		it('classes OLSKCommonCard', function () {
-			browser.assert.hasClass(KOMGuideIdentity, 'OLSKCommonCard');
+			browser.assert.hasClass(KOMGuideCrown, 'OLSKCommonCard');
 		});
 
 		it('classes OLSKCommonCrownCard', function () {
-			browser.assert.hasClass(KOMGuideIdentity, 'OLSKCommonCrownCard');
+			browser.assert.hasClass(KOMGuideCrown, 'OLSKCommonCrownCard');
 		});
 		
 	});

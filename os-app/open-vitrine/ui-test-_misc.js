@@ -18,26 +18,26 @@ describe('KOMVitrine_Misc', function () {
 
 	});
 
-	describe('KOMVitrineIdentity', function test_KOMVitrineIdentity() {
+	describe('KOMVitrineCrown', function test_KOMVitrineCrown() {
 
 		it('classes OLSKCommonCard', function () {
-			browser.assert.hasClass(KOMVitrineIdentity, 'OLSKCommonCard');
+			browser.assert.hasClass(KOMVitrineCrown, 'OLSKCommonCard');
 		});
 
 		it('classes OLSKCommonCrownCard', function () {
-			browser.assert.hasClass(KOMVitrineIdentity, 'OLSKCommonCrownCard');
+			browser.assert.hasClass(KOMVitrineCrown, 'OLSKCommonCrownCard');
 		});
 		
 	});
 
-	describe('KOMVitrineIdentityLogo', function () {
+	describe('KOMVitrineCrownIcon', function () {
 
 		it('sets role', function () {
-			browser.assert.attribute(KOMVitrineIdentityLogo, 'role', 'presentation');
+			browser.assert.attribute(KOMVitrineCrownIcon, 'role', 'presentation');
 		});
 
 		it('sets src', function () {
-			browser.assert.attribute(KOMVitrineIdentityLogo, 'src', '/_shared/KOMRootLink/ui-assets/identity.svg');
+			browser.assert.attribute(KOMVitrineCrownIcon, 'src', '/_shared/KOMRootLink/ui-assets/identity.svg');
 		});
 
 	});
