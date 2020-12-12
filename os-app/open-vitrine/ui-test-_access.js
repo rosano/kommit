@@ -49,6 +49,10 @@ describe('KOMVitrine_Access', function () {
 		browser.assert.elements(KOMVitrineIdentityBlurb, 1);
 	});
 
+	it('shows OLSKCommonWhatIsIt', function() {
+		browser.assert.elements('.OLSKCommonWhatIsIt', 1);
+	});
+
 	it('shows KOMVitrineContent', function () {
 		browser.assert.elements(KOMVitrineContent, 1);
 	});

@@ -30,6 +30,10 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 			browser.assert.text(KOMVitrineIdentityBlurb, uLocalized('KOMVitrineDescription'));
 		});
 
+		it('localizes OLSKCommonWhatIsIt', function () {
+			browser.assert.text('.OLSKCommonWhatIsIt', uLocalized('OLSKCommonWhatIsItText'));
+		});
+
 		it('localizes KOMVitrineContent', function () {
 			const item = require('OLSKString').OLSKStringReplaceTokens(require('fs').readFileSync(require('path').join(__dirname, `text.${ OLSKRoutingLanguage }.md`), 'utf-8'), {
 				'\\*': '',
