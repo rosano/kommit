@@ -1,5 +1,7 @@
 KOMFeatureListArray:
+  - - Entendez-vous ou un ami.
+    - Enregistrer des courts extraits d'audio.
   - - Rester organisé.
-    - Marquez des cartes avec des étiquettes.
-  - - Déplacez les données librement.
+    - Marquer des cartes avec des étiquettes.
+  - - Déplacer les données librement.
     - Importer et exporter des données JSON (béta).
