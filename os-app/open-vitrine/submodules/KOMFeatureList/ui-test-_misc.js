@@ -16,6 +16,7 @@ describe('KOMFeatureList_Misc', function () {
 			
 			it('sets src', function () {
 				browser.assert.attribute(`.OLSKFeatureListItem:nth-child(${ i + 1 }) .OLSKFeatureListItemIcon`, 'src', [
+						'/_shared/__external/OLSKUIAssets/_OLSKSharedFeatureTTS.svg',
 						'/_shared/__external/OLSKUIAssets/_OLSKSharedFeatureRecord.svg',
 						'/_shared/__external/OLSKUIAssets/_OLSKSharedFeatureTags.svg',
 						'/_shared/__external/OLSKUIAssets/_OLSKSharedFeatureIO.svg',
