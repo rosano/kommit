@@ -65,6 +65,10 @@ describe('KOMVitrine_Access', function () {
 		browser.assert.elements(KOMVitrineFeaturesHeading, 1);
 	});
 
+	it('shows KOMFeatureList', function () {
+		browser.assert.elements('.KOMFeatureList', 1);
+	});
+
 	it('shows OLSKAppFeatureList', function () {
 		browser.assert.elements('.OLSKAppFeatureList', 1);
 	});
