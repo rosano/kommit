@@ -41,8 +41,10 @@ locals.OLSKPagePublicConstants = {
 
 <h1 class="KOMVitrineVideoHeading"><%= OLSKLocalized('OLSKWordingVideo') %></h1>
 
-<div class="KOMVitrineVideo">
-	<iframe class="KOMVitrineVideoFrame" src="<%= process.env.KOM_VITRINE_VIDEO_URL %>" width="320" height="568" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+<div class="OLSKCommonVideoList">
+	<p class="KOMVitrineVideo OLSKCommonVideoListItem">
+		<iframe src="<%= process.env.KOM_VITRINE_VIDEO_URL %>" allowfullscreen></iframe>
+	</p>
 </div>
 
 </article>

@@ -7,12 +7,3 @@ body {
 	background: var(--KOMCommonBackground);
 	color: var(--KOMCommonForeground);
 }
-
-.KOMVitrineVideo {
-	margin: 20px auto;
-	text-align: center;
-}
-
-.KOMVitrineVideoFrame {
-	border: 6px #ccc solid;
-}

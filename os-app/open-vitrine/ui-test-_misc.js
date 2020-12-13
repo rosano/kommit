@@ -42,22 +42,14 @@ describe('KOMVitrine_Misc', function () {
 
 	});
 
-	describe('KOMVitrineVideoFrame', function () {
+	describe('KOMVitrineVideo', function () {
 
 		it('sets src', function () {
-			browser.assert.attribute(KOMVitrineVideoFrame, 'src', process.env.KOM_VITRINE_VIDEO_URL);
+			browser.assert.attribute(KOMVitrineVideo, 'src', process.env.KOM_VITRINE_VIDEO_URL);
 		});
 
-		it('sets width', function () {
-			browser.assert.attribute(KOMVitrineVideoFrame, 'width', '320');
-		});
-
-		it('sets height', function () {
-			browser.assert.attribute(KOMVitrineVideoFrame, 'height', '568');
-		});
-
-		it('sets frameborder', function () {
-			browser.assert.attribute(KOMVitrineVideoFrame, 'frameborder', '0');
+		it('sets allowfullscreen', function () {
+			browser.assert.attribute(KOMVitrineVideo, 'allowfullscreen', '');
 		});
 
 	});
