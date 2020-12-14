@@ -52,7 +52,7 @@
 
 .KOMBrowseInfoForm :global(input[type=text]) {
 	width: 50%;
-	border: var(--OLSKCommonEdgeColor);
+	border: 1px solid var(--OLSKCommonEdgeColor);
 	border-radius: 5px;
 	padding: 5px 7px;
 
