@@ -211,6 +211,18 @@ describe('KOMBrowseInfo_Misc', function () {
 
 	});
 
+	describe('KOMBrowseInfoForm', function test_KOMBrowseInfoForm() {
+
+		it('classes OLSKCommon', function () {
+			browser.assert.hasClass(KOMBrowseInfoForm, 'OLSKCommon');
+		});
+
+		it('classes OLSKCommonForm', function () {
+			browser.assert.hasClass(KOMBrowseInfoForm, 'OLSKCommonForm');
+		});
+
+	});
+
 	describe('KOMBrowseInfoFormFrontTextField', function test_KOMBrowseInfoFormFrontTextField() {
 
 		before(function () {
