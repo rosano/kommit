@@ -54,13 +54,13 @@ npm test
 npm test ui
 ```
 
-To filter test paths by string:
+To filter interface test paths by string:
 
 ```
 npm test ui match=Browse
 ```
 
-To filter ui test paths by JavaScript regular expressions:
+To filter interface test paths by JavaScript regular expressions:
 
 ```
 npm test ui match='/(play|browse)/'
