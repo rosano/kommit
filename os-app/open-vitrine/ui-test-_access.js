@@ -15,6 +15,9 @@ Object.entries({
 
 	KOMVitrineVideoHeading: '.KOMVitrineVideoHeading',
 	KOMVitrineVideo: '.OLSKCommonVideoList .OLSKCommonVideoListItem.KOMVitrineVideo iframe',
+
+	KOMVitrineSupportHeading: '.KOMVitrineSupportHeading',
+	KOMVitrineSupportBlurb: '.KOMVitrineSupportBlurb',
 }).map(function (e) {
 	return global[e.shift()] = e.pop();
 });
@@ -79,6 +82,14 @@ describe('KOMVitrine_Access', function () {
 
 	it('shows KOMVitrineVideo', function () {
 		browser.assert.elements(KOMVitrineVideo, 1);
+	});
+
+	it('shows KOMVitrineSupportHeading', function () {
+		browser.assert.elements(KOMVitrineSupportHeading, 1);
+	});
+
+	it('shows KOMVitrineSupportBlurb', function () {
+		browser.assert.elements(KOMVitrineSupportBlurb, 1);
 	});
 
 	it('shows ROCORootLink', function () {
