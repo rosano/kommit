@@ -9,21 +9,6 @@ body {
 	color: var(--KOMCommonForeground);
 }
 
-.KOMGuideContent table {
-	width: 100%;
-
-	margin: 20px 0;
-}
-
-.KOMGuideContent table td:first-child {
-	width: 50%;
-}
-
-.KOMGuideContent table tr td {
-	padding: 3px 0;
-	border-top: 1px solid #eee;
-}
-
 .KOMGuideStatisticsLegend td {
 	width: unset !important;
 	padding: 10px !important;
