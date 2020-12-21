@@ -9,21 +9,6 @@ body {
 	color: var(--KOMCommonForeground);
 }
 
-.KOMGuideNotice {
-	padding: 10px;
-	border: 1px solid var(--KOMCommonForeground);
-	
-	margin: 20px 0;
-}
-
-.KOMGuideNotice p:first-child {
-	margin-top: 0;
-}
-
-.KOMGuideNotice p:last-child {
-	margin-bottom: 0;
-}
-
 .KOMGuideContent h1 {
 	padding-bottom: 2px;
 
