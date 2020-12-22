@@ -132,7 +132,7 @@ import KOMBrowseInfoTags from '../KOMBrowseInfoTags/main.svelte';
 	</div>
 </header>
 
-<div class="KOMBrowseInfoForm OLSKDecor OLSKCommonForm">
+<div class="KOMBrowseInfoForm OLSKDecor OLSKDecorBigForm">
 
 <p>
 	<input class="KOMBrowseInfoFormFrontTextField OLSKMobileSafariRemoveDefaultInputStyle" placeholder="{ OLSKLocalized('KOMBrowseInfoFormFrontTextFieldText') }" type="text" bind:value={ KOMBrowseInfoItem.KOMCardFrontText } on:input={ KOMBrowseInfoDispatchUpdate } />
