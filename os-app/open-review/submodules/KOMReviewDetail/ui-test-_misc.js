@@ -46,12 +46,12 @@ describe('KOMReviewDetail_Misc', function () {
 
 	describe('KOMReviewDetailToolbarBackButton', function test_KOMReviewDetailToolbarBackButton() {
 
-		it('classes OLSKLayoutButtonNoStyle', function () {
-			browser.assert.hasClass(KOMReviewDetailToolbarBackButton, 'OLSKLayoutButtonNoStyle');
+		it('classes OLSKDecorButtonNoStyle', function () {
+			browser.assert.hasClass(KOMReviewDetailToolbarBackButton, 'OLSKDecorButtonNoStyle');
 		});
 
-		it('classes OLSKLayoutElementTappable', function () {
-			browser.assert.hasClass(KOMReviewDetailToolbarBackButton, 'OLSKLayoutElementTappable');
+		it('classes OLSKDecorTappable', function () {
+			browser.assert.hasClass(KOMReviewDetailToolbarBackButton, 'OLSKDecorTappable');
 		});
 
 		context('click', function () {

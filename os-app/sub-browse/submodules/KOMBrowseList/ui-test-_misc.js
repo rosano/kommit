@@ -20,12 +20,12 @@ describe('KOMBrowseList_Misc', function () {
 
 	describe('KOMBrowseListToolbarCloseButton', function test_KOMBrowseListToolbarCloseButton() {
 
-		it('classes OLSKLayoutButtonNoStyle', function () {
-			browser.assert.hasClass(KOMBrowseListToolbarCloseButton, 'OLSKLayoutButtonNoStyle');
+		it('classes OLSKDecorButtonNoStyle', function () {
+			browser.assert.hasClass(KOMBrowseListToolbarCloseButton, 'OLSKDecorButtonNoStyle');
 		});
 
-		it('classes OLSKLayoutElementTappable', function () {
-			browser.assert.hasClass(KOMBrowseListToolbarCloseButton, 'OLSKLayoutElementTappable');
+		it('classes OLSKDecorTappable', function () {
+			browser.assert.hasClass(KOMBrowseListToolbarCloseButton, 'OLSKDecorTappable');
 		});
 
 		it('classes OLSKToolbarButton', function () {
@@ -112,12 +112,12 @@ describe('KOMBrowseList_Misc', function () {
 
 	describe('KOMBrowseListToolbarCreateButton', function test_KOMBrowseListToolbarCreateButton() {
 
-		it('classes OLSKLayoutButtonNoStyle', function () {
-			browser.assert.hasClass(KOMBrowseListToolbarCreateButton, 'OLSKLayoutButtonNoStyle');
+		it('classes OLSKDecorButtonNoStyle', function () {
+			browser.assert.hasClass(KOMBrowseListToolbarCreateButton, 'OLSKDecorButtonNoStyle');
 		});
 
-		it('classes OLSKLayoutElementTappable', function () {
-			browser.assert.hasClass(KOMBrowseListToolbarCreateButton, 'OLSKLayoutElementTappable');
+		it('classes OLSKDecorTappable', function () {
+			browser.assert.hasClass(KOMBrowseListToolbarCreateButton, 'OLSKDecorTappable');
 		});
 
 		it('classes OLSKToolbarButton', function () {

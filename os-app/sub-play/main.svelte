@@ -420,16 +420,16 @@ OLSK_SPEC_UI() ? mod.LifecycleModuleWillMount() : onMount(mod.LifecycleModuleWil
 	</div>
 
 	<div class="OLSKToolbarElementGroup">
-		<button class="KOMPlayToolbarUndoButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" disabled={ mod._ValueHistory.length ? null : true } on:click={ mod.InterfaceUndoButtonDidClick }>{ OLSKLocalized('KOMPlayToolbarUndoButtonText') }</button>
+		<button class="KOMPlayToolbarUndoButton OLSKDecorButtonNoStyle OLSKDecorTappable" disabled={ mod._ValueHistory.length ? null : true } on:click={ mod.InterfaceUndoButtonDidClick }>{ OLSKLocalized('KOMPlayToolbarUndoButtonText') }</button>
 		
-		<button class="KOMPlayToolbarDoneButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ KOMPlayDispatchDone }>{ OLSKLocalized('KOMPlayToolbarDoneButtonText') }</button>
+		<button class="KOMPlayToolbarDoneButton OLSKDecorButtonNoStyle OLSKDecorTappable" on:click={ KOMPlayDispatchDone }>{ OLSKLocalized('KOMPlayToolbarDoneButtonText') }</button>
 	</div>
 </header>
 
 <div class="KOMPlayBody" class:KOMPlaySimplifiedResponseButtons={ KOMPlaySimplifiedResponseButtons }>
 
 {#if mod._ValueState.KOMPlayStateCurrent }
-	<div class="KOMPlayCard OLSKLayoutElementTappable" on:click={ mod.InterfaceCardDidClick }>
+	<div class="KOMPlayCard OLSKDecorTappable" on:click={ mod.InterfaceCardDidClick }>
 
 		<div class="KOMPlayCardQuestion">{ mod.DataQuestion() }</div>
 
@@ -446,36 +446,36 @@ OLSK_SPEC_UI() ? mod.LifecycleModuleWillMount() : onMount(mod.LifecycleModuleWil
 	{#if mod.DataQuestionShouldSound() || (mod._ValueIsFlipped && mod.DataAnswerShouldSound()) }
 		<div class="KOMPlayHear">
 			{#if mod.DataQuestionShouldSound()}
-				<button class="KOMPlayHearQuestionButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceHearQuestionButtonDidClick }>{ OLSKLocalized('KOMPlayHearQuestionButtonText') }</button>
+				<button class="KOMPlayHearQuestionButton OLSKDecorButtonNoStyle OLSKDecorTappable" on:click={ mod.InterfaceHearQuestionButtonDidClick }>{ OLSKLocalized('KOMPlayHearQuestionButtonText') }</button>
 			{/if}
 
 			{#if mod._ValueIsFlipped && mod.DataAnswerShouldSound() }
-				<button class="KOMPlayHearAnswerButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceHearAnswerButtonDidClick }>{ OLSKLocalized('KOMPlayHearAnswerButtonText') }</button>
+				<button class="KOMPlayHearAnswerButton OLSKDecorButtonNoStyle OLSKDecorTappable" on:click={ mod.InterfaceHearAnswerButtonDidClick }>{ OLSKLocalized('KOMPlayHearAnswerButtonText') }</button>
 			{/if}
 		</div>
 	{/if}
 
 	{#if !mod._ValueIsFlipped}
-		<button class="KOMPlayFlipButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceFlipButtonDidClick }><span class="OLSKCommonButton">{ OLSKLocalized('KOMPlayFlipButtonText') }</span></button>
+		<button class="KOMPlayFlipButton OLSKDecorButtonNoStyle OLSKDecorTappable" on:click={ mod.InterfaceFlipButtonDidClick }><span class="OLSKCommonButton">{ OLSKLocalized('KOMPlayFlipButtonText') }</span></button>
 	{/if}
 
 	{#if mod._ValueIsFlipped && !KOMPlaySimplifiedResponseButtons}
-		<button class="KOMPlayResponseButtonAgain OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceResponseButtonDidClickAgain }><span class="OLSKCommonButton">{ OLSKLocalized('KOMPlayResponseButtonAgainText') }</span></button>
+		<button class="KOMPlayResponseButtonAgain OLSKDecorButtonNoStyle OLSKDecorTappable" on:click={ mod.InterfaceResponseButtonDidClickAgain }><span class="OLSKCommonButton">{ OLSKLocalized('KOMPlayResponseButtonAgainText') }</span></button>
 
 		<div class="KOMPlayResponseCorrect">
-			<button class="KOMPlayResponseButtonHard OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceResponseButtonDidClickHard }><span class="OLSKCommonButton">{ OLSKLocalized('KOMPlayResponseButtonHardText') }</span></button>
+			<button class="KOMPlayResponseButtonHard OLSKDecorButtonNoStyle OLSKDecorTappable" on:click={ mod.InterfaceResponseButtonDidClickHard }><span class="OLSKCommonButton">{ OLSKLocalized('KOMPlayResponseButtonHardText') }</span></button>
 
-			<button class="KOMPlayResponseButtonGood OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceResponseButtonDidClickGood }><span class="OLSKCommonButton">{ OLSKLocalized('KOMPlayResponseButtonGoodText') }</span></button>
+			<button class="KOMPlayResponseButtonGood OLSKDecorButtonNoStyle OLSKDecorTappable" on:click={ mod.InterfaceResponseButtonDidClickGood }><span class="OLSKCommonButton">{ OLSKLocalized('KOMPlayResponseButtonGoodText') }</span></button>
 
-			<button class="KOMPlayResponseButtonEasy OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceResponseButtonDidClickEasy }><span class="OLSKCommonButton">{ OLSKLocalized('KOMPlayResponseButtonEasyText') }</span></button>
+			<button class="KOMPlayResponseButtonEasy OLSKDecorButtonNoStyle OLSKDecorTappable" on:click={ mod.InterfaceResponseButtonDidClickEasy }><span class="OLSKCommonButton">{ OLSKLocalized('KOMPlayResponseButtonEasyText') }</span></button>
 		</div>
 	{/if}
 
 	{#if mod._ValueIsFlipped && KOMPlaySimplifiedResponseButtons}
 		<div class="KOMPlayResponseSimple">
-			<button class="KOMPlayResponseButtonReset OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceResponseButtonDidClickAgain }><span class="OLSKCommonButton">{ OLSKLocalized('KOMPlayResponseButtonResetText') }</span></button>
+			<button class="KOMPlayResponseButtonReset OLSKDecorButtonNoStyle OLSKDecorTappable" on:click={ mod.InterfaceResponseButtonDidClickAgain }><span class="OLSKCommonButton">{ OLSKLocalized('KOMPlayResponseButtonResetText') }</span></button>
 
-			<button class="KOMPlayResponseButtonNext OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" on:click={ mod.InterfaceResponseButtonDidClickGood }><span class="OLSKCommonButton">{ OLSKLocalized('KOMPlayResponseButtonNextText') }</span></button>
+			<button class="KOMPlayResponseButtonNext OLSKDecorButtonNoStyle OLSKDecorTappable" on:click={ mod.InterfaceResponseButtonDidClickGood }><span class="OLSKCommonButton">{ OLSKLocalized('KOMPlayResponseButtonNextText') }</span></button>
 		</div>
 	{/if}
 

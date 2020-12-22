@@ -3,7 +3,7 @@ exports.OLSKControllerRoutes = function() {
 		OLSKRoutePath: '/stub/KOMFeatureList',
 		OLSKRouteMethod: 'get',
 		OLSKRouteFunction (req, res, next) {
-			return res.OLSKLayoutRender(require('path').join(__dirname, 'main'));
+			return res.OLSKExpressLayoutRender(require('path').join(__dirname, 'main'));
 		},
 		OLSKRouteSignature: 'KOMFeatureListStubRoute',
 		OLSKRouteLanguageCodes: ['en', 'fr', 'es'],

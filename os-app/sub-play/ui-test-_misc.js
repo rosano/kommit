@@ -59,12 +59,12 @@ describe('KOMPlay_Misc', function () {
 
 	describe('KOMPlayToolbarDoneButton', function test_KOMPlayToolbarDoneButton() {
 
-		it('classes OLSKLayoutButtonNoStyle', function () {
-			browser.assert.hasClass(KOMPlayToolbarDoneButton, 'OLSKLayoutButtonNoStyle');
+		it('classes OLSKDecorButtonNoStyle', function () {
+			browser.assert.hasClass(KOMPlayToolbarDoneButton, 'OLSKDecorButtonNoStyle');
 		});
 
-		it('classes OLSKLayoutElementTappable', function () {
-			browser.assert.hasClass(KOMPlayToolbarDoneButton, 'OLSKLayoutElementTappable');
+		it('classes OLSKDecorTappable', function () {
+			browser.assert.hasClass(KOMPlayToolbarDoneButton, 'OLSKDecorTappable');
 		});
 
 		context('click', function () {
@@ -99,8 +99,8 @@ describe('KOMPlay_Misc', function () {
 
 	describe('KOMPlayCard', function test_KOMPlayCard() {
 
-		it('classes OLSKLayoutElementTappable', function () {
-			browser.assert.hasClass(KOMPlayCard, 'OLSKLayoutElementTappable');
+		it('classes OLSKDecorTappable', function () {
+			browser.assert.hasClass(KOMPlayCard, 'OLSKDecorTappable');
 		});
 
 	});
@@ -115,12 +115,12 @@ describe('KOMPlay_Misc', function () {
 
 	describe('KOMPlayFlipButton', function test_KOMPlayFlipButton() {
 
-		it('classes OLSKLayoutButtonNoStyle', function () {
-			browser.assert.hasClass(KOMPlayFlipButton, 'OLSKLayoutButtonNoStyle');
+		it('classes OLSKDecorButtonNoStyle', function () {
+			browser.assert.hasClass(KOMPlayFlipButton, 'OLSKDecorButtonNoStyle');
 		});
 
-		it('classes OLSKLayoutElementTappable', function () {
-			browser.assert.hasClass(KOMPlayFlipButton, 'OLSKLayoutElementTappable');
+		it('classes OLSKDecorTappable', function () {
+			browser.assert.hasClass(KOMPlayFlipButton, 'OLSKDecorTappable');
 		});
 
 	});
@@ -147,12 +147,12 @@ describe('KOMPlay_Misc', function () {
 
 	describe('KOMPlayResponseButtonAgain', function test_KOMPlayResponseButtonAgain() {
 
-		it('classes OLSKLayoutButtonNoStyle', function () {
-			browser.assert.hasClass(KOMPlayResponseButtonAgain, 'OLSKLayoutButtonNoStyle');
+		it('classes OLSKDecorButtonNoStyle', function () {
+			browser.assert.hasClass(KOMPlayResponseButtonAgain, 'OLSKDecorButtonNoStyle');
 		});
 
-		it('classes OLSKLayoutElementTappable', function () {
-			browser.assert.hasClass(KOMPlayResponseButtonAgain, 'OLSKLayoutElementTappable');
+		it('classes OLSKDecorTappable', function () {
+			browser.assert.hasClass(KOMPlayResponseButtonAgain, 'OLSKDecorTappable');
 		});
 
 		context('click', function () {
@@ -201,12 +201,12 @@ describe('KOMPlay_Misc', function () {
 			return browser.pressButton(KOMPlayFlipButton);
 		});
 
-		it('classes OLSKLayoutButtonNoStyle', function () {
-			browser.assert.hasClass(KOMPlayResponseButtonHard, 'OLSKLayoutButtonNoStyle');
+		it('classes OLSKDecorButtonNoStyle', function () {
+			browser.assert.hasClass(KOMPlayResponseButtonHard, 'OLSKDecorButtonNoStyle');
 		});
 
-		it('classes OLSKLayoutElementTappable', function () {
-			browser.assert.hasClass(KOMPlayResponseButtonHard, 'OLSKLayoutElementTappable');
+		it('classes OLSKDecorTappable', function () {
+			browser.assert.hasClass(KOMPlayResponseButtonHard, 'OLSKDecorTappable');
 		});
 
 		context('click', function () {
@@ -246,12 +246,12 @@ describe('KOMPlay_Misc', function () {
 			return browser.pressButton(KOMPlayFlipButton);
 		});
 
-		it('classes OLSKLayoutButtonNoStyle', function () {
-			browser.assert.hasClass(KOMPlayResponseButtonGood, 'OLSKLayoutButtonNoStyle');
+		it('classes OLSKDecorButtonNoStyle', function () {
+			browser.assert.hasClass(KOMPlayResponseButtonGood, 'OLSKDecorButtonNoStyle');
 		});
 
-		it('classes OLSKLayoutElementTappable', function () {
-			browser.assert.hasClass(KOMPlayResponseButtonGood, 'OLSKLayoutElementTappable');
+		it('classes OLSKDecorTappable', function () {
+			browser.assert.hasClass(KOMPlayResponseButtonGood, 'OLSKDecorTappable');
 		});
 
 		context('click', function () {
@@ -291,12 +291,12 @@ describe('KOMPlay_Misc', function () {
 			return browser.pressButton(KOMPlayFlipButton);
 		});
 
-		it('classes OLSKLayoutButtonNoStyle', function () {
-			browser.assert.hasClass(KOMPlayResponseButtonEasy, 'OLSKLayoutButtonNoStyle');
+		it('classes OLSKDecorButtonNoStyle', function () {
+			browser.assert.hasClass(KOMPlayResponseButtonEasy, 'OLSKDecorButtonNoStyle');
 		});
 
-		it('classes OLSKLayoutElementTappable', function () {
-			browser.assert.hasClass(KOMPlayResponseButtonEasy, 'OLSKLayoutElementTappable');
+		it('classes OLSKDecorTappable', function () {
+			browser.assert.hasClass(KOMPlayResponseButtonEasy, 'OLSKDecorTappable');
 		});
 
 		context('click', function () {
@@ -393,12 +393,12 @@ describe('KOMPlay_Misc', function () {
 				return browser.pressButton(KOMPlayFlipButton);
 			});
 
-			it('classes OLSKLayoutButtonNoStyle', function () {
-				browser.assert.hasClass(KOMPlayResponseButtonReset, 'OLSKLayoutButtonNoStyle');
+			it('classes OLSKDecorButtonNoStyle', function () {
+				browser.assert.hasClass(KOMPlayResponseButtonReset, 'OLSKDecorButtonNoStyle');
 			});
 
-			it('classes OLSKLayoutElementTappable', function () {
-				browser.assert.hasClass(KOMPlayResponseButtonReset, 'OLSKLayoutElementTappable');
+			it('classes OLSKDecorTappable', function () {
+				browser.assert.hasClass(KOMPlayResponseButtonReset, 'OLSKDecorTappable');
 			});
 
 			context('click', function () {
@@ -447,12 +447,12 @@ describe('KOMPlay_Misc', function () {
 				return browser.pressButton(KOMPlayFlipButton);
 			});
 
-			it('classes OLSKLayoutButtonNoStyle', function () {
-				browser.assert.hasClass(KOMPlayResponseButtonNext, 'OLSKLayoutButtonNoStyle');
+			it('classes OLSKDecorButtonNoStyle', function () {
+				browser.assert.hasClass(KOMPlayResponseButtonNext, 'OLSKDecorButtonNoStyle');
 			});
 
-			it('classes OLSKLayoutElementTappable', function () {
-				browser.assert.hasClass(KOMPlayResponseButtonNext, 'OLSKLayoutElementTappable');
+			it('classes OLSKDecorTappable', function () {
+				browser.assert.hasClass(KOMPlayResponseButtonNext, 'OLSKDecorTappable');
 			});
 
 			context('click', function () {
@@ -932,12 +932,12 @@ describe('KOMPlay_Misc', function () {
 			});
 		});
 
-		it('classes OLSKLayoutButtonNoStyle', function () {
-			browser.assert.hasClass(KOMPlayToolbarUndoButton, 'OLSKLayoutButtonNoStyle');
+		it('classes OLSKDecorButtonNoStyle', function () {
+			browser.assert.hasClass(KOMPlayToolbarUndoButton, 'OLSKDecorButtonNoStyle');
 		});
 
-		it('classes OLSKLayoutElementTappable', function () {
-			browser.assert.hasClass(KOMPlayToolbarUndoButton, 'OLSKLayoutElementTappable');
+		it('classes OLSKDecorTappable', function () {
+			browser.assert.hasClass(KOMPlayToolbarUndoButton, 'OLSKDecorTappable');
 		});
 
 		it('sets disabled', function () {
@@ -1042,12 +1042,12 @@ describe('KOMPlay_Misc', function () {
 
 		context('KOMPlayHearQuestionButton', function () {
 
-			it('classes OLSKLayoutButtonNoStyle', function () {
-				browser.assert.hasClass(KOMPlayHearQuestionButton, 'OLSKLayoutButtonNoStyle');
+			it('classes OLSKDecorButtonNoStyle', function () {
+				browser.assert.hasClass(KOMPlayHearQuestionButton, 'OLSKDecorButtonNoStyle');
 			});
 
-			it('classes OLSKLayoutElementTappable', function () {
-				browser.assert.hasClass(KOMPlayHearQuestionButton, 'OLSKLayoutElementTappable');
+			it('classes OLSKDecorTappable', function () {
+				browser.assert.hasClass(KOMPlayHearQuestionButton, 'OLSKDecorTappable');
 			});
 
 			context('click', function () {
@@ -1134,12 +1134,12 @@ describe('KOMPlay_Misc', function () {
 
 		context('KOMPlayHearAnswerButton', function () {
 
-			it('classes OLSKLayoutButtonNoStyle', function () {
-				browser.assert.hasClass(KOMPlayHearAnswerButton, 'OLSKLayoutButtonNoStyle');
+			it('classes OLSKDecorButtonNoStyle', function () {
+				browser.assert.hasClass(KOMPlayHearAnswerButton, 'OLSKDecorButtonNoStyle');
 			});
 
-			it('classes OLSKLayoutElementTappable', function () {
-				browser.assert.hasClass(KOMPlayHearAnswerButton, 'OLSKLayoutElementTappable');
+			it('classes OLSKDecorTappable', function () {
+				browser.assert.hasClass(KOMPlayHearAnswerButton, 'OLSKDecorTappable');
 			});
 
 			context('click', function () {
