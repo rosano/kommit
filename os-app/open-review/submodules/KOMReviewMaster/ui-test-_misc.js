@@ -37,8 +37,8 @@ describe('KOMReviewMaster_Misc', function () {
 
 	describe('KOMReviewMasterCreateButton', function test_KOMReviewMasterCreateButton() {
 
-		it('classes OLSKCommonButton', function () {
-			browser.assert.hasClass(KOMReviewMasterCreateButton, 'OLSKCommonButton');
+		it('classes OLSKDecorPress', function () {
+			browser.assert.hasClass(KOMReviewMasterCreateButton, 'OLSKDecorPress');
 		});
 
 		it('sets accesskey', function () {

@@ -75,12 +75,12 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 
 		context('KOMVitrineContentAppButton', function test_KOMVitrineContentAppButton () {
 
-			it('classes OLSKCommonButton', function () {
-				browser.assert.hasClass(KOMVitrineContentAppButton, 'OLSKCommonButton');
+			it('classes OLSKDecorPress', function () {
+				browser.assert.hasClass(KOMVitrineContentAppButton, 'OLSKDecorPress');
 			});
 			
-			it('classes OLSKCommonButtonPrimary', function () {
-				browser.assert.hasClass(KOMVitrineContentAppButton, 'OLSKCommonButtonPrimary');
+			it('classes OLSKDecorPressCall', function () {
+				browser.assert.hasClass(KOMVitrineContentAppButton, 'OLSKDecorPressCall');
 			});
 			
 			it('sets href', function () {

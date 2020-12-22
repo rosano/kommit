@@ -2,4 +2,4 @@ Inspirado por [Anki](KOM_VITRINE_ANKI_URL) y otros sistemos de repaso espaciado,
 
 Lea el [guide](KOMVitrineTokenGuideURL) para aprender más.
 
-<a class="KOMVitrineContentAppButton OLSKCommonButton OLSKCommonButtonPrimary" href="KOMVitrineTokenReviewURL">OLSKWordingOpenApp</a>
+<a class="KOMVitrineContentAppButton OLSKDecorPress OLSKDecorPressCall" href="KOMVitrineTokenReviewURL">OLSKWordingOpenApp</a>

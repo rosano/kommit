@@ -126,12 +126,12 @@ describe('KOMReviewDetail_Misc', function () {
 
 	describe('KOMReviewDetailDiscardButton', function test_KOMReviewDetailDiscardButton() {
 
-		it('classes OLSKCommonButton', function () {
-			browser.assert.hasClass(KOMReviewDetailDiscardButton, 'OLSKCommonButton');
+		it('classes OLSKDecorPress', function () {
+			browser.assert.hasClass(KOMReviewDetailDiscardButton, 'OLSKDecorPress');
 		});
 
-		it('classes OLSKCommonButtonDestructive', function () {
-			browser.assert.hasClass(KOMReviewDetailDiscardButton, 'OLSKCommonButtonDestructive');
+		it('classes OLSKDecorPressDestroy', function () {
+			browser.assert.hasClass(KOMReviewDetailDiscardButton, 'OLSKDecorPressDestroy');
 		});
 
 		context('click', function () {
@@ -180,8 +180,8 @@ describe('KOMReviewDetail_Misc', function () {
 
 	describe('KOMReviewDetailRenameButton', function test_KOMReviewDetailRenameButton() {
 
-		it('classes OLSKCommonButton', function () {
-			browser.assert.hasClass(KOMReviewDetailRenameButton, 'OLSKCommonButton');
+		it('classes OLSKDecorPress', function () {
+			browser.assert.hasClass(KOMReviewDetailRenameButton, 'OLSKDecorPress');
 		});
 
 		context('click', function () {
@@ -535,8 +535,8 @@ describe('KOMReviewDetail_Misc', function () {
 			});
 		});
 
-		it('classes OLSKCommonButton', function () {
-			browser.assert.hasClass(KOMReviewDetailPlayButton, 'OLSKCommonButton');
+		it('classes OLSKDecorPress', function () {
+			browser.assert.hasClass(KOMReviewDetailPlayButton, 'OLSKDecorPress');
 		});
 
 		it('sets accesskey', function () {

@@ -2,4 +2,4 @@ Inspired by [Anki](KOM_VITRINE_ANKI_URL) and other spaced-repetition learning sy
 
 Read the [guide](KOMVitrineTokenGuideURL) to learn more.
 
-<a class="KOMVitrineContentAppButton OLSKCommonButton OLSKCommonButtonPrimary" href="KOMVitrineTokenReviewURL">OLSKWordingOpenApp</a>
+<a class="KOMVitrineContentAppButton OLSKDecorPress OLSKDecorPressCall" href="KOMVitrineTokenReviewURL">OLSKWordingOpenApp</a>

@@ -7,7 +7,7 @@ export let KOMReviewMasterListItemDispatchClick;
 import { OLSKLocalized } from 'OLSKInternational';
 </script>
 
-<button class="KOMReviewMasterListItem OLSKCommonButton" aria-label={ KOMReviewMasterListItemName } on:click={ KOMReviewMasterListItemDispatchClick }>
+<button class="KOMReviewMasterListItem OLSKDecorPress" aria-label={ KOMReviewMasterListItemName } on:click={ KOMReviewMasterListItemDispatchClick }>
 
 	<strong class="KOMReviewMasterListItemName" >{ KOMReviewMasterListItemName }</strong>
 
