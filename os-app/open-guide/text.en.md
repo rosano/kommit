@@ -1,4 +1,4 @@
-<div class="OLSKCommonNotice">
+<div class="OLSKDecorNotice">
 
 This document is a work-in-progress. Feel free to reach out on [Mastodon](https://merveilles.town/@rosano) or [Twitter](https://twitter.com/rosano).
 
@@ -70,7 +70,7 @@ You can try [mneumonics and other memory tricks](https://en.wikipedia.org/wiki/M
 
 On the left side of the interface, you can create, search, and select cards. On the right side, you can edit the details.
 
-<div class="OLSKCommonNotice">
+<div class="OLSKDecorNotice">
 
 Editing the same card on multiple devices at the same time can result in data loss. Editing different cards or playing the game while editing cards is safe.
 
@@ -150,7 +150,7 @@ Counting the number of cards based on its state.
 
 # Shortcuts
 
-<div class="OLSKCommonNotice">
+<div class="OLSKDecorNotice">
 
 *AccessKey* refers to a one or more shortcut keys followed by a single character. Usually it's `Alt` on Windows or `Control+Alt` on macOS, but it changes [based on your browser and operating system](https://www.w3schools.com/tags/att_global_accesskey.asp#table2).
 
