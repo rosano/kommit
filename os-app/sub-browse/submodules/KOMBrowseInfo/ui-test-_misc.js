@@ -213,8 +213,8 @@ describe('KOMBrowseInfo_Misc', function () {
 
 	describe('KOMBrowseInfoForm', function test_KOMBrowseInfoForm() {
 
-		it('classes OLSKCommon', function () {
-			browser.assert.hasClass(KOMBrowseInfoForm, 'OLSKCommon');
+		it('classes OLSKDecor', function () {
+			browser.assert.hasClass(KOMBrowseInfoForm, 'OLSKDecor');
 		});
 
 		it('classes OLSKCommonForm', function () {

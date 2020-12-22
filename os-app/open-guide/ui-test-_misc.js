@@ -8,12 +8,12 @@ describe('KOMGuide_Misc', function () {
 
 	context('KOMGuide', function () {
 		
-		it('classes OLSKCommon', function () {
-			browser.assert.hasClass(KOMGuide, 'OLSKCommon');
+		it('classes OLSKDecor', function () {
+			browser.assert.hasClass(KOMGuide, 'OLSKDecor');
 		});
 
-		it('classes OLSKCommonCapped', function () {
-			browser.assert.hasClass(KOMGuide, 'OLSKCommonCapped');
+		it('classes OLSKDecorCapped', function () {
+			browser.assert.hasClass(KOMGuide, 'OLSKDecorCapped');
 		});
 	
 	});
