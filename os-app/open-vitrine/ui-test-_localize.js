@@ -66,11 +66,11 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 		});
 
 		it('localizes KOMVitrineSupportHeading', function () {
-			browser.assert.text(KOMVitrineSupportHeading, uLocalized('OLSKWordingSupportHeading'));
+			browser.assert.text(KOMVitrineSupportHeading, uLocalized('OLSKWordingFeedbackHeading'));
 		});
 
 		it('localizes KOMVitrineSupportBlurb', function () {
-			browser.assert.text(KOMVitrineSupportBlurb, uLocalized('OLSKWordingSupportBlurb'));
+			browser.assert.text(KOMVitrineSupportBlurb, uLocalized('OLSKWordingFeedbackBlurb'));
 		});
 
 		context('KOMVitrineContentAppButton', function test_KOMVitrineContentAppButton () {
