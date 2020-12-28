@@ -8,7 +8,6 @@ Object.entries({
 	KOMVitrineCrown: '.KOMVitrineCrown',
 	KOMVitrineCrownIcon: '.KOMVitrineCrownIcon',
 	KOMVitrineCrownName: '.KOMVitrineCrownName',
-	KOMVitrineCrownBlurb: '.KOMVitrineCrownBlurb',
 
 	KOMVitrineContent: '.KOMVitrineContent',
 	KOMVitrineContentAppButton: '.KOMVitrineContentAppButton',
@@ -52,10 +51,6 @@ describe('KOMVitrine_Access', function () {
 
 	it('shows KOMVitrineCrownName', function () {
 		browser.assert.elements(KOMVitrineCrownName, 1);
-	});
-
-	it('shows KOMVitrineCrownBlurb', function () {
-		browser.assert.elements(KOMVitrineCrownBlurb, 1);
 	});
 
 	it('shows OLSKCommonWhatIsIt', function() {

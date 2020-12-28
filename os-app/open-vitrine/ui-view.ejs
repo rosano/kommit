@@ -16,16 +16,16 @@ locals.OLSKPagePublicConstants = {
 
 <div class="KOMVitrine OLSKDecor OLSKDecorCapped">
 
-<%- include('../_shared/__external/OLSKLanguageSwitcher/main.ejs') %>
+<div class="OLSKToolbar OLSKToolbarJustify OLSKMobileViewHeader OLSKCommonEdgeBottom OLSKStickyHeader">
+	<div class="KOMVitrineCrown OLSKCommonCard OLSKCommonCrownCardMini">
+		<img class="KOMVitrineCrownIcon" src="/_shared/KOMRootLink/ui-assets/identity.svg" role="presentation" />
+		<section>
+			<span class="KOMVitrineCrownName"><%= OLSKLocalized('KOMVitrineTitle') %></span>
+		</section>
+	</div>
 
-<hr role="presentation" />
-
-<div class="KOMVitrineCrown OLSKCommonCard OLSKCommonCrownCard">
-	<img class="KOMVitrineCrownIcon" src="/_shared/KOMRootLink/ui-assets/identity.svg" role="presentation" />
-	<section>
-		<span class="KOMVitrineCrownName"><%= OLSKLocalized('KOMVitrineTitle') %></span>
-		<span class="KOMVitrineCrownBlurb"><%= OLSKLocalized('KOMVitrineDescription') %></span>
-	</section>
+	<%- include('../_shared/__external/OLSKLanguageSwitcher/main.ejs') %>
+	
 </div>
 
 <p class="OLSKCommonWhatIsIt"><%= OLSKLocalized('OLSKCommonWhatIsItText') %></p>
