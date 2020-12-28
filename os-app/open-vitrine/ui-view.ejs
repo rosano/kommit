@@ -28,11 +28,14 @@ locals.OLSKPagePublicConstants = {
 	
 </div>
 
-<p class="OLSKCommonWhatIsIt"><%= OLSKLocalized('OLSKCommonWhatIsItText') %></p>
+<%- include('../../node_modules/OLSKLanding/main.ejs', {
+	OLSKLandingHeadingText: OLSKLocalized('KOMVitrineDescription'),
+	OLSKLandingBlurbText: OLSKLocalized('OLSKLandingBlurbText'),
+	OLSKLandingActionText: OLSKLocalized('OLSKWordingOpenApp'),
+	OLSKLandingActionHref: OLSKCanonical('KOMReviewRoute'),
+}) %>
 
 <article class="KOMVitrineContent">
-
-<%- OLSKStringReplaceTokens(KOMVitrineContent, {}) %>
 
 <h1 class="KOMVitrineFeaturesHeading"><%= OLSKLocalized('OLSKWordingFeatures') %></h1>
 

@@ -10,7 +10,6 @@ Object.entries({
 	KOMVitrineCrownName: '.KOMVitrineCrownName',
 
 	KOMVitrineContent: '.KOMVitrineContent',
-	KOMVitrineContentAppButton: '.KOMVitrineContentAppButton',
 
 	KOMVitrineFeaturesHeading: '.KOMVitrineFeaturesHeading',
 
@@ -53,16 +52,12 @@ describe('KOMVitrine_Access', function () {
 		browser.assert.elements(KOMVitrineCrownName, 1);
 	});
 
-	it('shows OLSKCommonWhatIsIt', function() {
-		browser.assert.elements('.OLSKCommonWhatIsIt', 1);
+	it('shows OLSKLanding', function() {
+		browser.assert.elements('.OLSKLanding', 1);
 	});
 
 	it('shows KOMVitrineContent', function () {
 		browser.assert.elements(KOMVitrineContent, 1);
-	});
-
-	it('shows KOMVitrineContentAppButton', function () {
-		browser.assert.elements(KOMVitrineContentAppButton, 1);
 	});
 
 	it('shows KOMVitrineFeaturesHeading', function () {

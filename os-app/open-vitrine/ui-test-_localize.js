@@ -26,33 +26,6 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 			browser.assert.text(KOMVitrineCrownName, uLocalized('KOMVitrineTitle'));
 		});
 
-		it('localizes OLSKCommonWhatIsIt', function () {
-			browser.assert.text('.OLSKCommonWhatIsIt', uLocalized('OLSKCommonWhatIsItText'));
-		});
-
-		it('localizes KOMVitrineContent', function () {
-			const item = require('OLSKString').OLSKStringReplaceTokens(require('fs').readFileSync(require('path').join(__dirname, `text.${ OLSKRoutingLanguage }.md`), 'utf-8'), {
-				'\\*': '',
-				'\n\n': '\n',
-				'KOMVitrineDescription': uLocalized('KOMVitrineDescription'),
-			});
-			browser.assert.OLSKTextContent(KOMVitrineContent, item.slice(0, 10), function (inputData) {
-				return inputData.slice(0, 10);
-			});
-		});
-
-		it('localizes KOM_VITRINE_ANKI_URL', function () {
-			browser.assert.element(`a[href="${ process.env.KOM_VITRINE_ANKI_URL }"]`);
-		});
-
-		it('localizes KOMGuideRoute', function() {
-			browser.assert.element(`a[href="${ OLSKTestingCanonical(require('../open-guide/controller.js').OLSKControllerRoutes().shift()) }"]`);
-		});
-
-		it('localizes KOMVitrineContentAppButton', function () {
-			browser.assert.text(KOMVitrineContentAppButton, uLocalized('OLSKWordingOpenApp'));
-		});
-
 		it('localizes KOMVitrineFeaturesHeading', function () {
 			browser.assert.text(KOMVitrineFeaturesHeading, uLocalized('OLSKWordingFeatures'));
 		});
@@ -69,18 +42,18 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 			browser.assert.text(KOMVitrineSupportBlurb, uLocalized('OLSKWordingFeedbackBlurb'));
 		});
 
-		context('KOMVitrineContentAppButton', function test_KOMVitrineContentAppButton () {
+		context('OLSKLanding', function test_OLSKLanding () {
 
-			it('classes OLSKDecorPress', function () {
-				browser.assert.hasClass(KOMVitrineContentAppButton, 'OLSKDecorPress');
+			it('localizes OLSKLandingHeadingText', function () {
+				browser.assert.text('.OLSKLandingHeading', uLocalized('KOMVitrineDescription'));
 			});
-			
-			it('classes OLSKDecorPressCall', function () {
-				browser.assert.hasClass(KOMVitrineContentAppButton, 'OLSKDecorPressCall');
+
+			it('localizes OLSKLandingBlurbText', function () {
+				browser.assert.text('.OLSKLandingBlurb', uLocalized('OLSKLandingBlurbText'));
 			});
-			
-			it('sets href', function () {
-				browser.assert.attribute(KOMVitrineContentAppButton, 'href', OLSKTestingCanonical(require('../open-review/controller.js').OLSKControllerRoutes().shift()));
+
+			it('localizes OLSKLandingActionText', function () {
+				browser.assert.text('.OLSKLandingAction', uLocalized('OLSKWordingOpenApp'));
 			});
 		
 		});

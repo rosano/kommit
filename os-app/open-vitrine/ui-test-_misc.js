@@ -50,6 +50,14 @@ describe('KOMVitrine_Misc', function () {
 
 	});
 
+	context('OLSKLanding', function test_OLSKLanding () {
+
+		it('sets OLSKLandingActionHref', function () {
+			browser.assert.attribute('.OLSKLandingAction', 'href', OLSKTestingCanonical(require('../open-review/controller.js').OLSKControllerRoutes().shift()));
+		});
+	
+	});
+
 	describe('KOMVitrineVideo', function () {
 
 		it('sets src', function () {
