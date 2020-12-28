@@ -2,6 +2,8 @@ const kDefaultRoutePath = require('./controller.js').OLSKControllerRoutes().shif
 
 Object.entries({
 	KOMVitrine: '.KOMVitrine',
+	
+	KOMVitrineManifest: 'link[rel="manifest"]',
 
 	KOMVitrineCrown: '.KOMVitrineCrown',
 	KOMVitrineCrownIcon: '.KOMVitrineCrownIcon',
@@ -30,6 +32,10 @@ describe('KOMVitrine_Access', function () {
 
 	it('shows KOMVitrine', function () {
 		browser.assert.elements(KOMVitrine, 1);
+	});
+
+	it('shows KOMVitrineManifest', function () {
+		browser.assert.elements(KOMVitrineManifest, 1);
 	});
 
 	it('shows OLSKLanguageSwitcher', function () {

@@ -18,6 +18,14 @@ describe('KOMVitrine_Misc', function () {
 
 	});
 
+	describe('KOMVitrineManifest', function test_KOMVitrineManifest() {
+
+		it('sets href', function () {
+			browser.assert.attribute(KOMVitrineManifest, 'href', require('../tech-manifest/controller.js').OLSKControllerRoutes().shift().OLSKRoutePath);
+		});
+
+	});
+
 	describe('KOMVitrineCrown', function test_KOMVitrineCrown() {
 
 		it('classes OLSKCommonCard', function () {
