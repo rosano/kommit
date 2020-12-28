@@ -35,6 +35,12 @@ locals.OLSKPagePublicConstants = {
 	OLSKLandingActionHref: OLSKCanonical('KOMReviewRoute'),
 }) %>
 
+<div class="OLSKCommonVideoList">
+	<p class="KOMVitrineVideo OLSKCommonVideoListItem">
+		<iframe src="<%= process.env.KOM_VITRINE_VIDEO_URL %>" allowfullscreen></iframe>
+	</p>
+</div>
+
 <h1 class="KOMVitrineFeaturesHeading"><%= OLSKLocalized('OLSKWordingFeatures') %></h1>
 
 <%- include('./submodules/KOMFeatureList/main.ejs') %>
@@ -42,14 +48,6 @@ locals.OLSKPagePublicConstants = {
 <%- include('../../node_modules/OLSKAppFeatureList/main.ejs').replace(/node_modules/g, '_shared/__external') %>
 
 <a class="KOMVitrineGuideButton OLSKDecorPress OLSKDecorPressCall" href="<%= OLSKCanonical('KOMGuideRoute') %>"><%= OLSKLocalized('OLSKWordingOpenGuide') %></a>
-
-<h1 class="KOMVitrineVideoHeading"><%= OLSKLocalized('OLSKWordingVideo') %></h1>
-
-<div class="OLSKCommonVideoList">
-	<p class="KOMVitrineVideo OLSKCommonVideoListItem">
-		<iframe src="<%= process.env.KOM_VITRINE_VIDEO_URL %>" allowfullscreen></iframe>
-	</p>
-</div>
 
 <h1 class="KOMVitrineSupportHeading"><%= OLSKLocalized('OLSKWordingFeedbackHeading') %></h1>
 <p class="KOMVitrineSupportBlurb"><%= OLSKLocalized('OLSKWordingFeedbackBlurb') %></p>

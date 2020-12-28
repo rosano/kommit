@@ -13,7 +13,6 @@ Object.entries({
 
 	KOMVitrineGuideButton: '.KOMVitrineGuideButton',
 
-	KOMVitrineVideoHeading: '.KOMVitrineVideoHeading',
 	KOMVitrineVideo: '.OLSKCommonVideoList .OLSKCommonVideoListItem.KOMVitrineVideo iframe',
 
 	KOMVitrineSupportHeading: '.KOMVitrineSupportHeading',
@@ -70,10 +69,6 @@ describe('KOMVitrine_Access', function () {
 
 	it('shows KOMVitrineGuideButton', function () {
 		browser.assert.elements(KOMVitrineGuideButton, 1);
-	});
-
-	it('shows KOMVitrineVideoHeading', function () {
-		browser.assert.elements(KOMVitrineVideoHeading, 1);
 	});
 
 	it('shows KOMVitrineVideo', function () {
