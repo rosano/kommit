@@ -8,15 +8,7 @@ exports.OLSKControllerRoutes = function () {
 		OLSKRouteMethod: 'get',
 		OLSKRouteSignature: 'KOMVitrineRoute',
 		OLSKRouteFunction(req, res, next) {
-			return res.OLSKExpressLayoutRender(require('path').join(__dirname, 'ui-view'), {
-				KOMVitrineContent: res.OLSKMarkdownContent(require('path').join(__dirname, `text.${ res.locals.OLSKSharedPageCurrentLanguage }.md`), {
-					KOMVitrineTokenGuideURL: res.locals.OLSKCanonical('KOMGuideRoute'),
-					KOMVitrineTokenReviewURL: res.locals.OLSKCanonical('KOMReviewRoute'),
-
-					KOM_VITRINE_ANKI_URL: process.env.KOM_VITRINE_ANKI_URL,
-				}),
-				OLSKStringReplaceTokens: require('OLSKString').OLSKStringReplaceTokens,
-			});
+			return res.OLSKExpressLayoutRender(require('path').join(__dirname, 'ui-view'));
 		},
 		OLSKRouteLanguageCodes: ['en', 'fr', 'es'],
 	}];

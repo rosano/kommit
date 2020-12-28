@@ -6,6 +6,8 @@ This document is a work-in-progress. Feel free to reach out on [Mastodon](https:
 
 Kommit helps you remember what you learn via flashcards and [spaced repetition](https://en.wikipedia.org/wiki/Spaced_repetition).
 
+Inspired by [Anki](https://apps.ankiweb.net) and other spaced-repetition learning systems, it presents flashcards to you just before your brain is likely to forget, thereby strengthening memory while reducing study time.
+
 When one side is presented, you try to recall the other before flipping it over – this [active recall](https://en.wikipedia.org/wiki/Active_recall) strengthens your memory more than multiple-choice questions.
 
 The cards are presented when you are likely to forget, which [aids memory retention](https://elearninginfographics.com/memory-retention-and-the-forgetting-curve-infographic/) and also reduces the amount of time you need to study. This method can make remembering a choice rather than leaving it up to chance.

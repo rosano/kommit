@@ -58,6 +58,22 @@ describe('KOMVitrine_Misc', function () {
 	
 	});
 
+	context('KOMVitrineGuideButton', function test_KOMVitrineGuideButton () {
+
+		it('classes OLSKDecorPress', function () {
+			browser.assert.hasClass(KOMVitrineGuideButton, 'OLSKDecorPress');
+		});
+		
+		it('classes OLSKDecorPressCall', function () {
+			browser.assert.hasClass(KOMVitrineGuideButton, 'OLSKDecorPressCall');
+		});
+		
+		it('sets href', function () {
+			browser.assert.attribute(KOMVitrineGuideButton, 'href', OLSKTestingCanonical(require('../open-guide/controller.js').OLSKControllerRoutes().shift()));
+		});
+	
+	});
+
 	describe('KOMVitrineVideo', function () {
 
 		it('sets src', function () {

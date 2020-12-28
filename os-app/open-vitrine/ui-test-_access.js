@@ -9,9 +9,9 @@ Object.entries({
 	KOMVitrineCrownIcon: '.KOMVitrineCrownIcon',
 	KOMVitrineCrownName: '.KOMVitrineCrownName',
 
-	KOMVitrineContent: '.KOMVitrineContent',
-
 	KOMVitrineFeaturesHeading: '.KOMVitrineFeaturesHeading',
+
+	KOMVitrineGuideButton: '.KOMVitrineGuideButton',
 
 	KOMVitrineVideoHeading: '.KOMVitrineVideoHeading',
 	KOMVitrineVideo: '.OLSKCommonVideoList .OLSKCommonVideoListItem.KOMVitrineVideo iframe',
@@ -56,10 +56,6 @@ describe('KOMVitrine_Access', function () {
 		browser.assert.elements('.OLSKLanding', 1);
 	});
 
-	it('shows KOMVitrineContent', function () {
-		browser.assert.elements(KOMVitrineContent, 1);
-	});
-
 	it('shows KOMVitrineFeaturesHeading', function () {
 		browser.assert.elements(KOMVitrineFeaturesHeading, 1);
 	});
@@ -70,6 +66,10 @@ describe('KOMVitrine_Access', function () {
 
 	it('shows OLSKAppFeatureList', function () {
 		browser.assert.elements('.OLSKAppFeatureList', 1);
+	});
+
+	it('shows KOMVitrineGuideButton', function () {
+		browser.assert.elements(KOMVitrineGuideButton, 1);
 	});
 
 	it('shows KOMVitrineVideoHeading', function () {
