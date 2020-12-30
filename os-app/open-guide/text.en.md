@@ -201,13 +201,16 @@ Counting the number of cards based on its state.
 
 | Global ||
 :--- | ---
+| `OLSKRemoteStorageLauncherItemOpenLoginLinkText` | Launcher |
+| `OLSKServiceWorkerLauncherItemReloadText` | Launcher |
+| `OLSKServiceWorkerLauncherItemDebugForceUpdateText` | Launcher |
+| Launcher | `Alt+Enter` |
+
+| Global (when storage is connected) ||
 | `OLSKRemoteStorageLauncherItemCopyLoginLinkText` | Launcher |
 | `OLSKFundLauncherItemEnterClueText` | Launcher |
 | `OLSKFundLauncherItemClearClueText` | Launcher |
-| `OLSKServiceWorkerLauncherItemReloadText` | Launcher |
-| `OLSKServiceWorkerLauncherItemDebugForceUpdateText` | Launcher |
 | `OLSKRemoteStorageLauncherItemDebugFlushDataText` | Launcher |
-| Launcher | `Alt+Enter` |
 
 # Add to Home screen on mobile and tablet devices
 
