@@ -1301,7 +1301,7 @@ import OLSKApropos from 'OLSKApropos';
 			OLSKAppToolbarFundShowProgress={ mod._ValueOLSKFundProgress }
 			OLSKAppToolbarFundLimitText={ mod._ValueDocumentRemainder }
 			OLSKAppToolbarDispatchFund={ mod._ValueOLSKFundGrant || OLSKFund.OLSKFundResponseIsPresent() ? null : mod.OLSKAppToolbarDispatchFund }
-			OLSKAppToolbarStorageStatus={ mod._ValueFooterStorageStatus }
+			OLSKAppToolbarCloudStatus={ mod._ValueFooterStorageStatus }
 			OLSKAppToolbarDispatchStorage={ mod.OLSKAppToolbarDispatchStorage }
 			OLSKAppToolbarDispatchLauncher={ mod.OLSKAppToolbarDispatchLauncher }
 			/>
