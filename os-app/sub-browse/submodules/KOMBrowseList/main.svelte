@@ -58,9 +58,11 @@ import KOMBrowseListItem from '../KOMBrowseListItem/main.svelte';
 		</div>
 	</div>
 
-	<KOMBrowseListItem
-		KOMBrowseListItemObject={ item }
-		/>
+	<div slot="OLSKMasterListItem">
+		<KOMBrowseListItem
+			KOMBrowseListItemObject={ item }
+			/>
+	</div>
 </OLSKMasterList>	
 
 <style src="./ui-style.css"></style>
