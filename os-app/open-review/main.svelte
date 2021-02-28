@@ -256,7 +256,7 @@ const mod = {
 					LCHRecipeName: 'FakeOLSKChangeDelegateCreateSpacing',
 					LCHRecipeCallback: async function FakeOLSKChangeDelegateCreateSpacing () {
 						[false, true].forEach(async function (backward) {
-							const spacing = await KOMSpacingStorage.KOMSpacingStorageWrite(mod._ValueOLSKRemoteStorage, Object.assign(mod.FakeSpacingObjectValid(backward), {
+							const spacing = await mod._ValueZDRWrap.App.KOMSpacing.KOMSpacingWrite(mod._ValueOLSKRemoteStorage, Object.assign(mod.FakeSpacingObjectValid(backward), {
 								KOMSpacingIsLearning: true,
 								KOMSpacingDueDate: new Date(),
 							}), mod.FakeCardObjectValid(), mod.FakeDeckObjectValid());
@@ -273,7 +273,7 @@ const mod = {
 					LCHRecipeName: 'FakeOLSKChangeDelegateUpdateSpacing',
 					LCHRecipeCallback: function FakeOLSKChangeDelegateUpdateSpacing () {
 						[false, true].map(async function (backward) {
-							const spacing = await KOMSpacingStorage.KOMSpacingStorageWrite(mod._ValueOLSKRemoteStorage, Object.assign(mod.FakeSpacingObjectPopulated(new Date(), backward), {
+							const spacing = await mod._ValueZDRWrap.App.KOMSpacing.KOMSpacingWrite(mod._ValueOLSKRemoteStorage, Object.assign(mod.FakeSpacingObjectPopulated(new Date(), backward), {
 								KOMSpacingDueDate: new Date(Date.now() + 1000 * 60 * 60 * 24),
 							}), mod.FakeCardObjectValid(), mod.FakeDeckObjectValid());
 
@@ -309,7 +309,7 @@ const mod = {
 								KOMCardDeckID: deck.KOMDeckID,
 							}), deck).then(function (card) {
 								return Promise.all([true, false].map(function (e, i) {
-									return KOMSpacingStorage.KOMSpacingStorageWrite(mod._ValueOLSKRemoteStorage, Object.assign(mod.FakeSpacingObjectPopulated(new Date(Date.now() - 1000 * 60 * 60 * 24)), {
+									return mod._ValueZDRWrap.App.KOMSpacing.KOMSpacingWrite(mod._ValueOLSKRemoteStorage, Object.assign(mod.FakeSpacingObjectPopulated(new Date(Date.now() - 1000 * 60 * 60 * 24)), {
 										KOMSpacingID: card.KOMCardID + '-' + (i ? 'backward' : 'forward'),
 									}), card, deck)
 								}));
@@ -470,7 +470,7 @@ const mod = {
 		OLSKThrottle.OLSKThrottleMappedTimeout(mod._ValueSpacingUpdateThrottleMap, inputData.KOMSpacingID, {
 			OLSKThrottleDuration: OLSK_SPEC_UI() ? 0 : 500,
 			OLSKThrottleCallback () {
-				return KOMSpacingStorage.KOMSpacingStorageWrite(mod._ValueOLSKRemoteStorage, inputData, inputData.$KOMSpacingCard, deck);
+				return mod._ValueZDRWrap.App.KOMSpacing.KOMSpacingWrite(mod._ValueOLSKRemoteStorage, inputData, inputData.$KOMSpacingCard, deck);
 			},
 		});
 	},
@@ -690,7 +690,7 @@ const mod = {
 
 	async KOMBrowseDispatchCreate (inputData) {
 		(await mod.DataDeckSelectedObjects(mod._ValueDeckSelected)).$KOMDeckCards.push(inputData);
-		(await mod.DataDeckSelectedObjects(mod._ValueDeckSelected)).$KOMDeckSpacings.push(...Object.values(await KOMSpacingStorage.KOMSpacingStorageList(mod._ValueOLSKRemoteStorage, inputData, mod._ValueDeckSelected)).map(function (e) {
+		(await mod.DataDeckSelectedObjects(mod._ValueDeckSelected)).$KOMDeckSpacings.push(...Object.values(await mod._ValueZDRWrap.KOMSpacing.KOMSpacingList(mod._ValueOLSKRemoteStorage, inputData, mod._ValueDeckSelected)).map(function (e) {
 			return Object.assign(e, {
 				$KOMSpacingCard: inputData,
 			});
