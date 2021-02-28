@@ -80,6 +80,10 @@ describe('KOMReview_Access', function () {
 		browser.assert.elements('.OLSKAppToolbarLauncherButton', 1);
 	});
 
+	it('shows ZDRLauncherFakeItemProxy', function () {
+		return browser.assert.OLSKLauncherItems('ZDRLauncherFakeItemProxy', 1);
+	});
+
 	it('shows KOMReviewLauncherItemToggleSimplifiedResponseButtons', function () {
 		return browser.assert.OLSKLauncherItems('KOMReviewLauncherItemToggleSimplifiedResponseButtons', 1);
 	});
@@ -142,8 +146,8 @@ describe('KOMReview_Access', function () {
 			browser.assert.elements(KOMReviewStorageToolbar, 1);
 		});
 
-		it('shows OLSKStorageWidget', function () {
-			browser.assert.elements('.OLSKStorageWidget', 1);
+		it('shows OLSKCloud', function () {
+			browser.assert.elements('.OLSKCloud', 1);
 		});
 
 	});
@@ -175,6 +179,10 @@ describe('KOMReview_Access', function () {
 	});
 
 	context('create', function test_create() {
+
+		before(function () {
+			return browser.OLSKVisit(kDefaultRoute);
+		});
 
 		context('empty', function () {
 			
@@ -471,7 +479,7 @@ describe('KOMReview_Access', function () {
 	context('connected', function test_connected () {
 
 		before(function () {
-			return browser.OLSKLauncherRun('OLSKRemoteStorageLauncherItemFakeFlipConnected');
+			return browser.OLSKLauncherRun('ZDRLauncherItemFakeDispatchConnected');
 		});
 
 		it('shows KOMReviewLauncherItemDebugPlungeData', function () {

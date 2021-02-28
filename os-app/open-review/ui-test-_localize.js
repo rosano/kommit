@@ -131,7 +131,7 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 		context('connected', function test_connected () {
 
 			before(function () {
-				return browser.OLSKLauncherRun('OLSKRemoteStorageLauncherItemFakeFlipConnected');
+				return browser.OLSKLauncherRun('ZDRLauncherItemFakeDispatchConnected');
 			});
 
 			it('localizes KOMReviewLauncherItemDebugPlungeData', function () {

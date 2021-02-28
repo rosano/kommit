@@ -252,7 +252,43 @@ describe('KOMReview_Misc', function () {
 
 	});
 
+	describe('KOMReviewLauncherItemSelectDeck', function test_KOMReviewLauncherItemSelectDeck() {
+
+		before(function () {
+			return browser.OLSKLauncherRun('bravo');
+		});
+
+		it('selects deck', function () {
+			browser.assert.text('.KOMReviewDetailToolbarTitle', 'bravo');
+		});
+
+	});
+
+	describe('KOMReviewLauncherItemDebugPlungeData', function test_KOMReviewLauncherItemDebugPlungeData() {
+
+		before(function () {
+			return browser.OLSKLauncherRun('ZDRLauncherItemFakeDispatchConnected');
+		});
+
+		before(function () {
+			return browser.OLSKLauncherRun('KOMReviewLauncherItemDebugPlungeData');
+		});
+
+		it.skip('does something', function () {
+			browser.assert.elements('.KOMReviewMaster', 1);
+		});
+
+		it.skip('reloads page', function () {
+			browser.assert.evaluate('window.FakeWindowLocationHref', 'reload');
+		});
+
+	});
+
 	describe('ImportData', function test_ImportData() {
+
+		before(function () {
+			return browser.OLSKVisit(kDefaultRoute);
+		});
 
 		before(function () {
 			return browser.pressButton('.OLSKAppToolbarLauncherButton');
@@ -286,50 +322,18 @@ describe('KOMReview_Misc', function () {
 		});
 
 		it('creates deck', function () {
-			browser.assert.text('.KOMReviewMasterListItem:nth-child(2) .KOMReviewMasterListItemName', 'zulu');
+			browser.assert.text('.KOMReviewMasterListItemName', 'zulu');
 		});
 
 		it.skip('creates spacing', function () {
-			browser.assert.text('.KOMReviewMasterListItem:nth-child(2) .KOMReviewMasterListItemReviewValue', '1');
-			browser.assert.text('.KOMReviewMasterListItem:nth-child(2) .KOMReviewMasterListItemUnseenValue', '1');
+			browser.assert.text('.KOMReviewMasterListItemReviewValue', '1');
+			browser.assert.text('.KOMReviewMasterListItemUnseenValue', '1');
 		});
 
 		it.skip('creates card', function () {
 			browser.assert.text('.KOMReviewChartCompositionCollectionRetiredCardsValue', '1');
 		});
 		
-	});
-
-	describe('KOMReviewLauncherItemSelectDeck', function test_KOMReviewLauncherItemSelectDeck() {
-
-		before(function () {
-			return browser.OLSKLauncherRun('bravo');
-		});
-
-		it('selects deck', function () {
-			browser.assert.text('.KOMReviewDetailToolbarTitle', 'bravo');
-		});
-
-	});
-
-	describe('KOMReviewLauncherItemDebugPlungeData', function test_KOMReviewLauncherItemDebugPlungeData() {
-
-		before(function () {
-			return browser.OLSKLauncherRun('OLSKRemoteStorageLauncherItemFakeFlipConnected');
-		});
-
-		before(function () {
-			return browser.OLSKLauncherRun('KOMReviewLauncherItemDebugPlungeData');
-		});
-
-		it.skip('does something', function () {
-			browser.assert.elements('.KOMReviewMaster', 1);
-		});
-
-		it.skip('reloads page', function () {
-			browser.assert.evaluate('window.FakeWindowLocationHref', 'reload');
-		});
-
 	});
 
 });

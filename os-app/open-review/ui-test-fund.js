@@ -65,7 +65,7 @@ describe('KOMReview_Fund', function () {
 		context('connected', function () {
 
 			before(function () {
-				return browser.OLSKLauncherRun('OLSKRemoteStorageLauncherItemFakeFlipConnected');
+				return browser.OLSKLauncherRun('ZDRLauncherItemFakeDispatchConnected');
 			});
 
 			before(function () {
@@ -80,7 +80,7 @@ describe('KOMReview_Fund', function () {
 				browser.assert.attribute('.OLSKWebViewWindowButton', 'href', OLSKFund.OLSKFundURL({
 					ParamFormURL: process.env.OLSK_FUND_FORM_URL,
 					ParamProject: 'RP_004',
-					ParamIdentity: 'OLSK_REMOTE_STORAGE_FAKE_REMOTE_ADDRESS',
+					ParamIdentity: 'ZDR_FAKE_CLOUD_IDENTITY',
 					ParamHomeURL: browser.window.location.origin + browser.window.location.pathname,
 				}));
 			});
@@ -256,7 +256,7 @@ describe('KOMReview_Fund', function () {
 		});
 		
 		before(function () {
-			return browser.OLSKLauncherRun('OLSKRemoteStorageLauncherItemFakeFlipConnected');
+			return browser.OLSKLauncherRun('ZDRLauncherItemFakeDispatchConnected');
 		});
 
 		it('shows OLSKFundLauncherItemClearClue', function () {
@@ -274,7 +274,7 @@ describe('KOMReview_Fund', function () {
 		});
 
 		before(function () {
-			return browser.OLSKLauncherRun('OLSKRemoteStorageLauncherItemFakeFlipConnected');
+			return browser.OLSKLauncherRun('ZDRLauncherItemFakeDispatchConnected');
 		});
 
 		before(function () {

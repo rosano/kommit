@@ -170,6 +170,11 @@ const mod = {
 			ParamSpecUI: OLSK_SPEC_UI(),
 		}));
 
+		items.push(...zerodatawrap.ZDRRecipes({
+			ParamMod: mod,
+			ParamSpecUI: OLSK_SPEC_UI(),
+		}));
+
 		if (mod._ValueZDRWrap.ZDRStorageProtocol === zerodatawrap.ZDRProtocolRemoteStorage()) {
 			items.push(...OLSKRemoteStorage.OLSKRemoteStorageRecipes({
 				ParamWindow: window,
@@ -217,13 +222,13 @@ const mod = {
 				{
 					LCHRecipeName: 'FakeOLSKChangeDelegateCreateCard',
 					LCHRecipeCallback: async function FakeOLSKChangeDelegateCreateCard () {
-						return mod.OLSKChangeDelegateCreateCard(await KOMCard.KOMCardCreate(mod.FakeCardObjectValid('FakeOLSKChangeDelegateCreateCard'), mod.FakeDeckObjectValid()));
+						return mod.OLSKChangeDelegateCreateCard(await mod._ValueZDRWrap.App.KOMCard.KOMCardCreate(mod.FakeCardObjectValid('FakeOLSKChangeDelegateCreateCard'), mod.FakeDeckObjectValid()));
 					},
 				},
 				{
 					LCHRecipeName: 'FakeOLSKChangeDelegateUpdateCard',
 					LCHRecipeCallback: async function FakeOLSKChangeDelegateUpdateCard () {
-						return mod.OLSKChangeDelegateUpdateCard(await KOMCard.KOMCardUpdate(Object.assign(mod.FakeCardObjectValid('FakeOLSKChangeDelegateUpdateCard'), {
+						return mod.OLSKChangeDelegateUpdateCard(await mod._ValueZDRWrap.App.KOMCard.KOMCardUpdate(Object.assign(mod.FakeCardObjectValid('FakeOLSKChangeDelegateUpdateCard'), {
 							KOMCardIsRetired: true,
 						})));
 					},
@@ -231,19 +236,19 @@ const mod = {
 				{
 					LCHRecipeName: 'FakeOLSKChangeDelegateDeleteCard',
 					LCHRecipeCallback: async function FakeOLSKChangeDelegateDeleteCard () {
-						return mod.OLSKChangeDelegateDeleteCard(await KOMCard.KOMCardDelete(mod.FakeCardObjectValid()));
+						return mod.OLSKChangeDelegateDeleteCard(await mod._ValueZDRWrap.App.KOMCard.KOMCardDelete(mod.FakeCardObjectValid()));
 					},
 				},
 				{
 					LCHRecipeName: 'FakeOLSKChangeDelegateConflictCard',
 					LCHRecipeCallback: async function FakeOLSKChangeDelegateConflictCard () {
-						const item = (await KOMCard.KOMCardList(mod._ValueDeckSelected)).filter(function (e) {
+						const item = (await mod._ValueZDRWrap.App.KOMCard.KOMCardList(mod._ValueDeckSelected)).filter(function (e) {
 							return e.KOMCardFrontText.match('FakeOLSKChangeDelegateConflictCard');
 						}).pop();
 						
 						return mod.OLSKChangeDelegateConflictCard({
 							origin: 'conflict',
-							oldValue: await KOMCard.KOMCardUpdate(Object.assign({}, item, {
+							oldValue: await mod._ValueZDRWrap.App.KOMCard.KOMCardUpdate(Object.assign({}, item, {
 								KOMCardFrontText: item.KOMCardFrontText + '-local',
 							})),
 							newValue: Object.assign({}, item, {
@@ -304,7 +309,7 @@ const mod = {
 							KOMDeckName: 'alfa',
 						});
 						return Promise.all(Array.from(Array(100)).map(function (e, i) {
-							return KOMCard.KOMCardCreate(Object.assign(mod.FakeCardObjectValid(), {
+							return mod._ValueZDRWrap.App.KOMCard.KOMCardCreate(Object.assign(mod.FakeCardObjectValid(), {
 								KOMCardID: i.toString(),
 								KOMCardDeckID: deck.KOMDeckID,
 							}), deck).then(function (card) {
@@ -355,7 +360,7 @@ const mod = {
 						});
 
 						await Promise.all(Array.from(Array(mod._ValueDocumentRemainder)).map(function (e) {
-							return KOMCard.KOMCardCreate(Object.assign(mod.FakeCardObjectValid(), {
+							return mod._ValueZDRWrap.App.KOMCard.KOMCardCreate(Object.assign(mod.FakeCardObjectValid(), {
 								KOMCardID: Math.random().toString(),
 								KOMCardDeckID: deck.KOMDeckID,
 							}), deck);
@@ -725,7 +730,7 @@ const mod = {
 	},
 
 	async KOMPlayDispatchFetch (param1, param2) {
-		return await KOMCard.KOMCardAudioFetch(param1, param2);
+		return await mod._ValueZDRWrap.App.KOMCard.KOMCardAudioFetch(param1, param2);
 	},
 
 	async KOMPlayDispatchDone () {
@@ -734,7 +739,7 @@ const mod = {
 		}));
 
 		await Promise.all(KOMReviewLogic.KOMReviewRetireCards(mod._ValueDeckSelected, (await mod.DataDeckSelectedObjects(mod._ValueDeckSelected)).$KOMDeckSpacings).map(function (e) {
-			return KOMCard.KOMCardUpdate(Object.assign(e, {
+			return mod._ValueZDRWrap.App.KOMCard.KOMCardUpdate(Object.assign(e, {
 				KOMCardIsRetired: true,
 			}));
 		}));
@@ -742,6 +747,66 @@ const mod = {
 		mod._ValueDeckSelected = await mod.ReactDeckFigures(mod._ValueDeckSelected); // #purge-svelte-force-update
 
 		mod._ValuePlayVisible = false;
+	},
+
+	async OLSKCloudFormDispatchSubmit (inputData) {
+		const protocol = zerodatawrap.ZDRPreferenceProtocolConnect(inputData);
+		(zerodatawrap.ZDRPreferenceProtocolMigrate() ? await mod.DataStorageClient(protocol) : mod._ValueZDRWrap).ZDRCloudConnect(inputData);
+	},
+
+	OLSKCloudDispatchRenew () {
+		mod._ValueZDRWrap.ZDRCloudReconnect(mod._ValueCloudIdentity);
+	},
+
+	OLSKCloudStatusDispatchDisconnect () {
+		mod._ValueZDRWrap.ZDRCloudDisconnect();
+
+		mod._ValueCloudIdentity = null;
+
+		zerodatawrap.ZDRPreferenceProtocolClear();
+	},
+
+	ZDRParamDispatchError (error) {
+		mod._ValueCloudErrorText = error.toString();
+	},
+
+	ZDRParamDispatchConnected (identity, token) {
+		mod._ValueCloudIdentity = identity;
+		mod._ValueCloudToken = token;
+	},
+
+	ZDRParamDispatchOnline () {
+		mod._ValueCloudIsOffline = false;
+	},
+
+	ZDRParamDispatchOffline () {
+		mod._ValueCloudIsOffline = true;
+	},
+
+	ZDRParamDispatchSyncDidStart () {
+		mod._ValueIsSyncing = true;
+	},
+
+	ZDRParamDispatchSyncDidStop () {
+		mod._ValueIsSyncing = false;
+	},
+
+	OLSKCloudStatusDispatchSyncStart () {
+		if (mod._ValueZDRWrap.ZDRStorageProtocol !== zerodatawrap.ZDRProtocolRemoteStorage()) {
+			return;
+		}
+
+		mod._ValueZDRWrap.ZDRStorageClient().startSync();
+
+		mod.ZDRParamDispatchSyncDidStart();
+	},
+
+	OLSKCloudStatusDispatchSyncStop () {
+		if (mod._ValueZDRWrap.ZDRStorageProtocol !== zerodatawrap.ZDRProtocolRemoteStorage()) {
+			return;
+		}
+
+		mod._ValueZDRWrap.ZDRStorageClient().stopSync();
 	},
 
 	OLSKAppToolbarDispatchApropos () {
@@ -910,7 +975,7 @@ const mod = {
 	},
 
 	async OLSKChangeDelegateConflictCard (inputData) {
-		return mod.OLSKChangeDelegateUpdateCard(await KOMCard.KOMCardUpdate(OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateConflictSelectRecent(inputData)));
+		return mod.OLSKChangeDelegateUpdateCard(await mod._ValueZDRWrap.App.KOMCard.KOMCardUpdate(OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateConflictSelectRecent(inputData)));
 	},
 
 	OLSKChangeDelegateCreateSpacing (inputData) {
@@ -1101,9 +1166,7 @@ const mod = {
 	},
 
 	async SetupValueDecksAll() {
-		mod.ValueDecksAll(await Promise.all((await mod._ValueZDRWrap.App.KOMDeck.KOMDeckList()).filter(function (e) {
-			return typeof e === 'object'; // #patch-remotestorage-true
-		}).map(async function (deck) {
+		mod.ValueDecksAll(await Promise.all((await mod._ValueZDRWrap.App.KOMDeck.KOMDeckList()).map(async function (deck) {
 			if (!mod._ValueCacheDeckFiguresMap[deck.KOMDeckID]) {
 				await mod.ReactDeckFigures(deck);
 			}
@@ -1179,7 +1242,7 @@ import KOMBrowse from '../sub-browse/main.svelte';
 import KOMPlay from '../sub-play/main.svelte';
 import OLSKAppToolbar from 'OLSKAppToolbar';
 import OLSKServiceWorkerView from '../_shared/__external/OLSKServiceWorker/main.svelte';
-import OLSKStorageWidget from 'OLSKStorageWidget';
+import OLSKCloud from 'OLSKCloud';
 import OLSKPointer from 'OLSKPointer';
 import OLSKWebView from 'OLSKWebView';
 import OLSKModalView from 'OLSKModalView';
@@ -1251,7 +1314,16 @@ import OLSKApropos from 'OLSKApropos';
 				<div class="OLSKToolbarElementGroup"></div>
 
 				<div class="OLSKToolbarElementGroup">
-					<OLSKStorageWidget StorageClient={ mod._ValueZDRWrap } />
+					<OLSKCloud
+						OLSKCloudErrorText={ mod._ValueCloudErrorText }
+						OLSKCloudDispatchRenew={ mod.OLSKCloudDispatchRenew }
+						OLSKCloudFormDispatchSubmit={ mod.OLSKCloudFormDispatchSubmit }
+						OLSKCloudStatusIdentityText={ mod._ValueCloudIdentity }
+						OLSKCloudStatusIsSyncing={ mod._ValueIsSyncing }
+						OLSKCloudStatusDispatchSyncStart={ mod.OLSKCloudStatusDispatchSyncStart }
+						OLSKCloudStatusDispatchSyncStop={ mod.OLSKCloudStatusDispatchSyncStop }
+						OLSKCloudStatusDispatchDisconnect={ mod.OLSKCloudStatusDispatchDisconnect }
+						/>
 				</div>
 			</div>
 		{/if}
@@ -1263,6 +1335,9 @@ import OLSKApropos from 'OLSKApropos';
 			OLSKAppToolbarFundShowProgress={ mod._ValueOLSKFundProgress }
 			OLSKAppToolbarFundLimitText={ mod._ValueDocumentRemainder }
 			OLSKAppToolbarDispatchFund={ mod._ValueOLSKFundGrant || OLSKFund.OLSKFundResponseIsPresent() ? null : mod.OLSKAppToolbarDispatchFund }
+			OLSKAppToolbarCloudConnected={ !!mod._ValueCloudIdentity }
+			OLSKAppToolbarCloudOffline={ mod._ValueCloudIsOffline }
+			OLSKAppToolbarCloudError={ !!mod._ValueCloudErrorText }
 			OLSKAppToolbarDispatchStorage={ mod.OLSKAppToolbarDispatchStorage }
 			OLSKAppToolbarDispatchLauncher={ mod.OLSKAppToolbarDispatchLauncher }
 			/>

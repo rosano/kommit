@@ -71,13 +71,13 @@ describe('KOMBrowse_Misc', function () {
 		it('sends KOMBrowseDispatchCreate', function () {
 			browser.assert.text('#TestKOMBrowseDispatchCreate', '1');
 			browser.assert.text('#TestKOMBrowseDispatchCreateData', JSON.stringify([
+				'KOMCardFrontText',
+				'KOMCardRearText',
+				'KOMCardNotes',
 				'KOMCardID',
 				'KOMCardDeckID',
 				'KOMCardCreationDate',
 				'KOMCardModificationDate',
-				'KOMCardFrontText',
-				'KOMCardRearText',
-				'KOMCardNotes',
 			]));
 		});
 
@@ -582,13 +582,13 @@ describe('KOMBrowse_Misc', function () {
 		it('sends KOMBrowseDispatchDiscard', function () {
 			browser.assert.text('#TestKOMBrowseDispatchDiscard', '1');
 			browser.assert.text('#TestKOMBrowseDispatchDiscardData', JSON.stringify([
+				'KOMCardFrontText',
+				'KOMCardRearText',
+				'KOMCardNotes',
 				'KOMCardID',
 				'KOMCardDeckID',
 				'KOMCardCreationDate',
 				'KOMCardModificationDate',
-				'KOMCardFrontText',
-				'KOMCardRearText',
-				'KOMCardNotes',
 				'KOMCardTags',
 			]));
 		});
