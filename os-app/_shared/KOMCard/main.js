@@ -272,7 +272,7 @@ export default Object.assign(mod, {
 						res(reader.result);
 					};
 
-					reader.readAsArrayBuffer(param1);
+					reader.readAsArrayBuffer(param3);
 				}), param3.type);
 
 			return Object.assign(param1, {

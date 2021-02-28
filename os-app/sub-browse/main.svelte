@@ -210,14 +210,14 @@ const mod = {
 		});
 	},
 
-	async ControlCardAudioCapture(param1, param2, param3) {
-		await KOMBrowseStorageClient.App.KOMCard.KOMCardAudioCapture(param3, param2, param1);
+	async ControlCardAudioCapture(property, data, card) {
+		await KOMBrowseStorageClient.App.KOMCard.KOMCardAudioCapture(card, property === 'KOMCardFrontAudio' ? KOMCard.KOMCardSideFront() : KOMCard.KOMCardSideRear(), data);
 
-		await mod.ControlCardUpdate(param3);
+		await mod.ControlCardUpdate(card);
 	},
 
 	async ControlCardAudioClear(param1, param2) {
-		await KOMBrowseStorageClient.App.KOMCard.KOMCardAudioClear(param2, param1);
+		await KOMBrowseStorageClient.App.KOMCard.KOMCardAudioClear(param2, param1 === 'KOMCardFrontAudio' ? KOMCard.KOMCardSideFront() : KOMCard.KOMCardSideRear());
 
 		await mod.ControlCardUpdate(param2);
 	},
@@ -322,8 +322,8 @@ const mod = {
 		mod.ReactTags();
 	},
 
-	async KOMBrowseInfoAudioDispatchCapture (param1, param2) {
-		await mod.ControlCardAudioCapture(param1, param2, mod._ValueCardSelected);
+	async KOMBrowseInfoAudioDispatchCapture (property, data) {
+		await mod.ControlCardAudioCapture(property, data, mod._ValueCardSelected);
 
 		mod._ValueCardSelected = mod._ValueCardSelected; // #purge-svelte-force-update
 	},
@@ -335,11 +335,11 @@ const mod = {
 	},
 
 	async KOMBrowseInfoAudioDispatchFetch (inputData) {
-		return await KOMBrowseStorageClient.App.KOMCard.KOMCardAudioFetch(mod._ValueCardSelected, inputData);
+		return await KOMBrowseStorageClient.App.KOMCard.KOMCardAudioFetch(mod._ValueCardSelected, inputData === 'KOMCardFrontAudio' ? KOMCard.KOMCardSideFront() : KOMCard.KOMCardSideRear());
 	},
 
 	KOMBrowseInfoDispatchDebug (inputData) {
-		const url = `https://inspektor.5apps.com/?path=kommit%2F${ encodeURIComponent(KOMCard.KOMCardStorageFolderPath(inputData, KOMBrowseDeckSelected)) }`;
+		const url = `https://inspektor.5apps.com/?path=kommit%2F${ encodeURIComponent(KOMCard.KOMCardFolderPath(inputData, KOMBrowseDeckSelected)) }`;
 
 		if (OLSK_SPEC_UI()) {
 			window.FakeWindowOpen = url;
