@@ -1,90 +1,87 @@
 import OLSKRemoteStorage from 'OLSKRemoteStorage';
 
-import KOMDeckAction from '../KOMDeck/action.js';
-import KOMCardAction from '../KOMCard/action.js';
-import KOMSpacingStorage from '../KOMSpacing/storage.js';
+import KOMDeck from '../KOMDeck/main.js';
+import KOMCard from '../KOMCard/main.js';
+import KOMSpacing from '../KOMSpacing/main.js';
 
-const mod = {
+export default {
+	ZDRSchemaKey: 'KOMTransport',
+	ZDRSchemaDispatchValidate: (function () {}),
+	ZDRSchemaPath: (function () {}),
+	ZDRSchemaStub: (function () {}),
+	ZDRSchemaMethods: {
 
-	KOMTransportImport (storageClient, inputData) {
-		if (!Array.isArray(inputData)) {
-			throw new Error('KOMErrorInputNotValid');
-		}
-
-		if (!inputData.length) {
-			throw new Error('KOMErrorInputNotValid');
-		}
-
-		return Promise.all(inputData.map(async function (e) {
-			if (!Array.isArray(e.$KOMDeckCards)) {
-				return Promise.reject(new Error('KOMErrorInputNotValid'));
+		KOMTransportImport (inputData) {
+			if (!Array.isArray(inputData)) {
+				throw new Error('KOMErrorInputNotValid');
 			}
 
-			const deck = await KOMDeckAction.KOMDeckActionCreate(storageClient, e);
-
-			if (deck.KOMErrors) {
-				// console.log('KOMErrorInputNotValid', deck.KOMErrors, e);
-				return Promise.reject(new Error('KOMErrorInputNotValid'));
+			if (!inputData.length) {
+				throw new Error('KOMErrorInputNotValid');
 			}
 
-			await Promise.all(e.$KOMDeckCards.map(async function (e) {
-				const card = await KOMCardAction.KOMCardActionCreate(storageClient, e, deck);
+			const _this = this;
 
-				if (card.KOMErrors) {
-					// console.log('KOMErrorInputNotValid', card.KOMErrors, e);
-					return Promise.reject(new Error('KOMErrorInputNotValid'));
+			return Promise.all(inputData.map(async function (e) {
+				if (!Array.isArray(e.$KOMDeckCards)) {
+					throw new Error('KOMErrorInputNotValid');
 				}
 
-				const spacings = await KOMSpacingStorage.KOMSpacingStorageList(storageClient, card, deck);
+				const deck = await _this.App.KOMDeck.KOMDeckCreate(e).catch(function () {
+					throw new Error('KOMErrorInputNotValid');
+				});
 
-				return Promise.all(['$KOMCardSpacingForward', '$KOMCardSpacingBackward'].map(async function (e) {
-					if (!card[e]) {
-						return Promise.resolve();
-					}
+				await Promise.all(e.$KOMDeckCards.map(async function (e) {
+					const card = await _this.App.KOMCard.KOMCardCreate(e, deck).catch(function () {
+						throw new Error('KOMErrorInputNotValid');
+					});
 
-					const spacing = await KOMSpacingStorage.KOMSpacingStorageWrite(storageClient, Object.assign(card[e], {
-						KOMSpacingID: spacings[e.slice(1)].KOMSpacingID,
-					}), card, deck);
+					const spacings = await _this.App.KOMSpacing.KOMSpacingList(card);
 
-					if (spacing.KOMErrors) {
-						// console.log('KOMErrorInputNotValid', spacing.KOMErrors, card[e]);
-						return Promise.reject(new Error('KOMErrorInputNotValid'));
-					}
-
-					return spacing;
-				}));
-			}));
-
-			delete deck.$KOMDeckCards;
-
-			return deck;
-		}));
-	},
-
-	KOMTransportExport (storageClient, inputData) {
-		if (!Array.isArray(inputData)) {
-			throw new Error('KOMErrorInputNotValid');
-		}
-
-		if (!inputData.length) {
-			throw new Error('KOMErrorInputNotValid');
-		}
-
-		return Promise.all(inputData.map(async function (deck) {
-			return Object.assign(OLSKRemoteStorage.OLSKRemoteStorageSafeCopy(deck), {
-				$KOMDeckCards: await Promise.all((await KOMCardAction.KOMCardActionList(storageClient, deck)).map(async function (e) {
-					return Object.entries(await KOMSpacingStorage.KOMSpacingStorageList(storageClient, e, deck)).reduce(function (coll, item) {
-						if (item[1].KOMSpacingChronicles.length) {
-							coll['$' + item[0]] = item[1];
+					return Promise.all(['$KOMCardSpacingForward', '$KOMCardSpacingBackward'].map(async function (e) {
+						if (!card[e]) {
+							return Promise.resolve();
 						}
 
-						return coll;
-					}, e);
-				})),
-			});
-		}));
+						return await _this.App.KOMSpacing.KOMSpacingWrite(Object.assign(card[e], {
+							KOMSpacingID: spacings[e.slice(1)].KOMSpacingID,
+						}), card).catch(function () {
+							throw new Error('KOMErrorInputNotValid');
+						});
+					}));
+				}));
+
+				delete deck.$KOMDeckCards;
+
+				return deck;
+			}));
+		},
+
+		KOMTransportExport (inputData) {
+			if (!Array.isArray(inputData)) {
+				throw new Error('KOMErrorInputNotValid');
+			}
+
+			if (!inputData.length) {
+				throw new Error('KOMErrorInputNotValid');
+			}
+
+			const _this = this;
+
+			return Promise.all(inputData.map(async function (deck) {
+				return Object.assign(OLSKRemoteStorage.OLSKRemoteStorageSafeCopy(deck), {
+					$KOMDeckCards: await Promise.all((await _this.App.KOMCard.KOMCardList(deck)).map(async function (e) {
+						return Object.entries(await _this.App.KOMSpacing.KOMSpacingList(e, deck)).reduce(function (coll, item) {
+							if (item[1].KOMSpacingChronicles.length) {
+								coll['$' + item[0]] = item[1];
+							}
+
+							return coll;
+						}, e);
+					})),
+				});
+			}));
+		},
+
 	},
-
 };
-
-export default mod;

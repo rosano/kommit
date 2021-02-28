@@ -1,7 +1,7 @@
 const { throws, deepEqual, notDeepEqual } = require('assert');
 
 const mod = require('./ui-logic.js').default;
-const KOMSpacingModel = require('../_shared/KOMSpacing/model.js').default;
+const KOMSpacing = require('../_shared/KOMSpacing/main.js').default;
 
 const kTesting = {
 	StubStateObjectValid() {
@@ -128,11 +128,11 @@ describe('KOMPlaySort', function test_KOMPlaySort() {
 		it('sorts forward before backward', function () {
 			deepEqual(mod.KOMPlaySort(uItems(10, Infinity, true)).filter(function (e, i, coll) {
 				return coll.filter(function (item, index) {
-					if (KOMSpacingModel.KOMSpacingModelIdentifier(item.KOMSpacingID) !== KOMSpacingModel.KOMSpacingModelIdentifier(e.KOMSpacingID)) {
+					if (KOMSpacing.KOMSpacingModelIdentifier(item.KOMSpacingID) !== KOMSpacing.KOMSpacingModelIdentifier(e.KOMSpacingID)) {
 						return false;
 					}
 
-					if (KOMSpacingModel.KOMSpacingModelLabel(item.KOMSpacingID) !== KOMSpacingModel.KOMSpacingModelLabelBackward()) {
+					if (KOMSpacing.KOMSpacingModelLabel(item.KOMSpacingID) !== KOMSpacing.KOMSpacingModelLabelBackward()) {
 						return false;
 					}
 
@@ -144,7 +144,7 @@ describe('KOMPlaySort', function test_KOMPlaySort() {
 		it('spaces apart from sibling', function () {
 			deepEqual(kTesting.uRepeat(10, function (e) {
 				return mod.KOMPlaySort(uItems(10, Infinity, true)).filter(function (e, i, coll) {
-					return i && KOMSpacingModel.KOMSpacingModelIsBackward(e) && KOMSpacingModel.KOMSpacingModelIdentifier(e.KOMSpacingID) === KOMSpacingModel.KOMSpacingModelIdentifier(coll[i - 1].KOMSpacingID);
+					return i && KOMSpacing.KOMSpacingModelIsBackward(e) && KOMSpacing.KOMSpacingModelIdentifier(e.KOMSpacingID) === KOMSpacing.KOMSpacingModelIdentifier(coll[i - 1].KOMSpacingID);
 				});
 			}).filter(function (e) {
 				return e.length;
@@ -153,7 +153,7 @@ describe('KOMPlaySort', function test_KOMPlaySort() {
 
 		it('randomizes', function () {
 			deepEqual(kTesting.uRepeat(10, function (e) {
-				return uSlug(mod.KOMPlaySort(uItems(10, Infinity, true)).filter(KOMSpacingModel.KOMSpacingModelIsBackward));
+				return uSlug(mod.KOMPlaySort(uItems(10, Infinity, true)).filter(KOMSpacing.KOMSpacingModelIsBackward));
 			}).filter(function (value, index, self) {
 				return self.indexOf(value) === index;
 			}).length > 1, true);
@@ -171,7 +171,7 @@ describe('KOMPlaySort', function test_KOMPlaySort() {
 		it('spaces apart from sibling', function () {
 			deepEqual(kTesting.uRepeat(10, function (e) {
 				return mod.KOMPlaySort(uItems(10, 0, true)).filter(function (e, i, coll) {
-					return i && KOMSpacingModel.KOMSpacingModelIsBackward(e) && KOMSpacingModel.KOMSpacingModelIdentifier(e.KOMSpacingID) === KOMSpacingModel.KOMSpacingModelIdentifier(coll[i - 1].KOMSpacingID);
+					return i && KOMSpacing.KOMSpacingModelIsBackward(e) && KOMSpacing.KOMSpacingModelIdentifier(e.KOMSpacingID) === KOMSpacing.KOMSpacingModelIdentifier(coll[i - 1].KOMSpacingID);
 				});
 			}).filter(function (e) {
 				return e.length;
@@ -180,7 +180,7 @@ describe('KOMPlaySort', function test_KOMPlaySort() {
 
 		it('randomizes', function () {
 			deepEqual(kTesting.uRepeat(10, function (e) {
-				return uSlug(mod.KOMPlaySort(uItems(10, 0, true)).filter(KOMSpacingModel.KOMSpacingModelIsBackward));
+				return uSlug(mod.KOMPlaySort(uItems(10, 0, true)).filter(KOMSpacing.KOMSpacingModelIsBackward));
 			}).filter(function (value, index, self) {
 				return self.indexOf(value) === index;
 			}).length > 1, true);
@@ -198,11 +198,11 @@ describe('KOMPlaySort', function test_KOMPlaySort() {
 		it('sorts forward before backward', function () {
 			deepEqual(mod.KOMPlaySort(uItems(5, 2, true)).filter(function (e, i, coll) {
 				return coll.filter(function (item, index) {
-					if (KOMSpacingModel.KOMSpacingModelIdentifier(item.KOMSpacingID) !== KOMSpacingModel.KOMSpacingModelIdentifier(e.KOMSpacingID)) {
+					if (KOMSpacing.KOMSpacingModelIdentifier(item.KOMSpacingID) !== KOMSpacing.KOMSpacingModelIdentifier(e.KOMSpacingID)) {
 						return false;
 					}
 
-					if (KOMSpacingModel.KOMSpacingModelLabel(item.KOMSpacingID) !== KOMSpacingModel.KOMSpacingModelLabelBackward()) {
+					if (KOMSpacing.KOMSpacingModelLabel(item.KOMSpacingID) !== KOMSpacing.KOMSpacingModelLabelBackward()) {
 						return false;
 					}
 

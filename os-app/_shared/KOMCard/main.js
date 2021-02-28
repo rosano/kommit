@@ -126,12 +126,12 @@ const mod = {
 	},
 
 	KOMCardStub (inputData) {
-		const groups = (inputData.match(new RegExp(`\/(?<deck>[\\w\.]+)\/${ mod.KOMCardDirectory() }\/(?<date>[0-9]{4}-[0-9]{2}-[0-9]{2})\/(?<card>[\\w\.]+)\/main`) || {})).groups || {};
+		const groups = (inputData.match(new RegExp(`\/(?<deck>[\\w\.]+)\/${ mod.KOMCardDirectory() }\/(?<date>[0-9]{4}-[0-9]{2}-[0-9]{2})\/(?<card>[\\w\.]+)\/main`)) || {}).groups || {};
 
 		return {
 			KOMCardID: groups.card,
 			KOMCardDeckID: groups.deck,
-			KOMCardCreationDate: new Date(groups.date)
+			KOMCardCreationDate: new Date(groups.date || Date.now()),
 		};
 	},
 

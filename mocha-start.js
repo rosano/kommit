@@ -3,39 +3,6 @@ const RemoteStorage = require('remotestoragejs');
 global.Blob = require('cross-blob');
 global.FileReader = require('filereader');
 
-const KOM_Data = require('./os-app/_shared/KOM_Data/main.js').default;
-const KOMDeckStorage = require('./os-app/_shared/KOMDeck/storage.js').default;
-const KOMCardStorage = require('./os-app/_shared/KOMCard/storage.js').default;
-const KOMSpacingStorage = require('./os-app/_shared/KOMSpacing/storage.js').default;
-const KOMSettingStorage = require('./os-app/_shared/KOMSetting/storage.js').default;
-
-(function KOMMochaStorage() {
-	if (process.env.OLSK_SPEC_MOCHA_INTERFACE === 'true') {
-		return;
-	}
-
-	const storageModule = KOM_Data.KOM_DataModule([
-		KOMDeckStorage.KOMDeckStorageBuild,
-		KOMCardStorage.KOMCardStorageBuild,
-		KOMSpacingStorage.KOMSpacingStorageBuild,
-		KOMSettingStorage.KOMSettingStorageBuild,
-	], {
-		OLSKOptionIncludeDebug: true,
-	});
-
-	before(function () {
-		global.KOMTestingStorageClient = new RemoteStorage({
-			modules: [storageModule]
-		});
-
-		global.KOMTestingStorageClient.access.claim(storageModule.name, 'rw');
-	});
-
-	beforeEach(function () {
-		return global.KOMTestingStorageClient[storageModule.name].__DEBUG.__OLSKRemoteStorageReset();
-	});
-})();
-
 (function KOMMochaWrap() {
 	if (process.env.OLSK_SPEC_MOCHA_INTERFACE === 'true') {
 		return;
@@ -53,6 +20,7 @@ const KOMSettingStorage = require('./os-app/_shared/KOMSetting/storage.js').defa
 					require('./os-app/_shared/KOMCard/main.js').default,
 					require('./os-app/_shared/KOMSpacing/main.js').default,
 					require('./os-app/_shared/KOMSetting/main.js').default,
+					require('./os-app/_shared/KOMTransport/main.js').default,
 				],
 			}],
 			_ZDRParamDispatchPreObjectWrite: require('OLSKObject').default.OLSKObjectSafeCopy,

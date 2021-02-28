@@ -1,7 +1,7 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 const KOMPlayLogic = require('./ui-logic.js').default;
-const KOMSpacingModel = require('../_shared/KOMSpacing/model.js').default;
+const KOMSpacing = require('../_shared/KOMSpacing/main.js').default;
 const KOMSharedLogic = require('../_shared/KOMSharedLogic/main.js').default;
 
 const kTesting = {

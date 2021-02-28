@@ -1,5 +1,5 @@
-import KOMSpacingModel from '../_shared/KOMSpacing/model.js';
-import KOMDeckModel from '../_shared/KOMDeck/model.js';
+import KOMSpacing from '../_shared/KOMSpacing/main.js';
+import KOMDeck from '../_shared/KOMDeck/main.js';
 import KOMPlayLogic from '../sub-play/ui-logic.js';
 import KOMSharedLogic from '../_shared/KOMSharedLogic/main.js';
 import KOMReviewGeneral from './submodules/KOMReviewGeneral/ui-logic.js';
@@ -105,7 +105,7 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		if (KOMDeckModel.KOMDeckModelErrorsFor(param3)) {
+		if (KOMDeck.KOMDeckModelErrorsFor(param3)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
@@ -115,23 +115,23 @@ const mod = {
 				return false;
 			}
 
-			if (param2.KOMReviewScheme === mod.KOMReviewSchemeReviewing() && KOMSpacingModel.KOMSpacingModelIsUnseen(e)) {
+			if (param2.KOMReviewScheme === mod.KOMReviewSchemeReviewing() && KOMSpacing.KOMSpacingModelIsUnseen(e)) {
 				return false;
 			}
 
-			if (param2.KOMReviewScheme === mod.KOMReviewSchemeUnseen() && !KOMSpacingModel.KOMSpacingModelIsUnseen(e)) {
+			if (param2.KOMReviewScheme === mod.KOMReviewSchemeUnseen() && !KOMSpacing.KOMSpacingModelIsUnseen(e)) {
 				return false;
 			}
 
-			if (param3.KOMDeckIsForwardOnly && KOMSpacingModel.KOMSpacingModelIsBackward(e)) {
+			if (param3.KOMDeckIsForwardOnly && KOMSpacing.KOMSpacingModelIsBackward(e)) {
 				return false;
 			}
 
-			if (param2.KOMReviewScheme !== mod.KOMReviewSchemeReviewing() && KOMSpacingModel.KOMSpacingModelIsUnseen(e) && !cardsNew.includes(e.$KOMSpacingCard)) {
+			if (param2.KOMReviewScheme !== mod.KOMReviewSchemeReviewing() && KOMSpacing.KOMSpacingModelIsUnseen(e) && !cardsNew.includes(e.$KOMSpacingCard)) {
 				cardsNew.push(e.$KOMSpacingCard);
 			}
 
-			if (param2.KOMReviewScheme !== mod.KOMReviewSchemeReviewing() && KOMSpacingModel.KOMSpacingModelIsUnseen(e) && cardsNew.length > param2.KOMReviewMaxUnseenCards) {
+			if (param2.KOMReviewScheme !== mod.KOMReviewSchemeReviewing() && KOMSpacing.KOMSpacingModelIsUnseen(e) && cardsNew.length > param2.KOMReviewMaxUnseenCards) {
 				return false;
 			}
 
@@ -140,7 +140,7 @@ const mod = {
 	},
 
 	KOMReviewRetireCards (param1, param2) {
-		if (KOMDeckModel.KOMDeckModelErrorsFor(param1)) {
+		if (KOMDeck.KOMDeckModelErrorsFor(param1)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
@@ -154,7 +154,7 @@ const mod = {
 
 		return Object.values(param2.reduce(function (coll, item) {
 			return Object.assign(coll, {
-				[KOMSpacingModel.KOMSpacingModelIdentifier(item.KOMSpacingID)]: (coll[[KOMSpacingModel.KOMSpacingModelIdentifier(item.KOMSpacingID)]] || []).concat(item),
+				[KOMSpacing.KOMSpacingModelIdentifier(item.KOMSpacingID)]: (coll[[KOMSpacing.KOMSpacingModelIdentifier(item.KOMSpacingID)]] || []).concat(item),
 			});
 		}, {})).filter(function (e) {
 			return e.filter(function (e) {

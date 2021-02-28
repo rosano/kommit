@@ -18,7 +18,7 @@ import KOMReviewLogic from './ui-logic.js';
 import KOMSharedLogic from '../_shared/KOMSharedLogic/main.js';
 import KOMPlayLogic from '../sub-play/ui-logic.js';
 import OLSKThrottle from 'OLSKThrottle';
-import KOMSpacingModel from '../_shared/KOMSpacing/model.js';
+import KOMSpacing from '../_shared/KOMSpacing/main.js';
 import OLSKLocalStorage from 'OLSKLocalStorage';
 import OLSKCache from 'OLSKCache';
 import OLSKFund from 'OLSKFund';
@@ -955,10 +955,10 @@ const mod = {
 		
 		return Object.assign(deck, mod.ValueCacheDeckFiguresMap(Object.assign(mod._ValueCacheDeckFiguresMap, {
 			[deck.KOMDeckID]: {
-				$KOMDeckTodayReviewCount: KOMSpacingModel.KOMSpacingModelFilterUnique(todaySpacingsNotStudied.filter(function (e) {
-					return !KOMSpacingModel.KOMSpacingModelIsUnseen(e);
+				$KOMDeckTodayReviewCount: KOMSpacing.KOMSpacingModelFilterUnique(todaySpacingsNotStudied.filter(function (e) {
+					return !KOMSpacing.KOMSpacingModelIsUnseen(e);
 				})).length,
-				$KOMDeckTodayUnseenCount: KOMSpacingModel.KOMSpacingModelFilterUnique(todaySpacingsNotStudied.filter(KOMSpacingModel.KOMSpacingModelIsUnseen)).length,
+				$KOMDeckTodayUnseenCount: KOMSpacing.KOMSpacingModelFilterUnique(todaySpacingsNotStudied.filter(KOMSpacing.KOMSpacingModelIsUnseen)).length,
 
 				$KOMDeckTodayStudiedCount: todaySpacingsStudied.length,
 				
@@ -966,16 +966,16 @@ const mod = {
 					return e.KOMSpacingChronicles.length;
 				}).length,
 
-				$KOMReviewTodayTotalCards: KOMSpacingModel.KOMSpacingModelFilterUnique(todaySpacingsStudied).length,
+				$KOMReviewTodayTotalCards: KOMSpacing.KOMSpacingModelFilterUnique(todaySpacingsStudied).length,
 				$KOMReviewTodayTimeMinutes: KOMReviewLogic.KOMReviewTotalMinutes(KOMReviewLogic.KOMReviewTodayTotalMilliseconds(todaySpacingsStudied)),
 				$KOMReviewTodayReviewAccuracy: KOMReviewLogic.KOMReviewTodayPercentage(KOMReviewLogic.KOMReviewTodayReviewAccuracy(todaySpacingsStudied)),
 
 				$KOMReviewGeneralUpcomingData: KOMReviewLogic.KOMReviewGeneralUpcomingDates().map(function (e) {
 					return {
 						KOMReviewChartElementDateBarTableRowDataKey: KOMSharedLogic.KOMSharedGroupingDay(new Date()) === e ? OLSKLocalized('KOMReviewGeneralTodayText') : e,
-						KOMReviewChartElementDateBarTableRowDataValues: Object.entries(KOMSpacingModel.KOMSpacingModelGroupByStatus(upcomingGroupings[e] || [])).reduce(function (coll, item) {
+						KOMReviewChartElementDateBarTableRowDataValues: Object.entries(KOMSpacing.KOMSpacingModelGroupByStatus(upcomingGroupings[e] || [])).reduce(function (coll, item) {
 							if (['KOMSpacingGroupingDeveloping', 'KOMSpacingGroupingMature'].includes(item[0])) {
-								coll.push(KOMSpacingModel.KOMSpacingModelFilterUnique(item[1]).length);
+								coll.push(KOMSpacing.KOMSpacingModelFilterUnique(item[1]).length);
 							}
 
 							return coll;
@@ -985,13 +985,13 @@ const mod = {
 				$KOMReviewGeneralHistoricalData: KOMReviewLogic.KOMReviewGeneralHistoricalDates().map(function (e) {
 					return {
 						KOMReviewChartElementDateBarTableRowDataKey: KOMSharedLogic.KOMSharedGroupingDay(new Date()) === e ? OLSKLocalized('KOMReviewGeneralTodayText') : e,
-						KOMReviewChartElementDateBarTableRowDataValues: Object.entries(KOMSpacingModel.KOMSpacingModelGroupChroniclesByStatus(historicalGroupings[e] || [], e)).reduce(function (coll, item) {
+						KOMReviewChartElementDateBarTableRowDataValues: Object.entries(KOMSpacing.KOMSpacingModelGroupChroniclesByStatus(historicalGroupings[e] || [], e)).reduce(function (coll, item) {
 							return coll.concat(KOMReviewLogic.KOMReviewTotalMinutes(KOMReviewLogic.KOMReviewGeneralHistoricalTotalMilliseconds(item[1])));
 						}, []).reverse(),
 					};
 				}),
-				$KOMReviewChartCompositionCollectionData: Object.entries(KOMSpacingModel.KOMSpacingModelGroupByStatus(activeSpacings)).reduce(function (coll, item) {
-					coll[item[0]] = KOMSpacingModel.KOMSpacingModelFilterUnique(item[1]).length;
+				$KOMReviewChartCompositionCollectionData: Object.entries(KOMSpacing.KOMSpacingModelGroupByStatus(activeSpacings)).reduce(function (coll, item) {
+					coll[item[0]] = KOMSpacing.KOMSpacingModelFilterUnique(item[1]).length;
 
 					return coll;
 				}, {}),
