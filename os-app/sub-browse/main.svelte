@@ -34,8 +34,7 @@ import { OLSKLocalized } from 'OLSKInternational';
 import { OLSK_SPEC_UI } from 'OLSKSpec';
 import OLSKThrottle from 'OLSKThrottle';
 import KOMBrowseLogic from './ui-logic.js';
-import KOMCardAction from '../_shared/KOMCard/action.js';
-import KOMCardStorage from '../_shared/KOMCard/storage.js';
+import KOMCard from '../_shared/KOMCard/main.js';
 
 const mod = {
 
@@ -107,13 +106,13 @@ const mod = {
 				{
 					LCHRecipeName: 'FakeChangeDelegateCreateCard',
 					LCHRecipeCallback: async function FakeChangeDelegateCreateCard () {
-						return mod.ChangeDelegateCreateCard(await KOMCardAction.KOMCardActionCreate(KOMBrowseStorageClient, mod.DataCardObjectTemplate('FakeChangeDelegateCreateCard'), KOMBrowseDeckSelected));
+						return mod.ChangeDelegateCreateCard(await KOMBrowseStorageClient.App.KOMCard.KOMCardCreate(KOMBrowseStorageClient, mod.DataCardObjectTemplate('FakeChangeDelegateCreateCard'), KOMBrowseDeckSelected));
 					},
 				},
 				{
 					LCHRecipeName: 'FakeChangeDelegateUpdateCard',
 					LCHRecipeCallback: async function FakeChangeDelegateUpdateCard () {
-						return mod.ChangeDelegateUpdateCard(await KOMCardAction.KOMCardActionUpdate(KOMBrowseStorageClient, Object.assign(mod._ValueCardsAll.filter(function (e) {
+						return mod.ChangeDelegateUpdateCard(await KOMBrowseStorageClient.App.KOMCard.KOMCardUpdate(KOMBrowseStorageClient, Object.assign(mod._ValueCardsAll.filter(function (e) {
 							return e.KOMCardFrontText.match('FakeChangeDelegate');
 						}).pop(), {
 							KOMCardFrontText: 'FakeChangeDelegateUpdateCard',
@@ -127,7 +126,7 @@ const mod = {
 							return e.KOMCardFrontText.match('FakeChangeDelegate');
 						}).pop();
 						
-						await KOMCardAction.KOMCardActionDelete(KOMBrowseStorageClient, item, KOMBrowseDeckSelected);
+						await KOMBrowseStorageClient.App.KOMCard.KOMCardDelete(KOMBrowseStorageClient, item, KOMBrowseDeckSelected);
 						
 						return mod.ChangeDelegateDeleteCard(item);
 					},
@@ -192,7 +191,7 @@ const mod = {
 			return;
 		}
 
-		const item = await KOMCardAction.KOMCardActionCreate(KOMBrowseStorageClient, Object.assign(mod.DataCardObjectTemplate(), param2), param1);
+		const item = await KOMBrowseStorageClient.App.KOMCard.KOMCardCreate(KOMBrowseStorageClient, Object.assign(mod.DataCardObjectTemplate(), param2), param1);
 
 		mod.ValueCardsAll(mod._ValueCardsAll.concat(item));
 
@@ -205,19 +204,19 @@ const mod = {
 		OLSKThrottle.OLSKThrottleMappedTimeout(mod._ValueCardUpdateThrottleMap, param1.KOMCardID, {
 			OLSKThrottleDuration: OLSK_SPEC_UI() ? 0 : 500,
 			OLSKThrottleCallback () {
-				return KOMCardAction.KOMCardActionUpdate(KOMBrowseStorageClient, param1, param2);
+				return KOMBrowseStorageClient.App.KOMCard.KOMCardUpdate(KOMBrowseStorageClient, param1, param2);
 			},
 		});
 	},
 
 	async ControlCardAudioCapture(param1, param2, param3, param4) {
-		await KOMCardAction.KOMCardActionAudioCapture(...[KOMBrowseStorageClient].concat(Object.values(arguments)));
+		await KOMBrowseStorageClient.App.KOMCard.KOMCardAudioCapture(...[KOMBrowseStorageClient].concat(Object.values(arguments)));
 
 		await mod.ControlCardUpdate(param3, param4);
 	},
 
 	async ControlCardAudioClear(param1, param2, param3) {
-		await KOMCardAction.KOMCardActionAudioClear(...([KOMBrowseStorageClient].concat(Object.values(arguments))));
+		await KOMBrowseStorageClient.App.KOMCard.KOMCardAudioClear(...([KOMBrowseStorageClient].concat(Object.values(arguments))));
 
 		await mod.ControlCardUpdate(param2, param3);
 	},
@@ -227,7 +226,7 @@ const mod = {
 			return e !== param1;
 		}), false);
 
-		await KOMCardAction.KOMCardActionDelete(KOMBrowseStorageClient, param1, param2);
+		await KOMBrowseStorageClient.App.KOMCard.KOMCardDelete(KOMBrowseStorageClient, param1, param2);
 
 		if (param1 === mod._ValueCardSelected) {
 			mod.ControlCardSelect(null);
@@ -335,11 +334,11 @@ const mod = {
 	},
 
 	async KOMBrowseInfoAudioDispatchFetch (inputData) {
-		return await KOMCardAction.KOMCardActionAudioFetch(KOMBrowseStorageClient, inputData, mod._ValueCardSelected, KOMBrowseDeckSelected);
+		return await KOMBrowseStorageClient.App.KOMCard.KOMCardAudioFetch(KOMBrowseStorageClient, inputData, mod._ValueCardSelected, KOMBrowseDeckSelected);
 	},
 
 	KOMBrowseInfoDispatchDebug (inputData) {
-		const url = `https://inspektor.5apps.com/?path=kommit%2F${ encodeURIComponent(KOMCardStorage.KOMCardStorageFolderPath(inputData, KOMBrowseDeckSelected)) }`;
+		const url = `https://inspektor.5apps.com/?path=kommit%2F${ encodeURIComponent(KOMCard.KOMCardStorageFolderPath(inputData, KOMBrowseDeckSelected)) }`;
 
 		if (OLSK_SPEC_UI()) {
 			window.FakeWindowOpen = url;

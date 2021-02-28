@@ -626,7 +626,7 @@ describe.skip('KOMCardAudioFetch', function test_KOMCardAudioFetch() {
 
 });
 
-describe.skip('KOMCardAudioList', function test_KOMCardActionAudioList() {
+describe.skip('KOMCardAudioList', function test_KOMCardAudioList() {
 	
 	const blob = new Blob([Math.random().toString()], { type: 'text/plain' });
 
