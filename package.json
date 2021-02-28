@@ -16,8 +16,10 @@
     "OLSKExpress": "olsk/OLSKExpress",
 
     "// REMOTE STORAGE": null,
+    "zerodatawrap": "0dataapp/0datawrap",
     "OLSKRemoteStorage": "olsk/OLSKRemoteStorage",
     "OLSKStorageWidget": "olsk/OSWPackage",
+    "OLSKObject": "olsk/OLSKObject",
 
     "// LOCAL STORAGE": null,
     "OLSKLocalStorage": "olsk/OLSKLocalStorage",

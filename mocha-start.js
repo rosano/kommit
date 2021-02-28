@@ -36,8 +36,42 @@ const KOMSettingStorage = require('./os-app/_shared/KOMSetting/storage.js').defa
 	});
 })();
 
+(function KOMMochaWrap() {
+	if (process.env.OLSK_SPEC_MOCHA_INTERFACE === 'true') {
+		return;
+	}
+
+	before(async function() {
+		global.ZDRTestingWrap = await require('zerodatawrap').ZDRWrap({
+			ZDRParamLibrary: require('remotestoragejs'),
+			ZDRParamScopes: [{
+				ZDRScopeKey: 'App',
+				ZDRScopeDirectory: 'kommit',
+				ZDRScopeSchemas: [
+					require('./os-app/_shared/KOMDeck/main.js').default,
+					require('./os-app/_shared/KOMDeckObject/main.js').default,
+					require('./os-app/_shared/KOMCard/main.js').default,
+					require('./os-app/_shared/KOMSpacing/main.js').default,
+					require('./os-app/_shared/KOMSetting/main.js').default,
+				],
+			}],
+			_ZDRParamDispatchPreObjectWrite: require('OLSKObject').default.OLSKObjectSafeCopy,
+		});
+	});
+
+	beforeEach(async function() {
+		return Promise.all((await ZDRTestingWrap.App.ZDRStoragePathsRecursive('/')).map(ZDRTestingWrap.App.ZDRStorageDelete));
+	});
+})();
+
 (function KVCMochaStubs() {
 	Object.entries({
+
+		StubDeckObject(inputData) {
+			return Object.assign({
+				KOMDeckName: Math.random().toString(),
+			}, inputData);
+		},
 
 		StubDeckObjectValid(inputData) {
 			return Object.assign({
@@ -45,6 +79,14 @@ const KOMSettingStorage = require('./os-app/_shared/KOMSetting/storage.js').defa
 				KOMDeckName: 'bravo',
 				KOMDeckCreationDate: new Date('2019-02-23T13:56:36Z'),
 				KOMDeckModificationDate: new Date('2019-02-23T13:56:36Z'),
+			}, inputData);
+		},
+
+		StubCardObject(inputData) {
+			return Object.assign({
+				KOMCardDeckID: Math.random().toString(),
+				KOMCardFrontText: Math.random().toString(),
+				KOMCardRearText: Math.random().toString(),
 			}, inputData);
 		},
 
@@ -83,11 +125,11 @@ const KOMSettingStorage = require('./os-app/_shared/KOMSetting/storage.js').defa
 			};
 		},
 
-		StubSettingObjectValid() {
-			return {
+		StubSettingObjectValid(inputData = {}) {
+			return Object.assign({
 				KOMSettingKey: 'alfa',
 				KOMSettingValue: 'bravo',
-			};
+			}, inputData);
 		},
 
 		StubReviewChartElementDateBarTableRowDataObjectValid() {
