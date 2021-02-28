@@ -30,14 +30,6 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 			return browser.assert.OLSKLauncherItemText('KOMReviewMasterLauncherItemToggleDeckFiguresCaching', uLocalized('KOMReviewMasterLauncherItemToggleDeckFiguresCachingText'));
 		});
 
-		it('localizes KOMReviewMasterLauncherItemImportData', function () {
-			return browser.assert.OLSKLauncherItemText('KOMReviewMasterLauncherItemImportData', uLocalized('KOMReviewMasterLauncherItemImportDataText'));
-		});
-
-		it('localizes KOMReviewMasterLauncherItemExportData', function () {
-			return browser.assert.OLSKLauncherItemText('KOMReviewMasterLauncherItemExportData', uLocalized('KOMReviewMasterLauncherItemExportDataText'));
-		});
-
 	});
 
 });

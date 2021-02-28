@@ -4,8 +4,6 @@ export let KOMReviewMasterDispatchCreate;
 export let KOMReviewMasterDispatchSelect;
 export let KOMReviewMasterDispatchToggleExcludeTripleQuestionMark;
 export let KOMReviewMasterDispatchToggleDeckFiguresCaching;
-export let KOMReviewMasterDispatchImportData;
-export let KOMReviewMasterDispatchExportData;
 export let KOMReviewMaster_DebugShowLauncherButton = false;
 
 export const modPublic = {
@@ -116,18 +114,6 @@ const mod = {
 			LCHRecipeName: OLSKLocalized('KOMReviewMasterLauncherItemToggleDeckFiguresCachingText'),
 			LCHRecipeCallback: function KOMReviewMasterLauncherItemToggleDeckFiguresCaching () {
 				return KOMReviewMasterDispatchToggleDeckFiguresCaching();
-			},
-		}, {
-			LCHRecipeSignature: 'KOMReviewMasterLauncherItemImportData',
-			LCHRecipeName: OLSKLocalized('KOMReviewMasterLauncherItemImportDataText'),
-			LCHRecipeCallback: function KOMReviewMasterLauncherItemImportData () {
-				return KOMReviewMasterDispatchImportData();
-			},
-		}, {
-			LCHRecipeSignature: 'KOMReviewMasterLauncherItemExportData',
-			LCHRecipeName: OLSKLocalized('KOMReviewMasterLauncherItemExportDataText'),
-			LCHRecipeCallback: function KOMReviewMasterLauncherItemExportData () {
-				return KOMReviewMasterDispatchExportData();
 			},
 		}];
 

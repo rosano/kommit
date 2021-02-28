@@ -1,7 +1,5 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-const uStringWithFormat = OLSKTestingFormatted;
-
 kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 
 	const uLocalized = function (inputData) {
@@ -24,7 +22,15 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 			return browser.assert.OLSKLauncherItemText('KOMReviewLauncherItemToggleSimplifiedResponseButtons', uLocalized('KOMReviewLauncherItemToggleSimplifiedResponseButtonsText'));
 		});
 
-		describe('ImportData', function test_ImportData() {
+		it('localizes KOMReviewLauncherItemImportJSON', function () {
+			return browser.assert.OLSKLauncherItemText('KOMReviewLauncherItemImportJSON', uLocalized('KOMReviewLauncherItemImportJSONText'));
+		});
+
+		it('localizes KOMReviewLauncherItemExportJSON', function () {
+			return browser.assert.OLSKLauncherItemText('KOMReviewLauncherItemExportJSON', uLocalized('KOMReviewLauncherItemExportJSONText'));
+		});
+
+		describe('KOMReviewLauncherItemImportJSON', function test_KOMReviewLauncherItemImportJSON() {
 
 			context('not filled', function () {
 				
@@ -33,7 +39,7 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 				});
 
 				before(async function () {
-					return browser.fill('.LCHLauncherFilterInput', 'KOMReviewLauncherItemDebug_ImportFileData');
+					return browser.fill('.LCHLauncherFilterInput', 'KOMReviewLauncherItemDebug_PromptFakeImportSerialized');
 				});
 
 				it('alerts if not filled', function () {
@@ -45,7 +51,7 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 
 							return dialog;
 						});
-					}, uLocalized('KOMReviewStorageImportErrorNotFilledAlertText'));
+					}, uLocalized('KOMReviewLauncherItemImportJSONErrorNotFilledAlertText'));
 				});
 			
 			});
@@ -57,7 +63,7 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 				});
 
 				before(async function () {
-					return browser.fill('.LCHLauncherFilterInput', 'KOMReviewLauncherItemDebug_ImportFileData');
+					return browser.fill('.LCHLauncherFilterInput', 'KOMReviewLauncherItemDebug_PromptFakeImportSerialized');
 				});
 
 				it('alerts if not json', function () {
@@ -69,7 +75,7 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 
 							return dialog;
 						});
-					}, uLocalized('KOMReviewStorageImportErrorNotValidAlertText'));
+					}, uLocalized('KOMReviewLauncherItemImportJSONErrorNotValidAlertText'));
 				});
 			
 			});
@@ -81,7 +87,7 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 				});
 
 				before(async function () {
-					return browser.fill('.LCHLauncherFilterInput', 'KOMReviewLauncherItemDebug_ImportFileData');
+					return browser.fill('.LCHLauncherFilterInput', 'KOMReviewLauncherItemDebug_PromptFakeImportSerialized');
 				});
 
 				it('alerts if not valid', function () {
@@ -93,7 +99,7 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 
 							return dialog;
 						});
-					}, uLocalized('KOMReviewStorageImportErrorNotValidAlertText'));
+					}, uLocalized('KOMReviewLauncherItemImportJSONErrorNotValidAlertText'));
 				});
 			
 			});
@@ -123,7 +129,7 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 			});
 
 			it('localizes KOMReviewLauncherItemSelectDeck', function () {
-				return browser.assert.OLSKLauncherItemText('KOMReviewLauncherItemSelectDeck', uStringWithFormat(uLocalized('KOMReviewLauncherItemSelectDeckTextFormat'), 'alfa'));
+				return browser.assert.OLSKLauncherItemText('KOMReviewLauncherItemSelectDeck', OLSKTestingFormatted(uLocalized('KOMReviewLauncherItemSelectDeckTextFormat'), 'alfa'));
 			});
 
 		});

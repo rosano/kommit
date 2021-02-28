@@ -1,7 +1,9 @@
 KOMReviewTitle: Kommit
 KOMReviewCreatePromptText: Name
-KOMReviewStorageImportErrorNotFilledAlertText: Input not filled
-KOMReviewStorageImportErrorNotValidAlertText: Input not valid
+KOMReviewLauncherItemImportJSONText: Import JSON (beta)
+KOMReviewLauncherItemImportJSONErrorNotFilledAlertText: Input not filled
+KOMReviewLauncherItemImportJSONErrorNotValidAlertText: Input not valid
+KOMReviewLauncherItemExportJSONText: Export JSON (beta)
 KOMReviewLauncherItemSelectDeckTextFormat: Select deck '%@'
 KOMReviewLauncherItemToggleSimplifiedResponseButtonsText: Toggle simplified response buttons
 KOMReviewLauncherItemDebugPlungeDataText: Plunge data

@@ -17,13 +17,6 @@ const KOMReviewMaster = new RollupStart({
 		KOMReviewMasterDispatchToggleDeckFiguresCaching: (function () {
 			window.TestKOMReviewMasterDispatchToggleDeckFiguresCaching.innerHTML = parseInt(window.TestKOMReviewMasterDispatchToggleDeckFiguresCaching.innerHTML) + 1;
 		}),
-		KOMReviewMasterDispatchImportData: (function (inputData) {
-			window.TestKOMReviewMasterDispatchImportData.innerHTML = parseInt(window.TestKOMReviewMasterDispatchImportData.innerHTML) + 1;
-			window.TestKOMReviewMasterDispatchImportDataData.innerHTML = JSON.stringify(inputData);
-		}),
-		KOMReviewMasterDispatchExportData: (function () {
-			window.TestKOMReviewMasterDispatchExportData.innerHTML = parseInt(window.TestKOMReviewMasterDispatchExportData.innerHTML) + 1;
-		}),
 		KOMReviewMaster_DebugShowLauncherButton: true,
 	}, Object.fromEntries(Array.from((new window.URLSearchParams(window.location.search)).entries()).map(function (e) {
 		if (['KOMReviewMasterItems'].includes(e[0])) {

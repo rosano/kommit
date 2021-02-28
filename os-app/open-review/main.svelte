@@ -113,8 +113,34 @@ const mod = {
 		};
 	},
 
+	async DataExportJSON () {
+		return JSON.stringify(await mod._ValueZDRWrap.App.KOMTransport.KOMTransportExport(mod._ValueDecksAll));
+	},
+
+	DataExportBasename () {
+		return `${ window.location.hostname }-${ Date.now() }`;
+	},
+
+	DataExportJSONFilename () {
+		return `${ mod.DataExportBasename() }.json`;
+	},	
+
 	DataReviewRecipes () {
-		const items = mod._ValueDecksAll.filter(function (e) {
+		const items = [{
+			LCHRecipeSignature: 'KOMReviewLauncherItemImportJSON',
+			LCHRecipeName: OLSKLocalized('KOMReviewLauncherItemImportJSONText'),
+			LCHRecipeCallback: async function KOMReviewLauncherItemImportJSON () {
+				return mod.ControlImportData(await this.api.LCHReadTextFile({
+					accept: '.json',
+				}));
+			},
+		}, {
+			LCHRecipeSignature: 'KOMReviewLauncherItemExportJSON',
+			LCHRecipeName: OLSKLocalized('KOMReviewLauncherItemExportJSONText'),
+			LCHRecipeCallback: async function KOMReviewLauncherItemExportJSON () {
+				return this.api.LCHSaveFile(await mod.DataExportJSON(), mod.DataExportJSONFilename());
+			},
+		}].concat(mod._ValueDecksAll.filter(function (e) {
 			return e !== mod._ValueDeckSelected;
 		}).map(function (e) {
 			return {
@@ -130,7 +156,7 @@ const mod = {
 			LCHRecipeCallback: async function KOMReviewLauncherItemToggleSimplifiedResponseButtons () {
 				mod._ValuePlaySimplifiedResponseButtons = !mod._ValuePlaySimplifiedResponseButtons;
 			},
-		}]);
+		}]));
 
 		if (!!mod._ValueCloudIdentity && mod._ValueZDRWrap.ZDRStorageProtocol === zerodatawrap.ZDRProtocolRemoteStorage()) {
 			items.push(...[
@@ -297,9 +323,18 @@ const mod = {
 					},
 				},
 				{
-					LCHRecipeName: 'KOMReviewLauncherItemDebug_ImportFileData',
-					LCHRecipeCallback: function KOMReviewLauncherItemDebug_ImportFileData () {
-						mod.ControlImportData(window.prompt());
+					LCHRecipeName: 'KOMReviewLauncherItemDebug_PromptFakeImportSerialized',
+					LCHRecipeCallback: function KOMReviewLauncherItemDebug_PromptFakeImportSerialized () {
+						return mod.ControlImportData(window.prompt());
+					},
+				},
+				{
+					LCHRecipeName: 'KOMReviewLauncherItemDebug_AlertFakeExportSerialized',
+					LCHRecipeCallback: async function KOMReviewLauncherItemDebug_AlertFakeExportSerialized () {
+						return window.alert(JSON.stringify({
+							OLSKDownloadName: mod.DataExportJSONFilename(),
+							OLSKDownloadData: await mod.DataExportJSON(),
+						}));
 					},
 				},
 				{
@@ -502,14 +537,14 @@ const mod = {
 
 	async ControlImportData (inputData) {
 		if (!inputData.trim()) {
-			return window.alert(OLSKLocalized('KOMReviewStorageImportErrorNotFilledAlertText'))
+			return window.alert(OLSKLocalized('KOMReviewLauncherItemImportJSONErrorNotFilledAlertText'))
 		}
 
 		try {
 			await mod._ValueZDRWrap.App.KOMTransport.KOMTransportImport(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(JSON.parse(inputData)));
 			await mod.SetupValueDecksAll();
 		} catch (e) {
-			window.alert(OLSKLocalized('KOMReviewStorageImportErrorNotValidAlertText'));
+			window.alert(OLSKLocalized('KOMReviewLauncherItemImportJSONErrorNotValidAlertText'));
 		}
 	},
 
@@ -609,22 +644,6 @@ const mod = {
 
 	KOMReviewMasterDispatchSelect (inputData) {
 		mod.ControlDeckSelect(inputData);
-	},
-
-	KOMReviewMasterDispatchImportData (inputData) {
-		Launchlet.LCHTasksRun([{
-			async LCHRecipeCallback () {
-				return mod.ControlImportData(await this.api.LCHReadTextFile({
-					accept: '.json',
-				}));
-			},
-			LCHRecipeURLFilter: '*',
-		  LCHRecipeIsAutomatic: true,
-		}]);
-	},
-
-	KOMReviewMasterDispatchExportData () {
-		mod.ControlExportData(mod._ValueDecksAll);
 	},
 
 	async KOMReviewMasterDispatchToggleExcludeTripleQuestionMark () {
@@ -1259,8 +1278,6 @@ import OLSKApropos from 'OLSKApropos';
 			KOMReviewMasterDispatchSelect={ mod.KOMReviewMasterDispatchSelect }
 			KOMReviewMasterDispatchToggleExcludeTripleQuestionMark={ mod.KOMReviewMasterDispatchToggleExcludeTripleQuestionMark }
 			KOMReviewMasterDispatchToggleDeckFiguresCaching={ mod.KOMReviewMasterDispatchToggleDeckFiguresCaching }
-			KOMReviewMasterDispatchImportData={ mod.KOMReviewMasterDispatchImportData }
-			KOMReviewMasterDispatchExportData={ mod.KOMReviewMasterDispatchExportData }
 			bind:this={ mod._KOMReviewMaster }
 			/>
 	{/if}
