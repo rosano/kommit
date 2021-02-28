@@ -107,17 +107,17 @@ const mod = {
 				{
 					LCHRecipeName: 'FakeChangeDelegateCreateCard',
 					LCHRecipeCallback: async function FakeChangeDelegateCreateCard () {
-						return mod.ChangeDelegateCreateCard(await KOMBrowseStorageClient.App.KOMCard.KOMCardCreate(KOMBrowseStorageClient, mod.DataCardObjectTemplate('FakeChangeDelegateCreateCard'), KOMBrowseDeckSelected));
+						return mod.ChangeDelegateCreateCard(await KOMBrowseStorageClient.App.KOMCard.KOMCardCreate(mod.DataCardObjectTemplate('FakeChangeDelegateCreateCard'), KOMBrowseDeckSelected));
 					},
 				},
 				{
 					LCHRecipeName: 'FakeChangeDelegateUpdateCard',
 					LCHRecipeCallback: async function FakeChangeDelegateUpdateCard () {
-						return mod.ChangeDelegateUpdateCard(await KOMBrowseStorageClient.App.KOMCard.KOMCardUpdate(KOMBrowseStorageClient, Object.assign(mod._ValueCardsAll.filter(function (e) {
+						return mod.ChangeDelegateUpdateCard(await KOMBrowseStorageClient.App.KOMCard.KOMCardUpdate(Object.assign(mod._ValueCardsAll.filter(function (e) {
 							return e.KOMCardFrontText.match('FakeChangeDelegate');
 						}).pop(), {
 							KOMCardFrontText: 'FakeChangeDelegateUpdateCard',
-						}), KOMBrowseDeckSelected));
+						})));
 					},
 				},
 				{
@@ -127,7 +127,7 @@ const mod = {
 							return e.KOMCardFrontText.match('FakeChangeDelegate');
 						}).pop();
 						
-						await KOMBrowseStorageClient.App.KOMCard.KOMCardDelete(KOMBrowseStorageClient, item, KOMBrowseDeckSelected);
+						await KOMBrowseStorageClient.App.KOMCard.KOMCardDelete(item);
 						
 						return mod.ChangeDelegateDeleteCard(item);
 					},
@@ -192,7 +192,7 @@ const mod = {
 			return;
 		}
 
-		const item = await KOMBrowseStorageClient.App.KOMCard.KOMCardCreate(KOMBrowseStorageClient, Object.assign(mod.DataCardObjectTemplate(), param2), param1);
+		const item = await KOMBrowseStorageClient.App.KOMCard.KOMCardCreate(Object.assign(mod.DataCardObjectTemplate(), param2), param1);
 
 		mod.ValueCardsAll(mod._ValueCardsAll.concat(item));
 
@@ -201,33 +201,33 @@ const mod = {
 		KOMBrowseDispatchCreate(item);
 	},
 
-	ControlCardUpdate(param1, param2) {
-		OLSKThrottle.OLSKThrottleMappedTimeout(mod._ValueCardUpdateThrottleMap, param1.KOMCardID, {
+	ControlCardUpdate(inputData) {
+		OLSKThrottle.OLSKThrottleMappedTimeout(mod._ValueCardUpdateThrottleMap, inputData.KOMCardID, {
 			OLSKThrottleDuration: OLSK_SPEC_UI() ? 0 : 500,
 			OLSKThrottleCallback () {
-				return KOMBrowseStorageClient.App.KOMCard.KOMCardUpdate(KOMBrowseStorageClient, param1, param2);
+				return KOMBrowseStorageClient.App.KOMCard.KOMCardUpdate(inputData);
 			},
 		});
 	},
 
-	async ControlCardAudioCapture(param1, param2, param3, param4) {
-		await KOMBrowseStorageClient.App.KOMCard.KOMCardAudioCapture(...[KOMBrowseStorageClient].concat(Object.values(arguments)));
+	async ControlCardAudioCapture(param1, param2, param3) {
+		await KOMBrowseStorageClient.App.KOMCard.KOMCardAudioCapture(param3, param2, param1);
 
-		await mod.ControlCardUpdate(param3, param4);
+		await mod.ControlCardUpdate(param3);
 	},
 
-	async ControlCardAudioClear(param1, param2, param3) {
-		await KOMBrowseStorageClient.App.KOMCard.KOMCardAudioClear(...([KOMBrowseStorageClient].concat(Object.values(arguments))));
+	async ControlCardAudioClear(param1, param2) {
+		await KOMBrowseStorageClient.App.KOMCard.KOMCardAudioClear(param2, param1);
 
-		await mod.ControlCardUpdate(param2, param3);
+		await mod.ControlCardUpdate(param2);
 	},
 
-	async ControlCardDiscard (param1, param2) {
+	async ControlCardDiscard (param1) {
 		mod.ValueCardsAll(mod._ValueCardsAll.filter(function (e) {
 			return e !== param1;
 		}), false);
 
-		await KOMBrowseStorageClient.App.KOMCard.KOMCardDelete(KOMBrowseStorageClient, param1, param2);
+		await KOMBrowseStorageClient.App.KOMCard.KOMCardDelete(param1);
 
 		if (param1 === mod._ValueCardSelected) {
 			mod.ControlCardSelect(null);
@@ -244,7 +244,7 @@ const mod = {
 		return mod._ValueCardsAll.filter(function (e) {
 			return e.KOMCardIsRetired;
 		}).map(function (e) {
-			return mod.ControlCardDiscard(e, KOMBrowseDeckSelected);
+			return mod.ControlCardDiscard(e);
 		});
 	},
 
@@ -307,7 +307,7 @@ const mod = {
 	},
 
 	KOMBrowseInfoDispatchDiscard () {
-		mod.ControlCardDiscard(mod._ValueCardSelected, KOMBrowseDeckSelected);
+		mod.ControlCardDiscard(mod._ValueCardSelected);
 	},
 
 	KOMBrowseInfoDispatchTemplate (inputData) {
@@ -317,25 +317,25 @@ const mod = {
 	KOMBrowseInfoDispatchUpdate () {
 		mod._ValueCardSelected = mod._ValueCardSelected; // #purge-svelte-force-update
 
-		mod.ControlCardUpdate(mod._ValueCardSelected, KOMBrowseDeckSelected);
+		mod.ControlCardUpdate(mod._ValueCardSelected);
 
 		mod.ReactTags();
 	},
 
 	async KOMBrowseInfoAudioDispatchCapture (param1, param2) {
-		await mod.ControlCardAudioCapture(param1, param2, mod._ValueCardSelected, KOMBrowseDeckSelected);
+		await mod.ControlCardAudioCapture(param1, param2, mod._ValueCardSelected);
 
 		mod._ValueCardSelected = mod._ValueCardSelected; // #purge-svelte-force-update
 	},
 
 	async KOMBrowseInfoAudioDispatchClear (inputData) {
-		await mod.ControlCardAudioClear(inputData, mod._ValueCardSelected, KOMBrowseDeckSelected);
+		await mod.ControlCardAudioClear(inputData, mod._ValueCardSelected);
 
 		mod._ValueCardSelected = mod._ValueCardSelected; // #purge-svelte-force-update
 	},
 
 	async KOMBrowseInfoAudioDispatchFetch (inputData) {
-		return await KOMBrowseStorageClient.App.KOMCard.KOMCardAudioFetch(KOMBrowseStorageClient, inputData, mod._ValueCardSelected, KOMBrowseDeckSelected);
+		return await KOMBrowseStorageClient.App.KOMCard.KOMCardAudioFetch(mod._ValueCardSelected, inputData);
 	},
 
 	KOMBrowseInfoDispatchDebug (inputData) {
