@@ -1,30 +1,29 @@
 import RollupStart from './main.svelte';
 
-import KOM_Data from '../_shared/KOM_Data/main.js';
-import KOMCardStorage from '../_shared/KOMCard/storage.js';
+import KOMCard from '../_shared/KOMCard/main.js';
 import RemoteStorage from 'remotestoragejs';
 import OLSKRemoteStorage from 'OLSKRemoteStorage';
 
 const mod = {
 
-	_ValueOLSKRemoteStorage: undefined,
+	_ValueZDRWrap: undefined,
 
 	// SETUP
 
 	SetupEverything() {
-		mod.SetupStorageClient();
-	},
+		mod._ValueZDRWrap = await zerodatawrap.ZDRWrap({
+			ZDRParamLibrary: RemoteStorage,
+			ZDRParamScopes: [{
+				ZDRScopeKey: 'App',
+				ZDRScopeDirectory: 'kommit',
+				ZDRScopeCreatorDirectory: 'rCreativ',
+				ZDRScopeSchemas: [
+					KOMCard,
+					],
+			}],
+		});
 
-	SetupStorageClient() {
-		const storageModule = KOM_Data.KOM_DataModule([
-			KOMCardStorage.KOMCardStorageBuild,
-		]);
-		
-		mod._ValueOLSKRemoteStorage = new RemoteStorage({ modules: [ storageModule ] });
-
-		mod._ValueOLSKRemoteStorage.access.claim(storageModule.name, 'rw');
-
-		mod._ValueOLSKRemoteStorage.FakeStorageClient = true;
+		mod._ValueZDRWrap.FakeStorageClient = true;
 	},
 
 	// LIFECYCLE
@@ -40,7 +39,7 @@ mod.LifecycleModuleDidLoad();
 const KOMBrowse = new RollupStart({
 	target: document.body,
 	props: Object.assign({
-		KOMBrowseStorageClient: mod._ValueOLSKRemoteStorage,
+		KOMBrowseStorageClient: mod._ValueZDRWrap,
 		KOMBrowseDispatchEligible: (function () {
 			return true;
 		}),

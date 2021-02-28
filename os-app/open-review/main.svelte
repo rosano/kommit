@@ -5,7 +5,7 @@ const OLSKFormatted = OLSKString.OLSKStringFormatted;
 import { OLSK_SPEC_UI } from 'OLSKSpec';
 import OLSKRemoteStorage from 'OLSKRemoteStorage';
 import OLSKServiceWorker from 'OLSKServiceWorker';
-import KOM_Data from '../_shared/KOM_Data/main.js';
+import KOMTransport from '../_shared/KOMTransport/main.js';
 import KOMDeckStorage from '../_shared/KOMDeck/storage.js';
 import KOMCardStorage from '../_shared/KOMCard/storage.js';
 import KOMSpacingStorage from '../_shared/KOMSpacing/storage.js';
@@ -500,7 +500,7 @@ const mod = {
 		}
 
 		try {
-			await KOM_Data.KOM_DataImport(mod._ValueOLSKRemoteStorage, OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(JSON.parse(inputData)));
+			await KOMTransport.KOMTransportImport(mod._ValueOLSKRemoteStorage, OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(JSON.parse(inputData)));
 			await mod.SetupValueDecksAll();
 		} catch (e) {
 			window.alert(OLSKLocalized('KOMReviewStorageImportErrorNotValidAlertText'));
@@ -510,7 +510,7 @@ const mod = {
 	ControlExportData (inputData) {
 		Launchlet.LCHTasksRun([{
 			async LCHRecipeCallback () {
-				return this.api.LCHSaveFile(JSON.stringify(await KOM_Data.KOM_DataExport(mod._ValueOLSKRemoteStorage, inputData)), `${ window.location.host }-${ Date.now() }.json`)
+				return this.api.LCHSaveFile(JSON.stringify(await KOMTransport.KOMTransportExport(mod._ValueOLSKRemoteStorage, inputData)), `${ window.location.host }-${ Date.now() }.json`)
 			},
 			LCHRecipeURLFilter: '*',
 		  LCHRecipeIsAutomatic: true,
@@ -1021,10 +1021,6 @@ const mod = {
 	async SetupEverything () {
 		mod.SetupStorageClient();
 
-		mod.SetupStorageStatus();
-
-		await mod.SetupStorageNotifications();
-
 		await mod.SetupValueDeckCachingEnabled();
 
 		mod.SetupValueCacheDeckFiguresMap();
@@ -1038,92 +1034,48 @@ const mod = {
 		// mod.ControlDemo();
 	},
 
+	DataStorageClient (inputData) {
+		return zerodatawrap.ZDRWrap({
+			ZDRParamLibrary: (function() {
+				if (inputData === zerodatawrap.ZDRProtocolFission()) {
+					return webnative;
+				}
+
+				return RemoteStorage;
+			})(),
+			ZDRParamScopes: [{
+				ZDRScopeKey: 'App',
+				ZDRScopeDirectory: 'kommit',
+				ZDRScopeCreatorDirectory: 'rCreativ',
+				ZDRScopeSchemas: [
+					Object.assign(KOMDeck, {
+						ZDRSchemaDispatchSyncCreate: mod.OLSKChangeDelegateCreateDeck,
+						ZDRSchemaDispatchSyncUpdate: mod.OLSKChangeDelegateUpdateDeck,
+						ZDRSchemaDispatchSyncDelete: mod.OLSKChangeDelegateDeleteDeck,
+					}),
+					Object.assign(KOMCard, {
+						ZDRSchemaDispatchSyncCreate: mod.OLSKChangeDelegateCreateCard,
+						ZDRSchemaDispatchSyncUpdate: mod.OLSKChangeDelegateUpdateCard,
+						ZDRSchemaDispatchSyncDelete: mod.OLSKChangeDelegateDeleteCard,
+						ZDRSchemaDispatchSyncConflict: mod.OLSKChangeDelegateConflictCard,
+					}),
+					Object.assign(KOMSpacing, {
+						ZDRSchemaDispatchSyncCreate: mod.OLSKChangeDelegateCreateSpacing,
+						ZDRSchemaDispatchSyncUpdate: mod.OLSKChangeDelegateUpdateSpacing,
+						ZDRSchemaDispatchSyncDelete: mod.OLSKChangeDelegateDeleteSpacing,
+					}),
+					KOMSetting,
+					],
+			}],
+			ZDRParamDispatchError: mod.ZDRParamDispatchError,
+			ZDRParamDispatchConnected: mod.ZDRParamDispatchConnected,
+			ZDRParamDispatchOnline: mod.ZDRParamDispatchOnline,
+			ZDRParamDispatchOffline: mod.ZDRParamDispatchOffline,
+		})
+	},
+
 	SetupStorageClient() {
-		const storageModule = KOM_Data.KOM_DataModule([
-			Object.assign(KOMDeckStorage.KOMDeckStorageBuild, {
-				OLSKChangeDelegate: {
-					OLSKChangeDelegateCreate: mod.OLSKChangeDelegateCreateDeck,
-					OLSKChangeDelegateUpdate: mod.OLSKChangeDelegateUpdateDeck,
-					OLSKChangeDelegateDelete: mod.OLSKChangeDelegateDeleteDeck,
-				},
-			}),
-			Object.assign(KOMCardStorage.KOMCardStorageBuild, {
-				OLSKChangeDelegate: {
-					OLSKChangeDelegateCreate: mod.OLSKChangeDelegateCreateCard,
-					OLSKChangeDelegateUpdate: mod.OLSKChangeDelegateUpdateCard,
-					OLSKChangeDelegateDelete: mod.OLSKChangeDelegateDeleteCard,
-					OLSKChangeDelegateConflict: mod.OLSKChangeDelegateConflictCard,
-				},
-			}),
-			Object.assign(KOMSpacingStorage.KOMSpacingStorageBuild, {
-				OLSKChangeDelegate: {
-					OLSKChangeDelegateCreate: mod.OLSKChangeDelegateCreateSpacing,
-					OLSKChangeDelegateUpdate: mod.OLSKChangeDelegateUpdateSpacing,
-					OLSKChangeDelegateDelete: mod.OLSKChangeDelegateDeleteSpacing,
-				},
-			}),
-			KOMSettingStorage.KOMSettingStorageBuild,
-			], {
-			OLSKOptionIncludeDebug: OLSK_SPEC_UI() || window.OLSKPublicConstants('OLSKDebugRemoteStorage'),
-		});
-		
-		mod._ValueOLSKRemoteStorage = new RemoteStorage({ modules: [ storageModule ] });
-
-		mod._ValueOLSKRemoteStorage.access.claim(storageModule.name, 'rw');
-
-		mod._ValueOLSKRemoteStorage.caching.enable(`/${ storageModule.name }/`);
-
-		if (window.OLSKPublicConstants('OLSKDebugRemoteStorage')) {
-			window.OLSKDebugRemoteStorage = mod._ValueOLSKRemoteStorage;
-		}
-
-		window.alfa = mod._ValueOLSKRemoteStorage
-	},
-
-	SetupStorageStatus () {
-		OLSKRemoteStorage.OLSKRemoteStorageStatus(mod._ValueOLSKRemoteStorage, function (inputData) {
-			mod._ValueFooterStorageStatus = inputData;
-		}, OLSKLocalized)
-	},
-
-	async SetupStorageNotifications () {
-		mod._ValueOLSKRemoteStorage.on('sync-done', () => {
-			if (!OLSK_SPEC_UI()) {
-				console.debug('sync-done', arguments);
-			}
-		});
-
-		let isOffline;
-
-		mod._ValueOLSKRemoteStorage.on('network-offline', () => {
-			if (!OLSK_SPEC_UI()) {
-				console.debug('network-offline', arguments);
-			}
-
-			isOffline = true;
-		});
-
-		mod._ValueOLSKRemoteStorage.on('network-online', () => {
-			if (!OLSK_SPEC_UI()) {
-				console.debug('network-online', arguments);
-			}
-			
-			isOffline = false;
-		});
-
-		mod._ValueOLSKRemoteStorage.on('error', (error) => {
-			if (isOffline && inputData.message === 'Sync failed: Network request failed.') {
-				return;
-			};
-
-			if (!OLSK_SPEC_UI()) {
-				console.debug('error', error);
-			}
-		});
-
-		return new Promise(function (res, rej) {
-			return mod._ValueOLSKRemoteStorage.on('ready', res);
-		});
+		mod._ValueZDRWrap = await mod.DataStorageClient(zerodatawrap.ZDRPreferenceProtocol(zerodatawrap.ZDRProtocolRemoteStorage()));
 	},
 
 	async SetupValueDeckCachingEnabled () {
@@ -1181,8 +1133,8 @@ const mod = {
 				OLSKPactAuthIdentity: mod._ValueOLSKRemoteStorage.remote.userAddress,
 				OLSKPactAuthProof: mod._ValueOLSKRemoteStorage.remote.token,
 				OLSKPactAuthMetadata: {
-					OLSKPactAuthMetadataModuleName: KOM_Data.KOM_DataModuleName(),
-					OLSKPactAuthMetadataFolderPath: KOMDeckStorage.KOMDeckStorageCollectionPath(),
+					OLSKPactAuthMetadataModuleName: 'kommit',
+					OLSKPactAuthMetadataFolderPath: KOMDeck.KOMDeckDirectory() + '/',
 				},
 				OLSKPactPayIdentity: mod._ValueOLSKRemoteStorage.remote.userAddress,
 				OLSKPactPayClue: mod._ValueFundClue,
