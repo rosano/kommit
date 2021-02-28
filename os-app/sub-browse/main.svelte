@@ -9,6 +9,7 @@ export let KOMBrowseDispatchDiscard;
 export let KOMBrowseListDispatchClose;
 export let KOMBrowseInfoSpeechAvailable;
 export let KOMBrowseInfoDispatchRead;
+export let KOMBrowse_DEBUG = false;
 
 export const modPublic = {
 
@@ -461,6 +462,6 @@ import KOMBrowseInfo from './submodules/KOMBrowseInfo/main.svelte';
 	bind:this={ mod._KOMBrowseInfo }
 	/>
 
-{#if OLSK_SPEC_UI() && KOMBrowseStorageClient.FakeStorageClient }
+{#if OLSK_SPEC_UI() && KOMBrowse_DEBUG }
 	 <button class="OLSKAppToolbarLauncherButton" on:click={ mod._OLSKAppToolbarDispatchLauncher }></button>
 {/if}

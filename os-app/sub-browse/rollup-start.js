@@ -10,7 +10,7 @@ const mod = {
 
 	// SETUP
 
-	SetupEverything() {
+	async SetupEverything() {
 		mod._ValueZDRWrap = await zerodatawrap.ZDRWrap({
 			ZDRParamLibrary: RemoteStorage,
 			ZDRParamScopes: [{
@@ -22,8 +22,6 @@ const mod = {
 					],
 			}],
 		});
-
-		mod._ValueZDRWrap.FakeStorageClient = true;
 	},
 
 	// LIFECYCLE
@@ -57,6 +55,7 @@ const KOMBrowse = new RollupStart({
 		KOMBrowseInfoDispatchRead: (function () {}),
 		KOMBrowseInfoSpeechAvailable: false,
 		KOMBrowseDeckCards: [],
+		KOMBrowse_DEBUG: true,
 	}, Object.fromEntries(Array.from((new window.URLSearchParams(window.location.search)).entries()).map(function (e, index, coll) {
 		if (['KOMBrowseDeckSelected', 'KOMBrowseItemSelected'].includes(e[0])) {
 			e[1] = JSON.parse(e[1]);
