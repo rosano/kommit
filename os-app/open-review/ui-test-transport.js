@@ -24,10 +24,14 @@ describe('KOMReview_Transport', function () {
 			return browser.OLSKPrompt(function () {
 				return browser.click('.LCHLauncherPipeItem');
 			}, function (dialog) {
+				const KOMDeckID = Math.random().toString();
+
 				dialog.response = JSON.stringify([StubDeckObjectValid({
 					KOMDeckName,
+					KOMDeckID,
 					$KOMDeckCards: [StubCardObjectValid({
 						KOMCardID: Math.random().toString(),
+						KOMCardDeckID: KOMDeckID,
 						$KOMCardSpacingForward: StubSpacingObjectValid(),
 						$KOMCardSpacingBackward: StubSpacingObjectValid({
 							KOMSpacingDueDate: new Date(),
@@ -35,6 +39,7 @@ describe('KOMReview_Transport', function () {
 						}),
 					}), StubCardObjectValid({
 						KOMCardID: Math.random().toString(),
+						KOMCardDeckID: KOMDeckID,
 						KOMCardIsRetired: true,
 						$KOMCardSpacingForward: StubSpacingObjectHistorical(),
 						$KOMCardSpacingBackward: StubSpacingObjectHistorical(),
