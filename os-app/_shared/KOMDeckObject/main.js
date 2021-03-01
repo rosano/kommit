@@ -38,7 +38,7 @@ export default {
 						});
 					});
 				})).filter(function (e) {
-					return param1.KOMDeckIsForwardOnly && KOMSpacing.KOMSpacingModelIsBackward(e) ? false : true;
+					return param1.KOMDeckIsForwardOnly && KOMSpacing.KOMSpacingIsBackward(e) ? false : true;
 				}),
 			};
 		},

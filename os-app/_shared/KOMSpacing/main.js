@@ -8,7 +8,7 @@ import KOMSharedLogic from '../KOMSharedLogic/main.js';
 
 const mod = {
 
-	KOMSpacingModelIdentifier(inputData) {
+	KOMSpacingIdentifier(inputData) {
 		if (typeof inputData !== 'string') {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -20,15 +20,15 @@ const mod = {
 		return inputData.split('-').shift();
 	},
 
-	KOMSpacingModelLabelForward() {
+	KOMSpacingLabelForward() {
 		return 'forward';
 	},
 
-	KOMSpacingModelLabelBackward() {
+	KOMSpacingLabelBackward() {
 		return 'backward';
 	},
 
-	KOMSpacingModelLabel(inputData) {
+	KOMSpacingLabel(inputData) {
 		if (typeof inputData !== 'string') {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -40,7 +40,7 @@ const mod = {
 		return inputData.split('-').pop();
 	},
 
-	KOMSpacingModelErrorsFor (inputData, options = {}) {
+	KOMSpacingErrorsFor (inputData, options = {}) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -55,11 +55,11 @@ const mod = {
 			errors.KOMSpacingID = [
 				'KOMErrorNotSeparated',
 			];
-		} else if (!mod.KOMSpacingModelIdentifier(inputData.KOMSpacingID)) {
+		} else if (!mod.KOMSpacingIdentifier(inputData.KOMSpacingID)) {
 			errors.KOMSpacingID = [
 				'KOMErrorNotFilled',
 			];
-		} else if (![mod.KOMSpacingModelLabelForward(), mod.KOMSpacingModelLabelBackward()].includes(mod.KOMSpacingModelLabel(inputData.KOMSpacingID))) {
+		} else if (![mod.KOMSpacingLabelForward(), mod.KOMSpacingLabelBackward()].includes(mod.KOMSpacingLabel(inputData.KOMSpacingID))) {
 			errors.KOMSpacingID = [
 				'KOMErrorNotLabelled',
 			];
@@ -131,43 +131,43 @@ const mod = {
 	},
 
 	KOMSpacingPath (param1, param2) {
-		return KOMCard.KOMCardFolderPath(param2) + 'spacing-' + mod.KOMSpacingModelLabel(param1.KOMSpacingID);
+		return KOMCard.KOMCardFolderPath(param2) + 'spacing-' + mod.KOMSpacingLabel(param1.KOMSpacingID);
 	},
 
 	KOMSpacingStub (inputData) {
-		const groups = (inputData.match(new RegExp(`(?<year>[0-9]{4})-(?<month>[0-9]{2})-(?<day>[0-9]{2})\/(?<card>[\\w\.]+)\/spacing-(?<label>(${ mod.KOMSpacingModelLabelForward() }|${ mod.KOMSpacingModelLabelBackward() }))`)) || {}).groups || {};
+		const groups = (inputData.match(new RegExp(`(?<year>[0-9]{4})-(?<month>[0-9]{2})-(?<day>[0-9]{2})\/(?<card>[\\w\.]+)\/spacing-(?<label>(${ mod.KOMSpacingLabelForward() }|${ mod.KOMSpacingLabelBackward() }))`)) || {}).groups || {};
 
 		return {
 			KOMSpacingID: [groups.card, groups.label].join('-'),
 		};
 	},
 
-	KOMSpacingModelIsBackward(inputData) {
-		if (mod.KOMSpacingModelErrorsFor(inputData)) {
+	KOMSpacingIsBackward(inputData) {
+		if (mod.KOMSpacingErrorsFor(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		return mod.KOMSpacingModelLabel(inputData.KOMSpacingID) === mod.KOMSpacingModelLabelBackward();
+		return mod.KOMSpacingLabel(inputData.KOMSpacingID) === mod.KOMSpacingLabelBackward();
 	},
 
-	KOMSpacingModelIsUnseen(inputData) {
-		if (mod.KOMSpacingModelErrorsFor(inputData)) {
+	KOMSpacingIsUnseen(inputData) {
+		if (mod.KOMSpacingErrorsFor(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
 		return !inputData.KOMSpacingDueDate;
 	},
 
-	KOMSpacingModelIsLearning(inputData) {
-		if (mod.KOMSpacingModelErrorsFor(inputData)) {
+	KOMSpacingIsLearning(inputData) {
+		if (mod.KOMSpacingErrorsFor(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
 		return !!inputData.KOMSpacingIsLearning;
 	},
 
-	KOMSpacingModelIsReviewing(inputData) {
-		if (mod.KOMSpacingModelErrorsFor(inputData)) {
+	KOMSpacingIsReviewing(inputData) {
+		if (mod.KOMSpacingErrorsFor(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
@@ -178,12 +178,12 @@ const mod = {
 		return !!inputData.KOMSpacingInterval;
 	},
 
-	KOMSpacingModelMatureThreshold() {
+	KOMSpacingMatureThreshold() {
 		return 21;
 	},
 
-	KOMSpacingModelIsDeveloping(inputData) {
-		if (mod.KOMSpacingModelErrorsFor(inputData)) {
+	KOMSpacingIsDeveloping(inputData) {
+		if (mod.KOMSpacingErrorsFor(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
@@ -191,11 +191,11 @@ const mod = {
 			return false;
 		}
 
-		return inputData.KOMSpacingInterval < mod.KOMSpacingModelMatureThreshold();
+		return inputData.KOMSpacingInterval < mod.KOMSpacingMatureThreshold();
 	},
 
-	KOMSpacingModelIsMature(inputData) {
-		if (mod.KOMSpacingModelErrorsFor(inputData)) {
+	KOMSpacingIsMature(inputData) {
+		if (mod.KOMSpacingErrorsFor(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
@@ -203,17 +203,17 @@ const mod = {
 			return false;
 		}
 
-		return inputData.KOMSpacingInterval >= mod.KOMSpacingModelMatureThreshold();
+		return inputData.KOMSpacingInterval >= mod.KOMSpacingMatureThreshold();
 	},
 
-	KOMSpacingModelFilterUnique(inputData) {
+	KOMSpacingFilterUnique(inputData) {
 		if (!Array.isArray(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
 		let cards = [];
 		return inputData.filter(function (e, i, coll) {
-			const id = mod.KOMSpacingModelIdentifier(e.KOMSpacingID);
+			const id = mod.KOMSpacingIdentifier(e.KOMSpacingID);
 
 			if (cards.includes(id)) {
 				return false;
@@ -225,7 +225,7 @@ const mod = {
 		});
 	},
 
-	KOMSpacingModelGroupByStatus(inputData) {
+	KOMSpacingByStatus(inputData) {
 		if (!Array.isArray(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -239,15 +239,15 @@ const mod = {
 				return coll;
 			}
 
-			if (mod.KOMSpacingModelIsUnseen(item)) {
+			if (mod.KOMSpacingIsUnseen(item)) {
 				coll.KOMSpacingGroupingUnseen.push(item);
 			}
 
-			if (mod.KOMSpacingModelIsDeveloping(item)) {
+			if (mod.KOMSpacingIsDeveloping(item)) {
 				coll.KOMSpacingGroupingDeveloping.push(item);
 			}
 
-			if (mod.KOMSpacingModelIsMature(item)) {
+			if (mod.KOMSpacingIsMature(item)) {
 				coll.KOMSpacingGroupingMature.push(item);
 			}
 			
@@ -261,7 +261,7 @@ const mod = {
 		});
 	},
 
-	KOMSpacingModelGroupChroniclesByStatus(param1, param2) {
+	KOMSpacingChroniclesByStatus(param1, param2) {
 		if (!Array.isArray(param1)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -285,11 +285,11 @@ const mod = {
 			}
 
 			coll.KOMChronicleGroupingDeveloping.push(...chronicles.filter(function (e) {
-				return e.KOMChronicleInterval < mod.KOMSpacingModelMatureThreshold();
+				return e.KOMChronicleInterval < mod.KOMSpacingMatureThreshold();
 			}));
 
 			coll.KOMChronicleGroupingMature.push(...chronicles.filter(function (e) {
-				return e.KOMChronicleInterval >= mod.KOMSpacingModelMatureThreshold();
+				return e.KOMChronicleInterval >= mod.KOMSpacingMatureThreshold();
 			}));
 
 			coll.KOMChronicleGroupingRelearning.push(...chronicles.filter(function (e) {
@@ -309,7 +309,7 @@ const mod = {
 
 export default Object.assign(mod, {
 	ZDRSchemaKey: 'KOMSpacing',
-	ZDRSchemaDispatchValidate: mod.KOMSpacingModelErrorsFor,
+	ZDRSchemaDispatchValidate: mod.KOMSpacingErrorsFor,
 	ZDRSchemaPath: mod.KOMSpacingPath,
 	ZDRSchemaStub: mod.KOMSpacingStub,
 	ZDRSchemaMethods: {
@@ -335,11 +335,11 @@ export default Object.assign(mod, {
 
 			return {
 				KOMCardSpacingForward: OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(result['spacing-forward'] || {
-					KOMSpacingID: [inputData.KOMCardID, mod.KOMSpacingModelLabelForward()].join('-'),
+					KOMSpacingID: [inputData.KOMCardID, mod.KOMSpacingLabelForward()].join('-'),
 					KOMSpacingChronicles: [],
 				}),
 				KOMCardSpacingBackward: OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(result['spacing-backward'] || {
-					KOMSpacingID: [inputData.KOMCardID, mod.KOMSpacingModelLabelBackward()].join('-'),
+					KOMSpacingID: [inputData.KOMCardID, mod.KOMSpacingLabelBackward()].join('-'),
 					KOMSpacingChronicles: [],
 				}),
 			};

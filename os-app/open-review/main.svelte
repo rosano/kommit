@@ -1052,10 +1052,10 @@ const mod = {
 		
 		return Object.assign(deck, mod.ValueCacheDeckFiguresMap(Object.assign(mod._ValueCacheDeckFiguresMap, {
 			[deck.KOMDeckID]: {
-				$KOMDeckTodayReviewCount: KOMSpacing.KOMSpacingModelFilterUnique(todaySpacingsNotStudied.filter(function (e) {
-					return !KOMSpacing.KOMSpacingModelIsUnseen(e);
+				$KOMDeckTodayReviewCount: KOMSpacing.KOMSpacingFilterUnique(todaySpacingsNotStudied.filter(function (e) {
+					return !KOMSpacing.KOMSpacingIsUnseen(e);
 				})).length,
-				$KOMDeckTodayUnseenCount: KOMSpacing.KOMSpacingModelFilterUnique(todaySpacingsNotStudied.filter(KOMSpacing.KOMSpacingModelIsUnseen)).length,
+				$KOMDeckTodayUnseenCount: KOMSpacing.KOMSpacingFilterUnique(todaySpacingsNotStudied.filter(KOMSpacing.KOMSpacingIsUnseen)).length,
 
 				$KOMDeckTodayStudiedCount: todaySpacingsStudied.length,
 				
@@ -1063,16 +1063,16 @@ const mod = {
 					return e.KOMSpacingChronicles.length;
 				}).length,
 
-				$KOMReviewTodayTotalCards: KOMSpacing.KOMSpacingModelFilterUnique(todaySpacingsStudied).length,
+				$KOMReviewTodayTotalCards: KOMSpacing.KOMSpacingFilterUnique(todaySpacingsStudied).length,
 				$KOMReviewTodayTimeMinutes: KOMReviewLogic.KOMReviewTotalMinutes(KOMReviewLogic.KOMReviewTodayTotalMilliseconds(todaySpacingsStudied)),
 				$KOMReviewTodayReviewAccuracy: KOMReviewLogic.KOMReviewTodayPercentage(KOMReviewLogic.KOMReviewTodayReviewAccuracy(todaySpacingsStudied)),
 
 				$KOMReviewGeneralUpcomingData: KOMReviewLogic.KOMReviewGeneralUpcomingDates().map(function (e) {
 					return {
 						KOMReviewChartElementDateBarTableRowDataKey: KOMSharedLogic.KOMSharedGroupingDay(new Date()) === e ? OLSKLocalized('KOMReviewGeneralTodayText') : e,
-						KOMReviewChartElementDateBarTableRowDataValues: Object.entries(KOMSpacing.KOMSpacingModelGroupByStatus(upcomingGroupings[e] || [])).reduce(function (coll, item) {
+						KOMReviewChartElementDateBarTableRowDataValues: Object.entries(KOMSpacing.KOMSpacingByStatus(upcomingGroupings[e] || [])).reduce(function (coll, item) {
 							if (['KOMSpacingGroupingDeveloping', 'KOMSpacingGroupingMature'].includes(item[0])) {
-								coll.push(KOMSpacing.KOMSpacingModelFilterUnique(item[1]).length);
+								coll.push(KOMSpacing.KOMSpacingFilterUnique(item[1]).length);
 							}
 
 							return coll;
@@ -1082,13 +1082,13 @@ const mod = {
 				$KOMReviewGeneralHistoricalData: KOMReviewLogic.KOMReviewGeneralHistoricalDates().map(function (e) {
 					return {
 						KOMReviewChartElementDateBarTableRowDataKey: KOMSharedLogic.KOMSharedGroupingDay(new Date()) === e ? OLSKLocalized('KOMReviewGeneralTodayText') : e,
-						KOMReviewChartElementDateBarTableRowDataValues: Object.entries(KOMSpacing.KOMSpacingModelGroupChroniclesByStatus(historicalGroupings[e] || [], e)).reduce(function (coll, item) {
+						KOMReviewChartElementDateBarTableRowDataValues: Object.entries(KOMSpacing.KOMSpacingChroniclesByStatus(historicalGroupings[e] || [], e)).reduce(function (coll, item) {
 							return coll.concat(KOMReviewLogic.KOMReviewTotalMinutes(KOMReviewLogic.KOMReviewGeneralHistoricalTotalMilliseconds(item[1])));
 						}, []).reverse(),
 					};
 				}),
-				$KOMReviewChartCompositionCollectionData: Object.entries(KOMSpacing.KOMSpacingModelGroupByStatus(activeSpacings)).reduce(function (coll, item) {
-					coll[item[0]] = KOMSpacing.KOMSpacingModelFilterUnique(item[1]).length;
+				$KOMReviewChartCompositionCollectionData: Object.entries(KOMSpacing.KOMSpacingByStatus(activeSpacings)).reduce(function (coll, item) {
+					coll[item[0]] = KOMSpacing.KOMSpacingFilterUnique(item[1]).length;
 
 					return coll;
 				}, {}),

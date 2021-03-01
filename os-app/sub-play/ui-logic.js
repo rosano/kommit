@@ -27,17 +27,17 @@ const mod = {
 		let reviewAll = [];
 
 		const reviewForward = mod._KOMPlaySortShuffle(inputData.filter(function (e) {
-			return !KOMSpacing.KOMSpacingModelIsBackward(e) && e.KOMSpacingDueDate;
+			return !KOMSpacing.KOMSpacingIsBackward(e) && e.KOMSpacingDueDate;
 		}));
 
 		reviewAll.push(...reviewForward);
 
 		let reviewBackward = mod._KOMPlaySortShuffle(inputData.filter(function (e) {
-			return KOMSpacing.KOMSpacingModelIsBackward(e) && e.KOMSpacingDueDate;
+			return KOMSpacing.KOMSpacingIsBackward(e) && e.KOMSpacingDueDate;
 		}));
 
 		let reviewTrialCount = 0;
-		while (reviewForward.length && reviewBackward.length && KOMSpacing.KOMSpacingModelIdentifier(reviewForward.slice(-1).pop().KOMSpacingID) === KOMSpacing.KOMSpacingModelIdentifier(reviewBackward[0].KOMSpacingID) && reviewTrialCount < inputData.length) {
+		while (reviewForward.length && reviewBackward.length && KOMSpacing.KOMSpacingIdentifier(reviewForward.slice(-1).pop().KOMSpacingID) === KOMSpacing.KOMSpacingIdentifier(reviewBackward[0].KOMSpacingID) && reviewTrialCount < inputData.length) {
 			reviewBackward = mod._KOMPlaySortShuffle(reviewBackward);
 
 			reviewTrialCount++;
@@ -46,15 +46,15 @@ const mod = {
 		reviewAll.push(...reviewBackward);
 
 		const unseenAll = mod._KOMPlaySortShuffle(inputData.filter(function (e) {
-			return !KOMSpacing.KOMSpacingModelIsBackward(e) && !e.KOMSpacingDueDate;
+			return !KOMSpacing.KOMSpacingIsBackward(e) && !e.KOMSpacingDueDate;
 		}));
 
 		let unseenBackward = mod._KOMPlaySortShuffle(inputData.filter(function (e) {
-			return KOMSpacing.KOMSpacingModelIsBackward(e) && !e.KOMSpacingDueDate;
+			return KOMSpacing.KOMSpacingIsBackward(e) && !e.KOMSpacingDueDate;
 		}));
 
 		let unseenTrialCount = 0;
-		while (unseenAll.length && unseenBackward.length && KOMSpacing.KOMSpacingModelIdentifier(unseenAll.slice(-1).pop().KOMSpacingID) === KOMSpacing.KOMSpacingModelIdentifier(unseenBackward[0].KOMSpacingID) && unseenTrialCount < inputData.length) {
+		while (unseenAll.length && unseenBackward.length && KOMSpacing.KOMSpacingIdentifier(unseenAll.slice(-1).pop().KOMSpacingID) === KOMSpacing.KOMSpacingIdentifier(unseenBackward[0].KOMSpacingID) && unseenTrialCount < inputData.length) {
 			unseenBackward = mod._KOMPlaySortShuffle(unseenBackward);
 
 			unseenTrialCount++;
@@ -99,7 +99,7 @@ const mod = {
 			return false;
 		}
 
-		if (inputData.KOMPlayStateCurrent && KOMSpacing.KOMSpacingModelErrorsFor(inputData.KOMPlayStateCurrent)) {
+		if (inputData.KOMPlayStateCurrent && KOMSpacing.KOMSpacingErrorsFor(inputData.KOMPlayStateCurrent)) {
 			return false;
 		}
 
@@ -166,7 +166,7 @@ const mod = {
 	},
 
 	KOMPlayResponseIntervalOverdueDays(spacing, chronicle) {
-		if (KOMSpacing.KOMSpacingModelErrorsFor(spacing)) {
+		if (KOMSpacing.KOMSpacingErrorsFor(spacing)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
@@ -189,7 +189,7 @@ const mod = {
 	},
 
 	KOMPlayResponseIntervalOverdueBonus(spacing, chronicle) {
-		if (KOMSpacing.KOMSpacingModelErrorsFor(spacing)) {
+		if (KOMSpacing.KOMSpacingErrorsFor(spacing)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
@@ -258,10 +258,10 @@ const mod = {
 		const spacing = state.KOMPlayStateCurrent;
 
 		Object.assign(spacing, (function update_spacing() {
-			const lastResponseWasAgain = KOMSpacing.KOMSpacingModelIsLearning(spacing) && spacing.KOMSpacingChronicles.slice(-1).pop().KOMChronicleResponseType === mod.KOMPlayResponseTypeAgain();
+			const lastResponseWasAgain = KOMSpacing.KOMSpacingIsLearning(spacing) && spacing.KOMSpacingChronicles.slice(-1).pop().KOMChronicleResponseType === mod.KOMPlayResponseTypeAgain();
 
 			// GRADUATE
-			if (!KOMSpacing.KOMSpacingModelIsReviewing(spacing) && (chronicle.KOMChronicleResponseType === mod.KOMPlayResponseTypeEasy() || (KOMSpacing.KOMSpacingModelIsLearning(spacing) && chronicle.KOMChronicleResponseType !== mod.KOMPlayResponseTypeAgain() && !lastResponseWasAgain))) {
+			if (!KOMSpacing.KOMSpacingIsReviewing(spacing) && (chronicle.KOMChronicleResponseType === mod.KOMPlayResponseTypeEasy() || (KOMSpacing.KOMSpacingIsLearning(spacing) && chronicle.KOMChronicleResponseType !== mod.KOMPlayResponseTypeAgain() && !lastResponseWasAgain))) {
 				delete spacing.KOMSpacingIsLearning;
 
 				const interval = chronicle.KOMChronicleResponseType === mod.KOMPlayResponseTypeEasy() ? mod.KOMPlayResponseIntervalGraduateEasy() : mod.KOMPlayResponseIntervalGraduateDefault();
@@ -273,7 +273,7 @@ const mod = {
 			}
 
 			// REVIEW
-			if (KOMSpacing.KOMSpacingModelIsReviewing(spacing) && chronicle.KOMChronicleResponseType !== mod.KOMPlayResponseTypeAgain()) {
+			if (KOMSpacing.KOMSpacingIsReviewing(spacing) && chronicle.KOMChronicleResponseType !== mod.KOMPlayResponseTypeAgain()) {
 				let interval = (spacing.KOMSpacingInterval + mod.KOMPlayResponseIntervalOverdueBonus(spacing, chronicle)) * (chronicle.KOMChronicleResponseType === mod.KOMPlayResponseTypeHard() ? mod.KOMPlayResponseMultiplierHard() : spacing.KOMSpacingMultiplier);
 
 				if (state.KOMPlayStateShouldRandomize) {
@@ -302,7 +302,7 @@ const mod = {
 			}
 
 			// LAPSE
-			if (KOMSpacing.KOMSpacingModelIsReviewing(spacing) && chronicle.KOMChronicleResponseType === mod.KOMPlayResponseTypeAgain()) {
+			if (KOMSpacing.KOMSpacingIsReviewing(spacing) && chronicle.KOMChronicleResponseType === mod.KOMPlayResponseTypeAgain()) {
 				delete spacing.KOMSpacingInterval;
 
 				spacing.KOMSpacingMultiplier += mod.KOMPlayResponseMultiplierSummandFail();
@@ -325,7 +325,7 @@ const mod = {
 		}));
 
 		(function update_state() {
-			if (KOMSpacing.KOMSpacingModelIsLearning(spacing)) {
+			if (KOMSpacing.KOMSpacingIsLearning(spacing)) {
 				state.KOMPlayStateWait.push(spacing);
 			}
 
@@ -422,13 +422,13 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		if (KOMSpacing.KOMSpacingModelErrorsFor(param2)) {
+		if (KOMSpacing.KOMSpacingErrorsFor(param2)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
 		return Object.assign({
 			KOMChronicleDrawDate: param1,
-		}, param2.KOMSpacingDrawDate && KOMSpacing.KOMSpacingModelIsReviewing(param2) && KOMSharedLogic.KOMSharedGroupingDay(param1) === KOMSharedLogic.KOMSharedGroupingDay(param2.KOMSpacingDrawDate) ? {
+		}, param2.KOMSpacingDrawDate && KOMSpacing.KOMSpacingIsReviewing(param2) && KOMSharedLogic.KOMSharedGroupingDay(param1) === KOMSharedLogic.KOMSharedGroupingDay(param2.KOMSpacingDrawDate) ? {
 			KOMChronicleDidDrawMultipleTimes: true,
 		} : {});
 	},
@@ -438,19 +438,19 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		if (KOMSpacing.KOMSpacingModelErrorsFor(param2)) {
+		if (KOMSpacing.KOMSpacingErrorsFor(param2)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
 		return Object.assign({
 			KOMChronicleFlipDate: param1,
-		}, param2.KOMSpacingFlipDate && KOMSpacing.KOMSpacingModelIsReviewing(param2) && KOMSharedLogic.KOMSharedGroupingDay(param1) === KOMSharedLogic.KOMSharedGroupingDay(param2.KOMSpacingFlipDate) ? {
+		}, param2.KOMSpacingFlipDate && KOMSpacing.KOMSpacingIsReviewing(param2) && KOMSharedLogic.KOMSharedGroupingDay(param1) === KOMSharedLogic.KOMSharedGroupingDay(param2.KOMSpacingFlipDate) ? {
 			KOMChronicleDidFlipMultipleTimes: true,
 		} : {});
 	},
 
 	KOMPlayUndo(inputData) {
-		if (KOMSpacing.KOMSpacingModelErrorsFor(inputData)) {
+		if (KOMSpacing.KOMSpacingErrorsFor(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 

@@ -5,79 +5,79 @@ const mod = require('./main.js').default;
 const KOMCard = require('../KOMCard/main.js').default;
 const KOMSharedLogic = require('../KOMSharedLogic/main.js').default;
 
-describe('KOMSpacingModelIdentifier', function test_KOMSpacingModelIdentifier() {
+describe('KOMSpacingIdentifier', function test_KOMSpacingIdentifier() {
 
 	it('throws error if not string', function () {
 		throws(function () {
-			mod.KOMSpacingModelIdentifier(null);
+			mod.KOMSpacingIdentifier(null);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('throws error if not valid', function () {
 		throws(function () {
-			mod.KOMSpacingModelIdentifier('bravoforward');
+			mod.KOMSpacingIdentifier('bravoforward');
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns string', function () {
-		deepEqual(mod.KOMSpacingModelIdentifier('bravo-forward'), 'bravo');
+		deepEqual(mod.KOMSpacingIdentifier('bravo-forward'), 'bravo');
 	});
 
 });
 
-describe('KOMSpacingModelLabelForward', function test_KOMSpacingModelLabelForward() {
+describe('KOMSpacingLabelForward', function test_KOMSpacingLabelForward() {
 
 	it('returns string', function () {
-		deepEqual(mod.KOMSpacingModelLabelForward(), 'forward');
+		deepEqual(mod.KOMSpacingLabelForward(), 'forward');
 	});
 
 });
 
-describe('KOMSpacingModelLabelBackward', function test_KOMSpacingModelLabelBackward() {
+describe('KOMSpacingLabelBackward', function test_KOMSpacingLabelBackward() {
 
 	it('returns string', function () {
-		deepEqual(mod.KOMSpacingModelLabelBackward(), 'backward');
+		deepEqual(mod.KOMSpacingLabelBackward(), 'backward');
 	});
 
 });
 
-describe('KOMSpacingModelLabel', function test_KOMSpacingModelLabel() {
+describe('KOMSpacingLabel', function test_KOMSpacingLabel() {
 
 	it('throws error if not string', function () {
 		throws(function () {
-			mod.KOMSpacingModelLabel(null);
+			mod.KOMSpacingLabel(null);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('throws error if not valid', function () {
 		throws(function () {
-			mod.KOMSpacingModelLabel(Math.random().toString() + uRandomElement(mod.KOMSpacingModelLabelForward(), mod.KOMSpacingModelLabelBackward()));
+			mod.KOMSpacingLabel(Math.random().toString() + uRandomElement(mod.KOMSpacingLabelForward(), mod.KOMSpacingLabelBackward()));
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns string', function () {
-		const item = uRandomElement(mod.KOMSpacingModelLabelForward(), mod.KOMSpacingModelLabelBackward());
-		deepEqual(mod.KOMSpacingModelLabel(Math.random().toString() + '-' + item), item);
+		const item = uRandomElement(mod.KOMSpacingLabelForward(), mod.KOMSpacingLabelBackward());
+		deepEqual(mod.KOMSpacingLabel(Math.random().toString() + '-' + item), item);
 	});
 
 });
 
-describe('KOMSpacingModelErrorsFor', function test_KOMSpacingModelErrorsFor() {
+describe('KOMSpacingErrorsFor', function test_KOMSpacingErrorsFor() {
 
 	it('throws error if not object', function() {
 		throws(function() {
-			mod.KOMSpacingModelErrorsFor(null);
+			mod.KOMSpacingErrorsFor(null);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('throws error if not object', function () {
 		throws(function () {
-			mod.KOMSpacingModelErrorsFor(null);
+			mod.KOMSpacingErrorsFor(null);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns object if KOMSpacingID not string', function () {
-		deepEqual(mod.KOMSpacingModelErrorsFor(StubSpacingObjectValid({
+		deepEqual(mod.KOMSpacingErrorsFor(StubSpacingObjectValid({
 			KOMSpacingID: null,
 		})), {
 			KOMSpacingID: [
@@ -87,7 +87,7 @@ describe('KOMSpacingModelErrorsFor', function test_KOMSpacingModelErrorsFor() {
 	});
 
 	it('returns object if KOMSpacingID not separated', function () {
-		deepEqual(mod.KOMSpacingModelErrorsFor(StubSpacingObjectValid({
+		deepEqual(mod.KOMSpacingErrorsFor(StubSpacingObjectValid({
 			KOMSpacingID: 'alfaforward',
 		})), {
 			KOMSpacingID: [
@@ -97,7 +97,7 @@ describe('KOMSpacingModelErrorsFor', function test_KOMSpacingModelErrorsFor() {
 	});
 
 	it('returns object if KOMSpacingID not filled', function () {
-		deepEqual(mod.KOMSpacingModelErrorsFor(StubSpacingObjectValid({
+		deepEqual(mod.KOMSpacingErrorsFor(StubSpacingObjectValid({
 			KOMSpacingID: '-forward',
 		})), {
 			KOMSpacingID: [
@@ -107,7 +107,7 @@ describe('KOMSpacingModelErrorsFor', function test_KOMSpacingModelErrorsFor() {
 	});
 
 	it('returns object if KOMSpacingID not labelled', function () {
-		deepEqual(mod.KOMSpacingModelErrorsFor(StubSpacingObjectValid({
+		deepEqual(mod.KOMSpacingErrorsFor(StubSpacingObjectValid({
 			KOMSpacingID: 'alfa-bravo',
 		})), {
 			KOMSpacingID: [
@@ -117,15 +117,15 @@ describe('KOMSpacingModelErrorsFor', function test_KOMSpacingModelErrorsFor() {
 	});
 
 	it('returns null', function () {
-		deepEqual(mod.KOMSpacingModelErrorsFor(StubSpacingObjectValid({
-			KOMSpacingID: 'alfa-' + uRandomElement(mod.KOMSpacingModelLabelForward(), mod.KOMSpacingModelLabelBackward()),
+		deepEqual(mod.KOMSpacingErrorsFor(StubSpacingObjectValid({
+			KOMSpacingID: 'alfa-' + uRandomElement(mod.KOMSpacingLabelForward(), mod.KOMSpacingLabelBackward()),
 		})), null);
 	});
 
 	context('KOMSpacingDrawDate', function () {
 
 		it('returns object if not date', function () {
-			deepEqual(mod.KOMSpacingModelErrorsFor(StubSpacingObjectValid({
+			deepEqual(mod.KOMSpacingErrorsFor(StubSpacingObjectValid({
 				KOMSpacingDrawDate: null,
 			})), {
 				KOMSpacingDrawDate: [
@@ -135,7 +135,7 @@ describe('KOMSpacingModelErrorsFor', function test_KOMSpacingModelErrorsFor() {
 		});
 
 		it('returns null', function () {
-			deepEqual(mod.KOMSpacingModelErrorsFor(StubSpacingObjectValid({
+			deepEqual(mod.KOMSpacingErrorsFor(StubSpacingObjectValid({
 				KOMSpacingDrawDate: new Date(),
 			})), null);
 		});
@@ -145,7 +145,7 @@ describe('KOMSpacingModelErrorsFor', function test_KOMSpacingModelErrorsFor() {
 	context('KOMSpacingFlipDate', function () {
 
 		it('returns object if not date', function () {
-			deepEqual(mod.KOMSpacingModelErrorsFor(StubSpacingObjectValid({
+			deepEqual(mod.KOMSpacingErrorsFor(StubSpacingObjectValid({
 				KOMSpacingFlipDate: null,
 			})), {
 				KOMSpacingFlipDate: [
@@ -155,7 +155,7 @@ describe('KOMSpacingModelErrorsFor', function test_KOMSpacingModelErrorsFor() {
 		});
 
 		it('returns null', function () {
-			deepEqual(mod.KOMSpacingModelErrorsFor(StubSpacingObjectValid({
+			deepEqual(mod.KOMSpacingErrorsFor(StubSpacingObjectValid({
 				KOMSpacingFlipDate: new Date(),
 			})), null);
 		});
@@ -165,7 +165,7 @@ describe('KOMSpacingModelErrorsFor', function test_KOMSpacingModelErrorsFor() {
 	context('KOMSpacingDueDate', function () {
 
 		it('returns object if not date', function () {
-			deepEqual(mod.KOMSpacingModelErrorsFor(StubSpacingObjectValid({
+			deepEqual(mod.KOMSpacingErrorsFor(StubSpacingObjectValid({
 				KOMSpacingDueDate: null,
 			})), {
 				KOMSpacingDueDate: [
@@ -175,7 +175,7 @@ describe('KOMSpacingModelErrorsFor', function test_KOMSpacingModelErrorsFor() {
 		});
 
 		it('returns null', function () {
-			deepEqual(mod.KOMSpacingModelErrorsFor(StubSpacingObjectValid({
+			deepEqual(mod.KOMSpacingErrorsFor(StubSpacingObjectValid({
 				KOMSpacingDueDate: new Date(),
 			})), null);
 		});
@@ -185,7 +185,7 @@ describe('KOMSpacingModelErrorsFor', function test_KOMSpacingModelErrorsFor() {
 	context('KOMSpacingIsLearning', function () {
 
 		it('returns object if not boolean', function () {
-			deepEqual(mod.KOMSpacingModelErrorsFor(StubSpacingObjectValid({
+			deepEqual(mod.KOMSpacingErrorsFor(StubSpacingObjectValid({
 				KOMSpacingIsLearning: null,
 			})), {
 				KOMSpacingIsLearning: [
@@ -195,7 +195,7 @@ describe('KOMSpacingModelErrorsFor', function test_KOMSpacingModelErrorsFor() {
 		});
 
 		it('returns null', function () {
-			deepEqual(mod.KOMSpacingModelErrorsFor(StubSpacingObjectValid({
+			deepEqual(mod.KOMSpacingErrorsFor(StubSpacingObjectValid({
 				KOMSpacingIsLearning: true,
 			})), null);
 		});
@@ -205,7 +205,7 @@ describe('KOMSpacingModelErrorsFor', function test_KOMSpacingModelErrorsFor() {
 	context('KOMSpacingInterval', function () {
 
 		it('returns object if not number', function () {
-			deepEqual(mod.KOMSpacingModelErrorsFor(StubSpacingObjectValid({
+			deepEqual(mod.KOMSpacingErrorsFor(StubSpacingObjectValid({
 				KOMSpacingInterval: '1',
 			})), {
 				KOMSpacingInterval: [
@@ -215,7 +215,7 @@ describe('KOMSpacingModelErrorsFor', function test_KOMSpacingModelErrorsFor() {
 		});
 
 		it('returns null', function () {
-			deepEqual(mod.KOMSpacingModelErrorsFor(StubSpacingObjectValid({
+			deepEqual(mod.KOMSpacingErrorsFor(StubSpacingObjectValid({
 				KOMSpacingInterval: 1,
 			})), null);
 		});
@@ -225,7 +225,7 @@ describe('KOMSpacingModelErrorsFor', function test_KOMSpacingModelErrorsFor() {
 	context('KOMSpacingMultiplier', function () {
 
 		it('returns object if not number', function () {
-			deepEqual(mod.KOMSpacingModelErrorsFor(StubSpacingObjectValid({
+			deepEqual(mod.KOMSpacingErrorsFor(StubSpacingObjectValid({
 				KOMSpacingMultiplier: '1',
 			})), {
 				KOMSpacingMultiplier: [
@@ -235,7 +235,7 @@ describe('KOMSpacingModelErrorsFor', function test_KOMSpacingModelErrorsFor() {
 		});
 
 		it('returns null', function () {
-			deepEqual(mod.KOMSpacingModelErrorsFor(StubSpacingObjectValid({
+			deepEqual(mod.KOMSpacingErrorsFor(StubSpacingObjectValid({
 				KOMSpacingMultiplier: 1,
 			})), null);
 		});
@@ -245,7 +245,7 @@ describe('KOMSpacingModelErrorsFor', function test_KOMSpacingModelErrorsFor() {
 	context('KOMSpacingChronicles', function () {
 
 		it('returns object if not array', function () {
-			deepEqual(mod.KOMSpacingModelErrorsFor(StubSpacingObjectValid({
+			deepEqual(mod.KOMSpacingErrorsFor(StubSpacingObjectValid({
 				KOMSpacingChronicles: null,
 			})), {
 				KOMSpacingChronicles: [
@@ -255,7 +255,7 @@ describe('KOMSpacingModelErrorsFor', function test_KOMSpacingModelErrorsFor() {
 		});
 
 		it('returns null', function () {
-			deepEqual(mod.KOMSpacingModelErrorsFor(StubSpacingObjectValid({
+			deepEqual(mod.KOMSpacingErrorsFor(StubSpacingObjectValid({
 				KOMSpacingChronicles: [],
 			})), null);
 		});
@@ -265,7 +265,7 @@ describe('KOMSpacingModelErrorsFor', function test_KOMSpacingModelErrorsFor() {
 	context('$KOMSpacingCard', function () {
 
 		it('returns object if not valid', function () {
-			deepEqual(mod.KOMSpacingModelErrorsFor(StubSpacingObjectValid({
+			deepEqual(mod.KOMSpacingErrorsFor(StubSpacingObjectValid({
 				$KOMSpacingCard: {},
 			})), {
 				$KOMSpacingCard: [
@@ -275,7 +275,7 @@ describe('KOMSpacingModelErrorsFor', function test_KOMSpacingModelErrorsFor() {
 		});
 
 		it('returns null', function () {
-			deepEqual(mod.KOMSpacingModelErrorsFor(StubSpacingObjectValid({
+			deepEqual(mod.KOMSpacingErrorsFor(StubSpacingObjectValid({
 				$KOMSpacingCard: StubCardObjectValid(),
 			})), null);
 		});
@@ -285,7 +285,7 @@ describe('KOMSpacingModelErrorsFor', function test_KOMSpacingModelErrorsFor() {
 	context('KOMOptionValidateIfNotPresent', function () {
 
 		it('returns object if not valid', function () {
-			deepEqual(Object.keys(mod.KOMSpacingModelErrorsFor({}, {
+			deepEqual(Object.keys(mod.KOMSpacingErrorsFor({}, {
 				KOMOptionValidateIfNotPresent: true,
 			})), [
 				'KOMSpacingID',
@@ -310,7 +310,7 @@ describe('KOMSpacingPath', function test_KOMSpacingPath() {
 		const card = StubCardObjectValid({
 			KOMCardID,
 		});
-		const label = uRandomElement(mod.KOMSpacingModelLabelForward(), mod.KOMSpacingModelLabelBackward());
+		const label = uRandomElement(mod.KOMSpacingLabelForward(), mod.KOMSpacingLabelBackward());
 		deepEqual(mod.KOMSpacingPath(StubSpacingObjectValid({
 			KOMSpacingID: [KOMCardID, label].join('-'),
 		}), card), KOMCard.KOMCardFolderPath(card) + 'spacing-' + label);
@@ -322,7 +322,7 @@ describe('KOMSpacingStub', function test_KOMSpacingStub() {
 
 	it('returns string', function() {
 		const KOMCardID = Math.random().toString();
-		const label = uRandomElement(mod.KOMSpacingModelLabelForward(), mod.KOMSpacingModelLabelBackward());
+		const label = uRandomElement(mod.KOMSpacingLabelForward(), mod.KOMSpacingLabelBackward());
 		deepEqual(mod.KOMSpacingStub(KOMCard.KOMCardFolderPath(StubCardObjectValid({
 			KOMCardID,
 		})) + 'spacing-' + label), {
@@ -332,162 +332,162 @@ describe('KOMSpacingStub', function test_KOMSpacingStub() {
 
 });
 
-describe('KOMSpacingModelIsBackward', function test_KOMSpacingModelIsBackward() {
+describe('KOMSpacingIsBackward', function test_KOMSpacingIsBackward() {
 
 	it('throws if not valid', function () {
 		throws(function () {
-			mod.KOMSpacingModelIsBackward({});
+			mod.KOMSpacingIsBackward({});
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns true if backward', function () {
-		deepEqual(mod.KOMSpacingModelIsBackward(StubSpacingObjectValid({
+		deepEqual(mod.KOMSpacingIsBackward(StubSpacingObjectValid({
 			KOMSpacingID: 'bravo-backward',
 		})), true);
 	});
 
 	it('returns false', function () {
-		deepEqual(mod.KOMSpacingModelIsBackward(StubSpacingObjectValid()), false);
+		deepEqual(mod.KOMSpacingIsBackward(StubSpacingObjectValid()), false);
 	});
 
 });
 
-describe('KOMSpacingModelIsUnseen', function test_KOMSpacingModelIsUnseen() {
+describe('KOMSpacingIsUnseen', function test_KOMSpacingIsUnseen() {
 
 	it('throws if not valid', function () {
 		throws(function () {
-			mod.KOMSpacingModelIsUnseen({});
+			mod.KOMSpacingIsUnseen({});
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns false if KOMSpacingDueDate', function () {
-		deepEqual(mod.KOMSpacingModelIsUnseen(StubSpacingObjectValid({
+		deepEqual(mod.KOMSpacingIsUnseen(StubSpacingObjectValid({
 			KOMSpacingDueDate: new Date(),
 		})), false);
 	});
 
 	it('returns true', function () {
-		deepEqual(mod.KOMSpacingModelIsUnseen(StubSpacingObjectValid()), true);
+		deepEqual(mod.KOMSpacingIsUnseen(StubSpacingObjectValid()), true);
 	});
 
 });
 
-describe('KOMSpacingModelIsLearning', function test_KOMSpacingModelIsLearning() {
+describe('KOMSpacingIsLearning', function test_KOMSpacingIsLearning() {
 
 	it('throws if not valid', function () {
 		throws(function () {
-			mod.KOMSpacingModelIsLearning({});
+			mod.KOMSpacingIsLearning({});
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns true if KOMSpacingIsLearning', function () {
-		deepEqual(mod.KOMSpacingModelIsLearning(StubSpacingObjectValid({
+		deepEqual(mod.KOMSpacingIsLearning(StubSpacingObjectValid({
 			KOMSpacingIsLearning: true,
 		})), true);
 	});
 
 	it('returns false', function () {
-		deepEqual(mod.KOMSpacingModelIsLearning(StubSpacingObjectValid()), false);
+		deepEqual(mod.KOMSpacingIsLearning(StubSpacingObjectValid()), false);
 	});
 
 });
 
-describe('KOMSpacingModelIsReviewing', function test_KOMSpacingModelIsReviewing() {
+describe('KOMSpacingIsReviewing', function test_KOMSpacingIsReviewing() {
 
 	it('throws if not valid', function () {
 		throws(function () {
-			mod.KOMSpacingModelIsReviewing({});
+			mod.KOMSpacingIsReviewing({});
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns false if KOMSpacingIsLearning', function () {
-		deepEqual(mod.KOMSpacingModelIsReviewing(StubSpacingObjectValid({
+		deepEqual(mod.KOMSpacingIsReviewing(StubSpacingObjectValid({
 			KOMSpacingIsLearning: true,
 		})), false);
 	});
 
 	it('returns false if no KOMSpacingInterval', function () {
-		deepEqual(mod.KOMSpacingModelIsReviewing(StubSpacingObjectValid()), false);
+		deepEqual(mod.KOMSpacingIsReviewing(StubSpacingObjectValid()), false);
 	});
 
 	it('returns true', function () {
-		deepEqual(mod.KOMSpacingModelIsReviewing(StubSpacingObjectValid({
+		deepEqual(mod.KOMSpacingIsReviewing(StubSpacingObjectValid({
 			KOMSpacingInterval: 1,
 		})), true);
 	});
 
 });
 
-describe('KOMSpacingModelMatureThreshold', function test_KOMSpacingModelMatureThreshold() {
+describe('KOMSpacingMatureThreshold', function test_KOMSpacingMatureThreshold() {
 
 	it('returns number', function () {
-		deepEqual(mod.KOMSpacingModelMatureThreshold(), 21);
+		deepEqual(mod.KOMSpacingMatureThreshold(), 21);
 	});
 
 });
 
-describe('KOMSpacingModelIsDeveloping', function test_KOMSpacingModelIsDeveloping() {
+describe('KOMSpacingIsDeveloping', function test_KOMSpacingIsDeveloping() {
 
 	it('throws if not valid', function () {
 		throws(function () {
-			mod.KOMSpacingModelIsDeveloping({});
+			mod.KOMSpacingIsDeveloping({});
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns false if no KOMSpacingInterval', function () {
-		deepEqual(mod.KOMSpacingModelIsDeveloping(StubSpacingObjectValid()), false);
+		deepEqual(mod.KOMSpacingIsDeveloping(StubSpacingObjectValid()), false);
 	});
 
-	it('returns false if KOMSpacingInterval above KOMSpacingModelMatureThreshold', function () {
-		deepEqual(mod.KOMSpacingModelIsDeveloping(StubSpacingObjectValid({
-			KOMSpacingInterval: mod.KOMSpacingModelMatureThreshold(),
+	it('returns false if KOMSpacingInterval above KOMSpacingMatureThreshold', function () {
+		deepEqual(mod.KOMSpacingIsDeveloping(StubSpacingObjectValid({
+			KOMSpacingInterval: mod.KOMSpacingMatureThreshold(),
 		})), false);
 	});
 
 	it('returns true', function () {
-		deepEqual(mod.KOMSpacingModelIsDeveloping(StubSpacingObjectValid({
+		deepEqual(mod.KOMSpacingIsDeveloping(StubSpacingObjectValid({
 			KOMSpacingInterval: 1,
 		})), true);
 	});
 
 });
 
-describe('KOMSpacingModelIsMature', function test_KOMSpacingModelIsMature() {
+describe('KOMSpacingIsMature', function test_KOMSpacingIsMature() {
 
 	it('throws if not valid', function () {
 		throws(function () {
-			mod.KOMSpacingModelIsMature({});
+			mod.KOMSpacingIsMature({});
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns false if no KOMSpacingInterval', function () {
-		deepEqual(mod.KOMSpacingModelIsMature(StubSpacingObjectValid()), false);
+		deepEqual(mod.KOMSpacingIsMature(StubSpacingObjectValid()), false);
 	});
 
-	it('returns false if KOMSpacingInterval below KOMSpacingModelMatureThreshold', function () {
-		deepEqual(mod.KOMSpacingModelIsMature(StubSpacingObjectValid({
+	it('returns false if KOMSpacingInterval below KOMSpacingMatureThreshold', function () {
+		deepEqual(mod.KOMSpacingIsMature(StubSpacingObjectValid({
 			KOMSpacingInterval: 1,
 		})), false);
 	});
 
 	it('returns true', function () {
-		deepEqual(mod.KOMSpacingModelIsMature(StubSpacingObjectValid({
-			KOMSpacingInterval: mod.KOMSpacingModelMatureThreshold(),
+		deepEqual(mod.KOMSpacingIsMature(StubSpacingObjectValid({
+			KOMSpacingInterval: mod.KOMSpacingMatureThreshold(),
 		})), true);
 	});
 
 });
 
-describe('KOMSpacingModelFilterUnique', function test_KOMSpacingModelFilterUnique() {
+describe('KOMSpacingFilterUnique', function test_KOMSpacingFilterUnique() {
 
 	it('throws if not array', function () {
 		throws(function () {
-			mod.KOMSpacingModelFilterUnique(null);
+			mod.KOMSpacingFilterUnique(null);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns array', function () {
-		deepEqual(mod.KOMSpacingModelFilterUnique([]), []);
+		deepEqual(mod.KOMSpacingFilterUnique([]), []);
 	});
 
 	it('excludes duplicate cards', function () {
@@ -496,14 +496,14 @@ describe('KOMSpacingModelFilterUnique', function test_KOMSpacingModelFilterUniqu
 			KOMSpacingID: 'charlie-forward',
 		});
 
-		deepEqual(mod.KOMSpacingModelFilterUnique([item1, Object.assign(Object.assign({}, item1), {
+		deepEqual(mod.KOMSpacingFilterUnique([item1, Object.assign(Object.assign({}, item1), {
 			KOMSpacingID: item1.KOMSpacingID.replace('forward', 'backward'),
 		}), item2]), [item1, item2]);
 	});
 
 });
 
-describe('KOMSpacingModelGroupByStatus', function test_KOMSpacingModelGroupByStatus() {
+describe('KOMSpacingByStatus', function test_KOMSpacingByStatus() {
 
 	const uGrouping = function (inputData = {}) {
 		return Object.assign({
@@ -517,17 +517,17 @@ describe('KOMSpacingModelGroupByStatus', function test_KOMSpacingModelGroupBySta
 
 	it('throws if not array', function () {
 		throws(function () {
-			mod.KOMSpacingModelGroupByStatus(null);
+			mod.KOMSpacingByStatus(null);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns array', function () {
-		deepEqual(mod.KOMSpacingModelGroupByStatus([]), uGrouping());
+		deepEqual(mod.KOMSpacingByStatus([]), uGrouping());
 	});
 
 	it('groups unseen', function () {
 		const item = StubSpacingObjectValid();
-		deepEqual(mod.KOMSpacingModelGroupByStatus([item]), uGrouping({
+		deepEqual(mod.KOMSpacingByStatus([item]), uGrouping({
 			KOMSpacingGroupingTotal: [item],
 			KOMSpacingGroupingUnseen: [item],
 		}));
@@ -538,7 +538,7 @@ describe('KOMSpacingModelGroupByStatus', function test_KOMSpacingModelGroupBySta
 			KOMSpacingInterval: 1,
 			KOMSpacingDueDate: new Date(),
 		});
-		deepEqual(mod.KOMSpacingModelGroupByStatus([item]), uGrouping({
+		deepEqual(mod.KOMSpacingByStatus([item]), uGrouping({
 			KOMSpacingGroupingTotal: [item],
 			KOMSpacingGroupingDeveloping: [item],
 		}));
@@ -546,10 +546,10 @@ describe('KOMSpacingModelGroupByStatus', function test_KOMSpacingModelGroupBySta
 
 	it('groups mature', function () {
 		const item = Object.assign(StubSpacingObjectValid(), {
-			KOMSpacingInterval: mod.KOMSpacingModelMatureThreshold(),
+			KOMSpacingInterval: mod.KOMSpacingMatureThreshold(),
 			KOMSpacingDueDate: new Date(),
 		});
-		deepEqual(mod.KOMSpacingModelGroupByStatus([item]), uGrouping({
+		deepEqual(mod.KOMSpacingByStatus([item]), uGrouping({
 			KOMSpacingGroupingTotal: [item],
 			KOMSpacingGroupingMature: [item],
 		}));
@@ -561,7 +561,7 @@ describe('KOMSpacingModelGroupByStatus', function test_KOMSpacingModelGroupBySta
 				KOMCardIsRetired: true,
 			}),
 		});
-		deepEqual(mod.KOMSpacingModelGroupByStatus([item]), uGrouping({
+		deepEqual(mod.KOMSpacingByStatus([item]), uGrouping({
 			KOMSpacingGroupingTotal: [item],
 			KOMSpacingGroupingRetired: [item],
 		}));
@@ -569,7 +569,7 @@ describe('KOMSpacingModelGroupByStatus', function test_KOMSpacingModelGroupBySta
 
 });
 
-describe('KOMSpacingModelGroupChroniclesByStatus', function test_KOMSpacingModelGroupChroniclesByStatus() {
+describe('KOMSpacingChroniclesByStatus', function test_KOMSpacingChroniclesByStatus() {
 
 	const uGrouping = function (inputData = {}) {
 		return Object.assign({
@@ -588,7 +588,7 @@ describe('KOMSpacingModelGroupChroniclesByStatus', function test_KOMSpacingModel
 				KOMChronicleInterval: 1,
 			}),
 			Object.assign(StubChronicleObjectValid(), {
-				KOMChronicleInterval: mod.KOMSpacingModelMatureThreshold(),
+				KOMChronicleInterval: mod.KOMSpacingMatureThreshold(),
 			}),
 			StubChronicleObjectValid(),
 			StubChronicleObjectValid(),
@@ -600,66 +600,66 @@ describe('KOMSpacingModelGroupChroniclesByStatus', function test_KOMSpacingModel
 
 	it('throws if param1 not array', function () {
 		throws(function () {
-			mod.KOMSpacingModelGroupChroniclesByStatus(null, '2000-01-01');
+			mod.KOMSpacingChroniclesByStatus(null, '2000-01-01');
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('throws if param2 not string', function () {
 		throws(function () {
-			mod.KOMSpacingModelGroupChroniclesByStatus([], null);
+			mod.KOMSpacingChroniclesByStatus([], null);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('throws if param2 not formatted', function () {
 		throws(function () {
-			mod.KOMSpacingModelGroupChroniclesByStatus([], 'alfa-br-va');
+			mod.KOMSpacingChroniclesByStatus([], 'alfa-br-va');
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns array', function () {
-		deepEqual(mod.KOMSpacingModelGroupChroniclesByStatus([], '2000-01-01'), uGrouping());
+		deepEqual(mod.KOMSpacingChroniclesByStatus([], '2000-01-01'), uGrouping());
 	});
 
 	it('ignores if unseen', function () {
 		const item = StubSpacingObjectValid();
-		deepEqual(mod.KOMSpacingModelGroupChroniclesByStatus([item], KOMSharedLogic.KOMSharedGroupingDay(new Date())), uGrouping());
+		deepEqual(mod.KOMSpacingChroniclesByStatus([item], KOMSharedLogic.KOMSharedGroupingDay(new Date())), uGrouping());
 	});
 
 	it('ignores if no match', function () {
-		deepEqual(mod.KOMSpacingModelGroupChroniclesByStatus([StubSpacingObjectHistorical()], KOMSharedLogic.KOMSharedGroupingDay(new Date('2000-01-01'))), uGrouping());
+		deepEqual(mod.KOMSpacingChroniclesByStatus([StubSpacingObjectHistorical()], KOMSharedLogic.KOMSharedGroupingDay(new Date('2000-01-01'))), uGrouping());
 	});
 
 	it('groups learning', function () {
 		const item = uChronicles(2);
-		deepEqual(mod.KOMSpacingModelGroupChroniclesByStatus([Object.assign(StubSpacingObjectHistorical(), {
+		deepEqual(mod.KOMSpacingChroniclesByStatus([Object.assign(StubSpacingObjectHistorical(), {
 			KOMSpacingChronicles: item,
 		})], KOMSharedLogic.KOMSharedGroupingDay(new Date())).KOMChronicleGroupingLearning, item.slice(0, 2));
 	});
 
 	it('groups developing', function () {
 		const item = uChronicles(3);
-		deepEqual(mod.KOMSpacingModelGroupChroniclesByStatus([Object.assign(StubSpacingObjectHistorical(), {
+		deepEqual(mod.KOMSpacingChroniclesByStatus([Object.assign(StubSpacingObjectHistorical(), {
 			KOMSpacingChronicles: item,
 		})], KOMSharedLogic.KOMSharedGroupingDay(new Date())).KOMChronicleGroupingDeveloping, item.slice(2, 3));
 	});
 
 	it('groups mature', function () {
 		const item = uChronicles(4);
-		deepEqual(mod.KOMSpacingModelGroupChroniclesByStatus([Object.assign(StubSpacingObjectHistorical(), {
+		deepEqual(mod.KOMSpacingChroniclesByStatus([Object.assign(StubSpacingObjectHistorical(), {
 			KOMSpacingChronicles: item,
 		})], KOMSharedLogic.KOMSharedGroupingDay(new Date())).KOMChronicleGroupingMature, item.slice(3, 4));
 	});
 
 	it('groups relearning', function () {
 		const item = uChronicles(5);
-		deepEqual(mod.KOMSpacingModelGroupChroniclesByStatus([Object.assign(StubSpacingObjectHistorical(), {
+		deepEqual(mod.KOMSpacingChroniclesByStatus([Object.assign(StubSpacingObjectHistorical(), {
 			KOMSpacingChronicles: item,
 		})], KOMSharedLogic.KOMSharedGroupingDay(new Date())).KOMChronicleGroupingRelearning, item.slice(4, 5));
 	});
 
 	it('groups lapses', function () {
 		const item = uChronicles();
-		deepEqual(mod.KOMSpacingModelGroupChroniclesByStatus([Object.assign(StubSpacingObjectHistorical(), {
+		deepEqual(mod.KOMSpacingChroniclesByStatus([Object.assign(StubSpacingObjectHistorical(), {
 			KOMSpacingChronicles: item,
 		})], KOMSharedLogic.KOMSharedGroupingDay(new Date())), uGrouping({
 			KOMChronicleGroupingLearning: item.slice(0, 2),
@@ -742,17 +742,17 @@ describe('KOMSpacingList', function test_KOMSpacingList() {
 		const item = StubCardObjectValid();
 		deepEqual(await ZDRTestingWrap.App.KOMSpacing.KOMSpacingList(item), {
 			KOMCardSpacingForward: StubSpacingObjectValid({
-				KOMSpacingID: [item.KOMCardID, mod.KOMSpacingModelLabelForward()].join('-'),
+				KOMSpacingID: [item.KOMCardID, mod.KOMSpacingLabelForward()].join('-'),
 			}),
 			KOMCardSpacingBackward: StubSpacingObjectValid({
-				KOMSpacingID: [item.KOMCardID, mod.KOMSpacingModelLabelBackward()].join('-'),
+				KOMSpacingID: [item.KOMCardID, mod.KOMSpacingLabelBackward()].join('-'),
 			}),
 		});
 	});
 
 	it('returns existing KOMSpacings forward', async function () {
 		const item = StubSpacingObjectValid({
-			KOMSpacingID: Math.random().toString() + '-' + mod.KOMSpacingModelLabelForward(),
+			KOMSpacingID: Math.random().toString() + '-' + mod.KOMSpacingLabelForward(),
 			KOMSpacingDueDate: new Date(),
 		});
 
@@ -763,7 +763,7 @@ describe('KOMSpacingList', function test_KOMSpacingList() {
 
 	it('returns existing KOMSpacings backward', async function () {
 		const item = StubSpacingObjectValid({
-			KOMSpacingID: 'alfa-' + mod.KOMSpacingModelLabelBackward(),
+			KOMSpacingID: 'alfa-' + mod.KOMSpacingLabelBackward(),
 			KOMSpacingDueDate: new Date(),
 		});
 
@@ -774,7 +774,7 @@ describe('KOMSpacingList', function test_KOMSpacingList() {
 
 	it('parses KOMSpacingChronicles dates', async function () {
 		const item = StubSpacingObjectValid({
-			KOMSpacingID: 'alfa-' + mod.KOMSpacingModelLabelBackward(),
+			KOMSpacingID: 'alfa-' + mod.KOMSpacingLabelBackward(),
 			KOMSpacingDueDate: new Date(),
 			KOMSpacingChronicles: [{
 				KOMChronicleDrawDate: new Date('2019-02-23T12:00:00Z'),
@@ -794,7 +794,7 @@ describe('KOMSpacingList', function test_KOMSpacingList() {
 describe('ZDRSchemaDispatchValidate', function () {
 
 	it('returns function', function () {
-		deepEqual(mod.ZDRSchemaDispatchValidate, mod.KOMSpacingModelErrorsFor);
+		deepEqual(mod.ZDRSchemaDispatchValidate, mod.KOMSpacingErrorsFor);
 	});
 
 });

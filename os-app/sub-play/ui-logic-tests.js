@@ -128,11 +128,11 @@ describe('KOMPlaySort', function test_KOMPlaySort() {
 		it('sorts forward before backward', function () {
 			deepEqual(mod.KOMPlaySort(uItems(10, Infinity, true)).filter(function (e, i, coll) {
 				return coll.filter(function (item, index) {
-					if (KOMSpacing.KOMSpacingModelIdentifier(item.KOMSpacingID) !== KOMSpacing.KOMSpacingModelIdentifier(e.KOMSpacingID)) {
+					if (KOMSpacing.KOMSpacingIdentifier(item.KOMSpacingID) !== KOMSpacing.KOMSpacingIdentifier(e.KOMSpacingID)) {
 						return false;
 					}
 
-					if (KOMSpacing.KOMSpacingModelLabel(item.KOMSpacingID) !== KOMSpacing.KOMSpacingModelLabelBackward()) {
+					if (KOMSpacing.KOMSpacingLabel(item.KOMSpacingID) !== KOMSpacing.KOMSpacingLabelBackward()) {
 						return false;
 					}
 
@@ -144,7 +144,7 @@ describe('KOMPlaySort', function test_KOMPlaySort() {
 		it('spaces apart from sibling', function () {
 			deepEqual(kTesting.uRepeat(10, function (e) {
 				return mod.KOMPlaySort(uItems(10, Infinity, true)).filter(function (e, i, coll) {
-					return i && KOMSpacing.KOMSpacingModelIsBackward(e) && KOMSpacing.KOMSpacingModelIdentifier(e.KOMSpacingID) === KOMSpacing.KOMSpacingModelIdentifier(coll[i - 1].KOMSpacingID);
+					return i && KOMSpacing.KOMSpacingIsBackward(e) && KOMSpacing.KOMSpacingIdentifier(e.KOMSpacingID) === KOMSpacing.KOMSpacingIdentifier(coll[i - 1].KOMSpacingID);
 				});
 			}).filter(function (e) {
 				return e.length;
@@ -153,7 +153,7 @@ describe('KOMPlaySort', function test_KOMPlaySort() {
 
 		it('randomizes', function () {
 			deepEqual(kTesting.uRepeat(10, function (e) {
-				return uSlug(mod.KOMPlaySort(uItems(10, Infinity, true)).filter(KOMSpacing.KOMSpacingModelIsBackward));
+				return uSlug(mod.KOMPlaySort(uItems(10, Infinity, true)).filter(KOMSpacing.KOMSpacingIsBackward));
 			}).filter(function (value, index, self) {
 				return self.indexOf(value) === index;
 			}).length > 1, true);
@@ -171,7 +171,7 @@ describe('KOMPlaySort', function test_KOMPlaySort() {
 		it('spaces apart from sibling', function () {
 			deepEqual(kTesting.uRepeat(10, function (e) {
 				return mod.KOMPlaySort(uItems(10, 0, true)).filter(function (e, i, coll) {
-					return i && KOMSpacing.KOMSpacingModelIsBackward(e) && KOMSpacing.KOMSpacingModelIdentifier(e.KOMSpacingID) === KOMSpacing.KOMSpacingModelIdentifier(coll[i - 1].KOMSpacingID);
+					return i && KOMSpacing.KOMSpacingIsBackward(e) && KOMSpacing.KOMSpacingIdentifier(e.KOMSpacingID) === KOMSpacing.KOMSpacingIdentifier(coll[i - 1].KOMSpacingID);
 				});
 			}).filter(function (e) {
 				return e.length;
@@ -180,7 +180,7 @@ describe('KOMPlaySort', function test_KOMPlaySort() {
 
 		it('randomizes', function () {
 			deepEqual(kTesting.uRepeat(10, function (e) {
-				return uSlug(mod.KOMPlaySort(uItems(10, 0, true)).filter(KOMSpacing.KOMSpacingModelIsBackward));
+				return uSlug(mod.KOMPlaySort(uItems(10, 0, true)).filter(KOMSpacing.KOMSpacingIsBackward));
 			}).filter(function (value, index, self) {
 				return self.indexOf(value) === index;
 			}).length > 1, true);
@@ -198,11 +198,11 @@ describe('KOMPlaySort', function test_KOMPlaySort() {
 		it('sorts forward before backward', function () {
 			deepEqual(mod.KOMPlaySort(uItems(5, 2, true)).filter(function (e, i, coll) {
 				return coll.filter(function (item, index) {
-					if (KOMSpacing.KOMSpacingModelIdentifier(item.KOMSpacingID) !== KOMSpacing.KOMSpacingModelIdentifier(e.KOMSpacingID)) {
+					if (KOMSpacing.KOMSpacingIdentifier(item.KOMSpacingID) !== KOMSpacing.KOMSpacingIdentifier(e.KOMSpacingID)) {
 						return false;
 					}
 
-					if (KOMSpacing.KOMSpacingModelLabel(item.KOMSpacingID) !== KOMSpacing.KOMSpacingModelLabelBackward()) {
+					if (KOMSpacing.KOMSpacingLabel(item.KOMSpacingID) !== KOMSpacing.KOMSpacingLabelBackward()) {
 						return false;
 					}
 

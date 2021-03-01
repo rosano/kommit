@@ -115,23 +115,23 @@ const mod = {
 				return false;
 			}
 
-			if (param2.KOMReviewScheme === mod.KOMReviewSchemeReviewing() && KOMSpacing.KOMSpacingModelIsUnseen(e)) {
+			if (param2.KOMReviewScheme === mod.KOMReviewSchemeReviewing() && KOMSpacing.KOMSpacingIsUnseen(e)) {
 				return false;
 			}
 
-			if (param2.KOMReviewScheme === mod.KOMReviewSchemeUnseen() && !KOMSpacing.KOMSpacingModelIsUnseen(e)) {
+			if (param2.KOMReviewScheme === mod.KOMReviewSchemeUnseen() && !KOMSpacing.KOMSpacingIsUnseen(e)) {
 				return false;
 			}
 
-			if (param3.KOMDeckIsForwardOnly && KOMSpacing.KOMSpacingModelIsBackward(e)) {
+			if (param3.KOMDeckIsForwardOnly && KOMSpacing.KOMSpacingIsBackward(e)) {
 				return false;
 			}
 
-			if (param2.KOMReviewScheme !== mod.KOMReviewSchemeReviewing() && KOMSpacing.KOMSpacingModelIsUnseen(e) && !cardsNew.includes(e.$KOMSpacingCard)) {
+			if (param2.KOMReviewScheme !== mod.KOMReviewSchemeReviewing() && KOMSpacing.KOMSpacingIsUnseen(e) && !cardsNew.includes(e.$KOMSpacingCard)) {
 				cardsNew.push(e.$KOMSpacingCard);
 			}
 
-			if (param2.KOMReviewScheme !== mod.KOMReviewSchemeReviewing() && KOMSpacing.KOMSpacingModelIsUnseen(e) && cardsNew.length > param2.KOMReviewMaxUnseenCards) {
+			if (param2.KOMReviewScheme !== mod.KOMReviewSchemeReviewing() && KOMSpacing.KOMSpacingIsUnseen(e) && cardsNew.length > param2.KOMReviewMaxUnseenCards) {
 				return false;
 			}
 
@@ -154,7 +154,7 @@ const mod = {
 
 		return Object.values(param2.reduce(function (coll, item) {
 			return Object.assign(coll, {
-				[KOMSpacing.KOMSpacingModelIdentifier(item.KOMSpacingID)]: (coll[[KOMSpacing.KOMSpacingModelIdentifier(item.KOMSpacingID)]] || []).concat(item),
+				[KOMSpacing.KOMSpacingIdentifier(item.KOMSpacingID)]: (coll[[KOMSpacing.KOMSpacingIdentifier(item.KOMSpacingID)]] || []).concat(item),
 			});
 		}, {})).filter(function (e) {
 			return e.filter(function (e) {

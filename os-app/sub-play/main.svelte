@@ -35,11 +35,11 @@ const mod = {
 	// DATA
 
 	DataQuestion () {
-		return mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard[KOMSpacing.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent) ? 'KOMCardRearText' : 'KOMCardFrontText'];
+		return mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard[KOMSpacing.KOMSpacingIsBackward(mod._ValueState.KOMPlayStateCurrent) ? 'KOMCardRearText' : 'KOMCardFrontText'];
 	},
 
 	DataAnswer () {
-		return mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard[!KOMSpacing.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent) ? 'KOMCardRearText' : 'KOMCardFrontText'];
+		return mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard[!KOMSpacing.KOMSpacingIsBackward(mod._ValueState.KOMPlayStateCurrent) ? 'KOMCardRearText' : 'KOMCardFrontText'];
 	},
 
 	DataQuestionShouldSound () {
@@ -47,7 +47,7 @@ const mod = {
 	},
 
 	_DataQuestionFrontShouldSound () {
-		if (KOMSpacing.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent)) {
+		if (KOMSpacing.KOMSpacingIsBackward(mod._ValueState.KOMPlayStateCurrent)) {
 			return false;
 		}
 
@@ -59,7 +59,7 @@ const mod = {
 	},
 
 	_DataQuestionRearShouldSound () {
-		if (!KOMSpacing.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent)) {
+		if (!KOMSpacing.KOMSpacingIsBackward(mod._ValueState.KOMPlayStateCurrent)) {
 			return false;
 		}
 
@@ -75,7 +75,7 @@ const mod = {
 	},
 
 	_DataAnswerFrontShouldSound () {
-		if (!KOMSpacing.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent)) {
+		if (!KOMSpacing.KOMSpacingIsBackward(mod._ValueState.KOMPlayStateCurrent)) {
 			return false;
 		}
 
@@ -87,7 +87,7 @@ const mod = {
 	},
 
 	_DataAnswerRearShouldSound () {
-		if (KOMSpacing.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent)) {
+		if (KOMSpacing.KOMSpacingIsBackward(mod._ValueState.KOMPlayStateCurrent)) {
 			return false;
 		}
 
@@ -220,27 +220,27 @@ const mod = {
 	},
 
 	ControlQuestionRead () {
-		if (mod.DataFrontHasAudio() && !KOMSpacing.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent)) {
+		if (mod.DataFrontHasAudio() && !KOMSpacing.KOMSpacingIsBackward(mod._ValueState.KOMPlayStateCurrent)) {
 			return mod.ControlAudioStart('KOMCardFrontAudio');
 		}
 		
-		if (mod.DataRearHasAudio() && KOMSpacing.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent)) {
+		if (mod.DataRearHasAudio() && KOMSpacing.KOMSpacingIsBackward(mod._ValueState.KOMPlayStateCurrent)) {
 			return mod.ControlAudioStart('KOMCardRearAudio');
 		}
 		
-		mod.ControlReadStart(mod.DataQuestion(), !KOMSpacing.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent) ? KOMPlayDeck.KOMDeckFrontLanguageCode : KOMPlayDeck.KOMDeckRearLanguageCode);
+		mod.ControlReadStart(mod.DataQuestion(), !KOMSpacing.KOMSpacingIsBackward(mod._ValueState.KOMPlayStateCurrent) ? KOMPlayDeck.KOMDeckFrontLanguageCode : KOMPlayDeck.KOMDeckRearLanguageCode);
 	},
 
 	ControlAnswerRead () {
-		if (mod.DataFrontHasAudio() && KOMSpacing.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent)) {
+		if (mod.DataFrontHasAudio() && KOMSpacing.KOMSpacingIsBackward(mod._ValueState.KOMPlayStateCurrent)) {
 			return mod.ControlAudioStart('KOMCardFrontAudio');
 		}
 		
-		if (mod.DataRearHasAudio() && !KOMSpacing.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent)) {
+		if (mod.DataRearHasAudio() && !KOMSpacing.KOMSpacingIsBackward(mod._ValueState.KOMPlayStateCurrent)) {
 			return mod.ControlAudioStart('KOMCardRearAudio');
 		}
 		
-		mod.ControlReadStart(mod.DataAnswer(), KOMSpacing.KOMSpacingModelIsBackward(mod._ValueState.KOMPlayStateCurrent) ? KOMPlayDeck.KOMDeckFrontLanguageCode : KOMPlayDeck.KOMDeckRearLanguageCode);
+		mod.ControlReadStart(mod.DataAnswer(), KOMSpacing.KOMSpacingIsBackward(mod._ValueState.KOMPlayStateCurrent) ? KOMPlayDeck.KOMDeckFrontLanguageCode : KOMPlayDeck.KOMDeckRearLanguageCode);
 	},
 
 	ControlReadStart (param1, param2) {
