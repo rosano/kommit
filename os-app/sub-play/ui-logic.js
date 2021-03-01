@@ -99,7 +99,7 @@ const mod = {
 			return false;
 		}
 
-		if (inputData.KOMPlayStateCurrent && KOMSpacing.KOMSpacingErrorsFor(inputData.KOMPlayStateCurrent)) {
+		if (inputData.KOMPlayStateCurrent && KOMSpacing.KOMSpacingErrors(inputData.KOMPlayStateCurrent)) {
 			return false;
 		}
 
@@ -166,7 +166,7 @@ const mod = {
 	},
 
 	KOMPlayResponseIntervalOverdueDays(spacing, chronicle) {
-		if (KOMSpacing.KOMSpacingErrorsFor(spacing)) {
+		if (KOMSpacing.KOMSpacingErrors(spacing)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
@@ -189,7 +189,7 @@ const mod = {
 	},
 
 	KOMPlayResponseIntervalOverdueBonus(spacing, chronicle) {
-		if (KOMSpacing.KOMSpacingErrorsFor(spacing)) {
+		if (KOMSpacing.KOMSpacingErrors(spacing)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
@@ -422,7 +422,7 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		if (KOMSpacing.KOMSpacingErrorsFor(param2)) {
+		if (KOMSpacing.KOMSpacingErrors(param2)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
@@ -438,7 +438,7 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		if (KOMSpacing.KOMSpacingErrorsFor(param2)) {
+		if (KOMSpacing.KOMSpacingErrors(param2)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
@@ -450,7 +450,7 @@ const mod = {
 	},
 
 	KOMPlayUndo(inputData) {
-		if (KOMSpacing.KOMSpacingErrorsFor(inputData)) {
+		if (KOMSpacing.KOMSpacingErrors(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 

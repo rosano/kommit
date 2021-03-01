@@ -6,7 +6,7 @@ import KOMDeck from '../KOMDeck/main.js';
 
 const mod = {
 
-	KOMCardModelErrorsFor (inputData, options = {}) {
+	KOMCardModelErrors (inputData, options = {}) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -163,7 +163,7 @@ const mod = {
 	},
 
 	KOMCardSideFolderPath(param1, param2) {
-		if (mod.KOMCardModelErrorsFor(param1)) {
+		if (mod.KOMCardModelErrors(param1)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
@@ -175,7 +175,7 @@ const mod = {
 	},
 
 	KOMCardSideAudioPath(param1, param2) {
-		if (mod.KOMCardModelErrorsFor(param1)) {
+		if (mod.KOMCardModelErrors(param1)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
@@ -190,7 +190,7 @@ const mod = {
 
 export default Object.assign(mod, {
 	ZDRSchemaKey: 'KOMCard',
-	ZDRSchemaDispatchValidate: mod.KOMCardModelErrorsFor,
+	ZDRSchemaDispatchValidate: mod.KOMCardModelErrors,
 	ZDRSchemaPath: mod.KOMCardObjectPath,
 	ZDRSchemaStub: mod.KOMCardStub,
 	ZDRSchemaMethods: {
@@ -200,7 +200,7 @@ export default Object.assign(mod, {
 				throw new Error('KOMErrorInputNotValid');
 			}
 
-			if (KOMDeck.KOMDeckModelErrorsFor(param2)) {
+			if (KOMDeck.KOMDeckModelErrors(param2)) {
 				throw new Error('KOMErrorInputNotValid');
 			}
 
@@ -225,7 +225,7 @@ export default Object.assign(mod, {
 		},
 
 		async KOMCardList (inputData) {
-			if (KOMDeck.KOMDeckModelErrorsFor(inputData)) {
+			if (KOMDeck.KOMDeckModelErrors(inputData)) {
 				throw new Error('KOMErrorInputNotValid');
 			}
 			
@@ -243,7 +243,7 @@ export default Object.assign(mod, {
 				throw new Error('KOMErrorInputNotValid');
 			}
 
-			if (mod.KOMCardModelErrorsFor(inputData)) {
+			if (mod.KOMCardModelErrors(inputData)) {
 				throw new Error('KOMErrorInputNotValid');
 			}
 
@@ -253,7 +253,7 @@ export default Object.assign(mod, {
 		},
 
 		async KOMCardAudioCapture (param1, param2, param3) {
-			if (mod.KOMCardModelErrorsFor(param1)) {
+			if (mod.KOMCardModelErrors(param1)) {
 				throw new Error('KOMErrorInputNotValid');
 			}
 
@@ -281,7 +281,7 @@ export default Object.assign(mod, {
 		},
 
 		KOMCardAudioFetch (param1, param2) {
-			if (mod.KOMCardModelErrorsFor(param1)) {
+			if (mod.KOMCardModelErrors(param1)) {
 				throw new Error('KOMErrorInputNotValid');
 			}
 
@@ -301,7 +301,7 @@ export default Object.assign(mod, {
 		},
 
 		async KOMCardAudioList (inputData) {
-			if (mod.KOMCardModelErrorsFor(inputData)) {
+			if (mod.KOMCardModelErrors(inputData)) {
 				throw new Error('KOMErrorInputNotValid');
 			}
 
@@ -318,7 +318,7 @@ export default Object.assign(mod, {
 		},
 
 		async KOMCardAudioClear (param1, param2) {
-			if (mod.KOMCardModelErrorsFor(param1)) {
+			if (mod.KOMCardModelErrors(param1)) {
 				throw new Error('KOMErrorInputNotValid');
 			}
 

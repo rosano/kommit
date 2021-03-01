@@ -62,7 +62,7 @@ const mod = {
 		];
 	},
 
-	KOMReviewModelErrorsFor(inputData) {
+	KOMReviewModelErrors(inputData) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -101,11 +101,11 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		if (mod.KOMReviewModelErrorsFor(param2)) {
+		if (mod.KOMReviewModelErrors(param2)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		if (KOMDeck.KOMDeckModelErrorsFor(param3)) {
+		if (KOMDeck.KOMDeckModelErrors(param3)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
@@ -140,7 +140,7 @@ const mod = {
 	},
 
 	KOMReviewRetireCards (param1, param2) {
-		if (KOMDeck.KOMDeckModelErrorsFor(param1)) {
+		if (KOMDeck.KOMDeckModelErrors(param1)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 

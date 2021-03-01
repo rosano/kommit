@@ -40,7 +40,7 @@ const mod = {
 		return inputData.split('-').pop();
 	},
 
-	KOMSpacingErrorsFor (inputData, options = {}) {
+	KOMSpacingErrors (inputData, options = {}) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -120,7 +120,7 @@ const mod = {
 		}
 
 		if (inputData.$KOMSpacingCard !== undefined) {
-			if (KOMCard.KOMCardModelErrorsFor(inputData.$KOMSpacingCard)) {
+			if (KOMCard.KOMCardModelErrors(inputData.$KOMSpacingCard)) {
 				errors.$KOMSpacingCard = [
 					'KOMErrorNotValid',
 				];
@@ -143,7 +143,7 @@ const mod = {
 	},
 
 	KOMSpacingIsBackward(inputData) {
-		if (mod.KOMSpacingErrorsFor(inputData)) {
+		if (mod.KOMSpacingErrors(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
@@ -151,7 +151,7 @@ const mod = {
 	},
 
 	KOMSpacingIsUnseen(inputData) {
-		if (mod.KOMSpacingErrorsFor(inputData)) {
+		if (mod.KOMSpacingErrors(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
@@ -159,7 +159,7 @@ const mod = {
 	},
 
 	KOMSpacingIsLearning(inputData) {
-		if (mod.KOMSpacingErrorsFor(inputData)) {
+		if (mod.KOMSpacingErrors(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
@@ -167,7 +167,7 @@ const mod = {
 	},
 
 	KOMSpacingIsReviewing(inputData) {
-		if (mod.KOMSpacingErrorsFor(inputData)) {
+		if (mod.KOMSpacingErrors(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
@@ -183,7 +183,7 @@ const mod = {
 	},
 
 	KOMSpacingIsDeveloping(inputData) {
-		if (mod.KOMSpacingErrorsFor(inputData)) {
+		if (mod.KOMSpacingErrors(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
@@ -195,7 +195,7 @@ const mod = {
 	},
 
 	KOMSpacingIsMature(inputData) {
-		if (mod.KOMSpacingErrorsFor(inputData)) {
+		if (mod.KOMSpacingErrors(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
@@ -309,7 +309,7 @@ const mod = {
 
 export default Object.assign(mod, {
 	ZDRSchemaKey: 'KOMSpacing',
-	ZDRSchemaDispatchValidate: mod.KOMSpacingErrorsFor,
+	ZDRSchemaDispatchValidate: mod.KOMSpacingErrors,
 	ZDRSchemaPath: mod.KOMSpacingPath,
 	ZDRSchemaStub: mod.KOMSpacingStub,
 	ZDRSchemaMethods: {
@@ -319,7 +319,7 @@ export default Object.assign(mod, {
 				throw new Error('KOMErrorInputNotValid');
 			}
 
-			if (KOMCard.KOMCardModelErrorsFor(param2)) {
+			if (KOMCard.KOMCardModelErrors(param2)) {
 				throw new Error('KOMErrorInputNotValid');
 			}
 
@@ -327,7 +327,7 @@ export default Object.assign(mod, {
 		},
 
 		async KOMSpacingList(inputData) {
-			if (KOMCard.KOMCardModelErrorsFor(inputData)) {
+			if (KOMCard.KOMCardModelErrors(inputData)) {
 				throw new Error('KOMErrorInputNotValid');
 			}
 

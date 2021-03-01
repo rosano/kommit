@@ -2,16 +2,16 @@ const { rejects, throws, deepEqual } = require('assert');
 
 const mod = require('./main.js').default;
 
-describe('KOMSettingModelErrorsFor', function test_KOMSettingModelErrorsFor() {
+describe('KOMSettingModelErrors', function test_KOMSettingModelErrors() {
 
 	it('throws error if not object', function() {
 		throws(function() {
-			mod.KOMSettingModelErrorsFor(null);
+			mod.KOMSettingModelErrors(null);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns object if KOMSettingKey not string', function() {
-		deepEqual(mod.KOMSettingModelErrorsFor(StubSettingObjectValid({
+		deepEqual(mod.KOMSettingModelErrors(StubSettingObjectValid({
 			KOMSettingKey: null,
 		})), {
 			KOMSettingKey: [
@@ -21,7 +21,7 @@ describe('KOMSettingModelErrorsFor', function test_KOMSettingModelErrorsFor() {
 	});
 
 	it('returns object if KOMSettingKey not filled', function() {
-		deepEqual(mod.KOMSettingModelErrorsFor(StubSettingObjectValid({
+		deepEqual(mod.KOMSettingModelErrors(StubSettingObjectValid({
 			KOMSettingKey: ' ',
 		})), {
 			KOMSettingKey: [
@@ -31,7 +31,7 @@ describe('KOMSettingModelErrorsFor', function test_KOMSettingModelErrorsFor() {
 	});
 
 	it('returns object if KOMSettingValue not string', function() {
-		deepEqual(mod.KOMSettingModelErrorsFor(StubSettingObjectValid({
+		deepEqual(mod.KOMSettingModelErrors(StubSettingObjectValid({
 			KOMSettingValue: null,
 		})), {
 			KOMSettingValue: [
@@ -41,7 +41,7 @@ describe('KOMSettingModelErrorsFor', function test_KOMSettingModelErrorsFor() {
 	});
 
 	it('returns null', function() {
-		deepEqual(mod.KOMSettingModelErrorsFor(StubSettingObjectValid()), null);
+		deepEqual(mod.KOMSettingModelErrors(StubSettingObjectValid()), null);
 	});
 
 });
@@ -93,7 +93,7 @@ describe('KOMSettingList', function test_KOMSettingActList() {
 describe('ZDRSchemaDispatchValidate', function () {
 
 	it('returns function', function () {
-		deepEqual(mod.ZDRSchemaDispatchValidate, mod.KOMSettingModelErrorsFor);
+		deepEqual(mod.ZDRSchemaDispatchValidate, mod.KOMSettingModelErrors);
 	});
 
 });

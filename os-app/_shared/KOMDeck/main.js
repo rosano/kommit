@@ -22,7 +22,7 @@ const mod = {
 		};
 	},
 
-	KOMDeckModelErrorsFor (inputData, options = {}) {
+	KOMDeckModelErrors (inputData, options = {}) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -138,7 +138,7 @@ const mod = {
 
 export default Object.assign(mod, {
 	ZDRSchemaKey: 'KOMDeck',
-	ZDRSchemaDispatchValidate: mod.KOMDeckModelErrorsFor,
+	ZDRSchemaDispatchValidate: mod.KOMDeckModelErrors,
 	ZDRSchemaPath: mod.KOMDeckObjectPath,
 	ZDRSchemaStub: mod.KOMDeckStub,
 	ZDRSchemaMethods: {
@@ -179,7 +179,7 @@ export default Object.assign(mod, {
 				throw new Error('KOMErrorInputNotValid');
 			}
 
-			if (mod.KOMDeckModelErrorsFor(inputData)) {
+			if (mod.KOMDeckModelErrors(inputData)) {
 				throw new Error('KOMErrorInputNotValid');
 			}
 
