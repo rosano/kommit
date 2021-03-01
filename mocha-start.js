@@ -16,7 +16,6 @@ global.FileReader = require('filereader');
 				ZDRScopeDirectory: 'kommit',
 				ZDRScopeSchemas: [
 					require('./os-app/_shared/KOMDeck/main.js').default,
-					require('./os-app/_shared/KOMDeckObject/main.js').default,
 					require('./os-app/_shared/KOMCard/main.js').default,
 					require('./os-app/_shared/KOMSpacing/main.js').default,
 					require('./os-app/_shared/KOMSetting/main.js').default,

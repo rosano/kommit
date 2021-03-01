@@ -1,9 +1,5 @@
 import OLSKRemoteStorage from 'OLSKRemoteStorage';
 
-import KOMDeck from '../KOMDeck/main.js';
-import KOMCard from '../KOMCard/main.js';
-import KOMSpacing from '../KOMSpacing/main.js';
-
 export default {
 	ZDRSchemaKey: 'KOMTransport',
 	ZDRSchemaDispatchValidate: (function () {}),

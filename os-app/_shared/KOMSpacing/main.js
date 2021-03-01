@@ -2,7 +2,6 @@ import { factory } from 'ulid';
 const uniqueID = factory();
 import OLSKRemoteStorage from 'OLSKRemoteStorage';
 
-import KOMDeck from '../KOMDeck/main.js';
 import KOMCard from '../KOMCard/main.js';
 import KOMSharedLogic from '../KOMSharedLogic/main.js';
 
@@ -348,6 +347,8 @@ export default Object.assign(mod, {
 				}),
 			};
 		},
+
+		KOMSpacingIsBackward: mod.KOMSpacingIsBackward,
 
 	},
 });

@@ -10,7 +10,6 @@ import KOMDeck from '../_shared/KOMDeck/main.js';
 import KOMCard from '../_shared/KOMCard/main.js';
 import KOMSpacing from '../_shared/KOMSpacing/main.js';
 import KOMSetting from '../_shared/KOMSetting/main.js';
-import KOMDeckObject from '../_shared/KOMDeckObject/main.js';
 import KOMTransport from '../_shared/KOMTransport/main.js';
 import KOMReviewLogic from './ui-logic.js';
 import KOMSharedLogic from '../_shared/KOMSharedLogic/main.js';
@@ -93,7 +92,7 @@ const mod = {
 
 	DataDeckSelectedObjects (inputData) {
 		return OLSKCache.OLSKCacheResultFetchOnceSync(mod._ValueDeckSelectedObjectsMap, inputData.KOMDeckID, async function () {
-			return await mod._ValueZDRWrap.App.KOMDeckObject.KOMDeckObjectMap(inputData, await mod.DataSettingValue('KOMSettingExcludeTripleQuestionMark') === 'true');
+			return await mod._ValueZDRWrap.App.KOMDeck.KOMDeckObjectsMap(inputData, await mod.DataSettingValue('KOMSettingExcludeTripleQuestionMark') === 'true');
 		});
 	},
 
@@ -1162,7 +1161,6 @@ const mod = {
 						ZDRSchemaDispatchSyncDelete: mod.ZDRSchemaDispatchSyncDeleteSpacing,
 					}),
 					KOMSetting,
-					KOMDeckObject,
 					KOMTransport,
 					],
 			}],
