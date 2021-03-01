@@ -120,7 +120,7 @@ const mod = {
 		}
 
 		if (inputData.$KOMSpacingCard !== undefined) {
-			if (KOMCard.KOMCardModelErrors(inputData.$KOMSpacingCard)) {
+			if (KOMCard.KOMCardErrors(inputData.$KOMSpacingCard)) {
 				errors.$KOMSpacingCard = [
 					'KOMErrorNotValid',
 				];
@@ -319,7 +319,7 @@ export default Object.assign(mod, {
 				throw new Error('KOMErrorInputNotValid');
 			}
 
-			if (KOMCard.KOMCardModelErrors(param2)) {
+			if (KOMCard.KOMCardErrors(param2)) {
 				throw new Error('KOMErrorInputNotValid');
 			}
 
@@ -327,7 +327,7 @@ export default Object.assign(mod, {
 		},
 
 		async KOMSpacingList(inputData) {
-			if (KOMCard.KOMCardModelErrors(inputData)) {
+			if (KOMCard.KOMCardErrors(inputData)) {
 				throw new Error('KOMErrorInputNotValid');
 			}
 

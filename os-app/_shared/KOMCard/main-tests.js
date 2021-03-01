@@ -4,16 +4,16 @@ const mod = require('./main.js').default;
 
 const KOMDeck = require('../KOMDeck/main.js').default;
 
-describe('KOMCardModelErrors', function test_KOMCardModelErrors() {
+describe('KOMCardErrors', function test_KOMCardErrors() {
 
 	it('throws error if not object', function() {
 		throws(function() {
-			mod.KOMCardModelErrors(null);
+			mod.KOMCardErrors(null);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns object if KOMCardID not string', function () {
-		deepEqual(mod.KOMCardModelErrors(StubCardObjectValid({
+		deepEqual(mod.KOMCardErrors(StubCardObjectValid({
 			KOMCardID: null,
 		})), {
 			KOMCardID: [
@@ -23,7 +23,7 @@ describe('KOMCardModelErrors', function test_KOMCardModelErrors() {
 	});
 
 	it('returns object if KOMCardID not filled', function () {
-		deepEqual(mod.KOMCardModelErrors(StubCardObjectValid({
+		deepEqual(mod.KOMCardErrors(StubCardObjectValid({
 			KOMCardID: ' ',
 		})), {
 			KOMCardID: [
@@ -33,7 +33,7 @@ describe('KOMCardModelErrors', function test_KOMCardModelErrors() {
 	});
 
 	it('returns object if KOMCardDeckID not string', function () {
-		deepEqual(mod.KOMCardModelErrors(StubCardObjectValid({
+		deepEqual(mod.KOMCardErrors(StubCardObjectValid({
 			KOMCardDeckID: null,
 		})), {
 			KOMCardDeckID: [
@@ -43,7 +43,7 @@ describe('KOMCardModelErrors', function test_KOMCardModelErrors() {
 	});
 
 	it('returns object if KOMCardDeckID not filled', function () {
-		deepEqual(mod.KOMCardModelErrors(StubCardObjectValid({
+		deepEqual(mod.KOMCardErrors(StubCardObjectValid({
 			KOMCardDeckID: ' ',
 		})), {
 			KOMCardDeckID: [
@@ -53,7 +53,7 @@ describe('KOMCardModelErrors', function test_KOMCardModelErrors() {
 	});
 
 	it('returns object if KOMCardFrontText not string', function () {
-		deepEqual(mod.KOMCardModelErrors(StubCardObjectValid({
+		deepEqual(mod.KOMCardErrors(StubCardObjectValid({
 			KOMCardFrontText: null,
 		})), {
 			KOMCardFrontText: [
@@ -63,7 +63,7 @@ describe('KOMCardModelErrors', function test_KOMCardModelErrors() {
 	});
 
 	it('returns object if KOMCardRearText not string', function () {
-		deepEqual(mod.KOMCardModelErrors(StubCardObjectValid({
+		deepEqual(mod.KOMCardErrors(StubCardObjectValid({
 			KOMCardRearText: null,
 		})), {
 			KOMCardRearText: [
@@ -73,7 +73,7 @@ describe('KOMCardModelErrors', function test_KOMCardModelErrors() {
 	});
 
 	it('returns object if KOMCardCreationDate not date', function () {
-		deepEqual(mod.KOMCardModelErrors(StubCardObjectValid({
+		deepEqual(mod.KOMCardErrors(StubCardObjectValid({
 			KOMCardCreationDate: new Date('alfa'),
 		})), {
 			KOMCardCreationDate: [
@@ -83,7 +83,7 @@ describe('KOMCardModelErrors', function test_KOMCardModelErrors() {
 	});
 
 	it('returns object if KOMCardModificationDate not date', function () {
-		deepEqual(mod.KOMCardModelErrors(StubCardObjectValid({
+		deepEqual(mod.KOMCardErrors(StubCardObjectValid({
 			KOMCardModificationDate: new Date('alfa'),
 		})), {
 			KOMCardModificationDate: [
@@ -93,13 +93,13 @@ describe('KOMCardModelErrors', function test_KOMCardModelErrors() {
 	});
 
 	it('returns null', function () {
-		deepEqual(mod.KOMCardModelErrors(StubCardObjectValid()), null);
+		deepEqual(mod.KOMCardErrors(StubCardObjectValid()), null);
 	});
 
 	context('KOMCardNotes', function () {
 
 		it('returns object if not string', function () {
-			deepEqual(mod.KOMCardModelErrors(StubCardObjectValid({
+			deepEqual(mod.KOMCardErrors(StubCardObjectValid({
 				KOMCardNotes: null,
 			})), {
 				KOMCardNotes: [
@@ -109,7 +109,7 @@ describe('KOMCardModelErrors', function test_KOMCardModelErrors() {
 		});
 
 		it('returns null', function () {
-			deepEqual(mod.KOMCardModelErrors(StubCardObjectValid({
+			deepEqual(mod.KOMCardErrors(StubCardObjectValid({
 				KOMCardNotes: 'alfa',
 			})), null);
 		});
@@ -119,7 +119,7 @@ describe('KOMCardModelErrors', function test_KOMCardModelErrors() {
 	context('KOMCardFrontAudio', function () {
 
 		it('returns object if not boolean', function () {
-			deepEqual(mod.KOMCardModelErrors(StubCardObjectValid({
+			deepEqual(mod.KOMCardErrors(StubCardObjectValid({
 				KOMCardFrontAudio: 'true',
 			})), {
 				KOMCardFrontAudio: [
@@ -129,7 +129,7 @@ describe('KOMCardModelErrors', function test_KOMCardModelErrors() {
 		});
 
 		it('returns null', function () {
-			deepEqual(mod.KOMCardModelErrors(StubCardObjectValid({
+			deepEqual(mod.KOMCardErrors(StubCardObjectValid({
 				KOMCardFrontAudio: true,
 			})), null);
 		});
@@ -139,7 +139,7 @@ describe('KOMCardModelErrors', function test_KOMCardModelErrors() {
 	context('KOMCardRearAudio', function () {
 
 		it('returns object if not boolean', function () {
-			deepEqual(mod.KOMCardModelErrors(StubCardObjectValid({
+			deepEqual(mod.KOMCardErrors(StubCardObjectValid({
 				KOMCardRearAudio: 'true',
 			})), {
 				KOMCardRearAudio: [
@@ -149,7 +149,7 @@ describe('KOMCardModelErrors', function test_KOMCardModelErrors() {
 		});
 
 		it('returns null', function () {
-			deepEqual(mod.KOMCardModelErrors(StubCardObjectValid({
+			deepEqual(mod.KOMCardErrors(StubCardObjectValid({
 				KOMCardRearAudio: true,
 			})), null);
 		});
@@ -159,7 +159,7 @@ describe('KOMCardModelErrors', function test_KOMCardModelErrors() {
 	context('KOMCardTags', function () {
 
 		it('returns object if not array', function () {
-			deepEqual(mod.KOMCardModelErrors(StubCardObjectValid({
+			deepEqual(mod.KOMCardErrors(StubCardObjectValid({
 				KOMCardTags: null,
 			})), {
 				KOMCardTags: [
@@ -169,7 +169,7 @@ describe('KOMCardModelErrors', function test_KOMCardModelErrors() {
 		});
 
 		it('returns null', function () {
-			deepEqual(mod.KOMCardModelErrors(StubCardObjectValid({
+			deepEqual(mod.KOMCardErrors(StubCardObjectValid({
 				KOMCardTags: [],
 			})), null);
 		});
@@ -179,7 +179,7 @@ describe('KOMCardModelErrors', function test_KOMCardModelErrors() {
 	context('KOMCardIsRetired', function () {
 
 		it('returns object if not boolean', function () {
-			deepEqual(mod.KOMCardModelErrors(StubCardObjectValid({
+			deepEqual(mod.KOMCardErrors(StubCardObjectValid({
 				KOMCardIsRetired: 'true',
 			})), {
 				KOMCardIsRetired: [
@@ -189,7 +189,7 @@ describe('KOMCardModelErrors', function test_KOMCardModelErrors() {
 		});
 
 		it('returns null', function () {
-			deepEqual(mod.KOMCardModelErrors(StubCardObjectValid({
+			deepEqual(mod.KOMCardErrors(StubCardObjectValid({
 				KOMCardIsRetired: true,
 			})), null);
 		});
@@ -199,7 +199,7 @@ describe('KOMCardModelErrors', function test_KOMCardModelErrors() {
 	context('KOMOptionValidateIfNotPresent', function () {
 
 		it('returns object if not valid', function () {
-			deepEqual(Object.keys(mod.KOMCardModelErrors({}, {
+			deepEqual(Object.keys(mod.KOMCardErrors({}, {
 				KOMOptionValidateIfNotPresent: true,
 			})), [
 				'KOMCardID',
@@ -220,10 +220,10 @@ describe('KOMCardModelErrors', function test_KOMCardModelErrors() {
 
 });
 
-describe('KOMCardModelAudioFields', function test_KOMCardModelAudioFields() {
+describe('KOMCardAudioFields', function test_KOMCardAudioFields() {
 
 	it('returns array', function () {
-		deepEqual(mod.KOMCardModelAudioFields(), [
+		deepEqual(mod.KOMCardAudioFields(), [
 			'KOMCardFrontAudio',
 			'KOMCardRearAudio',
 		]);
@@ -727,7 +727,7 @@ describe.skip('KOMCardAudioClear', function test_KOMCardAudioClear() {
 describe('ZDRSchemaDispatchValidate', function () {
 
 	it('returns function', function () {
-		deepEqual(mod.ZDRSchemaDispatchValidate, mod.KOMCardModelErrors);
+		deepEqual(mod.ZDRSchemaDispatchValidate, mod.KOMCardErrors);
 	});
 
 });
