@@ -38,13 +38,8 @@ describe('KOMTransportImport', function test_KOMTransportImport() {
 		});
 
 		it('returns array', async function () {
-			const item = await ZDRTestingWrap.App.KOMTransport.KOMTransportImport([uDeck()]);
-
-			deepEqual(item, [StubDeckObjectValid({
-				KOMDeckID: item[0].KOMDeckID,
-				KOMDeckCreationDate: item[0].KOMDeckCreationDate,
-				KOMDeckModificationDate: item[0].KOMDeckModificationDate,
-			})]);
+			const item = uDeck()
+			deepEqual(await ZDRTestingWrap.App.KOMTransport.KOMTransportImport([item]), [item]);
 		});
 
 		it('removes $KOMDeckCards', async function () {
@@ -198,10 +193,11 @@ describe('KOMTransportExport', function test_KOMTransportExport() {
 	context('$KOMDeckCards', function () {
 		
 		it('sets to KOMCard objects', async function () {
-			const item = await ZDRTestingWrap.App.KOMCard.KOMCardCreate(StubCardObjectValid(), StubDeckObjectValid());
+			const deck = StubDeckObjectValid();
+			const item = await ZDRTestingWrap.App.KOMCard.KOMCardCreate(StubCardObjectValid(), deck);
 
-			deepEqual(await ZDRTestingWrap.App.KOMTransport.KOMTransportExport([StubDeckObjectValid()]), [Object.assign(StubDeckObjectValid(), {
-				$KOMDeckCards: await ZDRTestingWrap.App.KOMCard.KOMCardList(StubDeckObjectValid()),
+			deepEqual(await ZDRTestingWrap.App.KOMTransport.KOMTransportExport([deck]), [Object.assign(deck, {
+				$KOMDeckCards: await ZDRTestingWrap.App.KOMCard.KOMCardList(deck),
 			})]);
 		});
 	

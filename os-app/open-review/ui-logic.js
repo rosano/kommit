@@ -105,7 +105,7 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		if (KOMDeck.KOMDeckModelErrors(param3)) {
+		if (KOMDeck.KOMDeckErrors(param3)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
@@ -140,7 +140,7 @@ const mod = {
 	},
 
 	KOMReviewRetireCards (param1, param2) {
-		if (KOMDeck.KOMDeckModelErrors(param1)) {
+		if (KOMDeck.KOMDeckErrors(param1)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 

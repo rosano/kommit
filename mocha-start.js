@@ -44,7 +44,7 @@ global.FileReader = require('filereader');
 		StubDeckObjectValid(inputData) {
 			return Object.assign({
 				KOMDeckID: 'alfa',
-				KOMDeckName: 'bravo',
+				KOMDeckName: Math.random().toString(),
 				KOMDeckCreationDate: new Date('2019-02-23T13:56:36Z'),
 				KOMDeckModificationDate: new Date('2019-02-23T13:56:36Z'),
 			}, inputData);

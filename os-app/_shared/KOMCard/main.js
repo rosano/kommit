@@ -200,7 +200,7 @@ export default Object.assign(mod, {
 				throw new Error('KOMErrorInputNotValid');
 			}
 
-			if (KOMDeck.KOMDeckModelErrors(param2)) {
+			if (KOMDeck.KOMDeckErrors(param2)) {
 				throw new Error('KOMErrorInputNotValid');
 			}
 
@@ -225,7 +225,7 @@ export default Object.assign(mod, {
 		},
 
 		async KOMCardList (inputData) {
-			if (KOMDeck.KOMDeckModelErrors(inputData)) {
+			if (KOMDeck.KOMDeckErrors(inputData)) {
 				throw new Error('KOMErrorInputNotValid');
 			}
 			

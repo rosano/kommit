@@ -12,7 +12,7 @@ export default {
 	ZDRSchemaMethods: {
 
 		async KOMDeckObjectMap (param1, param2 = false) {
-			if (KOMDeck.KOMDeckModelErrors(param1)) {
+			if (KOMDeck.KOMDeckErrors(param1)) {
 				throw new Error('KOMErrorInputNotValid');
 			}
 

@@ -4,16 +4,16 @@ const mod = require('./main.js').default;
 
 const OLSKObject = require('OLSKObject').default;
 
-describe('KOMDeckModelErrors', function test_KOMDeckModelErrors() {
+describe('KOMDeckErrors', function test_KOMDeckErrors() {
 
 	it('throws error if not object', function() {
 		throws(function() {
-			mod.KOMDeckModelErrors(null);
+			mod.KOMDeckErrors(null);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns object if KOMDeckID not string', function() {
-		deepEqual(mod.KOMDeckModelErrors(StubDeckObjectValid({
+		deepEqual(mod.KOMDeckErrors(StubDeckObjectValid({
 			KOMDeckID: null,
 		})), {
 			KOMDeckID: [
@@ -23,7 +23,7 @@ describe('KOMDeckModelErrors', function test_KOMDeckModelErrors() {
 	});
 
 	it('returns object if KOMDeckID not filled', function() {
-		deepEqual(mod.KOMDeckModelErrors(StubDeckObjectValid({
+		deepEqual(mod.KOMDeckErrors(StubDeckObjectValid({
 			KOMDeckID: ' ',
 		})), {
 			KOMDeckID: [
@@ -33,7 +33,7 @@ describe('KOMDeckModelErrors', function test_KOMDeckModelErrors() {
 	});
 
 	it('returns object if KOMDeckName not string', function() {
-		deepEqual(mod.KOMDeckModelErrors(StubDeckObjectValid({
+		deepEqual(mod.KOMDeckErrors(StubDeckObjectValid({
 			KOMDeckName: null,
 		})), {
 			KOMDeckName: [
@@ -43,7 +43,7 @@ describe('KOMDeckModelErrors', function test_KOMDeckModelErrors() {
 	});
 
 	it('returns object if KOMDeckCreationDate not date', function() {
-		deepEqual(mod.KOMDeckModelErrors(StubDeckObjectValid({
+		deepEqual(mod.KOMDeckErrors(StubDeckObjectValid({
 			KOMDeckCreationDate: new Date('alfa'),
 		})), {
 			KOMDeckCreationDate: [
@@ -53,7 +53,7 @@ describe('KOMDeckModelErrors', function test_KOMDeckModelErrors() {
 	});
 
 	it('returns object if KOMDeckModificationDate not date', function() {
-		deepEqual(mod.KOMDeckModelErrors(StubDeckObjectValid({
+		deepEqual(mod.KOMDeckErrors(StubDeckObjectValid({
 			KOMDeckModificationDate: new Date('alfa'),
 		})), {
 			KOMDeckModificationDate: [
@@ -63,13 +63,13 @@ describe('KOMDeckModelErrors', function test_KOMDeckModelErrors() {
 	});
 
 	it('returns null', function() {
-		deepEqual(mod.KOMDeckModelErrors(StubDeckObjectValid()), null);
+		deepEqual(mod.KOMDeckErrors(StubDeckObjectValid()), null);
 	});
 
 	context('KOMDeckAudioIsEnabled', function () {
 
 		it('returns object if not boolean', function () {
-			deepEqual(mod.KOMDeckModelErrors(StubDeckObjectValid({
+			deepEqual(mod.KOMDeckErrors(StubDeckObjectValid({
 				KOMDeckAudioIsEnabled: null,
 			})), {
 				KOMDeckAudioIsEnabled: [
@@ -79,7 +79,7 @@ describe('KOMDeckModelErrors', function test_KOMDeckModelErrors() {
 		});
 
 		it('returns null', function () {
-			deepEqual(mod.KOMDeckModelErrors(StubDeckObjectValid({
+			deepEqual(mod.KOMDeckErrors(StubDeckObjectValid({
 				KOMDeckAudioIsEnabled: true,
 			})), null);
 		});
@@ -89,7 +89,7 @@ describe('KOMDeckModelErrors', function test_KOMDeckModelErrors() {
 	context('KOMDeckFrontSpeechIsEnabled', function () {
 
 		it('returns object if not boolean', function () {
-			deepEqual(mod.KOMDeckModelErrors(StubDeckObjectValid({
+			deepEqual(mod.KOMDeckErrors(StubDeckObjectValid({
 				KOMDeckFrontSpeechIsEnabled: null,
 			})), {
 				KOMDeckFrontSpeechIsEnabled: [
@@ -99,7 +99,7 @@ describe('KOMDeckModelErrors', function test_KOMDeckModelErrors() {
 		});
 
 		it('returns null', function () {
-			deepEqual(mod.KOMDeckModelErrors(StubDeckObjectValid({
+			deepEqual(mod.KOMDeckErrors(StubDeckObjectValid({
 				KOMDeckFrontSpeechIsEnabled: true,
 			})), null);
 		});
@@ -109,7 +109,7 @@ describe('KOMDeckModelErrors', function test_KOMDeckModelErrors() {
 	context('KOMDeckRearSpeechIsEnabled', function () {
 
 		it('returns object if not boolean', function () {
-			deepEqual(mod.KOMDeckModelErrors(StubDeckObjectValid({
+			deepEqual(mod.KOMDeckErrors(StubDeckObjectValid({
 				KOMDeckRearSpeechIsEnabled: null,
 			})), {
 				KOMDeckRearSpeechIsEnabled: [
@@ -119,7 +119,7 @@ describe('KOMDeckModelErrors', function test_KOMDeckModelErrors() {
 		});
 
 		it('returns null', function () {
-			deepEqual(mod.KOMDeckModelErrors(StubDeckObjectValid({
+			deepEqual(mod.KOMDeckErrors(StubDeckObjectValid({
 				KOMDeckFrontSpeechIsEnabled: true,
 			})), null);
 		});
@@ -129,7 +129,7 @@ describe('KOMDeckModelErrors', function test_KOMDeckModelErrors() {
 	context('KOMDeckFrontLanguageCode', function () {
 
 		it('returns object if not string', function () {
-			deepEqual(mod.KOMDeckModelErrors(StubDeckObjectValid({
+			deepEqual(mod.KOMDeckErrors(StubDeckObjectValid({
 				KOMDeckFrontLanguageCode: null,
 			})), {
 				KOMDeckFrontLanguageCode: [
@@ -139,7 +139,7 @@ describe('KOMDeckModelErrors', function test_KOMDeckModelErrors() {
 		});
 
 		it('returns null', function () {
-			deepEqual(mod.KOMDeckModelErrors(StubDeckObjectValid({
+			deepEqual(mod.KOMDeckErrors(StubDeckObjectValid({
 				KOMDeckFrontLanguageCode: 'en',
 			})), null);
 		});
@@ -149,7 +149,7 @@ describe('KOMDeckModelErrors', function test_KOMDeckModelErrors() {
 	context('KOMDeckRearLanguageCode', function () {
 
 		it('returns object if not string', function () {
-			deepEqual(mod.KOMDeckModelErrors(StubDeckObjectValid({
+			deepEqual(mod.KOMDeckErrors(StubDeckObjectValid({
 				KOMDeckRearLanguageCode: null,
 			})), {
 				KOMDeckRearLanguageCode: [
@@ -159,7 +159,7 @@ describe('KOMDeckModelErrors', function test_KOMDeckModelErrors() {
 		});
 
 		it('returns null', function () {
-			deepEqual(mod.KOMDeckModelErrors(StubDeckObjectValid({
+			deepEqual(mod.KOMDeckErrors(StubDeckObjectValid({
 				KOMDeckRearLanguageCode: 'en',
 			})), null);
 		});
@@ -169,7 +169,7 @@ describe('KOMDeckModelErrors', function test_KOMDeckModelErrors() {
 	context('KOMDeckIsForwardOnly', function () {
 
 		it('returns object if not boolean', function () {
-			deepEqual(mod.KOMDeckModelErrors(StubDeckObjectValid({
+			deepEqual(mod.KOMDeckErrors(StubDeckObjectValid({
 				KOMDeckIsForwardOnly: null,
 			})), {
 				KOMDeckIsForwardOnly: [
@@ -179,7 +179,7 @@ describe('KOMDeckModelErrors', function test_KOMDeckModelErrors() {
 		});
 
 		it('returns null', function () {
-			deepEqual(mod.KOMDeckModelErrors(StubDeckObjectValid({
+			deepEqual(mod.KOMDeckErrors(StubDeckObjectValid({
 				KOMDeckIsForwardOnly: true,
 			})), null);
 		});
@@ -189,7 +189,7 @@ describe('KOMDeckModelErrors', function test_KOMDeckModelErrors() {
 	context('KOMDeckRetireCardsMonths', function () {
 
 		it('returns object if not number', function () {
-			deepEqual(mod.KOMDeckModelErrors(StubDeckObjectValid({
+			deepEqual(mod.KOMDeckErrors(StubDeckObjectValid({
 				KOMDeckRetireCardsMonths: null,
 			})), {
 				KOMDeckRetireCardsMonths: [
@@ -199,7 +199,7 @@ describe('KOMDeckModelErrors', function test_KOMDeckModelErrors() {
 		});
 
 		it('returns object if not integer', function () {
-			deepEqual(mod.KOMDeckModelErrors(StubDeckObjectValid({
+			deepEqual(mod.KOMDeckErrors(StubDeckObjectValid({
 				KOMDeckRetireCardsMonths: 1.2,
 			})), {
 				KOMDeckRetireCardsMonths: [
@@ -209,7 +209,7 @@ describe('KOMDeckModelErrors', function test_KOMDeckModelErrors() {
 		});
 
 		it('returns object if not above 0', function () {
-			deepEqual(mod.KOMDeckModelErrors(StubDeckObjectValid({
+			deepEqual(mod.KOMDeckErrors(StubDeckObjectValid({
 				KOMDeckRetireCardsMonths: -1,
 			})), {
 				KOMDeckRetireCardsMonths: [
@@ -219,7 +219,7 @@ describe('KOMDeckModelErrors', function test_KOMDeckModelErrors() {
 		});
 
 		it('returns null', function () {
-			deepEqual(mod.KOMDeckModelErrors(StubDeckObjectValid({
+			deepEqual(mod.KOMDeckErrors(StubDeckObjectValid({
 				KOMDeckRetireCardsMonths: 0,
 			})), null);
 		});
@@ -229,7 +229,7 @@ describe('KOMDeckModelErrors', function test_KOMDeckModelErrors() {
 	context('KOMOptionValidateIfNotPresent', function () {
 
 		it('returns object if not valid', function () {
-			deepEqual(Object.keys(mod.KOMDeckModelErrors({}, {
+			deepEqual(Object.keys(mod.KOMDeckErrors({}, {
 				KOMOptionValidateIfNotPresent: true,
 			})), [
 				'KOMDeckID',
@@ -474,7 +474,7 @@ describe('KOMDeckDelete', function test_KOMDeckDelete() {
 describe('ZDRSchemaDispatchValidate', function () {
 
 	it('returns function', function () {
-		deepEqual(mod.ZDRSchemaDispatchValidate, mod.KOMDeckModelErrors);
+		deepEqual(mod.ZDRSchemaDispatchValidate, mod.KOMDeckErrors);
 	});
 
 });
