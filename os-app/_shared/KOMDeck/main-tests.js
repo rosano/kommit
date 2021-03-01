@@ -334,11 +334,11 @@ describe('KOMDeckCreate', function test_KOMDeckCreate() {
 		});
 		const item = {};
 
-		before(async function () {
+		beforeEach(async function () {
 			item.outputData = await ZDRTestingWrap.App.KOMDeck.KOMDeckCreate(memory);
 		});
 
-		before(async function () {
+		beforeEach(async function () {
 			item.storage = await ZDRTestingWrap.App.KOMDeck.KOMDeckList();
 		});
 
@@ -403,11 +403,11 @@ describe('KOMDeckUpdate', function test_KOMDeckUpdate() {
 		});
 		const item = {};
 
-		before(async function () {
+		beforeEach(async function () {
 			item.outputData = await ZDRTestingWrap.App.KOMDeck.KOMDeckUpdate(memory);
 		});
 
-		before(async function () {
+		beforeEach(async function () {
 			item.storage = await ZDRTestingWrap.App.KOMDeck.KOMDeckList();
 		});
 

@@ -467,8 +467,11 @@ describe('KOMCardUpdate', function test_KOMCardUpdate() {
 	});
 
 	it('writes inputData if not found', async function() {
-		const item = await ZDRTestingWrap.App.KOMCard.KOMCardUpdate(StubCardObjectValid());
-		deepEqual(await ZDRTestingWrap.App.KOMCard.KOMCardList(StubDeckObjectValid()), [item]);
+		const deck = StubDeckObjectValid();
+		const item = await ZDRTestingWrap.App.KOMCard.KOMCardUpdate(StubCardObjectValid({
+			KOMCardDeckID: deck.KOMDeckID,
+		}));
+		deepEqual(await ZDRTestingWrap.App.KOMCard.KOMCardList(deck), [item]);
 	});
 
 });
@@ -484,8 +487,9 @@ describe('KOMCardList', function test_KOMCardList() {
 	});
 
 	it('returns array with existing items', async function() {
-		const item = await ZDRTestingWrap.App.KOMCard.KOMCardCreate(StubCardObjectValid(), StubDeckObjectValid());
-		deepEqual(await ZDRTestingWrap.App.KOMCard.KOMCardList(StubDeckObjectValid()), [item]);
+		const deck = StubDeckObjectValid();
+		const item = await ZDRTestingWrap.App.KOMCard.KOMCardCreate(StubCardObject(), deck);
+		deepEqual(await ZDRTestingWrap.App.KOMCard.KOMCardList(deck), [item]);
 	});
 
 });

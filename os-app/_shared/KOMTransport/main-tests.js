@@ -206,12 +206,13 @@ describe('KOMTransportExport', function test_KOMTransportExport() {
 	context('$KOMCardSpacingForward', function () {
 		
 		it('sets to KOMSpacing object', async function () {
-			const card = await ZDRTestingWrap.App.KOMCard.KOMCardCreate(StubCardObjectValid(), StubDeckObjectValid());
+			const deck = StubDeckObjectValid();
+			const card = await ZDRTestingWrap.App.KOMCard.KOMCardCreate(StubCardObject(), deck);
 			const spacing = await ZDRTestingWrap.App.KOMSpacing.KOMSpacingWrite(StubSpacingObjectValid({
 				KOMSpacingChronicles: [StubChronicleObjectValid()],
-			}), StubCardObjectValid(), StubDeckObjectValid());
+			}), card);
 
-			deepEqual((await ZDRTestingWrap.App.KOMTransport.KOMTransportExport([StubDeckObjectValid()]))[0].$KOMDeckCards[0].$KOMCardSpacingForward, spacing);
+			deepEqual((await ZDRTestingWrap.App.KOMTransport.KOMTransportExport([deck]))[0].$KOMDeckCards[0].$KOMCardSpacingForward, spacing);
 		});
 	
 	});
@@ -219,13 +220,14 @@ describe('KOMTransportExport', function test_KOMTransportExport() {
 	context('$KOMCardSpacingBackward', function () {
 		
 		it('sets to KOMSpacing object', async function () {
-			const card = await ZDRTestingWrap.App.KOMCard.KOMCardCreate(StubCardObjectValid(), StubDeckObjectValid());
+			const deck = StubDeckObjectValid();
+			const card = await ZDRTestingWrap.App.KOMCard.KOMCardCreate(StubCardObject(), deck);
 			const spacing = await ZDRTestingWrap.App.KOMSpacing.KOMSpacingWrite(StubSpacingObjectValid({
 				KOMSpacingID: 'alfa-backward',
 				KOMSpacingChronicles: [StubChronicleObjectValid()],
-			}), StubCardObjectValid(), StubDeckObjectValid());
+			}), card);
 
-			deepEqual((await ZDRTestingWrap.App.KOMTransport.KOMTransportExport([StubDeckObjectValid()]))[0].$KOMDeckCards[0].$KOMCardSpacingBackward, spacing);
+			deepEqual((await ZDRTestingWrap.App.KOMTransport.KOMTransportExport([deck]))[0].$KOMDeckCards[0].$KOMCardSpacingBackward, spacing);
 		});
 	
 	});

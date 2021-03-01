@@ -43,7 +43,7 @@ global.FileReader = require('filereader');
 
 		StubDeckObjectValid(inputData) {
 			return Object.assign({
-				KOMDeckID: 'alfa',
+				KOMDeckID: Math.random().toString(),
 				KOMDeckName: Math.random().toString(),
 				KOMDeckCreationDate: new Date('2019-02-23T13:56:36Z'),
 				KOMDeckModificationDate: new Date('2019-02-23T13:56:36Z'),
@@ -52,7 +52,6 @@ global.FileReader = require('filereader');
 
 		StubCardObject(inputData) {
 			return Object.assign({
-				KOMCardDeckID: Math.random().toString(),
 				KOMCardFrontText: Math.random().toString(),
 				KOMCardRearText: Math.random().toString(),
 			}, inputData);
