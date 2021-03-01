@@ -131,14 +131,18 @@ const mod = {
 	},
 
 	KOMSpacingPath (param1, param2) {
-		return KOMCard.KOMCardFolderPath(param2) + 'spacing-' + mod.KOMSpacingLabel(param1.KOMSpacingID);
+		return KOMCard.KOMCardFolderPath(param1.$KOMSpacingCard || param2) + 'spacing-' + mod.KOMSpacingLabel(param1.KOMSpacingID);
 	},
 
 	KOMSpacingStub (inputData) {
-		const groups = (inputData.match(new RegExp(`(?<year>[0-9]{4})-(?<month>[0-9]{2})-(?<day>[0-9]{2})\/(?<card>[\\w\.]+)\/spacing-(?<label>(${ mod.KOMSpacingLabelForward() }|${ mod.KOMSpacingLabelBackward() }))`)) || {}).groups || {};
+		const groups = (inputData.match(new RegExp(`\/(?<deck>[\\w\.]+)\/${ KOMCard.KOMCardDirectory() }\/(?<date>[0-9]{4}-[0-9]{2}-[0-9]{2})\/(?<card>[\\w\.]+)\/spacing-(?<label>(${ mod.KOMSpacingLabelForward() }|${ mod.KOMSpacingLabelBackward() }))`)) || {}).groups || {};
 
 		return {
 			KOMSpacingID: [groups.card, groups.label].join('-'),
+			$KOMSpacingCard: {
+				KOMCardID: groups.card,
+				KOMCardCreationDate: new Date(groups.date || Date.now()),
+			},
 		};
 	},
 

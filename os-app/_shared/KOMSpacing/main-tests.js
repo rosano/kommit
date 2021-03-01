@@ -313,7 +313,8 @@ describe('KOMSpacingPath', function test_KOMSpacingPath() {
 		const label = uRandomElement(mod.KOMSpacingLabelForward(), mod.KOMSpacingLabelBackward());
 		deepEqual(mod.KOMSpacingPath(StubSpacingObjectValid({
 			KOMSpacingID: [KOMCardID, label].join('-'),
-		}), card), KOMCard.KOMCardFolderPath(card) + 'spacing-' + label);
+			$KOMSpacingCard: card,
+		})), KOMCard.KOMCardFolderPath(card) + 'spacing-' + label);
 	});
 
 });
@@ -322,11 +323,16 @@ describe('KOMSpacingStub', function test_KOMSpacingStub() {
 
 	it('returns string', function() {
 		const KOMCardID = Math.random().toString();
-		const label = uRandomElement(mod.KOMSpacingLabelForward(), mod.KOMSpacingLabelBackward());
-		deepEqual(mod.KOMSpacingStub(KOMCard.KOMCardFolderPath(StubCardObjectValid({
+		const card = StubCardObjectValid({
 			KOMCardID,
-		})) + 'spacing-' + label), {
+		});
+		const label = uRandomElement(mod.KOMSpacingLabelForward(), mod.KOMSpacingLabelBackward());
+		deepEqual(mod.KOMSpacingStub(KOMCard.KOMCardFolderPath(card) + 'spacing-' + label), {
 			KOMSpacingID: [KOMCardID, label].join('-'),
+			$KOMSpacingCard: {
+				KOMCardID,
+				KOMCardCreationDate: new Date(card.KOMCardCreationDate.toJSON().slice(0, 10)),
+			},
 		});
 	});
 

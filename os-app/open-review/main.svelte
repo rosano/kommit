@@ -153,7 +153,7 @@ const mod = {
 		}).concat([{
 			LCHRecipeSignature: 'KOMReviewLauncherItemToggleSimplifiedResponseButtons',
 			LCHRecipeName: OLSKLocalized('KOMReviewLauncherItemToggleSimplifiedResponseButtonsText'),
-			LCHRecipeCallback: async function KOMReviewLauncherItemToggleSimplifiedResponseButtons () {
+			LCHRecipeCallback: function KOMReviewLauncherItemToggleSimplifiedResponseButtons () {
 				mod._ValuePlaySimplifiedResponseButtons = !mod._ValuePlaySimplifiedResponseButtons;
 			},
 		}]));
@@ -162,8 +162,8 @@ const mod = {
 			items.push({
 				LCHRecipeSignature: 'KOMReviewLauncherItemExportSelectedJSON',
 				LCHRecipeName: OLSKLocalized('KOMReviewLauncherItemExportSelectedJSONText'),
-				LCHRecipeCallback: (function KOMReviewLauncherItemExportSelectedJSON () {
-					return mod.ControlExportData([mod._ValueDeckSelected]);
+				LCHRecipeCallback: (async function KOMReviewLauncherItemExportSelectedJSON () {
+					return this.api.LCHSaveFile(await mod.DataExportJSON([mod._ValueDeckSelected]), mod.DataExportJSONFilename());
 				}),
 			});
 		}
@@ -1219,7 +1219,7 @@ const mod = {
 		if (!mod._ValueFundClue) {
 			return;
 		}
-		
+
 		const item = {
 			OLSK_CRYPTO_PAIR_RECEIVER_PRIVATE: `OLSK_CRYPTO_PAIR_RECEIVER_PRIVATE_SWAP_TOKEN${ '' }`, // #purge
 			OLSK_CRYPTO_PAIR_SENDER_PUBLIC: 'OLSK_CRYPTO_PAIR_SENDER_PUBLIC_SWAP_TOKEN',
@@ -1231,7 +1231,7 @@ const mod = {
 				OLSKPactAuthProof: mod._ValueCloudToken,
 				OLSKPactAuthMetadata: {
 					OLSKPactAuthMetadataModuleName: 'kommit',
-					OLSKPactAuthMetadataFolderPath: mod._ValueZDRWrap.App.KOMDeck.KOMDeckDirectory() + '/',
+					OLSKPactAuthMetadataFolderPath: KOMDeck.KOMDeckDirectory() + '/',
 				},
 				OLSKPactPayIdentity: mod._ValueCloudIdentity,
 				OLSKPactPayClue: mod._ValueFundClue,

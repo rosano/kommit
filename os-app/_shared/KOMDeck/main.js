@@ -169,9 +169,11 @@ export default Object.assign(mod, {
 
 		async KOMDeckList () {
 			const _this = this;
-			return Promise.all((await _this.App.ZDRStoragePaths(mod.KOMDeckDirectory() + '/')).map(async function (e) {
-				return OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(await _this.App.ZDRStorageReadObject(mod.KOMDeckDirectory() + '/' + e + 'main'));
-			}));
+			return (await Promise.all((await _this.App.ZDRStoragePaths(mod.KOMDeckDirectory() + '/')).map(function (e) {
+				return _this.App.ZDRStorageReadObject(mod.KOMDeckDirectory() + '/' + e + 'main');
+			}))).filter(function (e) {
+				return !!e;
+			}).map(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse);
 		},
 
 		async KOMDeckDelete (inputData) {
