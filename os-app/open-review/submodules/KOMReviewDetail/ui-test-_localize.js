@@ -98,10 +98,6 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 			browser.assert.text(KOMReviewDetailFormRetireCardsFieldOptionTwelveMonths, uLocalized('KOMReviewDetailFormRetireCardsFieldOptionTwelveMonthsText'));
 		});
 
-		it('localizes KOMReviewDetailLauncherItemExport', function () {
-			return browser.assert.OLSKLauncherItemText('KOMReviewDetailLauncherItemExport', uLocalized('KOMReviewDetailLauncherItemExportText'));
-		});
-
 		context('on discard', function () {
 
 			it('localizes KOMReviewDetailDiscardPrompt', function () {

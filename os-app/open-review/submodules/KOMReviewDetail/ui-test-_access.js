@@ -194,10 +194,6 @@ describe('KOMReviewDetail_Access', function () {
 		browser.assert.elements(KOMReviewDetailDiscardButton, 1);
 	});
 
-	it('shows KOMReviewDetailLauncherItemExport', function () {
-		return browser.assert.OLSKLauncherItems('KOMReviewDetailLauncherItemExport', 1);
-	});
-
 	it('hides KOMReviewDetailLauncherItemPlayReviewing', function () {
 		return browser.assert.OLSKLauncherItems('KOMReviewDetailLauncherItemPlayReviewing', 0);
 	});

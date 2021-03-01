@@ -113,8 +113,8 @@ const mod = {
 		};
 	},
 
-	async DataExportJSON () {
-		return JSON.stringify(await mod._ValueZDRWrap.App.KOMTransport.KOMTransportExport(mod._ValueDecksAll));
+	async DataExportJSON (inputData) {
+		return JSON.stringify(await mod._ValueZDRWrap.App.KOMTransport.KOMTransportExport(inputData));
 	},
 
 	DataExportBasename () {
@@ -138,7 +138,7 @@ const mod = {
 			LCHRecipeSignature: 'KOMReviewLauncherItemExportJSON',
 			LCHRecipeName: OLSKLocalized('KOMReviewLauncherItemExportJSONText'),
 			LCHRecipeCallback: async function KOMReviewLauncherItemExportJSON () {
-				return this.api.LCHSaveFile(await mod.DataExportJSON(), mod.DataExportJSONFilename());
+				return this.api.LCHSaveFile(await mod.DataExportJSON(mod._ValueDecksAll), mod.DataExportJSONFilename());
 			},
 		}].concat(mod._ValueDecksAll.filter(function (e) {
 			return e !== mod._ValueDeckSelected;
@@ -157,6 +157,16 @@ const mod = {
 				mod._ValuePlaySimplifiedResponseButtons = !mod._ValuePlaySimplifiedResponseButtons;
 			},
 		}]));
+
+		if (mod._ValueDeckSelected) {
+			items.push({
+				LCHRecipeSignature: 'KOMReviewLauncherItemExportSelectedJSON',
+				LCHRecipeName: OLSKLocalized('KOMReviewLauncherItemExportSelectedJSONText'),
+				LCHRecipeCallback: (function KOMReviewLauncherItemExportSelectedJSON () {
+					return mod.ControlExportData([mod._ValueDeckSelected]);
+				}),
+			});
+		}
 
 		if (!!mod._ValueCloudIdentity && mod._ValueZDRWrap.ZDRStorageProtocol === zerodatawrap.ZDRProtocolRemoteStorage()) {
 			items.push(...[
@@ -333,7 +343,16 @@ const mod = {
 					LCHRecipeCallback: async function KOMReviewLauncherItemDebug_AlertFakeExportSerialized () {
 						return window.alert(JSON.stringify({
 							OLSKDownloadName: mod.DataExportJSONFilename(),
-							OLSKDownloadData: await mod.DataExportJSON(),
+							OLSKDownloadData: await mod.DataExportJSON(mod._ValueDecksAll),
+						}));
+					},
+				},
+				{
+					LCHRecipeName: 'KOMReviewLauncherItemDebug_AlertFakeExportSelectedSerialized',
+					LCHRecipeCallback: async function KOMReviewLauncherItemDebug_AlertFakeExportSelectedSerialized () {
+						return window.alert(JSON.stringify({
+							OLSKDownloadName: mod.DataExportJSONFilename(),
+							OLSKDownloadData: await mod.DataExportJSON([mod._ValueDeckSelected]),
 						}));
 					},
 				},
@@ -548,16 +567,6 @@ const mod = {
 		}
 	},
 
-	ControlExportData (inputData) {
-		Launchlet.LCHTasksRun([{
-			async LCHRecipeCallback () {
-				return this.api.LCHSaveFile(JSON.stringify(await mod._ValueZDRWrap.App.KOMTransport.KOMTransportExport(inputData)), `${ window.location.host }-${ Date.now() }.json`)
-			},
-			LCHRecipeURLFilter: '*',
-		  LCHRecipeIsAutomatic: true,
-		}]);
-	},
-
 	async ControlDemo () {
 		mod._IsRunningDemo = true;
 
@@ -696,10 +705,6 @@ const mod = {
 	async KOMReviewDetailDispatchPlay (inputData) {
 		mod._ValuePlaySpacings = KOMPlayLogic.KOMPlaySort(KOMReviewLogic.KOMReviewFilter(KOMReviewLogic.KOMReviewSpacingsToday((await mod.DataDeckSelectedObjects(mod._ValueDeckSelected)).$KOMDeckSpacings), inputData, mod._ValueDeckSelected));
 		mod._ValuePlayVisible = true;
-	},
-
-	KOMReviewDetailDispatchExport () {
-		mod.ControlExportData([mod._ValueDeckSelected]);
 	},
 
 	KOMBrowseDispatchEligible () {
@@ -1291,7 +1296,6 @@ import OLSKApropos from 'OLSKApropos';
 			KOMReviewDetailDispatchRecount={ mod.KOMReviewDetailDispatchRecount }
 			KOMReviewDetailDispatchBrowse={ mod.KOMReviewDetailDispatchBrowse }
 			KOMReviewDetailDispatchPlay={ mod.KOMReviewDetailDispatchPlay }
-			KOMReviewDetailDispatchExport={ mod.KOMReviewDetailDispatchExport }
 			bind:this={ mod._KOMReviewDetail }
 			/>
 	{/if}

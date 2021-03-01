@@ -176,7 +176,7 @@ Counting the number of cards based on its state.
 | Close | `Escape` |
 | `KOMReviewDetailLauncherItemPlayReviewingText` | Launcher |
 | `KOMReviewDetailLauncherItemPlayUnseenText` | Launcher |
-| `KOMReviewDetailLauncherItemExportText` | Launcher |
+| `KOMReviewLauncherItemExportSelectedJSONText` | Launcher |
 
 | Memory game ||
 :--- | ---

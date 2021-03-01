@@ -4,6 +4,7 @@ KOMReviewLauncherItemImportJSONText: Importer JSON (beta)
 KOMReviewLauncherItemImportJSONErrorNotFilledAlertText: Entrée non remplie
 KOMReviewLauncherItemImportJSONErrorNotValidAlertText: Entrée non valide
 KOMReviewLauncherItemExportJSONText: Exporter JSON (beta)
+KOMReviewLauncherItemExportSelectedJSONText: Exporter le lot sélectionné JSON (béta)
 KOMReviewLauncherItemSelectDeckTextFormat: Choisir lot de cartes '%@'
 KOMReviewLauncherItemToggleSimplifiedResponseButtonsText: Commuter les boutons de réponse simplifiés
 KOMReviewLauncherItemDebugPlungeDataText: Ventouser les données

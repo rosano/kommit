@@ -116,7 +116,7 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 
 		});
 
-		context('select_deck', function test_select_deck() {
+		context('create', function test_create() {
 
 			before(function () {
 				return browser.OLSKPrompt(function () {
@@ -130,6 +130,18 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 
 			it('localizes KOMReviewLauncherItemSelectDeck', function () {
 				return browser.assert.OLSKLauncherItemText('KOMReviewLauncherItemSelectDeck', OLSKTestingFormatted(uLocalized('KOMReviewLauncherItemSelectDeckTextFormat'), 'alfa'));
+			});
+
+		});
+
+		context('select', function test_select() {
+
+			before(function () {
+				return browser.pressButton('.KOMReviewMasterListItem');
+			});
+
+			it('localizes KOMReviewLauncherItemExportSelectedJSON', function () {
+				return browser.assert.OLSKLauncherItemText('KOMReviewLauncherItemExportSelectedJSON', uLocalized('KOMReviewLauncherItemExportSelectedJSONText'));
 			});
 
 		});

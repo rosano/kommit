@@ -659,20 +659,4 @@ describe('KOMReviewDetail_Misc', function () {
 
 	});
 
-	describe('KOMReviewDetailLauncherItemExport', function test_KOMReviewDetailLauncherItemExport() {
-
-		before(function () {
-			browser.assert.text('#TestKOMReviewDetailDispatchExport', '0')
-		});
-
-		before(function () {
-			return browser.OLSKLauncherRun('KOMReviewDetailLauncherItemExport');
-		});
-
-		it('sends KOMReviewDetailDispatchExport', function () {
-			browser.assert.text('#TestKOMReviewDetailDispatchExport', '1');
-		});
-
-	});
-
 });
