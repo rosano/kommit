@@ -92,7 +92,7 @@ const mod = {
 
 	DataDeckSelectedObjects (inputData) {
 		return OLSKCache.OLSKCacheResultFetchOnceSync(mod._ValueDeckSelectedObjectsMap, inputData.KOMDeckID, async function () {
-			return await mod._ValueZDRWrap.App.KOMDeck.KOMDeckObjectsMap(inputData, await mod.DataSettingValue('KOMSettingExcludeTripleQuestionMark') === 'true');
+			return mod._ValueZDRWrap.App.KOMDeck.KOMDeckObjectsMap(inputData, await mod.DataSettingValue('KOMSettingExcludeTripleQuestionMark') === 'true');
 		});
 	},
 
