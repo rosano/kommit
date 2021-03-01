@@ -238,51 +238,51 @@ const mod = {
 		if (OLSK_SPEC_UI()) {
 			items.push(...[
 				{
-					LCHRecipeName: 'FakeOLSKChangeDelegateCreateDeck',
-					LCHRecipeCallback: async function FakeOLSKChangeDelegateCreateDeck () {
-						return mod.OLSKChangeDelegateCreateDeck(await mod._ValueZDRWrap.App.KOMDeck.KOMDeckCreate(mod.FakeDeckObjectValid('FakeOLSKChangeDelegateCreateDeck')));
+					LCHRecipeName: 'FakeZDRSchemaDispatchSyncCreateDeck',
+					LCHRecipeCallback: async function FakeZDRSchemaDispatchSyncCreateDeck () {
+						return mod.ZDRSchemaDispatchSyncCreateDeck(await mod._ValueZDRWrap.App.KOMDeck.KOMDeckCreate(mod.FakeDeckObjectValid('FakeZDRSchemaDispatchSyncCreateDeck')));
 					},
 				},
 				{
-					LCHRecipeName: 'FakeOLSKChangeDelegateUpdateDeck',
-					LCHRecipeCallback: async function FakeOLSKChangeDelegateUpdateDeck () {
-						return mod.OLSKChangeDelegateUpdateDeck(await mod._ValueZDRWrap.App.KOMDeck.KOMDeckUpdate(mod.FakeDeckObjectValid('FakeOLSKChangeDelegateUpdateDeck')));
+					LCHRecipeName: 'FakeZDRSchemaDispatchSyncUpdateDeck',
+					LCHRecipeCallback: async function FakeZDRSchemaDispatchSyncUpdateDeck () {
+						return mod.ZDRSchemaDispatchSyncUpdateDeck(await mod._ValueZDRWrap.App.KOMDeck.KOMDeckUpdate(mod.FakeDeckObjectValid('FakeZDRSchemaDispatchSyncUpdateDeck')));
 					},
 				},
 				{
-					LCHRecipeName: 'FakeOLSKChangeDelegateDeleteDeck',
-					LCHRecipeCallback: async function FakeOLSKChangeDelegateDeleteDeck () {
-						return mod.OLSKChangeDelegateDeleteDeck(await mod._ValueZDRWrap.App.KOMDeck.KOMDeckDelete(mod.FakeDeckObjectValid()));
+					LCHRecipeName: 'FakeZDRSchemaDispatchSyncDeleteDeck',
+					LCHRecipeCallback: async function FakeZDRSchemaDispatchSyncDeleteDeck () {
+						return mod.ZDRSchemaDispatchSyncDeleteDeck(await mod._ValueZDRWrap.App.KOMDeck.KOMDeckDelete(mod.FakeDeckObjectValid()));
 					},
 				},
 				{
-					LCHRecipeName: 'FakeOLSKChangeDelegateCreateCard',
-					LCHRecipeCallback: async function FakeOLSKChangeDelegateCreateCard () {
-						return mod.OLSKChangeDelegateCreateCard(await mod._ValueZDRWrap.App.KOMCard.KOMCardCreate(mod.FakeCardObjectValid('FakeOLSKChangeDelegateCreateCard'), mod.FakeDeckObjectValid()));
+					LCHRecipeName: 'FakeZDRSchemaDispatchSyncCreateCard',
+					LCHRecipeCallback: async function FakeZDRSchemaDispatchSyncCreateCard () {
+						return mod.ZDRSchemaDispatchSyncCreateCard(await mod._ValueZDRWrap.App.KOMCard.KOMCardCreate(mod.FakeCardObjectValid('FakeZDRSchemaDispatchSyncCreateCard'), mod.FakeDeckObjectValid()));
 					},
 				},
 				{
-					LCHRecipeName: 'FakeOLSKChangeDelegateUpdateCard',
-					LCHRecipeCallback: async function FakeOLSKChangeDelegateUpdateCard () {
-						return mod.OLSKChangeDelegateUpdateCard(await mod._ValueZDRWrap.App.KOMCard.KOMCardUpdate(Object.assign(mod.FakeCardObjectValid('FakeOLSKChangeDelegateUpdateCard'), {
+					LCHRecipeName: 'FakeZDRSchemaDispatchSyncUpdateCard',
+					LCHRecipeCallback: async function FakeZDRSchemaDispatchSyncUpdateCard () {
+						return mod.ZDRSchemaDispatchSyncUpdateCard(await mod._ValueZDRWrap.App.KOMCard.KOMCardUpdate(Object.assign(mod.FakeCardObjectValid('FakeZDRSchemaDispatchSyncUpdateCard'), {
 							KOMCardIsRetired: true,
 						})));
 					},
 				},
 				{
-					LCHRecipeName: 'FakeOLSKChangeDelegateDeleteCard',
-					LCHRecipeCallback: async function FakeOLSKChangeDelegateDeleteCard () {
-						return mod.OLSKChangeDelegateDeleteCard(await mod._ValueZDRWrap.App.KOMCard.KOMCardDelete(mod.FakeCardObjectValid()));
+					LCHRecipeName: 'FakeZDRSchemaDispatchSyncDeleteCard',
+					LCHRecipeCallback: async function FakeZDRSchemaDispatchSyncDeleteCard () {
+						return mod.ZDRSchemaDispatchSyncDeleteCard(await mod._ValueZDRWrap.App.KOMCard.KOMCardDelete(mod.FakeCardObjectValid()));
 					},
 				},
 				{
-					LCHRecipeName: 'FakeOLSKChangeDelegateConflictCard',
-					LCHRecipeCallback: async function FakeOLSKChangeDelegateConflictCard () {
+					LCHRecipeName: 'FakeZDRSchemaDispatchSyncConflictCard',
+					LCHRecipeCallback: async function FakeZDRSchemaDispatchSyncConflictCard () {
 						const item = (await mod._ValueZDRWrap.App.KOMCard.KOMCardList(mod._ValueDeckSelected)).filter(function (e) {
-							return e.KOMCardFrontText.match('FakeOLSKChangeDelegateConflictCard');
+							return e.KOMCardFrontText.match('FakeZDRSchemaDispatchSyncConflictCard');
 						}).pop();
 						
-						return mod.OLSKChangeDelegateConflictCard({
+						return mod.ZDRSchemaDispatchSyncConflictCard({
 							origin: 'conflict',
 							oldValue: await mod._ValueZDRWrap.App.KOMCard.KOMCardUpdate(Object.assign({}, item, {
 								KOMCardFrontText: item.KOMCardFrontText + '-local',
@@ -294,8 +294,8 @@ const mod = {
 					},
 				},
 				{
-					LCHRecipeName: 'FakeOLSKChangeDelegateCreateSpacing',
-					LCHRecipeCallback: async function FakeOLSKChangeDelegateCreateSpacing () {
+					LCHRecipeName: 'FakeZDRSchemaDispatchSyncCreateSpacing',
+					LCHRecipeCallback: async function FakeZDRSchemaDispatchSyncCreateSpacing () {
 						[false, true].forEach(async function (backward) {
 							const spacing = await mod._ValueZDRWrap.App.KOMSpacing.KOMSpacingWrite(Object.assign(mod.FakeSpacingObjectValid(backward), {
 								KOMSpacingIsLearning: true,
@@ -306,13 +306,13 @@ const mod = {
 								return;
 							}
 
-							mod.OLSKChangeDelegateCreateSpacing(spacing);
+							mod.ZDRSchemaDispatchSyncCreateSpacing(spacing);
 						});
 					},
 				},
 				{
-					LCHRecipeName: 'FakeOLSKChangeDelegateUpdateSpacing',
-					LCHRecipeCallback: function FakeOLSKChangeDelegateUpdateSpacing () {
+					LCHRecipeName: 'FakeZDRSchemaDispatchSyncUpdateSpacing',
+					LCHRecipeCallback: function FakeZDRSchemaDispatchSyncUpdateSpacing () {
 						[false, true].map(async function (backward) {
 							const spacing = await mod._ValueZDRWrap.App.KOMSpacing.KOMSpacingWrite(Object.assign(mod.FakeSpacingObjectPopulated(new Date(), backward), {
 								KOMSpacingDueDate: new Date(Date.now() + 1000 * 60 * 60 * 24),
@@ -322,14 +322,14 @@ const mod = {
 								return;
 							}
 
-							mod.OLSKChangeDelegateUpdateSpacing(spacing);
+							mod.ZDRSchemaDispatchSyncUpdateSpacing(spacing);
 						});
 					},
 				},
 				{
-					LCHRecipeName: 'FakeOLSKChangeDelegateDeleteSpacing',
-					LCHRecipeCallback: function FakeOLSKChangeDelegateDeleteSpacing () {
-						return mod.OLSKChangeDelegateDeleteSpacing(mod.FakeSpacingObjectValid());
+					LCHRecipeName: 'FakeZDRSchemaDispatchSyncDeleteSpacing',
+					LCHRecipeCallback: function FakeZDRSchemaDispatchSyncDeleteSpacing () {
+						return mod.ZDRSchemaDispatchSyncDeleteSpacing(mod.FakeSpacingObjectValid());
 					},
 				},
 				{
@@ -952,17 +952,17 @@ const mod = {
 		mod._ValueOLSKFundGrant = OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(inputData);
 	},
 
-	OLSKChangeDelegateCreateDeck (inputData) {
+	ZDRSchemaDispatchSyncCreateDeck (inputData) {
 		mod.SetupValueDecksAll();
 	},
 
-	async OLSKChangeDelegateUpdateDeck (inputData) {
+	async ZDRSchemaDispatchSyncUpdateDeck (inputData) {
 		await mod.SetupValueDecksAll();
 
 		mod.ReactDeckIfSelected(inputData);
 	},
 
-	async OLSKChangeDelegateDeleteDeck (inputData) {
+	async ZDRSchemaDispatchSyncDeleteDeck (inputData) {
 		await mod.SetupValueDecksAll();
 
 		if (!mod._ValueDeckSelected) {
@@ -974,7 +974,7 @@ const mod = {
 		}
 	},
 
-	OLSKChangeDelegateCreateCard (inputData) {
+	ZDRSchemaDispatchSyncCreateCard (inputData) {
 		if (mod._KOMBrowse && mod._ValueDeckSelected && inputData.KOMCardDeckID === mod._ValueDeckSelected.KOMDeckID) {
 			return mod._KOMBrowse.modPublic.KOMBrowseChangeDelegateCreateCard(inputData);
 		}
@@ -982,7 +982,7 @@ const mod = {
 		mod.ReactDeckFiguresThrottled(inputData.KOMCardDeckID);
 	},
 
-	OLSKChangeDelegateUpdateCard (inputData) {
+	ZDRSchemaDispatchSyncUpdateCard (inputData) {
 		if (mod._KOMBrowse && mod._ValueDeckSelected && inputData.KOMCardDeckID === mod._ValueDeckSelected.KOMDeckID) {
 			return mod._KOMBrowse.modPublic.KOMBrowseChangeDelegateUpdateCard(inputData);
 		}
@@ -990,7 +990,7 @@ const mod = {
 		mod.ReactDeckFiguresThrottled(inputData.KOMCardDeckID);
 	},
 
-	OLSKChangeDelegateDeleteCard (inputData) {
+	ZDRSchemaDispatchSyncDeleteCard (inputData) {
 		if (mod._KOMBrowse && mod._ValueDeckSelected && inputData.KOMCardDeckID === mod._ValueDeckSelected.KOMDeckID) {
 			return mod._KOMBrowse.modPublic.KOMBrowseChangeDelegateDeleteCard(inputData);
 		}
@@ -998,19 +998,19 @@ const mod = {
 		mod.ReactDeckFiguresThrottled(inputData.KOMCardDeckID);
 	},
 
-	async OLSKChangeDelegateConflictCard (inputData) {
-		return mod.OLSKChangeDelegateUpdateCard(await mod._ValueZDRWrap.App.KOMCard.KOMCardUpdate(OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateConflictSelectRecent(inputData)));
+	async ZDRSchemaDispatchSyncConflictCard (inputData) {
+		return mod.ZDRSchemaDispatchSyncUpdateCard(await mod._ValueZDRWrap.App.KOMCard.KOMCardUpdate(OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateConflictSelectRecent(inputData)));
 	},
 
-	OLSKChangeDelegateCreateSpacing (inputData) {
+	ZDRSchemaDispatchSyncCreateSpacing (inputData) {
 		mod.ReactDeckFiguresThrottled(inputData.$KOMSpacingDeckID);
 	},
 
-	OLSKChangeDelegateUpdateSpacing (inputData) {
+	ZDRSchemaDispatchSyncUpdateSpacing (inputData) {
 		mod.ReactDeckFiguresThrottled(inputData.$KOMSpacingDeckID);
 	},
 
-	OLSKChangeDelegateDeleteSpacing (inputData) {},
+	ZDRSchemaDispatchSyncDeleteSpacing (inputData) {},
 
 	// REACT
 
@@ -1146,20 +1146,20 @@ const mod = {
 				ZDRScopeCreatorDirectory: 'rCreativ',
 				ZDRScopeSchemas: [
 					Object.assign(KOMDeck, {
-						ZDRSchemaDispatchSyncCreate: mod.OLSKChangeDelegateCreateDeck,
-						ZDRSchemaDispatchSyncUpdate: mod.OLSKChangeDelegateUpdateDeck,
-						ZDRSchemaDispatchSyncDelete: mod.OLSKChangeDelegateDeleteDeck,
+						ZDRSchemaDispatchSyncCreate: mod.ZDRSchemaDispatchSyncCreateDeck,
+						ZDRSchemaDispatchSyncUpdate: mod.ZDRSchemaDispatchSyncUpdateDeck,
+						ZDRSchemaDispatchSyncDelete: mod.ZDRSchemaDispatchSyncDeleteDeck,
 					}),
 					Object.assign(KOMCard, {
-						ZDRSchemaDispatchSyncCreate: mod.OLSKChangeDelegateCreateCard,
-						ZDRSchemaDispatchSyncUpdate: mod.OLSKChangeDelegateUpdateCard,
-						ZDRSchemaDispatchSyncDelete: mod.OLSKChangeDelegateDeleteCard,
-						ZDRSchemaDispatchSyncConflict: mod.OLSKChangeDelegateConflictCard,
+						ZDRSchemaDispatchSyncCreate: mod.ZDRSchemaDispatchSyncCreateCard,
+						ZDRSchemaDispatchSyncUpdate: mod.ZDRSchemaDispatchSyncUpdateCard,
+						ZDRSchemaDispatchSyncDelete: mod.ZDRSchemaDispatchSyncDeleteCard,
+						ZDRSchemaDispatchSyncConflict: mod.ZDRSchemaDispatchSyncConflictCard,
 					}),
 					Object.assign(KOMSpacing, {
-						ZDRSchemaDispatchSyncCreate: mod.OLSKChangeDelegateCreateSpacing,
-						ZDRSchemaDispatchSyncUpdate: mod.OLSKChangeDelegateUpdateSpacing,
-						ZDRSchemaDispatchSyncDelete: mod.OLSKChangeDelegateDeleteSpacing,
+						ZDRSchemaDispatchSyncCreate: mod.ZDRSchemaDispatchSyncCreateSpacing,
+						ZDRSchemaDispatchSyncUpdate: mod.ZDRSchemaDispatchSyncUpdateSpacing,
+						ZDRSchemaDispatchSyncDelete: mod.ZDRSchemaDispatchSyncDeleteSpacing,
 					}),
 					KOMSetting,
 					KOMDeckObject,

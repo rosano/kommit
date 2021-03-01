@@ -200,11 +200,11 @@ describe('KOMReview_Fund', function () {
 		context.skip('sync', function () {
 
 			before(function () {
-				return browser.OLSKLauncherRun('FakeOLSKChangeDelegateCreateDeck');
+				return browser.OLSKLauncherRun('FakeZDRSchemaDispatchSyncCreateDeck');
 			});			
 
 			before(function () {
-				return browser.OLSKLauncherRun('FakeOLSKChangeDelegateCreateCard');
+				return browser.OLSKLauncherRun('FakeZDRSchemaDispatchSyncCreateCard');
 			});			
 
 			it('updates number', function () {

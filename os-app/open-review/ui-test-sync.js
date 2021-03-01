@@ -6,26 +6,26 @@ describe.skip('KOMReview_Sync', function () {
 		return browser.OLSKVisit(kDefaultRoute);
 	});
 
-	describe('OLSKChangeDelegateCreateDeck', function test_OLSKChangeDelegateCreateDeck() {
+	describe('ZDRSchemaDispatchSyncCreateDeck', function test_ZDRSchemaDispatchSyncCreateDeck() {
 
 		before(function () {
-			return browser.OLSKLauncherRun('FakeOLSKChangeDelegateCreateDeck');
+			return browser.OLSKLauncherRun('FakeZDRSchemaDispatchSyncCreateDeck');
 		});
 
 		it('adds deck', function () {
-			browser.assert.text('.KOMReviewMasterListItemName', 'FakeOLSKChangeDelegateCreateDeck');
+			browser.assert.text('.KOMReviewMasterListItemName', 'FakeZDRSchemaDispatchSyncCreateDeck');
 		});
 
 	});
 
-	describe('OLSKChangeDelegateCreateCard', function test_OLSKChangeDelegateCreateCard() {
+	describe('ZDRSchemaDispatchSyncCreateCard', function test_ZDRSchemaDispatchSyncCreateCard() {
 
 		before(function () {
 			browser.assert.text('.KOMReviewMasterListItemUnseenValue', '0');
 		});
 
 		before(function () {
-			return browser.OLSKLauncherRun('FakeOLSKChangeDelegateCreateCard');
+			return browser.OLSKLauncherRun('FakeZDRSchemaDispatchSyncCreateCard');
 		});
 
 		it('sets KOMReviewMasterListItemUnseenValue', function () {
@@ -34,14 +34,14 @@ describe.skip('KOMReview_Sync', function () {
 
 	});
 
-	describe('OLSKChangeDelegateCreateSpacing', function test_OLSKChangeDelegateCreateSpacing() {
+	describe('ZDRSchemaDispatchSyncCreateSpacing', function test_ZDRSchemaDispatchSyncCreateSpacing() {
 
 		before(function () {
 			browser.assert.text('.KOMReviewMasterListItemReviewValue', '0');
 		});
 
 		before(function () {
-			return browser.OLSKLauncherRun('FakeOLSKChangeDelegateCreateSpacing');
+			return browser.OLSKLauncherRun('FakeZDRSchemaDispatchSyncCreateSpacing');
 		});
 
 		it('sets KOMReviewMasterListItemUnseenValue', function () {
@@ -54,10 +54,10 @@ describe.skip('KOMReview_Sync', function () {
 
 	});
 
-	describe('OLSKChangeDelegateUpdateSpacing', function test_OLSKChangeDelegateUpdateSpacing() {
+	describe('ZDRSchemaDispatchSyncUpdateSpacing', function test_ZDRSchemaDispatchSyncUpdateSpacing() {
 
 		before(function () {
-			return browser.OLSKLauncherRun('FakeOLSKChangeDelegateUpdateSpacing');
+			return browser.OLSKLauncherRun('FakeZDRSchemaDispatchSyncUpdateSpacing');
 		});
 
 		it('sets KOMReviewMasterListItemReviewValue', function () {
@@ -70,10 +70,10 @@ describe.skip('KOMReview_Sync', function () {
 
 	});
 
-	describe('OLSKChangeDelegateDeleteSpacing', function test_OLSKChangeDelegateDeleteSpacing() {
+	describe('ZDRSchemaDispatchSyncDeleteSpacing', function test_ZDRSchemaDispatchSyncDeleteSpacing() {
 
 		before(function () {
-			return browser.OLSKLauncherRun('FakeOLSKChangeDelegateDeleteSpacing');
+			return browser.OLSKLauncherRun('FakeZDRSchemaDispatchSyncDeleteSpacing');
 		});
 
 		it('does nothing', function () {
@@ -82,14 +82,14 @@ describe.skip('KOMReview_Sync', function () {
 
 	});
 
-	describe('OLSKChangeDelegateUpdateCard', function test_OLSKChangeDelegateUpdateCard() {
+	describe('ZDRSchemaDispatchSyncUpdateCard', function test_ZDRSchemaDispatchSyncUpdateCard() {
 
 		before(function () {
 			browser.assert.text('.KOMReviewChartCompositionCollection .KOMReviewChartCompositionCollectionRetiredCardsValue', '0');
 		});
 
 		before(function () {
-			return browser.OLSKLauncherRun('FakeOLSKChangeDelegateUpdateCard');
+			return browser.OLSKLauncherRun('FakeZDRSchemaDispatchSyncUpdateCard');
 		});
 
 		it('sets KOMReviewChartCompositionCollectionData', function () {
@@ -98,10 +98,10 @@ describe.skip('KOMReview_Sync', function () {
 
 	});
 
-	describe('OLSKChangeDelegateDeleteCard', function test_OLSKChangeDelegateDeleteCard() {
+	describe('ZDRSchemaDispatchSyncDeleteCard', function test_ZDRSchemaDispatchSyncDeleteCard() {
 
 		before(function () {
-			return browser.OLSKLauncherRun('FakeOLSKChangeDelegateDeleteCard');
+			return browser.OLSKLauncherRun('FakeZDRSchemaDispatchSyncDeleteCard');
 		});
 
 		it('clears KOMReviewChartCompositionCollection', function () {
@@ -110,22 +110,22 @@ describe.skip('KOMReview_Sync', function () {
 
 	});
 
-	describe('OLSKChangeDelegateUpdateDeck', function test_OLSKChangeDelegateUpdateDeck() {
+	describe('ZDRSchemaDispatchSyncUpdateDeck', function test_ZDRSchemaDispatchSyncUpdateDeck() {
 
 		before(function () {
-			return browser.OLSKLauncherRun('FakeOLSKChangeDelegateUpdateDeck');
+			return browser.OLSKLauncherRun('FakeZDRSchemaDispatchSyncUpdateDeck');
 		});
 
 		it('updates deck', function () {
-			browser.assert.text('.KOMReviewMasterListItemName', 'FakeOLSKChangeDelegateUpdateDeck');
+			browser.assert.text('.KOMReviewMasterListItemName', 'FakeZDRSchemaDispatchSyncUpdateDeck');
 		});
 
 	});
 
-	describe('OLSKChangeDelegateDeleteDeck', function test_OLSKChangeDelegateDeleteDeck() {
+	describe('ZDRSchemaDispatchSyncDeleteDeck', function test_ZDRSchemaDispatchSyncDeleteDeck() {
 
 		before(function () {
-			return browser.OLSKLauncherRun('FakeOLSKChangeDelegateDeleteDeck');
+			return browser.OLSKLauncherRun('FakeZDRSchemaDispatchSyncDeleteDeck');
 		});
 
 		it('deletes deck', function () {
@@ -137,19 +137,19 @@ describe.skip('KOMReview_Sync', function () {
 	context('unordered', function test_unordered() {
 
 		before(function () {
-			return browser.OLSKLauncherRun('FakeOLSKChangeDelegateCreateSpacing');
+			return browser.OLSKLauncherRun('FakeZDRSchemaDispatchSyncCreateSpacing');
 		});
 
 		before(function () {
-			return browser.OLSKLauncherRun('FakeOLSKChangeDelegateCreateCard');
+			return browser.OLSKLauncherRun('FakeZDRSchemaDispatchSyncCreateCard');
 		});
 
 		before(function () {
-			return browser.OLSKLauncherRun('FakeOLSKChangeDelegateCreateDeck');
+			return browser.OLSKLauncherRun('FakeZDRSchemaDispatchSyncCreateDeck');
 		});
 
 		it('adds deck', function () {
-			browser.assert.text('.KOMReviewMasterListItemName', 'FakeOLSKChangeDelegateCreateDeck');
+			browser.assert.text('.KOMReviewMasterListItemName', 'FakeZDRSchemaDispatchSyncCreateDeck');
 		});
 
 		it('sets KOMReviewMasterListItemUnseenValue', function () {
@@ -168,26 +168,26 @@ describe.skip('KOMReview_Sync', function () {
 			return browser.pressButton('.KOMReviewMasterListItem');
 		});
 
-		describe('OLSKChangeDelegateUpdateDeck', function () {
+		describe('ZDRSchemaDispatchSyncUpdateDeck', function () {
 
 			before(function () {
-				return browser.OLSKLauncherRun('FakeOLSKChangeDelegateUpdateDeck');
+				return browser.OLSKLauncherRun('FakeZDRSchemaDispatchSyncUpdateDeck');
 			});
 
 			it('updates deck', function () {
-				browser.assert.text('.KOMReviewDetailToolbarTitle', 'FakeOLSKChangeDelegateUpdateDeck');
+				browser.assert.text('.KOMReviewDetailToolbarTitle', 'FakeZDRSchemaDispatchSyncUpdateDeck');
 			});
 
 		});
 
-		describe('OLSKChangeDelegateDeleteCard', function () {
+		describe('ZDRSchemaDispatchSyncDeleteCard', function () {
 
 			before(function () {
 				// browser.assert.elements('.KOMReviewDetailNoCards', 0);
 			});
 
 			before(function () {
-				return browser.OLSKLauncherRun('FakeOLSKChangeDelegateDeleteCard');
+				return browser.OLSKLauncherRun('FakeZDRSchemaDispatchSyncDeleteCard');
 			});
 
 			it('deletes card', function () {
@@ -196,10 +196,10 @@ describe.skip('KOMReview_Sync', function () {
 
 		});
 
-		describe('OLSKChangeDelegateDeleteDeck', function () {
+		describe('ZDRSchemaDispatchSyncDeleteDeck', function () {
 
 			before(function () {
-				return browser.OLSKLauncherRun('FakeOLSKChangeDelegateDeleteDeck');
+				return browser.OLSKLauncherRun('FakeZDRSchemaDispatchSyncDeleteDeck');
 			});
 
 			it('deletes deck', function () {
@@ -223,7 +223,7 @@ describe.skip('KOMReview_Sync', function () {
 		});
 
 		before(function () {
-			return browser.OLSKLauncherRun('FakeOLSKChangeDelegateCreateDeck');
+			return browser.OLSKLauncherRun('FakeZDRSchemaDispatchSyncCreateDeck');
 		});
 
 		context('different_deck', function () {
@@ -236,14 +236,14 @@ describe.skip('KOMReview_Sync', function () {
 				return browser.click('.KOMReviewDetailToolbarCardsButton');
 			});
 
-			describe('OLSKChangeDelegateCreateCard', function () {
+			describe('ZDRSchemaDispatchSyncCreateCard', function () {
 
 				before(function () {
 					browser.assert.elements('.KOMBrowseListItem', 0);
 				});
 
 				before(function () {
-					return browser.OLSKLauncherRun('FakeOLSKChangeDelegateCreateCard');
+					return browser.OLSKLauncherRun('FakeZDRSchemaDispatchSyncCreateCard');
 				});
 
 				it('does nothing', function () {
@@ -252,10 +252,10 @@ describe.skip('KOMReview_Sync', function () {
 
 			});
 
-			describe('OLSKChangeDelegateUpdateCard', function () {
+			describe('ZDRSchemaDispatchSyncUpdateCard', function () {
 
 				before(function () {
-					return browser.OLSKLauncherRun('FakeOLSKChangeDelegateUpdateCard');
+					return browser.OLSKLauncherRun('FakeZDRSchemaDispatchSyncUpdateCard');
 				});
 
 				it('does nothing', function () {
@@ -264,10 +264,10 @@ describe.skip('KOMReview_Sync', function () {
 
 			});
 
-			describe('OLSKChangeDelegateDeleteCard', function () {
+			describe('ZDRSchemaDispatchSyncDeleteCard', function () {
 
 				before(function () {
-					return browser.OLSKLauncherRun('FakeOLSKChangeDelegateDeleteCard');
+					return browser.OLSKLauncherRun('FakeZDRSchemaDispatchSyncDeleteCard');
 				});
 
 				it('does nothing', function () {
@@ -296,38 +296,38 @@ describe.skip('KOMReview_Sync', function () {
 				return browser.click('.KOMReviewDetailToolbarCardsButton');
 			});
 
-			describe('OLSKChangeDelegateCreateCard', function () {
+			describe('ZDRSchemaDispatchSyncCreateCard', function () {
 
 				before(function () {
 					browser.assert.elements('.KOMBrowseListItem', 0);
 				});
 
 				before(function () {
-					return browser.OLSKLauncherRun('FakeOLSKChangeDelegateCreateCard');
+					return browser.OLSKLauncherRun('FakeZDRSchemaDispatchSyncCreateCard');
 				});
 
 				it('adds card', function () {
-					browser.assert.text('.KOMBrowseListItem', 'FakeOLSKChangeDelegateCreateCard');
+					browser.assert.text('.KOMBrowseListItem', 'FakeZDRSchemaDispatchSyncCreateCard');
 				});
 
 			});
 
-			describe('OLSKChangeDelegateUpdateCard', function () {
+			describe('ZDRSchemaDispatchSyncUpdateCard', function () {
 
 				before(function () {
-					return browser.OLSKLauncherRun('FakeOLSKChangeDelegateUpdateCard');
+					return browser.OLSKLauncherRun('FakeZDRSchemaDispatchSyncUpdateCard');
 				});
 
 				it('updates card', function () {
-					browser.assert.text('.KOMBrowseListItem', '[retired] FakeOLSKChangeDelegateUpdateCard');
+					browser.assert.text('.KOMBrowseListItem', '[retired] FakeZDRSchemaDispatchSyncUpdateCard');
 				});
 
 			});
 
-			describe('OLSKChangeDelegateDeleteCard', function () {
+			describe('ZDRSchemaDispatchSyncDeleteCard', function () {
 
 				before(function () {
-					return browser.OLSKLauncherRun('FakeOLSKChangeDelegateDeleteCard');
+					return browser.OLSKLauncherRun('FakeZDRSchemaDispatchSyncDeleteCard');
 				});
 
 				it('deletes card', function () {
@@ -336,30 +336,30 @@ describe.skip('KOMReview_Sync', function () {
 
 			});
 
-			describe('OLSKChangeDelegateConflictCard', function () {
+			describe('ZDRSchemaDispatchSyncConflictCard', function () {
 
 				before(function () {
 					return browser.pressButton('.KOMBrowseListToolbarCreateButton');
 				});
 
 				before(function () {
-					return browser.fill('.KOMBrowseInfoFormFrontTextField', 'FakeOLSKChangeDelegateConflictCard');
+					return browser.fill('.KOMBrowseInfoFormFrontTextField', 'FakeZDRSchemaDispatchSyncConflictCard');
 				});
 
 				before(function () {
-					return browser.OLSKLauncherRun('FakeOLSKChangeDelegateConflictCard');
+					return browser.OLSKLauncherRun('FakeZDRSchemaDispatchSyncConflictCard');
 				});
 
 				it('updates local', function () {
-					browser.assert.text('.KOMBrowseListItem', 'FakeOLSKChangeDelegateConflictCard-local');
+					browser.assert.text('.KOMBrowseListItem', 'FakeZDRSchemaDispatchSyncConflictCard-local');
 				});
 
 			});
 
-			describe('OLSKChangeDelegateDeleteDeck', function () {
+			describe('ZDRSchemaDispatchSyncDeleteDeck', function () {
 
 				before(function () {
-					return browser.OLSKLauncherRun('FakeOLSKChangeDelegateDeleteDeck');
+					return browser.OLSKLauncherRun('FakeZDRSchemaDispatchSyncDeleteDeck');
 				});
 
 				it('deletes deck', function () {
