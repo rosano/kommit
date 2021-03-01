@@ -290,17 +290,7 @@ export default Object.assign(mod, {
 			}
 
 			return this.App.ZDRStorageReadFile(mod.KOMCardSideAudioPath(param1, param2)).then(function (file) {
-				if (Object.prototype.toString.call(file) === '[object Uint8Array]') {
-					return new Blob([file]);
-				}
-
-				if (!file.data) {
-					return null;
-				}
-
-				return new Blob([file.data], {
-					type: file.contentType
-				});
+				return new Blob([file]);
 			});
 		},
 
