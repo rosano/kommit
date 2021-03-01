@@ -33,6 +33,8 @@ global.FileReader = require('filereader');
 })();
 
 (function KVCMochaStubs() {
+	const KOMSpacing = require('./os-app/_shared/KOMSpacing/main.js').default;
+
 	Object.entries({
 
 		StubDeckObject(inputData) {
@@ -45,8 +47,8 @@ global.FileReader = require('filereader');
 			return Object.assign({
 				KOMDeckID: Math.random().toString(),
 				KOMDeckName: Math.random().toString(),
-				KOMDeckCreationDate: new Date('2019-02-23T13:56:36Z'),
-				KOMDeckModificationDate: new Date('2019-02-23T13:56:36Z'),
+				KOMDeckCreationDate: new Date(),
+				KOMDeckModificationDate: new Date(),
 			}, inputData);
 		},
 
@@ -59,18 +61,18 @@ global.FileReader = require('filereader');
 
 		StubCardObjectValid(inputData) {
 			return Object.assign({
-				KOMCardID: 'charlie',
-				KOMCardDeckID: 'alfa',
-				KOMCardFrontText: 'delta',
-				KOMCardRearText: 'echo',
-				KOMCardCreationDate: new Date('2019-04-13T10:52:36Z'),
-				KOMCardModificationDate: new Date('2019-04-13T10:52:36Z'),
+				KOMCardID: Math.random().toString(),
+				KOMCardDeckID: Math.random().toString(),
+				KOMCardFrontText: Math.random().toString(),
+				KOMCardRearText: Math.random().toString(),
+				KOMCardCreationDate: new Date(),
+				KOMCardModificationDate: new Date(),
 			}, inputData);
 		},
 
-		StubSpacingObjectValid(inputData) {
+		StubSpacingObjectValid(inputData, direction, cardID) {
 			return Object.assign({
-				KOMSpacingID: 'bravo-forward',
+				KOMSpacingID: (cardID || Math.random().toString()) + '-' + (direction || uRandomElement(KOMSpacing.KOMSpacingLabelBackward())),
 				KOMSpacingChronicles: [],
 			}, inputData);
 		},
@@ -94,8 +96,8 @@ global.FileReader = require('filereader');
 
 		StubSettingObjectValid(inputData = {}) {
 			return Object.assign({
-				KOMSettingKey: 'alfa',
-				KOMSettingValue: 'bravo',
+				KOMSettingKey: Math.random().toString(),
+				KOMSettingValue: Math.random().toString(),
 			}, inputData);
 		},
 

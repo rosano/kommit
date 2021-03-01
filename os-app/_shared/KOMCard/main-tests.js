@@ -261,7 +261,8 @@ describe('KOMCardFolderPath', function test_KOMCardFolderPath() {
 describe('KOMCardObjectPath', function test_KOMCardObjectPath() {
 
 	it('returns string', function () {
-		deepEqual(mod.KOMCardObjectPath(StubCardObjectValid()), mod.KOMCardFolderPath(StubCardObjectValid()) + 'main');
+		const item = StubCardObjectValid();
+		deepEqual(mod.KOMCardObjectPath(item), mod.KOMCardFolderPath(item) + 'main');
 	});
 
 });

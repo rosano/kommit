@@ -2,6 +2,8 @@ const { throws, rejects, deepEqual } = require('assert');
 
 const mod = require('./main.js').default;
 
+const KOMSpacing = require('../KOMSpacing/main.js').default;
+
 describe('KOMTransportImport', function test_KOMTransportImport() {
 
 	it('throws if not array', function () {
@@ -210,7 +212,7 @@ describe('KOMTransportExport', function test_KOMTransportExport() {
 			const card = await ZDRTestingWrap.App.KOMCard.KOMCardCreate(StubCardObject(), deck);
 			const spacing = await ZDRTestingWrap.App.KOMSpacing.KOMSpacingWrite(StubSpacingObjectValid({
 				KOMSpacingChronicles: [StubChronicleObjectValid()],
-			}), card);
+			}, KOMSpacing.KOMSpacingLabelForward()), card);
 
 			deepEqual((await ZDRTestingWrap.App.KOMTransport.KOMTransportExport([deck]))[0].$KOMDeckCards[0].$KOMCardSpacingForward, spacing);
 		});
@@ -223,9 +225,8 @@ describe('KOMTransportExport', function test_KOMTransportExport() {
 			const deck = StubDeckObjectValid();
 			const card = await ZDRTestingWrap.App.KOMCard.KOMCardCreate(StubCardObject(), deck);
 			const spacing = await ZDRTestingWrap.App.KOMSpacing.KOMSpacingWrite(StubSpacingObjectValid({
-				KOMSpacingID: 'alfa-backward',
 				KOMSpacingChronicles: [StubChronicleObjectValid()],
-			}), card);
+			}, KOMSpacing.KOMSpacingLabelBackward()), card);
 
 			deepEqual((await ZDRTestingWrap.App.KOMTransport.KOMTransportExport([deck]))[0].$KOMDeckCards[0].$KOMCardSpacingBackward, spacing);
 		});

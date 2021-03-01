@@ -341,13 +341,11 @@ describe('KOMSpacingIsBackward', function test_KOMSpacingIsBackward() {
 	});
 
 	it('returns true if backward', function () {
-		deepEqual(mod.KOMSpacingIsBackward(StubSpacingObjectValid({
-			KOMSpacingID: 'bravo-backward',
-		})), true);
+		deepEqual(mod.KOMSpacingIsBackward(StubSpacingObjectValid({}, mod.KOMSpacingLabelBackward())), true);
 	});
 
 	it('returns false', function () {
-		deepEqual(mod.KOMSpacingIsBackward(StubSpacingObjectValid()), false);
+		deepEqual(mod.KOMSpacingIsBackward(StubSpacingObjectValid({}, mod.KOMSpacingLabelForward())), false);
 	});
 
 });
@@ -703,21 +701,25 @@ describe('KOMSpacingWrite', function test_KOMSpacingWrite() {
 
 	context('relations', function () {
 
+		const card = StubCardObjectValid();
 		const memory = StubSpacingObjectValid({
+			KOMSpacingID: card.KOMCardID + '-forward',
 			$alfa: 'bravo',
 		});
 		const item = {};
 
 		before(async function () {
-			item.outputData = await ZDRTestingWrap.App.KOMSpacing.KOMSpacingWrite(memory, StubCardObjectValid());
+			item.outputData = await ZDRTestingWrap.App.KOMSpacing.KOMSpacingWrite(memory, card);
 		});
 
 		before(async function () {
-			item.storage = (await ZDRTestingWrap.App.KOMSpacing.KOMSpacingList(StubCardObjectValid())).KOMCardSpacingForward;
+			item.storage = (await ZDRTestingWrap.App.KOMSpacing.KOMSpacingList(card)).KOMCardSpacingForward;
 		});
 
 		it('excludes from storage', function () {
-			deepEqual(item.storage, StubSpacingObjectValid());
+			deepEqual(item.storage, StubSpacingObjectValid({
+				KOMSpacingID: memory.KOMSpacingID,
+			}));
 		});
 
 		it('includes in outputData', function () {
@@ -751,28 +753,31 @@ describe('KOMSpacingList', function test_KOMSpacingList() {
 	});
 
 	it('returns existing KOMSpacings forward', async function () {
+		const card = StubCardObjectValid();
 		const item = StubSpacingObjectValid({
-			KOMSpacingID: Math.random().toString() + '-' + mod.KOMSpacingLabelForward(),
+			KOMSpacingID: card.KOMCardID + '-' + mod.KOMSpacingLabelForward(),
 			KOMSpacingDueDate: new Date(),
 		});
 
-		await ZDRTestingWrap.App.KOMSpacing.KOMSpacingWrite(item, StubCardObjectValid());
+		await ZDRTestingWrap.App.KOMSpacing.KOMSpacingWrite(item, card);
 
-		deepEqual((await ZDRTestingWrap.App.KOMSpacing.KOMSpacingList(StubCardObjectValid())).KOMCardSpacingForward, item);
+		deepEqual((await ZDRTestingWrap.App.KOMSpacing.KOMSpacingList(card)).KOMCardSpacingForward, item);
 	});
 
 	it('returns existing KOMSpacings backward', async function () {
+		const card = StubCardObjectValid();
 		const item = StubSpacingObjectValid({
 			KOMSpacingID: 'alfa-' + mod.KOMSpacingLabelBackward(),
 			KOMSpacingDueDate: new Date(),
 		});
 
-		await ZDRTestingWrap.App.KOMSpacing.KOMSpacingWrite(item, StubCardObjectValid());
+		await ZDRTestingWrap.App.KOMSpacing.KOMSpacingWrite(item, card);
 
-		deepEqual((await ZDRTestingWrap.App.KOMSpacing.KOMSpacingList(StubCardObjectValid())).KOMCardSpacingBackward, item);
+		deepEqual((await ZDRTestingWrap.App.KOMSpacing.KOMSpacingList(card)).KOMCardSpacingBackward, item);
 	});
 
 	it('parses KOMSpacingChronicles dates', async function () {
+		const card = StubCardObjectValid();
 		const item = StubSpacingObjectValid({
 			KOMSpacingID: 'alfa-' + mod.KOMSpacingLabelBackward(),
 			KOMSpacingDueDate: new Date(),
@@ -784,9 +789,9 @@ describe('KOMSpacingList', function test_KOMSpacingList() {
 			}]
 		});
 
-		await ZDRTestingWrap.App.KOMSpacing.KOMSpacingWrite(item, StubCardObjectValid());
+		await ZDRTestingWrap.App.KOMSpacing.KOMSpacingWrite(item, card);
 
-		deepEqual((await ZDRTestingWrap.App.KOMSpacing.KOMSpacingList(StubCardObjectValid())).KOMCardSpacingBackward, item);
+		deepEqual((await ZDRTestingWrap.App.KOMSpacing.KOMSpacingList(card)).KOMCardSpacingBackward, item);
 	});
 
 });
