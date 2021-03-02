@@ -265,15 +265,7 @@ export default Object.assign(mod, {
 				throw new Error('KOMErrorInputNotValid');
 			}
 
-			await this.App.ZDRStorageWriteFile(mod.KOMCardSideAudioPath(param1, param2), typeof global !== 'undefined' && global.ZDRTestingWrap ? param3 : await new Promise(function (res, rej) {
-					const reader = new FileReader();
-
-					reader.onload = function () {
-						res(reader.result);
-					};
-
-					reader.readAsArrayBuffer(param3);
-				}), param3.type);
+			await this.App.ZDRStorageWriteFile(mod.KOMCardSideAudioPath(param1, param2), param3, param3.type);
 
 			return Object.assign(param1, {
 				[param2 === mod.KOMCardSideFront() ? 'KOMCardFrontAudio' : 'KOMCardRearAudio']: true,
