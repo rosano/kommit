@@ -334,8 +334,8 @@ const mod = {
 		mod._ValueCardSelected = mod._ValueCardSelected; // #purge-svelte-force-update
 	},
 
-	async KOMBrowseInfoAudioDispatchFetch (inputData) {
-		return await KOMBrowseStorageClient.App.KOMCard.KOMCardAudioFetch(mod._ValueCardSelected, inputData === 'KOMCardFrontAudio' ? KOMCard.KOMCardSideFront() : KOMCard.KOMCardSideRear());
+	KOMBrowseInfoAudioDispatchFetch (inputData) {
+		return KOMBrowseStorageClient.App.KOMCard.KOMCardAudioFetch(mod._ValueCardSelected, inputData === 'KOMCardFrontAudio' ? KOMCard.KOMCardSideFront() : KOMCard.KOMCardSideRear());
 	},
 
 	KOMBrowseInfoDispatchDebug (inputData) {
