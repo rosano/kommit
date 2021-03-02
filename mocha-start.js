@@ -26,8 +26,8 @@ global.FileReader = require('filereader');
 		});
 	});
 
-	beforeEach(async function() {
-		return Promise.all((await ZDRTestingWrap.App.ZDRStoragePathsRecursive('/')).map(ZDRTestingWrap.App.ZDRStorageDeleteFile));
+	beforeEach(function() {
+		return ZDRTestingWrap.App.ZDRStorageDeleteFolderRecursive('');
 	});
 })();
 

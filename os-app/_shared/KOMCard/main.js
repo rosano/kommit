@@ -247,7 +247,7 @@ export default Object.assign(mod, {
 				throw new Error('KOMErrorInputNotValid');
 			}
 
-			await Promise.all((await this.App.ZDRStoragePathsRecursive(mod.KOMCardFolderPath(inputData))).map(this.App.ZDRStorageDeleteFile));
+			await this.App.ZDRStorageDeleteFolderRecursive(mod.KOMCardFolderPath(inputData));
 
 			return inputData;
 		},
