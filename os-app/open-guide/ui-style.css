@@ -19,3 +19,7 @@ body {
 	width: 20px;
 	height: 10px;
 }
+
+table:not(:first-of-type) td:first-child {
+	width: 50%;
+}
