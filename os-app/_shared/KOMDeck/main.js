@@ -169,7 +169,7 @@ export default Object.assign(mod, {
 
 		async KOMDeckList () {
 			const _this = this;
-			return (await Promise.all((await _this.App.ZDRStoragePaths(mod.KOMDeckDirectory() + '/')).map(function (e) {
+			return (await Promise.all((await _this.App.ZDRStoragePaths(mod.KOMDeckDirectory())).map(function (e) {
 				return _this.App.ZDRStorageReadObject(mod.KOMDeckDirectory() + '/' + e + 'main');
 			}))).filter(function (e) {
 				return !!e;
