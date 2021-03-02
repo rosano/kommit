@@ -207,6 +207,7 @@ Counting the number of cards based on its state.
 | Launcher | `Alt+Enter` |
 
 | Global (when storage is connected) ||
+:--- | ---
 | `OLSKRemoteStorageLauncherItemCopyLoginLinkText` | Launcher |
 | `OLSKFundLauncherItemEnterClueText` | Launcher |
 | `OLSKFundLauncherItemClearClueText` | Launcher |
