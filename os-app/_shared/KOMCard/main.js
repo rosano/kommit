@@ -247,7 +247,7 @@ export default Object.assign(mod, {
 				throw new Error('KOMErrorInputNotValid');
 			}
 
-			await Promise.all((await this.App.ZDRStoragePathsRecursive(mod.KOMCardFolderPath(inputData))).map(this.App.ZDRStorageDelete));
+			await Promise.all((await this.App.ZDRStoragePathsRecursive(mod.KOMCardFolderPath(inputData))).map(this.App.ZDRStorageDeleteFile));
 
 			return inputData;
 		},
@@ -312,7 +312,7 @@ export default Object.assign(mod, {
 				throw new Error('KOMErrorInputNotValid');
 			}
 
-			await this.App.ZDRStorageDelete(mod.KOMCardSideAudioPath(param1, param2));
+			await this.App.ZDRStorageDeleteFile(mod.KOMCardSideAudioPath(param1, param2));
 
 			delete param1[param2 === mod.KOMCardSideFront() ? 'KOMCardFrontAudio' : 'KOMCardRearAudio'];
 

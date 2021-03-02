@@ -685,12 +685,12 @@ describe.skip('KOMCardAudioClear', function test_KOMCardAudioClear() {
 
 		const side = mod.KOMCardSideFront();
 
-		it('calls ZDRStorageDelete', async function () {
+		it('calls ZDRStorageDeleteFile', async function () {
 			const card = StubCardObjectValid();
 			deepEqual(uCapture(function (capture) {
 				const fake = Object.assign({}, ZDRTestingWrap);
 
-				fake.App.ZDRStorageDelete = capture;
+				fake.App.ZDRStorageDeleteFile = capture;
 				
 				ZDRTestingWrap.App.KOMCard.KOMCardAudioClear.bind(fake)(card, side);
 			}), [mod.KOMCardSideAudioPath(card, side)]);
@@ -708,12 +708,12 @@ describe.skip('KOMCardAudioClear', function test_KOMCardAudioClear() {
 
 		const side = mod.KOMCardSideRear();
 
-		it('calls ZDRStorageDelete', async function () {
+		it('calls ZDRStorageDeleteFile', async function () {
 			const card = StubCardObjectValid();
 			deepEqual(uCapture(function (capture) {
 				const fake = Object.assign({}, ZDRTestingWrap);
 
-				fake.App.ZDRStorageDelete = capture;
+				fake.App.ZDRStorageDeleteFile = capture;
 				
 				ZDRTestingWrap.App.KOMCard.KOMCardAudioClear.bind(fake)(card, side);
 			}), [mod.KOMCardSideAudioPath(card, side)]);
