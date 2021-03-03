@@ -1,4 +1,4 @@
-const { throws, rejects, deepEqual } = require('assert');
+const { throws, rejects, deepEqual, notStrictEqual } = require('assert');
 
 const mod = require('./main.js').default;
 
@@ -182,7 +182,7 @@ describe('KOMTransportExport', function test_KOMTransportExport() {
 
 	it('copies input', async function () {
 		const item = StubDeckObjectValid();
-		deepEqual((await ZDRTestingWrap.App.KOMTransport.KOMTransportExport([item]))[0] !== item, true);
+		notStrictEqual((await ZDRTestingWrap.App.KOMTransport.KOMTransportExport([item]))[0], item);
 	});
 
 	it('strips dynamic attributes', async function () {
