@@ -3,24 +3,6 @@ const uniqueID = factory();
 import OLSKRemoteStorage from 'OLSKRemoteStorage';
 
 const mod = {
-	
-	KOMDeckDirectory () {
-		return 'kom_decks';
-	},
-
-	KOMDeckFolderPath (inputData) {
-		return `${ mod.KOMDeckDirectory() }/${ inputData.KOMDeckID }/`;
-	},
-
-	KOMDeckObjectPath (inputData) {
-		return mod.KOMDeckFolderPath(inputData) + 'main';
-	},
-
-	KOMDeckStub (inputData) {
-		return {
-			KOMDeckID: inputData.split('/main').shift().split('/').pop(),
-		};
-	},
 
 	KOMDeckErrors (inputData, options = {}) {
 		if (typeof inputData !== 'object' || inputData === null) {
@@ -132,6 +114,24 @@ const mod = {
 		}
 
 		return Object.entries(errors).length ? errors : null;
+	},
+	
+	KOMDeckDirectory () {
+		return 'kom_decks';
+	},
+
+	KOMDeckFolderPath (inputData) {
+		return `${ mod.KOMDeckDirectory() }/${ inputData.KOMDeckID }/`;
+	},
+
+	KOMDeckObjectPath (inputData) {
+		return mod.KOMDeckFolderPath(inputData) + 'main';
+	},
+
+	KOMDeckStub (inputData) {
+		return {
+			KOMDeckID: inputData.split('/main').shift().split('/').pop(),
+		};
 	},
 
 };
