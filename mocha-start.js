@@ -77,7 +77,7 @@ global.FileReader = require('filereader');
 		},
 
 		StubSpacingObjectHistorical(inputData) {
-			return Object.assign(StubSpacingObjectValid(), {
+			return StubSpacingObjectValid({
 				KOMSpacingChronicles: [StubChronicleObjectValid(inputData || new Date(Date.now() - 1000 * 60 * 60 * 24 * 3))],
 				KOMSpacingDueDate: new Date(),
 			});
@@ -100,11 +100,11 @@ global.FileReader = require('filereader');
 			}, inputData);
 		},
 
-		StubReviewChartElementDateBarTableRowDataObjectValid() {
-			return {
+		StubReviewChartElementDateBarTableRowDataObjectValid (inputData) {
+			return Object.assign({
 				KOMReviewChartElementDateBarTableRowDataKey: 'alfa',
 				KOMReviewChartElementDateBarTableRowDataValues: [1, 2, 3],
-			};
+			}, inputData);
 		},
 
 	}).map(function (e) {

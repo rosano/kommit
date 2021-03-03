@@ -11,7 +11,7 @@ const mod = {
 			errors.KOMSettingKey = [
 				'KOMErrorNotString',
 			];
-		} else if (inputData.KOMSettingKey.trim() === '') {
+		} else if (!inputData.KOMSettingKey.trim()) {
 			errors.KOMSettingKey = [
 				'KOMErrorNotFilled',
 			];

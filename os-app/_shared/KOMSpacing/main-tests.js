@@ -496,7 +496,7 @@ describe('KOMSpacingFilterUnique', function test_KOMSpacingFilterUnique() {
 
 	it('excludes duplicate cards', function () {
 		const item1 = StubSpacingObjectValid();
-		const item2 = Object.assign(StubSpacingObjectValid(), {
+		const item2 = StubSpacingObjectValid({
 			KOMSpacingID: 'charlie-forward',
 		});
 
@@ -538,7 +538,7 @@ describe('KOMSpacingByStatus', function test_KOMSpacingByStatus() {
 	});
 
 	it('groups developing', function () {
-		const item = Object.assign(StubSpacingObjectValid(), {
+		const item = StubSpacingObjectValid({
 			KOMSpacingInterval: 1,
 			KOMSpacingDueDate: new Date(),
 		});
@@ -549,7 +549,7 @@ describe('KOMSpacingByStatus', function test_KOMSpacingByStatus() {
 	});
 
 	it('groups mature', function () {
-		const item = Object.assign(StubSpacingObjectValid(), {
+		const item = StubSpacingObjectValid({
 			KOMSpacingInterval: mod.KOMSpacingMatureThreshold(),
 			KOMSpacingDueDate: new Date(),
 		});
@@ -560,7 +560,7 @@ describe('KOMSpacingByStatus', function test_KOMSpacingByStatus() {
 	});
 
 	it('groups retired', function () {
-		const item = Object.assign(StubSpacingObjectValid(), {
+		const item = StubSpacingObjectValid({
 			$KOMSpacingCard: StubCardObjectValid({
 				KOMCardIsRetired: true,
 			}),

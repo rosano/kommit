@@ -11,19 +11,19 @@ describe('KOMReviewChartElementDateBarTableRowIsValid', function test_KOMReviewC
 	});
 
 	it('returns false if KOMReviewChartElementDateBarTableRowDataKey not string', function () {
-		deepEqual(mod.KOMReviewChartElementDateBarTableRowIsValid(Object.assign(StubReviewChartElementDateBarTableRowDataObjectValid(), {
+		deepEqual(mod.KOMReviewChartElementDateBarTableRowIsValid(StubReviewChartElementDateBarTableRowDataObjectValid({
 			KOMReviewChartElementDateBarTableRowDataKey: null,
 		})), false);
 	});
 
 	it('returns false if KOMReviewChartElementDateBarTableRowDataValues not array', function () {
-		deepEqual(mod.KOMReviewChartElementDateBarTableRowIsValid(Object.assign(StubReviewChartElementDateBarTableRowDataObjectValid(), {
+		deepEqual(mod.KOMReviewChartElementDateBarTableRowIsValid(StubReviewChartElementDateBarTableRowDataObjectValid({
 			KOMReviewChartElementDateBarTableRowDataValues: null,
 		})), false);
 	});
 
 	it('returns false if KOMReviewChartElementDateBarTableRowDataValues empty', function () {
-		deepEqual(mod.KOMReviewChartElementDateBarTableRowIsValid(Object.assign(StubReviewChartElementDateBarTableRowDataObjectValid(), {
+		deepEqual(mod.KOMReviewChartElementDateBarTableRowIsValid(StubReviewChartElementDateBarTableRowDataObjectValid({
 			KOMReviewChartElementDateBarTableRowDataValues: [],
 		})), false);
 	});

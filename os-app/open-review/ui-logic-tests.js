@@ -744,26 +744,26 @@ describe('KOMReviewGeneralUpcomingFilter', function test_KOMReviewGeneralUpcomin
 	});
 
 	it('excludes if before today', function () {
-		deepEqual(mod.KOMReviewGeneralUpcomingFilter([Object.assign(StubSpacingObjectValid(), {
+		deepEqual(mod.KOMReviewGeneralUpcomingFilter([StubSpacingObjectValid({
 			KOMSpacingDueDate: uGroupingDate(-1),
 		})]), []);
 	});
 
 	it('excludes if after KOMReviewGeneralTableDays', function () {
-		deepEqual(mod.KOMReviewGeneralUpcomingFilter([Object.assign(StubSpacingObjectValid(), {
+		deepEqual(mod.KOMReviewGeneralUpcomingFilter([StubSpacingObjectValid({
 			KOMSpacingDueDate: uGroupingDate(1000 * 60 * 60 * 24 * KOMReviewGeneral.KOMReviewGeneralTableDays()),
 		})]), []);
 	});
 
 	it('includes if today', function () {
-		const item = Object.assign(StubSpacingObjectValid(), {
+		const item = StubSpacingObjectValid({
 			KOMSpacingDueDate: uGroupingDate(),
 		});
 		deepEqual(mod.KOMReviewGeneralUpcomingFilter([item]), [item]);
 	});
 
 	it('includes if KOMReviewGeneralTableDays', function () {
-		const item = Object.assign(StubSpacingObjectValid(), {
+		const item = StubSpacingObjectValid({
 			KOMSpacingDueDate: uGroupingDate(1000 * 60 * 60 * 24 * KOMReviewGeneral.KOMReviewGeneralTableDays() - 1),
 		});
 		deepEqual(mod.KOMReviewGeneralUpcomingFilter([item]), [item]);
@@ -784,27 +784,27 @@ describe('KOMReviewGeneralUpcomingGroupByDate', function test_KOMReviewGeneralUp
 	});
 
 	it('groups by date if single', function () {
-		const item = Object.assign(StubSpacingObjectValid(), {
+		const item = StubSpacingObjectValid({
 			KOMSpacingDueDate: new Date(),
 		});
 		deepEqual(mod.KOMReviewGeneralUpcomingGroupByDate([item]), uGroup(item.KOMSpacingDueDate, item));
 	});
 
 	it('groups by date if multiple', function () {
-		const item1 = Object.assign(StubSpacingObjectValid(), {
+		const item1 = StubSpacingObjectValid({
 			KOMSpacingDueDate: new Date('2019-04-12T00:00:00Z'),
 		});
-		const item2 = Object.assign(StubSpacingObjectValid(), {
+		const item2 = StubSpacingObjectValid({
 			KOMSpacingDueDate: new Date('2019-04-13T00:00:00Z'),
 		});
 		deepEqual(mod.KOMReviewGeneralUpcomingGroupByDate([item1, item2]), Object.assign(uGroup(item1.KOMSpacingDueDate, item1), uGroup(item2.KOMSpacingDueDate, item2)));
 	});
 
 	it('groups by date if duplicate', function () {
-		const item1 = Object.assign(StubSpacingObjectValid(), {
+		const item1 = StubSpacingObjectValid({
 			KOMSpacingDueDate: new Date(),
 		});
-		const item2 = Object.assign(StubSpacingObjectValid(), {
+		const item2 = StubSpacingObjectValid({
 			KOMSpacingDueDate: new Date(),
 		});
 		deepEqual(mod.KOMReviewGeneralUpcomingGroupByDate([item1, item2]), uGroup(item1.KOMSpacingDueDate, [item1, item2]));

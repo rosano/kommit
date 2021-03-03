@@ -30,7 +30,7 @@ describe('KOMReviewChartElementDateBarTableRow_Misc', function () {
 		
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
-				KOMReviewChartElementDateBarTableRowData: JSON.stringify(Object.assign(StubReviewChartElementDateBarTableRowDataObjectValid(), {
+				KOMReviewChartElementDateBarTableRowData: JSON.stringify(StubReviewChartElementDateBarTableRowDataObjectValid({
 					KOMReviewChartElementDateBarTableRowDataValues: [0, 0, 0],
 				})),
 			});

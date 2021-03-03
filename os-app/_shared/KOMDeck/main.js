@@ -15,7 +15,7 @@ const mod = {
 			errors.KOMDeckID = [
 				'KOMErrorNotString',
 			];
-		} else if (inputData.KOMDeckID.trim() === '') {
+		} else if (!inputData.KOMDeckID.trim()) {
 			errors.KOMDeckID = [
 				'KOMErrorNotFilled',
 			];

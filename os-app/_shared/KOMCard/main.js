@@ -17,7 +17,7 @@ const mod = {
 			errors.KOMCardID = [
 				'KOMErrorNotString',
 			];
-		} else if (inputData.KOMCardID.trim() === '') {
+		} else if (!inputData.KOMCardID.trim()) {
 			errors.KOMCardID = [
 				'KOMErrorNotFilled',
 			];
@@ -27,7 +27,7 @@ const mod = {
 			errors.KOMCardDeckID = [
 				'KOMErrorNotString',
 			];
-		} else if (inputData.KOMCardDeckID.trim() === '') {
+		} else if (!inputData.KOMCardDeckID.trim()) {
 			errors.KOMCardDeckID = [
 				'KOMErrorNotFilled',
 			];
