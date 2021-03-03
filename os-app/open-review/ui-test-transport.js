@@ -2,11 +2,11 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 describe('KOMReview_Transport', function () {	
 
-	const KOMDeckName = Math.random().toString();
-
-	const json = [];
+	const json = {};
 
 	describe('KOMReviewLauncherItemImportJSON', function test_KOMReviewLauncherItemImportJSON() {
+
+		const KOMDeckName = Math.random().toString();
 
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute);
@@ -26,33 +26,39 @@ describe('KOMReview_Transport', function () {
 			}, function (dialog) {
 				const KOMDeckID = Math.random().toString();
 
-				dialog.response = JSON.stringify([StubDeckObjectValid({
-					KOMDeckName,
-					KOMDeckID,
-					$KOMDeckCards: [StubCardObjectValid({
-						KOMCardID: Math.random().toString(),
-						KOMCardDeckID: KOMDeckID,
-						$KOMCardSpacingForward: StubSpacingObjectValid(),
-						$KOMCardSpacingBackward: StubSpacingObjectValid({
-							KOMSpacingDueDate: new Date(),
-							// KOMSpacingChronicles: [StubChronicleObjectValid()],
+				dialog.response = JSON.stringify({
+					KOMDeck: [StubDeckObjectValid({
+						KOMDeckName,
+						KOMDeckID,
+						$KOMDeckCards: [StubCardObjectValid({
+							KOMCardID: Math.random().toString(),
+							KOMCardDeckID: KOMDeckID,
+							$KOMCardSpacingForward: StubSpacingObjectValid(),
+							$KOMCardSpacingBackward: StubSpacingObjectValid({
+								KOMSpacingDueDate: new Date(),
+								// KOMSpacingChronicles: [StubChronicleObjectValid()],
+							}),
+						}), StubCardObjectValid({
+							KOMCardID: Math.random().toString(),
+							KOMCardDeckID: KOMDeckID,
+							KOMCardIsRetired: true,
+							$KOMCardSpacingForward: StubSpacingObjectHistorical(),
+							$KOMCardSpacingBackward: StubSpacingObjectHistorical(),
+						})].map(function (card) {
+							['$KOMCardSpacingForward', '$KOMCardSpacingBackward'].forEach(function (e) {
+								card[e].KOMSpacingID = [card.KOMCardID, e === '$KOMCardSpacingForward' ? 'forward' : 'backward'].join('-');
+							});
+
+							return card;
 						}),
-					}), StubCardObjectValid({
-						KOMCardID: Math.random().toString(),
-						KOMCardDeckID: KOMDeckID,
-						KOMCardIsRetired: true,
-						$KOMCardSpacingForward: StubSpacingObjectHistorical(),
-						$KOMCardSpacingBackward: StubSpacingObjectHistorical(),
-					})].map(function (card) {
-						['$KOMCardSpacingForward', '$KOMCardSpacingBackward'].forEach(function (e) {
-							card[e].KOMSpacingID = [card.KOMCardID, e === '$KOMCardSpacingForward' ? 'forward' : 'backward'].join('-');
-						});
+					})],
+					KOMSetting: [StubSettingObjectValid({
+						KOMSettingKey: Math.random().toString(),
+						KOMSettingValue: Math.random().toString(),
+					})],
+				});
 
-						return card;
-					}),
-				})]);
-
-				json.push(dialog.response);
+				Object.assign(json, JSON.parse(dialog.response));
 
 				return dialog;
 			});
@@ -94,7 +100,7 @@ describe('KOMReview_Transport', function () {
     		OLSKDownloadData: JSON.parse(response.OLSKDownloadData),
     	}), {
     		OLSKDownloadName: `${ browser.window.location.hostname }-${ date }.json`,
-    		OLSKDownloadData: JSON.parse(json.pop()),
+    		OLSKDownloadData: json,
     	});
     });
 
@@ -140,15 +146,18 @@ describe('KOMReview_Transport', function () {
     	}));
 
     	const date = response.OLSKDownloadName.split('-').pop().split('.').shift();
-    	const item = JSON.parse(response.OLSKDownloadData).pop();
+    	const item = JSON.parse(response.OLSKDownloadData).KOMDeck.shift();
 
     	browser.assert.deepEqual(Object.assign(response, {
     		OLSKDownloadData: JSON.parse(response.OLSKDownloadData),
     	}), {
     		OLSKDownloadName: `${ browser.window.location.hostname }-${ date }.json`,
-    		OLSKDownloadData: [StubDeckObjectValid(Object.assign(item, {
-    			KOMDeckName,
-    		}))],
+    		OLSKDownloadData: {
+    			KOMDeck: [StubDeckObjectValid(Object.assign(item, {
+	    			KOMDeckName,
+	    		}))],
+	    		KOMSetting: [],
+    		},
     	});
     });
 

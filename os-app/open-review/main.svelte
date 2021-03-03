@@ -112,8 +112,11 @@ const mod = {
 		};
 	},
 
-	async DataExportJSON (inputData) {
-		return JSON.stringify(await mod._ValueZDRWrap.App.KOMTransport.KOMTransportExport(inputData));
+	async DataExportJSON (KOMDeck) {
+		return JSON.stringify(await mod._ValueZDRWrap.App.KOMTransport.KOMTransportExport({
+			KOMDeck,
+			KOMSetting: await mod._ValueZDRWrap.App.KOMSetting.KOMSettingList(),
+		}));
 	},
 
 	DataExportBasename () {
@@ -560,7 +563,9 @@ const mod = {
 
 		try {
 			await mod._ValueZDRWrap.App.KOMTransport.KOMTransportImport(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(JSON.parse(inputData)));
+			
 			await mod.SetupValueDecksAll();
+			await mod.SetupSettingsAll();
 		} catch (e) {
 			window.alert(OLSKLocalized('KOMReviewLauncherItemImportJSONErrorNotValidAlertText'));
 		}
@@ -1117,7 +1122,7 @@ const mod = {
 	async SetupEverything () {
 		await mod.SetupStorageClient();
 
-		await mod.SetupValueDeckCachingEnabled();
+		await mod.SetupSettingsAll();
 
 		mod.SetupValueCacheDeckFiguresMap();
 
@@ -1175,7 +1180,7 @@ const mod = {
 		mod._ValueZDRWrap = await mod.DataStorageClient(zerodatawrap.ZDRPreferenceProtocol(zerodatawrap.ZDRProtocolRemoteStorage()));
 	},
 
-	async SetupValueDeckCachingEnabled () {
+	async SetupSettingsAll () {
 		mod._ValueDeckCachingEnabled = await mod.DataSettingValue('KOMSettingDeckCachingEnabled') === 'true';
 	},
 
