@@ -334,7 +334,7 @@ export default Object.assign(mod, {
 				throw new Error('KOMErrorInputNotValid');
 			}
 
-			const result = await this.App.ZDRStorageListObjects(KOMCard.KOMCardFolderPath(inputData));
+			const result = await this.App.ZDRStorageListingObjects(KOMCard.KOMCardFolderPath(inputData));
 
 			return {
 				KOMCardSpacingForward: OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(result['spacing-forward'] || {
