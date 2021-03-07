@@ -1194,6 +1194,20 @@ const mod = {
 	},
 
 	async SetupValueDecksAll() {
+		if (zerodatawrap.ZDRPreferenceProtocolMigrate()) {
+			const client = await mod.DataStorageClient(zerodatawrap.ZDRPreferenceProtocolMigrate());
+
+			await Promise.all((await client.App.ZDRStoragePathsRecursive('/')).map(async function (e) {
+				const item = await client.App.ZDRStorageReadFile(e);
+				await mod._ValueZDRWrap.App.ZDRStorageWriteFile(e, typeof item !== 'string' ? new Blob([item]) : item, typeof item !== 'string' ? 'audio/mpeg' : 'application/json');
+				await client.App.ZDRStorageDeleteFile(e);
+			}));
+
+			zerodatawrap.ZDRPreferenceProtocolMigrateClear();
+
+			client.ZDRCloudDisconnect();
+		};
+
 		mod.ValueDecksAll(await Promise.all((await mod._ValueZDRWrap.App.KOMDeck.KOMDeckList()).map(async function (deck) {
 			if (!mod._ValueCacheDeckFiguresMap[deck.KOMDeckID]) {
 				await mod.ReactDeckFigures(deck);
