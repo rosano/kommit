@@ -178,7 +178,7 @@ const mod = {
 							return;
 						}
 
-						console.log(Object.keys(await mod._ValueZDRWrap.ZDRStorageClient().kommit.__HOTFIX.__OLSKRemoteStorageHotfixPlungeData()));
+						// console.log(Object.keys(await mod._ValueZDRWrap.ZDRStorageClient().kommit.__HOTFIX.__OLSKRemoteStorageHotfixPlungeData()));
 
 						mod.ControlDeckSelect(null);
 
