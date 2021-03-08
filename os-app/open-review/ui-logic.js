@@ -62,7 +62,7 @@ const mod = {
 		];
 	},
 
-	KOMReviewModelErrors(inputData) {
+	KOMReviewObjectErrors(inputData) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -101,7 +101,7 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		if (mod.KOMReviewModelErrors(param2)) {
+		if (mod.KOMReviewObjectErrors(param2)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 

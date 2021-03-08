@@ -200,16 +200,16 @@ describe('KOMReviewSchemes', function test_KOMReviewSchemes() {
 
 });
 
-describe('KOMReviewModelErrors', function test_KOMReviewModelErrors() {
+describe('KOMReviewObjectErrors', function test_KOMReviewObjectErrors() {
 
 	it('throws error if not object', function () {
 		throws(function () {
-			mod.KOMReviewModelErrors(null);
+			mod.KOMReviewObjectErrors(null);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns object if KOMReviewScheme not valid', function () {
-		deepEqual(mod.KOMReviewModelErrors(Object.assign(kTesting.StubReviewObjectValid(), {
+		deepEqual(mod.KOMReviewObjectErrors(Object.assign(kTesting.StubReviewObjectValid(), {
 			KOMReviewScheme: 'alfa',
 		})), {
 			KOMReviewScheme: [
@@ -219,13 +219,13 @@ describe('KOMReviewModelErrors', function test_KOMReviewModelErrors() {
 	});
 
 	it('returns null', function () {
-		deepEqual(mod.KOMReviewModelErrors(kTesting.StubReviewObjectValid()), null);
+		deepEqual(mod.KOMReviewObjectErrors(kTesting.StubReviewObjectValid()), null);
 	});
 
 	context('KOMReviewMaxUnseenCards', function () {
 
 		it('returns object if not number', function () {
-			deepEqual(mod.KOMReviewModelErrors(Object.assign(kTesting.StubReviewObjectValid(), {
+			deepEqual(mod.KOMReviewObjectErrors(Object.assign(kTesting.StubReviewObjectValid(), {
 				KOMReviewMaxUnseenCards: '1',
 			})), {
 				KOMReviewMaxUnseenCards: [
@@ -235,7 +235,7 @@ describe('KOMReviewModelErrors', function test_KOMReviewModelErrors() {
 		});
 
 		it('returns object if 0', function () {
-			deepEqual(mod.KOMReviewModelErrors(Object.assign(kTesting.StubReviewObjectValid(), {
+			deepEqual(mod.KOMReviewObjectErrors(Object.assign(kTesting.StubReviewObjectValid(), {
 				KOMReviewMaxUnseenCards: 0,
 			})), {
 				KOMReviewMaxUnseenCards: [
@@ -245,7 +245,7 @@ describe('KOMReviewModelErrors', function test_KOMReviewModelErrors() {
 		});
 
 		it('returns object if negative', function () {
-			deepEqual(mod.KOMReviewModelErrors(Object.assign(kTesting.StubReviewObjectValid(), {
+			deepEqual(mod.KOMReviewObjectErrors(Object.assign(kTesting.StubReviewObjectValid(), {
 				KOMReviewMaxUnseenCards: -1,
 			})), {
 				KOMReviewMaxUnseenCards: [
@@ -255,7 +255,7 @@ describe('KOMReviewModelErrors', function test_KOMReviewModelErrors() {
 		});
 
 		it('returns object if KOMReviewScheme KOMReviewSchemeUnseen', function () {
-			deepEqual(mod.KOMReviewModelErrors(Object.assign(kTesting.StubReviewObjectValid(), {
+			deepEqual(mod.KOMReviewObjectErrors(Object.assign(kTesting.StubReviewObjectValid(), {
 				KOMReviewScheme: mod.KOMReviewSchemeUnseen(),
 			})), {
 				KOMReviewMaxUnseenCards: [
@@ -265,7 +265,7 @@ describe('KOMReviewModelErrors', function test_KOMReviewModelErrors() {
 		});
 
 		it('returns object if KOMReviewScheme KOMReviewSchemeMixed', function () {
-			deepEqual(mod.KOMReviewModelErrors(Object.assign(kTesting.StubReviewObjectValid(), {
+			deepEqual(mod.KOMReviewObjectErrors(Object.assign(kTesting.StubReviewObjectValid(), {
 				KOMReviewScheme: mod.KOMReviewSchemeMixed(),
 			})), {
 				KOMReviewMaxUnseenCards: [
@@ -275,7 +275,7 @@ describe('KOMReviewModelErrors', function test_KOMReviewModelErrors() {
 		});
 
 		it('returns null', function () {
-			deepEqual(mod.KOMReviewModelErrors(Object.assign(kTesting.StubReviewObjectValid(), {
+			deepEqual(mod.KOMReviewObjectErrors(Object.assign(kTesting.StubReviewObjectValid(), {
 				KOMReviewMaxUnseenCards: 1,
 			})), null);
 		});

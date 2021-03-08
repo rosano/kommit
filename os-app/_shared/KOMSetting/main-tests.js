@@ -2,16 +2,16 @@ const { rejects, throws, deepEqual } = require('assert');
 
 const mod = require('./main.js').default;
 
-describe('KOMSettingModelErrors', function test_KOMSettingModelErrors() {
+describe('KOMSettingErrors', function test_KOMSettingErrors() {
 
 	it('throws error if not object', function() {
 		throws(function() {
-			mod.KOMSettingModelErrors(null);
+			mod.KOMSettingErrors(null);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns object if KOMSettingKey not string', function() {
-		deepEqual(mod.KOMSettingModelErrors(StubSettingObjectValid({
+		deepEqual(mod.KOMSettingErrors(StubSettingObjectValid({
 			KOMSettingKey: null,
 		})), {
 			KOMSettingKey: [
@@ -21,7 +21,7 @@ describe('KOMSettingModelErrors', function test_KOMSettingModelErrors() {
 	});
 
 	it('returns object if KOMSettingKey not filled', function() {
-		deepEqual(mod.KOMSettingModelErrors(StubSettingObjectValid({
+		deepEqual(mod.KOMSettingErrors(StubSettingObjectValid({
 			KOMSettingKey: ' ',
 		})), {
 			KOMSettingKey: [
@@ -31,7 +31,7 @@ describe('KOMSettingModelErrors', function test_KOMSettingModelErrors() {
 	});
 
 	it('returns object if KOMSettingValue not string', function() {
-		deepEqual(mod.KOMSettingModelErrors(StubSettingObjectValid({
+		deepEqual(mod.KOMSettingErrors(StubSettingObjectValid({
 			KOMSettingValue: null,
 		})), {
 			KOMSettingValue: [
@@ -41,7 +41,7 @@ describe('KOMSettingModelErrors', function test_KOMSettingModelErrors() {
 	});
 
 	it('returns null', function() {
-		deepEqual(mod.KOMSettingModelErrors(StubSettingObjectValid()), null);
+		deepEqual(mod.KOMSettingErrors(StubSettingObjectValid()), null);
 	});
 
 });
@@ -93,7 +93,7 @@ describe('KOMSettingList', function test_KOMSettingActList() {
 describe('ZDRSchemaDispatchValidate', function () {
 
 	it('returns function', function () {
-		deepEqual(mod.ZDRSchemaDispatchValidate, mod.KOMSettingModelErrors);
+		deepEqual(mod.ZDRSchemaDispatchValidate, mod.KOMSettingErrors);
 	});
 
 });

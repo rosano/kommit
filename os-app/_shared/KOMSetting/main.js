@@ -1,6 +1,6 @@
 const mod = {
 
-	KOMSettingModelErrors (inputData, options = {}) {
+	KOMSettingErrors (inputData, options = {}) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -44,7 +44,7 @@ const mod = {
 
 export default Object.assign(mod, {
 	ZDRSchemaKey: 'KOMSetting',
-	ZDRSchemaDispatchValidate: mod.KOMSettingModelErrors,
+	ZDRSchemaDispatchValidate: mod.KOMSettingErrors,
 	ZDRSchemaPath: mod.KOMSettingPath,
 	ZDRSchemaStub: mod.KOMSettingStub,
 	ZDRSchemaMethods: {
