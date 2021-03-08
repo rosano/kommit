@@ -4,6 +4,7 @@ import OLSKString from 'OLSKString';
 const OLSKFormatted = OLSKString.OLSKStringFormatted;
 import { OLSK_SPEC_UI } from 'OLSKSpec';
 import OLSKRemoteStorage from 'OLSKRemoteStorage';
+import OLSKObject from 'OLSKObject';
 import OLSKServiceWorker from 'OLSKServiceWorker';
 import RemoteStorage from 'remotestoragejs';
 import KOMDeck from '../_shared/KOMDeck/main.js';
@@ -1171,6 +1172,7 @@ const mod = {
 			ZDRParamDispatchConnected: mod.ZDRParamDispatchConnected,
 			ZDRParamDispatchOnline: mod.ZDRParamDispatchOnline,
 			ZDRParamDispatchOffline: mod.ZDRParamDispatchOffline,
+			_ZDRParamDispatchJSONPreStringify: OLSKObject.OLSKObjectSafeCopy,
 			_ZDRParamDispatchJSONPostParse: OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse,
 		})
 	},
