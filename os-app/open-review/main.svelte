@@ -183,7 +183,7 @@ const mod = {
 
 						mod.ControlDeckSelect(null);
 
-						if (OLSK_SPEC_UI() && window.FakeOLSKConnected) {
+						if (OLSK_SPEC_UI()) {
 							window.FakeWindowLocationHref = 'reload';
 							return;
 						}
