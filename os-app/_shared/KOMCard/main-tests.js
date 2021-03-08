@@ -538,9 +538,9 @@ describe('KOMCardAudioCapture', function test_KOMCardAudioCapture() {
 	it('returns param1', async function () {
 		const item = StubCardObjectValid();
 
-		deepEqual(await ZDRTestingWrap.App.KOMCard.KOMCardAudioCapture(item, uRandomElement(mod.KOMCardSides()), {
+		strictEqual(await ZDRTestingWrap.App.KOMCard.KOMCardAudioCapture(item, uRandomElement(mod.KOMCardSides()), {
 			type: Math.random().toString(),
-		}) === item, true);
+		}), item);
 	});
 
 	context('KOMCardSideFront', function () {
@@ -674,7 +674,7 @@ describe.skip('KOMCardAudioClear', function test_KOMCardAudioClear() {
 		const side = uRandomElement(mod.KOMCardSides());
 		const item = await ZDRTestingWrap.App.KOMCard.KOMCardAudioCapture(StubCardObjectValid(), side, blob);
 
-		deepEqual(await ZDRTestingWrap.App.KOMCard.KOMCardAudioClear(item, side) === item, true);
+		strictEqual(await ZDRTestingWrap.App.KOMCard.KOMCardAudioClear(item, side), item);
 	});
 
 	context('KOMCardSideFront', function () {
