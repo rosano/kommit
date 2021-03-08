@@ -148,10 +148,10 @@ describe('KOMReview_Access', function () {
 
 	});
 
-	context('click OLSKAppToolbarStorageButton', function () {
+	context('click OLSKAppToolbarCloudButton', function () {
 
 		before(function () {
-			return browser.pressButton('.OLSKAppToolbarStorageButton');
+			return browser.pressButton('.OLSKAppToolbarCloudButton');
 		});
 
 		it('shows KOMReviewStorageToolbar', function () {

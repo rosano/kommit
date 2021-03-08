@@ -231,7 +231,7 @@ describe('KOMReview_Misc', function () {
 	describe('KOMReviewStorageToolbar', function test_KOMReviewStorageToolbar() {
 
 		before(function () {
-			return browser.pressButton('.OLSKAppToolbarStorageButton');
+			return browser.pressButton('.OLSKAppToolbarCloudButton');
 		});
 
 		it('classes OLSKToolbar', function () {

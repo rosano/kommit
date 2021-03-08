@@ -35,7 +35,7 @@ describe('KOMReview_Fund', function () {
 				context('cancel', function () {
 
 					before(function () {
-						return browser.pressButton('.OLSKAppToolbarStorageButton');
+						return browser.pressButton('.OLSKAppToolbarCloudButton');
 					});
 
 					before(function () {
@@ -354,7 +354,7 @@ describe('KOMReview_Fund', function () {
 		context('cancel', function () {
 
 			before(function () {
-				return browser.pressButton('.OLSKAppToolbarStorageButton');
+				return browser.pressButton('.OLSKAppToolbarCloudButton');
 			});
 
 			before(function () {
