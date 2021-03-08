@@ -242,11 +242,7 @@ describe('KOMCardDirectory', function test_KOMCardDirectory() {
 describe('KOMCardFolderPath', function test_KOMCardFolderPath() {
 
 	it('returns string', function() {
-		const item = {
-			KOMCardID: Math.random().toString(),
-			KOMCardDeckID: Math.random().toString(),
-			KOMCardCreationDate: new Date(),
-		};
+		const item = StubCardObjectValid();
 		deepEqual(mod.KOMCardFolderPath(item), [
 			KOMDeck.KOMDeckFolderPath({
 				KOMDeckID: item.KOMCardDeckID,

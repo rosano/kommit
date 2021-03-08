@@ -31,7 +31,6 @@ describe('KOMReview_Transport', function () {
 						KOMDeckName,
 						KOMDeckID,
 						$KOMDeckCards: [StubCardObjectValid({
-							KOMCardID: Math.random().toString(),
 							KOMCardDeckID: KOMDeckID,
 							$KOMCardSpacingForward: StubSpacingObjectValid(),
 							$KOMCardSpacingBackward: StubSpacingObjectValid({
@@ -39,7 +38,6 @@ describe('KOMReview_Transport', function () {
 								// KOMSpacingChronicles: [StubChronicleObjectValid()],
 							}),
 						}), StubCardObjectValid({
-							KOMCardID: Math.random().toString(),
 							KOMCardDeckID: KOMDeckID,
 							KOMCardIsRetired: true,
 							$KOMCardSpacingForward: StubSpacingObjectHistorical(),
@@ -52,10 +50,7 @@ describe('KOMReview_Transport', function () {
 							return card;
 						}),
 					})],
-					KOMSetting: [StubSettingObjectValid({
-						KOMSettingKey: Math.random().toString(),
-						KOMSettingValue: Math.random().toString(),
-					})],
+					KOMSetting: [StubSettingObjectValid()],
 				});
 
 				Object.assign(json, JSON.parse(dialog.response));

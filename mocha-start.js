@@ -1,5 +1,3 @@
-const RemoteStorage = require('remotestoragejs');
-
 global.Blob = require('cross-blob');
 global.FileReader = require('filereader');
 

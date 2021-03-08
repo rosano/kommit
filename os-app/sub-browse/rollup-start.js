@@ -14,7 +14,6 @@ import zerodatawrap from 'zerodatawrap';
 				ZDRParamScopes: [{
 					ZDRScopeKey: 'App',
 					ZDRScopeDirectory: 'kommit',
-					ZDRScopeCreatorDirectory: 'rCreativ',
 					ZDRScopeSchemas: [
 						KOMCard,
 						],

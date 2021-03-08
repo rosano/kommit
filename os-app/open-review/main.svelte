@@ -63,8 +63,6 @@ const mod = {
 	
 	_ValueStorageToolbarHidden: true,
 
-	_ValueFooterStorageStatus: '',
-
 	_ValueSpacingUpdateThrottleMap: {},
 	_ValueDeckFiguresThrottleMap: {},
 	_ValueDeckCachingEnabled: false,
