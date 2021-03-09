@@ -32,10 +32,9 @@ describe('KOMReview_Transport', function () {
 						KOMDeckID,
 						$KOMDeckCards: [StubCardObjectValid({
 							KOMCardDeckID: KOMDeckID,
-							$KOMCardSpacingForward: StubSpacingObjectValid(),
 							$KOMCardSpacingBackward: StubSpacingObjectValid({
 								KOMSpacingDueDate: new Date(),
-								// KOMSpacingChronicles: [StubChronicleObjectValid()],
+								KOMSpacingChronicles: [StubChronicleObjectValid()],
 							}),
 						}), StubCardObjectValid({
 							KOMCardDeckID: KOMDeckID,
@@ -43,11 +42,13 @@ describe('KOMReview_Transport', function () {
 							$KOMCardSpacingForward: StubSpacingObjectHistorical(),
 							$KOMCardSpacingBackward: StubSpacingObjectHistorical(),
 						})].map(function (card) {
-							['$KOMCardSpacingForward', '$KOMCardSpacingBackward'].forEach(function (e) {
-								card[e].KOMSpacingID = [card.KOMCardID, e === '$KOMCardSpacingForward' ? 'forward' : 'backward'].join('-');
-							});
-
-							return card;
+							return ['$KOMCardSpacingForward', '$KOMCardSpacingBackward'].reduce(function (coll, item) {
+								if (coll[item]) {
+									coll[item].KOMSpacingID = [coll.KOMCardID, item === '$KOMCardSpacingForward' ? 'forward' : 'backward'].join('-');
+								}
+								
+								return coll;
+							}, card);
 						}),
 					})],
 					KOMSetting: [StubSettingObjectValid()],
