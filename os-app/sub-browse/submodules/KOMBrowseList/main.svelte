@@ -38,7 +38,7 @@ import KOMBrowseListItem from '../KOMBrowseListItem/main.svelte';
 	OLSKMasterListDispatchArrow={ KOMBrowseListDispatchArrow }
 	OLSKMasterListDispatchFilter={ KOMBrowseListDispatchFilter }
 	let:OLSKResultsListItem={ item }
-	OLSKMasterListItemAccessibilitySummaryFor={ (inputData) => KOMBrowseListLogic.KOMBrowseListItemAccessibilitySummary(inputData, OLSKLocalized) }	
+	OLSKMasterListItemAccessibilitySummaryFunction={ (inputData) => KOMBrowseListLogic.KOMBrowseListItemAccessibilitySummary(inputData, OLSKLocalized) }	
 	OLSKMasterListClass={ 'KOMBrowseList' }
 	OLSKMobileViewInactive={ OLSKMobileViewInactive }
 	>
