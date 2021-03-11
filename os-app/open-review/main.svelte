@@ -62,7 +62,7 @@ const mod = {
 	_ValueHoldCards: [],
 	_ValueHoldSpacings: [],
 	
-	_ValueStorageToolbarHidden: true,
+	_ValueCloudToolbarHidden: true,
 
 	_ValueSpacingUpdateThrottleMap: {},
 	_ValueDeckFiguresThrottleMap: {},
@@ -899,11 +899,11 @@ const mod = {
 			return;
 		}
 
-		mod._ValueStorageToolbarHidden = false;
+		mod._ValueCloudToolbarHidden = false;
 	},
 
 	OLSKAppToolbarDispatchStorage () {
-		mod._ValueStorageToolbarHidden = !mod._ValueStorageToolbarHidden;
+		mod._ValueCloudToolbarHidden = !mod._ValueCloudToolbarHidden;
 	},
 
 	OLSKAppToolbarDispatchLauncher () {
@@ -1348,7 +1348,7 @@ import OLSKApropos from 'OLSKApropos';
 {#if !mod._ValuePlayVisible }
 	<footer class="KOMReviewViewportFooter OLSKMobileViewFooter">
 
-		{#if !mod._ValueStorageToolbarHidden }
+		{#if !mod._ValueCloudToolbarHidden }
 			<div class="KOMReviewStorageToolbar OLSKToolbar OLSKToolbarJustify OLSKCommonEdgeTop OLSKStorageToolbar">
 				<div class="OLSKToolbarElementGroup"></div>
 
