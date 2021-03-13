@@ -7,7 +7,6 @@ export let KOMBrowseListDispatchCreate;
 export let KOMBrowseListDispatchClick;
 export let KOMBrowseListDispatchArrow;
 export let KOMBrowseListDispatchFilter;
-export let OLSKMobileViewInactive = false;
 
 import { OLSKLocalized } from 'OLSKInternational';
 import { OLSK_SPEC_UI } from 'OLSKSpec'
@@ -40,7 +39,6 @@ import KOMBrowseListItem from '../KOMBrowseListItem/main.svelte';
 	let:OLSKResultsListItem={ item }
 	OLSKMasterListItemAccessibilitySummaryFunction={ (inputData) => KOMBrowseListLogic.KOMBrowseListItemAccessibilitySummary(inputData, OLSKLocalized) }	
 	OLSKMasterListClass={ 'KOMBrowseList' }
-	OLSKMobileViewInactive={ OLSKMobileViewInactive }
 	>
 	<div slot="OLSKMasterListToolbarHead">
 		<div class="OLSKToolbarElementGroup">

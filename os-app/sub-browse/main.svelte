@@ -34,6 +34,7 @@ export const modPublic = {
 import { OLSKLocalized } from 'OLSKInternational';
 import { OLSK_SPEC_UI } from 'OLSKSpec';
 import OLSKThrottle from 'OLSKThrottle';
+import OLSKRemoteStorage from 'OLSKRemoteStorage';
 import KOMBrowseLogic from './ui-logic.js';
 import KOMCard from '../_shared/KOMCard/main.js';
 
@@ -44,8 +45,6 @@ const mod = {
 	_ValueTagsAll: [],
 
 	_ValueCardUpdateThrottleMap: {},
-
-	OLSKMobileViewInactive: false,
 
 	// DATA
 
@@ -89,7 +88,7 @@ const mod = {
 				{
 					LCHRecipeName: 'FakeChangeDelegateUpdateCard',
 					LCHRecipeCallback: async function FakeChangeDelegateUpdateCard () {
-						return mod.ChangeDelegateUpdateCard(await KOMBrowseStorageClient.App.KOMCard.KOMCardUpdate(Object.assign(mod._ValueCardsAll.filter(function (e) {
+						return mod.ChangeDelegateUpdateCard(await KOMBrowseStorageClient.App.KOMCard.KOMCardUpdate(Object.assign(mod._OLSKCatalog.modPublic._OLSKCatalogDataItemsAll().filter(function (e) {
 							return e.KOMCardFrontText.match('FakeChangeDelegate');
 						}).pop(), {
 							KOMCardFrontText: 'FakeChangeDelegateUpdateCard',
@@ -99,19 +98,27 @@ const mod = {
 				{
 					LCHRecipeName: 'FakeChangeDelegateDeleteCard',
 					LCHRecipeCallback: async function FakeChangeDelegateDeleteCard () {
-						const item = mod._ValueCardsAll.filter(function (e) {
+						return mod.ChangeDelegateDeleteCard(await KOMBrowseStorageClient.App.KOMCard.KOMCardDelete(mod._OLSKCatalog.modPublic._OLSKCatalogDataItemsAll().filter(function (e) {
 							return e.KOMCardFrontText.match('FakeChangeDelegate');
-						}).pop();
-						
-						await KOMBrowseStorageClient.App.KOMCard.KOMCardDelete(item);
-						
-						return mod.ChangeDelegateDeleteCard(item);
+						}).pop()));
 					},
 				},
 				{
-					LCHRecipeName: 'FakeEscapeWithoutSort',
-					LCHRecipeCallback: function FakeEscapeWithoutSort () {
-						mod.ControlCardSelect(null);
+					LCHRecipeName: 'FakeSyncConflictNote',
+					LCHRecipeCallback: async function FakeSyncConflictNote () {
+						const item = mod._OLSKCatalog.modPublic._OLSKCatalogDataItemsAll().filter(function (e) {
+							return e.KOMCardFrontText.match('FakeSyncConflictNote');
+						}).pop();
+						
+						return mod.SyncConflictNote({
+							origin: 'conflict',
+							oldValue: JSON.parse(JSON.stringify(await KOMBrowseStorageClient.App.KOMCard.KOMCardUpdate(Object.assign({}, item, {
+								KOMCardFrontText: item.KOMCardFrontText + '-local',
+							})))),
+							newValue: JSON.parse(JSON.stringify(Object.assign({}, item, {
+								KOMCardFrontText: item.KOMCardFrontText + '-remote',
+							}))),
+						});
 					},
 				},
 			]);
@@ -306,15 +313,17 @@ const mod = {
 	},
 
 	ChangeDelegateUpdateCard (inputData) {
-		if (mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected() && mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected().KOMCardID === inputData.KOMCardID) {
-			mod.ControlCardSelect(inputData);
-		}
-
 		mod._OLSKCatalog.modPublic.OLSKCatalogUpdate(inputData);
 	},
 
 	ChangeDelegateDeleteCard (inputData) {
 		mod._OLSKCatalog.modPublic.OLSKCatalogRemove(inputData);
+	},
+
+	SyncConflictNote (inputData) {
+		return setTimeout(async function () {
+			mod._OLSKCatalog.modPublic.OLSKCatalogUpdate(await KOMBrowseStorageClient.App.KOMCard.KOMCardUpdate(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateConflictSelectRecent(inputData))))
+		}, OLSK_SPEC_UI() ? 0 : 500);
 	},
 
 	// REACT
@@ -419,7 +428,6 @@ import OLSKUIAssets from 'OLSKUIAssets';
 			KOMBrowseInfoAudioDispatchCapture={ mod.KOMBrowseInfoAudioDispatchCapture }
 			KOMBrowseInfoAudioDispatchFetch={ mod.KOMBrowseInfoAudioDispatchFetch }
 			KOMBrowseInfoAudioDispatchClear={ mod.KOMBrowseInfoAudioDispatchClear }
-			OLSKMobileViewInactive={ !mod.OLSKMobileViewInactive }
 			KOMBrowseInfoDispatchDebug={ mod.KOMBrowseInfoDispatchDebug }
 			bind:this={ mod._KOMBrowseInfo }
 			/>

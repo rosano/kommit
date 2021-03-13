@@ -29,7 +29,7 @@ describe('KOMBrowseInfo_Access', function () {
 
 	before(function () {
 		return browser.OLSKVisit(kDefaultRoute, {
-			KOMBrowseInfoItem: null,
+			KOMBrowseInfoItem: JSON.stringify({}),
 		});
 	});
 
@@ -37,110 +37,76 @@ describe('KOMBrowseInfo_Access', function () {
 		browser.assert.elements(KOMBrowseInfo, 1);
 	});
 
-	it('shows OLSKDetailPlaceholder', function () {
-		browser.assert.elements('.OLSKDetailPlaceholder', 1);
+	it('shows KOMBrowseInfoToolbar', function () {
+		browser.assert.elements(KOMBrowseInfoToolbar, 1);
 	});
 
-	it('hides KOMBrowseInfoToolbar', function () {
-		browser.assert.elements(KOMBrowseInfoToolbar, 0);
+	it('shows KOMBrowseInfoToolbarBackButton', function () {
+		browser.assert.elements(KOMBrowseInfoToolbarBackButton, 1);
 	});
 
-	it('hides KOMBrowseInfoForm', function () {
-		browser.assert.elements(KOMBrowseInfoForm, 0);
+	it('shows KOMBrowseInfoToolbarBackButtonImage', function () {
+		browser.assert.elements(KOMBrowseInfoToolbarBackButtonImage, 1);
 	});
 
-	it('hides KOMBrowseInfoLauncherItemToggleRetire', function () {
-		return browser.assert.OLSKLauncherItems('KOMBrowseInfoLauncherItemToggleRetire', 0);
+	it('shows KOMBrowseInfoToolbarDiscardButton', function () {
+		browser.assert.elements(KOMBrowseInfoToolbarDiscardButton, 1);
 	});
 
-	it('hides KOMBrowseInfoLauncherItemDebug', function () {
-		return browser.assert.OLSKLauncherItems('KOMBrowseInfoLauncherItemDebug', 0);
+	it('shows KOMBrowseInfoToolbarDiscardButtonImage', function () {
+		browser.assert.elements(KOMBrowseInfoToolbarDiscardButtonImage, 1);
 	});
 
-	context('KOMBrowseInfoItem', function () {
+	it('shows KOMBrowseInfoToolbarTemplateButton', function () {
+		browser.assert.elements(KOMBrowseInfoToolbarTemplateButton, 1);
+	});
 
-		before(function () {
-			return browser.OLSKVisit(kDefaultRoute, {
-				KOMBrowseInfoItem: JSON.stringify({}),
-			});
-		});
+	it('shows KOMBrowseInfoToolbarTemplateButtonImage', function () {
+		browser.assert.elements(KOMBrowseInfoToolbarTemplateButtonImage, 1);
+	});
 
-		it('hides OLSKDetailPlaceholder', function () {
-			browser.assert.elements('.OLSKDetailPlaceholder', 0);
-		});
+	it('shows KOMBrowseInfoForm', function () {
+		browser.assert.elements(KOMBrowseInfoForm, 1);
+	});
 
-		it('shows KOMBrowseInfoToolbar', function () {
-			browser.assert.elements(KOMBrowseInfoToolbar, 1);
-		});
+	it('shows KOMBrowseInfoFormFrontTextField', function () {
+		browser.assert.elements(KOMBrowseInfoFormFrontTextField, 1);
+	});
 
-		it('shows KOMBrowseInfoToolbarBackButton', function () {
-			browser.assert.elements(KOMBrowseInfoToolbarBackButton, 1);
-		});
+	it('shows KOMBrowseInfoFormFrontReadButton', function () {
+		browser.assert.elements(KOMBrowseInfoFormFrontReadButton, 1);
+	});
 
-		it('shows KOMBrowseInfoToolbarBackButtonImage', function () {
-			browser.assert.elements(KOMBrowseInfoToolbarBackButtonImage, 1);
-		});
+	it('shows KOMBrowseInfoFormFrontAudio', function () {
+		browser.assert.elements(KOMBrowseInfoFormFrontAudio, 1);
+	});
 
-		it('shows KOMBrowseInfoToolbarDiscardButton', function () {
-			browser.assert.elements(KOMBrowseInfoToolbarDiscardButton, 1);
-		});
+	it('shows KOMBrowseInfoFormRearTextField', function () {
+		browser.assert.elements(KOMBrowseInfoFormRearTextField, 1);
+	});
 
-		it('shows KOMBrowseInfoToolbarDiscardButtonImage', function () {
-			browser.assert.elements(KOMBrowseInfoToolbarDiscardButtonImage, 1);
-		});
+	it('shows KOMBrowseInfoFormRearReadButton', function () {
+		browser.assert.elements(KOMBrowseInfoFormRearReadButton, 1);
+	});
 
-		it('shows KOMBrowseInfoToolbarTemplateButton', function () {
-			browser.assert.elements(KOMBrowseInfoToolbarTemplateButton, 1);
-		});
+	it('shows KOMBrowseInfoFormRearAudio', function () {
+		browser.assert.elements(KOMBrowseInfoFormRearAudio, 1);
+	});
 
-		it('shows KOMBrowseInfoToolbarTemplateButtonImage', function () {
-			browser.assert.elements(KOMBrowseInfoToolbarTemplateButtonImage, 1);
-		});
+	it('shows KOMBrowseInfoFormNotesField', function () {
+		browser.assert.elements(KOMBrowseInfoFormNotesField, 1);
+	});
 
-		it('shows KOMBrowseInfoForm', function () {
-			browser.assert.elements(KOMBrowseInfoForm, 1);
-		});
+	it('shows KOMBrowseInfoFormTagsField', function () {
+		browser.assert.elements(KOMBrowseInfoFormTagsField, 1);
+	});
 
-		it('shows KOMBrowseInfoFormFrontTextField', function () {
-			browser.assert.elements(KOMBrowseInfoFormFrontTextField, 1);
-		});
+	it('shows KOMBrowseInfoLauncherItemToggleRetire', function () {
+		return browser.assert.OLSKLauncherItems('KOMBrowseInfoLauncherItemToggleRetire', 1);
+	});
 
-		it('shows KOMBrowseInfoFormFrontReadButton', function () {
-			browser.assert.elements(KOMBrowseInfoFormFrontReadButton, 1);
-		});
-
-		it('shows KOMBrowseInfoFormFrontAudio', function () {
-			browser.assert.elements(KOMBrowseInfoFormFrontAudio, 1);
-		});
-
-		it('shows KOMBrowseInfoFormRearTextField', function () {
-			browser.assert.elements(KOMBrowseInfoFormRearTextField, 1);
-		});
-
-		it('shows KOMBrowseInfoFormRearReadButton', function () {
-			browser.assert.elements(KOMBrowseInfoFormRearReadButton, 1);
-		});
-
-		it('shows KOMBrowseInfoFormRearAudio', function () {
-			browser.assert.elements(KOMBrowseInfoFormRearAudio, 1);
-		});
-
-		it('shows KOMBrowseInfoFormNotesField', function () {
-			browser.assert.elements(KOMBrowseInfoFormNotesField, 1);
-		});
-
-		it('shows KOMBrowseInfoFormTagsField', function () {
-			browser.assert.elements(KOMBrowseInfoFormTagsField, 1);
-		});
-
-		it('shows KOMBrowseInfoLauncherItemToggleRetire', function () {
-			return browser.assert.OLSKLauncherItems('KOMBrowseInfoLauncherItemToggleRetire', 1);
-		});
-
-		it('shows KOMBrowseInfoLauncherItemDebug', function () {
-			return browser.assert.OLSKLauncherItems('KOMBrowseInfoLauncherItemDebug', 1);
-		});
-
+	it('shows KOMBrowseInfoLauncherItemDebug', function () {
+		return browser.assert.OLSKLauncherItems('KOMBrowseInfoLauncherItemDebug', 1);
 	});
 
 });

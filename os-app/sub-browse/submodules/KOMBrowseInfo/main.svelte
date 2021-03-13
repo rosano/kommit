@@ -12,7 +12,6 @@ export let KOMBrowseInfoAudioDispatchCapture;
 export let KOMBrowseInfoAudioDispatchFetch;
 export let KOMBrowseInfoAudioDispatchClear;
 export let KOMBrowseInfoDispatchDebug;
-export let OLSKMobileViewInactive = false;
 export let KOMBrowseInfo_DebugShowLauncherButton = false;
 
 export const modPublic = {
@@ -31,10 +30,6 @@ const mod = {
 	// DATA
 
 	DataBrowseInfoRecipes () {
-		if (!KOMBrowseInfoItem) {
-			return [];
-		}
-
 		const items = [{
 			LCHRecipeSignature: 'KOMBrowseInfoLauncherItemToggleRetire',
 			LCHRecipeName: OLSKLocalized('KOMBrowseInfoLauncherItemToggleRetireText'),
@@ -97,7 +92,6 @@ const mod = {
 
 };
 
-import OLSKDetailPlaceholder from 'OLSKDetailPlaceholder';
 import _OLSKSharedBack from '../../../_shared/__external/OLSKUIAssets/_OLSKSharedBack.svg';
 import _OLSKSharedDiscard from '../../../_shared/__external/OLSKUIAssets/_OLSKSharedDiscard.svg';
 import _OLSKSharedClone from '../../../_shared/__external/OLSKUIAssets/_OLSKSharedClone.svg';
@@ -105,13 +99,8 @@ import KOMBrowseInfoAudio from '../KOMBrowseInfoAudio/main.svelte';
 import KOMBrowseInfoTags from '../KOMBrowseInfoTags/main.svelte';
 </script>
 
-<div class="KOMBrowseInfo OLSKViewportDetail" class:OLSKMobileViewInactive={ OLSKMobileViewInactive } aria-hidden={ OLSKMobileViewInactive ? true : null }>
+<div class="KOMBrowseInfo">
 
-{#if !KOMBrowseInfoItem}
-<OLSKDetailPlaceholder />
-{/if}
-
-{#if KOMBrowseInfoItem}
 <header class="KOMBrowseInfoToolbar OLSKMobileViewHeader OLSKToolbar OLSKToolbarJustify OLSKCommonEdgeBottom">
 	<div class="OLSKToolbarElementGroup">
 		<button class="KOMBrowseInfoToolbarBackButton OLSKDecorButtonNoStyle OLSKDecorTappable OLSKToolbarButton OLSKVisibilityMobile" title={ OLSKLocalized('KOMBrowseInfoToolbarBackButtonText') } on:click={ KOMBrowseInfoDispatchBack }>
@@ -184,7 +173,6 @@ import KOMBrowseInfoTags from '../KOMBrowseInfoTags/main.svelte';
 </p>
 
 </div>
-{/if}
 
 </div>
 

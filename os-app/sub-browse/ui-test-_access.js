@@ -46,18 +46,6 @@ describe('KOMBrowse_Access', function () {
 		browser.assert.elements('.KOMBrowseListItem', 0);
 	});
 
-	it('shows KOMBrowseInfo', function () {
-		browser.assert.elements('.KOMBrowseInfo', 1);
-	});
-
-	it('shows OLSKDetailPlaceholder', function () {
-		browser.assert.elements('.OLSKDetailPlaceholder', 1);
-	});
-
-	it('hides KOMBrowseInfoForm', function () {
-		browser.assert.elements('.KOMBrowseInfoForm', 0);
-	});
-
 	it('hides KOMBrowseLauncherItemDiscardRetiredCards', function () {
 		return browser.assert.OLSKLauncherItems('KOMBrowseLauncherItemDiscardRetiredCards', 0);
 	});
@@ -66,27 +54,11 @@ describe('KOMBrowse_Access', function () {
 		return browser.assert.OLSKLauncherItems('KOMBrowseInfoLauncherFakeItemProxy', 0);
 	});
 
-	context('create', function test_create() {
+	context('select', function test_select() {
 
 		before(function () {
 			return browser.pressButton('.KOMBrowseListToolbarCreateButton');
 		});
-
-		it('shows KOMBrowseListItem', function () {
-			browser.assert.elements('.KOMBrowseListItem', 1);
-		});
-
-		it('hides OLSKDetailPlaceholder', function () {
-			browser.assert.elements('.OLSKDetailPlaceholder', 0);
-		});
-
-		it('shows KOMBrowseInfoForm', function () {
-			browser.assert.elements('.KOMBrowseInfoForm', 1);
-		});
-
-	});
-
-	context('select', function test_select() {
 
 		it('shows KOMBrowseInfoLauncherFakeItemProxy', function () {
 			return browser.assert.OLSKLauncherItems('KOMBrowseInfoLauncherFakeItemProxy', 1);
@@ -94,31 +66,7 @@ describe('KOMBrowse_Access', function () {
 
 	});
 
-	context('discard', function test_discard() {
-
-		before(function () {
-			return browser.pressButton('.KOMBrowseInfoToolbarDiscardButton');
-		});
-
-		it('hides KOMBrowseListItem', function () {
-			browser.assert.elements('.KOMBrowseListItem', 0);
-		});
-
-		it('shows OLSKDetailPlaceholder', function () {
-			browser.assert.elements('.OLSKDetailPlaceholder', 1);
-		});
-
-		it('hides KOMBrowseInfoForm', function () {
-			browser.assert.elements('.KOMBrowseInfoForm', 0);
-		});
-
-	});
-
 	context('retire', function test_retire() {
-
-		before(function () {
-			return browser.pressButton('.KOMBrowseListToolbarCreateButton');
-		});
 
 		before(function () {
 			return browser.pressButton('.KOMBrowseListToolbarCreateButton');
