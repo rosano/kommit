@@ -43,30 +43,6 @@ const mod = {
 
 	_ValueTagsAll: [],
 
-	_ValueCardsAll: KOMBrowseDeckCards,
-	ValueCardsAll (inputData, shouldSort = true) {
-		mod.ValueCardsVisible(mod._ValueCardsAll = inputData, shouldSort);
-
-		mod.ReactTags();
-	},
-
-	_ValueCardsVisible: [],
-	ValueCardsVisible (inputData, shouldSort = true) {
-		const items = !mod._ValueFilterText ? inputData : inputData.filter(KOMBrowseLogic.KOMBrowseFilterFunction(mod._ValueFilterText));
-		mod._ValueCardsVisible = shouldSort ? items.sort(KOMBrowseLogic.KOMBrowseSort) : items;
-	},
-	
-	_ValueCardSelected: undefined,
-	ValueCardSelected (inputData) {
-		mod._ValueCardSelected = inputData;
-
-		if (!inputData) {
-			mod.OLSKMobileViewInactive = false;	
-		}
-	},
-	
-	_ValueFilterText: '',
-
 	_ValueCardUpdateThrottleMap: {},
 
 	OLSKMobileViewInactive: false,
@@ -88,7 +64,7 @@ const mod = {
 	DataBrowseRecipes () {
 		const items = [];
 
-		if (mod._ValueCardsVisible.filter(function (e) {
+		if (mod._OLSKCatalog.modPublic._OLSKCatalogDataItemsAll().filter(function (e) {
 			return e.KOMCardIsRetired;
 		}).length) {
 			items.push(...[
@@ -160,19 +136,8 @@ const mod = {
 		}
 
 		const handlerFunctions = {
-			Escape () {
-				if (document.activeElement === document.querySelector('.OLSKMasterListFilterField') && !mod._ValueFilterText) {
-					return KOMBrowseListDispatchClose();
-				}
-
-				mod.ControlFilter('');
-
-				if (!OLSK_SPEC_UI()) {
-					document.querySelector('.OLSKMasterListBody').scrollTo(0, 0);
-				}
-			},
 			Tab () {
-				if (document.activeElement === document.querySelector('.OLSKMasterListFilterField') && mod._ValueCardSelected) {
+				if (document.activeElement === document.querySelector('.OLSKMasterListFilterField') && mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected()) {
 					mod.ControlFocusDetail();
 
 					return event.preventDefault();
@@ -226,7 +191,7 @@ const mod = {
 
 	async ControlCardDiscard (inputData) {
 		mod._OLSKCatalog.modPublic.OLSKCatalogRemove(inputData)
-		
+
 		KOMBrowseDispatchDiscard(await KOMBrowseStorageClient.App.KOMCard.KOMCardDelete(inputData));
 	},
 
@@ -235,7 +200,7 @@ const mod = {
 			return;
 		}
 
-		return mod._ValueCardsAll.filter(function (e) {
+		return mod._OLSKCatalog.modPublic._OLSKCatalogDataItemsAll().filter(function (e) {
 			return e.KOMCardIsRetired;
 		}).map(function (e) {
 			return mod.ControlCardDiscard(e);
@@ -262,22 +227,6 @@ const mod = {
 		setTimeout(mod.ControlFocusDetail);
 	},
 	
-	ControlFilter(inputData) {
-		mod._ValueFilterText = inputData;
-
-		mod.ValueCardsVisible(mod._ValueCardsAll);
-
-		if (!inputData) {
-			return mod.ControlCardSelect(null);
-		}
-
-		if (!mod._ValueCardsVisible.length) {
-			return mod.ControlCardSelect(null);
-		}
-
-		mod.ValueCardSelected(KOMBrowseLogic.KOMBrowseExactMatchFirst(inputData, mod._ValueCardsVisible).shift());
-	},
-
 	// MESSAGE
 
 	OLSKMasterListItemAccessibilitySummaryFunction (inputData) {
@@ -296,12 +245,9 @@ const mod = {
 		mod._OLSKCatalog.modPublic.OLSKCatalogSelect(inputData);
 	},
 
-	KOMBrowseListDispatchFilter (inputData) {
-		mod.ControlFilter(inputData);
-	},
-
 	OLSKCatalogDispatchQuantity (inputData) {
 		console.log('OLSKCatalogDispatchQuantity');
+		mod.ReactTags();
 	},
 
 	KOMBrowseInfoDispatchBack () {
@@ -323,19 +269,19 @@ const mod = {
 	},
 
 	async KOMBrowseInfoAudioDispatchCapture (property, data) {
-		await mod.ControlCardAudioCapture(property, data, mod._ValueCardSelected);
+		await mod.ControlCardAudioCapture(property, data, mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected());
 
-		mod._ValueCardSelected = mod._ValueCardSelected; // #purge-svelte-force-update
+		mod._OLSKCatalog.modPublic.OLSKCatalogSelect(mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected()); // #purge-svelte-force-update
 	},
 
 	async KOMBrowseInfoAudioDispatchClear (inputData) {
-		await mod.ControlCardAudioClear(inputData, mod._ValueCardSelected);
+		await mod.ControlCardAudioClear(inputData, mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected());
 
-		mod._ValueCardSelected = mod._ValueCardSelected; // #purge-svelte-force-update
+		mod._OLSKCatalog.modPublic.OLSKCatalogSelect(mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected()); // #purge-svelte-force-update
 	},
 
 	KOMBrowseInfoAudioDispatchFetch (inputData) {
-		return KOMBrowseStorageClient.App.KOMCard.KOMCardAudioFetch(mod._ValueCardSelected, inputData === 'KOMCardFrontAudio' ? KOMCard.KOMCardSideFront() : KOMCard.KOMCardSideRear());
+		return KOMBrowseStorageClient.App.KOMCard.KOMCardAudioFetch(mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected(), inputData === 'KOMCardFrontAudio' ? KOMCard.KOMCardSideFront() : KOMCard.KOMCardSideRear());
 	},
 
 	KOMBrowseInfoDispatchDebug (inputData) {
@@ -356,43 +302,25 @@ const mod = {
 	},
 
 	ChangeDelegateCreateCard (inputData) {
-		mod.ValueCardsAll([inputData].concat(mod._ValueCardsAll), !mod._ValueCardSelected);
+		mod._OLSKCatalog.modPublic.OLSKCatalogInsert(inputData);
 	},
 
 	ChangeDelegateUpdateCard (inputData) {
-		if (mod._ValueCardSelected && mod._ValueCardSelected.KOMCardID === inputData.KOMCardID) {
+		if (mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected() && mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected().KOMCardID === inputData.KOMCardID) {
 			mod.ControlCardSelect(inputData);
 		}
 
-		mod.ValueCardsAll(mod._ValueCardsAll.map(function (e) {
-			return e.KOMCardID === inputData.KOMCardID ? inputData : e;
-		}), !mod._ValueCardSelected);
+		mod._OLSKCatalog.modPublic.OLSKCatalogUpdate(inputData);
 	},
 
 	ChangeDelegateDeleteCard (inputData) {
-		if (mod._ValueCardSelected && (mod._ValueCardSelected.KOMCardID === inputData.KOMCardID)) {
-			mod.ControlCardSelect(null);
-		}
-
-		mod.ValueCardsAll(mod._ValueCardsAll.filter(function (e) {
-			return e.KOMCardID !== inputData.KOMCardID;
-		}), false);
+		mod._OLSKCatalog.modPublic.OLSKCatalogRemove(inputData);
 	},
 
 	// REACT
 
-	ReactCardSelected () {
-		if (!mod._ValueCardSelected) {
-			return;
-		}
-
-		mod._ValueCardSelected = mod._ValueCardsVisible.filter(function (e) {
-			return e.KOMCardID === mod._ValueCardSelected.KOMCardID;
-		}).pop();
-	},
-
 	ReactTags () {
-		mod._ValueTagsAll = mod._ValueCardsAll.reduce(function (coll, item) {
+		mod._ValueTagsAll = mod._OLSKCatalog.modPublic._OLSKCatalogDataItemsAll().reduce(function (coll, item) {
 			return coll.concat((item.KOMCardTags || []).filter(function (e) {
 				return !coll.includes(e);
 			}));
@@ -407,7 +335,9 @@ const mod = {
 	},
 
 	SetupCatalog() {
-		mod.ValueCardsAll(mod._ValueCardsAll);
+		KOMBrowseDeckCards.map(mod._OLSKCatalog.modPublic.OLSKCatalogInsert);
+
+		mod._OLSKCatalog.modPublic._OLSKCatalogDataItemsAll()
 	},
 
 	SetupFocus() {
