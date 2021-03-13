@@ -8,14 +8,14 @@ describe('KOMBrowse_Sync', function () {
 		});
 	});
 
-	describe('ChangeDelegateCreateCard', function test_ChangeDelegateCreateCard() {
+	describe('SyncCreateCard', function test_SyncCreateCard() {
 
 		before(function () {
 			browser.assert.elements('.OLSKResultsListItem', 0);
 		});
 
 		before(function () {
-			return browser.OLSKLauncherRun('FakeChangeDelegateCreateCard');
+			return browser.OLSKLauncherRun('FakeSyncCreateCard');
 		});
 
 		it('adds item', function () {
@@ -24,18 +24,18 @@ describe('KOMBrowse_Sync', function () {
 
 	});
 
-	describe('ChangeDelegateUpdateCard', function test_ChangeDelegateUpdateCard() {
+	describe('SyncUpdateCard', function test_SyncUpdateCard() {
 
 		before(function () {
-			browser.assert.text('.OLSKResultsListItem', 'FakeChangeDelegateCreateCard');
+			browser.assert.text('.OLSKResultsListItem', 'FakeSyncCreateCard');
 		});
 
 		before(function () {
-			return browser.OLSKLauncherRun('FakeChangeDelegateUpdateCard');
+			return browser.OLSKLauncherRun('FakeSyncUpdateCard');
 		});
 
 		it('updates item', function () {
-			browser.assert.text('.OLSKResultsListItem', 'FakeChangeDelegateUpdateCard');
+			browser.assert.text('.OLSKResultsListItem', 'FakeSyncUpdateCard');
 		});
 
 		context('selected same', function () {
@@ -45,25 +45,25 @@ describe('KOMBrowse_Sync', function () {
 			});
 
 			before(function () {
-				return browser.fill('.KOMBrowseInfoFormFrontTextField', 'FakeChangeDelegateCreateCard');
+				return browser.fill('.KOMBrowseInfoFormFrontTextField', 'FakeSyncCreateCard');
 			});
 
 			before(function () {
-				return browser.OLSKLauncherRun('FakeChangeDelegateUpdateCard');
+				return browser.OLSKLauncherRun('FakeSyncUpdateCard');
 			});
 
 			it('updates detail', function () {
-				browser.assert.input('.KOMBrowseInfoFormFrontTextField', 'FakeChangeDelegateUpdateCard');
+				browser.assert.input('.KOMBrowseInfoFormFrontTextField', 'FakeSyncUpdateCard');
 			});
 
 		});
 
 	});
 
-	describe('ChangeDelegateDeleteCard', function test_ChangeDelegateDeleteCard() {
+	describe('SyncDeleteCard', function test_SyncDeleteCard() {
 
 		before(function () {
-			return browser.OLSKLauncherRun('FakeChangeDelegateDeleteCard');
+			return browser.OLSKLauncherRun('FakeSyncDeleteCard');
 		});
 
 		it('removes item', function () {
@@ -73,7 +73,7 @@ describe('KOMBrowse_Sync', function () {
 		context('selected same', function () {
 
 			before(function () {
-				return browser.OLSKLauncherRun('FakeChangeDelegateCreateCard');
+				return browser.OLSKLauncherRun('FakeSyncCreateCard');
 			});
 
 			before(function () {
@@ -81,7 +81,7 @@ describe('KOMBrowse_Sync', function () {
 			});
 
 			before(function () {
-				return browser.OLSKLauncherRun('FakeChangeDelegateDeleteCard');
+				return browser.OLSKLauncherRun('FakeSyncDeleteCard');
 			});
 
 			it('clear detail', function () {
@@ -95,7 +95,7 @@ describe('KOMBrowse_Sync', function () {
 	describe('SyncConflictNote', function test_SyncConflictNote () {
 
 		before(function () {
-			return browser.OLSKLauncherRun('FakeChangeDelegateCreateCard');
+			return browser.OLSKLauncherRun('FakeSyncCreateCard');
 		});
 
 		before(function () {
