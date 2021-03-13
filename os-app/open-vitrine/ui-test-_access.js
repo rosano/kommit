@@ -18,7 +18,7 @@ Object.entries({
 	KOMVitrineSupportHeading: '.KOMVitrineSupportHeading',
 	KOMVitrineSupportBlurb: '.KOMVitrineSupportBlurb',
 
-	LCHVitrineGazetteHeading: '.LCHVitrineGazetteHeading',
+	KOMVitrineGazetteHeading: '.KOMVitrineGazetteHeading',
 }).map(function (e) {
 	return global[e.shift()] = e.pop();
 });
@@ -85,8 +85,8 @@ describe('KOMVitrine_Access', function () {
 		browser.assert.elements(KOMVitrineSupportBlurb, 1);
 	});
 
-	it('shows LCHVitrineGazetteHeading', function () {
-		browser.assert.elements(LCHVitrineGazetteHeading, 1);
+	it('shows KOMVitrineGazetteHeading', function () {
+		browser.assert.elements(KOMVitrineGazetteHeading, 1);
 	});
 
 	it('shows OLSKGazette', function () {
