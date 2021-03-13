@@ -740,7 +740,7 @@ const mod = {
 		mod.ReactDocumentRemainder();
 	},
 
-	async KOMBrowseListDispatchClose () {
+	async KOMBrowseDispatchClose () {
 		mod._ValueDeckSelected = await mod.ReactDeckFigures(mod._ValueDeckSelected); // #purge-svelte-force-update
 
 		mod._ValueBrowseVisible = false;
@@ -1324,7 +1324,7 @@ import OLSKApropos from 'OLSKApropos';
 			KOMBrowseDispatchEligible={ mod.KOMBrowseDispatchEligible }
 			KOMBrowseDispatchCreate={ mod.KOMBrowseDispatchCreate }
 			KOMBrowseDispatchDiscard={ mod.KOMBrowseDispatchDiscard }
-			KOMBrowseListDispatchClose={ mod.KOMBrowseListDispatchClose }
+			KOMBrowseDispatchClose={ mod.KOMBrowseDispatchClose }
 			KOMBrowseInfoSpeechAvailable={ mod._ValueSpeechAvailable }
 			KOMBrowseInfoDispatchRead={ mod.KOMBrowseInfoDispatchRead }
 			bind:this={ mod._KOMBrowse }

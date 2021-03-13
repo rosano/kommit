@@ -30,8 +30,8 @@ import zerodatawrap from 'zerodatawrap';
 				window.TestKOMBrowseDispatchDiscard.innerHTML = parseInt(window.TestKOMBrowseDispatchDiscard.innerHTML) + 1;
 				window.TestKOMBrowseDispatchDiscardData.innerHTML = JSON.stringify(Object.keys(inputData));
 			}),
-			KOMBrowseListDispatchClose: (function () {
-				window.TestKOMBrowseListDispatchClose.innerHTML = parseInt(window.TestKOMBrowseListDispatchClose.innerHTML) + 1;
+			KOMBrowseDispatchClose: (function () {
+				window.TestKOMBrowseDispatchClose.innerHTML = parseInt(window.TestKOMBrowseDispatchClose.innerHTML) + 1;
 			}),
 			KOMBrowseInfoDispatchRead: (function () {}),
 			KOMBrowseInfoSpeechAvailable: false,

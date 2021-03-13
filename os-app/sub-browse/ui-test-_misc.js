@@ -36,15 +36,15 @@ describe('KOMBrowse_Misc', function () {
 		context('click', function () {
 
 			before(function () {
-				browser.assert.text('#TestKOMBrowseListDispatchClose', '0');
+				browser.assert.text('#TestKOMBrowseDispatchClose', '0');
 			});
 
 			before(function () {
 				return browser.pressButton(KOMBrowseListToolbarCloseButton);
 			});
 
-			it('sends KOMBrowseListDispatchClose', function () {
-				browser.assert.text('#TestKOMBrowseListDispatchClose', '1');
+			it('sends KOMBrowseDispatchClose', function () {
+				browser.assert.text('#TestKOMBrowseDispatchClose', '1');
 			});
 
 		});
@@ -218,7 +218,7 @@ describe('KOMBrowse_Misc', function () {
 	context('escape', function test_escape() {
 
 		before(function () {
-			browser.assert.text('#TestKOMBrowseListDispatchClose', '1');
+			browser.assert.text('#TestKOMBrowseDispatchClose', '1');
 		});
 
 		before(function () {
@@ -236,15 +236,15 @@ describe('KOMBrowse_Misc', function () {
 		context('filter_empty', function () {
 
 			before(function () {
-				browser.assert.text('#TestKOMBrowseListDispatchClose', '1');
+				browser.assert.text('#TestKOMBrowseDispatchClose', '1');
 			});
 
 			before(function () {
 				return browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
 			});
 
-			it.skip('sends KOMBrowseListDispatchClose', function () {
-				browser.assert.text('#TestKOMBrowseListDispatchClose', '2');
+			it.skip('sends KOMBrowseDispatchClose', function () {
+				browser.assert.text('#TestKOMBrowseDispatchClose', '2');
 			});
 
 		});
@@ -348,15 +348,15 @@ describe('KOMBrowse_Misc', function () {
 	context('close', function test_close() {
 
 		before(function () {
-			browser.assert.text('#TestKOMBrowseListDispatchClose', '2');
+			browser.assert.text('#TestKOMBrowseDispatchClose', '2');
 		});
 
 		before(function () {
 			return browser.pressButton('.KOMBrowseListToolbarCloseButton');
 		});
 
-		it('sends KOMBrowseListDispatchClose', function () {
-			browser.assert.text('#TestKOMBrowseListDispatchClose', '3');
+		it('sends KOMBrowseDispatchClose', function () {
+			browser.assert.text('#TestKOMBrowseDispatchClose', '3');
 		});
 
 	});

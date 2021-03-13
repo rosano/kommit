@@ -6,7 +6,7 @@ export let KOMBrowseDeckCards;
 export let KOMBrowseDispatchEligible;
 export let KOMBrowseDispatchCreate;
 export let KOMBrowseDispatchDiscard;
-export let KOMBrowseListDispatchClose;
+export let KOMBrowseDispatchClose;
 export let KOMBrowseInfoSpeechAvailable;
 export let KOMBrowseInfoDispatchRead;
 export let KOMBrowse_DEBUG = false;
@@ -387,7 +387,7 @@ import OLSKUIAssets from 'OLSKUIAssets';
 	OLSKCatalogDispatchArrow={ mod.OLSKCatalogDispatchArrow }
 	OLSKCatalogDispatchFilterSubmit={ mod.OLSKCatalogDispatchFilterSubmit }
 	OLSKCatalogDispatchQuantity={ mod.OLSKCatalogDispatchQuantity }
-	OLSKCatalogDispatchEscapeOnEmpty={ KOMBrowseListDispatchClose }
+	OLSKCatalogDispatchEscapeOnEmpty={ KOMBrowseDispatchClose }
 
 	let:OLSKResultsListItem
 	>
@@ -395,7 +395,7 @@ import OLSKUIAssets from 'OLSKUIAssets';
 	<!-- MASTER -->
 	
 	<div class="OLSKToolbarElementGroup" slot="OLSKMasterListToolbarHead">
-		<button class="KOMBrowseListToolbarCloseButton OLSKDecorButtonNoStyle OLSKDecorTappable OLSKToolbarButton" title={ OLSKLocalized('KOMBrowseListToolbarCloseButtonText') } on:click={ KOMBrowseListDispatchClose }>
+		<button class="KOMBrowseListToolbarCloseButton OLSKDecorButtonNoStyle OLSKDecorTappable OLSKToolbarButton" title={ OLSKLocalized('KOMBrowseListToolbarCloseButtonText') } on:click={ KOMBrowseDispatchClose }>
 			<div class="KOMBrowseListToolbarCloseButtonImage">{@html OLSKUIAssets._OLSKSharedBack }</div>
 		</button>
 	</div>
