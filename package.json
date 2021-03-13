@@ -38,6 +38,7 @@
     "// VITRINE": null,
     "OLSKLanding": "olsk/OLSKLanding",
     "OLSKAppFeatureList": "olsk/OLSKAppFeatureList",
+    "OLSKGazette": "olsk/OLSKGazette",
 
     "// FRONTEND APP LAYOUT": null,
     "OLSKDecor": "olsk/OLSKDecor",

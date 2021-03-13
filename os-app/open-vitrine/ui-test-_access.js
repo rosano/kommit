@@ -17,6 +17,8 @@ Object.entries({
 
 	KOMVitrineSupportHeading: '.KOMVitrineSupportHeading',
 	KOMVitrineSupportBlurb: '.KOMVitrineSupportBlurb',
+
+	LCHVitrineGazetteHeading: '.LCHVitrineGazetteHeading',
 }).map(function (e) {
 	return global[e.shift()] = e.pop();
 });
@@ -81,6 +83,14 @@ describe('KOMVitrine_Access', function () {
 
 	it('shows KOMVitrineSupportBlurb', function () {
 		browser.assert.elements(KOMVitrineSupportBlurb, 1);
+	});
+
+	it('shows LCHVitrineGazetteHeading', function () {
+		browser.assert.elements(LCHVitrineGazetteHeading, 1);
+	});
+
+	it('shows OLSKGazette', function () {
+		browser.assert.elements('.OLSKGazette', 1);
 	});
 
 	it('shows ROCORootLink', function () {
