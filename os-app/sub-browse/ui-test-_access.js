@@ -1,6 +1,9 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-Object.entries({}).map(function (e) {
+Object.entries({
+	KOMBrowseListToolbarCreateButton: '.KOMBrowseListToolbarCreateButton',
+	KOMBrowseListToolbarCreateButtonImage: '.KOMBrowseListToolbarCreateButtonImage',
+}).map(function (e) {
 	return global[e.shift()] = e.pop();
 });
 
@@ -16,8 +19,16 @@ describe('KOMBrowse_Access', function () {
 		});
 	});
 
-	it('shows KOMBrowseList', function () {
-		browser.assert.elements('.KOMBrowseList', 1);
+	it('shows OLSKCatalog', function () {
+		browser.assert.elements('.OLSKCatalog', 1);
+	});
+
+	it('shows KOMBrowseListToolbarCreateButton', function () {
+		browser.assert.elements(KOMBrowseListToolbarCreateButton, 1);
+	});
+
+	it('shows KOMBrowseListToolbarCreateButtonImage', function () {
+		browser.assert.elements(KOMBrowseListToolbarCreateButtonImage, 1);
 	});
 
 	it('hides KOMBrowseListItem', function () {

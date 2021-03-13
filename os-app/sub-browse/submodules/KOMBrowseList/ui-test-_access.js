@@ -5,9 +5,6 @@ Object.entries({
 
 	KOMBrowseListToolbarCloseButton: '.KOMBrowseListToolbarCloseButton',
 	KOMBrowseListToolbarCloseButtonImage: '.KOMBrowseListToolbarCloseButtonImage',
-
-	KOMBrowseListToolbarCreateButton: '.KOMBrowseListToolbarCreateButton',
-	KOMBrowseListToolbarCreateButtonImage: '.KOMBrowseListToolbarCreateButtonImage',
 }).map(function (e) {
 	return global[e.shift()] = e.pop();
 });
@@ -32,14 +29,6 @@ describe('KOMBrowseList_Access', function () {
 
 	it('shows KOMBrowseListToolbarCloseButtonImage', function () {
 		browser.assert.elements(KOMBrowseListToolbarCloseButtonImage, 1);
-	});
-
-	it('shows KOMBrowseListToolbarCreateButton', function () {
-		browser.assert.elements(KOMBrowseListToolbarCreateButton, 1);
-	});
-
-	it('shows KOMBrowseListToolbarCreateButtonImage', function () {
-		browser.assert.elements(KOMBrowseListToolbarCreateButtonImage, 1);
 	});
 
 	it('hides KOMBrowseListItem', function () {

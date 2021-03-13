@@ -50,14 +50,6 @@ import KOMBrowseListItem from '../KOMBrowseListItem/main.svelte';
 		</div>
 	</div>
 
-	<div slot="OLSKMasterListToolbarTail">
-		<div class="OLSKToolbarElementGroup">
-			<button class="KOMBrowseListToolbarCreateButton OLSKDecorButtonNoStyle OLSKDecorTappable OLSKToolbarButton" title={ OLSKLocalized('KOMBrowseListToolbarCreateButtonText') } on:click={ mod.InterfaceCreateButtonDidClick } accesskey="n">
-				<div class="KOMBrowseListToolbarCreateButtonImage">{@html _OLSKSharedCreate }</div>
-			</button>
-		</div>
-	</div>
-
 	<div slot="OLSKMasterListItem">
 		<KOMBrowseListItem
 			KOMBrowseListItemObject={ item }

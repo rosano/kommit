@@ -36,6 +36,34 @@ describe('KOMBrowse_Misc', function () {
 		browser.assert.hasFocus('.OLSKMasterListFilterField');
 	});
 
+	describe('KOMBrowseListToolbarCreateButton', function test_KOMBrowseListToolbarCreateButton() {
+
+		it('classes OLSKDecorButtonNoStyle', function () {
+			browser.assert.hasClass(KOMBrowseListToolbarCreateButton, 'OLSKDecorButtonNoStyle');
+		});
+
+		it('classes OLSKDecorTappable', function () {
+			browser.assert.hasClass(KOMBrowseListToolbarCreateButton, 'OLSKDecorTappable');
+		});
+
+		it('classes OLSKToolbarButton', function () {
+			browser.assert.hasClass(KOMBrowseListToolbarCreateButton, 'OLSKToolbarButton');
+		});
+
+		it('sets accesskey', function () {
+			browser.assert.attribute(KOMBrowseListToolbarCreateButton, 'accesskey', 'n');
+		});
+
+	});
+
+	describe('KOMBrowseListToolbarCreateButtonImage', function test_KOMBrowseListToolbarCreateButtonImage() {
+
+		it('sets src', function () {
+			browser.assert.elements(`${ KOMBrowseListToolbarCreateButtonImage } #_OLSKSharedCreate`, 1);
+		});
+
+	});
+
 	context('create', function test_create() {
 
 		before(function () {

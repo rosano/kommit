@@ -15,6 +15,10 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 			});
 		});
 
+		it('localizes KOMBrowseListToolbarCreateButton', function () {
+			browser.assert.attribute(KOMBrowseListToolbarCreateButton, 'title', uLocalized('KOMBrowseListToolbarCreateButtonText'));
+		});
+
 		context('retire', function test_retire() {
 
 			before(function () {

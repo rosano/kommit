@@ -424,3 +424,17 @@ import OLSKUIAssets from 'OLSKUIAssets';
 {#if OLSK_SPEC_UI() && KOMBrowse_DEBUG }
 	 <button class="OLSKAppToolbarLauncherButton" on:click={ mod._OLSKAppToolbarDispatchLauncher }></button>
 {/if}
+
+<style>
+.KOMBrowseListToolbarCreateButton {
+	margin-left: 4px !important;
+}
+
+@media screen and (max-width: 760px) {
+
+.KOMBrowseListToolbarCreateButton {
+	margin-left: 8px !important;
+}
+
+}
+</style>
