@@ -15,18 +15,18 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 			});
 		});
 
-		it('localizes KOMBrowseListToolbarCloseButton', function () {
-			browser.assert.attribute(KOMBrowseListToolbarCloseButton, 'title', uLocalized('KOMBrowseListToolbarCloseButtonText'));
+		it('localizes KOMBrowseCloseButton', function () {
+			browser.assert.attribute(KOMBrowseCloseButton, 'title', uLocalized('KOMBrowseCloseButtonText'));
 		});
 
-		it('localizes KOMBrowseListToolbarCreateButton', function () {
-			browser.assert.attribute(KOMBrowseListToolbarCreateButton, 'title', uLocalized('KOMBrowseListToolbarCreateButtonText'));
+		it('localizes KOMBrowseCreateButton', function () {
+			browser.assert.attribute(KOMBrowseCreateButton, 'title', uLocalized('KOMBrowseCreateButtonText'));
 		});
 
 		context('retire', function test_retire() {
 
 			before(function () {
-				return browser.pressButton('.KOMBrowseListToolbarCreateButton');
+				return browser.pressButton('.KOMBrowseCreateButton');
 			});
 
 			before(function () {

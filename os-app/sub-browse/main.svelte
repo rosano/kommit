@@ -395,14 +395,14 @@ import OLSKUIAssets from 'OLSKUIAssets';
 	<!-- MASTER -->
 	
 	<div class="OLSKToolbarElementGroup" slot="OLSKMasterListToolbarHead">
-		<button class="KOMBrowseListToolbarCloseButton OLSKDecorButtonNoStyle OLSKDecorTappable OLSKToolbarButton" title={ OLSKLocalized('KOMBrowseListToolbarCloseButtonText') } on:click={ KOMBrowseDispatchClose }>
-			<div class="KOMBrowseListToolbarCloseButtonImage">{@html OLSKUIAssets._OLSKSharedBack }</div>
+		<button class="KOMBrowseCloseButton OLSKDecorButtonNoStyle OLSKDecorTappable OLSKToolbarButton" title={ OLSKLocalized('KOMBrowseCloseButtonText') } on:click={ KOMBrowseDispatchClose }>
+			<div class="KOMBrowseCloseButtonImage">{@html OLSKUIAssets._OLSKSharedBack }</div>
 		</button>
 	</div>
 
 	<div class="OLSKToolbarElementGroup" slot="OLSKMasterListToolbarTail">
-		<button class="KOMBrowseListToolbarCreateButton OLSKDecorButtonNoStyle OLSKDecorTappable OLSKToolbarButton" title={ OLSKLocalized('KOMBrowseListToolbarCreateButtonText') } on:click={ mod.InterfaceCreateButtonDidClick } accesskey="n">
-			<div class="KOMBrowseListToolbarCreateButtonImage">{@html OLSKUIAssets._OLSKSharedCreate }</div>
+		<button class="KOMBrowseCreateButton OLSKDecorButtonNoStyle OLSKDecorTappable OLSKToolbarButton" title={ OLSKLocalized('KOMBrowseCreateButtonText') } on:click={ mod.InterfaceCreateButtonDidClick } accesskey="n">
+			<div class="KOMBrowseCreateButtonImage">{@html OLSKUIAssets._OLSKSharedCreate }</div>
 		</button>
 	</div>
 
@@ -440,13 +440,13 @@ import OLSKUIAssets from 'OLSKUIAssets';
 {/if}
 
 <style>
-.KOMBrowseListToolbarCreateButton {
+.KOMBrowseCreateButton {
 	margin-left: 4px !important;
 }
 
 @media screen and (max-width: 760px) {
 
-.KOMBrowseListToolbarCreateButton {
+.KOMBrowseCreateButton {
 	margin-left: 8px !important;
 }
 

@@ -31,7 +31,7 @@ describe('KOMReview_Retire', function () {
 		});
 
 		before(function () {
-			return browser.pressButton('.KOMBrowseListToolbarCreateButton');
+			return browser.pressButton('.KOMBrowseCreateButton');
 		});
 
 		before(function () {
@@ -39,7 +39,7 @@ describe('KOMReview_Retire', function () {
 		});
 
 		before(function () {
-			return browser.pressButton('.KOMBrowseListToolbarCreateButton');
+			return browser.pressButton('.KOMBrowseCreateButton');
 		});
 
 		before(function () {
@@ -51,7 +51,7 @@ describe('KOMReview_Retire', function () {
 		});
 
 		before(function () {
-			return browser.pressButton('.KOMBrowseListToolbarCloseButton');
+			return browser.pressButton('.KOMBrowseCloseButton');
 		});
 
 		before(function () {
@@ -101,7 +101,7 @@ describe('KOMReview_Retire', function () {
 			});
 
 			before(function () {
-				return browser.pressButton('.KOMBrowseListToolbarCreateButton');
+				return browser.pressButton('.KOMBrowseCreateButton');
 			});
 
 			before(function () {
@@ -113,7 +113,7 @@ describe('KOMReview_Retire', function () {
 			});
 
 			before(function () {
-				return browser.pressButton('.KOMBrowseListToolbarCloseButton');
+				return browser.pressButton('.KOMBrowseCloseButton');
 			});
 
 			before(function () {

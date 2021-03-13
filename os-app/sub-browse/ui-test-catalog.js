@@ -11,7 +11,7 @@ describe('KOMBrowse_Catalog', function () {
 	context('create', function test_create () {
 		
 		before(function () {
-			return browser.pressButton('.KOMBrowseListToolbarCreateButton');
+			return browser.pressButton('.KOMBrowseCreateButton');
 		});
 
 		it('adds item', function () {
@@ -91,11 +91,11 @@ describe('KOMBrowse_Catalog', function () {
 	context('OLSKCatalogDispatchArrow', function test_OLSKCatalogDispatchArrow () {
 		
 		before(function () {
-			return browser.pressButton('.KOMBrowseListToolbarCreateButton');
+			return browser.pressButton('.KOMBrowseCreateButton');
 		});
 
 		before(function () {
-			return browser.pressButton('.KOMBrowseListToolbarCreateButton');
+			return browser.pressButton('.KOMBrowseCreateButton');
 		});
 
 		before(function () {

@@ -1,11 +1,11 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 Object.entries({
-	KOMBrowseListToolbarCloseButton: '.KOMBrowseListToolbarCloseButton',
-	KOMBrowseListToolbarCloseButtonImage: '.KOMBrowseListToolbarCloseButtonImage',
+	KOMBrowseCloseButton: '.KOMBrowseCloseButton',
+	KOMBrowseCloseButtonImage: '.KOMBrowseCloseButtonImage',
 
-	KOMBrowseListToolbarCreateButton: '.KOMBrowseListToolbarCreateButton',
-	KOMBrowseListToolbarCreateButtonImage: '.KOMBrowseListToolbarCreateButtonImage',
+	KOMBrowseCreateButton: '.KOMBrowseCreateButton',
+	KOMBrowseCreateButtonImage: '.KOMBrowseCreateButtonImage',
 }).map(function (e) {
 	return global[e.shift()] = e.pop();
 });
@@ -26,20 +26,20 @@ describe('KOMBrowse_Access', function () {
 		browser.assert.elements('.OLSKCatalog', 1);
 	});
 
-	it('shows KOMBrowseListToolbarCloseButton', function () {
-		browser.assert.elements(KOMBrowseListToolbarCloseButton, 1);
+	it('shows KOMBrowseCloseButton', function () {
+		browser.assert.elements(KOMBrowseCloseButton, 1);
 	});
 
-	it('shows KOMBrowseListToolbarCloseButtonImage', function () {
-		browser.assert.elements(KOMBrowseListToolbarCloseButtonImage, 1);
+	it('shows KOMBrowseCloseButtonImage', function () {
+		browser.assert.elements(KOMBrowseCloseButtonImage, 1);
 	});
 
-	it('shows KOMBrowseListToolbarCreateButton', function () {
-		browser.assert.elements(KOMBrowseListToolbarCreateButton, 1);
+	it('shows KOMBrowseCreateButton', function () {
+		browser.assert.elements(KOMBrowseCreateButton, 1);
 	});
 
-	it('shows KOMBrowseListToolbarCreateButtonImage', function () {
-		browser.assert.elements(KOMBrowseListToolbarCreateButtonImage, 1);
+	it('shows KOMBrowseCreateButtonImage', function () {
+		browser.assert.elements(KOMBrowseCreateButtonImage, 1);
 	});
 
 	it('hides KOMBrowseListItem', function () {
@@ -57,7 +57,7 @@ describe('KOMBrowse_Access', function () {
 	context('select', function test_select() {
 
 		before(function () {
-			return browser.pressButton('.KOMBrowseListToolbarCreateButton');
+			return browser.pressButton('.KOMBrowseCreateButton');
 		});
 
 		it('shows KOMBrowseInfoLauncherFakeItemProxy', function () {
@@ -69,7 +69,7 @@ describe('KOMBrowse_Access', function () {
 	context('retire', function test_retire() {
 
 		before(function () {
-			return browser.pressButton('.KOMBrowseListToolbarCreateButton');
+			return browser.pressButton('.KOMBrowseCreateButton');
 		});
 
 		before(function () {

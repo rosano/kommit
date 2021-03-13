@@ -31,7 +31,7 @@ describe('KOMReview_TripleQuestionMark', function () {
 		});
 
 		before(function () {
-			return browser.pressButton('.KOMBrowseListToolbarCreateButton');
+			return browser.pressButton('.KOMBrowseCreateButton');
 		});
 
 		before(function () {
@@ -39,7 +39,7 @@ describe('KOMReview_TripleQuestionMark', function () {
 		});
 
 		before(function () {
-			return browser.pressButton('.KOMBrowseListToolbarCreateButton');
+			return browser.pressButton('.KOMBrowseCreateButton');
 		});
 
 		before(function () {
@@ -47,7 +47,7 @@ describe('KOMReview_TripleQuestionMark', function () {
 		});
 
 		before(function () {
-			return browser.pressButton('.KOMBrowseListToolbarCreateButton');
+			return browser.pressButton('.KOMBrowseCreateButton');
 		});
 
 		before(function () {
@@ -55,7 +55,7 @@ describe('KOMReview_TripleQuestionMark', function () {
 		});
 
 		before(function () {
-			return browser.pressButton('.KOMBrowseListToolbarCloseButton');
+			return browser.pressButton('.KOMBrowseCloseButton');
 		});
 
 		before(function () {

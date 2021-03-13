@@ -19,18 +19,18 @@ describe('KOMBrowse_Misc', function () {
 		});
 	});
 
-	describe('KOMBrowseListToolbarCloseButton', function test_KOMBrowseListToolbarCloseButton() {
+	describe('KOMBrowseCloseButton', function test_KOMBrowseCloseButton() {
 
 		it('classes OLSKDecorButtonNoStyle', function () {
-			browser.assert.hasClass(KOMBrowseListToolbarCloseButton, 'OLSKDecorButtonNoStyle');
+			browser.assert.hasClass(KOMBrowseCloseButton, 'OLSKDecorButtonNoStyle');
 		});
 
 		it('classes OLSKDecorTappable', function () {
-			browser.assert.hasClass(KOMBrowseListToolbarCloseButton, 'OLSKDecorTappable');
+			browser.assert.hasClass(KOMBrowseCloseButton, 'OLSKDecorTappable');
 		});
 
 		it('classes OLSKToolbarButton', function () {
-			browser.assert.hasClass(KOMBrowseListToolbarCloseButton, 'OLSKToolbarButton');
+			browser.assert.hasClass(KOMBrowseCloseButton, 'OLSKToolbarButton');
 		});
 
 		context('click', function () {
@@ -40,7 +40,7 @@ describe('KOMBrowse_Misc', function () {
 			});
 
 			before(function () {
-				return browser.pressButton(KOMBrowseListToolbarCloseButton);
+				return browser.pressButton(KOMBrowseCloseButton);
 			});
 
 			it('sends KOMBrowseDispatchClose', function () {
@@ -51,38 +51,38 @@ describe('KOMBrowse_Misc', function () {
 
 	});
 
-	describe('KOMBrowseListToolbarCloseButtonImage', function test_KOMBrowseListToolbarCloseButtonImage() {
+	describe('KOMBrowseCloseButtonImage', function test_KOMBrowseCloseButtonImage() {
 
 		it('sets src', function () {
-			browser.assert.elements(`${ KOMBrowseListToolbarCloseButtonImage } #_OLSKSharedBack`, 1);
+			browser.assert.elements(`${ KOMBrowseCloseButtonImage } #_OLSKSharedBack`, 1);
 		});
 
 	});
 
-	describe('KOMBrowseListToolbarCreateButton', function test_KOMBrowseListToolbarCreateButton() {
+	describe('KOMBrowseCreateButton', function test_KOMBrowseCreateButton() {
 
 		it('classes OLSKDecorButtonNoStyle', function () {
-			browser.assert.hasClass(KOMBrowseListToolbarCreateButton, 'OLSKDecorButtonNoStyle');
+			browser.assert.hasClass(KOMBrowseCreateButton, 'OLSKDecorButtonNoStyle');
 		});
 
 		it('classes OLSKDecorTappable', function () {
-			browser.assert.hasClass(KOMBrowseListToolbarCreateButton, 'OLSKDecorTappable');
+			browser.assert.hasClass(KOMBrowseCreateButton, 'OLSKDecorTappable');
 		});
 
 		it('classes OLSKToolbarButton', function () {
-			browser.assert.hasClass(KOMBrowseListToolbarCreateButton, 'OLSKToolbarButton');
+			browser.assert.hasClass(KOMBrowseCreateButton, 'OLSKToolbarButton');
 		});
 
 		it('sets accesskey', function () {
-			browser.assert.attribute(KOMBrowseListToolbarCreateButton, 'accesskey', 'n');
+			browser.assert.attribute(KOMBrowseCreateButton, 'accesskey', 'n');
 		});
 
 	});
 
-	describe('KOMBrowseListToolbarCreateButtonImage', function test_KOMBrowseListToolbarCreateButtonImage() {
+	describe('KOMBrowseCreateButtonImage', function test_KOMBrowseCreateButtonImage() {
 
 		it('sets src', function () {
-			browser.assert.elements(`${ KOMBrowseListToolbarCreateButtonImage } #_OLSKSharedCreate`, 1);
+			browser.assert.elements(`${ KOMBrowseCreateButtonImage } #_OLSKSharedCreate`, 1);
 		});
 
 	});
@@ -99,7 +99,7 @@ describe('KOMBrowse_Misc', function () {
 		});
 
 		before(function () {
-			return browser.pressButton('.KOMBrowseListToolbarCreateButton');
+			return browser.pressButton('.KOMBrowseCreateButton');
 		});
 
 		it('focuses KOMBrowseInfoFormFrontTextField', function () {
@@ -318,7 +318,7 @@ describe('KOMBrowse_Misc', function () {
 	context('discard', function test_discard() {
 
 		before(function () {
-			return browser.pressButton('.KOMBrowseListToolbarCreateButton');
+			return browser.pressButton('.KOMBrowseCreateButton');
 		});
 
 		before(function () {
@@ -352,7 +352,7 @@ describe('KOMBrowse_Misc', function () {
 		});
 
 		before(function () {
-			return browser.pressButton('.KOMBrowseListToolbarCloseButton');
+			return browser.pressButton('.KOMBrowseCloseButton');
 		});
 
 		it('sends KOMBrowseDispatchClose', function () {

@@ -285,7 +285,7 @@ describe('KOMReview_Access', function () {
 	context('close', function test_close() {
 
 		before(function () {
-			return browser.pressButton('.KOMBrowseListToolbarCloseButton');
+			return browser.pressButton('.KOMBrowseCloseButton');
 		});
 
 		it('hides KOMReviewMaster', function () {
@@ -383,11 +383,11 @@ describe('KOMReview_Access', function () {
 		});
 
 		before(function () {
-			return browser.pressButton('.KOMBrowseListToolbarCreateButton');
+			return browser.pressButton('.KOMBrowseCreateButton');
 		});
 
 		before(function () {
-			return browser.pressButton('.KOMBrowseListToolbarCloseButton');
+			return browser.pressButton('.KOMBrowseCloseButton');
 		});
 
 		before(function () {

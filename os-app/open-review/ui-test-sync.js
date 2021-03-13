@@ -281,7 +281,7 @@ describe.skip('KOMReview_Sync', function () {
 		context('same_deck', function () {
 
 			before(function () {
-				return browser.pressButton('.KOMBrowseListToolbarCloseButton');
+				return browser.pressButton('.KOMBrowseCloseButton');
 			});
 
 			before(function () {
@@ -339,7 +339,7 @@ describe.skip('KOMReview_Sync', function () {
 			describe('ZDRSchemaDispatchSyncConflictCard', function () {
 
 				before(function () {
-					return browser.pressButton('.KOMBrowseListToolbarCreateButton');
+					return browser.pressButton('.KOMBrowseCreateButton');
 				});
 
 				before(function () {
