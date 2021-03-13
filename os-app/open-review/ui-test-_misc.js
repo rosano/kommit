@@ -81,7 +81,7 @@ describe('KOMReview_Misc', function () {
 		});
 
 		before(function () {
-			return browser.pressButton('.KOMBrowseListToolbarCreateButton');
+			return browser.pressButton('.KOMBrowseCreateButton');
 		});
 
 		it('sets KOMBrowseDeckSelected', function () {
@@ -97,7 +97,7 @@ describe('KOMReview_Misc', function () {
 		});
 
 		before(function () {
-			return browser.pressButton('.KOMBrowseListToolbarCreateButton');
+			return browser.pressButton('.KOMBrowseCreateButton');
 		});
 
 		before(function () {
@@ -105,7 +105,7 @@ describe('KOMReview_Misc', function () {
 		});
 
 		before(function () {
-			return browser.pressButton('.KOMBrowseListToolbarCloseButton');
+			return browser.pressButton('.KOMBrowseCloseButton');
 		});
 
 		before(function () {

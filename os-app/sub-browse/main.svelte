@@ -6,7 +6,7 @@ export let KOMBrowseDeckCards;
 export let KOMBrowseDispatchEligible;
 export let KOMBrowseDispatchCreate;
 export let KOMBrowseDispatchDiscard;
-export let KOMBrowseListDispatchClose;
+export let KOMBrowseDispatchClose;
 export let KOMBrowseInfoSpeechAvailable;
 export let KOMBrowseInfoDispatchRead;
 export let KOMBrowse_DEBUG = false;
@@ -34,6 +34,7 @@ export const modPublic = {
 import { OLSKLocalized } from 'OLSKInternational';
 import { OLSK_SPEC_UI } from 'OLSKSpec';
 import OLSKThrottle from 'OLSKThrottle';
+import OLSKRemoteStorage from 'OLSKRemoteStorage';
 import KOMBrowseLogic from './ui-logic.js';
 import KOMCard from '../_shared/KOMCard/main.js';
 
@@ -43,33 +44,7 @@ const mod = {
 
 	_ValueTagsAll: [],
 
-	_ValueCardsAll: KOMBrowseDeckCards,
-	ValueCardsAll (inputData, shouldSort = true) {
-		mod.ValueCardsVisible(mod._ValueCardsAll = inputData, shouldSort);
-
-		mod.ReactTags();
-	},
-
-	_ValueCardsVisible: [],
-	ValueCardsVisible (inputData, shouldSort = true) {
-		const items = !mod._ValueFilterText ? inputData : inputData.filter(KOMBrowseLogic.KOMBrowseFilterFunction(mod._ValueFilterText));
-		mod._ValueCardsVisible = shouldSort ? items.sort(KOMBrowseLogic.KOMBrowseSort) : items;
-	},
-	
-	_ValueCardSelected: undefined,
-	ValueCardSelected (inputData) {
-		mod._ValueCardSelected = inputData;
-
-		if (!inputData) {
-			mod.OLSKMobileViewInactive = false;	
-		}
-	},
-	
-	_ValueFilterText: '',
-
 	_ValueCardUpdateThrottleMap: {},
-
-	OLSKMobileViewInactive: false,
 
 	// DATA
 
@@ -88,7 +63,7 @@ const mod = {
 	DataBrowseRecipes () {
 		const items = [];
 
-		if (mod._ValueCardsVisible.filter(function (e) {
+		if (mod._OLSKCatalog.modPublic._OLSKCatalogDataItemsAll().filter(function (e) {
 			return e.KOMCardIsRetired;
 		}).length) {
 			items.push(...[
@@ -113,7 +88,7 @@ const mod = {
 				{
 					LCHRecipeName: 'FakeChangeDelegateUpdateCard',
 					LCHRecipeCallback: async function FakeChangeDelegateUpdateCard () {
-						return mod.ChangeDelegateUpdateCard(await KOMBrowseStorageClient.App.KOMCard.KOMCardUpdate(Object.assign(mod._ValueCardsAll.filter(function (e) {
+						return mod.ChangeDelegateUpdateCard(await KOMBrowseStorageClient.App.KOMCard.KOMCardUpdate(Object.assign(mod._OLSKCatalog.modPublic._OLSKCatalogDataItemsAll().filter(function (e) {
 							return e.KOMCardFrontText.match('FakeChangeDelegate');
 						}).pop(), {
 							KOMCardFrontText: 'FakeChangeDelegateUpdateCard',
@@ -123,19 +98,27 @@ const mod = {
 				{
 					LCHRecipeName: 'FakeChangeDelegateDeleteCard',
 					LCHRecipeCallback: async function FakeChangeDelegateDeleteCard () {
-						const item = mod._ValueCardsAll.filter(function (e) {
+						return mod.ChangeDelegateDeleteCard(await KOMBrowseStorageClient.App.KOMCard.KOMCardDelete(mod._OLSKCatalog.modPublic._OLSKCatalogDataItemsAll().filter(function (e) {
 							return e.KOMCardFrontText.match('FakeChangeDelegate');
-						}).pop();
-						
-						await KOMBrowseStorageClient.App.KOMCard.KOMCardDelete(item);
-						
-						return mod.ChangeDelegateDeleteCard(item);
+						}).pop()));
 					},
 				},
 				{
-					LCHRecipeName: 'FakeEscapeWithoutSort',
-					LCHRecipeCallback: function FakeEscapeWithoutSort () {
-						mod.ControlCardSelect(null);
+					LCHRecipeName: 'FakeSyncConflictNote',
+					LCHRecipeCallback: async function FakeSyncConflictNote () {
+						const item = mod._OLSKCatalog.modPublic._OLSKCatalogDataItemsAll().filter(function (e) {
+							return e.KOMCardFrontText.match('FakeSyncConflictNote');
+						}).pop();
+						
+						return mod.SyncConflictNote({
+							origin: 'conflict',
+							oldValue: JSON.parse(JSON.stringify(await KOMBrowseStorageClient.App.KOMCard.KOMCardUpdate(Object.assign({}, item, {
+								KOMCardFrontText: item.KOMCardFrontText + '-local',
+							})))),
+							newValue: JSON.parse(JSON.stringify(Object.assign({}, item, {
+								KOMCardFrontText: item.KOMCardFrontText + '-remote',
+							}))),
+						});
 					},
 				},
 			]);
@@ -150,25 +133,18 @@ const mod = {
 
 	// INTERFACE	
 
+	InterfaceCreateButtonDidClick () {
+		mod.ControlCardCreate(KOMBrowseDeckSelected);
+	},
+
 	InterfaceWindowDidKeydown (event) {
 		if (document.querySelector('.LCHLauncher')) { // #spec
 			return;
 		}
 
 		const handlerFunctions = {
-			Escape () {
-				if (document.activeElement === document.querySelector('.OLSKMasterListFilterField') && !mod._ValueFilterText) {
-					return KOMBrowseListDispatchClose();
-				}
-
-				mod.ControlFilter('');
-
-				if (!OLSK_SPEC_UI()) {
-					document.querySelector('.OLSKMasterListBody').scrollTo(0, 0);
-				}
-			},
 			Tab () {
-				if (document.activeElement === document.querySelector('.OLSKMasterListFilterField') && mod._ValueCardSelected) {
+				if (document.activeElement === document.querySelector('.OLSKMasterListFilterField') && mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected()) {
 					mod.ControlFocusDetail();
 
 					return event.preventDefault();
@@ -194,9 +170,7 @@ const mod = {
 
 		const item = await KOMBrowseStorageClient.App.KOMCard.KOMCardCreate(Object.assign(mod.DataCardObjectTemplate(), param2), param1);
 
-		mod.ValueCardsAll(mod._ValueCardsAll.concat(item));
-
-		mod.ControlCardSelect(item);
+		mod.ControlCardSelect(mod._OLSKCatalog.modPublic.OLSKCatalogInsert(item));
 
 		KOMBrowseDispatchCreate(item);
 	},
@@ -222,18 +196,10 @@ const mod = {
 		await mod.ControlCardUpdate(param2);
 	},
 
-	async ControlCardDiscard (param1) {
-		mod.ValueCardsAll(mod._ValueCardsAll.filter(function (e) {
-			return e !== param1;
-		}), false);
+	async ControlCardDiscard (inputData) {
+		mod._OLSKCatalog.modPublic.OLSKCatalogRemove(inputData)
 
-		await KOMBrowseStorageClient.App.KOMCard.KOMCardDelete(param1);
-
-		if (param1 === mod._ValueCardSelected) {
-			mod.ControlCardSelect(null);
-		}
-
-		KOMBrowseDispatchDiscard(param1);
+		KOMBrowseDispatchDiscard(await KOMBrowseStorageClient.App.KOMCard.KOMCardDelete(inputData));
 	},
 
 	ControlDiscardRetiredCards () {
@@ -241,7 +207,7 @@ const mod = {
 			return;
 		}
 
-		return mod._ValueCardsAll.filter(function (e) {
+		return mod._OLSKCatalog.modPublic._OLSKCatalogDataItemsAll().filter(function (e) {
 			return e.KOMCardIsRetired;
 		}).map(function (e) {
 			return mod.ControlCardDiscard(e);
@@ -257,57 +223,45 @@ const mod = {
 	},
 
 	ControlCardSelect(inputData) {
-		mod.ValueCardSelected(inputData);
+		mod._OLSKCatalog.modPublic.OLSKCatalogSelect(inputData);
 
 		if (!inputData) {
 			return !mod.DataIsMobile() && mod.ControlFocusMaster();
 		}
 
-		mod.OLSKMobileViewInactive = true;
+		mod._OLSKCatalog.modPublic.OLSKCatalogFocusDetail();
 
 		setTimeout(mod.ControlFocusDetail);
 	},
 	
-	ControlFilter(inputData) {
-		mod._ValueFilterText = inputData;
-
-		mod.ValueCardsVisible(mod._ValueCardsAll);
-
-		if (!inputData) {
-			return mod.ControlCardSelect(null);
-		}
-
-		if (!mod._ValueCardsVisible.length) {
-			return mod.ControlCardSelect(null);
-		}
-
-		mod.ValueCardSelected(KOMBrowseLogic.KOMBrowseExactMatchFirst(inputData, mod._ValueCardsVisible).shift());
-	},
-
 	// MESSAGE
 
-	KOMBrowseListDispatchCreate () {
-		mod.ControlCardCreate(KOMBrowseDeckSelected);
+	OLSKMasterListItemAccessibilitySummaryFunction (inputData) {
+		KOMBrowseLogic.KOMBrowseAccessibilitySummary(inputData, OLSKLocalized);
 	},
 
-	KOMBrowseListDispatchClick (inputData) {
+	_OLSKCatalogDispatchKey (inputData) {
+		return inputData.KOMCardID;
+	},
+
+	OLSKCatalogDispatchClick (inputData) {
 		mod.ControlCardSelect(inputData);
 	},
 
-	KOMBrowseListDispatchArrow (inputData) {
-		mod.ValueCardSelected(inputData);
+	OLSKCatalogDispatchArrow (inputData) {
+		mod._OLSKCatalog.modPublic.OLSKCatalogSelect(inputData);
 	},
 
-	KOMBrowseListDispatchFilter (inputData) {
-		mod.ControlFilter(inputData);
+	OLSKCatalogDispatchQuantity (inputData) {
+		mod.ReactTags();
 	},
 
 	KOMBrowseInfoDispatchBack () {
-		mod.OLSKMobileViewInactive = false;
+		mod._OLSKCatalog.modPublic.OLSKCatalogFocusMaster();
 	},
 
 	KOMBrowseInfoDispatchDiscard () {
-		mod.ControlCardDiscard(mod._ValueCardSelected);
+		mod.ControlCardDiscard(mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected());
 	},
 
 	KOMBrowseInfoDispatchTemplate (inputData) {
@@ -315,27 +269,25 @@ const mod = {
 	},
 
 	KOMBrowseInfoDispatchUpdate () {
-		mod._ValueCardSelected = mod._ValueCardSelected; // #purge-svelte-force-update
-
-		mod.ControlCardUpdate(mod._ValueCardSelected);
+		mod.ControlCardUpdate(mod._OLSKCatalog.modPublic.OLSKCatalogUpdate(mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected()));
 
 		mod.ReactTags();
 	},
 
 	async KOMBrowseInfoAudioDispatchCapture (property, data) {
-		await mod.ControlCardAudioCapture(property, data, mod._ValueCardSelected);
+		await mod.ControlCardAudioCapture(property, data, mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected());
 
-		mod._ValueCardSelected = mod._ValueCardSelected; // #purge-svelte-force-update
+		mod._OLSKCatalog.modPublic.OLSKCatalogSelect(mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected()); // #purge-svelte-force-update
 	},
 
 	async KOMBrowseInfoAudioDispatchClear (inputData) {
-		await mod.ControlCardAudioClear(inputData, mod._ValueCardSelected);
+		await mod.ControlCardAudioClear(inputData, mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected());
 
-		mod._ValueCardSelected = mod._ValueCardSelected; // #purge-svelte-force-update
+		mod._OLSKCatalog.modPublic.OLSKCatalogSelect(mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected()); // #purge-svelte-force-update
 	},
 
 	KOMBrowseInfoAudioDispatchFetch (inputData) {
-		return KOMBrowseStorageClient.App.KOMCard.KOMCardAudioFetch(mod._ValueCardSelected, inputData === 'KOMCardFrontAudio' ? KOMCard.KOMCardSideFront() : KOMCard.KOMCardSideRear());
+		return KOMBrowseStorageClient.App.KOMCard.KOMCardAudioFetch(mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected(), inputData === 'KOMCardFrontAudio' ? KOMCard.KOMCardSideFront() : KOMCard.KOMCardSideRear());
 	},
 
 	KOMBrowseInfoDispatchDebug (inputData) {
@@ -356,43 +308,27 @@ const mod = {
 	},
 
 	ChangeDelegateCreateCard (inputData) {
-		mod.ValueCardsAll([inputData].concat(mod._ValueCardsAll), !mod._ValueCardSelected);
+		mod._OLSKCatalog.modPublic.OLSKCatalogInsert(inputData);
 	},
 
 	ChangeDelegateUpdateCard (inputData) {
-		if (mod._ValueCardSelected && mod._ValueCardSelected.KOMCardID === inputData.KOMCardID) {
-			mod.ControlCardSelect(inputData);
-		}
-
-		mod.ValueCardsAll(mod._ValueCardsAll.map(function (e) {
-			return e.KOMCardID === inputData.KOMCardID ? inputData : e;
-		}), !mod._ValueCardSelected);
+		mod._OLSKCatalog.modPublic.OLSKCatalogUpdate(inputData);
 	},
 
 	ChangeDelegateDeleteCard (inputData) {
-		if (mod._ValueCardSelected && (mod._ValueCardSelected.KOMCardID === inputData.KOMCardID)) {
-			mod.ControlCardSelect(null);
-		}
+		mod._OLSKCatalog.modPublic.OLSKCatalogRemove(inputData);
+	},
 
-		mod.ValueCardsAll(mod._ValueCardsAll.filter(function (e) {
-			return e.KOMCardID !== inputData.KOMCardID;
-		}), false);
+	SyncConflictNote (inputData) {
+		return setTimeout(async function () {
+			mod._OLSKCatalog.modPublic.OLSKCatalogUpdate(await KOMBrowseStorageClient.App.KOMCard.KOMCardUpdate(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateConflictSelectRecent(inputData))))
+		}, OLSK_SPEC_UI() ? 0 : 500);
 	},
 
 	// REACT
 
-	ReactCardSelected () {
-		if (!mod._ValueCardSelected) {
-			return;
-		}
-
-		mod._ValueCardSelected = mod._ValueCardsVisible.filter(function (e) {
-			return e.KOMCardID === mod._ValueCardSelected.KOMCardID;
-		}).pop();
-	},
-
 	ReactTags () {
-		mod._ValueTagsAll = mod._ValueCardsAll.reduce(function (coll, item) {
+		mod._ValueTagsAll = mod._OLSKCatalog.modPublic._OLSKCatalogDataItemsAll().reduce(function (coll, item) {
 			return coll.concat((item.KOMCardTags || []).filter(function (e) {
 				return !coll.includes(e);
 			}));
@@ -402,12 +338,14 @@ const mod = {
 	// SETUP
 
 	SetupEverything() {
-		mod.SetupValueCardsAll();
+		mod.SetupCatalog();
 		mod.SetupFocus();
 	},
 
-	SetupValueCardsAll() {
-		mod.ValueCardsAll(mod._ValueCardsAll);
+	SetupCatalog() {
+		KOMBrowseDeckCards.map(mod._OLSKCatalog.modPublic.OLSKCatalogInsert);
+
+		mod._OLSKCatalog.modPublic._OLSKCatalogDataItemsAll()
 	},
 
 	SetupFocus() {
@@ -427,41 +365,90 @@ const mod = {
 import { onMount } from 'svelte';
 onMount(mod.LifecycleModuleWillMount);
 
-import KOMBrowseList from './submodules/KOMBrowseList/main.svelte';
+import OLSKCatalog from 'OLSKCatalog';
+import KOMBrowseListItem from './submodules/KOMBrowseListItem/main.svelte';
 import KOMBrowseInfo from './submodules/KOMBrowseInfo/main.svelte';
+import OLSKUIAssets from 'OLSKUIAssets';
 </script>
 <svelte:window on:keydown={ mod.InterfaceWindowDidKeydown } />
 
-<KOMBrowseList
-	KOMBrowseListItems={ mod._ValueCardsVisible }
-	KOMBrowseListItemSelected={ mod._ValueCardSelected }
-	KOMBrowseListFilterText={ mod._ValueFilterText }
-	KOMBrowseListDispatchClose={ KOMBrowseListDispatchClose }
-	KOMBrowseListDispatchCreate={ mod.KOMBrowseListDispatchCreate }
-	KOMBrowseListDispatchClick={ mod.KOMBrowseListDispatchClick }
-	KOMBrowseListDispatchArrow={ mod.KOMBrowseListDispatchArrow }
-	KOMBrowseListDispatchFilter={ mod.KOMBrowseListDispatchFilter }
-	OLSKMobileViewInactive={ !!mod.OLSKMobileViewInactive }
-	/>
+<OLSKCatalog
+	bind:this={ mod._OLSKCatalog }
 
-<KOMBrowseInfo
-	KOMBrowseInfoItem={ mod._ValueCardSelected }
-	KOMBrowseInfoDeck={ KOMBrowseDeckSelected }
-	KOMBrowseInfoTagsSuggestions={ mod._ValueTagsAll }
-	KOMBrowseInfoSpeechAvailable={ KOMBrowseInfoSpeechAvailable }
-	KOMBrowseInfoDispatchBack={ mod.KOMBrowseInfoDispatchBack }
-	KOMBrowseInfoDispatchDiscard={ mod.KOMBrowseInfoDispatchDiscard }
-	KOMBrowseInfoDispatchUpdate={ mod.KOMBrowseInfoDispatchUpdate }
-	KOMBrowseInfoDispatchTemplate={ mod.KOMBrowseInfoDispatchTemplate }
-	KOMBrowseInfoDispatchRead={ KOMBrowseInfoDispatchRead }
-	KOMBrowseInfoAudioDispatchCapture={ mod.KOMBrowseInfoAudioDispatchCapture }
-	KOMBrowseInfoAudioDispatchFetch={ mod.KOMBrowseInfoAudioDispatchFetch }
-	KOMBrowseInfoAudioDispatchClear={ mod.KOMBrowseInfoAudioDispatchClear }
-	OLSKMobileViewInactive={ !mod.OLSKMobileViewInactive }
-	KOMBrowseInfoDispatchDebug={ mod.KOMBrowseInfoDispatchDebug }
-	bind:this={ mod._KOMBrowseInfo }
-	/>
+	OLSKMasterListItemAccessibilitySummaryFunction={ mod.OLSKMasterListItemAccessibilitySummaryFunction }
+
+	OLSKCatalogSortFunction={ KOMBrowseLogic.KOMBrowseSortFunction }
+	OLSKCatalogFilterFunction={ KOMBrowseLogic.KOMBrowseFilterFunction }
+	OLSKCatalogExactFunction={ KOMBrowseLogic.KOMBrowseExactFunction }
+
+	_OLSKCatalogDispatchKey={ mod._OLSKCatalogDispatchKey }
+
+	OLSKCatalogDispatchClick={ mod.OLSKCatalogDispatchClick }
+	OLSKCatalogDispatchArrow={ mod.OLSKCatalogDispatchArrow }
+	OLSKCatalogDispatchFilterSubmit={ mod.OLSKCatalogDispatchFilterSubmit }
+	OLSKCatalogDispatchQuantity={ mod.OLSKCatalogDispatchQuantity }
+	OLSKCatalogDispatchEscapeOnEmpty={ KOMBrowseDispatchClose }
+
+	let:OLSKResultsListItem
+	>
+
+	<!-- MASTER -->
+	
+	<div class="OLSKToolbarElementGroup" slot="OLSKMasterListToolbarHead">
+		<button class="KOMBrowseCloseButton OLSKDecorButtonNoStyle OLSKDecorTappable OLSKToolbarButton" title={ OLSKLocalized('KOMBrowseCloseButtonText') } on:click={ KOMBrowseDispatchClose }>
+			<div class="KOMBrowseCloseButtonImage">{@html OLSKUIAssets._OLSKSharedBack }</div>
+		</button>
+	</div>
+
+	<div class="OLSKToolbarElementGroup" slot="OLSKMasterListToolbarTail">
+		<button class="KOMBrowseCreateButton OLSKDecorButtonNoStyle OLSKDecorTappable OLSKToolbarButton" title={ OLSKLocalized('KOMBrowseCreateButtonText') } on:click={ mod.InterfaceCreateButtonDidClick } accesskey="n">
+			<div class="KOMBrowseCreateButtonImage">{@html OLSKUIAssets._OLSKSharedCreate }</div>
+		</button>
+	</div>
+
+	<!-- LIST ITEM -->
+
+	<div slot="OLSKMasterListItem">
+		<KOMBrowseListItem KOMBrowseListItemObject={ OLSKResultsListItem } />
+	</div>
+
+	<!-- DETAIL -->
+	
+	<div class="KOMBrowseDetailContainer" slot="OLSKCatalogDetailContent" let:OLSKCatalogItemSelected>
+		<KOMBrowseInfo
+			KOMBrowseInfoItem={ OLSKCatalogItemSelected }
+			KOMBrowseInfoDeck={ KOMBrowseDeckSelected }
+			KOMBrowseInfoTagsSuggestions={ mod._ValueTagsAll }
+			KOMBrowseInfoSpeechAvailable={ KOMBrowseInfoSpeechAvailable }
+			KOMBrowseInfoDispatchBack={ mod.KOMBrowseInfoDispatchBack }
+			KOMBrowseInfoDispatchDiscard={ mod.KOMBrowseInfoDispatchDiscard }
+			KOMBrowseInfoDispatchUpdate={ mod.KOMBrowseInfoDispatchUpdate }
+			KOMBrowseInfoDispatchTemplate={ mod.KOMBrowseInfoDispatchTemplate }
+			KOMBrowseInfoDispatchRead={ KOMBrowseInfoDispatchRead }
+			KOMBrowseInfoAudioDispatchCapture={ mod.KOMBrowseInfoAudioDispatchCapture }
+			KOMBrowseInfoAudioDispatchFetch={ mod.KOMBrowseInfoAudioDispatchFetch }
+			KOMBrowseInfoAudioDispatchClear={ mod.KOMBrowseInfoAudioDispatchClear }
+			KOMBrowseInfoDispatchDebug={ mod.KOMBrowseInfoDispatchDebug }
+			bind:this={ mod._KOMBrowseInfo }
+			/>
+	</div>
+
+</OLSKCatalog>
 
 {#if OLSK_SPEC_UI() && KOMBrowse_DEBUG }
 	 <button class="OLSKAppToolbarLauncherButton" on:click={ mod._OLSKAppToolbarDispatchLauncher }></button>
 {/if}
+
+<style>
+.KOMBrowseCreateButton {
+	margin-left: 4px !important;
+}
+
+@media screen and (max-width: 760px) {
+
+.KOMBrowseCreateButton {
+	margin-left: 8px !important;
+}
+
+}
+</style>

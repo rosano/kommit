@@ -20,7 +20,7 @@ describe('KOMBrowse_Tags', function () {
 	});
 
 	before(function () {
-		return browser.pressButton('.KOMBrowseListToolbarCreateButton');
+		return browser.pressButton('.KOMBrowseCreateButton');
 	});
 
 	context('suggestions', function () {
@@ -34,7 +34,7 @@ describe('KOMBrowse_Tags', function () {
 		});
 
 		before(function () {
-			return browser.pressButton('.KOMBrowseListToolbarCreateButton');
+			return browser.pressButton('.KOMBrowseCreateButton');
 		});
 
 		it('suggests existing tag', function () {

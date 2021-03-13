@@ -2,47 +2,6 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 describe('KOMBrowseInfo_Misc', function () {
 
-	describe('KOMBrowseInfo', function test_KOMBrowseInfo() {
-
-		before(function () {
-			return browser.OLSKVisit(kDefaultRoute, {
-				KOMBrowseInfoItem: JSON.stringify({}),
-			});
-		});
-
-		it('classes OLSKViewportDetail', function () {
-			browser.assert.hasClass(KOMBrowseInfo, 'OLSKViewportDetail');
-		});
-
-		context('OLSKMobileViewInactive', function () {
-
-			before(function () {
-				browser.assert.hasNoClass(KOMBrowseInfo, 'OLSKMobileViewInactive');
-			});
-
-			before(function () {
-				browser.assert.attribute(KOMBrowseInfo, 'aria-hidden', null);
-			});
-
-			before(function () {
-				return browser.OLSKVisit(kDefaultRoute, {
-					KOMBrowseInfoItem: JSON.stringify({}),
-					OLSKMobileViewInactive: true,
-				});
-			});
-
-			it('classes OLSKMobileViewInactive', function () {
-				browser.assert.hasClass(KOMBrowseInfo, 'OLSKMobileViewInactive');
-			});
-
-			it('sets aria-hidden', function () {
-				browser.assert.attribute(KOMBrowseInfo, 'aria-hidden', 'true');
-			});
-
-		});
-
-	});
-
 	describe('KOMBrowseInfoToolbar', function test_KOMBrowseInfoToolbar() {
 
 		before(function () {

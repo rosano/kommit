@@ -8,234 +8,110 @@ describe('KOMBrowse_Sync', function () {
 		});
 	});
 
-	before(function () {
-		return browser.pressButton('.KOMBrowseListToolbarCreateButton');
-	});
-
-	before(function () {
-		return browser.fill('.KOMBrowseInfoFormFrontTextField', 'alfa');
-	});
-
-	before(function () {
-		return browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
-	});
-
-	describe('ChangeDelegateCreateCard', function test_ChangeDelegateCreateCard() {
+	describe('SyncCreateCard', function test_SyncCreateCard() {
 
 		before(function () {
-			browser.assert.elements('.KOMBrowseListItem', 1);
+			browser.assert.elements('.OLSKResultsListItem', 0);
 		});
 
 		before(function () {
-			return browser.OLSKLauncherRun('FakeChangeDelegateCreateCard');
+			return browser.OLSKLauncherRun('FakeSyncCreateCard');
 		});
 
 		it('adds item', function () {
-			browser.assert.elements('.KOMBrowseListItem', 2);
-		});
-
-		it('sorts list', function () {
-			browser.assert.text('.KOMBrowseListItem', 'FakeChangeDelegateCreateCard alfa');
-		});
-
-		context('selected', function () {
-
-			before(function () {
-				return browser.click('.OLSKResultsListItem:nth-child(2) .KOMBrowseListItem');
-			});
-
-			before(function () {
-				return browser.fill('.KOMBrowseInfoFormFrontTextField', 'alfa2');
-			});
-
-			before(function () {
-				return browser.OLSKLauncherRun('FakeChangeDelegateCreateCard');
-			});
-
-			it('adds item', function () {
-				browser.assert.elements('.KOMBrowseListItem', 3);
-			});
-
-			it('skips sort', function () {
-				browser.assert.text('.KOMBrowseListItem', 'FakeChangeDelegateCreateCard FakeChangeDelegateCreateCard alfa2');
-			});
-
+			browser.assert.elements('.OLSKResultsListItem', 1);
 		});
 
 	});
 
-	describe('ChangeDelegateUpdateCard', function test_ChangeDelegateUpdateCard() {
+	describe('SyncUpdateCard', function test_SyncUpdateCard() {
 
 		before(function () {
-			return browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
+			browser.assert.text('.OLSKResultsListItem', 'FakeSyncCreateCard');
 		});
 
 		before(function () {
-			browser.assert.text('.KOMBrowseListItem', 'FakeChangeDelegateCreateCard alfa2 FakeChangeDelegateCreateCard');
-		});
-
-		before(function () {
-			return browser.OLSKLauncherRun('FakeChangeDelegateUpdateCard');
+			return browser.OLSKLauncherRun('FakeSyncUpdateCard');
 		});
 
 		it('updates item', function () {
-			browser.assert.text('.OLSKResultsListItem:nth-child(1) .KOMBrowseListItem', 'FakeChangeDelegateUpdateCard');
-		});
-
-		it('sorts list', function () {
-			browser.assert.text('.KOMBrowseListItem', 'FakeChangeDelegateUpdateCard FakeChangeDelegateCreateCard alfa2');
-		});
-
-		context('selected different', function () {
-
-			before(function () {
-				return browser.click('.OLSKResultsListItem:nth-child(1) .KOMBrowseListItem');
-			});
-
-			before(function () {
-				return browser.fill('.KOMBrowseInfoFormFrontTextField', 'bravo');
-			});
-
-			before(function () {
-				browser.assert.text('.KOMBrowseListItem', 'bravo FakeChangeDelegateCreateCard alfa2');
-			});
-
-			before(function () {
-				return browser.OLSKLauncherRun('FakeChangeDelegateUpdateCard');
-			});
-
-			it('updates item', function () {
-				browser.assert.elements('.OLSKResultsListItem:nth-child(3) .KOMBrowseListItem', 'FakeChangeDelegateUpdateCard');
-			});
-
-			it('skips sort', function () {
-				browser.assert.text('.KOMBrowseListItem', 'bravo FakeChangeDelegateUpdateCard alfa2');
-			});
-
+			browser.assert.text('.OLSKResultsListItem', 'FakeSyncUpdateCard');
 		});
 
 		context('selected same', function () {
 
 			before(function () {
-				return browser.click('.OLSKResultsListItem:nth-child(2) .KOMBrowseListItem');
+				return browser.click('.OLSKResultsListItem');
 			});
 
 			before(function () {
-				return browser.fill('.KOMBrowseInfoFormFrontTextField', 'FakeChangeDelegateCreateCard');
+				return browser.fill('.KOMBrowseInfoFormFrontTextField', 'FakeSyncCreateCard');
 			});
 
 			before(function () {
-				return browser.OLSKLauncherRun('FakeChangeDelegateUpdateCard');
+				return browser.OLSKLauncherRun('FakeSyncUpdateCard');
 			});
 
 			it('updates detail', function () {
-				browser.assert.input('.KOMBrowseInfoFormFrontTextField', 'FakeChangeDelegateUpdateCard');
+				browser.assert.input('.KOMBrowseInfoFormFrontTextField', 'FakeSyncUpdateCard');
 			});
 
 		});
 
 	});
 
-	describe('ChangeDelegateDeleteCard', function test_ChangeDelegateDeleteCard() {
+	describe('SyncDeleteCard', function test_SyncDeleteCard() {
 
 		before(function () {
-			return browser.click('.OLSKResultsListItem:nth-child(3) .KOMBrowseListItem');
-		});
-
-		before(function () {
-			return browser.fill('.KOMBrowseInfoFormFrontTextField', 'alfa3');
-		});
-
-		before(function () {
-			return browser.OLSKLauncherRun('FakeEscapeWithoutSort');
-		});
-
-		before(function () {
-			browser.assert.text('.KOMBrowseListItem', 'bravo FakeChangeDelegateUpdateCard alfa3');
-		});
-
-		before(function () {
-			browser.assert.elements('.KOMBrowseListItem', 3);
-		});
-
-		before(function () {
-			return browser.OLSKLauncherRun('FakeChangeDelegateDeleteCard');
+			return browser.OLSKLauncherRun('FakeSyncDeleteCard');
 		});
 
 		it('removes item', function () {
-			browser.assert.elements('.KOMBrowseListItem', 2);
-		});
-
-		it('skips sort', function () {
-			browser.assert.text('.KOMBrowseListItem', 'bravo alfa3');
-		});
-
-		context('selected different', function () {
-
-			before(function () {
-				return browser.click('.OLSKResultsListItem:nth-child(2) .KOMBrowseListItem');
-			});
-
-			before(function () {
-				return browser.fill('.KOMBrowseInfoFormFrontTextField', 'alfa4');
-			});
-
-			before(function () {
-				return browser.OLSKLauncherRun('FakeChangeDelegateCreateCard');
-			});
-
-			before(function () {
-				browser.assert.elements('.KOMBrowseListItem', 3);
-			});
-
-			before(function () {
-				return browser.OLSKLauncherRun('FakeChangeDelegateDeleteCard');
-			});
-
-			it('removes item', function () {
-				browser.assert.elements('.KOMBrowseListItem', 2);
-			});
-
-			it('skips sort', function () {
-				browser.assert.text('.KOMBrowseListItem', 'bravo alfa4');
-			});
-
+			browser.assert.elements('.OLSKResultsListItem', 0);
 		});
 
 		context('selected same', function () {
 
 			before(function () {
-				return browser.OLSKLauncherRun('FakeChangeDelegateCreateCard');
+				return browser.OLSKLauncherRun('FakeSyncCreateCard');
 			});
 
 			before(function () {
-				return browser.click('.OLSKResultsListItem:nth-child(1) .KOMBrowseListItem');
+				return browser.click('.OLSKResultsListItem');
 			});
 
 			before(function () {
-				browser.assert.text('.KOMBrowseListItem', 'FakeChangeDelegateCreateCard bravo alfa4');
-			});
-
-			before(function () {
-				browser.assert.elements('.KOMBrowseListItem', 3);
-			});
-
-			before(function () {
-				return browser.OLSKLauncherRun('FakeChangeDelegateDeleteCard');
-			});
-
-			it('removes item', function () {
-				browser.assert.elements('.KOMBrowseListItem', 2);
+				return browser.OLSKLauncherRun('FakeSyncDeleteCard');
 			});
 
 			it('clear detail', function () {
-				browser.assert.elements('.OLSKDetailPlaceholder', 1);
+				browser.assert.elements('.KOMBrowseInfo', 0);
 			});
 
-			it('skips sort', function () {
-				browser.assert.text('.KOMBrowseListItem', 'bravo alfa4');
-			});
+		});
 
+	});
+
+	describe('SyncConflictNote', function test_SyncConflictNote () {
+
+		before(function () {
+			return browser.OLSKLauncherRun('FakeSyncCreateCard');
+		});
+
+		before(function () {
+			return browser.click('.OLSKResultsListItem');
+		});
+
+		before(function () {
+			return browser.fill('.KOMBrowseInfoFormFrontTextField', 'FakeSyncConflictNote');
+		});
+
+		before(function () {
+			return browser.OLSKLauncherRun('FakeSyncConflictNote');
+		});
+
+		it('selects local', function () {
+			browser.assert.text('.OLSKResultsListItem', 'FakeSyncConflictNote-local');
 		});
 
 	});

@@ -32,12 +32,8 @@ describe('KOMReview_Access', function () {
 		browser.assert.elements('.KOMReviewDetail', 0);
 	});
 
-	it('hides KOMBrowseList', function () {
-		browser.assert.elements('.KOMBrowseList', 0);
-	});
-
-	it('hides KOMBrowseInfo', function () {
-		browser.assert.elements('.KOMBrowseInfo', 0);
+	it('hides OLSKCatalog', function () {
+		browser.assert.elements('.OLSKCatalog', 0);
 	});
 
 	it('hides KOMPlay', function () {
@@ -260,12 +256,8 @@ describe('KOMReview_Access', function () {
 			return browser.assert.OLSKLauncherItems('KOMReviewDetailLauncherFakeItemProxy', 1);
 		});
 
-		it('hides KOMBrowseList', function () {
-			browser.assert.elements('.KOMBrowseList', 0);
-		});
-
-		it('hides KOMBrowseInfo', function () {
-			browser.assert.elements('.KOMBrowseInfo', 0);
+		it('hides OLSKCatalog', function () {
+			browser.assert.elements('.OLSKCatalog', 0);
 		});
 
 	});
@@ -284,12 +276,8 @@ describe('KOMReview_Access', function () {
 			browser.assert.elements('.KOMReviewDetail', 0);
 		});
 
-		it('shows KOMBrowseList', function () {
-			browser.assert.elements('.KOMBrowseList', 1);
-		});
-
-		it('shows KOMBrowseInfo', function () {
-			browser.assert.elements('.KOMBrowseInfo', 1);
+		it('shows OLSKCatalog', function () {
+			browser.assert.elements('.OLSKCatalog', 1);
 		});
 
 	});
@@ -297,7 +285,7 @@ describe('KOMReview_Access', function () {
 	context('close', function test_close() {
 
 		before(function () {
-			return browser.pressButton('.KOMBrowseListToolbarCloseButton');
+			return browser.pressButton('.KOMBrowseCloseButton');
 		});
 
 		it('hides KOMReviewMaster', function () {
@@ -308,12 +296,8 @@ describe('KOMReview_Access', function () {
 			browser.assert.elements('.KOMReviewDetail', 1);
 		});
 
-		it('hides KOMBrowseList', function () {
-			browser.assert.elements('.KOMBrowseList', 0);
-		});
-
-		it('hides KOMBrowseInfo', function () {
-			browser.assert.elements('.KOMBrowseInfo', 0);
+		it('hides OLSKCatalog', function () {
+			browser.assert.elements('.OLSKCatalog', 0);
 		});
 
 	});
@@ -332,12 +316,8 @@ describe('KOMReview_Access', function () {
 			browser.assert.elements('.KOMReviewDetail', 0);
 		});
 
-		it('hides KOMBrowseList', function () {
-			browser.assert.elements('.KOMBrowseList', 0);
-		});
-
-		it('hides KOMBrowseInfo', function () {
-			browser.assert.elements('.KOMBrowseInfo', 0);
+		it('hides OLSKCatalog', function () {
+			browser.assert.elements('.OLSKCatalog', 0);
 		});
 
 	});
@@ -366,12 +346,8 @@ describe('KOMReview_Access', function () {
 			browser.assert.elements('.KOMReviewDetail', 0);
 		});
 
-		it('hides KOMBrowseList', function () {
-			browser.assert.elements('.KOMBrowseList', 0);
-		});
-
-		it('hides KOMBrowseInfo', function () {
-			browser.assert.elements('.KOMBrowseInfo', 0);
+		it('hides OLSKCatalog', function () {
+			browser.assert.elements('.OLSKCatalog', 0);
 		});
 
 		it('hides KOMReviewMasterListItem', function () {
@@ -407,11 +383,11 @@ describe('KOMReview_Access', function () {
 		});
 
 		before(function () {
-			return browser.pressButton('.KOMBrowseListToolbarCreateButton');
+			return browser.pressButton('.KOMBrowseCreateButton');
 		});
 
 		before(function () {
-			return browser.pressButton('.KOMBrowseListToolbarCloseButton');
+			return browser.pressButton('.KOMBrowseCloseButton');
 		});
 
 		before(function () {
@@ -478,12 +454,8 @@ describe('KOMReview_Access', function () {
 			browser.assert.elements('.KOMReviewDetail', 1);
 		});
 
-		it('hides KOMBrowseList', function () {
-			browser.assert.elements('.KOMBrowseList', 0);
-		});
-
-		it('hides KOMBrowseInfo', function () {
-			browser.assert.elements('.KOMBrowseInfo', 0);
+		it('hides OLSKCatalog', function () {
+			browser.assert.elements('.OLSKCatalog', 0);
 		});
 
 		it('hides KOMReviewLauncherItemSelectDeck', function () {

@@ -29,7 +29,7 @@ global.FileReader = require('filereader');
 	});
 })();
 
-(function KVCMochaStubs() {
+(function KOMMochaStubs() {
 	const KOMSpacing = require('./os-app/_shared/KOMSpacing/main.js').default;
 
 	Object.entries({

@@ -105,7 +105,7 @@ describe('KOMReview_Speed', function () {
 	context('TestSpeedBrowseClose', function () {
 
 		before(function () {
-			return browser.pressButton('.KOMBrowseListToolbarCreateButton');
+			return browser.pressButton('.KOMBrowseCreateButton');
 		});
 
 		before(function () {
@@ -117,7 +117,7 @@ describe('KOMReview_Speed', function () {
 		});
 
 		before(function () {
-			return browser.pressButton('.KOMBrowseListToolbarCloseButton');
+			return browser.pressButton('.KOMBrowseCloseButton');
 		});
 
 		it('responds quickly', function () {

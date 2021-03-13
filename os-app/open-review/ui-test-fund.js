@@ -154,7 +154,7 @@ describe('KOMReview_Fund', function () {
 			});
 
 			before(function () {
-				return browser.pressButton('.KOMBrowseListToolbarCreateButton');
+				return browser.pressButton('.KOMBrowseCreateButton');
 			});
 
 			it('updates number', function () {
@@ -178,7 +178,7 @@ describe('KOMReview_Fund', function () {
 		context('remove_deck', function () {
 			
 			before(function () {
-				return browser.pressButton('.KOMBrowseListToolbarCloseButton');
+				return browser.pressButton('.KOMBrowseCloseButton');
 			});
 
 			before(function () {
@@ -418,7 +418,7 @@ describe('KOMReview_Fund', function () {
 
 			it('shows OLSKFundGate', function() {
 				browser.assert.OLSKConfirmQuestion(function () {
-					return browser.pressButton('.KOMBrowseListToolbarCreateButton');
+					return browser.pressButton('.KOMBrowseCreateButton');
 				}, uLocalized('OLSKFundGateText'));
 			});
 		

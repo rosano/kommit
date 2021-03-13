@@ -2,7 +2,15 @@ import OLSKString from 'OLSKString';
 
 const mod = {
 
-	KOMBrowseSort(a, b) {
+	KOMBrowseAccessibilitySummary (inputData, OLSKLocalized) {
+		if (typeof inputData !== 'object' || inputData === null) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		return OLSKString.OLSKStringSnippet(inputData.KOMCardFrontText || inputData.KOMCardRearText || OLSKLocalized('KOMBrowseListItemUntitledText'));
+	},
+
+	KOMBrowseSortFunction (a, b) {
 		if (a.KOMCardModificationDate && b.KOMCardModificationDate) {
 			return b.KOMCardModificationDate - a.KOMCardModificationDate;
 		}
@@ -10,42 +18,32 @@ const mod = {
 		return b.KOMCardCreationDate - a.KOMCardCreationDate;
 	},
 
-	KOMBrowseFilterFunction(inputData) {
-		if (typeof inputData !== 'string') {
+	KOMBrowseFilterFunction (param1, param2) {
+		if (typeof param2 !== 'string') {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		return function (e) {
-			return [e.KOMCardFrontText, e.KOMCardRearText, e.KOMCardNotes].filter(function (e) {
-				return !!e;
-			}).concat(e.KOMCardTags || []).filter(function (e) {
-				return OLSKString.OLSKStringMatch(inputData, e);
-			}).length;
-		};
+		return [param1.KOMCardFrontText, param1.KOMCardRearText, param1.KOMCardNotes].concat(param1.KOMCardTags).filter(function (e) {
+			if (!e) {
+				return false;
+			}
+
+			return OLSKString.OLSKStringMatch(param2, e);
+		}).length;
 	},
 
-	KOMBrowseExactMatchFirst(param1, param2) {
-		if (typeof param1 !== 'string') {
+	KOMBrowseExactFunction (param1, param2) {
+		if (typeof param2 !== 'string') {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		if (!Array.isArray(param2)) {
-			throw new Error('KOMErrorInputNotValid');
-		}
+		return [param1.KOMCardFrontText, param1.KOMCardRearText].filter(function (e) {
+			if (!e) {
+				return false;
+			}
 
-		return param2.slice().sort(function (a, b) {
-			const isExact = function (e) {
-				return [e.KOMCardFrontText, e.KOMCardRearText].filter(function (e) {
-					if (!e) {
-						return;
-					}
-					
-					return OLSKString.OLSKStringMatch(e, param1);
-				}).length;
-			};
-
-			return isExact(a) > isExact(b) ? -1 : 1;
-		});
+			return OLSKString.OLSKStringMatch(param2, e, 'startsWith');
+		}).length;
 	},
 
 };
