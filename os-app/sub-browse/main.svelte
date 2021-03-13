@@ -253,7 +253,6 @@ const mod = {
 	},
 
 	OLSKCatalogDispatchQuantity (inputData) {
-		console.log('OLSKCatalogDispatchQuantity');
 		mod.ReactTags();
 	},
 
@@ -388,6 +387,7 @@ import OLSKUIAssets from 'OLSKUIAssets';
 	OLSKCatalogDispatchArrow={ mod.OLSKCatalogDispatchArrow }
 	OLSKCatalogDispatchFilterSubmit={ mod.OLSKCatalogDispatchFilterSubmit }
 	OLSKCatalogDispatchQuantity={ mod.OLSKCatalogDispatchQuantity }
+	OLSKCatalogDispatchEscapeOnEmpty={ KOMBrowseListDispatchClose }
 
 	let:OLSKResultsListItem
 	>

@@ -126,23 +126,15 @@ describe('KOMBrowse_Misc', function () {
 		context('master focused', function () {
 
 			before(function () {
-				browser.assert.hasFocus('.OLSKMasterListFilterField');
-			});
-
-			before(function () {
-				browser.assert.hasClass('.KOMBrowseList', 'OLSKMasterListFocused');
+				browser.focus('.OLSKMasterListFilterField');
 			});
 
 			before(function () {
 				return browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
 			});
 
-			it('classes OLSKMasterListFocused', function () {
-				browser.assert.hasNoClass('.KOMBrowseList', 'OLSKMasterListFocused');
-			});
-
 			it('focuses KOMBrowseInfoFormFrontTextField', function () {
-				browser.assert.hasFocus('.KOMBrowseInfoFormFrontTextField');
+				browser.assert .hasFocus('.KOMBrowseInfoFormFrontTextField');
 			});
 
 		});
@@ -190,10 +182,6 @@ describe('KOMBrowse_Misc', function () {
 				});
 
 				before(function () {
-					browser.assert.hasNoClass('.KOMBrowseList', 'OLSKMasterListFocused');
-				});
-
-				before(function () {
 					return browser.OLSKFireKeyboardEvent(browser.window, 'Tab', {
 						shiftKey: true,
 					});
@@ -201,10 +189,6 @@ describe('KOMBrowse_Misc', function () {
 
 				it('focuses OLSKMasterListFilterField', function () {
 					browser.assert.hasFocus('.OLSKMasterListFilterField');
-				});
-
-				it('classes OLSKMasterListFocused', function () {
-					browser.assert.hasClass('.KOMBrowseList', 'OLSKMasterListFocused');
 				});
 
 			});
@@ -216,18 +200,10 @@ describe('KOMBrowse_Misc', function () {
 				});
 
 				before(function () {
-					browser.assert.hasClass('.KOMBrowseList', 'OLSKMasterListFocused');
-				});
-
-				before(function () {
 					return browser.OLSKFireKeyboardEvent(browser.window, 'Tab', {
 						shiftKey: true,
 					});
-				});
-
-				it('classes OLSKMasterListFocused', function () {
-					browser.assert.hasNoClass('.KOMBrowseList', 'OLSKMasterListFocused');
-				});
+				}); 
 
 				it('focuses KOMBrowseInfoFormFrontTextField', function () {
 					browser.assert.hasFocus('.KOMBrowseInfoFormFrontTextField');
@@ -242,53 +218,33 @@ describe('KOMBrowse_Misc', function () {
 	context('escape', function test_escape() {
 
 		before(function () {
-			browser.assert.input('.OLSKMasterListFilterField', 'alfa');
+			browser.assert.text('#TestKOMBrowseListDispatchClose', '1');
+		});
+
+		before(function () {
+			browser.fill('.OLSKMasterListFilterField', 'alfa');
 		});
 
 		before(function () {
 			return browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
 		});
 
-		before(function () {
-			return browser.click('.OLSKMasterListFilterField');
-		});
-
-		before(function () {
-			return browser.focus('.OLSKMasterListFilterField');
-		});
-
 		it('focuses OLSKMasterListFilterField', function () {
 			browser.assert.hasFocus('.OLSKMasterListFilterField');
-		});
-
-		it.skip('clears KOMBrowseListFilterText', function () {
-			browser.assert.input('.OLSKMasterListFilterField', '');
 		});
 
 		context('filter_empty', function () {
 
 			before(function () {
-				browser.assert.text('#TestKOMBrowseListDispatchClose', '0');
+				browser.assert.text('#TestKOMBrowseListDispatchClose', '1');
 			});
 
 			before(function () {
 				return browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
 			});
 
-			it('sends KOMBrowseListDispatchClose', function () {
-				browser.assert.text('#TestKOMBrowseListDispatchClose', '1');
-			});
-
-		});
-
-	});
-
-	context('edit', function test_edit() {
-
-		context('title', function () {
-
-			it('sets KOMBrowseListItemFront', function () {
-				browser.assert.text('.OLSKResultsListItemSelected .KOMBrowseListItemFront', 'bravo');
+			it.skip('sends KOMBrowseListDispatchClose', function () {
+				browser.assert.text('#TestKOMBrowseListDispatchClose', '2');
 			});
 
 		});
@@ -362,16 +318,16 @@ describe('KOMBrowse_Misc', function () {
 	context('discard', function test_discard() {
 
 		before(function () {
+			return browser.pressButton('.KOMBrowseListToolbarCreateButton');
+		});
+
+		before(function () {
 			browser.assert.text('#TestKOMBrowseDispatchDiscard', '0');
 			browser.assert.text('#TestKOMBrowseDispatchDiscardData', 'undefined');
 		});
 
 		before(function () {
 			return browser.pressButton('.KOMBrowseInfoToolbarDiscardButton');
-		});
-
-		it('sets KOMBrowseInfoItem', function () {
-			browser.assert.elements('.OLSKDetailPlaceholder', 1);
 		});
 
 		it('sends KOMBrowseDispatchDiscard', function () {
@@ -384,7 +340,6 @@ describe('KOMBrowse_Misc', function () {
 				'KOMCardDeckID',
 				'KOMCardCreationDate',
 				'KOMCardModificationDate',
-				'KOMCardTags',
 			]));
 		});
 
@@ -393,7 +348,7 @@ describe('KOMBrowse_Misc', function () {
 	context('close', function test_close() {
 
 		before(function () {
-			browser.assert.text('#TestKOMBrowseListDispatchClose', '1');
+			browser.assert.text('#TestKOMBrowseListDispatchClose', '2');
 		});
 
 		before(function () {
@@ -401,7 +356,7 @@ describe('KOMBrowse_Misc', function () {
 		});
 
 		it('sends KOMBrowseListDispatchClose', function () {
-			browser.assert.text('#TestKOMBrowseListDispatchClose', '2');
+			browser.assert.text('#TestKOMBrowseListDispatchClose', '3');
 		});
 
 	});
