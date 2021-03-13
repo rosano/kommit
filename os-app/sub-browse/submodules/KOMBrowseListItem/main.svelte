@@ -10,9 +10,9 @@ import { OLSKLocalized } from 'OLSKInternational';
 	<span class="KOMBrowseListItemRetired">{ OLSKLocalized('KOMBrowseListItemRetiredText') }</span>
 {/if}
 
-<strong class="KOMBrowseListItemFront" aria-hidden="true">{ KOMBrowseListItemObject.KOMCardFrontText }</strong><br>
-<span class="KOMBrowseListItemRear" aria-hidden="true">{ KOMBrowseListItemObject.KOMCardRearText }</span><br>
-<span class="KOMBrowseListItemTags" aria-hidden="true">{ (KOMBrowseListItemObject.KOMCardTags || []).join(', ') }</span>
+<strong class="KOMBrowseListItemFront">{ KOMBrowseListItemObject.KOMCardFrontText }</strong><br>
+<span class="KOMBrowseListItemRear">{ KOMBrowseListItemObject.KOMCardRearText }</span><br>
+<span class="KOMBrowseListItemTags">{ (KOMBrowseListItemObject.KOMCardTags || []).join(', ') }</span>
 
 </div>
 

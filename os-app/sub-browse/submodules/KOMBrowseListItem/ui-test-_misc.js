@@ -22,10 +22,6 @@ describe('KOMBrowseListItem_Misc', function () {
 
 	describe('KOMBrowseListItemFront', function test_KOMBrowseListItemFront() {
 
-		it('sets aria-hidden', function () {
-			browser.assert.attribute(KOMBrowseListItemFront, 'aria-hidden', 'true');
-		});
-
 		it('binds KOMCardFrontText', function () {
 			browser.assert.text(KOMBrowseListItemFront, 'alfa');
 		});
@@ -34,10 +30,6 @@ describe('KOMBrowseListItem_Misc', function () {
 
 	describe('KOMBrowseListItemRear', function test_KOMBrowseListItemRear() {
 
-		it('sets aria-hidden', function () {
-			browser.assert.attribute(KOMBrowseListItemRear, 'aria-hidden', 'true');
-		});
-
 		it('binds KOMCardRearText', function () {
 			browser.assert.text(KOMBrowseListItemRear, 'bravo');
 		});
@@ -45,10 +37,6 @@ describe('KOMBrowseListItem_Misc', function () {
 	});
 
 	describe('KOMBrowseListItemTags', function test_KOMBrowseListItemTags() {
-
-		it('sets aria-hidden', function () {
-			browser.assert.attribute(KOMBrowseListItemTags, 'aria-hidden', 'true');
-		});
 
 		it('binds KOMCardTagsText', function () {
 			browser.assert.text(KOMBrowseListItemTags, 'charlie, delta');
