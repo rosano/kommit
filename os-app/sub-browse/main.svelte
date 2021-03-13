@@ -384,6 +384,12 @@ import OLSKUIAssets from 'OLSKUIAssets';
 	>
 
 	<!-- MASTER -->
+	
+	<div class="OLSKToolbarElementGroup" slot="OLSKMasterListToolbarHead">
+		<button class="KOMBrowseListToolbarCloseButton OLSKDecorButtonNoStyle OLSKDecorTappable OLSKToolbarButton" title={ OLSKLocalized('KOMBrowseListToolbarCloseButtonText') } on:click={ KOMBrowseListDispatchClose }>
+			<div class="KOMBrowseListToolbarCloseButtonImage">{@html OLSKUIAssets._OLSKSharedBack }</div>
+		</button>
+	</div>
 
 	<div class="OLSKToolbarElementGroup" slot="OLSKMasterListToolbarTail">
 		<button class="KOMBrowseListToolbarCreateButton OLSKDecorButtonNoStyle OLSKDecorTappable OLSKToolbarButton" title={ OLSKLocalized('KOMBrowseListToolbarCreateButtonText') } on:click={ mod.InterfaceCreateButtonDidClick } accesskey="n">

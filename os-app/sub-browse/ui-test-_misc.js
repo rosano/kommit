@@ -36,6 +36,46 @@ describe('KOMBrowse_Misc', function () {
 		browser.assert.hasFocus('.OLSKMasterListFilterField');
 	});
 
+	describe('KOMBrowseListToolbarCloseButton', function test_KOMBrowseListToolbarCloseButton() {
+
+		it('classes OLSKDecorButtonNoStyle', function () {
+			browser.assert.hasClass(KOMBrowseListToolbarCloseButton, 'OLSKDecorButtonNoStyle');
+		});
+
+		it('classes OLSKDecorTappable', function () {
+			browser.assert.hasClass(KOMBrowseListToolbarCloseButton, 'OLSKDecorTappable');
+		});
+
+		it('classes OLSKToolbarButton', function () {
+			browser.assert.hasClass(KOMBrowseListToolbarCloseButton, 'OLSKToolbarButton');
+		});
+
+		context('click', function () {
+
+			before(function () {
+				browser.assert.text('#TestKOMBrowseListDispatchClose', '0');
+			});
+
+			before(function () {
+				return browser.pressButton(KOMBrowseListToolbarCloseButton);
+			});
+
+			it('sends KOMBrowseListDispatchClose', function () {
+				browser.assert.text('#TestKOMBrowseListDispatchClose', '1');
+			});
+
+		});
+
+	});
+
+	describe('KOMBrowseListToolbarCloseButtonImage', function test_KOMBrowseListToolbarCloseButtonImage() {
+
+		it('sets src', function () {
+			browser.assert.elements(`${ KOMBrowseListToolbarCloseButtonImage } #_OLSKSharedBack`, 1);
+		});
+
+	});
+
 	describe('KOMBrowseListToolbarCreateButton', function test_KOMBrowseListToolbarCreateButton() {
 
 		it('classes OLSKDecorButtonNoStyle', function () {

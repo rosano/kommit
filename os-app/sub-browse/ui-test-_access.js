@@ -1,6 +1,9 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 Object.entries({
+	KOMBrowseListToolbarCloseButton: '.KOMBrowseListToolbarCloseButton',
+	KOMBrowseListToolbarCloseButtonImage: '.KOMBrowseListToolbarCloseButtonImage',
+
 	KOMBrowseListToolbarCreateButton: '.KOMBrowseListToolbarCreateButton',
 	KOMBrowseListToolbarCreateButtonImage: '.KOMBrowseListToolbarCreateButtonImage',
 }).map(function (e) {
@@ -21,6 +24,14 @@ describe('KOMBrowse_Access', function () {
 
 	it('shows OLSKCatalog', function () {
 		browser.assert.elements('.OLSKCatalog', 1);
+	});
+
+	it('shows KOMBrowseListToolbarCloseButton', function () {
+		browser.assert.elements(KOMBrowseListToolbarCloseButton, 1);
+	});
+
+	it('shows KOMBrowseListToolbarCloseButtonImage', function () {
+		browser.assert.elements(KOMBrowseListToolbarCloseButtonImage, 1);
 	});
 
 	it('shows KOMBrowseListToolbarCreateButton', function () {
