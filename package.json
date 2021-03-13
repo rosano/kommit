@@ -42,6 +42,7 @@
 
     "// FRONTEND APP LAYOUT": null,
     "OLSKDecor": "olsk/OLSKDecor",
+    "OLSKCatalog": "olsk/OLSKCatalog",
     "OLSKMasterList": "olsk/OLSKMasterList",
     "OLSKDetailPlaceholder": "olsk/OLSKDetailPlaceholder",
     "OLSKUIAssets": "olsk/OLSKUIAssets",

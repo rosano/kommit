@@ -150,6 +150,10 @@ const mod = {
 
 	// INTERFACE	
 
+	InterfaceCreateButtonDidClick () {
+		mod.ControlCardCreate(KOMBrowseDeckSelected);
+	},
+
 	InterfaceWindowDidKeydown (event) {
 		if (document.querySelector('.LCHLauncher')) { // #spec
 			return;
@@ -194,9 +198,7 @@ const mod = {
 
 		const item = await KOMBrowseStorageClient.App.KOMCard.KOMCardCreate(Object.assign(mod.DataCardObjectTemplate(), param2), param1);
 
-		mod.ValueCardsAll(mod._ValueCardsAll.concat(item));
-
-		mod.ControlCardSelect(item);
+		mod.ControlCardSelect(mod._OLSKCatalog.modPublic.OLSKCatalogInsert(item));
 
 		KOMBrowseDispatchCreate(item);
 	},
@@ -222,18 +224,10 @@ const mod = {
 		await mod.ControlCardUpdate(param2);
 	},
 
-	async ControlCardDiscard (param1) {
-		mod.ValueCardsAll(mod._ValueCardsAll.filter(function (e) {
-			return e !== param1;
-		}), false);
-
-		await KOMBrowseStorageClient.App.KOMCard.KOMCardDelete(param1);
-
-		if (param1 === mod._ValueCardSelected) {
-			mod.ControlCardSelect(null);
-		}
-
-		KOMBrowseDispatchDiscard(param1);
+	async ControlCardDiscard (inputData) {
+		mod._OLSKCatalog.modPublic.OLSKCatalogRemove(inputData)
+		
+		KOMBrowseDispatchDiscard(await KOMBrowseStorageClient.App.KOMCard.KOMCardDelete(inputData));
 	},
 
 	ControlDiscardRetiredCards () {
@@ -257,13 +251,13 @@ const mod = {
 	},
 
 	ControlCardSelect(inputData) {
-		mod.ValueCardSelected(inputData);
+		mod._OLSKCatalog.modPublic.OLSKCatalogSelect(inputData);
 
 		if (!inputData) {
 			return !mod.DataIsMobile() && mod.ControlFocusMaster();
 		}
 
-		mod.OLSKMobileViewInactive = true;
+		mod._OLSKCatalog.modPublic.OLSKCatalogFocusDetail();
 
 		setTimeout(mod.ControlFocusDetail);
 	},
@@ -286,28 +280,36 @@ const mod = {
 
 	// MESSAGE
 
-	KOMBrowseListDispatchCreate () {
-		mod.ControlCardCreate(KOMBrowseDeckSelected);
+	OLSKMasterListItemAccessibilitySummaryFunction (inputData) {
+		KOMBrowseLogic.KOMBrowseAccessibilitySummary(inputData, OLSKLocalized);
 	},
 
-	KOMBrowseListDispatchClick (inputData) {
+	_OLSKCatalogDispatchKey (inputData) {
+		return inputData.KOMCardID;
+	},
+
+	OLSKCatalogDispatchClick (inputData) {
 		mod.ControlCardSelect(inputData);
 	},
 
-	KOMBrowseListDispatchArrow (inputData) {
-		mod.ValueCardSelected(inputData);
+	OLSKCatalogDispatchArrow (inputData) {
+		mod._OLSKCatalog.modPublic.OLSKCatalogSelect(inputData);
 	},
 
 	KOMBrowseListDispatchFilter (inputData) {
 		mod.ControlFilter(inputData);
 	},
 
+	OLSKCatalogDispatchQuantity (inputData) {
+		console.log('OLSKCatalogDispatchQuantity');
+	},
+
 	KOMBrowseInfoDispatchBack () {
-		mod.OLSKMobileViewInactive = false;
+		mod._OLSKCatalog.modPublic.OLSKCatalogFocusMaster();
 	},
 
 	KOMBrowseInfoDispatchDiscard () {
-		mod.ControlCardDiscard(mod._ValueCardSelected);
+		mod.ControlCardDiscard(mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected());
 	},
 
 	KOMBrowseInfoDispatchTemplate (inputData) {
@@ -315,9 +317,7 @@ const mod = {
 	},
 
 	KOMBrowseInfoDispatchUpdate () {
-		mod._ValueCardSelected = mod._ValueCardSelected; // #purge-svelte-force-update
-
-		mod.ControlCardUpdate(mod._ValueCardSelected);
+		mod.ControlCardUpdate(mod._OLSKCatalog.modPublic.OLSKCatalogUpdate(mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected()));
 
 		mod.ReactTags();
 	},
@@ -402,11 +402,11 @@ const mod = {
 	// SETUP
 
 	SetupEverything() {
-		mod.SetupValueCardsAll();
+		mod.SetupCatalog();
 		mod.SetupFocus();
 	},
 
-	SetupValueCardsAll() {
+	SetupCatalog() {
 		mod.ValueCardsAll(mod._ValueCardsAll);
 	},
 
@@ -427,40 +427,69 @@ const mod = {
 import { onMount } from 'svelte';
 onMount(mod.LifecycleModuleWillMount);
 
-import KOMBrowseList from './submodules/KOMBrowseList/main.svelte';
+import OLSKCatalog from 'OLSKCatalog';
+import KOMBrowseListItem from './submodules/KOMBrowseListItem/main.svelte';
 import KOMBrowseInfo from './submodules/KOMBrowseInfo/main.svelte';
+import OLSKUIAssets from 'OLSKUIAssets';
 </script>
 <svelte:window on:keydown={ mod.InterfaceWindowDidKeydown } />
 
-<KOMBrowseList
-	KOMBrowseListItems={ mod._ValueCardsVisible }
-	KOMBrowseListItemSelected={ mod._ValueCardSelected }
-	KOMBrowseListFilterText={ mod._ValueFilterText }
-	KOMBrowseListDispatchClose={ KOMBrowseListDispatchClose }
-	KOMBrowseListDispatchCreate={ mod.KOMBrowseListDispatchCreate }
-	KOMBrowseListDispatchClick={ mod.KOMBrowseListDispatchClick }
-	KOMBrowseListDispatchArrow={ mod.KOMBrowseListDispatchArrow }
-	KOMBrowseListDispatchFilter={ mod.KOMBrowseListDispatchFilter }
-	OLSKMobileViewInactive={ !!mod.OLSKMobileViewInactive }
-	/>
+<OLSKCatalog
+	bind:this={ mod._OLSKCatalog }
 
-<KOMBrowseInfo
-	KOMBrowseInfoItem={ mod._ValueCardSelected }
-	KOMBrowseInfoDeck={ KOMBrowseDeckSelected }
-	KOMBrowseInfoTagsSuggestions={ mod._ValueTagsAll }
-	KOMBrowseInfoSpeechAvailable={ KOMBrowseInfoSpeechAvailable }
-	KOMBrowseInfoDispatchBack={ mod.KOMBrowseInfoDispatchBack }
-	KOMBrowseInfoDispatchDiscard={ mod.KOMBrowseInfoDispatchDiscard }
-	KOMBrowseInfoDispatchUpdate={ mod.KOMBrowseInfoDispatchUpdate }
-	KOMBrowseInfoDispatchTemplate={ mod.KOMBrowseInfoDispatchTemplate }
-	KOMBrowseInfoDispatchRead={ KOMBrowseInfoDispatchRead }
-	KOMBrowseInfoAudioDispatchCapture={ mod.KOMBrowseInfoAudioDispatchCapture }
-	KOMBrowseInfoAudioDispatchFetch={ mod.KOMBrowseInfoAudioDispatchFetch }
-	KOMBrowseInfoAudioDispatchClear={ mod.KOMBrowseInfoAudioDispatchClear }
-	OLSKMobileViewInactive={ !mod.OLSKMobileViewInactive }
-	KOMBrowseInfoDispatchDebug={ mod.KOMBrowseInfoDispatchDebug }
-	bind:this={ mod._KOMBrowseInfo }
-	/>
+	OLSKMasterListItemAccessibilitySummaryFunction={ mod.OLSKMasterListItemAccessibilitySummaryFunction }
+
+	OLSKCatalogSortFunction={ KOMBrowseLogic.KOMBrowseSortFunction }
+	OLSKCatalogFilterFunction={ KOMBrowseLogic.KOMBrowseFilterFunction }
+	OLSKCatalogExactFunction={ KOMBrowseLogic.KOMBrowseExactFunction }
+
+	_OLSKCatalogDispatchKey={ mod._OLSKCatalogDispatchKey }
+
+	OLSKCatalogDispatchClick={ mod.OLSKCatalogDispatchClick }
+	OLSKCatalogDispatchArrow={ mod.OLSKCatalogDispatchArrow }
+	OLSKCatalogDispatchFilterSubmit={ mod.OLSKCatalogDispatchFilterSubmit }
+	OLSKCatalogDispatchQuantity={ mod.OLSKCatalogDispatchQuantity }
+
+	let:OLSKResultsListItem
+	>
+
+	<!-- MASTER -->
+
+	<div class="OLSKToolbarElementGroup" slot="OLSKMasterListToolbarTail">
+		<button class="KOMBrowseListToolbarCreateButton OLSKDecorButtonNoStyle OLSKDecorTappable OLSKToolbarButton" title={ OLSKLocalized('KOMBrowseListToolbarCreateButtonText') } on:click={ mod.InterfaceCreateButtonDidClick } accesskey="n">
+			<div class="KOMBrowseListToolbarCreateButtonImage">{@html OLSKUIAssets._OLSKSharedCreate }</div>
+		</button>
+	</div>
+
+	<!-- LIST ITEM -->
+
+	<div slot="OLSKMasterListItem">
+		<KOMBrowseListItem KOMBrowseListItemObject={ OLSKResultsListItem } />
+	</div>
+
+	<!-- DETAIL -->
+	
+	<div class="KOMBrowseDetailContainer" slot="OLSKCatalogDetailContent" let:OLSKCatalogItemSelected>
+		<KOMBrowseInfo
+			KOMBrowseInfoItem={ OLSKCatalogItemSelected }
+			KOMBrowseInfoDeck={ KOMBrowseDeckSelected }
+			KOMBrowseInfoTagsSuggestions={ mod._ValueTagsAll }
+			KOMBrowseInfoSpeechAvailable={ KOMBrowseInfoSpeechAvailable }
+			KOMBrowseInfoDispatchBack={ mod.KOMBrowseInfoDispatchBack }
+			KOMBrowseInfoDispatchDiscard={ mod.KOMBrowseInfoDispatchDiscard }
+			KOMBrowseInfoDispatchUpdate={ mod.KOMBrowseInfoDispatchUpdate }
+			KOMBrowseInfoDispatchTemplate={ mod.KOMBrowseInfoDispatchTemplate }
+			KOMBrowseInfoDispatchRead={ KOMBrowseInfoDispatchRead }
+			KOMBrowseInfoAudioDispatchCapture={ mod.KOMBrowseInfoAudioDispatchCapture }
+			KOMBrowseInfoAudioDispatchFetch={ mod.KOMBrowseInfoAudioDispatchFetch }
+			KOMBrowseInfoAudioDispatchClear={ mod.KOMBrowseInfoAudioDispatchClear }
+			OLSKMobileViewInactive={ !mod.OLSKMobileViewInactive }
+			KOMBrowseInfoDispatchDebug={ mod.KOMBrowseInfoDispatchDebug }
+			bind:this={ mod._KOMBrowseInfo }
+			/>
+	</div>
+
+</OLSKCatalog>
 
 {#if OLSK_SPEC_UI() && KOMBrowse_DEBUG }
 	 <button class="OLSKAppToolbarLauncherButton" on:click={ mod._OLSKAppToolbarDispatchLauncher }></button>
