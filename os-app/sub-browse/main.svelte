@@ -48,10 +48,6 @@ const mod = {
 
 	// DATA
 
-	DataIsMobile () {
-		return window.innerWidth <= 760;
-	},
-
 	DataCardObjectTemplate (inputData = '') {
 		return {
 			KOMCardFrontText: inputData,
@@ -170,7 +166,7 @@ const mod = {
 
 		const item = await KOMBrowseStorageClient.App.KOMCard.KOMCardCreate(Object.assign(mod.DataCardObjectTemplate(), param2), param1);
 
-		mod.ControlCardSelect(mod._OLSKCatalog.modPublic.OLSKCatalogInsert(item));
+		mod.ControlCardActivate(mod._OLSKCatalog.modPublic.OLSKCatalogInsert(item));
 
 		KOMBrowseDispatchCreate(item);
 	},
@@ -222,12 +218,8 @@ const mod = {
 		document.querySelector('.KOMBrowseInfoFormFrontTextField').focus();
 	},
 
-	ControlCardSelect(inputData) {
+	ControlCardActivate(inputData) {
 		mod._OLSKCatalog.modPublic.OLSKCatalogSelect(inputData);
-
-		if (!inputData) {
-			return !mod.DataIsMobile() && mod.ControlFocusMaster();
-		}
 
 		mod._OLSKCatalog.modPublic.OLSKCatalogFocusDetail();
 
@@ -245,7 +237,7 @@ const mod = {
 	},
 
 	OLSKCatalogDispatchClick (inputData) {
-		mod.ControlCardSelect(inputData);
+		mod.ControlCardActivate(inputData);
 	},
 
 	OLSKCatalogDispatchArrow (inputData) {
