@@ -64,18 +64,18 @@ describe('KOMBrowseSortFunction', function test_KOMBrowseSortFunction() {
 
 });
 
-describe('KOMBrowseFilterFunction', function test_KOMBrowseFilterFunction() {
+describe('KOMBrowseMatchIsResult', function test_KOMBrowseMatchIsResult() {
 
 	it('throws error param2 if not string', function() {
 		throws(function() {
-			mod.KOMBrowseFilterFunction({}, null);
+			mod.KOMBrowseMatchIsResult({}, null);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns false if no match', function() {
 		const tags = uRandomElement(true, false);
 		const haystack = 'alfa';
-		deepEqual(mod.KOMBrowseFilterFunction({
+		deepEqual(mod.KOMBrowseMatchIsResult({
 			[tags ? 'KOMCardTags' : uRandomElement('KOMCardFrontText', 'KOMCardFrontText', 'KOMCardNotes')]: tags ? [haystack] : haystack,
 		}, 'bravo'), false);
 	});
@@ -83,7 +83,7 @@ describe('KOMBrowseFilterFunction', function test_KOMBrowseFilterFunction() {
 	it('matches OLSKStringMatch', function() {
 		const tags = uRandomElement(true, false);
 		const haystack = uRandomElement('alfa', 'álfa');
-		deepEqual(mod.KOMBrowseFilterFunction({
+		deepEqual(mod.KOMBrowseMatchIsResult({
 			[tags ? 'KOMCardTags' : uRandomElement('KOMCardFrontText', 'KOMCardFrontText', 'KOMCardNotes')]: tags ? [haystack] : haystack,
 		}, uRandomElement('alf', 'alfa', 'ALF')), true);
 	});

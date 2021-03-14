@@ -18,7 +18,7 @@ const mod = {
 		return b.KOMCardCreationDate - a.KOMCardCreationDate;
 	},
 
-	KOMBrowseFilterFunction (param1, param2) {
+	KOMBrowseMatchIsResult (param1, param2) {
 		if (typeof param2 !== 'string') {
 			throw new Error('KOMErrorInputNotValid');
 		}

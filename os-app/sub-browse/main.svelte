@@ -368,7 +368,7 @@ import OLSKUIAssets from 'OLSKUIAssets';
 	OLSKMasterListItemAccessibilitySummaryFunction={ mod.OLSKMasterListItemAccessibilitySummaryFunction }
 
 	OLSKCatalogSortFunction={ KOMBrowseLogic.KOMBrowseSortFunction }
-	OLSKCatalogFilterFunction={ KOMBrowseLogic.KOMBrowseFilterFunction }
+	OLSKCatalogMatchIsResult={ KOMBrowseLogic.KOMBrowseMatchIsResult }
 	OLSKCatalogMatchIsExact={ KOMBrowseLogic.KOMBrowseMatchIsExact }
 
 	_OLSKCatalogDispatchKey={ mod._OLSKCatalogDispatchKey }
