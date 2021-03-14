@@ -90,30 +90,30 @@ describe('KOMBrowseFilterFunction', function test_KOMBrowseFilterFunction() {
 
 });
 
-describe('KOMBrowseExactFunction', function test_KOMBrowseExactFunction() {
+describe('KOMBrowseMatchIsExact', function test_KOMBrowseMatchIsExact() {
 
 	it('throws error if param2 not string', function() {
 		throws(function() {
-			mod.KOMBrowseExactFunction({}, null);
+			mod.KOMBrowseMatchIsExact({}, null);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns false if not starting with input', function() {
 		const item = Math.random().toString();
-		deepEqual(mod.KOMBrowseExactFunction({
+		deepEqual(mod.KOMBrowseMatchIsExact({
 			[uRandomElement('KOMCardFrontText', 'KOMCardFrontText')]: Math.random().toString() + item,
 		}, item), false);
 	});
 
 	it('returns true', function() {
 		const item = Math.random().toString();
-		deepEqual(mod.KOMBrowseExactFunction({
+		deepEqual(mod.KOMBrowseMatchIsExact({
 			[uRandomElement('KOMCardFrontText', 'KOMCardFrontText')]: item + Math.random().toString(),
 		}, item), true);
 	});
 
 	it('matches OLSKStringMatch', function() {
-		deepEqual(mod.KOMBrowseExactFunction({
+		deepEqual(mod.KOMBrowseMatchIsExact({
 			[uRandomElement('KOMCardFrontText', 'KOMCardFrontText')]: uRandomElement('alfa', 'álfa'),
 		}, uRandomElement('alf', 'alfa', 'ALF')), true);
 	});

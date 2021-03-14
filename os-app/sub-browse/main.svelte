@@ -369,7 +369,7 @@ import OLSKUIAssets from 'OLSKUIAssets';
 
 	OLSKCatalogSortFunction={ KOMBrowseLogic.KOMBrowseSortFunction }
 	OLSKCatalogFilterFunction={ KOMBrowseLogic.KOMBrowseFilterFunction }
-	OLSKCatalogExactFunction={ KOMBrowseLogic.KOMBrowseExactFunction }
+	OLSKCatalogMatchIsExact={ KOMBrowseLogic.KOMBrowseMatchIsExact }
 
 	_OLSKCatalogDispatchKey={ mod._OLSKCatalogDispatchKey }
 
