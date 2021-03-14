@@ -13,16 +13,16 @@ export let KOMBrowse_DEBUG = false;
 
 export const modPublic = {
 
-	KOMBrowseChangeDelegateCreateCard () {
-		mod.ChangeDelegateCreateCard(...arguments);
+	KOMBrowseSyncCreateCard () {
+		mod.SyncCreateCard(...arguments);
 	},
 
-	KOMBrowseChangeDelegateUpdateCard () {
-		mod.ChangeDelegateUpdateCard(...arguments);
+	KOMBrowseSyncUpdateCard () {
+		mod.SyncUpdateCard(...arguments);
 	},
 
-	KOMBrowseChangeDelegateDeleteCard () {
-		mod.ChangeDelegateDeleteCard(...arguments);
+	KOMBrowseSyncDeleteCard () {
+		mod.SyncDeleteCard(...arguments);
 	},
 
 	KOMBrowseRecipes () {
@@ -80,37 +80,37 @@ const mod = {
 		if (OLSK_SPEC_UI()) {
 			items.push(...[
 				{
-					LCHRecipeName: 'FakeChangeDelegateCreateCard',
-					LCHRecipeCallback: async function FakeChangeDelegateCreateCard () {
-						return mod.ChangeDelegateCreateCard(await KOMBrowseStorageClient.App.KOMCard.KOMCardCreate(mod.DataCardObjectTemplate('FakeChangeDelegateCreateCard'), KOMBrowseDeckSelected));
+					LCHRecipeName: 'FakeSyncCreateCard',
+					LCHRecipeCallback: async function FakeSyncCreateCard () {
+						return mod.SyncCreateCard(await KOMBrowseStorageClient.App.KOMCard.KOMCardCreate(mod.DataCardObjectTemplate('FakeSyncCreateCard'), KOMBrowseDeckSelected));
 					},
 				},
 				{
-					LCHRecipeName: 'FakeChangeDelegateUpdateCard',
-					LCHRecipeCallback: async function FakeChangeDelegateUpdateCard () {
-						return mod.ChangeDelegateUpdateCard(await KOMBrowseStorageClient.App.KOMCard.KOMCardUpdate(Object.assign(mod._OLSKCatalog.modPublic._OLSKCatalogDataItemsAll().filter(function (e) {
-							return e.KOMCardFrontText.match('FakeChangeDelegate');
+					LCHRecipeName: 'FakeSyncUpdateCard',
+					LCHRecipeCallback: async function FakeSyncUpdateCard () {
+						return mod.SyncUpdateCard(await KOMBrowseStorageClient.App.KOMCard.KOMCardUpdate(Object.assign(mod._OLSKCatalog.modPublic._OLSKCatalogDataItemsAll().filter(function (e) {
+							return e.KOMCardFrontText.match('FakeSync');
 						}).pop(), {
-							KOMCardFrontText: 'FakeChangeDelegateUpdateCard',
+							KOMCardFrontText: 'FakeSyncUpdateCard',
 						})));
 					},
 				},
 				{
-					LCHRecipeName: 'FakeChangeDelegateDeleteCard',
-					LCHRecipeCallback: async function FakeChangeDelegateDeleteCard () {
-						return mod.ChangeDelegateDeleteCard(await KOMBrowseStorageClient.App.KOMCard.KOMCardDelete(mod._OLSKCatalog.modPublic._OLSKCatalogDataItemsAll().filter(function (e) {
-							return e.KOMCardFrontText.match('FakeChangeDelegate');
+					LCHRecipeName: 'FakeSyncDeleteCard',
+					LCHRecipeCallback: async function FakeSyncDeleteCard () {
+						return mod.SyncDeleteCard(await KOMBrowseStorageClient.App.KOMCard.KOMCardDelete(mod._OLSKCatalog.modPublic._OLSKCatalogDataItemsAll().filter(function (e) {
+							return e.KOMCardFrontText.match('FakeSync');
 						}).pop()));
 					},
 				},
 				{
-					LCHRecipeName: 'FakeSyncConflictNote',
-					LCHRecipeCallback: async function FakeSyncConflictNote () {
+					LCHRecipeName: 'FakeSyncConflictCard',
+					LCHRecipeCallback: async function FakeSyncConflictCard () {
 						const item = mod._OLSKCatalog.modPublic._OLSKCatalogDataItemsAll().filter(function (e) {
-							return e.KOMCardFrontText.match('FakeSyncConflictNote');
+							return e.KOMCardFrontText.match('FakeSyncConflictCard');
 						}).pop();
 						
-						return mod.SyncConflictNote({
+						return mod.SyncConflictCard({
 							origin: 'conflict',
 							oldValue: JSON.parse(JSON.stringify(await KOMBrowseStorageClient.App.KOMCard.KOMCardUpdate(Object.assign({}, item, {
 								KOMCardFrontText: item.KOMCardFrontText + '-local',
@@ -307,19 +307,19 @@ const mod = {
 		});
 	},
 
-	ChangeDelegateCreateCard (inputData) {
+	SyncCreateCard (inputData) {
 		mod._OLSKCatalog.modPublic.OLSKCatalogInsert(inputData);
 	},
 
-	ChangeDelegateUpdateCard (inputData) {
+	SyncUpdateCard (inputData) {
 		mod._OLSKCatalog.modPublic.OLSKCatalogUpdate(inputData);
 	},
 
-	ChangeDelegateDeleteCard (inputData) {
+	SyncDeleteCard (inputData) {
 		mod._OLSKCatalog.modPublic.OLSKCatalogRemove(inputData);
 	},
 
-	SyncConflictNote (inputData) {
+	SyncConflictCard (inputData) {
 		return setTimeout(async function () {
 			mod._OLSKCatalog.modPublic.OLSKCatalogUpdate(await KOMBrowseStorageClient.App.KOMCard.KOMCardUpdate(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateConflictSelectRecent(inputData))))
 		}, OLSK_SPEC_UI() ? 0 : 500);
@@ -344,8 +344,6 @@ const mod = {
 
 	SetupCatalog() {
 		KOMBrowseDeckCards.map(mod._OLSKCatalog.modPublic.OLSKCatalogInsert);
-
-		mod._OLSKCatalog.modPublic._OLSKCatalogDataItemsAll()
 	},
 
 	SetupFocus() {

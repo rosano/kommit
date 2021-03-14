@@ -977,7 +977,7 @@ const mod = {
 
 	ZDRSchemaDispatchSyncCreateCard (inputData) {
 		if (mod._KOMBrowse && mod._ValueDeckSelected && inputData.KOMCardDeckID === mod._ValueDeckSelected.KOMDeckID) {
-			return mod._KOMBrowse.modPublic.KOMBrowseChangeDelegateCreateCard(inputData);
+			return mod._KOMBrowse.modPublic.KOMBrowseSyncCreateCard(inputData);
 		}
 
 		mod.ReactDeckFiguresThrottled(inputData.KOMCardDeckID);
@@ -985,7 +985,7 @@ const mod = {
 
 	ZDRSchemaDispatchSyncUpdateCard (inputData) {
 		if (mod._KOMBrowse && mod._ValueDeckSelected && inputData.KOMCardDeckID === mod._ValueDeckSelected.KOMDeckID) {
-			return mod._KOMBrowse.modPublic.KOMBrowseChangeDelegateUpdateCard(inputData);
+			return mod._KOMBrowse.modPublic.KOMBrowseSyncUpdateCard(inputData);
 		}
 		
 		mod.ReactDeckFiguresThrottled(inputData.KOMCardDeckID);
@@ -993,14 +993,16 @@ const mod = {
 
 	ZDRSchemaDispatchSyncDeleteCard (inputData) {
 		if (mod._KOMBrowse && mod._ValueDeckSelected && inputData.KOMCardDeckID === mod._ValueDeckSelected.KOMDeckID) {
-			return mod._KOMBrowse.modPublic.KOMBrowseChangeDelegateDeleteCard(inputData);
+			return mod._KOMBrowse.modPublic.KOMBrowseSyncDeleteCard(inputData);
 		}
 		
 		mod.ReactDeckFiguresThrottled(inputData.KOMCardDeckID);
 	},
 
-	async ZDRSchemaDispatchSyncConflictCard (inputData) {
-		return mod.ZDRSchemaDispatchSyncUpdateCard(await mod._ValueZDRWrap.App.KOMCard.KOMCardUpdate(OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateConflictSelectRecent(inputData)));
+	ZDRSchemaDispatchSyncConflictCard (inputData) {
+		setTimeout(async function () {
+			mod.ZDRSchemaDispatchSyncUpdateCard(await mod._ValueZDRWrap.App.KOMCard.KOMCardUpdate(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateConflictSelectRecent(inputData))));
+		}, OLSK_SPEC_UI() ? 0 : 500);
 	},
 
 	ZDRSchemaDispatchSyncCreateSpacing (inputData) {

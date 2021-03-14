@@ -92,7 +92,7 @@ describe('KOMBrowse_Sync', function () {
 
 	});
 
-	describe('SyncConflictNote', function test_SyncConflictNote () {
+	describe('SyncConflictCard', function test_SyncConflictCard () {
 
 		before(function () {
 			return browser.OLSKLauncherRun('FakeSyncCreateCard');
@@ -103,15 +103,15 @@ describe('KOMBrowse_Sync', function () {
 		});
 
 		before(function () {
-			return browser.fill('.KOMBrowseInfoFormFrontTextField', 'FakeSyncConflictNote');
+			return browser.fill('.KOMBrowseInfoFormFrontTextField', 'FakeSyncConflictCard');
 		});
 
 		before(function () {
-			return browser.OLSKLauncherRun('FakeSyncConflictNote');
+			return browser.OLSKLauncherRun('FakeSyncConflictCard');
 		});
 
 		it('selects local', function () {
-			browser.assert.text('.OLSKResultsListItem', 'FakeSyncConflictNote-local');
+			browser.assert.text('.OLSKResultsListItem', 'FakeSyncConflictCard-local');
 		});
 
 	});
