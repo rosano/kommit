@@ -133,30 +133,6 @@ const mod = {
 		mod.ControlCardCreate(KOMBrowseDeckSelected);
 	},
 
-	InterfaceWindowDidKeydown (event) {
-		if (document.querySelector('.LCHLauncher')) { // #spec
-			return;
-		}
-
-		const handlerFunctions = {
-			Tab () {
-				if (document.activeElement === document.querySelector('.OLSKMasterListFilterField') && mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected()) {
-					mod.ControlFocusDetail();
-
-					return event.preventDefault();
-				}
-
-				if (document.activeElement === document.querySelector('.KOMBrowseInfoFormFrontTextField') && event.shiftKey) {
-					mod.ControlFocusMaster();
-
-					return event.preventDefault();
-				}
-			},
-		};
-
-		handlerFunctions[event.key] && handlerFunctions[event.key]();
-	},
-
 	// CONTROL
 
 	async ControlCardCreate(param1, param2 = {}) {
@@ -242,6 +218,14 @@ const mod = {
 
 	OLSKCatalogDispatchArrow (inputData) {
 		mod._OLSKCatalog.modPublic.OLSKCatalogSelect(inputData);
+	},
+
+	OLSKCatalogDispatchDetailActivate () {
+		document.querySelector('.KOMBrowseInfoFormFrontTextField').focus();
+	},
+
+	OLSKCatalogDispatchMasterShouldActivate () {
+		return document.activeElement === document.querySelector('.KOMBrowseInfoFormFrontTextField');
 	},
 
 	OLSKCatalogDispatchQuantity (inputData) {
@@ -360,7 +344,6 @@ import KOMBrowseListItem from './submodules/KOMBrowseListItem/main.svelte';
 import KOMBrowseInfo from './submodules/KOMBrowseInfo/main.svelte';
 import OLSKUIAssets from 'OLSKUIAssets';
 </script>
-<svelte:window on:keydown={ mod.InterfaceWindowDidKeydown } />
 
 <OLSKCatalog
 	bind:this={ mod._OLSKCatalog }
@@ -375,6 +358,8 @@ import OLSKUIAssets from 'OLSKUIAssets';
 
 	OLSKCatalogDispatchClick={ mod.OLSKCatalogDispatchClick }
 	OLSKCatalogDispatchArrow={ mod.OLSKCatalogDispatchArrow }
+	OLSKCatalogDispatchDetailActivate={ mod.OLSKCatalogDispatchDetailActivate }
+	OLSKCatalogDispatchMasterShouldActivate={ mod.OLSKCatalogDispatchMasterShouldActivate }
 	OLSKCatalogDispatchFilterSubmit={ mod.OLSKCatalogDispatchFilterSubmit }
 	OLSKCatalogDispatchQuantity={ mod.OLSKCatalogDispatchQuantity }
 	OLSKCatalogDispatchEscapeOnEmpty={ KOMBrowseDispatchClose }
