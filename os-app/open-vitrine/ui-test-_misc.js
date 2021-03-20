@@ -6,6 +6,10 @@ describe('KOMVitrine_Misc', function () {
 		return browser.visit(kDefaultRoute.OLSKRoutePath);
 	});
 
+	it('sets manifest', function () {
+		browser.assert.attribute('link[rel="manifest"]', 'href', require('../tech-manifest/controller.js').OLSKControllerRoutes().shift().OLSKRoutePath);
+	});
+
 	describe('KOMVitrine', function () {
 
 		it('classes OLSKDecor', function () {
@@ -14,14 +18,6 @@ describe('KOMVitrine_Misc', function () {
 
 		it('classes OLSKDecorCapped', function () {
 			browser.assert.hasClass(KOMVitrine, 'OLSKDecorCapped');
-		});
-
-	});
-
-	describe('KOMVitrineManifest', function test_KOMVitrineManifest() {
-
-		it('sets href', function () {
-			browser.assert.attribute(KOMVitrineManifest, 'href', require('../tech-manifest/controller.js').OLSKControllerRoutes().shift().OLSKRoutePath);
 		});
 
 	});
