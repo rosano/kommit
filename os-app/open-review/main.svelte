@@ -1284,6 +1284,7 @@ import KOMBrowse from '../sub-browse/main.svelte';
 import KOMPlay from '../sub-play/main.svelte';
 import OLSKAppToolbar from 'OLSKAppToolbar';
 import OLSKServiceWorkerView from '../_shared/__external/OLSKServiceWorker/main.svelte';
+import OLSKInstall from 'OLSKInstall';
 import OLSKCloud from 'OLSKCloud';
 import OLSKPointer from 'OLSKPointer';
 import OLSKWebView from 'OLSKWebView';
@@ -1384,6 +1385,8 @@ import OLSKApropos from 'OLSKApropos';
 			OLSKAppToolbarDispatchStorage={ mod.OLSKAppToolbarDispatchStorage }
 			OLSKAppToolbarDispatchLauncher={ mod.OLSKAppToolbarDispatchLauncher }
 			/>
+
+	<OLSKInstall />
 	</footer>
 {/if}
 
