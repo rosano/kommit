@@ -45,7 +45,9 @@ locals.OLSKPagePublicConstants = {
 
 <%- include('./submodules/KOMFeatureList/main.ejs') %>
 
-<%- include('../../node_modules/OLSKAppFeatureList/main.ejs').replace(/node_modules/g, '_shared/__external') %>
+<%- include('../../node_modules/OLSKAppFeatureList/main.ejs', {
+	OLSKAppFeatureListRepoURL: process.env.OLSK_REPO_URL,
+}).replace(/node_modules/g, '_shared/__external') %>
 
 <a class="KOMVitrineGuideButton OLSKDecorPress OLSKDecorPressCall" href="<%= OLSKCanonical('KOMGuideRoute') %>"><%= OLSKLocalized('OLSKWordingOpenGuide') %></a>
 
