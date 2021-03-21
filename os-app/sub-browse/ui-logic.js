@@ -1,5 +1,9 @@
 import OLSKString from 'OLSKString';
 
+const uDescending = function (a, b) {
+  return (a > b) ? -1 : ((a < b) ? 1 : 0);
+};
+
 const mod = {
 
 	KOMBrowseAccessibilitySummary (inputData, OLSKLocalized) {
@@ -11,11 +15,11 @@ const mod = {
 	},
 
 	KOMBrowseSortFunction (a, b) {
-		if (a.KOMCardModificationDate && b.KOMCardModificationDate) {
-			return b.KOMCardModificationDate - a.KOMCardModificationDate;
-		}
-
-		return b.KOMCardCreationDate - a.KOMCardCreationDate;
+		return (function(e) {
+			return uDescending(a[e], b[e]);
+		})(['KOMCardModificationDate', 'KOMCardCreationDate'].filter(function (e) {
+			return a[e] && b[e];
+		}).shift());
 	},
 
 	KOMBrowseMatchIsResult (param1, param2) {
