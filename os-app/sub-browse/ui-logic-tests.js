@@ -64,18 +64,18 @@ describe('KOMBrowseSortFunction', function test_KOMBrowseSortFunction() {
 
 });
 
-describe('KOMBrowseMatchIsResult', function test_KOMBrowseMatchIsResult() {
+describe('KOMBrowseIsMatch', function test_KOMBrowseIsMatch() {
 
 	it('throws error param2 if not string', function() {
 		throws(function() {
-			mod.KOMBrowseMatchIsResult({}, null);
+			mod.KOMBrowseIsMatch({}, null);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns false if no match', function() {
 		const tags = uRandomElement(true, false);
 		const haystack = 'alfa';
-		deepEqual(mod.KOMBrowseMatchIsResult({
+		deepEqual(mod.KOMBrowseIsMatch({
 			[tags ? 'KOMCardTags' : uRandomElement('KOMCardFrontText', 'KOMCardFrontText', 'KOMCardNotes')]: tags ? [haystack] : haystack,
 		}, 'bravo'), false);
 	});
@@ -83,39 +83,38 @@ describe('KOMBrowseMatchIsResult', function test_KOMBrowseMatchIsResult() {
 	it('matches OLSKStringMatch', function() {
 		const tags = uRandomElement(true, false);
 		const haystack = uRandomElement('alfa', 'álfa');
-		deepEqual(mod.KOMBrowseMatchIsResult({
+		deepEqual(mod.KOMBrowseIsMatch({
 			[tags ? 'KOMCardTags' : uRandomElement('KOMCardFrontText', 'KOMCardFrontText', 'KOMCardNotes')]: tags ? [haystack] : haystack,
 		}, uRandomElement('alf', 'alfa', 'ALF')), true);
 	});
 
 });
 
-describe('KOMBrowseMatchIsExact', function test_KOMBrowseMatchIsExact() {
+describe('KOMBrowseExactSortFunction', function test_KOMBrowseExactSortFunction() {
 
-	it('throws error if param2 not string', function() {
-		throws(function() {
-			mod.KOMBrowseMatchIsExact({}, null);
+	it('throws if param1 not string', function () {
+		throws(function () {
+			mod.KOMBrowseExactSortFunction(null, Math.random().toString(), Math.random().toString());
 		}, /KOMErrorInputNotValid/);
 	});
 
-	it('returns false if not starting with input', function() {
+	it('bumps startsWith', function() {
 		const item = Math.random().toString();
-		deepEqual(mod.KOMBrowseMatchIsExact({
-			[uRandomElement('KOMCardFrontText', 'KOMCardFrontText')]: Math.random().toString() + item,
-		}, item), false);
-	});
-
-	it('returns true', function() {
-		const item = Math.random().toString();
-		deepEqual(mod.KOMBrowseMatchIsExact({
-			[uRandomElement('KOMCardFrontText', 'KOMCardFrontText')]: item + Math.random().toString(),
-		}, item), true);
+		const key = uRandomElement('KOMCardFrontText', 'KOMCardRearText');
+		deepEqual(mod.KOMBrowseExactSortFunction(item, {
+			[key]: Math.random().toString() + item,
+		}, {
+			[key]: item + Math.random().toString(),
+		}), 1);
 	});
 
 	it('matches OLSKStringMatch', function() {
-		deepEqual(mod.KOMBrowseMatchIsExact({
-			[uRandomElement('KOMCardFrontText', 'KOMCardFrontText')]: uRandomElement('alfa', 'álfa'),
-		}, uRandomElement('alf', 'alfa', 'ALF')), true);
+		const key = uRandomElement('KOMCardFrontText', 'KOMCardRearText');
+		deepEqual(mod.KOMBrowseExactSortFunction(uRandomElement('alf', 'alfa', 'ALF'), {
+			[key]: Math.random().toString(),
+		}, {
+			[key]: uRandomElement('alfa', 'álfa'),
+		}), 1);
 	});
 
 });

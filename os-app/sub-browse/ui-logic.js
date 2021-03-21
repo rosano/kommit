@@ -22,7 +22,7 @@ const mod = {
 		}).shift());
 	},
 
-	KOMBrowseMatchIsResult (param1, param2) {
+	KOMBrowseIsMatch (param1, param2) {
 		if (typeof param2 !== 'string') {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -36,18 +36,16 @@ const mod = {
 		}).length;
 	},
 
-	KOMBrowseMatchIsExact (param1, param2) {
-		if (typeof param2 !== 'string') {
+	KOMBrowseExactSortFunction (needle, a, b) {
+		if (typeof needle !== 'string') {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		return [param1.KOMCardFrontText, param1.KOMCardRearText].filter(function (e) {
-			if (!e) {
-				return false;
-			}
-
-			return OLSKString.OLSKStringMatch(param2, e, 'startsWith');
-		}).length;
+		return ['KOMCardFrontText', 'KOMCardRearText'].reduce(function (coll, item) {
+			return coll.concat(uDescending(OLSKString.OLSKStringMatch(needle, a[item] || '', 'startsWith'), OLSKString.OLSKStringMatch(needle, b[item] || '', 'startsWith')));
+		}, []).filter(function (e) {
+			return e !== 0;
+		}).shift();
 	},
 
 };
