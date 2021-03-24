@@ -124,7 +124,7 @@ import KOMBrowseInfoTags from '../KOMBrowseInfoTags/main.svelte';
 <div class="KOMBrowseInfoForm OLSKDecor OLSKDecorBigForm">
 
 <p>
-	<input class="KOMBrowseInfoFormFrontTextField OLSKMobileSafariRemoveDefaultInputStyle" placeholder="{ OLSKLocalized('KOMBrowseInfoFormFrontTextFieldText') }" type="text" bind:value={ KOMBrowseInfoItem.KOMCardFrontText } on:input={ KOMBrowseInfoDispatchUpdate } />
+	<input class="KOMBrowseInfoFormFrontTextField" placeholder="{ OLSKLocalized('KOMBrowseInfoFormFrontTextFieldText') }" type="text" bind:value={ KOMBrowseInfoItem.KOMCardFrontText } on:input={ KOMBrowseInfoDispatchUpdate } />
 </p>
 
 <p class="KOMBrowseInfoFormFrontAudio">
@@ -141,7 +141,7 @@ import KOMBrowseInfoTags from '../KOMBrowseInfoTags/main.svelte';
 </p>
 
 <p>
-	<input class="KOMBrowseInfoFormRearTextField OLSKMobileSafariRemoveDefaultInputStyle" placeholder="{ OLSKLocalized('KOMBrowseInfoFormRearTextFieldText') }" type="text" bind:value={ KOMBrowseInfoItem.KOMCardRearText } on:input={ KOMBrowseInfoDispatchUpdate } />
+	<input class="KOMBrowseInfoFormRearTextField" placeholder="{ OLSKLocalized('KOMBrowseInfoFormRearTextFieldText') }" type="text" bind:value={ KOMBrowseInfoItem.KOMCardRearText } on:input={ KOMBrowseInfoDispatchUpdate } />
 </p>
 
 <p class="KOMBrowseInfoFormRearAudio">
@@ -158,7 +158,7 @@ import KOMBrowseInfoTags from '../KOMBrowseInfoTags/main.svelte';
 </p>
 
 <p>
-	<input class="KOMBrowseInfoFormNotesField OLSKMobileSafariRemoveDefaultInputStyle" placeholder="{ OLSKLocalized('KOMBrowseInfoFormNotesFieldText') }" type="text" bind:value={ KOMBrowseInfoItem.KOMCardNotes } on:input={ KOMBrowseInfoDispatchUpdate } />
+	<input class="KOMBrowseInfoFormNotesField" placeholder="{ OLSKLocalized('KOMBrowseInfoFormNotesFieldText') }" type="text" bind:value={ KOMBrowseInfoItem.KOMCardNotes } on:input={ KOMBrowseInfoDispatchUpdate } />
 </p>
 
 <hr role="presentation" />

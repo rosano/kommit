@@ -192,10 +192,6 @@ describe('KOMBrowseInfo_Misc', function () {
 			});
 		});
 
-		it('classes OLSKMobileSafariRemoveDefaultInputStyle', function () {
-			browser.assert.hasClass(KOMBrowseInfoFormFrontTextField, 'OLSKMobileSafariRemoveDefaultInputStyle');
-		});
-
 		it('sets type', function () {
 			browser.assert.attribute(KOMBrowseInfoFormFrontTextField, 'type', 'text');
 		});
@@ -367,10 +363,6 @@ describe('KOMBrowseInfo_Misc', function () {
 			});
 		});
 
-		it('classes OLSKMobileSafariRemoveDefaultInputStyle', function () {
-			browser.assert.hasClass(KOMBrowseInfoFormRearTextField, 'OLSKMobileSafariRemoveDefaultInputStyle');
-		});
-
 		it('sets type', function () {
 			browser.assert.attribute(KOMBrowseInfoFormRearTextField, 'type', 'text');
 		});
@@ -540,10 +532,6 @@ describe('KOMBrowseInfo_Misc', function () {
 					KOMCardNotes: 'alfa',
 				}),
 			});
-		});
-
-		it('classes OLSKMobileSafariRemoveDefaultInputStyle', function () {
-			browser.assert.hasClass(KOMBrowseInfoFormNotesField, 'OLSKMobileSafariRemoveDefaultInputStyle');
 		});
 
 		it('sets type', function () {

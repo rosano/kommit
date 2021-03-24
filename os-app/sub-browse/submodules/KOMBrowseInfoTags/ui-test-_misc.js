@@ -11,10 +11,6 @@ describe('KOMBrowseInfoTags_Misc', function () {
 
 	describe('KOMBrowseInfoTagsInputField', function test_KOMBrowseInfoTagsInputField() {
 
-		it('classes OLSKMobileSafariRemoveDefaultInputStyle', function () {
-			browser.assert.hasClass(KOMBrowseInfoTagsInputField, 'OLSKMobileSafariRemoveDefaultInputStyle');
-		});
-
 		it('sets type', function () {
 			browser.assert.attribute(KOMBrowseInfoTagsInputField, 'type', 'text');
 		});
