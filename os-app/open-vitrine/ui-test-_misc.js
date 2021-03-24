@@ -54,6 +54,18 @@ describe('KOMVitrine_Misc', function () {
 	
 	});
 
+	describe('KOMVitrineVideo', function () {
+
+		it('sets src', function () {
+			browser.assert.attribute(KOMVitrineVideo, 'src', process.env.KOM_VITRINE_VIDEO_URL);
+		});
+
+		it('sets allowfullscreen', function () {
+			browser.assert.attribute(KOMVitrineVideo, 'allowfullscreen', '');
+		});
+
+	});
+
 	context('OLSKAppFeaturesList', function test_OLSKAppFeaturesList () {
 
 		it('shows OLSKAppFeatureOpenSource', function () {
@@ -76,18 +88,6 @@ describe('KOMVitrine_Misc', function () {
 			browser.assert.attribute(KOMVitrineGuideButton, 'href', OLSKTestingCanonical(require('../open-guide/controller.js').OLSKControllerRoutes().shift()));
 		});
 	
-	});
-
-	describe('KOMVitrineVideo', function () {
-
-		it('sets src', function () {
-			browser.assert.attribute(KOMVitrineVideo, 'src', process.env.KOM_VITRINE_VIDEO_URL);
-		});
-
-		it('sets allowfullscreen', function () {
-			browser.assert.attribute(KOMVitrineVideo, 'allowfullscreen', '');
-		});
-
 	});
 
 	describe('OLSKGazette', function test_OLSKGazette () {
