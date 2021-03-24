@@ -331,10 +331,18 @@ describe('KOMReview_Fund', function () {
 			return browser.OLSKLauncherRun('FakeFundDocumentLimit');
 		});
 
+		before(function () {
+			return browser.pressButton('.KOMReviewMasterListItem');
+		});
+
+		before(function () {
+			return browser.pressButton('.KOMReviewDetailToolbarCardsButton');
+		});
+
 		it('alerts', function() {
 			browser.assert.OLSKConfirmQuestion(function () {
 				return browser.OLSKPrompt(function () {
-					return browser.pressButton('.KOMReviewMasterCreateButton');
+					return browser.pressButton('.KOMBrowseCreateButton');
 				}, function (dialog) {
 					return Object.assign(dialog, {
 						response: Math.random().toString(),
@@ -363,7 +371,7 @@ describe('KOMReview_Fund', function () {
 			
 			before(function () {
 				return browser.OLSKConfirm(function () {
-					return browser.pressButton('.KOMReviewMasterCreateButton');
+					return browser.pressButton('.KOMBrowseCreateButton');
 				}, function (dialog) {
 					return Object.assign(dialog, {
 						response: false,
@@ -388,22 +396,6 @@ describe('KOMReview_Fund', function () {
 
 		before(function () {
 			return browser.OLSKLauncherRun('FakeFundDocumentLimit');
-		});
-
-		context('create_deck', function () {
-			
-			it('shows OLSKFundGate', function() {
-				browser.assert.OLSKConfirmQuestion(function () {
-					return browser.OLSKPrompt(function () {
-						return browser.pressButton('.KOMReviewMasterCreateButton');
-					}, function (dialog) {
-						return Object.assign(dialog, {
-							response: Math.random().toString(),
-						});
-					});
-				}, uLocalized('OLSKFundGateText'));
-			});
-		
 		});
 
 		context('create_card', function () {

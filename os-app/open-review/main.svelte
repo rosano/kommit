@@ -489,10 +489,6 @@ const mod = {
 	},
 
 	async ControlDeckCreate(inputData) {
-		if (mod._ValueDocumentRemainder < 1 && !mod.DataIsEligible()) {
-			return mod.ControlFundGate();
-		}
-
 		inputData = inputData || window.prompt(OLSKLocalized('KOMReviewCreatePromptText'));
 		
 		if (!inputData) {
