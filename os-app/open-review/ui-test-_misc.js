@@ -246,10 +246,6 @@ describe('KOMReview_Misc', function () {
 			browser.assert.hasClass(KOMReviewStorageToolbar, 'OLSKCommonEdgeTop');
 		});
 
-		it('classes OLSKStorageToolbar', function () {
-			browser.assert.hasClass(KOMReviewStorageToolbar, 'OLSKStorageToolbar');
-		});
-
 	});
 
 	describe('KOMReviewLauncherItemSelectDeck', function test_KOMReviewLauncherItemSelectDeck() {
