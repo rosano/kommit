@@ -131,7 +131,7 @@ const mod = {
 			LCHRecipeSignature: 'KOMReviewLauncherItemImportJSON',
 			LCHRecipeName: OLSKLocalized('KOMReviewLauncherItemImportJSONText'),
 			LCHRecipeCallback: async function KOMReviewLauncherItemImportJSON () {
-				return mod.ControlImportData(await this.api.LCHReadTextFile({
+				return mod.ControlDecksImportJSON(await this.api.LCHReadTextFile({
 					accept: '.json',
 				}));
 			},
@@ -336,7 +336,7 @@ const mod = {
 				{
 					LCHRecipeName: 'KOMReviewLauncherItemDebug_PromptFakeImportSerialized',
 					LCHRecipeCallback: function KOMReviewLauncherItemDebug_PromptFakeImportSerialized () {
-						return mod.ControlImportData(window.prompt());
+						return mod.ControlDecksImportJSON(window.prompt());
 					},
 				},
 				{
@@ -551,7 +551,7 @@ const mod = {
 		speechSynthesis.speak(item);
 	},
 
-	async ControlImportData (inputData) {
+	async ControlDecksImportJSON (inputData) {
 		if (!inputData.trim()) {
 			return window.alert(OLSKLocalized('KOMReviewLauncherItemImportJSONErrorNotFilledAlertText'))
 		}
