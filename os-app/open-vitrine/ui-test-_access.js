@@ -13,10 +13,10 @@ Object.entries({
 
 	KOMVitrineGuideButton: '.KOMVitrineGuideButton',
 
+	KOMVitrineGazetteHeading: '.KOMVitrineGazetteHeading',
+
 	KOMVitrineSupportHeading: '.KOMVitrineSupportHeading',
 	KOMVitrineSupportBlurb: '.KOMVitrineSupportBlurb',
-
-	KOMVitrineGazetteHeading: '.KOMVitrineGazetteHeading',
 }).map(function (e) {
 	return global[e.shift()] = e.pop();
 });
@@ -75,20 +75,20 @@ describe('KOMVitrine_Access', function () {
 		browser.assert.elements(KOMVitrineGuideButton, 1);
 	});
 
-	it('shows KOMVitrineSupportHeading', function () {
-		browser.assert.elements(KOMVitrineSupportHeading, 1);
-	});
-
-	it('shows KOMVitrineSupportBlurb', function () {
-		browser.assert.elements(KOMVitrineSupportBlurb, 1);
-	});
-
 	it('shows KOMVitrineGazetteHeading', function () {
 		browser.assert.elements(KOMVitrineGazetteHeading, 1);
 	});
 
 	it('shows OLSKGazette', function () {
 		browser.assert.elements('.OLSKGazette', 1);
+	});
+
+	it('shows KOMVitrineSupportHeading', function () {
+		browser.assert.elements(KOMVitrineSupportHeading, 1);
+	});
+
+	it('shows KOMVitrineSupportBlurb', function () {
+		browser.assert.elements(KOMVitrineSupportBlurb, 1);
 	});
 
 	it('shows ROCORootLink', function () {

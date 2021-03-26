@@ -34,16 +34,16 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 			browser.assert.text(KOMVitrineGuideButton, uLocalized('OLSKWordingOpenGuide'));
 		});
 
+		it('localizes KOMVitrineGazetteHeading', function () {
+			browser.assert.text(KOMVitrineGazetteHeading, uLocalized('OLSKGazetteHeadingText'));
+		});
+
 		it('localizes KOMVitrineSupportHeading', function () {
 			browser.assert.text(KOMVitrineSupportHeading, uLocalized('OLSKWordingFeedbackHeading'));
 		});
 
 		it('localizes KOMVitrineSupportBlurb', function () {
 			browser.assert.text(KOMVitrineSupportBlurb, uLocalized('OLSKWordingFeedbackBlurb'));
-		});
-		
-		it('localizes KOMVitrineGazetteHeading', function () {
-			browser.assert.text(KOMVitrineGazetteHeading, uLocalized('OLSKGazetteHeadingText'));
 		});
 
 		context('OLSKLanding', function test_OLSKLanding () {
