@@ -5,7 +5,7 @@ Object.entries({
 
 	KOMReviewViewportFooter: '.KOMReviewViewportFooter',
 
-	KOMReviewStorageToolbar: '.KOMReviewStorageToolbar',
+	KOMReviewCloudToolbar: '.KOMReviewCloudToolbar',
 }).map(function (e) {
 	return global[e.shift()] = e.pop();
 });
@@ -44,8 +44,8 @@ describe('KOMReview_Access', function () {
 		browser.assert.elements(KOMReviewViewportFooter, 1);
 	});
 
-	it('hides KOMReviewStorageToolbar', function () {
-		browser.assert.elements(KOMReviewStorageToolbar, 0);
+	it('hides KOMReviewCloudToolbar', function () {
+		browser.assert.elements(KOMReviewCloudToolbar, 0);
 	});
 
 	it('shows OLSKAppToolbar', function () {
@@ -154,8 +154,8 @@ describe('KOMReview_Access', function () {
 			return browser.pressButton('.OLSKAppToolbarCloudButton');
 		});
 
-		it('shows KOMReviewStorageToolbar', function () {
-			browser.assert.elements(KOMReviewStorageToolbar, 1);
+		it('shows KOMReviewCloudToolbar', function () {
+			browser.assert.elements(KOMReviewCloudToolbar, 1);
 		});
 
 		it('shows OLSKCloud', function () {

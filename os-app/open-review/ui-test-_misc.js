@@ -228,22 +228,22 @@ describe('KOMReview_Misc', function () {
 
 	});
 
-	describe('KOMReviewStorageToolbar', function test_KOMReviewStorageToolbar() {
+	describe('KOMReviewCloudToolbar', function test_KOMReviewCloudToolbar() {
 
 		before(function () {
 			return browser.pressButton('.OLSKAppToolbarCloudButton');
 		});
 
 		it('classes OLSKToolbar', function () {
-			browser.assert.hasClass(KOMReviewStorageToolbar, 'OLSKToolbar');
+			browser.assert.hasClass(KOMReviewCloudToolbar, 'OLSKToolbar');
 		});
 
 		it('classes OLSKToolbarJustify', function () {
-			browser.assert.hasClass(KOMReviewStorageToolbar, 'OLSKToolbarJustify');
+			browser.assert.hasClass(KOMReviewCloudToolbar, 'OLSKToolbarJustify');
 		});
 
 		it('classes OLSKCommonEdgeTop', function () {
-			browser.assert.hasClass(KOMReviewStorageToolbar, 'OLSKCommonEdgeTop');
+			browser.assert.hasClass(KOMReviewCloudToolbar, 'OLSKCommonEdgeTop');
 		});
 
 	});

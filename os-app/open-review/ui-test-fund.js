@@ -17,7 +17,7 @@ describe('KOMReview_Fund', function () {
 		context('not connected', function () {
 
 			before(function () {
-				browser.assert.elements('.KOMReviewStorageToolbar', 0);
+				browser.assert.elements('.KOMReviewCloudToolbar', 0);
 			});
 			
 			context('click', function () {
@@ -28,8 +28,8 @@ describe('KOMReview_Fund', function () {
 					}, uLocalized('OLSKRemoteStorageConnectConfirmText'));
 				});
 
-				it('shows KOMReviewStorageToolbar', function () {
-					browser.assert.elements('.KOMReviewStorageToolbar', 1);
+				it('shows KOMReviewCloudToolbar', function () {
+					browser.assert.elements('.KOMReviewCloudToolbar', 1);
 				});
 
 				context('cancel', function () {
@@ -39,7 +39,7 @@ describe('KOMReview_Fund', function () {
 					});
 
 					before(function () {
-						browser.assert.elements('.KOMReviewStorageToolbar', 0);
+						browser.assert.elements('.KOMReviewCloudToolbar', 0);
 					});
 					
 					before(function () {
@@ -53,7 +53,7 @@ describe('KOMReview_Fund', function () {
 					});
 
 					it('does nothing', function () {
-						browser.assert.elements('.KOMReviewStorageToolbar', 0);
+						browser.assert.elements('.KOMReviewCloudToolbar', 0);
 					});
 				
 				});
@@ -351,8 +351,8 @@ describe('KOMReview_Fund', function () {
 			}, uLocalized('OLSKFundGateText'));
 		});
 
-		it('shows KOMReviewStorageToolbar', function () {
-			browser.assert.elements('.KOMReviewStorageToolbar', 1);
+		it('shows KOMReviewCloudToolbar', function () {
+			browser.assert.elements('.KOMReviewCloudToolbar', 1);
 		});
 
 		it('exits', function () {
@@ -366,7 +366,7 @@ describe('KOMReview_Fund', function () {
 			});
 
 			before(function () {
-				browser.assert.elements('.KOMReviewStorageToolbar', 0);
+				browser.assert.elements('.KOMReviewCloudToolbar', 0);
 			});
 			
 			before(function () {
@@ -380,7 +380,7 @@ describe('KOMReview_Fund', function () {
 			});
 
 			it('does nothing', function () {
-				browser.assert.elements('.KOMReviewStorageToolbar', 0);
+				browser.assert.elements('.KOMReviewCloudToolbar', 0);
 				browser.assert.elements('.KOMReviewMasterListItem', 1);
 			});
 		
