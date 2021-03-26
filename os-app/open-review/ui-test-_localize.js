@@ -30,6 +30,38 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 			return browser.assert.OLSKLauncherItemText('KOMReviewLauncherItemExportJSON', uLocalized('KOMReviewLauncherItemExportJSONText'));
 		});
 
+		describe('OLSKAppToolbarLauncherButton', function test_OLSKAppToolbarLauncherButton () {
+
+			before(function () {
+				return browser.pressButton('.OLSKAppToolbarLauncherButton');
+			});
+
+			it('localizes LCHLauncherFilterInput', function () {
+				browser.assert.attribute('.LCHLauncherFilterInput', 'placeholder', uLocalized('OLSKWordingTypeToSearch'));
+			});
+
+			after(function () {
+				return browser.pressButton('#TestLCHDebugCloseButton');
+			});
+
+		});
+
+		describe('OLSKAppToolbarLanguageButton', function test_OLSKAppToolbarLanguageButton () {
+
+			before(function () {
+				return browser.pressButton('.OLSKAppToolbarLanguageButton');
+			});
+
+			it('localizes LCHLauncherFilterInput', function () {
+				browser.assert.attribute('.LCHLauncherFilterInput', 'placeholder', uLocalized('OLSKWordingTypeToFilter'));
+			});
+
+			after(function () {
+				return browser.pressButton('#TestLCHDebugCloseButton');
+			});
+
+		});
+
 		describe('KOMReviewLauncherItemImportJSON', function test_KOMReviewLauncherItemImportJSON() {
 
 			context('not filled', function () {
