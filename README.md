@@ -1,4 +1,4 @@
-<a href="https://kommit.rosano.ca"><img src="https://rosano.s3.amazonaws.com/public/kommit/identity.svg" width="64"></a>
+<a href="https://kommit.rosano.ca"><img alt="Project logo" src="https://rosano.s3.amazonaws.com/public/kommit/identity.svg" width="64" /></a>
 
 # Kommit
 
