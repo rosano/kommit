@@ -19,6 +19,7 @@ describe('KOMFeatureList_Misc', function () {
 						'/_shared/__external/OLSKUIAssets/_OLSKSharedFeatureTTS.svg',
 						'/_shared/__external/OLSKUIAssets/_OLSKSharedFeatureRecord.svg',
 						'/_shared/__external/OLSKUIAssets/_OLSKSharedFeatureTags.svg',
+						'/_shared/__external/OLSKUIAssets/_OLSKSharedFeatureCollaborate.svg',
 					][i]);
 			});
 			
