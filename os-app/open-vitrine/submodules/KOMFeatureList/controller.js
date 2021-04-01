@@ -6,6 +6,6 @@ exports.OLSKControllerRoutes = function() {
 			return res.OLSKExpressLayoutRender(require('path').join(__dirname, 'main'));
 		},
 		OLSKRouteSignature: 'KOMFeatureListStubRoute',
-		OLSKRouteLanguageCodes: ['en', 'fr', 'es'],
+		OLSKRouteLanguageCodes: ['en', 'fr', 'es', 'pt'],
 	}];
 };

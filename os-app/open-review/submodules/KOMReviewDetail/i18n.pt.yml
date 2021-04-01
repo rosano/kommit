@@ -1,0 +1,23 @@
+KOMReviewDetailToolbarBackButtonText: Voltar
+KOMReviewDetailToolbarCardsButtonText: Cartões
+KOMReviewDetailGameOptionsHeadingText: Opções de jogo
+KOMReviewDetailNoCardsText: Não tem cartões nesse baralho.
+KOMReviewDetailFormAudioIsEnabledFieldLabelText: Reproduzir áudio
+KOMReviewDetailFormFrontSpeechIsEnabledFieldLabelText: Ler a frente
+KOMReviewDetailFormRearSpeechIsEnabledFieldLabelText: Ler o verso
+KOMReviewDetailFormIsForwardOnlyFieldLabelText: Pular cartões invertidos
+KOMReviewDetailFormRetireCardsFieldLabelText: Aposentar cartões
+KOMReviewDetailFormRetireCardsFieldOptionNeverText: Nunca
+KOMReviewDetailFormRetireCardsFieldOptionOneMonthText: após um mês
+KOMReviewDetailFormRetireCardsFieldOptionThreeMonthsText: após três meses
+KOMReviewDetailFormRetireCardsFieldOptionSixMonthsText: após seis meses
+KOMReviewDetailFormRetireCardsFieldOptionTwelveMonthsText: após doze meses
+KOMReviewDetailLauncherItemPlayReviewingText: Estudar cartões de revisão
+KOMReviewDetailLauncherItemPlayUnseenText: Estudar novos cartões
+KOMReviewDetailPlayButtonText: Jogar
+KOMReviewDetailNoSpacingsText: Todos os cartões de hoje foram revisados.
+KOMReviewDetailDeckHeadingText: Baralho
+KOMReviewDetailRenameButtonText: Renomear
+KOMReviewDetailRenameButtonPromptText: Nome
+KOMReviewDetailDiscardButtonText: Apagar o baralho e todas as cartas dentro
+KOMReviewDetailDiscardPromptText: 'Você tem certeza? Por favor, digite o número de cartões para apagar o baralho.'

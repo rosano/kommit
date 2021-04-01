@@ -6,7 +6,7 @@ exports.OLSKControllerRoutes = function () {
 			return res.OLSKExpressLayoutRender(require('path').join(__dirname, 'stub-view'));
 		},
 		OLSKRouteSignature: 'KOMRootLinkEJSStubRoute',
-		OLSKRouteLanguageCodes: ['en', 'fr', 'es'],
+		OLSKRouteLanguageCodes: ['en', 'fr', 'es', 'pt'],
 		OLSKRouteIsHidden: process.env.NODE_ENV === 'production',
 	}, {
 		OLSKRoutePath: '/stub/KOMRootLinkSvelte',
