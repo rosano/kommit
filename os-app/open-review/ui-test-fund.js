@@ -356,7 +356,7 @@ describe('KOMReview_Fund', function () {
 		});
 
 		it('exits', function () {
-			browser.assert.elements('.KOMReviewMasterListItem', 1);
+			browser.assert.elements('.KOMBrowseListItem', process.env.KOM_FUND_DOCUMENT_LIMIT);
 		});
 
 		context('cancel', function () {
@@ -381,7 +381,7 @@ describe('KOMReview_Fund', function () {
 
 			it('does nothing', function () {
 				browser.assert.elements('.KOMReviewCloudToolbar', 0);
-				browser.assert.elements('.KOMReviewMasterListItem', 1);
+				browser.assert.elements('.KOMBrowseListItem', process.env.KOM_FUND_DOCUMENT_LIMIT);
 			});
 		
 		});
