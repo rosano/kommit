@@ -1,8 +1,8 @@
 <div class="KOMRootLink">
 
-<%- include('../__external/OLSKRootLink/main.ejs', {
+<%- include('../../../node_modules/OLSKRootLink/main.ejs', {
 	OLSKRootLinkURL: OLSKCanonicalLocalized('KOMVitrineRoute'),
-	OLSKRootLinkImageURL: '/_shared/KOMRootLink/ui-assets/identity.svg',
+	OLSKRootLinkImageURL: process.env.OLSK_LAYOUT_TOUCH_ICON_URL,
 }) %>
 
 </div>

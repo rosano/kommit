@@ -1,21 +1,12 @@
-exports.OLSKControllerRoutes = function () {
+exports.OLSKControllerRoutes = function() {
 	return [{
-		OLSKRoutePath: '/stub/KOMRootLinkEJS',
+		OLSKRoutePath: '/stub/KOMRootLink',
 		OLSKRouteMethod: 'get',
-		OLSKRouteFunction(req, res, next) {
-			return res.OLSKExpressLayoutRender(require('path').join(__dirname, 'stub-view'));
+		OLSKRouteFunction (req, res, next) {
+			return res.OLSKExpressLayoutRender(require('path').join(__dirname, 'main'));
 		},
-		OLSKRouteSignature: 'KOMRootLinkEJSStubRoute',
-		OLSKRouteLanguageCodes: ['en', 'fr', 'es', 'pt'],
-		OLSKRouteIsHidden: process.env.NODE_ENV === 'production',
-	}, {
-		OLSKRoutePath: '/stub/KOMRootLinkSvelte',
-		OLSKRouteMethod: 'get',
-		OLSKRouteFunction(req, res, next) {
-			return res.OLSKExpressLayoutRender(require('path').join(__dirname, 'stub-view'));
-		},
-		OLSKRouteSignature: 'KOMRootLinkSvelteStubRoute',
-		OLSKRouteLanguageCodes: ['en', 'fr', 'es'],
+		OLSKRouteSignature: 'KOMRootLinkStubRoute',
+		OLSKRouteLanguageCodes: ['en'],
 		OLSKRouteIsHidden: process.env.NODE_ENV === 'production',
 	}];
 };

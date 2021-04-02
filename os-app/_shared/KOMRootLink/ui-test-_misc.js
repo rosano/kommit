@@ -1,27 +1,17 @@
-require('./controller.js').OLSKControllerRoutes().forEach(function (kDefaultRoute) {
+const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-	describe(`KOMRootLink_Misc--${ kDefaultRoute.OLSKRouteSignature }`, function () {
+describe('KOMRootLink_Misc', function () {
 
-		before(function () {
-			return browser.OLSKVisit(kDefaultRoute);
+	before(function () {
+		return browser.OLSKVisit(kDefaultRoute);
+	});
+
+	describe('OLSKRootLink', function () {
+		
+		it('sets OLSKRootLinkImageURL', function () {
+			browser.assert.attribute('.OLSKRootLinkImage', 'src', process.env.OLSK_LAYOUT_TOUCH_ICON_URL);
 		});
-
-		describe('OLSKRootLink', function () {
-
-			it('sets OLSKRootLinkImageURL', function () {
-				browser.assert.attribute('.OLSKRootLinkImage', 'src', '/_shared/KOMRootLink/ui-assets/identity.svg');
-			});
-
-			it('sets OLSKRootLinkImageURL', function () {
-				browser.assert.attribute('.OLSKRootLinkImage', 'src', '/_shared/KOMRootLink/ui-assets/identity.svg');
-			});
-
-			it('sets OLSKRootLinkImageURL', function () {
-				browser.assert.attribute('.OLSKRootLinkImage', 'src', '/_shared/KOMRootLink/ui-assets/identity.svg');
-			});
-
-		});
-
+	
 	});
 
 });
