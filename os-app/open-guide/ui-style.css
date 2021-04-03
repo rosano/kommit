@@ -9,14 +9,6 @@ body {
 	color: var(--KOMCommonForeground);
 }
 
-.KOMGuideCallout dt {
-	font-weight: bold;
-}
-
-.KOMGuideCallout dd {
-	margin: 10px 0;
-}
-
 .KOMGuideStatisticsLegend td {
 	width: unset !important;
 	padding: 10px !important;
