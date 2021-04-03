@@ -40,6 +40,7 @@
     "OLSKLanding": "olsk/OLSKLanding",
     "OLSKAppFeatureList": "olsk/OLSKAppFeatureList",
     "OLSKGazette": "olsk/OLSKGazette",
+    "SWARLink": "0dataapp/SWARLink",
 
     "// FRONTEND APP LAYOUT": null,
     "OLSKDecor": "olsk/OLSKDecor",
