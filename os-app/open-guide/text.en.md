@@ -14,7 +14,7 @@ The cards are presented when you are likely to forget, which [aids memory retent
 
 It's great for languages, but can also be applied to other domains.
 
-<dl class="KOMGuideCallout">
+<dl class="KOMGuideCallout OLSKDecorCallout">
 	<h2>My linguistic journey</h2>
 	<dt><a href="https://rosano.hmm.garden/01f1wjp6bb4raqdqd4aanb0evn">Teaching languages to friends</a></dt>
 	<dd>How I used Kommit collaboratively to exchange languages with friends.</dd>
