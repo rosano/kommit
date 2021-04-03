@@ -22,14 +22,6 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 			return browser.assert.OLSKLauncherItemText('KOMReviewLauncherItemToggleSimplifiedResponseButtons', uLocalized('KOMReviewLauncherItemToggleSimplifiedResponseButtonsText'));
 		});
 
-		it('localizes KOMReviewLauncherItemImportJSON', function () {
-			return browser.assert.OLSKLauncherItemText('KOMReviewLauncherItemImportJSON', uLocalized('KOMReviewLauncherItemImportJSONText'));
-		});
-
-		it('localizes KOMReviewLauncherItemExportJSON', function () {
-			return browser.assert.OLSKLauncherItemText('KOMReviewLauncherItemExportJSON', uLocalized('KOMReviewLauncherItemExportJSONText'));
-		});
-
 		describe('OLSKAppToolbarLauncherButton', function test_OLSKAppToolbarLauncherButton () {
 
 			before(function () {
@@ -60,84 +52,6 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 				return browser.pressButton('#TestLCHDebugCloseButton');
 			});
 
-		});
-
-		describe('KOMReviewLauncherItemImportJSON', function test_KOMReviewLauncherItemImportJSON() {
-
-			context('not filled', function () {
-				
-				before(function () {
-					return browser.pressButton('.OLSKAppToolbarLauncherButton');
-				});
-
-				before(async function () {
-					return browser.fill('.LCHLauncherFilterInput', 'KOMReviewLauncherItemDebug_PromptFakeImportSerialized');
-				});
-
-				it('alerts if not filled', function () {
-					return browser.assert.OLSKAlertTextAsync(function () {
-						return browser.OLSKPrompt(function () {
-							return browser.click('.LCHLauncherPipeItem');
-						}, function (dialog) {
-							dialog.response = ' ';
-
-							return dialog;
-						});
-					}, uLocalized('KOMReviewLauncherItemImportJSONErrorNotFilledAlertText'));
-				});
-			
-			});
-
-			context('not json', function () {
-				
-				before(function () {
-					return browser.pressButton('.OLSKAppToolbarLauncherButton');
-				});
-
-				before(async function () {
-					return browser.fill('.LCHLauncherFilterInput', 'KOMReviewLauncherItemDebug_PromptFakeImportSerialized');
-				});
-
-				it('alerts if not json', function () {
-					return browser.assert.OLSKAlertTextAsync(function () {
-						return browser.OLSKPrompt(function () {
-							return browser.click('.LCHLauncherPipeItem');
-						}, function (dialog) {
-							dialog.response = 'alfa';
-
-							return dialog;
-						});
-					}, uLocalized('KOMReviewLauncherItemImportJSONErrorNotValidAlertText'));
-				});
-			
-			});
-
-			context('not valid', function () {
-				
-				before(function () {
-					return browser.pressButton('.OLSKAppToolbarLauncherButton');
-				});
-
-				before(async function () {
-					return browser.fill('.LCHLauncherFilterInput', 'KOMReviewLauncherItemDebug_PromptFakeImportSerialized');
-				});
-
-				it('alerts if not valid', function () {
-					return browser.assert.OLSKAlertTextAsync(function () {
-						return browser.OLSKPrompt(function () {
-							return browser.click('.LCHLauncherPipeItem');
-						}, function (dialog) {
-							dialog.response = JSON.stringify({
-								[Math.random().toString()]: Math.random().toString(),
-							});
-
-							return dialog;
-						});
-					}, uLocalized('KOMReviewLauncherItemImportJSONErrorNotValidAlertText'));
-				});
-			
-			});
-			
 		});
 
 		context('KOMReviewMasterCreateButton', function () {

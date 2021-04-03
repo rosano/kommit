@@ -173,8 +173,8 @@ Counting the number of cards based on its state.
 | KOMReviewMasterCreateButtonText | `AccessKey+n` |
 | `KOMReviewLauncherItemSelectDeckText` | Launcher |
 | `KOMReviewLauncherItemToggleSimplifiedResponseButtonsText` | Launcher |
-| `KOMReviewLauncherItemImportJSONText` | Launcher |
-| `KOMReviewLauncherItemExportJSONText` | Launcher |
+| `OLSKTransportLauncherItemImportJSONText` | Launcher |
+| `OLSKTransportLauncherItemExportJSONText` | Launcher |
 | `KOMReviewMasterLauncherItemToggleExcludeTripleQuestionMarkText` | Launcher |
 
 | Deck page ||

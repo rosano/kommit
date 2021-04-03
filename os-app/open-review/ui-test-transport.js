@@ -4,7 +4,7 @@ describe('KOMReview_Transport', function () {
 
 	const json = {};
 
-	describe('KOMReviewLauncherItemImportJSON', function test_KOMReviewLauncherItemImportJSON() {
+	describe('OLSKTransportDispatchImportJSON', function test_OLSKTransportDispatchImportJSON() {
 
 		const KOMDeckName = Math.random().toString();
 
@@ -17,7 +17,7 @@ describe('KOMReview_Transport', function () {
 		});
 
 		before(function () {
-			return browser.fill('.LCHLauncherFilterInput', 'KOMReviewLauncherItemDebug_PromptFakeImportSerialized');
+			return browser.fill('.LCHLauncherFilterInput', 'OLSKTransportLauncherFakeItemImportSerialized');
 		});
 
 		before(function () {
@@ -75,14 +75,14 @@ describe('KOMReview_Transport', function () {
 
 	});
 
-	describe('KOMReviewLauncherItemExportJSON', function test_KOMReviewLauncherItemExportJSON() {
+	describe('OLSKTransportDispatchExportInput', function test_OLSKTransportDispatchExportInput() {
 
 		before(function () {
 			return browser.pressButton('.OLSKAppToolbarLauncherButton');
 		});
 
 		before(function () {
-			return browser.fill('.LCHLauncherFilterInput', 'KOMReviewLauncherItemDebug_AlertFakeExportSerialized');
+			return browser.fill('.LCHLauncherFilterInput', 'OLSKTransportLauncherFakeItemExportSerialized');
 		});
 
 		it('exports file', async function() {

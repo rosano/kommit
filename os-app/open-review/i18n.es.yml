@@ -1,9 +1,5 @@
 KOMReviewTitle: Kommit
 KOMReviewCreatePromptText: Nombre
-KOMReviewLauncherItemImportJSONText: Importar JSON (beta)
-KOMReviewLauncherItemImportJSONErrorNotFilledAlertText: Entrada no cargada
-KOMReviewLauncherItemImportJSONErrorNotValidAlertText: Entrada no valida
-KOMReviewLauncherItemExportJSONText: Exportar JSON (beta)
 KOMReviewLauncherItemExportSelectedJSONText: Exportar mazo seleccionado JSON (beta)
 KOMReviewLauncherItemSelectDeckTextFormat: Escoger mazo '%@'
 KOMReviewLauncherItemToggleSimplifiedResponseButtonsText: Alternar botones de respuesta simplificados

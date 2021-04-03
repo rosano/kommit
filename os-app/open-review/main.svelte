@@ -23,6 +23,7 @@ import OLSKPact from 'OLSKPact';
 import OLSKChain from 'OLSKChain';
 import OLSKBeacon from 'OLSKBeacon';
 import OLSKLanguageSwitcher from 'OLSKLanguageSwitcher';
+import OLSKTransport from 'OLSKTransport';
 import zerodatawrap from 'zerodatawrap';
 
 const mod = {
@@ -111,37 +112,8 @@ const mod = {
 		};
 	},
 
-	async DataExportJSON (KOMDeck) {
-		return JSON.stringify(await mod._ValueZDRWrap.App.KOMTransport.KOMTransportExport({
-			KOMDeck,
-			KOMSetting: await mod._ValueZDRWrap.App.KOMSetting.KOMSettingList(),
-		}));
-	},
-
-	DataExportBasename () {
-		return `${ window.location.hostname }-${ Date.now() }`;
-	},
-
-	DataExportJSONFilename () {
-		return `${ mod.DataExportBasename() }.json`;
-	},	
-
 	DataReviewRecipes () {
-		const items = [{
-			LCHRecipeSignature: 'KOMReviewLauncherItemImportJSON',
-			LCHRecipeName: OLSKLocalized('KOMReviewLauncherItemImportJSONText'),
-			LCHRecipeCallback: async function KOMReviewLauncherItemImportJSON () {
-				return mod.ControlDecksImportJSON(await this.api.LCHReadTextFile({
-					accept: '.json',
-				}));
-			},
-		}, {
-			LCHRecipeSignature: 'KOMReviewLauncherItemExportJSON',
-			LCHRecipeName: OLSKLocalized('KOMReviewLauncherItemExportJSONText'),
-			LCHRecipeCallback: async function KOMReviewLauncherItemExportJSON () {
-				return this.api.LCHSaveFile(await mod.DataExportJSON(mod._ValueDecksAll), mod.DataExportJSONFilename());
-			},
-		}].concat(mod._ValueDecksAll.filter(function (e) {
+		const items = mod._ValueDecksAll.filter(function (e) {
 			return e !== mod._ValueDeckSelected;
 		}).map(function (e) {
 			return {
@@ -157,14 +129,14 @@ const mod = {
 			LCHRecipeCallback: function KOMReviewLauncherItemToggleSimplifiedResponseButtons () {
 				mod._ValuePlaySimplifiedResponseButtons = !mod._ValuePlaySimplifiedResponseButtons;
 			},
-		}]));
+		}]);
 
 		if (mod._ValueDeckSelected) {
 			items.push({
 				LCHRecipeSignature: 'KOMReviewLauncherItemExportSelectedJSON',
 				LCHRecipeName: OLSKLocalized('KOMReviewLauncherItemExportSelectedJSONText'),
 				LCHRecipeCallback: (async function KOMReviewLauncherItemExportSelectedJSON () {
-					return this.api.LCHSaveFile(await mod.DataExportJSON([mod._ValueDeckSelected]), mod.DataExportJSONFilename());
+					return this.api.OLSKTransportLauncherItemExportJSON(await mod._OLSKTransportDispatchExportInput([mod._ValueDeckSelected]));
 				}),
 			});
 		}
@@ -209,6 +181,14 @@ const mod = {
 
 		items.push(...zerodatawrap.ZDRRecipes({
 			ParamMod: mod,
+			ParamSpecUI: OLSK_SPEC_UI(),
+		}));
+
+		items.push(...OLSKTransport.OLSKTransportRecipes({
+			ParamWindow: window,
+			OLSKLocalized: OLSKLocalized,
+			OLSKTransportDispatchImportJSON: mod.OLSKTransportDispatchImportJSON,
+			OLSKTransportDispatchExportInput: mod.OLSKTransportDispatchExportInput,
 			ParamSpecUI: OLSK_SPEC_UI(),
 		}));
 
@@ -334,27 +314,9 @@ const mod = {
 					},
 				},
 				{
-					LCHRecipeName: 'KOMReviewLauncherItemDebug_PromptFakeImportSerialized',
-					LCHRecipeCallback: function KOMReviewLauncherItemDebug_PromptFakeImportSerialized () {
-						return mod.ControlDecksImportJSON(window.prompt());
-					},
-				},
-				{
-					LCHRecipeName: 'KOMReviewLauncherItemDebug_AlertFakeExportSerialized',
-					LCHRecipeCallback: async function KOMReviewLauncherItemDebug_AlertFakeExportSerialized () {
-						return window.alert(JSON.stringify({
-							OLSKDownloadName: mod.DataExportJSONFilename(),
-							OLSKDownloadData: await mod.DataExportJSON(mod._ValueDecksAll),
-						}));
-					},
-				},
-				{
 					LCHRecipeName: 'KOMReviewLauncherItemDebug_AlertFakeExportSelectedSerialized',
 					LCHRecipeCallback: async function KOMReviewLauncherItemDebug_AlertFakeExportSelectedSerialized () {
-						return window.alert(JSON.stringify({
-							OLSKDownloadName: mod.DataExportJSONFilename(),
-							OLSKDownloadData: await mod.DataExportJSON([mod._ValueDeckSelected]),
-						}));
+						return this.api.OLSKTransportLauncherFakeItemExportSerialized(await mod._OLSKTransportDispatchExportInput([mod._ValueDeckSelected]));
 					},
 				},
 				{
@@ -549,21 +511,6 @@ const mod = {
 		}).pop();
 
 		speechSynthesis.speak(item);
-	},
-
-	async ControlDecksImportJSON (inputData) {
-		if (!inputData.trim()) {
-			return window.alert(OLSKLocalized('KOMReviewLauncherItemImportJSONErrorNotFilledAlertText'))
-		}
-
-		try {
-			await mod._ValueZDRWrap.App.KOMTransport.KOMTransportImport(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(JSON.parse(inputData)));
-			
-			await mod.SetupValueDecksAll();
-			await mod.SetupSettingsAll();
-		} catch (e) {
-			window.alert(OLSKLocalized('KOMReviewLauncherItemImportJSONErrorNotValidAlertText'));
-		}
 	},
 
 	async ControlDemo () {
@@ -770,6 +717,24 @@ const mod = {
 		mod._ValueDeckSelected = await mod.ReactDeckFigures(mod._ValueDeckSelected); // #purge-svelte-force-update
 
 		mod._ValuePlayVisible = false;
+	},
+
+	async OLSKTransportDispatchImportJSON (inputData) {
+		await mod._ValueZDRWrap.App.KOMTransport.KOMTransportImport(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(inputData));
+		
+		await mod.SetupValueDecksAll();
+		await mod.SetupSettingsAll();
+	},
+
+	async _OLSKTransportDispatchExportInput (KOMDeck) {
+		return mod._ValueZDRWrap.App.KOMTransport.KOMTransportExport({
+			KOMDeck,
+			KOMSetting: await mod._ValueZDRWrap.App.KOMSetting.KOMSettingList(),
+		});
+	},
+
+	OLSKTransportDispatchExportInput () {
+		return mod._OLSKTransportDispatchExportInput(mod._ValueDecksAll);
 	},
 
 	async OLSKCloudFormDispatchSubmit (inputData) {
