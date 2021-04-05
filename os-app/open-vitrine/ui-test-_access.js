@@ -3,10 +3,6 @@ const kDefaultRoutePath = require('./controller.js').OLSKControllerRoutes().shif
 Object.entries({
 	KOMVitrine: '.KOMVitrine',
 	
-	KOMVitrineCrown: '.KOMVitrineCrown',
-	KOMVitrineCrownIcon: '.KOMVitrineCrownIcon',
-	KOMVitrineCrownName: '.KOMVitrineCrownName',
-
 	KOMVitrineVideo: '.OLSKCommonVideoList .OLSKCommonVideoListItem.KOMVitrineVideo iframe',
 
 	KOMVitrineFeaturesHeading: '.KOMVitrineFeaturesHeading',
@@ -31,20 +27,8 @@ describe('KOMVitrine_Access', function () {
 		browser.assert.elements(KOMVitrine, 1);
 	});
 
-	it('shows OLSKLanguageSwitcher', function () {
-		browser.assert.elements('.OLSKLanguageSwitcher', 1);
-	});
-
-	it('shows KOMVitrineCrown', function () {
-		browser.assert.elements(KOMVitrineCrown, 1);
-	});
-
-	it('shows KOMVitrineCrownIcon', function () {
-		browser.assert.elements(KOMVitrineCrownIcon, 1);
-	});
-
-	it('shows KOMVitrineCrownName', function () {
-		browser.assert.elements(KOMVitrineCrownName, 1);
+	it('shows OLSKCrown', function () {
+		browser.assert.elements('.OLSKCrown', 1);
 	});
 
 	it('shows OLSKLanding', function() {
