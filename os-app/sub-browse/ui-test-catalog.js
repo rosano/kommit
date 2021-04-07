@@ -88,7 +88,7 @@ describe('KOMBrowse_Catalog', function () {
 		
 	});
 
-	context('OLSKCatalogDispatchArrow', function test_OLSKCatalogDispatchArrow () {
+	context('OLSKCollectionDispatchArrow', function test_OLSKCollectionDispatchArrow () {
 		
 		before(function () {
 			return browser.pressButton('.KOMBrowseCreateButton');
