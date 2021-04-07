@@ -204,7 +204,7 @@ const mod = {
 	
 	// MESSAGE
 
-	OLSKMasterListItemAccessibilitySummaryFunction (inputData) {
+	OLSKCollectionItemAccessibilitySummaryFunction (inputData) {
 		KOMBrowseLogic.KOMBrowseAccessibilitySummary(inputData, OLSKLocalized);
 	},
 
@@ -348,7 +348,7 @@ import OLSKUIAssets from 'OLSKUIAssets';
 <OLSKCatalog
 	bind:this={ mod._OLSKCatalog }
 
-	OLSKMasterListItemAccessibilitySummaryFunction={ mod.OLSKMasterListItemAccessibilitySummaryFunction }
+	OLSKCollectionItemAccessibilitySummaryFunction={ mod.OLSKCollectionItemAccessibilitySummaryFunction }
 
 	OLSKCatalogSortFunction={ KOMBrowseLogic.KOMBrowseSortFunction }
 	OLSKCatalogIsMatch={ KOMBrowseLogic.KOMBrowseIsMatch }
