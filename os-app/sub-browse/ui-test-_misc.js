@@ -90,7 +90,7 @@ describe('KOMBrowse_Misc', function () {
 	context('create', function test_create() {
 
 		before(function () {
-			browser.assert.elements('.OLSKResultsListItemSelected', 0);
+			browser.assert.elements('.OLSKCollectionItemLocus', 0);
 		});
 
 		before(function () {
