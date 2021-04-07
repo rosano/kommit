@@ -107,7 +107,7 @@ describe('KOMBrowse_Catalog', function () {
 		});
 
 		it('binds OLSKCollectionItemsLocus', function () {
-			browser.assert.hasClass('.OLSKResultsListItem:nth-child(2)', 'OLSKCollectionItemLocus');
+			browser.assert.hasClass('.KOMBrowseListItem:nth-child(2)', 'OLSKCollectionItemLocus');
 		});
 	
 	});

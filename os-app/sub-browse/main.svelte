@@ -364,7 +364,7 @@ import OLSKUIAssets from 'OLSKUIAssets';
 	OLSKCatalogDispatchQuantity={ mod.OLSKCatalogDispatchQuantity }
 	OLSKCatalogDispatchEscapeOnEmpty={ KOMBrowseDispatchClose }
 
-	let:OLSKResultsListItem
+	let:OLSKCollectionItem
 	>
 
 	<!-- MASTER -->
@@ -384,7 +384,7 @@ import OLSKUIAssets from 'OLSKUIAssets';
 	<!-- LIST ITEM -->
 
 	<div slot="OLSKCollectionItem">
-		<KOMBrowseListItem KOMBrowseListItemObject={ OLSKResultsListItem } />
+		<KOMBrowseListItem KOMBrowseListItemObject={ OLSKCollectionItem } />
 	</div>
 
 	<!-- DETAIL -->

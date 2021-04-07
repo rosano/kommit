@@ -11,7 +11,7 @@ describe('KOMBrowse_Sync', function () {
 	describe('SyncCreateCard', function test_SyncCreateCard() {
 
 		before(function () {
-			browser.assert.elements('.OLSKResultsListItem', 0);
+			browser.assert.elements('.KOMBrowseListItem', 0);
 		});
 
 		before(function () {
@@ -19,7 +19,7 @@ describe('KOMBrowse_Sync', function () {
 		});
 
 		it('adds item', function () {
-			browser.assert.elements('.OLSKResultsListItem', 1);
+			browser.assert.elements('.KOMBrowseListItem', 1);
 		});
 
 	});
@@ -27,7 +27,7 @@ describe('KOMBrowse_Sync', function () {
 	describe('SyncUpdateCard', function test_SyncUpdateCard() {
 
 		before(function () {
-			browser.assert.text('.OLSKResultsListItem', 'FakeSyncCreateCard');
+			browser.assert.text('.KOMBrowseListItem', 'FakeSyncCreateCard');
 		});
 
 		before(function () {
@@ -35,13 +35,13 @@ describe('KOMBrowse_Sync', function () {
 		});
 
 		it('updates item', function () {
-			browser.assert.text('.OLSKResultsListItem', 'FakeSyncUpdateCard');
+			browser.assert.text('.KOMBrowseListItem', 'FakeSyncUpdateCard');
 		});
 
 		context('selected same', function () {
 
 			before(function () {
-				return browser.click('.OLSKResultsListItem');
+				return browser.click('.KOMBrowseListItem');
 			});
 
 			before(function () {
@@ -67,7 +67,7 @@ describe('KOMBrowse_Sync', function () {
 		});
 
 		it('removes item', function () {
-			browser.assert.elements('.OLSKResultsListItem', 0);
+			browser.assert.elements('.KOMBrowseListItem', 0);
 		});
 
 		context('selected same', function () {
@@ -77,7 +77,7 @@ describe('KOMBrowse_Sync', function () {
 			});
 
 			before(function () {
-				return browser.click('.OLSKResultsListItem');
+				return browser.click('.KOMBrowseListItem');
 			});
 
 			before(function () {
@@ -99,7 +99,7 @@ describe('KOMBrowse_Sync', function () {
 		});
 
 		before(function () {
-			return browser.click('.OLSKResultsListItem');
+			return browser.click('.KOMBrowseListItem');
 		});
 
 		before(function () {
@@ -111,7 +111,7 @@ describe('KOMBrowse_Sync', function () {
 		});
 
 		it('selects local', function () {
-			browser.assert.text('.OLSKResultsListItem', 'FakeSyncConflictCard-local');
+			browser.assert.text('.KOMBrowseListItem', 'FakeSyncConflictCard-local');
 		});
 
 	});
