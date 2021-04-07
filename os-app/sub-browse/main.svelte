@@ -383,7 +383,7 @@ import OLSKUIAssets from 'OLSKUIAssets';
 
 	<!-- LIST ITEM -->
 
-	<div slot="OLSKMasterListItem">
+	<div slot="OLSKCollectionItem">
 		<KOMBrowseListItem KOMBrowseListItemObject={ OLSKResultsListItem } />
 	</div>
 
