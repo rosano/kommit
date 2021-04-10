@@ -63,6 +63,12 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 			it('localizes OLSKLandingActionText', function () {
 				browser.assert.text('.OLSKLandingAction', uLocalized('OLSKWordingOpenApp'));
 			});
+
+			it('localizes OLSKLandingActionHref', function () {
+				browser.assert.attribute('.OLSKLandingAction', 'href', OLSKTestingCanonical(require('../open-review/controller.js').OLSKControllerRoutes().shift(), {
+					OLSKRoutingLanguage,
+				}));
+			});
 		
 		});
 
