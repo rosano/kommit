@@ -1,9 +1,9 @@
 import { factory } from 'ulid';
 const uniqueID = factory();
 import OLSKRemoteStorage from 'OLSKRemoteStorage';
+import OLSKMoment from 'OLSKMoment';
 
 import KOMCard from '../KOMCard/main.js';
-import KOMSharedLogic from '../KOMSharedLogic/main.js';
 
 const mod = {
 
@@ -279,7 +279,7 @@ const mod = {
 
 		return param1.reduce(function (coll, item) {
 			const chronicles = item.KOMSpacingChronicles.filter(function (e) {
-				return KOMSharedLogic.KOMSharedGroupingDay(e.KOMChronicleResponseDate) === param2;
+				return OLSKMoment.OLSKMomentPerceptionDay(e.KOMChronicleResponseDate) === param2;
 			});
 
 			if (chronicles.includes(item.KOMSpacingChronicles[0])) {

@@ -2,7 +2,7 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 const KOMPlayLogic = require('./ui-logic.js').default;
 const KOMSpacing = require('../_shared/KOMSpacing/main.js').default;
-const KOMSharedLogic = require('../_shared/KOMSharedLogic/main.js').default;
+const OLSKMoment = require('OLSKMoment');
 
 const kTesting = {
 	uSpacings(inputData) {
@@ -881,7 +881,7 @@ describe('KOMPlay_Misc', function () {
 		// });
 
 		it('sets KOMSpacingDrawDate', function () {
-			browser.assert.text('#TestKOMSpacingDrawDate', KOMSharedLogic.KOMSharedGroupingDay(new Date()));
+			browser.assert.text('#TestKOMSpacingDrawDate', OLSKMoment.OLSKMomentPerceptionDay(new Date()));
 		});
 
 		it('sends KOMPlayDispatchUpdate', function () {
@@ -907,7 +907,7 @@ describe('KOMPlay_Misc', function () {
 		});
 
 		it('sets KOMSpacingFlipDate', function () {
-			browser.assert.text('#TestKOMSpacingFlipDate', KOMSharedLogic.KOMSharedGroupingDay(new Date()));
+			browser.assert.text('#TestKOMSpacingFlipDate', OLSKMoment.OLSKMomentPerceptionDay(new Date()));
 		});
 
 		it('sets no KOMChronicleDidFlipMultipleTimes', function () {

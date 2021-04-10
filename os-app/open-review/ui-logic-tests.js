@@ -3,13 +3,13 @@ const { throws, deepEqual } = require('assert');
 const mod = require('./ui-logic.js').default;
 
 const KOMPlayLogic = require('../sub-play/ui-logic.js').default;
-const KOMSharedLogic = require('../_shared/KOMSharedLogic/main.js').default;
 const KOMReviewGeneral = require('./submodules/KOMReviewGeneral/ui-logic.js').default;
+const OLSKMoment = require('OLSKMoment');
 
 const uGroup = function (param1, param2 = []) {
 	const outputData = {};
 	
-	outputData[KOMSharedLogic.KOMSharedGroupingDay(param1)] = [].concat(param2);
+	outputData[OLSKMoment.OLSKMomentPerceptionDay(param1)] = [].concat(param2);
 
 	return outputData;
 };
@@ -713,7 +713,7 @@ describe('KOMReviewGeneralUpcomingDates', function test_KOMReviewGeneralUpcoming
 
 	it('returns array', function () {
 		deepEqual(mod.KOMReviewGeneralUpcomingDates(), Array.from(Array(KOMReviewGeneral.KOMReviewGeneralTableDays())).map(function (e, i) {
-			return KOMSharedLogic.KOMSharedGroupingDay(new Date(Date.now() + 1000 * 60 * 60 * 24 * i));
+			return OLSKMoment.OLSKMomentPerceptionDay(new Date(Date.now() + 1000 * 60 * 60 * 24 * i));
 		}));
 	});
 
@@ -726,7 +726,7 @@ describe('KOMReviewGeneralUpcomingFilter', function test_KOMReviewGeneralUpcomin
 	})((new Date()).getTimezoneOffset() / 60);
 
 	const uGroupingDate = function (inputData = 0) {
-		return new Date(Date.parse(`${ KOMSharedLogic.KOMSharedGroupingDay(new Date()) }T04:00:00-${ offset }:00`) + inputData);
+		return new Date(Date.parse(`${ OLSKMoment.OLSKMomentPerceptionDay(new Date()) }T04:00:00-${ offset }:00`) + inputData);
 	};
 
 	it('throws if not array', function () {
@@ -816,7 +816,7 @@ describe('KOMReviewGeneralHistoricalDates', function test_KOMReviewGeneralHistor
 
 	it('returns array', function () {
 		deepEqual(mod.KOMReviewGeneralHistoricalDates(), Array.from(Array(KOMReviewGeneral.KOMReviewGeneralTableDays())).map(function (e, i) {
-			return KOMSharedLogic.KOMSharedGroupingDay(new Date(Date.now() - 1000 * 60 * 60 * 24 * i));
+			return OLSKMoment.OLSKMomentPerceptionDay(new Date(Date.now() - 1000 * 60 * 60 * 24 * i));
 		}));
 	});
 
@@ -829,7 +829,7 @@ describe('KOMReviewGeneralHistoricalFilter', function test_KOMReviewGeneralHisto
 	})((new Date()).getTimezoneOffset() / 60);
 
 	const uGroupingDate = function (inputData = 0) {
-		return new Date(Date.parse(`${ KOMSharedLogic.KOMSharedGroupingDay(new Date()) }T04:00:00-${ offset }:00`) + inputData);
+		return new Date(Date.parse(`${ OLSKMoment.OLSKMomentPerceptionDay(new Date()) }T04:00:00-${ offset }:00`) + inputData);
 	};
 
 	it('throws if not array', function () {

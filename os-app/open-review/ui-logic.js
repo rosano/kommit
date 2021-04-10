@@ -1,8 +1,8 @@
 import KOMSpacing from '../_shared/KOMSpacing/main.js';
 import KOMDeck from '../_shared/KOMDeck/main.js';
 import KOMPlayLogic from '../sub-play/ui-logic.js';
-import KOMSharedLogic from '../_shared/KOMSharedLogic/main.js';
 import KOMReviewGeneral from './submodules/KOMReviewGeneral/ui-logic.js';
+import OLSKMoment from 'OLSKMoment';
 
 const mod = {
 
@@ -38,7 +38,7 @@ const mod = {
 				return true;
 			}
 
-			return KOMSharedLogic.KOMSharedGroupingDay(e.KOMSpacingDueDate).valueOf() <= KOMSharedLogic.KOMSharedGroupingDay(new Date()).valueOf();
+			return OLSKMoment.OLSKMomentPerceptionDay(e.KOMSpacingDueDate).valueOf() <= OLSKMoment.OLSKMomentPerceptionDay(new Date()).valueOf();
 		});
 	},
 
@@ -190,7 +190,7 @@ const mod = {
 
 		return inputData.reduce(function (coll, item) {
 			return coll + item.KOMSpacingChronicles.filter(function (e) {
-				return KOMSharedLogic.KOMSharedGroupingDay(e.KOMChronicleResponseDate) === KOMSharedLogic.KOMSharedGroupingDay(new Date());
+				return OLSKMoment.OLSKMomentPerceptionDay(e.KOMChronicleResponseDate) === OLSKMoment.OLSKMomentPerceptionDay(new Date());
 			}).reduce(function (responseTime, e) {
 				return responseTime + (e.KOMChronicleResponseDate - e.KOMChronicleDrawDate);
 			}, 0);
@@ -212,7 +212,7 @@ const mod = {
 			}, 0) * 1.0 / scores.length;
 		})(inputData.filter(function (e) {
 			const items = e.KOMSpacingChronicles.filter(function (e) {
-				return KOMSharedLogic.KOMSharedGroupingDay(e.KOMChronicleResponseDate) === KOMSharedLogic.KOMSharedGroupingDay(new Date());
+				return OLSKMoment.OLSKMomentPerceptionDay(e.KOMChronicleResponseDate) === OLSKMoment.OLSKMomentPerceptionDay(new Date());
 			});
 
 			if (!items.length) {
@@ -232,7 +232,7 @@ const mod = {
 			return true;
 		}).map(function (e) {
 			return e.KOMSpacingChronicles.filter(function (e) {
-				return KOMSharedLogic.KOMSharedGroupingDay(e.KOMChronicleResponseDate) === KOMSharedLogic.KOMSharedGroupingDay(new Date());
+				return OLSKMoment.OLSKMomentPerceptionDay(e.KOMChronicleResponseDate) === OLSKMoment.OLSKMomentPerceptionDay(new Date());
 			}).filter(function (e) {
 				return e.KOMChronicleResponseType === KOMPlayLogic.KOMPlayResponseTypeAgain();
 			}).length ? 0 : 1;
@@ -249,7 +249,7 @@ const mod = {
 
 	KOMReviewGeneralUpcomingDates() {
 		return Array.from(Array(KOMReviewGeneral.KOMReviewGeneralTableDays())).map(function (e, i) {
-			return KOMSharedLogic.KOMSharedGroupingDay(new Date(Date.now() + 1000 * 60 * 60 * 24 * i));
+			return OLSKMoment.OLSKMomentPerceptionDay(new Date(Date.now() + 1000 * 60 * 60 * 24 * i));
 		});
 	},
 
@@ -263,11 +263,11 @@ const mod = {
 				return false;
 			}
 			
-			if (KOMSharedLogic.KOMSharedGroupingDay(e.KOMSpacingDueDate) < KOMSharedLogic.KOMSharedGroupingDay(new Date())) {
+			if (OLSKMoment.OLSKMomentPerceptionDay(e.KOMSpacingDueDate) < OLSKMoment.OLSKMomentPerceptionDay(new Date())) {
 				return false;
 			}
 
-			if (KOMSharedLogic.KOMSharedGroupingDay(e.KOMSpacingDueDate) >= KOMSharedLogic.KOMSharedGroupingDay(new Date(Date.now() + 1000 * 60 * 60 * 24 * KOMReviewGeneral.KOMReviewGeneralTableDays()))) {
+			if (OLSKMoment.OLSKMomentPerceptionDay(e.KOMSpacingDueDate) >= OLSKMoment.OLSKMomentPerceptionDay(new Date(Date.now() + 1000 * 60 * 60 * 24 * KOMReviewGeneral.KOMReviewGeneralTableDays()))) {
 				return false;
 			}
 
@@ -281,7 +281,7 @@ const mod = {
 		}
 
 		return inputData.reduce(function (coll, item) {
-			coll[KOMSharedLogic.KOMSharedGroupingDay(item.KOMSpacingDueDate)] = (coll[KOMSharedLogic.KOMSharedGroupingDay(item.KOMSpacingDueDate)] || []).concat(item);
+			coll[OLSKMoment.OLSKMomentPerceptionDay(item.KOMSpacingDueDate)] = (coll[OLSKMoment.OLSKMomentPerceptionDay(item.KOMSpacingDueDate)] || []).concat(item);
 
 			return coll;
 		}, {});
@@ -289,7 +289,7 @@ const mod = {
 
 	KOMReviewGeneralHistoricalDates() {
 		return Array.from(Array(KOMReviewGeneral.KOMReviewGeneralTableDays())).map(function (e, i) {
-			return KOMSharedLogic.KOMSharedGroupingDay(new Date(Date.now() - 1000 * 60 * 60 * 24 * i));
+			return OLSKMoment.OLSKMomentPerceptionDay(new Date(Date.now() - 1000 * 60 * 60 * 24 * i));
 		});
 	},
 
@@ -304,11 +304,11 @@ const mod = {
 			}
 
 			return e.KOMSpacingChronicles.filter(function (e) {
-				if (KOMSharedLogic.KOMSharedGroupingDay(e.KOMChronicleResponseDate) > KOMSharedLogic.KOMSharedGroupingDay(new Date())) {
+				if (OLSKMoment.OLSKMomentPerceptionDay(e.KOMChronicleResponseDate) > OLSKMoment.OLSKMomentPerceptionDay(new Date())) {
 					return false;
 				}
 
-				if (KOMSharedLogic.KOMSharedGroupingDay(e.KOMChronicleResponseDate) < KOMSharedLogic.KOMSharedGroupingDay(new Date(Date.now() - 1000 * 60 * 60 * 24 * KOMReviewGeneral.KOMReviewGeneralTableDays()))) {
+				if (OLSKMoment.OLSKMomentPerceptionDay(e.KOMChronicleResponseDate) < OLSKMoment.OLSKMomentPerceptionDay(new Date(Date.now() - 1000 * 60 * 60 * 24 * KOMReviewGeneral.KOMReviewGeneralTableDays()))) {
 					return false;
 				}
 
@@ -324,13 +324,13 @@ const mod = {
 
 		return inputData.reduce(function (coll, item) {
 			item.KOMSpacingChronicles.forEach(function (e) {
-				const array = (coll[KOMSharedLogic.KOMSharedGroupingDay(e.KOMChronicleResponseDate)] || []);
+				const array = (coll[OLSKMoment.OLSKMomentPerceptionDay(e.KOMChronicleResponseDate)] || []);
 				
 				if (!array.includes(item)) {
 					array.push(item);
 				}
 
-				coll[KOMSharedLogic.KOMSharedGroupingDay(e.KOMChronicleResponseDate)] = array;
+				coll[OLSKMoment.OLSKMomentPerceptionDay(e.KOMChronicleResponseDate)] = array;
 			});
 
 			return coll;

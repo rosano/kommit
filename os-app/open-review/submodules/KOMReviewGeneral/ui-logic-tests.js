@@ -3,11 +3,12 @@ const { throws, deepEqual } = require('assert');
 const mod = require('./ui-logic.js').default;
 
 const KOMSharedLogic = require('../../../_shared/KOMSharedLogic/main.js').default;
+const OLSKMoment = require('OLSKMoment');
 
 const uGroup = function (param1, param2 = []) {
 	const outputData = {};
 	
-	outputData[KOMSharedLogic.KOMSharedGroupingDay(param1)] = [].concat(param2);
+	outputData[OLSKMoment.OLSKMomentPerceptionDay(param1)] = [].concat(param2);
 
 	return outputData;
 };

@@ -3,7 +3,7 @@ const { rejects, throws, deepEqual, strictEqual } = require('assert');
 const mod = require('./main.js').default;
 
 const KOMCard = require('../KOMCard/main.js').default;
-const KOMSharedLogic = require('../KOMSharedLogic/main.js').default;
+const OLSKMoment = require('OLSKMoment');
 
 describe('KOMSpacingIdentifier', function test_KOMSpacingIdentifier() {
 
@@ -626,46 +626,46 @@ describe('KOMSpacingChroniclesByStatus', function test_KOMSpacingChroniclesBySta
 
 	it('ignores if unseen', function () {
 		const item = StubSpacingObjectValid();
-		deepEqual(mod.KOMSpacingChroniclesByStatus([item], KOMSharedLogic.KOMSharedGroupingDay(new Date())), uGrouping());
+		deepEqual(mod.KOMSpacingChroniclesByStatus([item], OLSKMoment.OLSKMomentPerceptionDay(new Date())), uGrouping());
 	});
 
 	it('ignores if no match', function () {
-		deepEqual(mod.KOMSpacingChroniclesByStatus([StubSpacingObjectHistorical()], KOMSharedLogic.KOMSharedGroupingDay(new Date('2000-01-01'))), uGrouping());
+		deepEqual(mod.KOMSpacingChroniclesByStatus([StubSpacingObjectHistorical()], OLSKMoment.OLSKMomentPerceptionDay(new Date('2000-01-01'))), uGrouping());
 	});
 
 	it('groups learning', function () {
 		const item = uChronicles(2);
 		deepEqual(mod.KOMSpacingChroniclesByStatus([Object.assign(StubSpacingObjectHistorical(), {
 			KOMSpacingChronicles: item,
-		})], KOMSharedLogic.KOMSharedGroupingDay(new Date())).KOMChronicleGroupingLearning, item.slice(0, 2));
+		})], OLSKMoment.OLSKMomentPerceptionDay(new Date())).KOMChronicleGroupingLearning, item.slice(0, 2));
 	});
 
 	it('groups developing', function () {
 		const item = uChronicles(3);
 		deepEqual(mod.KOMSpacingChroniclesByStatus([Object.assign(StubSpacingObjectHistorical(), {
 			KOMSpacingChronicles: item,
-		})], KOMSharedLogic.KOMSharedGroupingDay(new Date())).KOMChronicleGroupingDeveloping, item.slice(2, 3));
+		})], OLSKMoment.OLSKMomentPerceptionDay(new Date())).KOMChronicleGroupingDeveloping, item.slice(2, 3));
 	});
 
 	it('groups mature', function () {
 		const item = uChronicles(4);
 		deepEqual(mod.KOMSpacingChroniclesByStatus([Object.assign(StubSpacingObjectHistorical(), {
 			KOMSpacingChronicles: item,
-		})], KOMSharedLogic.KOMSharedGroupingDay(new Date())).KOMChronicleGroupingMature, item.slice(3, 4));
+		})], OLSKMoment.OLSKMomentPerceptionDay(new Date())).KOMChronicleGroupingMature, item.slice(3, 4));
 	});
 
 	it('groups relearning', function () {
 		const item = uChronicles(5);
 		deepEqual(mod.KOMSpacingChroniclesByStatus([Object.assign(StubSpacingObjectHistorical(), {
 			KOMSpacingChronicles: item,
-		})], KOMSharedLogic.KOMSharedGroupingDay(new Date())).KOMChronicleGroupingRelearning, item.slice(4, 5));
+		})], OLSKMoment.OLSKMomentPerceptionDay(new Date())).KOMChronicleGroupingRelearning, item.slice(4, 5));
 	});
 
 	it('groups lapses', function () {
 		const item = uChronicles();
 		deepEqual(mod.KOMSpacingChroniclesByStatus([Object.assign(StubSpacingObjectHistorical(), {
 			KOMSpacingChronicles: item,
-		})], KOMSharedLogic.KOMSharedGroupingDay(new Date())), uGrouping({
+		})], OLSKMoment.OLSKMomentPerceptionDay(new Date())), uGrouping({
 			KOMChronicleGroupingLearning: item.slice(0, 2),
 			KOMChronicleGroupingRelearning: item.slice(4, 6),
 			KOMChronicleGroupingDeveloping: item.slice(2, 3).concat(item[6]),
