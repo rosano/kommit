@@ -36,30 +36,10 @@
     "// I sacrifice myself for the commas of others": null
   },
   "devDependencies": {
-    "// OLDSKOOL": null,
-    "OLSKExpress": "olsk/OLSKExpress",
-
-    "// TESTS": null,
+    "OLSKPithToolchain": "olsk/OLSKPithToolchain",
+    "OLSKRollupScaffold": "olsk/OLSKRollupScaffold",
     "cross-blob": "latest",
     "filereader": "latest",
-
-    "// SVELTE": null,
-    "OLSKRollupScaffold": "olsk/OLSKRollupScaffold",
-
-    "// LIVERELOAD": null,
-    "livereload": "latest",
-
-    "// PRODUCTION BUILD": null,
-    "OLSKDisk": "olsk/OLSKDisk",
-
-    "// SPEC": null,
-    "OLSKSpec": "olsk/OLSKSpec",
-    
-    "// HOTFIX": null,
-    "OLSKHotfix": "olsk/OLSKHotfix",
-    
-    "// BUNDLE": null,
-    "OLSKBundle": "olsk/OLSKBundle",
 
     "// I sacrifice myself for the commas of others": null    
   }
