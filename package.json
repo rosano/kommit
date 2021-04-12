@@ -21,7 +21,6 @@
     "// open-play": null,
     "OLSKPithApp": "olsk/OLSKPithApp",
     "OLSKCatalog": "olsk/OLSKCatalog",
-    "OLSKThrottle": "olsk/OLSKThrottle",
     "OLSKLocalStorage": "olsk/OLSKLocalStorage",
     "OLSKMoment": "olsk/OLSKMoment",
     "vmsg": "latest",
