@@ -12,95 +12,33 @@
     "watch": "olsk-rollup-watch"
   },
   "dependencies": {
-    "// OLDSKOOL": null,
-    "OLSKExpress": "olsk/OLSKExpress",
+    "// open-vitrine": null,
+    "OLSKPithVitrine": "olsk/OLSKPithVitrine",
 
-    "// REMOTE STORAGE": null,
-    "zerodatawrap": "0dataapp/0datawrap",
-    "webnative": "^0.21.3",
-    "OLSKRemoteStorage": "olsk/OLSKRemoteStorage",
-    "OLSKCloud": "olsk/OLSKCloud",
-    "OLSKObject": "olsk/OLSKObject",
-    "OLSKTransport": "olsk/OLSKTransport",
+    "// open-guide": null,
+    "OLSKPithGuide": "olsk/OLSKPithGuide",
 
-    "// LOCAL STORAGE": null,
-    "OLSKLocalStorage": "olsk/OLSKLocalStorage",
-
-    "// UNIQUE IDS": null,
-    "ulid": "latest",
-
-    "// MOMENT": null,
-    "OLSKMoment": "olsk/OLSKMoment",
-
-    "// WORDING": null,
-    "OLSKWording": "olsk/OLSKWording",
-
-    "// FRONTEND NORMALIZE CSS": null,
-    "normalize.css": "latest",
-    "OLSKDecor": "olsk/OLSKDecor",
-
-    "// VITRINE": null,
-    "OLSKCrown": "olsk/OLSKCrown",
-    "OLSKLanding": "olsk/OLSKLanding",
-    "OLSKAppFeatureList": "olsk/OLSKAppFeatureList",
-    "OLSKGazette": "olsk/OLSKGazette",
-    "SWARLink": "0dataapp/SWARLink",
-
-    "// FRONTEND APP LAYOUT": null,
-    "OLSKDecor": "olsk/OLSKDecor",
+    "// open-play": null,
+    "OLSKPithApp": "olsk/OLSKPithApp",
     "OLSKCatalog": "olsk/OLSKCatalog",
-    "OLSKUIAssets": "olsk/OLSKUIAssets",
-
-    "// FRONTEND APP TOOLBAR": null,
-    "OLSKAppToolbar": "olsk/OLSKAppToolbar",
-
-    "// APROPOS": null,
-    "OLSKModalView": "olsk/OLSKModalView",
-    "OLSKApropos": "olsk/OLSKApropos",
-
-    "// FRONTEND SERVICE WORKER": null,
-    "OLSKServiceWorker": "olsk/OLSKServiceWorker",
-
-    "// FRONTEND INSTALL": null,
-    "OLSKInstall": "olsk/OLSKInstall",
-
-    "// FRONTEND THROTTLE": null,
     "OLSKThrottle": "olsk/OLSKThrottle",
-
-    "// FRONTEND ROUTING": null,
-    "OLSKRouting": "olsk/OLSKRouting",
-
-    "// FRONTEND LANGUAGE SWITCHER": null,
-    "OLSKLanguageSwitcher": "olsk/OLSKLanguageSwitcher",
-    
-    "// FRONTEND LAUNCHER": null,
-    "launchlet": "latest",
-
-    "// FRONTEND ROOT LINK": null,
-    "OLSKRootLink": "olsk/OLSKRootLink",
-    "ROCORootLink": "rationalcreative/ROCORootLink",
-
-    "// AUDIO RECORDING": null,
+    "OLSKLocalStorage": "olsk/OLSKLocalStorage",
+    "OLSKMoment": "olsk/OLSKMoment",
     "vmsg": "latest",
-
-    "// DATA VISUALISATION": null,
     "d3-scale": "latest",
 
-    "// FUND": null,
-    "OLSKFund": "olsk/OLSKFund",
-    "OLSKWebView": "olsk/OLSKWebView",
-
-    "// DEMO": null,
-    "OLSKChain": "olsk/OLSKChain",
-    "OLSKBeacon": "olsk/OLSKBeacon",
-    "OLSKPointer": "olsk/OLSKPointer",
-
-    "// TECH ROBOTS": null,
+    "// tech-robots": null,
     "OLSKRobots": "olsk/OLSKRobots",
+
+    "// tech-sw": null,
+    "OLSKServiceWorker": "olsk/OLSKServiceWorker",
 
     "// I sacrifice myself for the commas of others": null
   },
   "devDependencies": {
+    "// OLDSKOOL": null,
+    "OLSKExpress": "olsk/OLSKExpress",
+
     "// TESTS": null,
     "cross-blob": "latest",
     "filereader": "latest",
