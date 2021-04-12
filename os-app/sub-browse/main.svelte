@@ -187,7 +187,7 @@ const mod = {
 	},
 
 	ControlFocusMaster () {
-		document.querySelector('.OLSKMasterListFilterField').focus();
+		document.querySelector('.OLSKNarrowFilterField').focus();
 	},
 
 	ControlFocusDetail () {
@@ -369,13 +369,13 @@ import OLSKUIAssets from 'OLSKUIAssets';
 
 	<!-- MASTER -->
 	
-	<div class="OLSKToolbarElementGroup" slot="OLSKMasterListToolbarHead">
+	<div class="OLSKToolbarElementGroup" slot="OLSKNarrowToolbarHead">
 		<button class="KOMBrowseCloseButton OLSKDecorButtonNoStyle OLSKDecorTappable OLSKToolbarButton" title={ OLSKLocalized('KOMBrowseCloseButtonText') } on:click={ KOMBrowseDispatchClose }>
 			<div class="KOMBrowseCloseButtonImage">{@html OLSKUIAssets._OLSKSharedBack }</div>
 		</button>
 	</div>
 
-	<div class="OLSKToolbarElementGroup" slot="OLSKMasterListToolbarTail">
+	<div class="OLSKToolbarElementGroup" slot="OLSKNarrowToolbarTail">
 		<button class="KOMBrowseCreateButton OLSKDecorButtonNoStyle OLSKDecorTappable OLSKToolbarButton" title={ OLSKLocalized('KOMBrowseCreateButtonText') } on:click={ mod.InterfaceCreateButtonDidClick } accesskey="n">
 			<div class="KOMBrowseCreateButtonImage">{@html OLSKUIAssets._OLSKSharedCreate }</div>
 		</button>

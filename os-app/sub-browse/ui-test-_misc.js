@@ -128,15 +128,15 @@ describe('KOMBrowse_Misc', function () {
 		});
 
 		before(function () {
-			browser.fill('.OLSKMasterListFilterField', 'alfa');
+			browser.fill('.OLSKNarrowFilterField', 'alfa');
 		});
 
 		before(function () {
 			return browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
 		});
 
-		it('focuses OLSKMasterListFilterField', function () {
-			browser.assert.hasFocus('.OLSKMasterListFilterField');
+		it('focuses OLSKNarrowFilterField', function () {
+			browser.assert.hasFocus('.OLSKNarrowFilterField');
 		});
 
 		context('filter_empty', function () {
