@@ -169,7 +169,7 @@ const mod = {
 	},
 
 	async ControlCardDiscard (inputData) {
-		mod._OLSKCatalog.modPublic.OLSKCatalogRemove(inputData)
+		mod._OLSKCatalog.modPublic.OLSKCatalogRemove(inputData);
 
 		KOMBrowseDispatchDiscard(await KOMBrowseStorageClient.App.KOMCard.KOMCardDelete(inputData));
 	},
@@ -285,6 +285,8 @@ const mod = {
 
 	SyncCreateCard (inputData) {
 		mod._OLSKCatalog.modPublic.OLSKCatalogInsert(inputData);
+
+		KOMBrowseDispatchCreate(inputData);
 	},
 
 	SyncUpdateCard (inputData) {
@@ -293,6 +295,8 @@ const mod = {
 
 	SyncDeleteCard (inputData) {
 		mod._OLSKCatalog.modPublic.OLSKCatalogRemove(inputData);
+
+		KOMBrowseDispatchDiscard(inputData);
 	},
 
 	SyncConflictCard (inputData) {

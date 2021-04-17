@@ -77,12 +77,12 @@ const mod = {
 	},
 
 	_IsRunningDemo: false,
-
-	_ValueOLSKFundProgress: false,
-
-	_ValueDocumentRemainder: '',
 	
 	// DATA
+
+	DataSetting (inputData) {
+		return mod._ValueSettingsAll[inputData];
+	},
 
 	async DataSettingValue (inputData) {
 		return ((await mod._ValueZDRWrap.App.KOMSetting.KOMSettingList()).filter(function (e) {
@@ -439,14 +439,6 @@ const mod = {
 
 	// CONTROL
 
-	ControlFundGate () {
-		if (!window.confirm(OLSKLocalized('OLSKFundGateText'))) {
-			return;
-		}
-
-		mod.OLSKAppToolbarDispatchFund();
-	},
-
 	async ControlDeckCreate(inputData) {
 		inputData = inputData || window.prompt(OLSKLocalized('KOMReviewCreatePromptText'));
 		
@@ -652,7 +644,7 @@ const mod = {
 
 	KOMBrowseDispatchEligible () {
 		if (mod._ValueDocumentRemainder < 1 && !mod.DataIsEligible()) {
-			return mod.ControlFundGate();
+			return mod.OLSKFundDocumentGate();
 		}
 
 		return true;
@@ -675,7 +667,7 @@ const mod = {
 		});
 		(await mod.DataDeckSelectedObjects(mod._ValueDeckSelected)).$KOMDeckSpacings = (await mod.DataDeckSelectedObjects(mod._ValueDeckSelected)).$KOMDeckSpacings.filter(function (e) {
 			return e.$KOMSpacingCard !== inputData;
-		})
+		});
 
 		mod.ReactDocumentRemainder();
 	},
@@ -830,33 +822,6 @@ const mod = {
 		});
 	},
 
-	OLSKAppToolbarDispatchFund () {
-		if (!mod._ValueCloudIdentity) {
-			return mod._OLSKAppToolbarDispatchFundNotConnected();
-		}
-
-		mod._ValueFundURL = OLSKFund.OLSKFundURL({
-			ParamFormURL: 'OLSK_FUND_FORM_URL_SWAP_TOKEN',
-			ParamProject: 'RP_004',
-			ParamIdentity: mod._ValueCloudIdentity,
-			ParamHomeURL: window.location.origin + window.location.pathname,
-		});
-
-		mod._OLSKWebView.modPublic.OLSKModalViewShow();
-
-		OLSKFund.OLSKFundListen({
-			OLSKFundDispatchReceive: mod.OLSKFundDispatchReceive,
-		});
-	},
-
-	_OLSKAppToolbarDispatchFundNotConnected () {
-		if (!window.confirm(OLSKLocalized('OLSKRemoteStorageConnectConfirmText'))) {
-			return;
-		}
-
-		mod._ValueCloudToolbarHidden = false;
-	},
-
 	OLSKAppToolbarDispatchCloud () {
 		mod._ValueCloudToolbarHidden = !mod._ValueCloudToolbarHidden;
 	},
@@ -870,47 +835,6 @@ const mod = {
 			LCHOptionRecipes: mod.DataReviewRecipes(),
 			LCHOptionLanguage: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
 		});
-	},
-
-	OLSKFundDispatchReceive (inputData) {
-		mod._OLSKWebView.modPublic.OLSKModalViewClose();
-
-		return mod.OLSKFundDispatchPersist(inputData);
-	},
-
-	OLSKFundDispatchPersist (inputData) {
-		mod._ValueFundClue = inputData;
-
-		if (!inputData) {
-			return mod._ValueZDRWrap.App.KOMSetting.ZDRModelDeleteObject({
-				KOMSettingKey: 'KOMSettingFundClue',
-			});
-		}
-
-		return mod._ValueZDRWrap.App.KOMSetting.ZDRModelWriteObject({
-			KOMSettingKey: 'KOMSettingFundClue',
-			KOMSettingValue: inputData,
-		}).then(function () {
-			if (OLSK_SPEC_UI()) {
-				return;
-			}
-
-			setTimeout(function () {
-				window.location.reload();
-			}, mod._ValueZDRWrap.ZDRStorageProtocol === zerodatawrap.ZDRProtocolFission() ? 1000 : 0); // #hotfix-fission-delay
-		});
-	},
-
-	OLSKFundDispatchProgress (inputData) {
-		mod._ValueOLSKFundProgress = inputData;
-	},
-
-	OLSKFundDispatchFail () {
-		mod.OLSKFundDispatchPersist(null);
-	},
-
-	OLSKFundDispatchGrant (inputData) {
-		mod._ValueOLSKFundGrant = OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(inputData);
 	},
 
 	ZDRSchemaDispatchSyncCreateDeck (inputData) {
@@ -975,12 +899,43 @@ const mod = {
 
 	ZDRSchemaDispatchSyncDeleteSpacing (inputData) {},
 
+	OLSKFundSetupDispatchClue () {
+		return mod.DataSetting('KOMSettingFundClue') || null;
+	},
+	
+	_OLSKFundSetupDispatchUpdate (inputData) {
+		mod[inputData] = mod[inputData]; // #purge-svelte-force-update
+	},
+
+	OLSKFundDispatchPersist (inputData) {
+		mod._ValueFundClue = inputData; // #hotfix-missing-persist
+
+		if (!inputData) {
+			return mod._ValueZDRWrap.App.KOMSetting.ZDRModelDeleteObject({
+				KOMSettingKey: 'KOMSettingFundClue',
+			});
+		}
+
+		return mod._ValueZDRWrap.App.KOMSetting.ZDRModelWriteObject({
+			KOMSettingKey: 'KOMSettingFundClue',
+			KOMSettingValue: inputData,
+		}).then(function () {
+			if (OLSK_SPEC_UI()) {
+				return;
+			}
+
+			setTimeout(function () {
+				window.location.reload();
+			}, mod._ValueZDRWrap.ZDRStorageProtocol === zerodatawrap.ZDRProtocolFission() ? 1000 : 0); // #hotfix-fission-delay
+		});
+	},
+
 	// REACT
 
 	async ReactDocumentRemainder () {
-		mod._ValueDocumentRemainder = OLSKFund.OLSKFundRemainder(KOMReviewLogic.KOMReviewDocumentCount(mod._ValueDecksAll, Object.fromEntries(await Promise.all(Object.entries(mod._ValueDeckSelectedObjectsMap).map(async function (e) {
+		mod.OLSKFundDocumentRemainder && mod.OLSKFundDocumentRemainder(KOMReviewLogic.KOMReviewDocumentCount(mod._ValueDecksAll, Object.fromEntries(await Promise.all(Object.entries(mod._ValueDeckSelectedObjectsMap).map(async function (e) {
 			return [e[0], await e[1]];
-		})))), parseInt('KOM_FUND_DOCUMENT_LIMIT_SWAP_TOKEN'));
+		})))));
 	},
 
 	ReactDeckIfSelected (inputData) {
@@ -1142,6 +1097,10 @@ const mod = {
 	},
 
 	async SetupSettingsAll () {
+		mod._ValueSettingsAll = Object.fromEntries((await mod._ValueZDRWrap.App.KOMSetting.KOMSettingList()).map(function (e) {
+			return [e.KOMSettingKey, e.KOMSettingValue];
+		}));
+
 		mod._ValueDeckCachingEnabled = await mod.DataSettingValue('KOMSettingDeckCachingEnabled') === 'true';
 	},
 
@@ -1178,16 +1137,18 @@ const mod = {
 	},
 
 	async SetupFund () {
-		if (OLSK_SPEC_UI() && window.location.search.match('FakeOLSKFundResponseIsPresent=true')) {
-			OLSKFund._OLSKFundFakeGrantResponseRandom();
-		}
-
-		mod._ValueFundClue = await mod.DataSettingValue('KOMSettingFundClue');
-
-		await OLSKFund.OLSKFundSetupPostPay({
-			ParamExistingClue: mod._ValueFundClue || null,
-			OLSKFundDispatchPersist: mod.OLSKFundDispatchPersist,
+		OLSKFund.OLSKFundSetup({
+			ParamMod: mod,
+			OLSKLocalized,
+			ParamFormURL: 'OLSK_FUND_FORM_URL_SWAP_TOKEN',
+			ParamProject: 'RP_004',
+			ParamSpecUI: OLSK_SPEC_UI(),
+			ParamDocumentLimit: parseInt('OLSK_FUND_DOCUMENT_LIMIT_SWAP_TOKEN'),
 		});
+
+		mod.ReactDocumentRemainder();
+
+		await OLSKFund.OLSKFundSetupPostPay(mod);
 
 		if (!mod._ValueCloudIdentity) {
 			return;
