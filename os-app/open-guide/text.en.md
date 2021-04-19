@@ -76,7 +76,7 @@ If your device has a physical keyboard, streamline your responses with [shortcut
 
 You can try [mneumonics and other memory tricks](https://en.wikipedia.org/wiki/Moonwalking_with_Einstein) to help remember – usually the more personal it is, the better.
 
-# Card browser
+# Card catalog
 
 On the left side of the interface, you can create, search, and select cards. On the right side, you can edit the details.
 
@@ -197,12 +197,12 @@ Counting the number of cards based on its state.
 | Repeat Answer | `a` |
 | Close | `Escape` |
 
-| List of cards ||
+| Card catalog ||
 :--- | ---
-| Create new card | `AccessKey+n` |
-| Select previous or next card, if filter field is focused | `Up` or `Down` |
+| Create new item | `AccessKey+n` |
+| Select previous or next item, if filter field is focused | `Up` or `Down` |
 | KOMBrowseInfoToolbarTemplateButtonText | `AccessKey+t` |
-| Clear filter text and selected card, focus filter field | `Escape` |
+| Clear filter text and selected item, focus filter field | `Escape` |
 | Close, if filter field is focused | `Escape` |
 | `KOMBrowseInfoLauncherItemToggleRetireText` | Launcher |
 | `KOMBrowseInfoLauncherItemDebugText` | Launcher |
