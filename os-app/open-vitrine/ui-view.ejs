@@ -45,6 +45,7 @@ locals.OLSKPagePublicConstants = {
 <a class="KOMVitrineGuideButton OLSKDecorPress OLSKDecorPressCall" href="<%= OLSKCanonical('KOMGuideRoute') %>"><%= OLSKLocalized('OLSKWordingOpenGuide') %></a>
 
 <h1 class="KOMVitrineGazetteHeading"><%= OLSKLocalized('OLSKGazetteHeadingText') %></h1>
+<%- include('../../node_modules/OLSKFollow/main.ejs') %>
 <%- include('../../node_modules/OLSKGazette/main.ejs', {
 	OLSKGazetteProject: 'RP_004',
 }) %>
