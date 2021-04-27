@@ -4,7 +4,7 @@ export let KOMBrowseListItemObject;
 import { OLSKLocalized } from 'OLSKInternational';
 </script>
 
-<div class="KOMBrowseListItem OLSKCommonEdgeBottom">
+<div class="KOMBrowseListItem">
 
 {#if KOMBrowseListItemObject.KOMCardIsRetired }
 	<span class="KOMBrowseListItemRetired">{ OLSKLocalized('KOMBrowseListItemRetiredText') }</span>

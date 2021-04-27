@@ -121,6 +121,14 @@ describe('KOMBrowse_Misc', function () {
 
 	});
 
+	describe('OLSKCollectionItem', function test_OLSKCollectionItem () {
+
+		it('classes OLSKCommonEdgeBottom', function () {
+			browser.assert.hasClass('.OLSKCollectionItem', 'OLSKCommonEdgeBottom');
+		});
+	
+	});
+
 	context('escape', function test_escape() {
 
 		before(function () {
