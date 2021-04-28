@@ -6,7 +6,7 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 		return OLSKTestingLocalized(inputData, OLSKRoutingLanguage);
 	};
 
-	describe(`KOMBrowseInfo_Localize-${ OLSKRoutingLanguage }`, function () {
+	describe('KOMBrowseInfo_Localize-' + OLSKRoutingLanguage, function () {
 
 		context('KOMBrowseInfoItem', function () {
 
