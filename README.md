@@ -1,4 +1,4 @@
-<a href="https://kommit.rosano.ca"><img alt="Project logo" src="https://rosano.s3.amazonaws.com/public/kommit/identity.svg" width="64" /></a>
+<a href="https://kommit.rosano.ca"><img alt="Project logo" src="https://static.rosano.ca/kommit/identity.svg" width="64" /></a>
 
 # Kommit
 
@@ -6,7 +6,7 @@ _Augment your memory_
 
 <a href="https://kommit.rosano.ca">Kommit</a> is an app to help you with memorization. Inspired by [Anki](https://apps.ankiweb.net) and other spaced-repetition learning systems, it presents flashcards to you just before your brain is likely to forget, thereby strengthening memory while reducing study time. Read the <a href="https://kommit.rosano.ca">guide</a> for more details.
 
-<a href="https://kommit.rosano.ca/review"><img alt="Open app" src="http://rosano.s3.amazonaws.com/public/_shared/_RCSAppButton.svg" /></a>
+<a href="https://kommit.rosano.ca/review"><img alt="Open app" src="http://static.rosano.ca/_shared/_RCSAppButton.svg" /></a>
 
 ## Architecture
 
