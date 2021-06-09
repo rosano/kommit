@@ -11,6 +11,8 @@ Object.entries({
 
 	KOMVitrineGazetteHeading: '.KOMVitrineGazetteHeading',
 
+	KOMVitrineJarHeading: '.KOMVitrineJarHeading',
+
 	KOMVitrineSupportHeading: '.KOMVitrineSupportHeading',
 	KOMVitrineSupportBlurb: '.KOMVitrineSupportBlurb',
 }).map(function (e) {
@@ -69,6 +71,14 @@ describe('KOMVitrine_Access', function () {
 
 	it('shows OLSKGazette', function () {
 		browser.assert.elements('.OLSKGazette', 1);
+	});
+
+	it('shows KOMVitrineJarHeading', function () {
+		browser.assert.elements(KOMVitrineJarHeading, 1);
+	});
+
+	it('shows OLSKJar', function () {
+		browser.assert.elements('.OLSKJar', 1);
 	});
 
 	it('shows KOMVitrineSupportHeading', function () {
