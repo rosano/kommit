@@ -22,6 +22,7 @@
 		'OLSKRouting',
 		'OLSKServiceWorker',
 		'OLSKUIAssets',
+		'OLSKBanner',
 		'ROCORootLink',
 		'vmsg',
 		'webnative',
