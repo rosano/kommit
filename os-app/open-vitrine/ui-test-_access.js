@@ -89,7 +89,11 @@ describe('KOMVitrine_Access', function () {
 		browser.assert.elements(KOMVitrineSupportBlurb, 1);
 	});
 
-	it('shows SWARLink', function () {
+	it('shows ROCOEphemerataLink', function () {
+		browser.assert.elements('.ROCOEphemerataLink', 1);
+	});
+
+	it('shows SWARLink', function() {
 		browser.assert.elements('.SWARLink', 1);
 	});
 
