@@ -31,7 +31,7 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 		});
 
 		it('localizes KOMVitrineGazetteHeading', function () {
-			browser.assert.text(KOMVitrineGazetteHeading, uLocalized('OLSKGazetteHeadingText'));
+			browser.assert.text(KOMVitrineGazetteHeading, uLocalized('ROCOBulletinHeadingText'));
 		});
 
 		it('localizes KOMVitrineJarHeading', function () {
