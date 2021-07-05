@@ -9,8 +9,6 @@ Object.entries({
 
 	KOMVitrineGuideButton: '.KOMVitrineGuideButton',
 
-	KOMVitrineJarHeading: '.KOMVitrineJarHeading',
-
 	KOMVitrineSupportHeading: '.KOMVitrineSupportHeading',
 	KOMVitrineSupportBlurb: '.KOMVitrineSupportBlurb',
 }).map(function (e) {
@@ -61,10 +59,6 @@ describe('KOMVitrine_Access', function () {
 
 	it('shows ROCOGazette', function () {
 		browser.assert.elements('.ROCOGazette', 1);
-	});
-
-	it('shows KOMVitrineJarHeading', function () {
-		browser.assert.elements(KOMVitrineJarHeading, 1);
 	});
 
 	it('shows OLSKJar', function () {
