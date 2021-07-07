@@ -5,3 +5,7 @@
 	background: var(--KOMCommonBackground);
 	color: var(--KOMCommonForeground);
 }
+
+.OLSKBanner {
+	display: none;
+}
