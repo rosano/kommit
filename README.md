@@ -1,6 +1,6 @@
 <a href="https://kommit.rosano.ca"><img alt="Project logo" src="https://static.rosano.ca/kommit/identity.svg" width="64" /></a>
 
-# Kommit
+# [Kommit](https://kommit.rosano.ca)
 
 _Augment your memory_
 
