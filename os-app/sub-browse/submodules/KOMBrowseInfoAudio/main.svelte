@@ -48,6 +48,10 @@ const mod = {
 		!mod._ValueIsRecording ? mod.ControlRecordStart() : mod.ControlRecordStop();
 	},
 
+	InterfaceUploadFieldDidInput (event) {
+		mod.ControlUpload(event.target.files[0]);
+	},
+
 	InterfacePlaybackButtonDidClick () {
 		if (OLSK_SPEC_UI() && DebugFakeChangeObject && mod._ValueAudioIsPlaying) {
 			KOMBrowseInfoAudioItem = DebugFakeChangeObject;
@@ -103,6 +107,15 @@ const mod = {
 		KOMBrowseInfoAudioDispatchCapture(KOMBrowseInfoAudioItemProperty, await mod._ValueRecorder.stopRecording());
 
 		mod._ValueIsRecording = false;
+	},
+
+	ControlUpload (inputData) {
+		Object.assign(new FileReader(), {
+			onload (event) {
+				console.log(inputData, event);
+				KOMBrowseInfoAudioDispatchCapture(KOMBrowseInfoAudioItemProperty, new Blob([event.target.result], { type: inputData.type }));
+			},
+		}).readAsArrayBuffer(inputData);
 	},
 
 	async ControlSetAudio () {
@@ -193,6 +206,10 @@ mod.SetupEverything();
 
 	{#if !KOMBrowseInfoAudioItem[KOMBrowseInfoAudioItemProperty] }
 		<button class="KOMBrowseInfoAudioRecordButton" on:click={ mod.InterfaceRecordButtonDidClick }>{ OLSKLocalized('KOMBrowseInfoAudioRecordButtonText') }</button>
+
+		{#if !mod._ValueIsRecording}
+			<input class="KOMBrowseInfoAudioUploadField" type="file" accept="audio/*" on:change={ mod.InterfaceUploadFieldDidInput } />
+		{/if}
 	{/if}
 
 	{#if mod._ValueIsRecording}

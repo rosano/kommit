@@ -5,6 +5,7 @@ Object.entries({
 
 	KOMBrowseInfoAudioRecordButton: '.KOMBrowseInfoAudioRecordButton',
 	KOMBrowseInfoAudioRecordingAlert: '.KOMBrowseInfoAudioRecordingAlert',
+	KOMBrowseInfoAudioUploadField: '.KOMBrowseInfoAudioUploadField',
 
 	KOMBrowseInfoAudioPlaybackButton: '.KOMBrowseInfoAudioPlaybackButton',
 	KOMBrowseInfoAudioClearButton: '.KOMBrowseInfoAudioClearButton',
@@ -31,6 +32,10 @@ describe('KOMBrowseInfoAudio_Access', function () {
 
 	it('shows KOMBrowseInfoAudioRecordButton', function () {
 		browser.assert.elements(KOMBrowseInfoAudioRecordButton, 1);
+	});
+
+	it('shows KOMBrowseInfoAudioUploadField', function () {
+		browser.assert.elements(KOMBrowseInfoAudioUploadField, 1);
 	});
 
 	it('hides KOMBrowseInfoAudioRecordingAlert', function () {
@@ -93,6 +98,10 @@ describe('KOMBrowseInfoAudio_Access', function () {
 			browser.assert.elements(KOMBrowseInfoAudioRecordButton, 0);
 		});
 
+		it('hides KOMBrowseInfoAudioUploadField', function () {
+			browser.assert.elements(KOMBrowseInfoAudioUploadField, 0);
+		});
+
 		it('shows KOMBrowseInfoAudioPlaybackButton', function () {
 			browser.assert.elements(KOMBrowseInfoAudioPlaybackButton, 1);
 		});
@@ -117,6 +126,10 @@ describe('KOMBrowseInfoAudio_Access', function () {
 
 		it('hides KOMBrowseInfoAudioRecordButton', function () {
 			browser.assert.elements(KOMBrowseInfoAudioRecordButton, 0);
+		});
+
+		it('hides KOMBrowseInfoAudioUploadField', function () {
+			browser.assert.elements(KOMBrowseInfoAudioUploadField, 0);
 		});
 
 		it('hides KOMBrowseInfoAudioPlaybackButton', function () {

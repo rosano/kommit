@@ -2,16 +2,16 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 describe('KOMBrowseInfoAudio_Misc', function () {
 
-	before(function () {
-		return browser.OLSKVisit(kDefaultRoute, {
-			KOMBrowseInfoAudioItem: JSON.stringify({
-				KOMCardID: 'alfa',
-			}),
-			KOMBrowseInfoAudioItemProperty: 'KOMCardFrontAudio',
-		});
-	});
-
 	describe('KOMBrowseInfoAudioRecordButton', function test_KOMBrowseInfoAudioRecordButton() {
+
+		before(function () {
+			return browser.OLSKVisit(kDefaultRoute, {
+				KOMBrowseInfoAudioItem: JSON.stringify({
+					KOMCardID: 'alfa',
+				}),
+				KOMBrowseInfoAudioItemProperty: 'KOMCardFrontAudio',
+			});
+		});
 
 		const _log = [];
 		const uLog = function (inputData) {
@@ -49,6 +49,49 @@ describe('KOMBrowseInfoAudio_Misc', function () {
 
 			it('stops record', function () {
 				browser.assert.text('#TestKOMBrowseInfoAudioLog', uLog('stop'));
+			});
+
+			it('sends KOMBrowseInfoAudioDispatchCapture', function () {
+				browser.assert.text('#TestKOMBrowseInfoAudioDispatchCapture', '1');
+				browser.assert.text('#TestKOMBrowseInfoAudioDispatchCaptureData', JSON.stringify('KOMCardFrontAudio'));
+			});
+
+		});
+
+	});
+
+	describe.skip('KOMBrowseInfoAudioUploadField', function test_KOMBrowseInfoAudioUploadField() {
+
+		before(function () {
+			return browser.OLSKVisit(kDefaultRoute, {
+				KOMBrowseInfoAudioItem: JSON.stringify({
+					KOMCardID: 'alfa',
+				}),
+				KOMBrowseInfoAudioItemProperty: 'KOMCardFrontAudio',
+			});
+		});
+
+		it('sets type', function () {
+			browser.assert.attribute(KOMBrowseInfoAudioUploadField, 'type', 'file');
+		});
+
+		it('sets accept', function () {
+			browser.assert.attribute(KOMBrowseInfoAudioUploadField, 'accept', 'audio/*');
+		});
+
+		context('attach', function () {
+
+			before(function () {
+				browser.assert.text('#TestKOMBrowseInfoAudioDispatchCapture', '0');
+				browser.assert.text('#TestKOMBrowseInfoAudioDispatchCaptureData', 'undefined');
+			});
+
+			before(function () {
+				return browser.attach(KOMBrowseInfoAudioUploadField, process.env.KOMBrowseInfoAudioItemTestFilePath, function (error) {
+					if (error) {
+						throw error;
+					}
+				});
 			});
 
 			it('sends KOMBrowseInfoAudioDispatchCapture', function () {
