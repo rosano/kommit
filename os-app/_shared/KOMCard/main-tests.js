@@ -597,7 +597,7 @@ describe('KOMCardAudioCapture', function test_KOMCardAudioCapture() {
 
 });
 
-describe.skip('KOMCardAudioFetch', function test_KOMCardAudioFetch() {
+describe('KOMCardAudioFetch', function test_KOMCardAudioFetch() {
 
 	const blob = new Blob([Math.random().toString()], { type: 'text/plain' });
 
@@ -613,16 +613,16 @@ describe.skip('KOMCardAudioFetch', function test_KOMCardAudioFetch() {
 		}, /ErrorInputNotValid/);
 	});
 
-	it('returns audio of KOMCardSideFront', async function () {
+	it('returns audio of KOMCardFrontAudio', async function () {
 		const item = await ZDRTestingWrap.App.KOMCard.KOMCardAudioCapture(StubCardObjectValid(), mod.KOMCardSideFront(), blob);
 
-		deepEqual(await ZDRTestingWrap.App.KOMCard.KOMCardAudioFetch(item, mod.KOMCardSideFront()), blob);
+		deepEqual(await ZDRTestingWrap.App.KOMCard.KOMCardAudioFetch(item, 'KOMCardFrontAudio'), blob);
 	});
 
-	it('returns audio of KOMCardSideRear', async function () {
+	it('returns audio of KOMCardRearAudio', async function () {
 		const item = await ZDRTestingWrap.App.KOMCard.KOMCardAudioCapture(StubCardObjectValid(), mod.KOMCardSideRear(), blob);
 
-		deepEqual(await ZDRTestingWrap.App.KOMCard.KOMCardAudioFetch(item, mod.KOMCardSideRear()), blob);
+		deepEqual(await ZDRTestingWrap.App.KOMCard.KOMCardAudioFetch(item, 'KOMCardRearAudio'), blob);
 	});
 
 });

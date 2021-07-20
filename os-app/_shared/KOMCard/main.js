@@ -277,11 +277,12 @@ export default Object.assign(mod, {
 				throw new Error('KOMErrorInputNotValid');
 			}
 
-			if (!mod.KOMCardSides().includes(param2)) {
+			if (!mod.KOMCardAudioFields().includes(param2)) {
+				debugger
 				throw new Error('KOMErrorInputNotValid');
 			}
 
-			return this.App.ZDRStorageReadFile(mod.KOMCardSideAudioPath(param1, param2)).then(function (file) {
+			return this.App.ZDRStorageReadFile(mod.KOMCardSideAudioPath(param1, param2 === 'KOMCardFrontAudio' ? mod.KOMCardSideFront() : mod.KOMCardSideRear())).then(function (file) {
 				return new Blob([file]);
 			});
 		},

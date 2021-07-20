@@ -263,7 +263,7 @@ const mod = {
 	},
 
 	KOMBrowseInfoAudioDispatchFetch (inputData) {
-		return KOMBrowseStorageClient.App.KOMCard.KOMCardAudioFetch(mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected(), inputData === 'KOMCardFrontAudio' ? KOMCard.KOMCardSideFront() : KOMCard.KOMCardSideRear());
+		return KOMBrowseStorageClient.App.KOMCard.KOMCardAudioFetch(mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected(), inputData);
 	},
 
 	KOMBrowseInfoDispatchDebug (inputData) {

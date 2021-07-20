@@ -291,11 +291,11 @@ const mod = {
 		if (!mod._ValueAudioCache[inputData] && OLSK_SPEC_UI()) {
 			mod.DebugAudioLog('fetch');
 
-			mod._ValueAudioCache[inputData] = mod.DataFakeAudio(await KOMPlayDispatchFetch(inputData, mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard));
+			mod._ValueAudioCache[inputData] = mod.DataFakeAudio(await KOMPlayDispatchFetch(mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard, inputData));
 		}
 
 		if (!mod._ValueAudioCache[inputData]) {
-			(mod._ValueAudioCache[inputData] = new Audio()).src = URL.createObjectURL(await KOMPlayDispatchFetch(inputData, mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard));
+			(mod._ValueAudioCache[inputData] = new Audio()).src = URL.createObjectURL(await KOMPlayDispatchFetch(mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard, inputData));
 		}
 
 		if (OLSK_SPEC_UI()) {
