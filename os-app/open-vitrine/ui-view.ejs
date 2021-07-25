@@ -43,6 +43,10 @@ locals.OLSKPagePublicConstants = {
 
 <a class="KOMVitrineGuideButton OLSKDecorPress OLSKDecorPressCall" href="<%= OLSKCanonical('KOMGuideRoute') %>"><%= OLSKLocalized('OLSKWordingOpenGuide') %></a>
 
+<%- include('../../node_modules/OLSKEdit/main.ejs', {
+	OLSKEditURL: process.env.OLSK_REPO_URL,
+}) %>
+
 <%- include('../../node_modules/ROCOGazette/main.ejs', {
 	_OLSKModulesDirPrefix: '../.',
 	ROCOBulletinProject: 'RP_004',
