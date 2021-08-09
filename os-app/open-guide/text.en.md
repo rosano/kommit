@@ -16,6 +16,8 @@ It's great for languages, but can also be applied to other domains.
 
 <dl class="OLSKDecorGlossary">
 	<h2>My linguistic journey</h2>
+	<dt><a href="https://rosano.hmm.garden/01fcnd5gyp3nw6yhecz6q94rvg">Family language exchange</a></dt>
+	<dd>My father and I sharing a new language with each other through flashcards.</dd>
 	<dt><a href="https://rosano.hmm.garden/01f1wjp6bb4raqdqd4aanb0evn">Teaching languages to friends</a></dt>
 	<dd>How I used Kommit collaboratively to exchange languages with friends.</dd>
 	<dt><a href="https://rosano.hmm.garden/01eyy9nhtzmx74zqn4gp55nyqp">Learning Portuguese</a></dt>
