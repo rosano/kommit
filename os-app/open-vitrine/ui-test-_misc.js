@@ -20,6 +20,10 @@ describe('KOMVitrine_Misc', function () {
 			browser.assert.hasClass(KOMVitrine, 'OLSKDecorCapped');
 		});
 
+		it('classes OLSKDecorNoTopPad', function () {
+			browser.assert.hasClass(KOMVitrine, 'OLSKDecorNoTopPad');
+		});
+
 	});
 
 	describe('OLSKCrown', function test_OLSKCrown () {
