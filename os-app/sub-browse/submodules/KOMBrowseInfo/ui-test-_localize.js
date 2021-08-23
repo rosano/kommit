@@ -62,7 +62,7 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 				it('localizes KOMBrowseInfoDiscardConfirm', function () {
 					browser.assert.OLSKConfirmQuestion(function () {
 						return browser.pressButton(KOMBrowseInfoToolbarDiscardButton);
-					}, uLocalized('KOMBrowseInfoDiscardConfirmText'));
+					}, uLocalized('OLSKWordingConfirmText'));
 				});
 			
 			});

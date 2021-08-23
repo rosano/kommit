@@ -109,7 +109,7 @@ import KOMBrowseInfoTags from '../KOMBrowseInfoTags/main.svelte';
 	</div>
 
 	<div class="OLSKToolbarElementGroup">
-		<button class="KOMBrowseInfoToolbarDiscardButton OLSKDecorButtonNoStyle OLSKDecorTappable OLSKToolbarButton" title={ OLSKLocalized('KOMBrowseInfoToolbarDiscardButtonText') } on:click={ () => window.confirm(OLSKLocalized('KOMBrowseInfoDiscardConfirmText')) && KOMBrowseInfoDispatchDiscard(KOMBrowseInfoItem) }>
+		<button class="KOMBrowseInfoToolbarDiscardButton OLSKDecorButtonNoStyle OLSKDecorTappable OLSKToolbarButton" title={ OLSKLocalized('KOMBrowseInfoToolbarDiscardButtonText') } on:click={ () => window.confirm(OLSKLocalized('OLSKWordingConfirmText')) && KOMBrowseInfoDispatchDiscard(KOMBrowseInfoItem) }>
 			<div class="KOMBrowseInfoToolbarDiscardButtonImage">{@html _OLSKSharedDiscard }</div>
 		</button>
 		

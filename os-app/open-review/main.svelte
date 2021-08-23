@@ -147,7 +147,7 @@ const mod = {
 					LCHRecipeSignature: 'KOMReviewLauncherItemDebugPlungeData',
 					LCHRecipeName: OLSKLocalized('KOMReviewLauncherItemDebugPlungeDataText'),
 					LCHRecipeCallback: async function KOMReviewLauncherItemDebugPlungeData () {
-						if (!window.confirm(OLSKLocalized('KOMReviewLauncherItemDebugPlungeDataConfirmText'))) {
+						if (!window.confirm(OLSKLocalized('OLSKWordingConfirmText'))) {
 							return;
 						}
 
