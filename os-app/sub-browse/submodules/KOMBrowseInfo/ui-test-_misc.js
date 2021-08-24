@@ -2,13 +2,21 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 describe('KOMBrowseInfo_Misc', function () {
 
-	describe('KOMBrowseInfoToolbar', function test_KOMBrowseInfoToolbar() {
+	describe('KOMBrowseInfo', function test_KOMBrowseInfo() {
 
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMBrowseInfoItem: JSON.stringify({}),
 			});
 		});
+
+		it('classes ROCOStandardView', function () {
+			browser.assert.hasClass(KOMBrowseInfo, 'ROCOStandardView');
+		});
+
+	});
+
+	describe('KOMBrowseInfoToolbar', function test_KOMBrowseInfoToolbar() {
 
 		it('classes OLSKMobileViewHeader', function () {
 			browser.assert.hasClass(KOMBrowseInfoToolbar, 'OLSKMobileViewHeader');
@@ -24,6 +32,10 @@ describe('KOMBrowseInfo_Misc', function () {
 
 		it('classes OLSKCommonEdgeBottom', function () {
 			browser.assert.hasClass(KOMBrowseInfoToolbar, 'OLSKCommonEdgeBottom');
+		});
+
+		it('classes ROCOStandardViewHead', function () {
+			browser.assert.hasClass(KOMBrowseInfoToolbar, 'ROCOStandardViewHead');
 		});
 
 	});
@@ -178,6 +190,10 @@ describe('KOMBrowseInfo_Misc', function () {
 
 		it('classes OLSKDecorBigForm', function () {
 			browser.assert.hasClass(KOMBrowseInfoForm, 'OLSKDecorBigForm');
+		});
+
+		it('classes ROCOStandardViewBody', function () {
+			browser.assert.hasClass(KOMBrowseInfoForm, 'ROCOStandardViewBody');
 		});
 
 	});

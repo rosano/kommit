@@ -99,9 +99,9 @@ import KOMBrowseInfoAudio from '../KOMBrowseInfoAudio/main.svelte';
 import KOMBrowseInfoTags from '../KOMBrowseInfoTags/main.svelte';
 </script>
 
-<div class="KOMBrowseInfo">
+<div class="KOMBrowseInfo ROCOStandardView">
 
-<header class="KOMBrowseInfoToolbar OLSKMobileViewHeader OLSKToolbar OLSKToolbarJustify OLSKCommonEdgeBottom">
+<header class="KOMBrowseInfoToolbar OLSKMobileViewHeader OLSKToolbar OLSKToolbarJustify OLSKCommonEdgeBottom ROCOStandardViewHead">
 	<div class="OLSKToolbarElementGroup">
 		<button class="KOMBrowseInfoToolbarBackButton OLSKDecorButtonNoStyle OLSKDecorTappable OLSKToolbarButton OLSKVisibilityMobile" title={ OLSKLocalized('KOMBrowseInfoToolbarBackButtonText') } on:click={ KOMBrowseInfoDispatchBack }>
 			<div class="KOMBrowseInfoToolbarBackButtonImage">{@html _OLSKSharedBack }</div>
@@ -121,7 +121,7 @@ import KOMBrowseInfoTags from '../KOMBrowseInfoTags/main.svelte';
 	</div>
 </header>
 
-<div class="KOMBrowseInfoForm OLSKDecor OLSKDecorBigForm">
+<div class="KOMBrowseInfoForm OLSKDecor OLSKDecorBigForm ROCOStandardViewBody">
 
 <p>
 	<input class="KOMBrowseInfoFormFrontTextField" placeholder="{ OLSKLocalized('KOMBrowseInfoFormFrontTextFieldText') }" type="text" bind:value={ KOMBrowseInfoItem.KOMCardFrontText } on:input={ KOMBrowseInfoDispatchUpdate } />
