@@ -88,4 +88,8 @@ td span {
 tr:last-child td {
 	padding: 0;
 }
+
+td :global(.KOMReviewChartElementHorizontalStackedBar) {
+	width: 125px;
+}
 </style>
