@@ -84,7 +84,7 @@ On the left side of the interface, you can create, search, and select cards. On 
 
 <div class="OLSKDecorNotice">
 
-Editing the same card on multiple devices at the same time can result in data loss. Editing different cards or playing the game while editing cards is safe.
+Editing the same card on multiple devices at the same time can result in data loss. Editing different cards or playing the game while editing cards should be safe.
 
 </div>
 
