@@ -3,7 +3,7 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 describe('KOMManifest_Misc', function () {
 
 	it('sends json', async function () {
-		browser.assert.deepEqual(await (await browser.fetch('http://loc.tests' + kDefaultRoute.OLSKRoutePath)).json(), {
+		browser.assert.deepEqual(await (await browser.fetch('http://localhost' + kDefaultRoute.OLSKRoutePath)).json(), {
 			name: 'Kommit',
 			short_name: 'Kommit',
 			start_url: require('../open-review/controller.js').OLSKControllerRoutes().shift().OLSKRoutePath,
