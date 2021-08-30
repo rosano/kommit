@@ -92,12 +92,6 @@ export default {
 					});
 				}))];
 			})));
-
-			return Promise.all(inputData.map(async function (deck) {
-				return Object.assign(OLSKRemoteStorage.OLSKRemoteStorageSafeCopy(deck), {
-					
-				});
-			}));
 		},
 
 	},
