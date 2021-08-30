@@ -6,7 +6,7 @@ describe('KOMReview_Fund', function () {
 		
 		kDefaultRoute,
 
-		ParamProject: 'RP_004',
+		ParamProject: process.env.ROCO_SHARED_PROJECT_ID,
 		
 		ParamTriggerGate () {
 			return browser.pressButton('.KOMBrowseCreateButton');
