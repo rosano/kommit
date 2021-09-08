@@ -33,3 +33,15 @@
 .KOMBrowseInfoForm :global(.KOMBrowseInfoAudio) {
 	display: inline-block;
 }
+
+.KOMBrowseInfoFormFrontAudio, .KOMBrowseInfoFormRearAudio {
+	margin: 0;
+}
+
+@media screen and (max-width: 760px) {
+
+	.KOMBrowseInfo :global(input[type="file"]) {
+		max-width: 100px;
+	}
+
+}
