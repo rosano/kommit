@@ -37,7 +37,7 @@ describe('KOMVitrine_Misc', function () {
 	describe('KOMVitrineVideo', function () {
 
 		it('classes OLSKCommonVideoListItemMobile', function () {
-			browser.assert.hasClass(KOMVitrineVideo, 'OLSKCommonVideoListItemMobile');
+			browser.assert.hasClass('.KOMVitrineVideo', 'OLSKCommonVideoListItemMobile');
 		});
 
 		it('sets src', function () {
