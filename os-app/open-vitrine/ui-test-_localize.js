@@ -34,6 +34,34 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 			browser.assert.text(KOMVitrineDeeperHeading, uLocalized('OLSKWordingDeeperHeading'));
 		});
 
+		it('localizes KOMVitrineGlossaryHeading', function () {
+			browser.assert.text(KOMVitrineGlossaryHeading, uLocalized('KOMVitrineGlossaryHeadingText'));
+		});
+
+		it('localizes KOMVitrineGlossaryFamilyLink', function () {
+			browser.assert.text(KOMVitrineGlossaryFamilyLink, uLocalized('KOMVitrineGlossaryFamilyLinkText'));
+		});
+
+		it('localizes KOMVitrineGlossaryFamilyBlurb', function() {
+			browser.assert.text(KOMVitrineGlossaryFamilyBlurb, uLocalized('KOMVitrineGlossaryFamilyBlurbText'));
+		});
+
+		it('localizes KOMVitrineGlossaryFriendsLink', function () {
+			browser.assert.text(KOMVitrineGlossaryFriendsLink, uLocalized('KOMVitrineGlossaryFriendsLinkText'));
+		});
+
+		it('localizes KOMVitrineGlossaryFriendsBlurb', function() {
+			browser.assert.text(KOMVitrineGlossaryFriendsBlurb, uLocalized('KOMVitrineGlossaryFriendsBlurbText'));
+		});
+
+		it('localizes KOMVitrineGlossaryPortugueseLink', function () {
+			browser.assert.text(KOMVitrineGlossaryPortugueseLink, uLocalized('KOMVitrineGlossaryPortugueseLinkText'));
+		});
+
+		it('localizes KOMVitrineGlossaryPortugueseBlurb', function() {
+			browser.assert.text(KOMVitrineGlossaryPortugueseBlurb, uLocalized('KOMVitrineGlossaryPortugueseBlurbText'));
+		});
+
 		it('localizes KOMVitrineSupportHeading', function () {
 			browser.assert.text(KOMVitrineSupportHeading, uLocalized('OLSKWordingFeedbackHeading'));
 		});

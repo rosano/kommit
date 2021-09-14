@@ -11,3 +11,7 @@ body {
 .OLSKDecorGlossary {
 	margin: unset;
 }
+
+.OLSKDecorGlossary h2, .ROCOGlossary {
+	margin: 20px 0;
+}

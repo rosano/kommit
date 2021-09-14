@@ -82,6 +82,30 @@ describe('KOMVitrine_Misc', function () {
 		
 	});
 
+	describe('KOMVitrineGlossaryFamilyLink', function test_KOMVitrineGlossaryFamilyLink () {
+
+		it('sets href', function () {
+			browser.assert.attribute(KOMVitrineGlossaryFamilyLink, 'href', process.env.KOM_VITRINE_FAMILY_URL);
+		});
+
+	});
+
+	describe('KOMVitrineGlossaryFriendsLink', function test_KOMVitrineGlossaryFriendsLink () {
+
+		it('sets href', function () {
+			browser.assert.attribute(KOMVitrineGlossaryFriendsLink, 'href', process.env.KOM_VITRINE_FRIENDS_URL);
+		});
+
+	});
+
+	describe('KOMVitrineGlossaryPortugueseLink', function test_KOMVitrineGlossaryPortugueseLink () {
+
+		it('sets href', function () {
+			browser.assert.attribute(KOMVitrineGlossaryPortugueseLink, 'href', process.env.KOM_VITRINE_PORTUGUESE_URL);
+		});
+
+	});
+
 	describe('ROCOGazette', function test_ROCOGazette () {
 
 		it('sets ROCOBulletinProject', function () {

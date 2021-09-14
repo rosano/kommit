@@ -46,6 +46,17 @@ locals.OLSKPagePublicConstants = {
 <h1 class="KOMVitrineDeeperHeading"><%= OLSKLocalized('OLSKWordingDeeperHeading') %></h1>
 
 <dl class="KOMVitrineGlossary OLSKDecorGlossary">
+	<h2 class="KOMVitrineGlossaryHeading"><%= OLSKLocalized('KOMVitrineGlossaryHeadingText') %></h2>
+	
+	<dt><a class="KOMVitrineGlossaryFamilyLink" href="<%= process.env.KOM_VITRINE_FAMILY_URL %>"><%= OLSKLocalized('KOMVitrineGlossaryFamilyLinkText') %></a></dt>
+	<dd class="KOMVitrineGlossaryFamilyBlurb"><%= OLSKLocalized('KOMVitrineGlossaryFamilyBlurbText') %></dd>
+	
+	<dt><a class="KOMVitrineGlossaryFriendsLink" href="<%= process.env.KOM_VITRINE_FRIENDS_URL %>"><%= OLSKLocalized('KOMVitrineGlossaryFriendsLinkText') %></a></dt>
+	<dd class="KOMVitrineGlossaryFriendsBlurb"><%= OLSKLocalized('KOMVitrineGlossaryFriendsBlurbText') %></dd>
+
+	<dt><a class="KOMVitrineGlossaryPortugueseLink" href="<%= process.env.KOM_VITRINE_PORTUGUESE_URL %>"><%= OLSKLocalized('KOMVitrineGlossaryPortugueseLinkText') %></a></dt>
+	<dd class="KOMVitrineGlossaryPortugueseBlurb"><%= OLSKLocalized('KOMVitrineGlossaryPortugueseBlurbText') %></dd>
+	
 	<%- include('../../node_modules/ROCOGlossary/main.ejs', {
 		ROCOGlossaryHeadingEnabled: true
 	}) %>

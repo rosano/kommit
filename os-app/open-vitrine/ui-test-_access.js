@@ -11,6 +11,13 @@ Object.entries({
 
 	KOMVitrineDeeperHeading: '.KOMVitrineDeeperHeading',
 	KOMVitrineGlossary: '.KOMVitrineGlossary',
+	KOMVitrineGlossaryHeading: '.KOMVitrineGlossaryHeading',
+	KOMVitrineGlossaryFamilyLink: '.KOMVitrineGlossaryFamilyLink',
+	KOMVitrineGlossaryFamilyBlurb: '.KOMVitrineGlossaryFamilyBlurb',
+	KOMVitrineGlossaryFriendsLink: '.KOMVitrineGlossaryFriendsLink',
+	KOMVitrineGlossaryFriendsBlurb: '.KOMVitrineGlossaryFriendsBlurb',
+	KOMVitrineGlossaryPortugueseLink: '.KOMVitrineGlossaryPortugueseLink',
+	KOMVitrineGlossaryPortugueseBlurb: '.KOMVitrineGlossaryPortugueseBlurb',
 
 	KOMVitrineSupportHeading: '.KOMVitrineSupportHeading',
 	KOMVitrineSupportBlurb: '.KOMVitrineSupportBlurb',
@@ -66,6 +73,34 @@ describe('KOMVitrine_Access', function () {
 
 	it('shows KOMVitrineGlossary', function () {
 		browser.assert.elements(KOMVitrineGlossary, 1);
+	});
+
+	it('shows KOMVitrineGlossaryHeading', function () {
+		browser.assert.elements(KOMVitrineGlossaryHeading, 1);
+	});
+
+	it('shows KOMVitrineGlossaryFamilyLink', function () {
+		browser.assert.elements(KOMVitrineGlossaryFamilyLink, 1);
+	});
+
+	it('shows KOMVitrineGlossaryFamilyBlurb', function () {
+		browser.assert.elements(KOMVitrineGlossaryFamilyBlurb, 1);
+	});
+
+	it('shows KOMVitrineGlossaryFriendsLink', function () {
+		browser.assert.elements(KOMVitrineGlossaryFriendsLink, 1);
+	});
+
+	it('shows KOMVitrineGlossaryFriendsBlurb', function () {
+		browser.assert.elements(KOMVitrineGlossaryFriendsBlurb, 1);
+	});
+
+	it('shows KOMVitrineGlossaryPortugueseLink', function () {
+		browser.assert.elements(KOMVitrineGlossaryPortugueseLink, 1);
+	});
+
+	it('shows KOMVitrineGlossaryPortugueseBlurb', function () {
+		browser.assert.elements(KOMVitrineGlossaryPortugueseBlurb, 1);
 	});
 
 	it('shows ROCOGlossary', function () {
