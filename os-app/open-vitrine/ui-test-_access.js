@@ -72,6 +72,10 @@ describe('KOMVitrine_Access', function () {
 		browser.assert.elements('.ROCOGlossary', 1);
 	});
 
+	it('shows ROCOGlossaryHeading', function () {
+		browser.assert.elements('.ROCOGlossaryHeading', 1);
+	});
+
 	it('shows ROCOGazette', function () {
 		browser.assert.elements('.ROCOGazette', 1);
 	});

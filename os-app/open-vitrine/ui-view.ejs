@@ -46,7 +46,9 @@ locals.OLSKPagePublicConstants = {
 <h1 class="KOMVitrineDeeperHeading"><%= OLSKLocalized('OLSKWordingDeeperHeading') %></h1>
 
 <dl class="KOMVitrineGlossary OLSKDecorGlossary">
-	<%- include('../../node_modules/ROCOGlossary/main.ejs') %>
+	<%- include('../../node_modules/ROCOGlossary/main.ejs', {
+		ROCOGlossaryHeadingEnabled: true
+	}) %>
 </dl>
 
 <%- include('../../node_modules/ROCOGazette/main.ejs', {
