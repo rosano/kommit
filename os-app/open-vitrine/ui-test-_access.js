@@ -9,6 +9,9 @@ Object.entries({
 
 	KOMVitrineGuideButton: '.KOMVitrineGuideButton',
 
+	KOMVitrineGlossaryHeading: '.KOMVitrineGlossaryHeading',
+	KOMVitrineGlossary: '.KOMVitrineGlossary',
+
 	KOMVitrineSupportHeading: '.KOMVitrineSupportHeading',
 	KOMVitrineSupportBlurb: '.KOMVitrineSupportBlurb',
 }).map(function (e) {
@@ -55,6 +58,18 @@ describe('KOMVitrine_Access', function () {
 
 	it('shows KOMVitrineGuideButton', function () {
 		browser.assert.elements(KOMVitrineGuideButton, 1);
+	});
+
+	it('shows KOMVitrineGlossaryHeading', function () {
+		browser.assert.elements(KOMVitrineGlossaryHeading, 1);
+	});
+
+	it('shows KOMVitrineGlossary', function () {
+		browser.assert.elements(KOMVitrineGlossary, 1);
+	});
+
+	it('shows ROCOGlossary', function () {
+		browser.assert.elements('.ROCOGlossary', 1);
 	});
 
 	it('shows ROCOGazette', function () {

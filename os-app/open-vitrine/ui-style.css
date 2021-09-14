@@ -7,3 +7,7 @@ body {
 	background: var(--KOMCommonBackground);
 	color: var(--KOMCommonForeground);
 }
+
+.OLSKDecorGlossary {
+	margin: unset;
+}

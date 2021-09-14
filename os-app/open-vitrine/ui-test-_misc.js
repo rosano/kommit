@@ -74,6 +74,14 @@ describe('KOMVitrine_Misc', function () {
 	
 	});
 
+	describe('KOMVitrineGlossary', function test_KOMVitrineGlossary () {
+
+		it('classes OLSKDecorGlossary', function () {
+			browser.assert.hasClass(KOMVitrineGlossary, 'OLSKDecorGlossary');
+		});
+		
+	});
+
 	describe('ROCOGazette', function test_ROCOGazette () {
 
 		it('sets ROCOBulletinProject', function () {
