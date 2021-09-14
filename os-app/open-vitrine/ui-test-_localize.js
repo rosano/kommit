@@ -30,8 +30,8 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 			browser.assert.text(KOMVitrineGuideButton, uLocalized('OLSKWordingOpenGuide'));
 		});
 
-		it('localizes KOMVitrineGlossaryHeading', function () {
-			browser.assert.text(KOMVitrineGlossaryHeading, uLocalized('OLSKWordingGlossaryHeading'));
+		it('localizes KOMVitrineDeeperHeading', function () {
+			browser.assert.text(KOMVitrineDeeperHeading, uLocalized('OLSKWordingDeeperHeading'));
 		});
 
 		it('localizes KOMVitrineSupportHeading', function () {

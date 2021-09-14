@@ -9,7 +9,7 @@ Object.entries({
 
 	KOMVitrineGuideButton: '.KOMVitrineGuideButton',
 
-	KOMVitrineGlossaryHeading: '.KOMVitrineGlossaryHeading',
+	KOMVitrineDeeperHeading: '.KOMVitrineDeeperHeading',
 	KOMVitrineGlossary: '.KOMVitrineGlossary',
 
 	KOMVitrineSupportHeading: '.KOMVitrineSupportHeading',
@@ -60,8 +60,8 @@ describe('KOMVitrine_Access', function () {
 		browser.assert.elements(KOMVitrineGuideButton, 1);
 	});
 
-	it('shows KOMVitrineGlossaryHeading', function () {
-		browser.assert.elements(KOMVitrineGlossaryHeading, 1);
+	it('shows KOMVitrineDeeperHeading', function () {
+		browser.assert.elements(KOMVitrineDeeperHeading, 1);
 	});
 
 	it('shows KOMVitrineGlossary', function () {
