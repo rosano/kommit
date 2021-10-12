@@ -6,6 +6,6 @@
 	color: var(--KOMCommonForeground);
 }
 
-.OLSKBanner {
+:global(.OLSKBanner) {
 	display: none;
 }
