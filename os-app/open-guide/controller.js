@@ -11,7 +11,7 @@ exports.OLSKControllerRoutes = function () {
 			const KOMSharedLogic = require(filePath);
 
 			return res.OLSKExpressLayoutRender(require('path').join(__dirname, 'ui-view'), {
-				KOMGuideContent: res.OLSKMarkdownContent(require('path').join(__dirname, `text.${ res.locals.OLSKSharedPageCurrentLanguage }.md`), {
+				KOMGuideContent: res.OLSKMarkdownContent(require('path').join(__dirname, `text-${ res.locals.OLSKSharedPageCurrentLanguage }.md`), {
 					KOMGuideTokenColorUnseen: KOMSharedLogic.KOMSharedColorUnseen(),
 					KOMGuideTokenColorRelearning: KOMSharedLogic.KOMSharedColorRelearning(),
 					KOMGuideTokenColorDeveloping: KOMSharedLogic.KOMSharedColorDeveloping(),
