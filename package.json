@@ -24,7 +24,7 @@
     "OLSKLocalStorage": "olsk/OLSKLocalStorage",
     "OLSKMoment": "olsk/OLSKMoment",
     "vmsg": "latest",
-    "d3-scale": "latest",
+    "d3-scale": "3.x",
 
     "// tech-robots": null,
     "OLSKRobots": "olsk/OLSKRobots",
