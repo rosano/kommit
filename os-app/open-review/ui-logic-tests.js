@@ -511,7 +511,7 @@ describe('KOMReviewRetireCards', function test_KOMReviewRetireCards() {
 	});
 
 	it('retires $KOMSpacingCard', function () {
-		const KOMDeckRetireCardsMonths = parseInt(Math.random() * 10);
+		const KOMDeckRetireCardsMonths = Math.max(1, parseInt(Math.random() * 10));
 		const $KOMSpacingCard = {};
 		
 		deepEqual(mod.KOMReviewRetireCards(StubDeckObjectValid({
