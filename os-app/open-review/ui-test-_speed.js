@@ -16,6 +16,10 @@ const uCount = function (inputData = 0) {
 
 describe('KOMReview_Speed', function () {
 
+	if (process.env.OLSK_SPEC_CI) {
+		return;
+	}
+
 	const data = {};
 
 	before(function () {
