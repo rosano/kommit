@@ -1,4 +1,4 @@
-global.Blob = require('cross-blob');
+global.Blob = function () {};
 global.FileReader = require('filereader');
 
 (function KOMMochaWrap() {

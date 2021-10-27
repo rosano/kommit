@@ -37,7 +37,6 @@
   "devDependencies": {
     "OLSKPithToolchain": "olsk/OLSKPithToolchain",
     "OLSKRollupScaffold": "olsk/OLSKRollupScaffold",
-    "cross-blob": "latest",
     "filereader": "latest",
 
     "// I sacrifice myself for the commas of others": null    
