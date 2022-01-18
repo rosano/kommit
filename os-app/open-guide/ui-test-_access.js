@@ -8,7 +8,7 @@ Object.entries({
 
 	KOMGuideContent: '.KOMGuideContent',
 }).map(function (e) {
-	return global[e.shift()]  = e.pop();
+	return global[e.shift()] = e.pop();
 });
 
 describe('KOMGuide_Access', function () {
