@@ -194,6 +194,7 @@ Counting the number of cards based on its state.
 | Create new item | `AccessKey+n` |
 | Select previous or next item, if filter field is focused | `Up` or `Down` |
 | KOMBrowseInfoToolbarTemplateButtonText | `AccessKey+t` |
+| `KOMBrowseLauncherItemImportCardsFromSSVText` | Launcher |
 | Clear filter text and selected item, focus filter field | `Escape` |
 | Close, if filter field is focused | `Escape` |
 | `KOMBrowseInfoLauncherItemToggleRetireText` | Launcher |
