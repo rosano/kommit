@@ -58,10 +58,10 @@ const mod = {
 
 	DataBrowseRecipes () {
 		const items = [{
-			LCHRecipeSignature: 'KOMBrowseLauncherItemImportCardsFromTXT',
-			LCHRecipeName: OLSKLocalized('KOMBrowseLauncherItemImportCardsFromTXTText'),
-			LCHRecipeCallback: function KOMBrowseLauncherItemImportCardsFromTXT () {
-				return mod.ControlImportCardsFromText();
+			LCHRecipeSignature: 'KOMBrowseLauncherItemImportCardsFromSSV',
+			LCHRecipeName: OLSKLocalized('KOMBrowseLauncherItemImportCardsFromSSVText'),
+			LCHRecipeCallback: function KOMBrowseLauncherItemImportCardsFromSSV () {
+				return mod.ControlImportCardsFromSSV();
 			},
 		}];
 
@@ -180,8 +180,8 @@ const mod = {
 		KOMBrowseDispatchDiscard(await KOMBrowseStorageClient.App.KOMCard.KOMCardDelete(inputData));
 	},
 
-	ControlImportCardsFromText () {
-		KOMBrowseLogic.KOMBrowseCardsFromText(window.prompt() || '').forEach(function (e) {
+	ControlImportCardsFromSSV () {
+		KOMBrowseLogic.KOMBrowseCardsFromSSV(window.prompt() || '').forEach(function (e) {
 			mod.ControlCardCreate(KOMBrowseDeckSelected, e);
 		});
 	},

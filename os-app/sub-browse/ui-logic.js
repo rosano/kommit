@@ -48,7 +48,7 @@ const mod = {
 		}).shift();
 	},
 
-	KOMBrowseCardsFromText (inputData) {
+	KOMBrowseCardsFromSSV (inputData) {
 		if (typeof inputData !== 'string') {
 			throw new Error('KOMErrorInputNotValid');
 		}

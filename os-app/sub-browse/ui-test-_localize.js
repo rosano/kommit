@@ -23,8 +23,8 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 			browser.assert.attribute(KOMBrowseCreateButton, 'title', uLocalized('KOMBrowseCreateButtonText'));
 		});
 
-		it('localizes KOMBrowseLauncherItemImportCardsFromTXT', function () {
-			return browser.assert.OLSKLauncherItemText('KOMBrowseLauncherItemImportCardsFromTXT', uLocalized('KOMBrowseLauncherItemImportCardsFromTXTText'));
+		it('localizes KOMBrowseLauncherItemImportCardsFromSSV', function () {
+			return browser.assert.OLSKLauncherItemText('KOMBrowseLauncherItemImportCardsFromSSV', uLocalized('KOMBrowseLauncherItemImportCardsFromSSVText'));
 		});
 
 		context('retire', function test_retire() {

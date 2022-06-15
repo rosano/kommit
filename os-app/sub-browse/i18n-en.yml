@@ -1,6 +1,6 @@
 KOMBrowseCreateButtonText: Create
 KOMBrowseCloseButtonText: Close
 KOMBrowseListItemUntitledText: Untitled
-KOMBrowseLauncherItemImportCardsFromTXTText: Import cards from text
+KOMBrowseLauncherItemImportCardsFromSSVText: Import cards from text
 KOMBrowseLauncherItemDiscardRetiredCardsText: Discard retired cards
 KOMBrowseLauncherItemDiscardRetiredCardsPromptText: Are you sure? Please type the number of retired cards.

@@ -287,11 +287,11 @@ describe('KOMBrowse_Misc', function () {
 
 	});
 
-	describe('KOMBrowseLauncherItemImportCardsFromTXT', function test_KOMBrowseLauncherItemImportCardsFromTXT() {
+	describe('KOMBrowseLauncherItemImportCardsFromSSV', function test_KOMBrowseLauncherItemImportCardsFromSSV() {
 
 		before(function () {
 			return browser.OLSKPromptSync(function () {
-				return browser.OLSKLauncherRun('KOMBrowseLauncherItemImportCardsFromTXT');
+				return browser.OLSKLauncherRun('KOMBrowseLauncherItemImportCardsFromSSV');
 			}, function (dialog) {
 				return Object.assign(dialog, {
 					response: 'alfa;bravo',

@@ -119,39 +119,39 @@ describe('KOMBrowseExactSortFunction', function test_KOMBrowseExactSortFunction(
 
 });
 
-describe('KOMBrowseCardsFromText', function test_KOMBrowseCardsFromText() {
+describe('KOMBrowseCardsFromSSV', function test_KOMBrowseCardsFromSSV() {
 
 	it('throws if not string', function () {
 		throws(function () {
-			mod.KOMBrowseCardsFromText(null);
+			mod.KOMBrowseCardsFromSSV(null);
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns array', function() {
-		deepEqual(mod.KOMBrowseCardsFromText(''), []);
+		deepEqual(mod.KOMBrowseCardsFromSSV(''), []);
 	});
 
 	it('ignores without front', function() {
-		deepEqual(mod.KOMBrowseCardsFromText(';' + Math.random().toString()), []);
+		deepEqual(mod.KOMBrowseCardsFromSSV(';' + Math.random().toString()), []);
 	});
 
 	it('ignores without back', function() {
-		deepEqual(mod.KOMBrowseCardsFromText(Math.random().toString() + ';'), []);
+		deepEqual(mod.KOMBrowseCardsFromSSV(Math.random().toString() + ';'), []);
 	});
 
 	it('maps KOMCardFrontText', function() {
 		const item = Math.random().toString();
-		deepEqual(mod.KOMBrowseCardsFromText(item + ';' + Math.random().toString())[0].KOMCardFrontText, item);
+		deepEqual(mod.KOMBrowseCardsFromSSV(item + ';' + Math.random().toString())[0].KOMCardFrontText, item);
 	});
 
 	it('maps KOMCardRearText', function() {
 		const item = Math.random().toString();
-		deepEqual(mod.KOMBrowseCardsFromText(Math.random().toString() + ';' + item)[0].KOMCardRearText, item);
+		deepEqual(mod.KOMBrowseCardsFromSSV(Math.random().toString() + ';' + item)[0].KOMCardRearText, item);
 	});
 
 	it('maps KOMCardTags single', function() {
 		const item = Math.random().toString();
-		deepEqual(mod.KOMBrowseCardsFromText(Math.random().toString() + ';' + Math.random().toString() + ';' + item)[0].KOMCardTags, [item]);
+		deepEqual(mod.KOMBrowseCardsFromSSV(Math.random().toString() + ';' + Math.random().toString() + ';' + item)[0].KOMCardTags, [item]);
 	});
 
 	it('maps KOMCardTags multiple', function() {
@@ -159,7 +159,7 @@ describe('KOMBrowseCardsFromText', function test_KOMBrowseCardsFromText() {
 			Math.random().toString(),
 			Math.random().toString(),
 		];
-		deepEqual(mod.KOMBrowseCardsFromText(Math.random().toString() + ';' + Math.random().toString() + ';' + item.join(','))[0].KOMCardTags, item);
+		deepEqual(mod.KOMBrowseCardsFromSSV(Math.random().toString() + ';' + Math.random().toString() + ';' + item.join(','))[0].KOMCardTags, item);
 	});
 
 	it('parses multiple', function() {
@@ -169,7 +169,7 @@ describe('KOMBrowseCardsFromText', function test_KOMBrowseCardsFromText() {
 			Math.random().toString(),
 			Math.random().toString(),
 		];
-		deepEqual(mod.KOMBrowseCardsFromText([
+		deepEqual(mod.KOMBrowseCardsFromSSV([
 			[KOMCardFrontText, KOMCardRearText, KOMCardTags.join(',')].join(';'),
 			[KOMCardFrontText, KOMCardRearText, KOMCardTags.join(',')].join(';'),
 			].join('\n')), [{
