@@ -57,7 +57,13 @@ const mod = {
 	},
 
 	DataBrowseRecipes () {
-		const items = [];
+		const items = [{
+			LCHRecipeSignature: 'KOMBrowseLauncherItemImportCardsFromTXT',
+			LCHRecipeName: OLSKLocalized('KOMBrowseLauncherItemImportCardsFromTXTText'),
+			LCHRecipeCallback: function KOMBrowseLauncherItemImportCardsFromTXT () {
+				return mod.ControlImportCardsFromText();
+			},
+		}];
 
 		if (mod._OLSKCatalog.modPublic._OLSKCatalogDataItemsAll().filter(function (e) {
 			return e.KOMCardIsRetired;
@@ -172,6 +178,12 @@ const mod = {
 		mod._OLSKCatalog.modPublic.OLSKCatalogRemove(inputData);
 
 		KOMBrowseDispatchDiscard(await KOMBrowseStorageClient.App.KOMCard.KOMCardDelete(inputData));
+	},
+
+	ControlImportCardsFromText () {
+		KOMBrowseLogic.KOMBrowseCardsFromText(window.prompt() || '').forEach(function (e) {
+			mod.ControlCardCreate(KOMBrowseDeckSelected, e);
+		});
 	},
 
 	ControlDiscardRetiredCards () {

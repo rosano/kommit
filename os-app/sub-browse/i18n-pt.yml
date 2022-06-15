@@ -1,5 +1,6 @@
 KOMBrowseCreateButtonText: Criar
 KOMBrowseCloseButtonText: Fechar
 KOMBrowseListItemUntitledText: Sem título
+KOMBrowseLauncherItemImportCardsFromTXTText: Importar cardões através do texto
 KOMBrowseLauncherItemDiscardRetiredCardsText: Descartar cartões aposentados
 KOMBrowseLauncherItemDiscardRetiredCardsPromptText: 'Você tem certeza? Por favor, digite o número de cartões aposentados.'

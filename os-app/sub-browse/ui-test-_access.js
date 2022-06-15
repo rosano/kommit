@@ -46,6 +46,10 @@ describe('KOMBrowse_Access', function () {
 		browser.assert.elements('.KOMBrowseListItem', 0);
 	});
 
+	it('hides KOMBrowseLauncherItemImportCardsFromTXT', function () {
+		return browser.assert.OLSKLauncherItems('KOMBrowseLauncherItemImportCardsFromTXT', 1);
+	});
+
 	it('hides KOMBrowseLauncherItemDiscardRetiredCards', function () {
 		return browser.assert.OLSKLauncherItems('KOMBrowseLauncherItemDiscardRetiredCards', 0);
 	});

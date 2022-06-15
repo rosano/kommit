@@ -287,4 +287,22 @@ describe('KOMBrowse_Misc', function () {
 
 	});
 
+	describe('KOMBrowseLauncherItemImportCardsFromTXT', function test_KOMBrowseLauncherItemImportCardsFromTXT() {
+
+		before(function () {
+			return browser.OLSKPromptSync(function () {
+				return browser.OLSKLauncherRun('KOMBrowseLauncherItemImportCardsFromTXT');
+			}, function (dialog) {
+				return Object.assign(dialog, {
+					response: 'alfa;bravo',
+				});
+			});
+		});
+
+		it('sends KOMBrowseDispatchCreate', function () {
+			browser.assert.text('#TestKOMBrowseDispatchCreate', '3');
+		});
+
+	});
+
 });
