@@ -48,6 +48,26 @@ const mod = {
 		}).shift();
 	},
 
+	KOMBrowseCardsFromText (inputData) {
+		if (typeof inputData !== 'string') {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		return inputData.split('\n').filter(function (e) {
+			return e.trim().length && (e.split(';').slice(0, 2).filter(function (e) {
+				return e.trim().length;
+			}).length == 2);
+		}).map(function (e) {
+			const item = e.split(';');
+			return Object.assign({
+				KOMCardFrontText: item[0],
+				KOMCardRearText: item[1],
+			}, item[2]?.trim().length ? {
+				KOMCardTags: item[2].split(','),
+			} : {}); 
+		});
+	},
+
 };
 
 export default mod;

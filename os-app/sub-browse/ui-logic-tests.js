@@ -118,3 +118,69 @@ describe('KOMBrowseExactSortFunction', function test_KOMBrowseExactSortFunction(
 	});
 
 });
+
+describe('KOMBrowseCardsFromText', function test_KOMBrowseCardsFromText() {
+
+	it('throws if not string', function () {
+		throws(function () {
+			mod.KOMBrowseCardsFromText(null);
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns array', function() {
+		deepEqual(mod.KOMBrowseCardsFromText(''), []);
+	});
+
+	it('ignores without front', function() {
+		deepEqual(mod.KOMBrowseCardsFromText(';' + Math.random().toString()), []);
+	});
+
+	it('ignores without back', function() {
+		deepEqual(mod.KOMBrowseCardsFromText(Math.random().toString() + ';'), []);
+	});
+
+	it('maps KOMCardFrontText', function() {
+		const item = Math.random().toString();
+		deepEqual(mod.KOMBrowseCardsFromText(item + ';' + Math.random().toString())[0].KOMCardFrontText, item);
+	});
+
+	it('maps KOMCardRearText', function() {
+		const item = Math.random().toString();
+		deepEqual(mod.KOMBrowseCardsFromText(Math.random().toString() + ';' + item)[0].KOMCardRearText, item);
+	});
+
+	it('maps KOMCardTags single', function() {
+		const item = Math.random().toString();
+		deepEqual(mod.KOMBrowseCardsFromText(Math.random().toString() + ';' + Math.random().toString() + ';' + item)[0].KOMCardTags, [item]);
+	});
+
+	it('maps KOMCardTags multiple', function() {
+		const item = [
+			Math.random().toString(),
+			Math.random().toString(),
+		];
+		deepEqual(mod.KOMBrowseCardsFromText(Math.random().toString() + ';' + Math.random().toString() + ';' + item.join(','))[0].KOMCardTags, item);
+	});
+
+	it('parses multiple', function() {
+		const KOMCardFrontText = Math.random().toString();
+		const KOMCardRearText = Math.random().toString();
+		const KOMCardTags = [
+			Math.random().toString(),
+			Math.random().toString(),
+		];
+		deepEqual(mod.KOMBrowseCardsFromText([
+			[KOMCardFrontText, KOMCardRearText, KOMCardTags.join(',')].join(';'),
+			[KOMCardFrontText, KOMCardRearText, KOMCardTags.join(',')].join(';'),
+			].join('\n')), [{
+			KOMCardFrontText,
+			KOMCardRearText,
+			KOMCardTags,
+		}, {
+			KOMCardFrontText,
+			KOMCardRearText,
+			KOMCardTags,
+		}]);
+	});
+
+});
