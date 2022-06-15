@@ -721,13 +721,8 @@ describe('KOMReviewGeneralUpcomingDates', function test_KOMReviewGeneralUpcoming
 
 describe('KOMReviewGeneralUpcomingFilter', function test_KOMReviewGeneralUpcomingFilter() {
 
-	const offset = (function (inputData) {
-		const negative = inputData < 0;
-		return (negative ? '-' : '') + String(inputData).slice(negative ? 1 : 0).padStart(2, '0');
-	})((new Date()).getTimezoneOffset() / 60);
-
 	const uGroupingDate = function (inputData = 0) {
-		return new Date(Date.parse(`${ OLSKMoment.OLSKMomentPerceptionDay(new Date()) }T04:00:00-${ offset }:00`.replace('--', '+')) + inputData);
+		return new Date(Date.parse(OLSKMoment.OLSKMomentPerceptionDate(new Date())) + inputData);
 	};
 
 	it('throws if not array', function () {
@@ -825,13 +820,8 @@ describe('KOMReviewGeneralHistoricalDates', function test_KOMReviewGeneralHistor
 
 describe('KOMReviewGeneralHistoricalFilter', function test_KOMReviewGeneralHistoricalFilter() {
 
-	const offset = (function (inputData) {
-		const negative = inputData < 0;
-		return (negative ? '-' : '') + String(inputData).slice(negative ? 1 : 0).padStart(2, '0');
-	})((new Date()).getTimezoneOffset() / 60);
-
 	const uGroupingDate = function (inputData = 0) {
-		return new Date(Date.parse(`${ OLSKMoment.OLSKMomentPerceptionDay(new Date()) }T04:00:00-${ offset }:00`.replace('--', '+')) + inputData);
+		return new Date(Date.parse(OLSKMoment.OLSKMomentPerceptionDate(new Date())) + inputData);
 	};
 
 	it('throws if not array', function () {

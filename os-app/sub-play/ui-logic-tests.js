@@ -2,6 +2,7 @@ const { throws, deepEqual, notDeepEqual } = require('assert');
 
 const mod = require('./ui-logic.js').default;
 const KOMSpacing = require('../_shared/KOMSpacing/main.js').default;
+const OLSKMoment = require('OLSKMoment');
 
 const kTesting = {
 	StubStateObjectValid() {
@@ -33,10 +34,6 @@ const kTesting = {
 		return Array.from(new Array(param1)).map(param2);
 	},
 };
-
-const offset = (function (inputData) {
-	return inputData < 10 ? `0${ inputData }` : inputData;
-})((new Date()).getTimezoneOffset() / 60);
 
 describe('KOMPlaySort', function test_KOMPlaySort() {
 
@@ -397,18 +394,18 @@ describe('KOMPlayResponseIntervalOverdueDays', function test_KOMPlayResponseInte
 	it('returns 0 if KOMSpacingDueDate same day', function () {
 		deepEqual(mod.KOMPlayResponseIntervalOverdueDays(Object.assign(kTesting.StubSpacingObjectValid(), {
 			KOMSpacingInterval: mod.KOMPlayResponseIntervalGraduateEasy(),
-			KOMSpacingDueDate: new Date(`2020-05-02T12:00:00-${ offset }:00`),
+			KOMSpacingDueDate: new Date(`2020-05-02T12:00:00${ OLSKMoment.OLSKMomentStringOffset() }:00`),
 		}), Object.assign(kTesting.StubChronicleObjectValid(), {
-			KOMChronicleResponseDate: new Date(`2020-05-02T18:00:00-${ offset }:00`),
+			KOMChronicleResponseDate: new Date(`2020-05-02T18:00:00${ OLSKMoment.OLSKMomentStringOffset() }:00`),
 		})), 0);
 	});
 
 	it('returns days if KOMSpacingDueDate past', function () {
 		deepEqual(mod.KOMPlayResponseIntervalOverdueDays(Object.assign(kTesting.StubSpacingObjectValid(), {
 			KOMSpacingInterval: mod.KOMPlayResponseIntervalGraduateEasy(),
-			KOMSpacingDueDate: new Date(`2020-05-02T12:00:00-${ offset }:00`),
+			KOMSpacingDueDate: new Date(`2020-05-02T12:00:00${ OLSKMoment.OLSKMomentStringOffset() }:00`),
 		}), Object.assign(kTesting.StubChronicleObjectValid(), {
-			KOMChronicleResponseDate: new Date(`2020-05-12T18:00:00-${ offset }:00`),
+			KOMChronicleResponseDate: new Date(`2020-05-12T18:00:00${ OLSKMoment.OLSKMomentStringOffset() }:00`),
 		})), 10);
 	});
 
@@ -433,9 +430,9 @@ describe('KOMPlayResponseIntervalOverdueBonus', function test_KOMPlayResponseInt
 	it('returns 0', function () {
 		deepEqual(mod.KOMPlayResponseIntervalOverdueBonus(Object.assign(kTesting.StubSpacingObjectValid(), {
 			KOMSpacingInterval: mod.KOMPlayResponseIntervalGraduateEasy(),
-			KOMSpacingDueDate: new Date(`2020-05-02T12:00:00-${ offset }:00`),
+			KOMSpacingDueDate: new Date(`2020-05-02T12:00:00${ OLSKMoment.OLSKMomentStringOffset() }:00`),
 		}), Object.assign(kTesting.StubChronicleObjectValid(), {
-			KOMChronicleResponseDate: new Date(`2020-05-12T18:00:00-${ offset }:00`),
+			KOMChronicleResponseDate: new Date(`2020-05-12T18:00:00${ OLSKMoment.OLSKMomentStringOffset() }:00`),
 			KOMChronicleResponseType: mod.KOMPlayResponseTypeAgain(),
 		})), 0);
 	});
@@ -443,9 +440,9 @@ describe('KOMPlayResponseIntervalOverdueBonus', function test_KOMPlayResponseInt
 	it('adjusts if Hard', function () {
 		deepEqual(mod.KOMPlayResponseIntervalOverdueBonus(Object.assign(kTesting.StubSpacingObjectValid(), {
 			KOMSpacingInterval: mod.KOMPlayResponseIntervalGraduateEasy(),
-			KOMSpacingDueDate: new Date(`2020-05-02T12:00:00-${ offset }:00`),
+			KOMSpacingDueDate: new Date(`2020-05-02T12:00:00${ OLSKMoment.OLSKMomentStringOffset() }:00`),
 		}), Object.assign(kTesting.StubChronicleObjectValid(), {
-			KOMChronicleResponseDate: new Date(`2020-05-12T18:00:00-${ offset }:00`),
+			KOMChronicleResponseDate: new Date(`2020-05-12T18:00:00${ OLSKMoment.OLSKMomentStringOffset() }:00`),
 			KOMChronicleResponseType: mod.KOMPlayResponseTypeHard(),
 		})), 10 / mod.KOMPlayResponseIntervalOverdueDivisorHard());
 	});
@@ -453,9 +450,9 @@ describe('KOMPlayResponseIntervalOverdueBonus', function test_KOMPlayResponseInt
 	it('adjusts if Good', function () {
 		deepEqual(mod.KOMPlayResponseIntervalOverdueBonus(Object.assign(kTesting.StubSpacingObjectValid(), {
 			KOMSpacingInterval: mod.KOMPlayResponseIntervalGraduateEasy(),
-			KOMSpacingDueDate: new Date(`2020-05-02T12:00:00-${ offset }:00`),
+			KOMSpacingDueDate: new Date(`2020-05-02T12:00:00${ OLSKMoment.OLSKMomentStringOffset() }:00`),
 		}), Object.assign(kTesting.StubChronicleObjectValid(), {
-			KOMChronicleResponseDate: new Date(`2020-05-12T18:00:00-${ offset }:00`),
+			KOMChronicleResponseDate: new Date(`2020-05-12T18:00:00${ OLSKMoment.OLSKMomentStringOffset() }:00`),
 			KOMChronicleResponseType: mod.KOMPlayResponseTypeGood(),
 		})), 10 / mod.KOMPlayResponseIntervalOverdueDivisorGood());
 	});
@@ -463,9 +460,9 @@ describe('KOMPlayResponseIntervalOverdueBonus', function test_KOMPlayResponseInt
 	it('adjusts if Easy', function () {
 		deepEqual(mod.KOMPlayResponseIntervalOverdueBonus(Object.assign(kTesting.StubSpacingObjectValid(), {
 			KOMSpacingInterval: mod.KOMPlayResponseIntervalGraduateEasy(),
-			KOMSpacingDueDate: new Date(`2020-05-02T12:00:00-${ offset }:00`),
+			KOMSpacingDueDate: new Date(`2020-05-02T12:00:00${ OLSKMoment.OLSKMomentStringOffset() }:00`),
 		}), Object.assign(kTesting.StubChronicleObjectValid(), {
-			KOMChronicleResponseDate: new Date(`2020-05-12T18:00:00-${ offset }:00`),
+			KOMChronicleResponseDate: new Date(`2020-05-12T18:00:00${ OLSKMoment.OLSKMomentStringOffset() }:00`),
 			KOMChronicleResponseType: mod.KOMPlayResponseTypeEasy(),
 		})), 10 / mod.KOMPlayResponseIntervalOverdueDivisorEasy());
 	});
