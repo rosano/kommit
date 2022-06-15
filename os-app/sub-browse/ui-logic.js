@@ -62,7 +62,7 @@ const mod = {
 			return Object.assign({
 				KOMCardFrontText: item[0],
 				KOMCardRearText: item[1],
-			}, item[2]?.trim().length ? {
+			}, item[2] ? {
 				KOMCardTags: item[2].split(','),
 			} : {}); 
 		});
