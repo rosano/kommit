@@ -53,7 +53,7 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		return inputData.split('\n').filter(function (e) {
+		return inputData.replace(/  /g, '\n').split('\n').filter(function (e) {
 			return e.trim().length && (e.split(';').slice(0, 2).filter(function (e) {
 				return e.trim().length;
 			}).length == 2);

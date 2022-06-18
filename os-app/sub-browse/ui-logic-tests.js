@@ -163,6 +163,7 @@ describe('KOMBrowseCardsFromSSV', function test_KOMBrowseCardsFromSSV() {
 	});
 
 	it('parses multiple', function() {
+		const item = uRandomElement('\n', '  ')
 		const KOMCardFrontText = Math.random().toString();
 		const KOMCardRearText = Math.random().toString();
 		const KOMCardTags = [
@@ -172,7 +173,7 @@ describe('KOMBrowseCardsFromSSV', function test_KOMBrowseCardsFromSSV() {
 		deepEqual(mod.KOMBrowseCardsFromSSV([
 			[KOMCardFrontText, KOMCardRearText, KOMCardTags.join(',')].join(';'),
 			[KOMCardFrontText, KOMCardRearText, KOMCardTags.join(',')].join(';'),
-			].join('\n')), [{
+			].join(item)), [{
 			KOMCardFrontText,
 			KOMCardRearText,
 			KOMCardTags,
