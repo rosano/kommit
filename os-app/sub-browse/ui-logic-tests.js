@@ -162,6 +162,11 @@ describe('KOMBrowseCardsFromSSV', function test_KOMBrowseCardsFromSSV() {
 		deepEqual(mod.KOMBrowseCardsFromSSV(Math.random().toString() + ';' + Math.random().toString() + ';' + item.join(','))[0].KOMCardTags, item);
 	});
 
+	it('maps KOMCardNotes', function() {
+		const item = Math.random().toString();
+		deepEqual(mod.KOMBrowseCardsFromSSV(Math.random().toString() + ';' + Math.random().toString() + ';' + item + ';' + Math.random().toString())[0].KOMCardNotes, item);
+	});
+
 	it('parses multiple', function() {
 		const item = uRandomElement('\n', '  ')
 		const KOMCardFrontText = Math.random().toString();

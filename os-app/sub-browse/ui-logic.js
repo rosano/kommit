@@ -60,10 +60,12 @@ const mod = {
 		}).map(function (e) {
 			const item = e.split(';');
 			return Object.assign({
-				KOMCardFrontText: item[0],
-				KOMCardRearText: item[1],
-			}, item[2] ? {
-				KOMCardTags: item[2].split(','),
+				KOMCardFrontText: item.shift(),
+				KOMCardRearText: item.shift(),
+			}, item.length ? {
+				KOMCardTags: item.pop().split(','),
+			} : {}, item.length ? {
+				KOMCardNotes: item.pop(),
 			} : {}); 
 		});
 	},
