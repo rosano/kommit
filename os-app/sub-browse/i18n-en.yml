@@ -3,4 +3,4 @@ KOMBrowseCloseButtonText: Close
 KOMBrowseListItemUntitledText: Untitled
 KOMBrowseLauncherItemImportCardsFromSSVText: Import cards from text
 KOMBrowseLauncherItemDiscardRetiredCardsText: Discard retired cards
-KOMBrowseLauncherItemDiscardRetiredCardsPromptText: Are you sure? Please type the number of retired cards.
+KOMBrowseLauncherItemDiscardRetiredCardsPromptText: Are you sure? Please type the total number of retired cards.
