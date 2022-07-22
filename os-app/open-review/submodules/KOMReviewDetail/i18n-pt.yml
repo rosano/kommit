@@ -20,4 +20,4 @@ KOMReviewDetailDeckHeadingText: Baralho
 KOMReviewDetailRenameButtonText: Renomear
 KOMReviewDetailRenameButtonPromptText: Nome
 KOMReviewDetailDiscardButtonText: Apagar o baralho e todas as cartas dentro
-KOMReviewDetailDiscardPromptText: 'Você tem certeza? Por favor, digite o número de cartões para apagar o baralho.'
+KOMReviewDetailDiscardPromptText: 'Você tem certeza? Por favor, digite o número total de cartões para apagar o baralho.'

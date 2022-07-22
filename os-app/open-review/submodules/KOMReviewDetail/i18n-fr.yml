@@ -20,4 +20,4 @@ KOMReviewDetailDeckHeadingText: Lot de cartes
 KOMReviewDetailRenameButtonText: Renommer
 KOMReviewDetailRenameButtonPromptText: Nom
 KOMReviewDetailDiscardButtonText: Supprimer le lot de cartes et toutes les cartes dedans
-KOMReviewDetailDiscardPromptText: Êtes-vous sûr.e ? Veuillez entrer le nombre des cartes pour supprimer le paquet.
+KOMReviewDetailDiscardPromptText: Êtes-vous sûr.e ? Veuillez entrer le nombre total des cartes pour supprimer le paquet.
