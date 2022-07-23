@@ -5,16 +5,8 @@ const KOMSpacing = require('../_shared/KOMSpacing/main.js').default;
 const OLSKMoment = require('OLSKMoment');
 
 const kTesting = {
-	StubChronicleObjectPrepared() {
-		return {
-			KOMChronicleDrawDate: new Date('2019-02-23T12:00:00Z'),
-			KOMChronicleFlipDate: new Date('2019-02-23T12:00:00Z'),
-			KOMChronicleResponseDate: new Date('2019-02-23T12:00:00Z'),
-			KOMChronicleResponseType: mod.KOMPlayResponseTypeEasy(),
-		};
-	},
 	StubChronicleObjectValid() {
-		return Object.assign(kTesting.StubChronicleObjectPrepared(), {
+		return Object.assign(StubChronicleObjectPrepared(), {
 			KOMChronicleDueDate: new Date('2019-02-23T12:00:00Z'),
 		});
 	},
@@ -584,31 +576,31 @@ describe('KOMChronicleIsPrepared', function test_KOMChronicleIsPrepared() {
 	});
 
 	it('returns false if KOMChronicleDrawDate not date', function () {
-		deepEqual(mod.KOMChronicleIsPrepared(Object.assign(kTesting.StubChronicleObjectPrepared(), {
+		deepEqual(mod.KOMChronicleIsPrepared(Object.assign(StubChronicleObjectPrepared(), {
 			KOMChronicleDrawDate: new Date('alfa'),
 		})), false);
 	});
 
 	it('returns false if KOMChronicleFlipDate not date', function () {
-		deepEqual(mod.KOMChronicleIsPrepared(Object.assign(kTesting.StubChronicleObjectPrepared(), {
+		deepEqual(mod.KOMChronicleIsPrepared(Object.assign(StubChronicleObjectPrepared(), {
 			KOMChronicleFlipDate: new Date('alfa'),
 		})), false);
 	});
 
 	it('returns false if KOMChronicleResponseDate not date', function () {
-		deepEqual(mod.KOMChronicleIsPrepared(Object.assign(kTesting.StubChronicleObjectPrepared(), {
+		deepEqual(mod.KOMChronicleIsPrepared(Object.assign(StubChronicleObjectPrepared(), {
 			KOMChronicleResponseDate: new Date('alfa'),
 		})), false);
 	});
 
 	it('returns false if KOMChronicleResponseType not valid', function () {
-		deepEqual(mod.KOMChronicleIsPrepared(Object.assign(kTesting.StubChronicleObjectPrepared(), {
+		deepEqual(mod.KOMChronicleIsPrepared(Object.assign(StubChronicleObjectPrepared(), {
 			KOMChronicleResponseType: 'alfa',
 		})), false);
 	});
 
 	it('returns true', function () {
-		deepEqual(mod.KOMChronicleIsPrepared(kTesting.StubChronicleObjectPrepared()), true);
+		deepEqual(mod.KOMChronicleIsPrepared(StubChronicleObjectPrepared()), true);
 	});
 
 });
@@ -853,7 +845,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 	};
 
 	const uChronicle = function (inputData = {}) {
-		return Object.assign(kTesting.StubChronicleObjectPrepared(), inputData);
+		return Object.assign(StubChronicleObjectPrepared(), inputData);
 	};
 
 	it('throws if param1 not valid', function () {
