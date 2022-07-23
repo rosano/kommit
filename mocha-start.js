@@ -74,6 +74,13 @@ global.FileReader = require('filereader');
 			}, inputData);
 		},
 
+		StubSpacingObjectValid2 (inputData = {}) {
+			return Object.assign({
+				KOMSpacingID: 'bravo-forward',
+				KOMSpacingChronicles: [],
+			}, inputData);
+		},
+
 		StubSpacingObjectHistorical(inputData) {
 			return StubSpacingObjectValid({
 				KOMSpacingChronicles: [StubChronicleObjectValid(inputData || new Date(Date.now() - 1000 * 60 * 60 * 24 * 3))],
