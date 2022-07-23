@@ -5,11 +5,11 @@ const KOMSpacing = require('../_shared/KOMSpacing/main.js').default;
 const OLSKMoment = require('OLSKMoment');
 
 const kTesting = {
-	StubStateObjectValid() {
-		return {
+	StubStateObjectValid(inputData = {}) {
+		return Object.assign({
 			KOMPlayStateQueue: [],
 			KOMPlayStateWait: [],
-		};
+		}, inputData);
 	},
 	StubChronicleObjectPrepared() {
 		return {
@@ -282,6 +282,32 @@ describe('KOMPlayStateIsValid', function test_KOMPlayStateIsValid() {
 			})), true);
 		});
 
+	});
+
+});
+
+describe('KOMPlayStateDraw', function test_KOMPlayStateDraw() {
+
+	it('throws if not valid', function () {
+		throws(function () {
+			mod.KOMPlayStateDraw({});
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns input', function () {
+		const item = Object.assign(kTesting.StubStateObjectValid(), {
+			KOMPlayStateQueue: [Math.random().toString()],
+		});
+		deepEqual(mod.KOMPlayStateDraw(item), item);
+	});
+
+	it('moves item to KOMPlayStateCurrent', function () {
+		const item = Math.random().toString();
+		deepEqual(mod.KOMPlayStateDraw(Object.assign(kTesting.StubStateObjectValid(), {
+			KOMPlayStateQueue: [item],
+		})), kTesting.StubStateObjectValid({
+			KOMPlayStateCurrent: item,
+		}));
 	});
 
 });

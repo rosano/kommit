@@ -118,6 +118,17 @@ const mod = {
 		return true;
 	},
 
+	KOMPlayStateDraw (inputData) {
+		if (!mod.KOMPlayStateIsValid(inputData)) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		return Object.assign(inputData, {
+			KOMPlayStateCurrent: inputData.KOMPlayStateQueue.slice(0, 1).shift(),
+			KOMPlayStateQueue: inputData.KOMPlayStateQueue.slice(1),
+		});
+	},
+
 	KOMPlayResponseTypeAgain() {
 		return 'RESPONSE_AGAIN';
 	},
