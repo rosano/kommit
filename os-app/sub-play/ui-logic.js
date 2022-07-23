@@ -109,6 +109,12 @@ const mod = {
 			}
 		}
 
+		if (inputData.KOMPlayStateIsMultiDraw !== undefined) {
+			if (typeof inputData.KOMPlayStateIsMultiDraw !== 'boolean') {
+				return false;
+			}
+		}
+
 		return true;
 	},
 

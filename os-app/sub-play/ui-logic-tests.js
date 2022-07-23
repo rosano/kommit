@@ -268,6 +268,22 @@ describe('KOMPlayStateIsValid', function test_KOMPlayStateIsValid() {
 
 	});
 
+	context('KOMPlayStateIsMultiDraw', function () {
+
+		it('returns false if not boolean', function () {
+			deepEqual(mod.KOMPlayStateIsValid(Object.assign(kTesting.StubStateObjectValid(), {
+				KOMPlayStateIsMultiDraw: null,
+			})), false);
+		});
+
+		it('returns true', function () {
+			deepEqual(mod.KOMPlayStateIsValid(Object.assign(kTesting.StubStateObjectValid(), {
+				KOMPlayStateIsMultiDraw: true,
+			})), true);
+		});
+
+	});
+
 });
 
 describe('KOMPlayResponseTypeAgain', function test_KOMPlayResponseTypeAgain() {
