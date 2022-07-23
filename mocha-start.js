@@ -100,6 +100,12 @@ global.FileReader = require('filereader');
 			};
 		},
 
+		StubChronicleObjectValid2() {
+			return Object.assign(StubChronicleObjectPrepared(), {
+				KOMChronicleDueDate: new Date('2019-02-23T12:00:00Z'),
+			});
+		},
+
 		StubSettingObjectValid(inputData = {}) {
 			return Object.assign({
 				KOMSettingKey: Math.random().toString(),
