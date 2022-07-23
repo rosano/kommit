@@ -288,7 +288,7 @@ describe('KOMPlayStateDraw', function test_KOMPlayStateDraw() {
 		deepEqual(mod.KOMPlayStateDraw(item), item);
 	});
 
-	it('moves item to KOMPlayStateCurrent', function () {
+	it('moves from KOMPlayStateQueue to KOMPlayStateCurrent', function () {
 		const item = Math.random().toString();
 		deepEqual(mod.KOMPlayStateDraw(Object.assign(StubStateObjectValid(), {
 			KOMPlayStateQueue: [item],
