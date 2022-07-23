@@ -590,7 +590,7 @@ describe('KOMChronicleIsPrepared', function test_KOMChronicleIsPrepared() {
 
 	it('returns false if KOMChronicleResponseType not valid', function () {
 		deepEqual(mod.KOMChronicleIsPrepared(Object.assign(StubChronicleObjectPrepared(), {
-			KOMChronicleResponseType: 'alfa',
+			KOMChronicleResponseType: Math.random().toString(),
 		})), false);
 	});
 
