@@ -268,6 +268,12 @@ import KOMReviewStats from '../KOMReviewStats/main.svelte';
 	</p>
 	<p>
 		<label>
+			<input class="KOMReviewDetailFormIsMultiDrawField" type="checkbox" bind:checked={ KOMReviewDetailDeck.KOMDeckIsMultiDraw } on:input={ mod.InterfaceFormDidUpdate } />
+			<span class="KOMReviewDetailFormIsMultiDrawFieldLabel">{ OLSKLocalized('KOMReviewDetailFormIsMultiDrawFieldLabelText') }</span>
+		</label>
+	</p>
+	<p>
+		<label>
 			<span class="KOMReviewDetailFormRetireCardsFieldLabel">{ OLSKLocalized('KOMReviewDetailFormRetireCardsFieldLabelText') }</span>
 			<select class="KOMReviewDetailFormRetireCardsField" bind:value={ KOMReviewDetailDeck.KOMDeckRetireCardsMonths } on:input={ mod.InterfaceFormDidUpdate }>
 				<option class="KOMReviewDetailFormRetireCardsFieldOptionNever" value={ 0 }>{ OLSKLocalized('KOMReviewDetailFormRetireCardsFieldOptionNeverText') }</option>

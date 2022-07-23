@@ -6,6 +6,7 @@ KOMReviewDetailFormAudioIsEnabledFieldLabelText: Faire entendre la version audio
 KOMReviewDetailFormFrontSpeechIsEnabledFieldLabelText: Lire le recto
 KOMReviewDetailFormRearSpeechIsEnabledFieldLabelText: Lire le verso
 KOMReviewDetailFormIsForwardOnlyFieldLabelText: Ne pas activer la lecture des cartes inversées
+KOMReviewDetailFormIsMultiDrawFieldLabelText: Tirer plusieurs cartes
 KOMReviewDetailFormRetireCardsFieldLabelText: Retraiter des cartes
 KOMReviewDetailFormRetireCardsFieldOptionNeverText: jamais
 KOMReviewDetailFormRetireCardsFieldOptionOneMonthText: après un mois
