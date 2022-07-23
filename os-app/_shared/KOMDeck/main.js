@@ -113,6 +113,14 @@ const mod = {
 			}
 		}
 
+		if (inputData.KOMDeckIsMultiDraw !== undefined) {
+			if (typeof inputData.KOMDeckIsMultiDraw !== 'boolean') {
+				errors.KOMDeckIsMultiDraw = [
+					'KOMErrorNotBoolean',
+				];
+			}
+		}
+
 		return Object.entries(errors).length ? errors : null;
 	},
 	

@@ -186,6 +186,26 @@ describe('KOMDeckErrors', function test_KOMDeckErrors() {
 
 	});
 
+	context('KOMDeckIsMultiDraw', function () {
+
+		it('returns object if not boolean', function () {
+			deepEqual(mod.KOMDeckErrors(StubDeckObjectValid({
+				KOMDeckIsMultiDraw: null,
+			})), {
+				KOMDeckIsMultiDraw: [
+					'KOMErrorNotBoolean',
+				],
+			});
+		});
+
+		it('returns null', function () {
+			deepEqual(mod.KOMDeckErrors(StubDeckObjectValid({
+				KOMDeckIsMultiDraw: true,
+			})), null);
+		});
+
+	});
+
 	context('KOMDeckRetireCardsMonths', function () {
 
 		it('returns object if not number', function () {
