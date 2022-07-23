@@ -98,6 +98,14 @@ global.FileReader = require('filereader');
 			}, inputData);
 		},
 
+		StubStateObjectValid(inputData = {}) {
+			return Object.assign({
+				KOMPlayStateQueue: [],
+				KOMPlayStateWait: [],
+				KOMPlayStateHistory: [],
+			}, inputData);
+		},
+
 		StubReviewChartElementDateBarTableRowDataObjectValid (inputData) {
 			return Object.assign({
 				KOMReviewChartElementDateBarTableRowDataKey: 'alfa',
