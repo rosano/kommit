@@ -91,13 +91,13 @@ global.FileReader = require('filereader');
 			};
 		},
 
-		StubChronicleObjectPrepared() {
-			return {
+		StubChronicleObjectPrepared (inputData = {}) {
+			return Object.assign({
 				KOMChronicleDrawDate: new Date('2019-02-23T12:00:00Z'),
 				KOMChronicleFlipDate: new Date('2019-02-23T12:00:00Z'),
 				KOMChronicleResponseDate: new Date('2019-02-23T12:00:00Z'),
 				KOMChronicleResponseType: 'RESPONSE_EASY',
-			};
+			}, inputData);
 		},
 
 		StubChronicleObjectValid2() {
