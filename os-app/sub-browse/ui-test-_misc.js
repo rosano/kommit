@@ -300,7 +300,7 @@ describe('KOMBrowse_Misc', function () {
 		});
 
 		it('sends KOMBrowseDispatchCreate', function () {
-			browser.assert.text('#TestKOMBrowseDispatchCreate', '3');
+			browser.assert.text('#TestKOMBrowseDispatchCreate', '2');
 		});
 
 	});
