@@ -202,19 +202,19 @@ describe('KOMPlayStateIsValid', function test_KOMPlayStateIsValid() {
 	});
 
 	it('returns false if KOMPlayStateQueue not array', function () {
-		deepEqual(mod.KOMPlayStateIsValid(Object.assign(StubStateObjectValid(), {
+		deepEqual(mod.KOMPlayStateIsValid(StubStateObjectValid({
 			KOMPlayStateQueue: null,
 		})), false);
 	});
 
 	it('returns false if KOMPlayStateWait not array', function () {
-		deepEqual(mod.KOMPlayStateIsValid(Object.assign(StubStateObjectValid(), {
+		deepEqual(mod.KOMPlayStateIsValid(StubStateObjectValid({
 			KOMPlayStateWait: null,
 		})), false);
 	});
 
 	it('returns false if KOMPlayStateHistory not array', function () {
-		deepEqual(mod.KOMPlayStateIsValid(Object.assign(StubStateObjectValid(), {
+		deepEqual(mod.KOMPlayStateIsValid(StubStateObjectValid({
 			KOMPlayStateHistory: null,
 		})), false);
 	});
@@ -226,13 +226,13 @@ describe('KOMPlayStateIsValid', function test_KOMPlayStateIsValid() {
 	context('KOMPlayStateCurrent', function () {
 
 		it('returns false if not valid', function () {
-			deepEqual(mod.KOMPlayStateIsValid(Object.assign(StubStateObjectValid(), {
+			deepEqual(mod.KOMPlayStateIsValid(StubStateObjectValid({
 				KOMPlayStateCurrent: {},
 			})), false);
 		});
 
 		it('returns true', function () {
-			deepEqual(mod.KOMPlayStateIsValid(Object.assign(StubStateObjectValid(), {
+			deepEqual(mod.KOMPlayStateIsValid(StubStateObjectValid({
 				KOMPlayStateCurrent: null,
 			})), true);
 		});
@@ -242,13 +242,13 @@ describe('KOMPlayStateIsValid', function test_KOMPlayStateIsValid() {
 	context('KOMPlayStateShouldRandomizeDueDates', function () {
 
 		it('returns false if not boolean', function () {
-			deepEqual(mod.KOMPlayStateIsValid(Object.assign(StubStateObjectValid(), {
+			deepEqual(mod.KOMPlayStateIsValid(StubStateObjectValid({
 				KOMPlayStateShouldRandomizeDueDates: null,
 			})), false);
 		});
 
 		it('returns true', function () {
-			deepEqual(mod.KOMPlayStateIsValid(Object.assign(StubStateObjectValid(), {
+			deepEqual(mod.KOMPlayStateIsValid(StubStateObjectValid({
 				KOMPlayStateShouldRandomizeDueDates: true,
 			})), true);
 		});
@@ -258,13 +258,13 @@ describe('KOMPlayStateIsValid', function test_KOMPlayStateIsValid() {
 	context('KOMPlayStateIsMultiDraw', function () {
 
 		it('returns false if not boolean', function () {
-			deepEqual(mod.KOMPlayStateIsValid(Object.assign(StubStateObjectValid(), {
+			deepEqual(mod.KOMPlayStateIsValid(StubStateObjectValid({
 				KOMPlayStateIsMultiDraw: null,
 			})), false);
 		});
 
 		it('returns true', function () {
-			deepEqual(mod.KOMPlayStateIsValid(Object.assign(StubStateObjectValid(), {
+			deepEqual(mod.KOMPlayStateIsValid(StubStateObjectValid({
 				KOMPlayStateIsMultiDraw: true,
 			})), true);
 		});
@@ -282,7 +282,7 @@ describe('KOMPlayStateDraw', function test_KOMPlayStateDraw() {
 	});
 
 	it('returns input', function () {
-		const item = Object.assign(StubStateObjectValid(), {
+		const item = StubStateObjectValid({
 			KOMPlayStateQueue: [Math.random().toString()],
 		});
 		deepEqual(mod.KOMPlayStateDraw(item), item);
@@ -290,7 +290,7 @@ describe('KOMPlayStateDraw', function test_KOMPlayStateDraw() {
 
 	it('moves from KOMPlayStateQueue to KOMPlayStateCurrent', function () {
 		const item = Math.random().toString();
-		deepEqual(mod.KOMPlayStateDraw(Object.assign(StubStateObjectValid(), {
+		deepEqual(mod.KOMPlayStateDraw(StubStateObjectValid({
 			KOMPlayStateQueue: [item],
 		})), StubStateObjectValid({
 			KOMPlayStateCurrent: item,
@@ -876,7 +876,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 	context('KOMPlayStateCurrent', function () {
 
 		it('sets to null if queue empty', function () {
-			deepEqual(mod.KOMPlayRespond(uState(kTesting.StubSpacingObjectValid()), StubChronicleObjectPrepared()), Object.assign(StubStateObjectValid(), {
+			deepEqual(mod.KOMPlayRespond(uState(kTesting.StubSpacingObjectValid()), StubChronicleObjectPrepared()), StubStateObjectValid({
 				KOMPlayStateCurrent: null,
 			}));
 		});
@@ -1046,7 +1046,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		});
 
 		it('updates state', function () {
-			deepEqual(state, Object.assign(StubStateObjectValid(), {
+			deepEqual(state, StubStateObjectValid({
 				KOMPlayStateCurrent: kTesting.StubSpacingObjectValid(),
 				KOMPlayStateWait: [spacing],
 			}));
@@ -1079,7 +1079,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		});
 
 		it('updates state', function () {
-			deepEqual(state, Object.assign(StubStateObjectValid(), {
+			deepEqual(state, StubStateObjectValid({
 				KOMPlayStateCurrent: kTesting.StubSpacingObjectValid(),
 				KOMPlayStateWait: [spacing],
 			}));
@@ -1112,7 +1112,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		});
 
 		it('updates state', function () {
-			deepEqual(state, Object.assign(StubStateObjectValid(), {
+			deepEqual(state, StubStateObjectValid({
 				KOMPlayStateCurrent: kTesting.StubSpacingObjectValid(),
 				KOMPlayStateWait: [spacing],
 			}));
@@ -1194,7 +1194,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		});
 
 		it('updates state', function () {
-			deepEqual(state, Object.assign(StubStateObjectValid(), {
+			deepEqual(state, StubStateObjectValid({
 				KOMPlayStateCurrent: kTesting.StubSpacingObjectValid(),
 				KOMPlayStateWait: [spacing],
 			}));
@@ -1241,7 +1241,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		});
 
 		it('updates state', function () {
-			deepEqual(state, Object.assign(StubStateObjectValid(), {
+			deepEqual(state, StubStateObjectValid({
 				KOMPlayStateCurrent: kTesting.StubSpacingObjectValid(),
 				KOMPlayStateWait: [spacing],
 			}));
@@ -1290,7 +1290,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		});
 
 		it('updates state', function () {
-			deepEqual(state, Object.assign(StubStateObjectValid(), {
+			deepEqual(state, StubStateObjectValid({
 				KOMPlayStateCurrent: kTesting.StubSpacingObjectValid(),
 			}));
 		});
@@ -1338,7 +1338,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		});
 
 		it('updates state', function () {
-			deepEqual(state, Object.assign(StubStateObjectValid(), {
+			deepEqual(state, StubStateObjectValid({
 				KOMPlayStateCurrent: kTesting.StubSpacingObjectValid(),
 			}));
 		});
@@ -1384,7 +1384,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		});
 
 		it('updates state', function () {
-			deepEqual(state, Object.assign(StubStateObjectValid(), {
+			deepEqual(state, StubStateObjectValid({
 				KOMPlayStateCurrent: kTesting.StubSpacingObjectValid(),
 				KOMPlayStateWait: [spacing],
 			}));
@@ -1432,7 +1432,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		});
 
 		it('updates state', function () {
-			deepEqual(state, Object.assign(StubStateObjectValid(), {
+			deepEqual(state, StubStateObjectValid({
 				KOMPlayStateCurrent: kTesting.StubSpacingObjectValid(),
 				KOMPlayStateWait: [spacing],
 			}));
@@ -1482,7 +1482,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		});
 
 		it('updates state', function () {
-			deepEqual(state, Object.assign(StubStateObjectValid(), {
+			deepEqual(state, StubStateObjectValid({
 				KOMPlayStateCurrent: kTesting.StubSpacingObjectValid(),
 				KOMPlayStateWait: [],
 			}));
@@ -1532,7 +1532,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		});
 
 		it('updates state', function () {
-			deepEqual(state, Object.assign(StubStateObjectValid(), {
+			deepEqual(state, StubStateObjectValid({
 				KOMPlayStateCurrent: kTesting.StubSpacingObjectValid(),
 				KOMPlayStateWait: [],
 			}));
@@ -1582,7 +1582,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		});
 
 		it('updates state', function () {
-			deepEqual(state, Object.assign(StubStateObjectValid(), {
+			deepEqual(state, StubStateObjectValid({
 				KOMPlayStateCurrent: kTesting.StubSpacingObjectValid(),
 				KOMPlayStateWait: [],
 			}));
