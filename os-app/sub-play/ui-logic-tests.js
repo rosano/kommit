@@ -863,7 +863,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 	it('throws if param2 not prepared', function () {
 		throws(function () {
-			mod.KOMPlayRespond(StubStateObjectValid(), Object.assign(StubChronicleObjectValid2(), {
+			mod.KOMPlayRespond(StubStateObjectValid(), StubChronicleObjectValid2({
 				KOMChronicleDrawDate: null,
 			}));
 		}, /KOMErrorInputNotValid/);
