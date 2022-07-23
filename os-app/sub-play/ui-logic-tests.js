@@ -833,7 +833,7 @@ describe('KOMChronicleGenerateFlip', function test_KOMChronicleGenerateFlip() {
 describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 	const uState = function (param1, param2 = []) {
-		return Object.assign(StubStateObjectValid(), {
+		return StubStateObjectValid({
 			KOMPlayStateQueue: [].concat(param2),
 			KOMPlayStateCurrent: param1,
 		});
