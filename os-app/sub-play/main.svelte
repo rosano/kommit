@@ -18,13 +18,12 @@ const mod = {
 
 	_ValueIsFlipped: false,
 
-	_ValueState: {
-		KOMPlayStateCurrent: KOMPlaySpacings[0],
-		KOMPlayStateQueue: KOMPlaySpacings.slice(1),
+	_ValueState: KOMPlayLogic.KOMPlayStateDraw({
+		KOMPlayStateQueue: KOMPlaySpacings,
 		KOMPlayStateWait: [],
 		KOMPlayStateHistory: [],
 		KOMPlayStateShouldRandomizeDueDates: true,
-	},
+	}),
 
 	_ValueSpeechAvailable: 'speechSynthesis' in window,
 

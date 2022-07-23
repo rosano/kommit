@@ -99,7 +99,10 @@ const mod = {
 			return false;
 		}
 
+		if (!Array.isArray(inputData.KOMPlayStateHistory)) {
 			return false;
+		}
+
 		if (inputData.KOMPlayStateCurrent && KOMSpacing.KOMSpacingErrors(inputData.KOMPlayStateCurrent)) {
 			return false;
 		}
@@ -357,7 +360,7 @@ const mod = {
 				state.KOMPlayStateQueue.unshift(state.KOMPlayStateWait.splice(state.KOMPlayStateWait.indexOf(e), 1).pop());
 			});
 
-			state.KOMPlayStateCurrent = state.KOMPlayStateQueue.shift();
+			mod.KOMPlayStateDraw(state);
 		})();
 
 		return state;
