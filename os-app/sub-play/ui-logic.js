@@ -103,8 +103,8 @@ const mod = {
 			return false;
 		}
 
-		if (inputData.KOMPlayStateShouldRandomize !== undefined) {
-			if (typeof inputData.KOMPlayStateShouldRandomize !== 'boolean') {
+		if (inputData.KOMPlayStateShouldRandomizeDueDates !== undefined) {
+			if (typeof inputData.KOMPlayStateShouldRandomizeDueDates !== 'boolean') {
 				return false;
 			}
 		}
@@ -276,7 +276,7 @@ const mod = {
 			if (KOMSpacing.KOMSpacingIsReviewing(spacing) && chronicle.KOMChronicleResponseType !== mod.KOMPlayResponseTypeAgain()) {
 				let interval = (spacing.KOMSpacingInterval + mod.KOMPlayResponseIntervalOverdueBonus(spacing, chronicle)) * (chronicle.KOMChronicleResponseType === mod.KOMPlayResponseTypeHard() ? mod.KOMPlayResponseMultiplierHard() : spacing.KOMSpacingMultiplier);
 
-				if (state.KOMPlayStateShouldRandomize) {
+				if (state.KOMPlayStateShouldRandomizeDueDates) {
 					interval *= 1 + (Math.min(0.25, Math.random()) / 100 + 0.005) * (Math.random() > 0.5 ? -1 : 1);
 				}
 

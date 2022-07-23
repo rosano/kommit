@@ -252,17 +252,17 @@ describe('KOMPlayStateIsValid', function test_KOMPlayStateIsValid() {
 
 	});
 
-	context('KOMPlayStateShouldRandomize', function () {
+	context('KOMPlayStateShouldRandomizeDueDates', function () {
 
 		it('returns false if not boolean', function () {
 			deepEqual(mod.KOMPlayStateIsValid(Object.assign(kTesting.StubStateObjectValid(), {
-				KOMPlayStateShouldRandomize: null,
+				KOMPlayStateShouldRandomizeDueDates: null,
 			})), false);
 		});
 
 		it('returns true', function () {
 			deepEqual(mod.KOMPlayStateIsValid(Object.assign(kTesting.StubStateObjectValid(), {
-				KOMPlayStateShouldRandomize: true,
+				KOMPlayStateShouldRandomizeDueDates: true,
 			})), true);
 		});
 
@@ -907,14 +907,14 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 	});
 
-	context('KOMPlayStateShouldRandomize', function () {
+	context('KOMPlayStateShouldRandomizeDueDates', function () {
 
 		const uIntervals = function (param1, param2 = 0) {
 			return kTesting.uRepeat(10, function () {
 				const date = new Date();
 				const spacing = kTesting.StubSpacingObjectValid();
 				const state = Object.assign(uState(spacing), {
-					KOMPlayStateShouldRandomize: true,
+					KOMPlayStateShouldRandomizeDueDates: true,
 				});
 				const chronicle = uChronicle({
 					KOMChronicleResponseDate: date,
