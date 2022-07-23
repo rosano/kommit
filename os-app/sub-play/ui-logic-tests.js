@@ -832,10 +832,10 @@ describe('KOMChronicleGenerateFlip', function test_KOMChronicleGenerateFlip() {
 
 describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
-	const uState = function (param1, param2 = []) {
+	const uState = function (KOMPlayStateCurrent, KOMPlayStateQueue = []) {
 		return StubStateObjectValid({
-			KOMPlayStateQueue: [].concat(param2),
-			KOMPlayStateCurrent: param1,
+			KOMPlayStateQueue,
+			KOMPlayStateCurrent,
 		});
 	};
 
@@ -883,7 +883,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 		it('sets to first in queue', function () {
 			const item = kTesting.StubSpacingObjectValid();
-			deepEqual(mod.KOMPlayRespond(uState(kTesting.StubSpacingObjectValid(), item), StubChronicleObjectPrepared()).KOMPlayStateCurrent === item, true);
+			deepEqual(mod.KOMPlayRespond(uState(kTesting.StubSpacingObjectValid(), [item]), StubChronicleObjectPrepared()).KOMPlayStateCurrent === item, true);
 		});
 
 	});
