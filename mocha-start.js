@@ -121,6 +121,12 @@ global.FileReader = require('filereader');
 			}, inputData);
 		},
 
+		StubReviewObjectValid() {
+			return {
+				KOMReviewScheme: 'kKOMReviewSchemeReviewing',
+			};
+		},
+
 		StubReviewChartElementDateBarTableRowDataObjectValid (inputData) {
 			return Object.assign({
 				KOMReviewChartElementDateBarTableRowDataKey: 'alfa',

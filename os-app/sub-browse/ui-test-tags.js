@@ -1,21 +1,10 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-const kTesting = {
-	StubDeckObjectValid() {
-		return {
-			KOMDeckID: 'alfa',
-			KOMDeckName: '',
-			KOMDeckCreationDate: new Date('2019-02-23T13:56:36Z'),
-			KOMDeckModificationDate: new Date('2019-02-23T13:56:36Z'),
-		};
-	},
-};
-
 describe('KOMBrowse_Tags', function () {
 
 	before(function () {
 		return browser.OLSKVisit(kDefaultRoute, {
-			KOMBrowseDeckSelected: JSON.stringify(kTesting.StubDeckObjectValid()),
+			KOMBrowseDeckSelected: JSON.stringify(StubDeckObjectValid()),
 		});
 	});
 
