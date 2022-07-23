@@ -22,10 +22,9 @@ const mod = {
 		KOMPlayStateCurrent: KOMPlaySpacings[0],
 		KOMPlayStateQueue: KOMPlaySpacings.slice(1),
 		KOMPlayStateWait: [],
+		KOMPlayStateHistory: [],
 		KOMPlayStateShouldRandomizeDueDates: true,
 	},
-
-	_ValueHistory: [],
 
 	_ValueSpeechAvailable: 'speechSynthesis' in window,
 
@@ -327,7 +326,7 @@ const mod = {
 	ControlUndo () {
 		mod._ValueState.KOMPlayStateQueue.unshift(mod._ValueState.KOMPlayStateCurrent);
 		
-		mod._ValueState.KOMPlayStateCurrent = KOMPlayLogic.KOMPlayUndo(mod._ValueHistory.pop());
+		mod._ValueState.KOMPlayStateCurrent = KOMPlayLogic.KOMPlayUndo(mod._ValueState.KOMPlayStateHistory.pop());
 
 		if (mod.DataFrontHasAudio() || mod.DataRearHasAudio()) {
 			mod.ControlFlush();
@@ -371,7 +370,7 @@ const mod = {
 
 		KOMPlayDispatchUpdate(item);
 
-		mod._ValueHistory.push(item);
+		mod._ValueState.KOMPlayStateHistory.push(item);
 
 		if (!mod._ValueState.KOMPlayStateCurrent) {
 			return KOMPlayDispatchDone();
@@ -420,7 +419,7 @@ OLSK_SPEC_UI() ? mod.LifecycleModuleWillMount() : onMount(mod.LifecycleModuleWil
 	</div>
 
 	<div class="OLSKToolbarElementGroup">
-		<button class="KOMPlayToolbarUndoButton OLSKDecorButtonNoStyle OLSKDecorTappable" disabled={ mod._ValueHistory.length ? null : true } on:click={ mod.InterfaceUndoButtonDidClick }>{ OLSKLocalized('KOMPlayToolbarUndoButtonText') }</button>
+		<button class="KOMPlayToolbarUndoButton OLSKDecorButtonNoStyle OLSKDecorTappable" disabled={ mod._ValueState.KOMPlayStateHistory.length ? null : true } on:click={ mod.InterfaceUndoButtonDidClick }>{ OLSKLocalized('KOMPlayToolbarUndoButtonText') }</button>
 		
 		<button class="KOMPlayToolbarDoneButton OLSKDecorButtonNoStyle OLSKDecorTappable" on:click={ KOMPlayDispatchDone }>{ OLSKLocalized('KOMPlayToolbarDoneButtonText') }</button>
 	</div>

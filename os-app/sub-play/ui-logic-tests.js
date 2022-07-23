@@ -9,6 +9,7 @@ const kTesting = {
 		return Object.assign({
 			KOMPlayStateQueue: [],
 			KOMPlayStateWait: [],
+			KOMPlayStateHistory: [],
 		}, inputData);
 	},
 	StubChronicleObjectPrepared() {
@@ -229,6 +230,12 @@ describe('KOMPlayStateIsValid', function test_KOMPlayStateIsValid() {
 	it('returns false if KOMPlayStateWait not array', function () {
 		deepEqual(mod.KOMPlayStateIsValid(Object.assign(kTesting.StubStateObjectValid(), {
 			KOMPlayStateWait: null,
+		})), false);
+	});
+
+	it('returns false if KOMPlayStateHistory not array', function () {
+		deepEqual(mod.KOMPlayStateIsValid(Object.assign(kTesting.StubStateObjectValid(), {
+			KOMPlayStateHistory: null,
 		})), false);
 	});
 

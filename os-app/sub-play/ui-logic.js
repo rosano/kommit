@@ -99,6 +99,7 @@ const mod = {
 			return false;
 		}
 
+			return false;
 		if (inputData.KOMPlayStateCurrent && KOMSpacing.KOMSpacingErrors(inputData.KOMPlayStateCurrent)) {
 			return false;
 		}
