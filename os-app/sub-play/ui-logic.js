@@ -107,6 +107,10 @@ const mod = {
 			return false;
 		}
 
+		if (inputData.KOMPlayStateChronicle !== undefined && (typeof inputData.KOMPlayStateChronicle !== 'object' || inputData.KOMPlayStateChronicle === null)) {
+			return false;
+		}
+
 		if (inputData.KOMPlayStateShouldRandomizeDueDates !== undefined) {
 			if (typeof inputData.KOMPlayStateShouldRandomizeDueDates !== 'boolean') {
 				return false;

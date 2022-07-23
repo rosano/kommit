@@ -239,6 +239,22 @@ describe('KOMPlayStateIsValid', function test_KOMPlayStateIsValid() {
 
 	});
 
+	context('KOMPlayStateChronicle', function () {
+
+		it('returns false if not object', function () {
+			deepEqual(mod.KOMPlayStateIsValid(StubStateObjectValid({
+				KOMPlayStateChronicle: null,
+			})), false);
+		});
+
+		it('returns true', function () {
+			deepEqual(mod.KOMPlayStateIsValid(StubStateObjectValid({
+				KOMPlayStateChronicle: undefined,
+			})), true);
+		});
+
+	});
+
 	context('KOMPlayStateShouldRandomizeDueDates', function () {
 
 		it('returns false if not boolean', function () {

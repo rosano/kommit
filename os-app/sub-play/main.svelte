@@ -210,9 +210,9 @@ const mod = {
 
 		mod._ValueIsFlipped = false;
 
-		mod._ValueChronicle = KOMPlayLogic.KOMChronicleGenerateDraw(new Date(), mod._ValueState.KOMPlayStateCurrent);
+		mod._ValueState.KOMPlayStateChronicle = KOMPlayLogic.KOMChronicleGenerateDraw(new Date(), mod._ValueState.KOMPlayStateCurrent);
 
-		mod._ValueState.KOMPlayStateCurrent.KOMSpacingDrawDate = mod._ValueChronicle.KOMChronicleDrawDate;
+		mod._ValueState.KOMPlayStateCurrent.KOMSpacingDrawDate = mod._ValueState.KOMPlayStateChronicle.KOMChronicleDrawDate;
 
 		KOMPlayDispatchUpdate(mod._ValueState.KOMPlayStateCurrent);
 
@@ -341,9 +341,9 @@ const mod = {
 	ControlFlip () {
 		mod._ValueIsFlipped = true;
 
-		Object.assign(mod._ValueChronicle, KOMPlayLogic.KOMChronicleGenerateFlip(new Date(), mod._ValueState.KOMPlayStateCurrent))
+		Object.assign(mod._ValueState.KOMPlayStateChronicle, KOMPlayLogic.KOMChronicleGenerateFlip(new Date(), mod._ValueState.KOMPlayStateCurrent))
 
-		mod._ValueState.KOMPlayStateCurrent.KOMSpacingFlipDate = mod._ValueChronicle.KOMChronicleFlipDate;
+		mod._ValueState.KOMPlayStateCurrent.KOMSpacingFlipDate = mod._ValueState.KOMPlayStateChronicle.KOMChronicleFlipDate;
 		KOMPlayDispatchUpdate(mod._ValueState.KOMPlayStateCurrent);
 
 		if (mod.DataQuestionShouldSound()) {
@@ -366,7 +366,7 @@ const mod = {
 
 		const item = mod._ValueState.KOMPlayStateCurrent;
 
-		KOMPlayLogic.KOMPlayRespond(mod._ValueState, Object.assign(mod._ValueChronicle, {
+		KOMPlayLogic.KOMPlayRespond(mod._ValueState, Object.assign(mod._ValueState.KOMPlayStateChronicle, {
 			KOMChronicleResponseDate: new Date(),
 			KOMChronicleResponseType: inputData,
 		}));
@@ -477,9 +477,9 @@ OLSK_SPEC_UI() ? mod.LifecycleModuleWillMount() : onMount(mod.LifecycleModuleWil
 		<div id="TestKOMPlayStateQueueCount">{ mod._ValueState.KOMPlayStateQueue.length }</div>
 		<div id="TestKOMPlayStateWaitCount">{ mod._ValueState.KOMPlayStateWait.length }</div>
 		<div id="TestKOMSpacingDrawDate">{ mod._ValueState.KOMPlayStateCurrent.KOMSpacingDrawDate ? OLSKMoment.OLSKMomentPerceptionDay(mod._ValueState.KOMPlayStateCurrent.KOMSpacingDrawDate) : 'undefined' }</div>
-		<div id="TestKOMChronicleDidDrawMultipleTimes">{ JSON.stringify(mod._ValueChronicle.KOMChronicleDidDrawMultipleTimes) }</div>
+		<div id="TestKOMChronicleDidDrawMultipleTimes">{ JSON.stringify(mod._ValueState.KOMPlayStateChronicle.KOMChronicleDidDrawMultipleTimes) }</div>
 		<div id="TestKOMSpacingFlipDate">{ mod._ValueState.KOMPlayStateCurrent.KOMSpacingFlipDate ? OLSKMoment.OLSKMomentPerceptionDay(mod._ValueState.KOMPlayStateCurrent.KOMSpacingFlipDate) : 'undefined' }</div>
-		<div id="TestKOMChronicleDidFlipMultipleTimes">{ JSON.stringify(mod._ValueChronicle.KOMChronicleDidFlipMultipleTimes) }</div>
+		<div id="TestKOMChronicleDidFlipMultipleTimes">{ JSON.stringify(mod._ValueState.KOMPlayStateChronicle.KOMChronicleDidFlipMultipleTimes) }</div>
 	{/if}	
 {/if}
 
