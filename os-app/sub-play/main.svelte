@@ -210,7 +210,11 @@ const mod = {
 
 		mod._ValueIsFlipped = false;
 
-		mod.SetupChronicle();
+		mod._ValueChronicle = KOMPlayLogic.KOMChronicleGenerateDraw(new Date(), mod._ValueState.KOMPlayStateCurrent);
+
+		mod._ValueState.KOMPlayStateCurrent.KOMSpacingDrawDate = mod._ValueChronicle.KOMChronicleDrawDate;
+
+		KOMPlayDispatchUpdate(mod._ValueState.KOMPlayStateCurrent);
 
 		if (mod.DataQuestionShouldSound()) {
 			mod.ControlQuestionRead();
@@ -388,14 +392,6 @@ const mod = {
 
 	SetupEverything () {
 		mod.ControlDraw();
-	},
-
-	SetupChronicle () {
-		mod._ValueChronicle = KOMPlayLogic.KOMChronicleGenerateDraw(new Date(), mod._ValueState.KOMPlayStateCurrent);
-
-		mod._ValueState.KOMPlayStateCurrent.KOMSpacingDrawDate = mod._ValueChronicle.KOMChronicleDrawDate;
-
-		KOMPlayDispatchUpdate(mod._ValueState.KOMPlayStateCurrent);
 	},
 
 	// LIFECYCLE
