@@ -1,4 +1,4 @@
-const { throws, deepEqual, strictEqual } = require('assert');
+const { throws, deepEqual, strictEqual, notStrictEqual } = require('assert');
 
 const mod = require('./ui-logic.js').default;
 const KOMSpacing = require('../_shared/KOMSpacing/main.js').default;
@@ -808,6 +808,13 @@ describe('KOMPlayStateDraw', function test_KOMPlayStateDraw() {
 			deepEqual(mod.KOMPlayStateDraw(StubStateObjectValid({
 				KOMPlayStateQueue: [item],
 			})).KOMPlayStateQueue, []);
+		});
+		
+		it('creates copy', function () {
+			const KOMPlayStateQueue = [StubSpacingObjectValid()];
+			notStrictEqual(mod.KOMPlayStateDraw(StubStateObjectValid({
+				KOMPlayStateQueue,
+			})).KOMPlayStateQueue, KOMPlayStateQueue);
 		});
 	
 	});

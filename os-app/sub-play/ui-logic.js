@@ -454,16 +454,15 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		const KOMPlayStateCurrent = inputData.KOMPlayStateQueue.slice(0, 1).shift();
+		inputData.KOMPlayStateCurrent = inputData.KOMPlayStateQueue.slice().shift();
 
-		if (KOMPlayStateCurrent) {
-			KOMPlayStateCurrent.KOMSpacingDrawDate = (inputData.KOMPlayStateChronicle = mod.KOMChronicleGenerateDraw(options.paramDate || new Date(), KOMPlayStateCurrent)).KOMChronicleDrawDate;
+		inputData.KOMPlayStateQueue = inputData.KOMPlayStateQueue.slice(1);
+
+		if (inputData.KOMPlayStateCurrent) {
+			inputData.KOMPlayStateCurrent.KOMSpacingDrawDate = (inputData.KOMPlayStateChronicle = mod.KOMChronicleGenerateDraw(options.paramDate || new Date(), inputData.KOMPlayStateCurrent)).KOMChronicleDrawDate;
 		}
 
-		return Object.assign(inputData, {
-			KOMPlayStateCurrent,
-			KOMPlayStateQueue: inputData.KOMPlayStateQueue.slice(1),
-		});
+		return inputData;
 	},
 
 	KOMChronicleFlip(param1, param2) {
