@@ -465,6 +465,8 @@ const mod = {
 		if (inputData.KOMPlayStateCurrent && inputData.KOMPlayStateIsMultiDraw && (inputData.KOMPlayStateCurrentPair = inputData.KOMPlayStateQueue.filter(function (e) {
 			return KOMSpacing.KOMSpacingLabel(e.KOMSpacingID) === KOMSpacing.KOMSpacingLabel(inputData.KOMPlayStateCurrent.KOMSpacingID);
 		}).shift())) {
+			inputData.KOMPlayStateQueue.splice(inputData.KOMPlayStateQueue.indexOf(inputData.KOMPlayStateCurrentPair), 1);
+
 			inputData.KOMPlayStateCurrentPair.KOMSpacingDrawDate = (inputData.KOMPlayStateChronicle = mod.KOMChronicleGenerateDraw(inputData.KOMPlayStateCurrent.KOMSpacingDrawDate, inputData.KOMPlayStateCurrentPair)).KOMChronicleDrawDate;
 		}
 

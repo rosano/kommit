@@ -871,6 +871,23 @@ describe('KOMPlayStateDraw', function test_KOMPlayStateDraw() {
 			});	
 		
 		});
+
+		context('KOMPlayStateQueue', function () {
+			
+			it('removes item', function () {
+				const KOMPlayStateQueue = [
+					StubSpacingObjectValid({}, KOMSpacing.KOMSpacingLabelBackward()),
+					StubSpacingObjectValid({}, KOMSpacing.KOMSpacingLabelForward()),
+					StubSpacingObjectValid({}, KOMSpacing.KOMSpacingLabelBackward()),
+					StubSpacingObjectValid({}, KOMSpacing.KOMSpacingLabelForward()),
+				];
+				deepEqual(mod.KOMPlayStateDraw(StubStateObjectValid({
+					KOMPlayStateIsMultiDraw: true,
+					KOMPlayStateQueue,
+				})).KOMPlayStateQueue, [KOMPlayStateQueue[1], KOMPlayStateQueue[3]]);
+			});
+		
+		});
 	
 	});
 
