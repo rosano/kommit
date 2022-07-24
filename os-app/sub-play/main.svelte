@@ -19,6 +19,7 @@ const mod = {
 	_ValueIsFlipped: false,
 
 	_ValueState: KOMPlayLogic.KOMPlayStateDraw({
+		KOMPlayStateIsMultiDraw: KOMPlayDeck.KOMDeckIsMultiDraw,
 		KOMPlayStateQueue: KOMPlaySpacings,
 		KOMPlayStateWait: [],
 		KOMPlayStateHistory: [],
@@ -210,7 +211,7 @@ const mod = {
 
 		mod._ValueIsFlipped = false;
 
-		KOMPlayDispatchUpdate(mod._ValueState.KOMPlayStateCurrent);
+		[mod._ValueState.KOMPlayStateCurrent].concat(mod._ValueState.KOMPlayStateCurrentPair ? mod._ValueState.KOMPlayStateCurrentPair : []).map(KOMPlayDispatchUpdate);
 
 		if (mod.DataQuestionShouldSound()) {
 			mod.ControlQuestionRead();
@@ -337,7 +338,7 @@ const mod = {
 
 		KOMPlayLogic.KOMPlayStateFlip(mod._ValueState);
 
-		KOMPlayDispatchUpdate(mod._ValueState.KOMPlayStateCurrent);
+		[mod._ValueState.KOMPlayStateCurrent].concat(mod._ValueState.KOMPlayStateCurrentPair ? mod._ValueState.KOMPlayStateCurrentPair : []).map(KOMPlayDispatchUpdate);
 
 		if (mod.DataQuestionShouldSound()) {
 			mod.ControlReadStop();
@@ -357,7 +358,7 @@ const mod = {
 			mod.ControlFlush();
 		}
 
-		const item = mod._ValueState.KOMPlayStateCurrent;
+		const items = [mod._ValueState.KOMPlayStateCurrent].concat(mod._ValueState.KOMPlayStateCurrentPair ? mod._ValueState.KOMPlayStateCurrentPair : [])
 
 		KOMPlayLogic.KOMPlayRespond(mod._ValueState, Object.assign(mod._ValueState.KOMPlayStateChronicle, {
 			KOMChronicleResponseDate: new Date(),
@@ -366,7 +367,7 @@ const mod = {
 
 		KOMPlayLogic.KOMPlayStateDraw(mod._ValueState);
 
-		KOMPlayDispatchUpdate(item);
+		items.map(KOMPlayDispatchUpdate);
 
 		if (!mod._ValueState.KOMPlayStateCurrent) {
 			return KOMPlayDispatchDone();

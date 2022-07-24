@@ -24,7 +24,7 @@ const kTesting = {
 	},
 };
 
-describe('KOMPlay_Misc', function () {
+describe.only('KOMPlay_Misc', function () {
 
 	const items = kTesting.uSpacings(5).map(function (e, i) {
 		return Object.assign(e, i === 1 ? {
@@ -482,6 +482,62 @@ describe('KOMPlay_Misc', function () {
 					browser.assert.text(KOMPlayCardQuestion, items[2].$KOMSpacingCard.KOMCardFrontText);
 				});
 
+			});
+
+		});
+
+	});
+
+	context('KOMDeckIsMultiDraw', function test_KOMDeckIsMultiDraw () {
+
+		const items = kTesting.uSpacings(4);
+
+		before(function () {
+			return browser.OLSKVisit(kDefaultRoute, {
+				KOMPlaySpacings: JSON.stringify(items),
+				KOMPlayDeck: JSON.stringify(StubDeckObjectValid({
+					KOMDeckIsMultiDraw: true,
+				})),
+				KOMPlaySimplifiedResponseButtons: true,
+			});
+		});
+
+		before(function () {
+			browser.assert.text('#TestKOMPlayDispatchUpdate', '2');
+		});
+		
+		describe('flip', function () {
+
+			before(function () {
+				return browser.pressButton(KOMPlayFlipButton);
+			});
+
+			it('sends KOMPlayDispatchUpdate', function () {
+				browser.assert.text('#TestKOMPlayDispatchUpdate', '4');
+			});
+
+		});
+		
+		describe('respond', function () {
+
+			before(function () {
+				return browser.pressButton(KOMPlayResponseButtonNext);
+			});
+
+			it('sends KOMPlayDispatchUpdate', function () {
+				browser.assert.text('#TestKOMPlayDispatchUpdate', '8');
+			});
+
+		});
+		
+		describe('respond', function () {
+
+			before(function () {
+				return browser.pressButton(KOMPlayToolbarUndoButton);
+			});
+
+			it('sends KOMPlayDispatchUpdate', function () {
+				browser.assert.text('#TestKOMPlayDispatchUpdate', '10');
 			});
 
 		});
@@ -1576,6 +1632,6 @@ describe('KOMPlay_Misc', function () {
 
 		});
 
-	});
+	})
 
 });
