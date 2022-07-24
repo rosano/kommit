@@ -454,9 +454,9 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		inputData.KOMPlayStateCurrent = inputData.KOMPlayStateQueue.slice().shift();
+		inputData.KOMPlayStateQueue = inputData.KOMPlayStateQueue.slice();
 
-		inputData.KOMPlayStateQueue = inputData.KOMPlayStateQueue.slice(1);
+		inputData.KOMPlayStateCurrent = inputData.KOMPlayStateQueue.shift();
 
 		if (inputData.KOMPlayStateCurrent) {
 			inputData.KOMPlayStateCurrent.KOMSpacingDrawDate = (inputData.KOMPlayStateChronicle = mod.KOMChronicleGenerateDraw(options.paramDate || new Date(), inputData.KOMPlayStateCurrent)).KOMChronicleDrawDate;
