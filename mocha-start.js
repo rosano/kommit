@@ -69,7 +69,7 @@ global.FileReader = require('filereader');
 
 		StubSpacingObjectValid(inputData, direction, cardID) {
 			return Object.assign({
-				KOMSpacingID: (cardID || Math.random().toString()) + '-' + (direction || uRandomElement(KOMSpacing.KOMSpacingLabelBackward())),
+				KOMSpacingID: (cardID || Math.random().toString()) + '-' + (direction || uRandomElement(KOMSpacing.KOMSpacingLabelBackward(), KOMSpacing.KOMSpacingLabelForward())),
 				KOMSpacingChronicles: [],
 			}, inputData);
 		},
