@@ -66,7 +66,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 	context('KOMPlayStateWait', function () {
 
-		const uWait = function (inputData) {
+		const uStateWait = function (inputData) {
 			return Object.assign(uState(StubSpacingObjectValid2(), [StubSpacingObjectValid2()]), {
 				KOMPlayStateWait: [StubSpacingObjectValid2({
 					KOMSpacingDueDate: new Date(StubChronicleObjectValid2().KOMChronicleResponseDate.valueOf() + inputData),
@@ -75,10 +75,10 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		};
 
 		it('moves to queue if overdue', function () {
-			const state = uWait(-1000);
+			const state = uStateWait(-1000);
 			const queue = state.KOMPlayStateQueue.slice();
 			const first = state.KOMPlayStateWait.slice()[0];
-			deepEqual(mod.KOMPlayRespond(state, StubChronicleObjectPrepared()), Object.assign(uWait(-1000), {
+			deepEqual(mod.KOMPlayRespond(state, StubChronicleObjectPrepared()), Object.assign(uStateWait(-1000), {
 				KOMPlayStateCurrent: first,
 				KOMPlayStateQueue: queue,
 				KOMPlayStateWait: [],
@@ -86,11 +86,11 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		});
 
 		it('moves to queue if queue empty', function () {
-			const state = Object.assign(uWait(1000), {
+			const state = Object.assign(uStateWait(1000), {
 				KOMPlayStateQueue: [],
 			});
 			const wait = (state.KOMPlayStateWait = state.KOMPlayStateWait.concat(state.KOMPlayStateWait.slice())).slice();
-			deepEqual(mod.KOMPlayRespond(state, StubChronicleObjectPrepared()), Object.assign(uWait(1000), {
+			deepEqual(mod.KOMPlayRespond(state, StubChronicleObjectPrepared()), Object.assign(uStateWait(1000), {
 				KOMPlayStateCurrent: wait[0],
 				KOMPlayStateQueue: wait.slice(1),
 				KOMPlayStateWait: [],
@@ -98,9 +98,9 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		});
 
 		it('does nothing', function () {
-			const state = uWait(1000);
+			const state = uStateWait(1000);
 			const first = state.KOMPlayStateQueue[0];
-			deepEqual(mod.KOMPlayRespond(state, StubChronicleObjectValid2()), Object.assign(uWait(1000), {
+			deepEqual(mod.KOMPlayRespond(state, StubChronicleObjectValid2()), Object.assign(uStateWait(1000), {
 				KOMPlayStateCurrent: first,
 				KOMPlayStateQueue: [],
 			}));
