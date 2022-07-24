@@ -371,6 +371,8 @@ const mod = {
 			KOMChronicleResponseType: inputData,
 		}));
 
+		KOMPlayLogic.KOMPlayStateDraw(mod._ValueState);
+
 		KOMPlayDispatchUpdate(item);
 
 		mod._ValueState.KOMPlayStateHistory.push(item);

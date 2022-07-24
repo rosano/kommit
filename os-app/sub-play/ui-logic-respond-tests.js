@@ -49,21 +49,6 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 	});
 
-	context('KOMPlayStateCurrent', function () {
-
-		it('sets to null if queue empty', function () {
-			deepEqual(mod.KOMPlayRespond(uState(StubSpacingObjectValid2()), StubChronicleObjectPrepared()), StubStateObjectValid({
-				KOMPlayStateCurrent: null,
-			}));
-		});
-
-		it('sets to first in queue', function () {
-			const item = StubSpacingObjectValid2();
-			deepEqual(mod.KOMPlayRespond(uState(StubSpacingObjectValid2(), [item]), StubChronicleObjectPrepared()).KOMPlayStateCurrent === item, true);
-		});
-
-	});
-
 	context('KOMPlayStateWait', function () {
 
 		const uStateWait = function (inputData) {
@@ -77,10 +62,10 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		it('moves to queue if overdue', function () {
 			const state = uStateWait(-1000);
 			const queue = state.KOMPlayStateQueue.slice();
-			const first = state.KOMPlayStateWait.slice()[0];
+			const wait = state.KOMPlayStateWait.slice();
 			deepEqual(mod.KOMPlayRespond(state, StubChronicleObjectPrepared()), Object.assign(uStateWait(-1000), {
-				KOMPlayStateCurrent: first,
-				KOMPlayStateQueue: queue,
+				KOMPlayStateCurrent: state.KOMPlayStateCurrent,
+				KOMPlayStateQueue: wait.concat(queue),
 				KOMPlayStateWait: [],
 			}));
 		});
@@ -91,18 +76,18 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 			});
 			const wait = (state.KOMPlayStateWait = state.KOMPlayStateWait.concat(state.KOMPlayStateWait.slice())).slice();
 			deepEqual(mod.KOMPlayRespond(state, StubChronicleObjectPrepared()), Object.assign(uStateWait(1000), {
-				KOMPlayStateCurrent: wait[0],
-				KOMPlayStateQueue: wait.slice(1),
+				KOMPlayStateCurrent: state.KOMPlayStateCurrent,
+				KOMPlayStateQueue: wait,
 				KOMPlayStateWait: [],
 			}));
 		});
 
 		it('does nothing', function () {
 			const state = uStateWait(1000);
-			const first = state.KOMPlayStateQueue[0];
+			const current = state.KOMPlayStateCurrent;
 			deepEqual(mod.KOMPlayRespond(state, StubChronicleObjectValid2()), Object.assign(uStateWait(1000), {
-				KOMPlayStateCurrent: first,
-				KOMPlayStateQueue: [],
+				KOMPlayStateCurrent: undefined,
+				KOMPlayStateQueue: state.KOMPlayStateQueue,
 			}));
 		});
 
@@ -223,7 +208,8 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 		it('updates state', function () {
 			deepEqual(state, StubStateObjectValid({
-				KOMPlayStateCurrent: StubSpacingObjectValid2(),
+				KOMPlayStateCurrent: undefined,
+				KOMPlayStateQueue: state.KOMPlayStateQueue,
 				KOMPlayStateWait: [spacing],
 			}));
 		});
@@ -256,7 +242,8 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 		it('updates state', function () {
 			deepEqual(state, StubStateObjectValid({
-				KOMPlayStateCurrent: StubSpacingObjectValid2(),
+				KOMPlayStateCurrent: undefined,
+				KOMPlayStateQueue: state.KOMPlayStateQueue,
 				KOMPlayStateWait: [spacing],
 			}));
 		});
@@ -289,7 +276,8 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 		it('updates state', function () {
 			deepEqual(state, StubStateObjectValid({
-				KOMPlayStateCurrent: StubSpacingObjectValid2(),
+				KOMPlayStateCurrent: undefined,
+				KOMPlayStateQueue: state.KOMPlayStateQueue,
 				KOMPlayStateWait: [spacing],
 			}));
 		});
@@ -325,6 +313,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		it('updates state', function () {
 			deepEqual(state, StubStateObjectValid({
 				KOMPlayStateCurrent: undefined,
+				KOMPlayStateQueue: state.KOMPlayStateQueue,
 			}));
 		});
 
@@ -371,7 +360,8 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 		it('updates state', function () {
 			deepEqual(state, StubStateObjectValid({
-				KOMPlayStateCurrent: StubSpacingObjectValid2(),
+				KOMPlayStateCurrent: undefined,
+				KOMPlayStateQueue: state.KOMPlayStateQueue,
 				KOMPlayStateWait: [spacing],
 			}));
 		});
@@ -418,7 +408,8 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 		it('updates state', function () {
 			deepEqual(state, StubStateObjectValid({
-				KOMPlayStateCurrent: StubSpacingObjectValid2(),
+				KOMPlayStateCurrent: undefined,
+				KOMPlayStateQueue: state.KOMPlayStateQueue,
 				KOMPlayStateWait: [spacing],
 			}));
 		});
@@ -467,7 +458,8 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 		it('updates state', function () {
 			deepEqual(state, StubStateObjectValid({
-				KOMPlayStateCurrent: StubSpacingObjectValid2(),
+				KOMPlayStateCurrent: undefined,
+				KOMPlayStateQueue: state.KOMPlayStateQueue,
 			}));
 		});
 
@@ -515,7 +507,8 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 		it('updates state', function () {
 			deepEqual(state, StubStateObjectValid({
-				KOMPlayStateCurrent: StubSpacingObjectValid2(),
+				KOMPlayStateCurrent: undefined,
+				KOMPlayStateQueue: state.KOMPlayStateQueue,
 			}));
 		});
 
@@ -561,7 +554,8 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 		it('updates state', function () {
 			deepEqual(state, StubStateObjectValid({
-				KOMPlayStateCurrent: StubSpacingObjectValid2(),
+				KOMPlayStateCurrent: undefined,
+				KOMPlayStateQueue: state.KOMPlayStateQueue,
 				KOMPlayStateWait: [spacing],
 			}));
 		});
@@ -609,7 +603,8 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 		it('updates state', function () {
 			deepEqual(state, StubStateObjectValid({
-				KOMPlayStateCurrent: StubSpacingObjectValid2(),
+				KOMPlayStateCurrent: undefined,
+				KOMPlayStateQueue: state.KOMPlayStateQueue,
 				KOMPlayStateWait: [spacing],
 			}));
 		});
@@ -659,7 +654,8 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 		it('updates state', function () {
 			deepEqual(state, StubStateObjectValid({
-				KOMPlayStateCurrent: StubSpacingObjectValid2(),
+				KOMPlayStateCurrent: undefined,
+				KOMPlayStateQueue: state.KOMPlayStateQueue,
 				KOMPlayStateWait: [],
 			}));
 		});
@@ -709,7 +705,8 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 		it('updates state', function () {
 			deepEqual(state, StubStateObjectValid({
-				KOMPlayStateCurrent: StubSpacingObjectValid2(),
+				KOMPlayStateCurrent: undefined,
+				KOMPlayStateQueue: state.KOMPlayStateQueue,
 				KOMPlayStateWait: [],
 			}));
 		});
@@ -759,7 +756,8 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 		it('updates state', function () {
 			deepEqual(state, StubStateObjectValid({
-				KOMPlayStateCurrent: StubSpacingObjectValid2(),
+				KOMPlayStateCurrent: undefined,
+				KOMPlayStateQueue: state.KOMPlayStateQueue,
 				KOMPlayStateWait: [],
 			}));
 		});

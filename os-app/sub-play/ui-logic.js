@@ -364,7 +364,7 @@ const mod = {
 				state.KOMPlayStateQueue.unshift(state.KOMPlayStateWait.splice(state.KOMPlayStateWait.indexOf(e), 1).pop());
 			});
 
-			mod.KOMPlayStateDraw(state);
+			state.KOMPlayStateCurrent = undefined;
 		})();
 
 		return state;
