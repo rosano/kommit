@@ -829,6 +829,51 @@ describe('KOMPlayStateDraw', function test_KOMPlayStateDraw() {
 		}).KOMPlayStateChronicle, mod.KOMChronicleGenerateDraw(paramDate, item));
 	});
 
+	context('KOMPlayStateIsMultiDraw', function () {
+
+		context('KOMPlayStateCurrentPair', function () {
+			
+			it('ignores if KOMPlayStateQueue empty', function () {
+				const item = StubSpacingObjectValid({}, KOMSpacing.KOMSpacingLabelBackward());
+				deepEqual(mod.KOMPlayStateDraw(StubStateObjectValid({
+					KOMPlayStateIsMultiDraw: true,
+					KOMPlayStateQueue: [item],
+				})).KOMPlayStateCurrentPair, null);
+			});
+
+			it('ignores if KOMPlayStateQueue has no corresponding', function () {
+				const item = StubSpacingObjectValid({}, KOMSpacing.KOMSpacingLabelBackward());
+				deepEqual(mod.KOMPlayStateDraw(StubStateObjectValid({
+					KOMPlayStateIsMultiDraw: true,
+					KOMPlayStateQueue: [item, StubSpacingObjectValid({}, KOMSpacing.KOMSpacingLabelForward())],
+				})).KOMPlayStateCurrentPair, null);
+			});
+
+			it('sets to first corresponding from KOMPlayStateQueue', function () {
+				const item = StubSpacingObjectValid({}, KOMSpacing.KOMSpacingLabelBackward());
+				deepEqual(mod.KOMPlayStateDraw(StubStateObjectValid({
+					KOMPlayStateIsMultiDraw: true,
+					KOMPlayStateQueue: [
+						StubSpacingObjectValid({}, KOMSpacing.KOMSpacingLabelBackward()),
+						StubSpacingObjectValid({}, KOMSpacing.KOMSpacingLabelForward()),
+						item,
+						StubSpacingObjectValid({}, KOMSpacing.KOMSpacingLabelForward()),
+					],
+				})).KOMPlayStateCurrentPair, item);
+			});	
+
+			it('sets KOMSpacingDrawDate to KOMChronicleDrawDate', function () {
+				const item = mod.KOMPlayStateDraw(StubStateObjectValid({
+					KOMPlayStateIsMultiDraw: true,
+					KOMPlayStateQueue: [StubSpacingObjectValid(), StubSpacingObjectValid()],
+				}));
+				deepEqual(item.KOMPlayStateCurrentPair.KOMSpacingDrawDate, item.KOMPlayStateChronicle.KOMChronicleDrawDate);
+			});	
+		
+		});
+	
+	});
+
 });
 
 describe('KOMChronicleFlip', function test_KOMChronicleFlip() {

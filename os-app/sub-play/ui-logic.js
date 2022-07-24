@@ -462,6 +462,12 @@ const mod = {
 			inputData.KOMPlayStateCurrent.KOMSpacingDrawDate = (inputData.KOMPlayStateChronicle = mod.KOMChronicleGenerateDraw(options.paramDate || new Date(), inputData.KOMPlayStateCurrent)).KOMChronicleDrawDate;
 		}
 
+		if (inputData.KOMPlayStateCurrent && inputData.KOMPlayStateIsMultiDraw && (inputData.KOMPlayStateCurrentPair = inputData.KOMPlayStateQueue.filter(function (e) {
+			return KOMSpacing.KOMSpacingLabel(e.KOMSpacingID) === KOMSpacing.KOMSpacingLabel(inputData.KOMPlayStateCurrent.KOMSpacingID);
+		}).shift())) {
+			inputData.KOMPlayStateCurrentPair.KOMSpacingDrawDate = (inputData.KOMPlayStateChronicle = mod.KOMChronicleGenerateDraw(inputData.KOMPlayStateCurrent.KOMSpacingDrawDate, inputData.KOMPlayStateCurrentPair)).KOMChronicleDrawDate;
+		}
+
 		return inputData;
 	},
 
