@@ -143,6 +143,16 @@ const mod = {
 		});
 	},
 
+	KOMPlayStateFlip (inputData, options = {}) {
+		if (!mod.KOMPlayStateIsValid(inputData)) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		inputData.KOMPlayStateCurrent.KOMSpacingFlipDate = Object.assign(inputData.KOMPlayStateChronicle, mod.KOMChronicleGenerateFlip(options.paramDate || new Date(), inputData.KOMPlayStateCurrent)).KOMChronicleFlipDate
+
+		return inputData;
+	},
+
 	KOMPlayResponseTypeAgain() {
 		return 'RESPONSE_AGAIN';
 	},

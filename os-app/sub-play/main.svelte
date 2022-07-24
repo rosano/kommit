@@ -337,9 +337,8 @@ const mod = {
 	ControlFlip () {
 		mod._ValueIsFlipped = true;
 
-		Object.assign(mod._ValueState.KOMPlayStateChronicle, KOMPlayLogic.KOMChronicleGenerateFlip(new Date(), mod._ValueState.KOMPlayStateCurrent))
+		KOMPlayLogic.KOMPlayStateFlip(mod._ValueState);
 
-		mod._ValueState.KOMPlayStateCurrent.KOMSpacingFlipDate = mod._ValueState.KOMPlayStateChronicle.KOMChronicleFlipDate;
 		KOMPlayDispatchUpdate(mod._ValueState.KOMPlayStateCurrent);
 
 		if (mod.DataQuestionShouldSound()) {

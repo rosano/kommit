@@ -349,6 +349,51 @@ describe('KOMPlayStateDraw', function test_KOMPlayStateDraw() {
 
 });
 
+describe('KOMPlayStateFlip', function test_KOMPlayStateFlip() {
+
+	it('throws if not valid', function () {
+		throws(function () {
+			mod.KOMPlayStateFlip({});
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns input', function () {
+		const item = StubStateObjectValid({
+			KOMPlayStateCurrent: StubSpacingObjectValid(),
+			KOMPlayStateChronicle: StubChronicleObjectValid(),
+		});
+		deepEqual(mod.KOMPlayStateFlip(item), item);
+	});
+
+	context('KOMPlayStateChronicle', function () {
+
+		it('sets KOMChronicleFlipDate', function () {
+			const item = StubSpacingObjectValid();
+			const paramDate = new Date();
+			deepEqual(mod.KOMPlayStateFlip(StubStateObjectValid({
+				KOMPlayStateCurrent: item,
+				KOMPlayStateChronicle: StubChronicleObjectValid(),
+			}), {
+				paramDate,
+			}).KOMPlayStateChronicle.KOMChronicleFlipDate, mod.KOMChronicleGenerateFlip(paramDate, item).KOMChronicleFlipDate);
+		});
+	
+	});
+
+	context('KOMPlayStateCurrent', function () {
+		
+		it('sets KOMSpacingFlipDate to KOMChronicleFlipDate', function () {
+			const item = mod.KOMPlayStateFlip(StubStateObjectValid({
+				KOMPlayStateCurrent: StubSpacingObjectValid(),
+				KOMPlayStateChronicle: StubChronicleObjectValid(),
+			}));
+			deepEqual(item.KOMPlayStateCurrent.KOMSpacingFlipDate, item.KOMPlayStateChronicle.KOMChronicleFlipDate);
+		});	
+	
+	});
+
+});
+
 describe('KOMPlayResponseTypeAgain', function test_KOMPlayResponseTypeAgain() {
 
 	it('returns string', function () {
