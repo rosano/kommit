@@ -133,12 +133,14 @@ const mod = {
 
 		const KOMPlayStateCurrent = inputData.KOMPlayStateQueue.slice(0, 1).shift();
 
+		if (KOMPlayStateCurrent) {
+			KOMPlayStateCurrent.KOMSpacingDrawDate = (inputData.KOMPlayStateChronicle = mod.KOMChronicleGenerateDraw(options.paramDate || new Date(), KOMPlayStateCurrent)).KOMChronicleDrawDate;
+		}
+
 		return Object.assign(inputData, {
 			KOMPlayStateCurrent,
 			KOMPlayStateQueue: inputData.KOMPlayStateQueue.slice(1),
-		}, KOMPlayStateCurrent ? {
-			KOMPlayStateChronicle: mod.KOMChronicleGenerateDraw(options.paramDate || new Date(), KOMPlayStateCurrent),
-		} : {});
+		});
 	},
 
 	KOMPlayResponseTypeAgain() {

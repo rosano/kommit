@@ -316,6 +316,13 @@ describe('KOMPlayStateDraw', function test_KOMPlayStateDraw() {
 				KOMPlayStateQueue: [item],
 			})).KOMPlayStateCurrent, item);
 		});	
+
+		it('sets KOMSpacingDrawDate to KOMChronicleDrawDate', function () {
+			const item = mod.KOMPlayStateDraw(StubStateObjectValid({
+				KOMPlayStateQueue: [StubSpacingObjectValid()],
+			}));
+			deepEqual(item.KOMPlayStateCurrent.KOMSpacingDrawDate, item.KOMPlayStateChronicle.KOMChronicleDrawDate);
+		});	
 	
 	});
 
