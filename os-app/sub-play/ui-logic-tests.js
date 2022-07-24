@@ -1,4 +1,4 @@
-const { throws, deepEqual, notDeepEqual } = require('assert');
+const { throws, deepEqual, strictEqual } = require('assert');
 
 const mod = require('./ui-logic.js').default;
 const KOMSpacing = require('../_shared/KOMSpacing/main.js').default;
@@ -768,7 +768,7 @@ describe('KOMPlayStateDraw', function test_KOMPlayStateDraw() {
 		const item = StubStateObjectValid({
 			KOMPlayStateQueue: [StubSpacingObjectValid()],
 		});
-		deepEqual(mod.KOMPlayStateDraw(item), item);
+		strictEqual(mod.KOMPlayStateDraw(item), item);
 	});
 
 	it('does not throw if queue if empty', function () {
@@ -893,7 +893,7 @@ describe('KOMPlayStateFlip', function test_KOMPlayStateFlip() {
 			KOMPlayStateCurrent: StubSpacingObjectValid(),
 			KOMPlayStateChronicle: StubChronicleObjectValid(),
 		});
-		deepEqual(mod.KOMPlayStateFlip(item), item);
+		strictEqual(mod.KOMPlayStateFlip(item), item);
 	});
 
 	context('KOMPlayStateChronicle', function () {
@@ -944,7 +944,7 @@ describe('KOMChronicleUndo', function test_KOMChronicleUndo() {
 			KOMSpacingChronicles: [StubChronicleObjectValid2()],
 		});
 
-		deepEqual(mod.KOMChronicleUndo(item) === item, true);
+		strictEqual(mod.KOMChronicleUndo(item) === item, true);
 	});
 
 	it('removes last KOMSpacingChronicles item', function () {
@@ -1044,7 +1044,7 @@ describe('KOMPlayStateUndo', function test_KOMPlayStateUndo() {
 			KOMPlayStateCurrent: StubSpacingObjectValid(),
 			KOMPlayStateHistory: [StubSpacingObjectHistorical()],
 		});
-		deepEqual(mod.KOMPlayStateUndo(item), item);
+		strictEqual(mod.KOMPlayStateUndo(item), item);
 	});
 
 	context('KOMPlayStateCurrent', function () {
