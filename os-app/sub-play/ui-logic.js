@@ -126,33 +126,6 @@ const mod = {
 		return true;
 	},
 
-	KOMPlayStateDraw (inputData, options = {}) {
-		if (!mod.KOMPlayStateIsValid(inputData)) {
-			throw new Error('KOMErrorInputNotValid');
-		}
-
-		const KOMPlayStateCurrent = inputData.KOMPlayStateQueue.slice(0, 1).shift();
-
-		if (KOMPlayStateCurrent) {
-			KOMPlayStateCurrent.KOMSpacingDrawDate = (inputData.KOMPlayStateChronicle = mod.KOMChronicleGenerateDraw(options.paramDate || new Date(), KOMPlayStateCurrent)).KOMChronicleDrawDate;
-		}
-
-		return Object.assign(inputData, {
-			KOMPlayStateCurrent,
-			KOMPlayStateQueue: inputData.KOMPlayStateQueue.slice(1),
-		});
-	},
-
-	KOMPlayStateFlip (inputData, options = {}) {
-		if (!mod.KOMPlayStateIsValid(inputData)) {
-			throw new Error('KOMErrorInputNotValid');
-		}
-
-		inputData.KOMPlayStateCurrent.KOMSpacingFlipDate = Object.assign(inputData.KOMPlayStateChronicle, mod.KOMChronicleGenerateFlip(options.paramDate || new Date(), inputData.KOMPlayStateCurrent)).KOMChronicleFlipDate
-
-		return inputData;
-	},
-
 	KOMPlayResponseTypeAgain() {
 		return 'RESPONSE_AGAIN';
 	},
@@ -476,6 +449,23 @@ const mod = {
 		} : {});
 	},
 
+	KOMPlayStateDraw (inputData, options = {}) {
+		if (!mod.KOMPlayStateIsValid(inputData)) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		const KOMPlayStateCurrent = inputData.KOMPlayStateQueue.slice(0, 1).shift();
+
+		if (KOMPlayStateCurrent) {
+			KOMPlayStateCurrent.KOMSpacingDrawDate = (inputData.KOMPlayStateChronicle = mod.KOMChronicleGenerateDraw(options.paramDate || new Date(), KOMPlayStateCurrent)).KOMChronicleDrawDate;
+		}
+
+		return Object.assign(inputData, {
+			KOMPlayStateCurrent,
+			KOMPlayStateQueue: inputData.KOMPlayStateQueue.slice(1),
+		});
+	},
+
 	KOMChronicleGenerateFlip(param1, param2) {
 		if (!(param1 instanceof Date) || Number.isNaN(param1.getTime())) {
 			throw new Error('KOMErrorInputNotValid');
@@ -490,6 +480,16 @@ const mod = {
 		}, param2.KOMSpacingFlipDate && KOMSpacing.KOMSpacingIsReviewing(param2) && OLSKMoment.OLSKMomentPerceptionDay(param1) === OLSKMoment.OLSKMomentPerceptionDay(param2.KOMSpacingFlipDate) ? {
 			KOMChronicleDidFlipMultipleTimes: true,
 		} : {});
+	},
+
+	KOMPlayStateFlip (inputData, options = {}) {
+		if (!mod.KOMPlayStateIsValid(inputData)) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		inputData.KOMPlayStateCurrent.KOMSpacingFlipDate = Object.assign(inputData.KOMPlayStateChronicle, mod.KOMChronicleGenerateFlip(options.paramDate || new Date(), inputData.KOMPlayStateCurrent)).KOMChronicleFlipDate
+
+		return inputData;
 	},
 
 	KOMPlayUndo(inputData) {
