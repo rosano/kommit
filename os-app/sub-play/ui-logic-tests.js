@@ -305,23 +305,23 @@ describe('KOMPlayStateDraw', function test_KOMPlayStateDraw() {
 
 	context('KOMPlayStateCurrent', function () {
 		
-		it('sets to null if queue empty', function () {
+		it('sets to null if KOMPlayStateQueue empty', function () {
 			const item = StubSpacingObjectValid();
 			deepEqual(mod.KOMPlayStateDraw(StubStateObjectValid()).KOMPlayStateCurrent, null);
 		});
-	
-	});
 
-	context('queue', function () {
-		
-		it('sets KOMPlayStateCurrent', function () {
+		it('sets to first from KOMPlayStateQueue', function () {
 			const item = StubSpacingObjectValid();
 			deepEqual(mod.KOMPlayStateDraw(StubStateObjectValid({
 				KOMPlayStateQueue: [item],
 			})).KOMPlayStateCurrent, item);
-		});
+		});	
+	
+	});
+
+	context('KOMPlayStateQueue', function () {
 		
-		it('shifts KOMPlayStateQueue', function () {
+		it('removes first item', function () {
 			const item = StubSpacingObjectValid();
 			deepEqual(mod.KOMPlayStateDraw(StubStateObjectValid({
 				KOMPlayStateQueue: [item],
