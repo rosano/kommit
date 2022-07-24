@@ -450,52 +450,6 @@ describe('KOMReviewDetail_Misc', function () {
 
 	});
 
-	describe('KOMReviewDetailFormIsMultiDrawField', function test_KOMReviewDetailFormIsMultiDrawField() {
-
-		before(function () {
-			return browser.OLSKVisit(kDefaultRoute, {
-				KOMReviewDetailDeck: JSON.stringify(uDeck()),
-			});
-		});
-
-		it('sets type', function () {
-			browser.assert.attribute(KOMReviewDetailFormIsMultiDrawField, 'type', 'checkbox');
-		});
-
-		it('binds KOMDeckIsMultiDraw', function () {
-			browser.assert.OLSKIsChecked(KOMReviewDetailFormIsMultiDrawField, false);
-		});
-
-		context('click', function () {
-
-			before(function () {
-				browser.assert.text('#TestKOMReviewDetailDispatchUpdate', '0');
-				browser.assert.text('#TestKOMReviewDetailDispatchUpdateData', 'undefined');
-			});
-
-			before(function () {
-				browser.assert.text('#TestKOMReviewDetailDispatchRecount', '0');
-			});
-
-			before(function () {
-				return browser.check(KOMReviewDetailFormIsMultiDrawField);
-			});
-
-			it('sends KOMReviewDetailDispatchUpdate', function () {
-				browser.assert.text('#TestKOMReviewDetailDispatchUpdate', '1');
-				browser.assert.text('#TestKOMReviewDetailDispatchUpdateData', JSON.stringify(uDeck({
-					KOMDeckIsMultiDraw: true,
-				})));
-			});
-
-			it('sends KOMReviewDetailDispatchRecount', function () {
-				browser.assert.text('#TestKOMReviewDetailDispatchRecount', '1');
-			});
-
-		});
-
-	});
-
 	describe('KOMReviewDetailFormRetireCardsField', function test_KOMReviewDetailFormRetireCardsField() {
 
 		before(function () {

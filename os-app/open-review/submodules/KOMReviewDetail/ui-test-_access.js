@@ -24,8 +24,6 @@ Object.entries({
 	KOMReviewDetailFormRearLanguageCode: '.KOMReviewDetailFormRearLanguageCode .KOMReviewDetailLanguageCode',
 	KOMReviewDetailFormIsForwardOnlyField: '.KOMReviewDetailFormIsForwardOnlyField',
 	KOMReviewDetailFormIsForwardOnlyFieldLabel: '.KOMReviewDetailFormIsForwardOnlyFieldLabel',
-	KOMReviewDetailFormIsMultiDrawField: '.KOMReviewDetailFormIsMultiDrawField',
-	KOMReviewDetailFormIsMultiDrawFieldLabel: '.KOMReviewDetailFormIsMultiDrawFieldLabel',
 	KOMReviewDetailFormRetireCardsField: '.KOMReviewDetailFormRetireCardsField',
 	KOMReviewDetailFormRetireCardsFieldLabel: '.KOMReviewDetailFormRetireCardsFieldLabel',
 	KOMReviewDetailFormRetireCardsFieldOptionNever: '.KOMReviewDetailFormRetireCardsFieldOptionNever',
@@ -142,14 +140,6 @@ describe('KOMReviewDetail_Access', function () {
 
 	it('shows KOMReviewDetailFormIsForwardOnlyFieldLabel', function () {
 		browser.assert.elements(KOMReviewDetailFormIsForwardOnlyFieldLabel, 1);
-	});
-
-	it('shows KOMReviewDetailFormIsMultiDrawField', function () {
-		browser.assert.elements(KOMReviewDetailFormIsMultiDrawField, 1);
-	});
-
-	it('shows KOMReviewDetailFormIsMultiDrawFieldLabel', function () {
-		browser.assert.elements(KOMReviewDetailFormIsMultiDrawFieldLabel, 1);
 	});
 
 	it('shows KOMReviewDetailFormRetireCardsField', function () {
