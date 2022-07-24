@@ -527,6 +527,18 @@ const mod = {
 		return inputData;
 	},
 
+	KOMPlayStateUndo (inputData) {
+		if (!mod.KOMPlayStateIsValid(inputData)) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		inputData.KOMPlayStateQueue.unshift(inputData.KOMPlayStateCurrent);
+		
+		inputData.KOMPlayStateCurrent = mod.KOMChronicleUndo(inputData.KOMPlayStateHistory.pop());
+
+		return inputData;
+	},
+
 };
 
 export default mod;

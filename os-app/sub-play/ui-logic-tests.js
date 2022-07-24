@@ -1030,3 +1030,69 @@ describe('KOMChronicleUndo', function test_KOMChronicleUndo() {
 	});
 
 });
+
+describe('KOMPlayStateUndo', function test_KOMPlayStateUndo() {
+
+	it('throws if not valid', function () {
+		throws(function () {
+			mod.KOMPlayStateUndo({});
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns input', function () {
+		const item = StubStateObjectValid({
+			KOMPlayStateCurrent: StubSpacingObjectValid(),
+			KOMPlayStateHistory: [StubSpacingObjectHistorical()],
+		});
+		deepEqual(mod.KOMPlayStateUndo(item), item);
+	});
+
+	context('KOMPlayStateCurrent', function () {
+
+		it('sets to first from KOMPlayStateHistory', function () {
+			const item = StubSpacingObjectHistorical();
+			deepEqual(mod.KOMPlayStateUndo(StubStateObjectValid({
+				KOMPlayStateCurrent: StubSpacingObjectValid(),
+				KOMPlayStateQueue: [],
+				KOMPlayStateHistory: [item]
+			})).KOMPlayStateCurrent, item);
+		});
+	
+	});
+
+	context('KOMPlayStateQueue', function () {
+
+		it('adds KOMPlayStateCurrent', function () {
+			const item = StubSpacingObjectValid();
+			deepEqual(mod.KOMPlayStateUndo(StubStateObjectValid({
+				KOMPlayStateCurrent: item,
+				KOMPlayStateQueue: [],
+				KOMPlayStateHistory: [StubSpacingObjectHistorical()]
+			})).KOMPlayStateQueue, [item]);
+		});
+	
+	});
+
+	context('KOMPlayStateHistory', function () {
+
+		it('removes last item from KOMPlayStateHistory', function () {
+			const item = StubSpacingObjectValid();
+			deepEqual(mod.KOMPlayStateUndo(StubStateObjectValid({
+				KOMPlayStateCurrent: StubSpacingObjectValid(),
+				KOMPlayStateQueue: [],
+				KOMPlayStateHistory: [item, StubSpacingObjectHistorical()]
+			})).KOMPlayStateHistory, [item]);
+		});
+
+		it('calls KOMChronicleUndo', function () {
+			const item = StubSpacingObjectHistorical();
+			deepEqual(mod.KOMPlayStateUndo(StubStateObjectValid({
+				KOMPlayStateCurrent: StubSpacingObjectValid(),
+				KOMPlayStateQueue: [],
+				KOMPlayStateHistory: [item]
+			})).KOMPlayStateCurrent.KOMSpacingChronicles, []);
+		});
+	
+	});
+
+});

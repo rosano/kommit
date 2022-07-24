@@ -323,9 +323,7 @@ const mod = {
 	},
 
 	ControlUndo () {
-		mod._ValueState.KOMPlayStateQueue.unshift(mod._ValueState.KOMPlayStateCurrent);
-		
-		mod._ValueState.KOMPlayStateCurrent = KOMPlayLogic.KOMChronicleUndo(mod._ValueState.KOMPlayStateHistory.pop());
+		KOMPlayLogic.KOMPlayStateUndo(mod._ValueState);
 
 		if (mod.DataFrontHasAudio() || mod.DataRearHasAudio()) {
 			mod.ControlFlush();
