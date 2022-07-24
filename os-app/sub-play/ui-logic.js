@@ -494,6 +494,10 @@ const mod = {
 
 		inputData.KOMPlayStateCurrent.KOMSpacingFlipDate = Object.assign(inputData.KOMPlayStateChronicle, mod.KOMChronicleFlip(options.paramDate || new Date(), inputData.KOMPlayStateCurrent)).KOMChronicleFlipDate
 
+		if (inputData.KOMPlayStateIsMultiDraw && inputData.KOMPlayStateCurrentPair) {
+			inputData.KOMPlayStateCurrentPair.KOMSpacingFlipDate = inputData.KOMPlayStateCurrent.KOMSpacingFlipDate;
+		}
+
 		return inputData;
 	},
 

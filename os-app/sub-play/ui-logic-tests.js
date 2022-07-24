@@ -975,6 +975,20 @@ describe('KOMPlayStateFlip', function test_KOMPlayStateFlip() {
 	
 	});
 
+	context('KOMPlayStateCurrentPair', function () {
+
+		it('sets KOMSpacingFlipDate to KOMChronicleFlipDate', function () {
+			const item = mod.KOMPlayStateFlip(StubStateObjectValid({
+				KOMPlayStateIsMultiDraw: true,
+				KOMPlayStateCurrent: StubSpacingObjectValid(),
+				KOMPlayStateCurrentPair: StubSpacingObjectValid(),
+				KOMPlayStateChronicle: StubChronicleObjectValid(),
+			}));
+			deepEqual(item.KOMPlayStateCurrentPair.KOMSpacingFlipDate, item.KOMPlayStateChronicle.KOMChronicleFlipDate);
+		});	
+	
+	});
+
 });
 
 describe('KOMChronicleUndo', function test_KOMChronicleUndo() {
