@@ -1,4 +1,4 @@
-const { throws, deepEqual, notDeepEqual } = require('assert');
+const { throws, deepEqual, strictEqual } = require('assert');
 
 const mod = require('./ui-logic.js').default;
 
@@ -31,7 +31,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 	it('returns param1', function () {
 		const item = uState(StubSpacingObjectValid2());
-		deepEqual(mod.KOMPlayRespond(item, StubChronicleObjectPrepared()) === item, true);
+		strictEqual(mod.KOMPlayRespond(item, StubChronicleObjectPrepared()), item);
 	});
 
 	context('param2', function () {
