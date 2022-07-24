@@ -61,12 +61,14 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 		it('moves to queue if overdue', function () {
 			const state = uStateWait(-1000);
+			const current = state.KOMPlayStateCurrent;
 			const queue = state.KOMPlayStateQueue.slice();
 			const wait = state.KOMPlayStateWait.slice();
 			deepEqual(mod.KOMPlayRespond(state, StubChronicleObjectPrepared()), Object.assign(uStateWait(-1000), {
 				KOMPlayStateCurrent: state.KOMPlayStateCurrent,
 				KOMPlayStateQueue: wait.concat(queue),
 				KOMPlayStateWait: [],
+				KOMPlayStateHistory: [current],
 			}));
 		});
 
@@ -74,11 +76,13 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 			const state = Object.assign(uStateWait(1000), {
 				KOMPlayStateQueue: [],
 			});
+			const current = state.KOMPlayStateCurrent;
 			const wait = (state.KOMPlayStateWait = state.KOMPlayStateWait.concat(state.KOMPlayStateWait.slice())).slice();
 			deepEqual(mod.KOMPlayRespond(state, StubChronicleObjectPrepared()), Object.assign(uStateWait(1000), {
 				KOMPlayStateCurrent: state.KOMPlayStateCurrent,
 				KOMPlayStateQueue: wait,
 				KOMPlayStateWait: [],
+				KOMPlayStateHistory: [current],
 			}));
 		});
 
@@ -88,6 +92,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 			deepEqual(mod.KOMPlayRespond(state, StubChronicleObjectValid2()), Object.assign(uStateWait(1000), {
 				KOMPlayStateCurrent: undefined,
 				KOMPlayStateQueue: state.KOMPlayStateQueue,
+				KOMPlayStateHistory: [current],
 			}));
 		});
 
@@ -211,6 +216,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 				KOMPlayStateCurrent: undefined,
 				KOMPlayStateQueue: state.KOMPlayStateQueue,
 				KOMPlayStateWait: [spacing],
+				KOMPlayStateHistory: [spacing],
 			}));
 		});
 
@@ -245,6 +251,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 				KOMPlayStateCurrent: undefined,
 				KOMPlayStateQueue: state.KOMPlayStateQueue,
 				KOMPlayStateWait: [spacing],
+				KOMPlayStateHistory: [spacing],
 			}));
 		});
 
@@ -279,6 +286,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 				KOMPlayStateCurrent: undefined,
 				KOMPlayStateQueue: state.KOMPlayStateQueue,
 				KOMPlayStateWait: [spacing],
+				KOMPlayStateHistory: [spacing],
 			}));
 		});
 
@@ -314,6 +322,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 			deepEqual(state, StubStateObjectValid({
 				KOMPlayStateCurrent: undefined,
 				KOMPlayStateQueue: state.KOMPlayStateQueue,
+				KOMPlayStateHistory: [spacing],
 			}));
 		});
 
@@ -363,6 +372,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 				KOMPlayStateCurrent: undefined,
 				KOMPlayStateQueue: state.KOMPlayStateQueue,
 				KOMPlayStateWait: [spacing],
+				KOMPlayStateHistory: [spacing, spacing],
 			}));
 		});
 
@@ -411,6 +421,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 				KOMPlayStateCurrent: undefined,
 				KOMPlayStateQueue: state.KOMPlayStateQueue,
 				KOMPlayStateWait: [spacing],
+				KOMPlayStateHistory: [spacing, spacing],
 			}));
 		});
 
@@ -460,6 +471,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 			deepEqual(state, StubStateObjectValid({
 				KOMPlayStateCurrent: undefined,
 				KOMPlayStateQueue: state.KOMPlayStateQueue,
+				KOMPlayStateHistory: [spacing, spacing],
 			}));
 		});
 
@@ -509,6 +521,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 			deepEqual(state, StubStateObjectValid({
 				KOMPlayStateCurrent: undefined,
 				KOMPlayStateQueue: state.KOMPlayStateQueue,
+				KOMPlayStateHistory: [spacing, spacing],
 			}));
 		});
 
@@ -557,6 +570,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 				KOMPlayStateCurrent: undefined,
 				KOMPlayStateQueue: state.KOMPlayStateQueue,
 				KOMPlayStateWait: [spacing],
+				KOMPlayStateHistory: [spacing, spacing],
 			}));
 		});
 
@@ -606,6 +620,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 				KOMPlayStateCurrent: undefined,
 				KOMPlayStateQueue: state.KOMPlayStateQueue,
 				KOMPlayStateWait: [spacing],
+				KOMPlayStateHistory: [spacing, spacing],
 			}));
 		});
 
@@ -657,6 +672,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 				KOMPlayStateCurrent: undefined,
 				KOMPlayStateQueue: state.KOMPlayStateQueue,
 				KOMPlayStateWait: [],
+				KOMPlayStateHistory: [spacing, spacing],
 			}));
 		});
 
@@ -708,6 +724,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 				KOMPlayStateCurrent: undefined,
 				KOMPlayStateQueue: state.KOMPlayStateQueue,
 				KOMPlayStateWait: [],
+				KOMPlayStateHistory: [spacing, spacing],
 			}));
 		});
 
@@ -759,6 +776,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 				KOMPlayStateCurrent: undefined,
 				KOMPlayStateQueue: state.KOMPlayStateQueue,
 				KOMPlayStateWait: [],
+				KOMPlayStateHistory: [spacing, spacing],
 			}));
 		});
 

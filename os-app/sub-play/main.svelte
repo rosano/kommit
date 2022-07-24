@@ -370,8 +370,6 @@ const mod = {
 
 		KOMPlayDispatchUpdate(item);
 
-		mod._ValueState.KOMPlayStateHistory.push(item);
-
 		if (!mod._ValueState.KOMPlayStateCurrent) {
 			return KOMPlayDispatchDone();
 		}

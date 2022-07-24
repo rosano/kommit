@@ -380,6 +380,8 @@ const mod = {
 				state.KOMPlayStateQueue.unshift(state.KOMPlayStateWait.splice(state.KOMPlayStateWait.indexOf(e), 1).pop());
 			});
 
+			state.KOMPlayStateHistory.push(state.KOMPlayStateCurrent);
+
 			state.KOMPlayStateCurrent = undefined;
 		})();
 
