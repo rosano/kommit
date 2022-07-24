@@ -824,23 +824,23 @@ describe('KOMPlayStateDraw', function test_KOMPlayStateDraw() {
 
 });
 
-describe('KOMChronicleGenerateFlip', function test_KOMChronicleGenerateFlip() {
+describe('KOMChronicleFlip', function test_KOMChronicleFlip() {
 
 	it('throws if param1 not date', function () {
 		throws(function () {
-			mod.KOMChronicleGenerateFlip(new Date('alfa'), StubSpacingObjectValid2());
+			mod.KOMChronicleFlip(new Date('alfa'), StubSpacingObjectValid2());
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('throws if param2 not valid', function () {
 		throws(function () {
-			mod.KOMChronicleGenerateFlip(new Date(), {});
+			mod.KOMChronicleFlip(new Date(), {});
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns object', function () {
 		const item = new Date();
-		deepEqual(mod.KOMChronicleGenerateFlip(item, StubSpacingObjectValid2()), {
+		deepEqual(mod.KOMChronicleFlip(item, StubSpacingObjectValid2()), {
 			KOMChronicleFlipDate: item,
 		});
 	});
@@ -848,29 +848,29 @@ describe('KOMChronicleGenerateFlip', function test_KOMChronicleGenerateFlip() {
 	context('KOMChronicleDidFlipMultipleTimes', function () {
 
 		it('sets undefined if KOMSpacingFlipDate undefined', function () {
-			deepEqual(mod.KOMChronicleGenerateFlip(new Date(), StubSpacingObjectValid2()).KOMChronicleDidFlipMultipleTimes, undefined);
+			deepEqual(mod.KOMChronicleFlip(new Date(), StubSpacingObjectValid2()).KOMChronicleDidFlipMultipleTimes, undefined);
 		});
 
 		it('sets undefined if KOMSpacingFlipDate past', function () {
-			deepEqual(mod.KOMChronicleGenerateFlip(new Date(), StubSpacingObjectValid2({
+			deepEqual(mod.KOMChronicleFlip(new Date(), StubSpacingObjectValid2({
 				KOMSpacingFlipDate: new Date(Date.now() - 1000 * 60 * 60 * 24 * 3),
 			})).KOMChronicleDidFlipMultipleTimes, undefined);
 		});
 
 		it('sets undefined if KOMSpacingFlipDate today and unseen', function () {
-			deepEqual(mod.KOMChronicleGenerateFlip(new Date(), StubSpacingObjectValid2({
+			deepEqual(mod.KOMChronicleFlip(new Date(), StubSpacingObjectValid2({
 				KOMSpacingFlipDate: new Date(),
 			})).KOMChronicleDidFlipMultipleTimes, undefined);
 		});
 
 		it('sets undefined if KOMSpacingFlipDate today and learning', function () {
-			deepEqual(mod.KOMChronicleGenerateFlip(new Date(), StubSpacingObjectValid2({
+			deepEqual(mod.KOMChronicleFlip(new Date(), StubSpacingObjectValid2({
 				KOMSpacingFlipDate: new Date(),
 			})).KOMChronicleDidFlipMultipleTimes, undefined);
 		});
 
 		it('sets true if KOMSpacingFlipDate today and reviewing', function () {
-			deepEqual(mod.KOMChronicleGenerateFlip(new Date(), StubSpacingObjectValid2({
+			deepEqual(mod.KOMChronicleFlip(new Date(), StubSpacingObjectValid2({
 				KOMSpacingFlipDate: new Date(),
 				KOMSpacingInterval: mod.KOMPlayResponseIntervalGraduateEasy(),
 			})).KOMChronicleDidFlipMultipleTimes, true);
@@ -906,7 +906,7 @@ describe('KOMPlayStateFlip', function test_KOMPlayStateFlip() {
 				KOMPlayStateChronicle: StubChronicleObjectValid(),
 			}), {
 				paramDate,
-			}).KOMPlayStateChronicle.KOMChronicleFlipDate, mod.KOMChronicleGenerateFlip(paramDate, item).KOMChronicleFlipDate);
+			}).KOMPlayStateChronicle.KOMChronicleFlipDate, mod.KOMChronicleFlip(paramDate, item).KOMChronicleFlipDate);
 		});
 	
 	});

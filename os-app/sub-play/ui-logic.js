@@ -466,7 +466,7 @@ const mod = {
 		});
 	},
 
-	KOMChronicleGenerateFlip(param1, param2) {
+	KOMChronicleFlip(param1, param2) {
 		if (!(param1 instanceof Date) || Number.isNaN(param1.getTime())) {
 			throw new Error('KOMErrorInputNotValid');
 		}
@@ -487,7 +487,7 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		inputData.KOMPlayStateCurrent.KOMSpacingFlipDate = Object.assign(inputData.KOMPlayStateChronicle, mod.KOMChronicleGenerateFlip(options.paramDate || new Date(), inputData.KOMPlayStateCurrent)).KOMChronicleFlipDate
+		inputData.KOMPlayStateCurrent.KOMSpacingFlipDate = Object.assign(inputData.KOMPlayStateChronicle, mod.KOMChronicleFlip(options.paramDate || new Date(), inputData.KOMPlayStateCurrent)).KOMChronicleFlipDate
 
 		return inputData;
 	},
