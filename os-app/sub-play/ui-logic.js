@@ -492,7 +492,7 @@ const mod = {
 		return inputData;
 	},
 
-	KOMPlayUndo(inputData) {
+	KOMChronicleUndo(inputData) {
 		if (KOMSpacing.KOMSpacingErrors(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
 		}

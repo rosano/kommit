@@ -925,17 +925,17 @@ describe('KOMPlayStateFlip', function test_KOMPlayStateFlip() {
 
 });
 
-describe('KOMPlayUndo', function test_KOMPlayUndo() {
+describe('KOMChronicleUndo', function test_KOMChronicleUndo() {
 
 	it('throws if not valid', function () {
 		throws(function () {
-			mod.KOMPlayUndo({});
+			mod.KOMChronicleUndo({});
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('throws if no KOMSpacingChronicles', function () {
 		throws(function () {
-			mod.KOMPlayUndo(StubSpacingObjectValid2());
+			mod.KOMChronicleUndo(StubSpacingObjectValid2());
 		}, /KOMErrorInputNotValid/);
 	});
 
@@ -944,17 +944,17 @@ describe('KOMPlayUndo', function test_KOMPlayUndo() {
 			KOMSpacingChronicles: [StubChronicleObjectValid2()],
 		});
 
-		deepEqual(mod.KOMPlayUndo(item) === item, true);
+		deepEqual(mod.KOMChronicleUndo(item) === item, true);
 	});
 
 	it('removes last KOMSpacingChronicles item', function () {
-		deepEqual(mod.KOMPlayUndo(StubSpacingObjectValid2({
+		deepEqual(mod.KOMChronicleUndo(StubSpacingObjectValid2({
 			KOMSpacingChronicles: [StubChronicleObjectValid2(), StubChronicleObjectValid2()],
 		})).KOMSpacingChronicles, [StubChronicleObjectValid2()]);
 	});
 
 	it('keeps KOMSpacingDrawDate', function () {
-		deepEqual(mod.KOMPlayUndo(StubSpacingObjectValid2({
+		deepEqual(mod.KOMChronicleUndo(StubSpacingObjectValid2({
 			KOMSpacingDrawDate: new Date('2019-02-23T12:00:00Z'),
 			KOMSpacingIsLearning: true,
 			KOMSpacingChronicles: [StubChronicleObjectValid2()],
@@ -964,7 +964,7 @@ describe('KOMPlayUndo', function test_KOMPlayUndo() {
 	});
 
 	it('keeps KOMSpacingFlipDate', function () {
-		deepEqual(mod.KOMPlayUndo(StubSpacingObjectValid2({
+		deepEqual(mod.KOMChronicleUndo(StubSpacingObjectValid2({
 			KOMSpacingFlipDate: new Date('2019-02-23T12:00:00Z'),
 			KOMSpacingIsLearning: true,
 			KOMSpacingChronicles: [StubChronicleObjectValid2()],
@@ -974,7 +974,7 @@ describe('KOMPlayUndo', function test_KOMPlayUndo() {
 	});
 
 	it('keeps relations', function () {
-		deepEqual(mod.KOMPlayUndo(StubSpacingObjectValid2({
+		deepEqual(mod.KOMChronicleUndo(StubSpacingObjectValid2({
 			KOMSpacingIsLearning: true,
 			KOMSpacingChronicles: [StubChronicleObjectValid2()],
 			$alfa: 'bravo',
@@ -986,7 +986,7 @@ describe('KOMPlayUndo', function test_KOMPlayUndo() {
 	context('with no history', function () {
 
 		it('removes existing properties', function () {
-			deepEqual(mod.KOMPlayUndo(StubSpacingObjectValid2({
+			deepEqual(mod.KOMChronicleUndo(StubSpacingObjectValid2({
 				KOMSpacingIsLearning: true,
 				KOMSpacingChronicles: [StubChronicleObjectValid2()],
 			})), StubSpacingObjectValid2());
@@ -1000,7 +1000,7 @@ describe('KOMPlayUndo', function test_KOMPlayUndo() {
 			const item = Object.assign(StubChronicleObjectValid2(), {
 				KOMChronicleIsLearning: true,
 			});
-			deepEqual(mod.KOMPlayUndo(StubSpacingObjectValid2({
+			deepEqual(mod.KOMChronicleUndo(StubSpacingObjectValid2({
 				KOMSpacingChronicles: [item, StubChronicleObjectValid2()],
 			})), StubSpacingObjectValid2({
 				KOMSpacingChronicles: [item],
@@ -1015,7 +1015,7 @@ describe('KOMPlayUndo', function test_KOMPlayUndo() {
 			const item = Object.assign(StubChronicleObjectValid2(), {
 				KOMChronicleIsLearning: true,
 			});
-			deepEqual(mod.KOMPlayUndo(StubSpacingObjectValid2({
+			deepEqual(mod.KOMChronicleUndo(StubSpacingObjectValid2({
 				KOMSpacingIsLearning: true,
 				KOMSpacingChronicles: [item, StubChronicleObjectValid2()],
 			})), StubSpacingObjectValid2({
