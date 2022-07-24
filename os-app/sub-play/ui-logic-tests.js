@@ -291,18 +291,53 @@ describe('KOMPlayStateDraw', function test_KOMPlayStateDraw() {
 
 	it('returns input', function () {
 		const item = StubStateObjectValid({
-			KOMPlayStateQueue: [Math.random().toString()],
+			KOMPlayStateQueue: [StubSpacingObjectValid()],
 		});
 		deepEqual(mod.KOMPlayStateDraw(item), item);
 	});
 
-	it('moves from KOMPlayStateQueue to KOMPlayStateCurrent', function () {
-		const item = Math.random().toString();
+	it('does not throw if queue if empty', function () {
+		const item = StubStateObjectValid({
+			KOMPlayStateQueue: [],
+		});
+		deepEqual(mod.KOMPlayStateDraw(item), item);
+	});
+
+	context('KOMPlayStateCurrent', function () {
+		
+		it('sets to null if queue empty', function () {
+			const item = StubSpacingObjectValid();
+			deepEqual(mod.KOMPlayStateDraw(StubStateObjectValid()).KOMPlayStateCurrent, null);
+		});
+	
+	});
+
+	context('queue', function () {
+		
+		it('sets KOMPlayStateCurrent', function () {
+			const item = StubSpacingObjectValid();
+			deepEqual(mod.KOMPlayStateDraw(StubStateObjectValid({
+				KOMPlayStateQueue: [item],
+			})).KOMPlayStateCurrent, item);
+		});
+		
+		it('shifts KOMPlayStateQueue', function () {
+			const item = StubSpacingObjectValid();
+			deepEqual(mod.KOMPlayStateDraw(StubStateObjectValid({
+				KOMPlayStateQueue: [item],
+			})).KOMPlayStateQueue, []);
+		});
+	
+	});
+
+	it('sets KOMPlayStateChronicle', function () {
+		const item = StubSpacingObjectValid();
+		const paramDate = new Date();
 		deepEqual(mod.KOMPlayStateDraw(StubStateObjectValid({
 			KOMPlayStateQueue: [item],
-		})), StubStateObjectValid({
-			KOMPlayStateCurrent: item,
-		}));
+		}), {
+			paramDate,
+		}).KOMPlayStateChronicle, mod.KOMChronicleGenerateDraw(paramDate, item));
 	});
 
 });

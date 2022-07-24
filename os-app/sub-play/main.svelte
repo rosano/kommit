@@ -210,8 +210,6 @@ const mod = {
 
 		mod._ValueIsFlipped = false;
 
-		mod._ValueState.KOMPlayStateChronicle = KOMPlayLogic.KOMChronicleGenerateDraw(new Date(), mod._ValueState.KOMPlayStateCurrent);
-
 		mod._ValueState.KOMPlayStateCurrent.KOMSpacingDrawDate = mod._ValueState.KOMPlayStateChronicle.KOMChronicleDrawDate;
 
 		KOMPlayDispatchUpdate(mod._ValueState.KOMPlayStateCurrent);

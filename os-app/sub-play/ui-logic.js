@@ -126,15 +126,19 @@ const mod = {
 		return true;
 	},
 
-	KOMPlayStateDraw (inputData) {
+	KOMPlayStateDraw (inputData, options = {}) {
 		if (!mod.KOMPlayStateIsValid(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
+		const KOMPlayStateCurrent = inputData.KOMPlayStateQueue.slice(0, 1).shift();
+
 		return Object.assign(inputData, {
-			KOMPlayStateCurrent: inputData.KOMPlayStateQueue.slice(0, 1).shift(),
+			KOMPlayStateCurrent,
 			KOMPlayStateQueue: inputData.KOMPlayStateQueue.slice(1),
-		});
+		}, KOMPlayStateCurrent ? {
+			KOMPlayStateChronicle: mod.KOMChronicleGenerateDraw(options.paramDate || new Date(), KOMPlayStateCurrent),
+		} : {});
 	},
 
 	KOMPlayResponseTypeAgain() {
