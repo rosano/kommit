@@ -342,7 +342,7 @@ const mod = {
 			}
 		};
 
-		[state.KOMPlayStateCurrent].map(update_spacing);
+		[state.KOMPlayStateCurrent].concat(state.KOMPlayStateCurrentPair ? [state.KOMPlayStateCurrentPair] : []).map(update_spacing);
 
 		(function update_state() {
 			state.KOMPlayStateWait.filter(function (e) {
@@ -356,8 +356,14 @@ const mod = {
 			});
 
 			state.KOMPlayStateHistory.push(state.KOMPlayStateCurrent);
+			if (state.KOMPlayStateCurrentPair) {
+				state.KOMPlayStateHistory.push(state.KOMPlayStateCurrentPair);
+			}
 
 			state.KOMPlayStateCurrent = undefined;
+			if (state.KOMPlayStateCurrentPair) {
+				state.KOMPlayStateCurrentPair = undefined;
+			}
 		})();
 
 		return state;
