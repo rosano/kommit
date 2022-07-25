@@ -850,12 +850,36 @@ describe('KOMPlayStateDraw', function test_KOMPlayStateDraw() {
 				})).KOMPlayStateCurrentPair, null);
 			});
 
+			it('ignores if current has too many words', function () {
+				const label = uRandomElement(KOMSpacing.KOMSpacingLabelForward(), KOMSpacing.KOMSpacingLabelBackward());
+				deepEqual(mod.KOMPlayStateDraw(StubStateObjectValid({
+					KOMPlayStatePairingIsEnabled: true,
+					KOMPlayStateQueue: [
+						StubSpacingObjectValid({
+							$KOMSpacingCard: StubCardObjectValid({
+								KOMCardFrontText: uRepeat(3, function () {
+									return Math.random().toString()
+								}).join(' '),
+								KOMCardRearText: uRepeat(3, function () {
+									return Math.random().toString()
+								}).join(' '),
+							}),
+						}, label),
+						StubSpacingObjectValid({
+							$KOMSpacingCard: StubCardObjectValid(),
+						}, label),
+						],
+				})).KOMPlayStateCurrentPair, null);
+			});
+
 			it('ignores if corresponding has too many words', function () {
 				const label = uRandomElement(KOMSpacing.KOMSpacingLabelForward(), KOMSpacing.KOMSpacingLabelBackward());
 				deepEqual(mod.KOMPlayStateDraw(StubStateObjectValid({
 					KOMPlayStatePairingIsEnabled: true,
 					KOMPlayStateQueue: [
-						StubSpacingObjectValid({}, label),
+						StubSpacingObjectValid({
+							$KOMSpacingCard: StubCardObjectValid({}),
+						}, label),
 						StubSpacingObjectValid({
 							$KOMSpacingCard: StubCardObjectValid({
 								KOMCardFrontText: uRepeat(3, function () {

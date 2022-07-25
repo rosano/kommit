@@ -474,6 +474,10 @@ const mod = {
 				return false;
 			}
 
+			if (inputData.KOMPlayStateCurrent.$KOMSpacingCard && inputData.KOMPlayStateCurrent.$KOMSpacingCard[KOMSpacing.KOMSpacingIsBackward(inputData.KOMPlayStateCurrent) ? 'KOMCardRearText' : 'KOMCardFrontText'].split(' ').length > 2) {
+				return false;
+			}
+
 			if (e.$KOMSpacingCard && e.$KOMSpacingCard[KOMSpacing.KOMSpacingIsBackward(inputData.KOMPlayStateCurrent) ? 'KOMCardRearText' : 'KOMCardFrontText'].split(' ').length > 2) {
 				return false;
 			}
