@@ -39,3 +39,46 @@ describe('KOMPlay_Multidraw', function () {
 	
 	});
 
+	describe('speech', function () {
+
+		const items = StubSpacingArray();
+		const deck = StubDeckObjectValid({
+			KOMDeckIsMultiDraw: true,
+			KOMDeckFrontSpeechIsEnabled: true,
+			KOMDeckFrontLanguageCode: 'en',
+			KOMDeckRearSpeechIsEnabled: true,
+			KOMDeckRearLanguageCode: 'en',
+		});
+
+		const _log = [];
+		const uLog = function (inputData) {
+			_log.push(inputData);
+			return _log.join(',');
+		};
+
+		before(function () {
+			return browser.OLSKVisit(kDefaultRoute, {
+				KOMPlaySpacings: JSON.stringify(items),
+				KOMPlayDeck: JSON.stringify(deck),
+			});
+		});
+
+		it('starts read', function () {
+			browser.assert.text('#TestKOMPlayAudioLog', uLog(`read:${ deck.KOMDeckFrontLanguageCode }:${ items[0].$KOMSpacingCard.KOMCardFrontText } ${ items[1].$KOMSpacingCard.KOMCardFrontText }`));
+		});
+
+		context('flip', function () {
+
+			before(function () {
+				return browser.pressButton(KOMPlayFlipButton);
+			});
+
+			it('stops read', function () {
+				browser.assert.text('#TestKOMPlayAudioLog', uLog(`stop,read:${ deck.KOMDeckRearLanguageCode }:${ items[0].$KOMSpacingCard.KOMCardRearText } ${ items[1].$KOMSpacingCard.KOMCardRearText }`));
+			});
+
+		});
+
+	});
+
+});

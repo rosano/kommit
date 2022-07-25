@@ -223,7 +223,7 @@ const mod = {
 			return mod.ControlAudioStart('KOMCardRearAudio');
 		}
 		
-		mod.ControlReadStart(mod.DataQuestion(), !KOMSpacing.KOMSpacingIsBackward(mod._ValueState.KOMPlayStateCurrent) ? KOMPlayDeck.KOMDeckFrontLanguageCode : KOMPlayDeck.KOMDeckRearLanguageCode);
+		mod.ControlReadStart(mod.DataQuestion() + (mod._ValueState.KOMPlayStateCurrentPair ? '\n' + mod.DataPairQuestion() : ''), !KOMSpacing.KOMSpacingIsBackward(mod._ValueState.KOMPlayStateCurrent) ? KOMPlayDeck.KOMDeckFrontLanguageCode : KOMPlayDeck.KOMDeckRearLanguageCode);
 	},
 
 	ControlAnswerRead () {
@@ -235,7 +235,7 @@ const mod = {
 			return mod.ControlAudioStart('KOMCardRearAudio');
 		}
 		
-		mod.ControlReadStart(mod.DataAnswer(), KOMSpacing.KOMSpacingIsBackward(mod._ValueState.KOMPlayStateCurrent) ? KOMPlayDeck.KOMDeckFrontLanguageCode : KOMPlayDeck.KOMDeckRearLanguageCode);
+		mod.ControlReadStart(mod.DataAnswer() + (mod._ValueState.KOMPlayStateCurrentPair ? '\n' + mod.DataPairAnswer() : ''), KOMSpacing.KOMSpacingIsBackward(mod._ValueState.KOMPlayStateCurrent) ? KOMPlayDeck.KOMDeckFrontLanguageCode : KOMPlayDeck.KOMDeckRearLanguageCode);
 	},
 
 	ControlReadStart (param1, param2) {
