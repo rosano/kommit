@@ -2,27 +2,6 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 const KOMPlayLogic = require('./ui-logic.js').default;
 
-const kTesting = {
-	uSpacings() {
-		return Array.from(new Array(2)).map(function (e, i) {
-			return {
-				KOMSpacingID: (i + 1).toString() + '-' + (i >= 2 ? 'backward' : 'forward'),
-				KOMSpacingDueDate: i === 1 ? new Date() : undefined,
-				KOMSpacingChronicles: [],
-				$KOMSpacingCard: {
-					KOMCardID: (i + 1).toString(),
-					KOMCardDeckID: 'alfa',
-					KOMCardFrontText: (i + 1).toString(),
-					KOMCardRearText: 'charlie',
-					KOMCardNotes: 'delta',
-					KOMCardCreationDate: new Date('2019-02-23T13:56:36Z'),
-					KOMCardModificationDate: new Date('2019-02-23T13:56:36Z'),
-				},
-			};
-		});
-	},
-};
-
 Object.entries({
 	KOMPlay: '.KOMPlay',
 
@@ -58,7 +37,7 @@ describe('KOMPlay_Access', function () {
 
 	before(function () {
 		return browser.OLSKVisit(kDefaultRoute, {
-			KOMPlaySpacings: JSON.stringify(kTesting.uSpacings()),
+			KOMPlaySpacings: JSON.stringify(StubSpacingArray()),
 			KOMPlayDeck: JSON.stringify(StubDeckObjectValid()),
 		});
 	});
@@ -245,7 +224,7 @@ describe('KOMPlay_Access', function () {
 
 	describe('speech_front', function test_speech_front() {
 
-		const items = kTesting.uSpacings(1).map(function (e, i) {
+		const items = StubSpacingArray().map(function (e, i) {
 			return Object.assign(e, i ? {
 				KOMSpacingID: e.KOMSpacingID.replace('forward', 'backward')
 			} : {});
@@ -308,7 +287,7 @@ describe('KOMPlay_Access', function () {
 
 	describe('speech_rear', function test_speech_rear() {
 
-		const items = kTesting.uSpacings(1).map(function (e, i) {
+		const items = StubSpacingArray().map(function (e, i) {
 			return Object.assign(e, i ? {
 				KOMSpacingID: e.KOMSpacingID.replace('forward', 'backward')
 			} : {});
@@ -377,7 +356,7 @@ describe('KOMPlay_Access', function () {
 		
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
-				KOMPlaySpacings: JSON.stringify(kTesting.uSpacings()),
+				KOMPlaySpacings: JSON.stringify(StubSpacingArray()),
 				KOMPlayDeck: JSON.stringify(StubDeckObjectValid()),
 				KOMPlaySimplifiedResponseButtons: true,
 			});

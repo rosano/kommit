@@ -88,6 +88,19 @@ global.FileReader = require('filereader');
 			});
 		},
 
+		StubSpacingArray (inputData = 2) {
+			return Array.from(new Array(inputData)).map(function (e, i) {
+				return StubSpacingObjectValid({
+					KOMSpacingID: (i + 1).toString() + '-' + (i >= 2 ? 'backward' : 'forward'),
+					KOMSpacingDueDate: i === 1 ? new Date() : undefined,
+					$KOMSpacingCard: StubCardObjectValid({
+						KOMCardID: (i + 1).toString(),
+						KOMCardFrontText: (i + 1).toString(),
+					}),
+				});
+			});
+		},
+
 		StubChronicleObjectValid(inputData = new Date()) {
 			return {
 				KOMChronicleDrawDate: new Date(inputData.valueOf() - 10000),

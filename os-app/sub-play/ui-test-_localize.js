@@ -2,27 +2,6 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 const KOMPlayLogic = require('./ui-logic.js').default;
 
-const kTesting = {
-	uSpacings() {
-		return KOMPlayLogic._KOMPlaySortShuffle(Array.from(new Array(1)).map(function (e, i) {
-			return {
-				KOMSpacingID: (i + 1).toString() + '-forward',
-				KOMSpacingChronicles: [],
-				KOMSpacingDueDate: i === 1 ? new Date() : undefined,
-				$KOMSpacingCard: {
-					KOMCardID: (i + 1).toString(),
-					KOMCardDeckID: 'alfa',
-					KOMCardFrontText: (i + 1).toString(),
-					KOMCardRearText: 'charlie',
-					KOMCardNotes: 'delta',
-					KOMCardCreationDate: new Date('2019-02-23T13:56:36Z'),
-					KOMCardModificationDate: new Date('2019-02-23T13:56:36Z'),
-				},
-			};
-		}));
-	},
-};
-
 kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 
 	const uLocalized = function (inputData) {
@@ -34,7 +13,7 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				OLSKRoutingLanguage,
-				KOMPlaySpacings: JSON.stringify(kTesting.uSpacings()),
+				KOMPlaySpacings: JSON.stringify(StubSpacingArray()),
 				KOMPlayDeck: JSON.stringify(StubDeckObjectValid()),
 			});
 		});
@@ -77,7 +56,7 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 
 		describe('speech', function test_speech() {
 
-			const items = kTesting.uSpacings(2);
+			const items = StubSpacingArray(2);
 
 			before(function () {
 				return browser.OLSKVisit(kDefaultRoute, {
@@ -113,7 +92,7 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 			before(function () {
 				return browser.OLSKVisit(kDefaultRoute, {
 					OLSKRoutingLanguage,
-					KOMPlaySpacings: JSON.stringify(kTesting.uSpacings()),
+					KOMPlaySpacings: JSON.stringify(StubSpacingArray()),
 					KOMPlayDeck: JSON.stringify(StubDeckObjectValid()),
 					KOMPlaySimplifiedResponseButtons: true,
 				});
