@@ -1137,7 +1137,7 @@ describe('KOMPlayStateUndo', function test_KOMPlayStateUndo() {
 			deepEqual(mod.KOMPlayStateUndo(StubStateObjectValid({
 				KOMPlayStateCurrent: StubSpacingObjectValid(),
 				KOMPlayStateQueue: [],
-				KOMPlayStateHistory: [[item, StubSpacingObjectHistorical()]]
+				KOMPlayStateHistory: [[item, StubSpacingObjectHistorical()]],
 			})).KOMPlayStateCurrent, item);
 		});
 	
@@ -1150,7 +1150,7 @@ describe('KOMPlayStateUndo', function test_KOMPlayStateUndo() {
 			deepEqual(mod.KOMPlayStateUndo(StubStateObjectValid({
 				KOMPlayStateCurrentPair: StubSpacingObjectValid(),
 				KOMPlayStateQueue: [],
-				KOMPlayStateHistory: [[StubSpacingObjectHistorical(), item]]
+				KOMPlayStateHistory: [[StubSpacingObjectHistorical(), item]],
 			})).KOMPlayStateCurrentPair, item);
 		});
 	
@@ -1163,7 +1163,7 @@ describe('KOMPlayStateUndo', function test_KOMPlayStateUndo() {
 			deepEqual(mod.KOMPlayStateUndo(StubStateObjectValid({
 				KOMPlayStateCurrent: item,
 				KOMPlayStateQueue: [],
-				KOMPlayStateHistory: [[StubSpacingObjectHistorical()]]
+				KOMPlayStateHistory: [[StubSpacingObjectHistorical()]],
 			})).KOMPlayStateQueue, [item]);
 		});
 
@@ -1174,7 +1174,7 @@ describe('KOMPlayStateUndo', function test_KOMPlayStateUndo() {
 				KOMPlayStateCurrent,
 				KOMPlayStateCurrentPair,
 				KOMPlayStateQueue: [],
-				KOMPlayStateHistory: [[StubSpacingObjectHistorical()]]
+				KOMPlayStateHistory: [[StubSpacingObjectHistorical()]],
 			})).KOMPlayStateQueue, [KOMPlayStateCurrentPair, KOMPlayStateCurrent]);
 		});
 	
@@ -1187,7 +1187,7 @@ describe('KOMPlayStateUndo', function test_KOMPlayStateUndo() {
 			deepEqual(mod.KOMPlayStateUndo(StubStateObjectValid({
 				KOMPlayStateCurrent: StubSpacingObjectValid(),
 				KOMPlayStateQueue: [],
-				KOMPlayStateHistory: [[item], [StubSpacingObjectHistorical()]]
+				KOMPlayStateHistory: [[item], [StubSpacingObjectHistorical()]],
 			})).KOMPlayStateHistory, [[item]]);
 		});
 
