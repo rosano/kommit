@@ -1191,13 +1191,31 @@ describe('KOMPlayStateUndo', function test_KOMPlayStateUndo() {
 			})).KOMPlayStateHistory, [[item]]);
 		});
 
-		it('calls KOMChronicleUndo', function () {
-			const item = StubSpacingObjectHistorical();
-			deepEqual(mod.KOMPlayStateUndo(StubStateObjectValid({
-				KOMPlayStateCurrent: StubSpacingObjectValid(),
-				KOMPlayStateQueue: [],
-				KOMPlayStateHistory: [[item]]
-			})).KOMPlayStateCurrent.KOMSpacingChronicles, []);
+		context('KOMPlayStateCurrent', function () {
+			
+			it('calls KOMChronicleUndo', function () {
+				const item = StubSpacingObjectHistorical();
+				deepEqual(mod.KOMPlayStateUndo(StubStateObjectValid({
+					KOMPlayStateCurrent: StubSpacingObjectValid(),
+					KOMPlayStateQueue: [],
+					KOMPlayStateHistory: [[item]],
+				})).KOMPlayStateCurrent.KOMSpacingChronicles, []);
+			});
+		
+		});
+
+		context('KOMPlayStateCurrentPair', function () {
+			
+			it('calls KOMChronicleUndo', function () {
+				const item = StubSpacingObjectHistorical();
+				deepEqual(mod.KOMPlayStateUndo(StubStateObjectValid({
+					KOMPlayStateCurrent: StubSpacingObjectValid(),
+					KOMPlayStateCurrentPair: StubSpacingObjectValid(),
+					KOMPlayStateQueue: [],
+					KOMPlayStateHistory: [[StubSpacingObjectHistorical(), item]],
+				})).KOMPlayStateCurrentPair.KOMSpacingChronicles, []);
+			});
+		
 		});
 	
 	});
