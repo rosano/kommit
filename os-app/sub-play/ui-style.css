@@ -58,6 +58,15 @@
 	flex-direction: column;
 }
 
+.KOMPlayMultiDraw .KOMPlayCard  {
+	font-size: 24px;
+}
+
+.KOMPlayCardQuestionPair, .KOMPlayCardAnswerPair {
+	font-size: 18px;
+	opacity: 0.7;
+}
+
 .KOMPlayCard > * {
 	/* KOMPlayCardFlexbox:Child */
 	flex-grow: 0.3;
