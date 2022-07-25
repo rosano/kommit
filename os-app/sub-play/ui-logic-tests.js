@@ -834,30 +834,33 @@ describe('KOMPlayStateDraw', function test_KOMPlayStateDraw() {
 		context('KOMPlayStateCurrentPair', function () {
 			
 			it('ignores if KOMPlayStateQueue empty', function () {
-				const item = StubSpacingObjectValid({}, KOMSpacing.KOMSpacingLabelBackward());
 				deepEqual(mod.KOMPlayStateDraw(StubStateObjectValid({
 					KOMPlayStatePairingIsEnabled: true,
-					KOMPlayStateQueue: [item],
+					KOMPlayStateQueue: [StubSpacingObjectValid({}, KOMSpacing.KOMSpacingLabelBackward())],
 				})).KOMPlayStateCurrentPair, null);
 			});
 
 			it('ignores if KOMPlayStateQueue has no corresponding', function () {
-				const item = StubSpacingObjectValid({}, KOMSpacing.KOMSpacingLabelBackward());
-				deepEqual(mod.KOMPlayStateDraw(StubStateObjectValid({
-					KOMPlayStatePairingIsEnabled: true,
-					KOMPlayStateQueue: [item, StubSpacingObjectValid({}, KOMSpacing.KOMSpacingLabelForward())],
-				})).KOMPlayStateCurrentPair, null);
-			});
-
-			it('sets to first corresponding from KOMPlayStateQueue', function () {
-				const item = StubSpacingObjectValid({}, KOMSpacing.KOMSpacingLabelBackward());
 				deepEqual(mod.KOMPlayStateDraw(StubStateObjectValid({
 					KOMPlayStatePairingIsEnabled: true,
 					KOMPlayStateQueue: [
 						StubSpacingObjectValid({}, KOMSpacing.KOMSpacingLabelBackward()),
 						StubSpacingObjectValid({}, KOMSpacing.KOMSpacingLabelForward()),
+						],
+				})).KOMPlayStateCurrentPair, null);
+			});
+
+			it('sets to first corresponding from KOMPlayStateQueue', function () {
+				const label = uRandomElement(KOMSpacing.KOMSpacingLabelForward(), KOMSpacing.KOMSpacingLabelBackward());
+				const labelAlt = label === KOMSpacing.KOMSpacingLabelForward() ? KOMSpacing.KOMSpacingLabelBackward() : KOMSpacing.KOMSpacingLabelForward();
+				const item = StubSpacingObjectValid({}, label);
+				deepEqual(mod.KOMPlayStateDraw(StubStateObjectValid({
+					KOMPlayStatePairingIsEnabled: true,
+					KOMPlayStateQueue: [
+						StubSpacingObjectValid({}, label),
+						StubSpacingObjectValid({}, labelAlt),
 						item,
-						StubSpacingObjectValid({}, KOMSpacing.KOMSpacingLabelForward()),
+						StubSpacingObjectValid({}, labelAlt),
 					],
 				})).KOMPlayStateCurrentPair, item);
 			});	
