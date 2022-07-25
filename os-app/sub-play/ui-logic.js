@@ -551,6 +551,9 @@ const mod = {
 		}
 
 		inputData.KOMPlayStateQueue.unshift(inputData.KOMPlayStateCurrent);
+		if (inputData.KOMPlayStateCurrentPair) {
+			inputData.KOMPlayStateQueue.unshift(inputData.KOMPlayStateCurrentPair);
+		}
 
 		const history = inputData.KOMPlayStateHistory.pop();
 		

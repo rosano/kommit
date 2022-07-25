@@ -1166,6 +1166,17 @@ describe('KOMPlayStateUndo', function test_KOMPlayStateUndo() {
 				KOMPlayStateHistory: [[StubSpacingObjectHistorical()]]
 			})).KOMPlayStateQueue, [item]);
 		});
+
+		it('adds KOMPlayStateCurrentPair', function () {
+			const KOMPlayStateCurrent = StubSpacingObjectValid();
+			const KOMPlayStateCurrentPair = StubSpacingObjectValid();
+			deepEqual(mod.KOMPlayStateUndo(StubStateObjectValid({
+				KOMPlayStateCurrent,
+				KOMPlayStateCurrentPair,
+				KOMPlayStateQueue: [],
+				KOMPlayStateHistory: [[StubSpacingObjectHistorical()]]
+			})).KOMPlayStateQueue, [KOMPlayStateCurrentPair, KOMPlayStateCurrent]);
+		});
 	
 	});
 
