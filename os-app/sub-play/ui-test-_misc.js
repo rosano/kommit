@@ -24,7 +24,7 @@ const kTesting = {
 	},
 };
 
-describe.only('KOMPlay_Misc', function () {
+describe('KOMPlay_Misc', function () {
 
 	const items = kTesting.uSpacings(5).map(function (e, i) {
 		return Object.assign(e, i === 1 ? {
