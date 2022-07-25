@@ -206,18 +206,6 @@ const mod = {
 
 	// CONTROL
 
-	ControlDraw() {
-		mod._ValueState = mod._ValueState; // #purge-svelte-force-update
-
-		mod._ValueIsFlipped = false;
-
-		[mod._ValueState.KOMPlayStateCurrent].concat(mod._ValueState.KOMPlayStateCurrentPair ? mod._ValueState.KOMPlayStateCurrentPair : []).map(KOMPlayDispatchUpdate);
-
-		if (mod.DataQuestionShouldSound()) {
-			mod.ControlQuestionRead();
-		}
-	},
-
 	ControlQuestionRead () {
 		if (mod.DataFrontHasAudio() && !KOMSpacing.KOMSpacingIsBackward(mod._ValueState.KOMPlayStateCurrent)) {
 			return mod.ControlAudioStart('KOMCardFrontAudio');
@@ -330,7 +318,7 @@ const mod = {
 			mod.ControlFlush();
 		}
 
-		mod.ControlDraw();
+		mod.ReactCardChange();
 	},
 
 	ControlFlip () {
@@ -373,7 +361,21 @@ const mod = {
 			return KOMPlayDispatchDone();
 		}
 
-		mod.ControlDraw();
+		mod.ReactCardChange();
+	},
+
+	// REACT
+
+	ReactCardChange() {
+		mod._ValueState = mod._ValueState; // #purge-svelte-force-update
+
+		mod._ValueIsFlipped = false;
+
+		[mod._ValueState.KOMPlayStateCurrent].concat(mod._ValueState.KOMPlayStateCurrentPair ? mod._ValueState.KOMPlayStateCurrentPair : []).map(KOMPlayDispatchUpdate);
+
+		if (mod.DataQuestionShouldSound()) {
+			mod.ControlQuestionRead();
+		}
 	},
 
 	// DEBUG
@@ -385,7 +387,7 @@ const mod = {
 	// SETUP
 
 	SetupEverything () {
-		mod.ControlDraw();
+		mod.ReactCardChange();
 	},
 
 	// LIFECYCLE
