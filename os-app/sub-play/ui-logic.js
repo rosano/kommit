@@ -470,7 +470,15 @@ const mod = {
 		}
 
 		if (inputData.KOMPlayStateCurrent && inputData.KOMPlayStatePairingIsEnabled && (inputData.KOMPlayStateCurrentPair = inputData.KOMPlayStateQueue.filter(function (e) {
-			return KOMSpacing.KOMSpacingLabel(e.KOMSpacingID) === KOMSpacing.KOMSpacingLabel(inputData.KOMPlayStateCurrent.KOMSpacingID);
+			if (KOMSpacing.KOMSpacingLabel(e.KOMSpacingID) !== KOMSpacing.KOMSpacingLabel(inputData.KOMPlayStateCurrent.KOMSpacingID)) {
+				return false;
+			}
+
+			if (e.$KOMSpacingCard && e.$KOMSpacingCard[KOMSpacing.KOMSpacingIsBackward(inputData.KOMPlayStateCurrent) ? 'KOMCardRearText' : 'KOMCardFrontText'].split(' ').length > 2) {
+				return false;
+			}
+			
+			return true;
 		}).shift())) {
 			inputData.KOMPlayStateQueue.splice(inputData.KOMPlayStateQueue.indexOf(inputData.KOMPlayStateCurrentPair), 1);
 
