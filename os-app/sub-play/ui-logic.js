@@ -342,7 +342,9 @@ const mod = {
 			}
 		};
 
-		[state.KOMPlayStateCurrent].concat(state.KOMPlayStateCurrentPair ? [state.KOMPlayStateCurrentPair] : []).map(update_spacing);
+		const currentSpacings = [state.KOMPlayStateCurrent].concat(state.KOMPlayStateCurrentPair ? [state.KOMPlayStateCurrentPair] : []);
+
+		currentSpacings.map(update_spacing);
 
 		(function update_state() {
 			state.KOMPlayStateWait.filter(function (e) {
@@ -355,11 +357,8 @@ const mod = {
 				state.KOMPlayStateQueue.unshift(state.KOMPlayStateWait.splice(state.KOMPlayStateWait.indexOf(e), 1).pop());
 			});
 
-			state.KOMPlayStateHistory.push(state.KOMPlayStateCurrent);
-			if (state.KOMPlayStateCurrentPair) {
-				state.KOMPlayStateHistory.push(state.KOMPlayStateCurrentPair);
-			}
-
+			state.KOMPlayStateHistory.push(currentSpacings);
+			
 			state.KOMPlayStateCurrent = undefined;
 			if (state.KOMPlayStateCurrentPair) {
 				state.KOMPlayStateCurrentPair = undefined;
@@ -552,8 +551,13 @@ const mod = {
 		}
 
 		inputData.KOMPlayStateQueue.unshift(inputData.KOMPlayStateCurrent);
+
+		const history = inputData.KOMPlayStateHistory.pop();
 		
-		inputData.KOMPlayStateCurrent = mod.KOMChronicleUndo(inputData.KOMPlayStateHistory.pop());
+		inputData.KOMPlayStateCurrent = mod.KOMChronicleUndo(history.shift());
+		if (history.length) {
+			inputData.KOMPlayStateCurrentPair = mod.KOMChronicleUndo(history.shift());
+		}
 
 		return inputData;
 	},

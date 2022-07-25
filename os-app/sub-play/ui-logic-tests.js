@@ -1125,7 +1125,7 @@ describe('KOMPlayStateUndo', function test_KOMPlayStateUndo() {
 	it('returns input', function () {
 		const item = StubStateObjectValid({
 			KOMPlayStateCurrent: StubSpacingObjectValid(),
-			KOMPlayStateHistory: [StubSpacingObjectHistorical()],
+			KOMPlayStateHistory: [[StubSpacingObjectHistorical()]],
 		});
 		strictEqual(mod.KOMPlayStateUndo(item), item);
 	});
@@ -1137,8 +1137,21 @@ describe('KOMPlayStateUndo', function test_KOMPlayStateUndo() {
 			deepEqual(mod.KOMPlayStateUndo(StubStateObjectValid({
 				KOMPlayStateCurrent: StubSpacingObjectValid(),
 				KOMPlayStateQueue: [],
-				KOMPlayStateHistory: [item]
+				KOMPlayStateHistory: [[item, StubSpacingObjectHistorical()]]
 			})).KOMPlayStateCurrent, item);
+		});
+	
+	});
+
+	context('KOMPlayStateCurrentPair', function () {
+
+		it('sets to first from KOMPlayStateHistory', function () {
+			const item = StubSpacingObjectHistorical();
+			deepEqual(mod.KOMPlayStateUndo(StubStateObjectValid({
+				KOMPlayStateCurrentPair: StubSpacingObjectValid(),
+				KOMPlayStateQueue: [],
+				KOMPlayStateHistory: [[StubSpacingObjectHistorical(), item]]
+			})).KOMPlayStateCurrentPair, item);
 		});
 	
 	});
@@ -1150,7 +1163,7 @@ describe('KOMPlayStateUndo', function test_KOMPlayStateUndo() {
 			deepEqual(mod.KOMPlayStateUndo(StubStateObjectValid({
 				KOMPlayStateCurrent: item,
 				KOMPlayStateQueue: [],
-				KOMPlayStateHistory: [StubSpacingObjectHistorical()]
+				KOMPlayStateHistory: [[StubSpacingObjectHistorical()]]
 			})).KOMPlayStateQueue, [item]);
 		});
 	
@@ -1163,8 +1176,8 @@ describe('KOMPlayStateUndo', function test_KOMPlayStateUndo() {
 			deepEqual(mod.KOMPlayStateUndo(StubStateObjectValid({
 				KOMPlayStateCurrent: StubSpacingObjectValid(),
 				KOMPlayStateQueue: [],
-				KOMPlayStateHistory: [item, StubSpacingObjectHistorical()]
-			})).KOMPlayStateHistory, [item]);
+				KOMPlayStateHistory: [[item], [StubSpacingObjectHistorical()]]
+			})).KOMPlayStateHistory, [[item]]);
 		});
 
 		it('calls KOMChronicleUndo', function () {
@@ -1172,7 +1185,7 @@ describe('KOMPlayStateUndo', function test_KOMPlayStateUndo() {
 			deepEqual(mod.KOMPlayStateUndo(StubStateObjectValid({
 				KOMPlayStateCurrent: StubSpacingObjectValid(),
 				KOMPlayStateQueue: [],
-				KOMPlayStateHistory: [item]
+				KOMPlayStateHistory: [[item]]
 			})).KOMPlayStateCurrent.KOMSpacingChronicles, []);
 		});
 	

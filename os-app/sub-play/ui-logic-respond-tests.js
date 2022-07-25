@@ -75,7 +75,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 				KOMPlayStateCurrent: undefined,
 				KOMPlayStateCurrentPair: undefined,
 				KOMPlayStateQueue: [KOMPlayStateCurrent, KOMPlayStateCurrentPair],
-				KOMPlayStateHistory: [KOMPlayStateCurrent, KOMPlayStateCurrentPair],
+				KOMPlayStateHistory: [[KOMPlayStateCurrent, KOMPlayStateCurrentPair]],
 			}));
 		});
 
@@ -102,7 +102,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 				KOMPlayStateCurrent: state.KOMPlayStateCurrent,
 				KOMPlayStateQueue: wait.concat(queue),
 				KOMPlayStateWait: [],
-				KOMPlayStateHistory: [current],
+				KOMPlayStateHistory: [[current]],
 			}));
 		});
 
@@ -116,7 +116,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 				KOMPlayStateCurrent: state.KOMPlayStateCurrent,
 				KOMPlayStateQueue: wait,
 				KOMPlayStateWait: [],
-				KOMPlayStateHistory: [current],
+				KOMPlayStateHistory: [[current]],
 			}));
 		});
 
@@ -126,7 +126,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 			deepEqual(mod.KOMPlayRespond(state, StubChronicleObjectValid2()), Object.assign(uStateWait(1000), {
 				KOMPlayStateCurrent: undefined,
 				KOMPlayStateQueue: state.KOMPlayStateQueue,
-				KOMPlayStateHistory: [current],
+				KOMPlayStateHistory: [[current]],
 			}));
 		});
 
@@ -254,7 +254,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 				KOMPlayStateCurrent: undefined,
 				KOMPlayStateQueue: state.KOMPlayStateQueue,
 				KOMPlayStateWait: [spacing],
-				KOMPlayStateHistory: [spacing],
+				KOMPlayStateHistory: [[spacing]],
 			}));
 		});
 
@@ -292,7 +292,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 				KOMPlayStateCurrent: undefined,
 				KOMPlayStateQueue: state.KOMPlayStateQueue,
 				KOMPlayStateWait: [spacing],
-				KOMPlayStateHistory: [spacing],
+				KOMPlayStateHistory: [[spacing]],
 			}));
 		});
 
@@ -330,7 +330,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 				KOMPlayStateCurrent: undefined,
 				KOMPlayStateQueue: state.KOMPlayStateQueue,
 				KOMPlayStateWait: [spacing],
-				KOMPlayStateHistory: [spacing],
+				KOMPlayStateHistory: [[spacing]],
 			}));
 		});
 
@@ -368,7 +368,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 			deepEqual(state, StubStateObjectValid({
 				KOMPlayStateCurrent: undefined,
 				KOMPlayStateQueue: state.KOMPlayStateQueue,
-				KOMPlayStateHistory: [spacing],
+				KOMPlayStateHistory: [[spacing]],
 			}));
 		});
 
@@ -421,7 +421,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 				KOMPlayStateCurrent: undefined,
 				KOMPlayStateQueue: state.KOMPlayStateQueue,
 				KOMPlayStateWait: [spacing],
-				KOMPlayStateHistory: [spacing, spacing],
+				KOMPlayStateHistory: [[spacing], [spacing]],
 			}));
 		});
 
@@ -473,7 +473,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 				KOMPlayStateCurrent: undefined,
 				KOMPlayStateQueue: state.KOMPlayStateQueue,
 				KOMPlayStateWait: [spacing],
-				KOMPlayStateHistory: [spacing, spacing],
+				KOMPlayStateHistory: [[spacing], [spacing]],
 			}));
 		});
 
@@ -526,7 +526,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 			deepEqual(state, StubStateObjectValid({
 				KOMPlayStateCurrent: undefined,
 				KOMPlayStateQueue: state.KOMPlayStateQueue,
-				KOMPlayStateHistory: [spacing, spacing],
+				KOMPlayStateHistory: [[spacing], [spacing]],
 			}));
 		});
 
@@ -579,7 +579,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 			deepEqual(state, StubStateObjectValid({
 				KOMPlayStateCurrent: undefined,
 				KOMPlayStateQueue: state.KOMPlayStateQueue,
-				KOMPlayStateHistory: [spacing, spacing],
+				KOMPlayStateHistory: [[spacing], [spacing]],
 			}));
 		});
 
@@ -631,7 +631,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 				KOMPlayStateCurrent: undefined,
 				KOMPlayStateQueue: state.KOMPlayStateQueue,
 				KOMPlayStateWait: [spacing],
-				KOMPlayStateHistory: [spacing, spacing],
+				KOMPlayStateHistory: [[spacing], [spacing]],
 			}));
 		});
 
@@ -684,7 +684,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 				KOMPlayStateCurrent: undefined,
 				KOMPlayStateQueue: state.KOMPlayStateQueue,
 				KOMPlayStateWait: [spacing],
-				KOMPlayStateHistory: [spacing, spacing],
+				KOMPlayStateHistory: [[spacing], [spacing]],
 			}));
 		});
 
@@ -739,7 +739,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 				KOMPlayStateCurrent: undefined,
 				KOMPlayStateQueue: state.KOMPlayStateQueue,
 				KOMPlayStateWait: [],
-				KOMPlayStateHistory: [spacing, spacing],
+				KOMPlayStateHistory: [[spacing], [spacing]],
 			}));
 		});
 
@@ -794,7 +794,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 				KOMPlayStateCurrent: undefined,
 				KOMPlayStateQueue: state.KOMPlayStateQueue,
 				KOMPlayStateWait: [],
-				KOMPlayStateHistory: [spacing, spacing],
+				KOMPlayStateHistory: [[spacing], [spacing]],
 			}));
 		});
 
@@ -849,7 +849,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 				KOMPlayStateCurrent: undefined,
 				KOMPlayStateQueue: state.KOMPlayStateQueue,
 				KOMPlayStateWait: [],
-				KOMPlayStateHistory: [spacing, spacing],
+				KOMPlayStateHistory: [[spacing], [spacing]],
 			}));
 		});
 
