@@ -32,6 +32,8 @@ By default, the cards will be presented both front-to-back and back-to-front, bu
 
 *KOMReviewDetailFormRetireCardsFieldLabelText* will automatically remove cards from the schedule after the 'interval' is bigger than the selected period. For example, selecting *KOMReviewDetailFormRetireCardsFieldOptionThreeMonthsText* will retire a card if the next review is more than three months away.
 
+*KOMReviewDetailFormIsMultiDrawFieldLabelText* will show more than two cards at once. This could be useful for practicing creating connections between cards.
+
 # Memory game
 
 During a review, the cards will be presented in a random order. Try to recall the opposite side without looking, then *KOMPlayFlipButtonText* the card to reveal the following response buttons to schedule the card's next appearance:
