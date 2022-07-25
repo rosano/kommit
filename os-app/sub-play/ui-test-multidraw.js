@@ -63,7 +63,7 @@ describe('KOMPlay_Multidraw', function () {
 			});
 		});
 
-		it('starts read', function () {
+		it('reads front', function () {
 			browser.assert.text('#TestKOMPlayAudioLog', uLog(`read:${ deck.KOMDeckFrontLanguageCode }:${ items[0].$KOMSpacingCard.KOMCardFrontText } ${ items[1].$KOMSpacingCard.KOMCardFrontText }`));
 		});
 
@@ -73,7 +73,7 @@ describe('KOMPlay_Multidraw', function () {
 				return browser.pressButton(KOMPlayFlipButton);
 			});
 
-			it('stops read', function () {
+			it('reads rear', function () {
 				browser.assert.text('#TestKOMPlayAudioLog', uLog(`stop,read:${ deck.KOMDeckRearLanguageCode }:${ items[0].$KOMSpacingCard.KOMCardRearText } ${ items[1].$KOMSpacingCard.KOMCardRearText }`));
 			});
 
