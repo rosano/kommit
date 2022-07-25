@@ -427,6 +427,10 @@ describe('KOMPlay_Access', function () {
 				browser.assert.elements(KOMPlayCardAnswerPair, 1);
 			});
 
+			it('hides KOMPlayCardNotes', function () {
+				browser.assert.elements(KOMPlayCardNotes, 0);
+			});
+
 		});
 	
 	});

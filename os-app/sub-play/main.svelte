@@ -444,7 +444,7 @@ OLSK_SPEC_UI() ? mod.LifecycleModuleWillMount() : onMount(mod.LifecycleModuleWil
 			
 		{/if}
 
-		{#if mod._ValueIsFlipped}
+		{#if mod._ValueIsFlipped && !mod._ValueState.KOMPlayStateCurrentPair }
 			<div class="KOMPlayCardNotes">{ mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard.KOMCardNotes }</div>
 		{/if}
 		
