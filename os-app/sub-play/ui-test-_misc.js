@@ -481,7 +481,7 @@ describe('KOMPlay_Misc', function () {
 
 	});
 
-	context('KOMDeckIsMultiDraw', function test_KOMDeckIsMultiDraw () {
+	context('KOMDeckPairingIsEnabled', function test_KOMDeckPairingIsEnabled () {
 
 		const items = StubSpacingArray();
 
@@ -489,7 +489,7 @@ describe('KOMPlay_Misc', function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMPlaySpacings: JSON.stringify(items),
 				KOMPlayDeck: JSON.stringify(StubDeckObjectValid({
-					KOMDeckIsMultiDraw: true,
+					KOMDeckPairingIsEnabled: true,
 				})),
 				KOMPlaySimplifiedResponseButtons: true,
 			});

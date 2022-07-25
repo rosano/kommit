@@ -263,17 +263,17 @@ describe('KOMPlayStateIsValid', function test_KOMPlayStateIsValid() {
 
 	});
 
-	context('KOMPlayStateIsMultiDraw', function () {
+	context('KOMPlayStatePairingIsEnabled', function () {
 
 		it('returns false if not boolean', function () {
 			deepEqual(mod.KOMPlayStateIsValid(StubStateObjectValid({
-				KOMPlayStateIsMultiDraw: null,
+				KOMPlayStatePairingIsEnabled: null,
 			})), false);
 		});
 
 		it('returns true', function () {
 			deepEqual(mod.KOMPlayStateIsValid(StubStateObjectValid({
-				KOMPlayStateIsMultiDraw: true,
+				KOMPlayStatePairingIsEnabled: true,
 			})), true);
 		});
 
@@ -829,14 +829,14 @@ describe('KOMPlayStateDraw', function test_KOMPlayStateDraw() {
 		}).KOMPlayStateChronicle, mod.KOMChronicleGenerateDraw(paramDate, item));
 	});
 
-	context('KOMPlayStateIsMultiDraw', function () {
+	context('KOMPlayStatePairingIsEnabled', function () {
 
 		context('KOMPlayStateCurrentPair', function () {
 			
 			it('ignores if KOMPlayStateQueue empty', function () {
 				const item = StubSpacingObjectValid({}, KOMSpacing.KOMSpacingLabelBackward());
 				deepEqual(mod.KOMPlayStateDraw(StubStateObjectValid({
-					KOMPlayStateIsMultiDraw: true,
+					KOMPlayStatePairingIsEnabled: true,
 					KOMPlayStateQueue: [item],
 				})).KOMPlayStateCurrentPair, null);
 			});
@@ -844,7 +844,7 @@ describe('KOMPlayStateDraw', function test_KOMPlayStateDraw() {
 			it('ignores if KOMPlayStateQueue has no corresponding', function () {
 				const item = StubSpacingObjectValid({}, KOMSpacing.KOMSpacingLabelBackward());
 				deepEqual(mod.KOMPlayStateDraw(StubStateObjectValid({
-					KOMPlayStateIsMultiDraw: true,
+					KOMPlayStatePairingIsEnabled: true,
 					KOMPlayStateQueue: [item, StubSpacingObjectValid({}, KOMSpacing.KOMSpacingLabelForward())],
 				})).KOMPlayStateCurrentPair, null);
 			});
@@ -852,7 +852,7 @@ describe('KOMPlayStateDraw', function test_KOMPlayStateDraw() {
 			it('sets to first corresponding from KOMPlayStateQueue', function () {
 				const item = StubSpacingObjectValid({}, KOMSpacing.KOMSpacingLabelBackward());
 				deepEqual(mod.KOMPlayStateDraw(StubStateObjectValid({
-					KOMPlayStateIsMultiDraw: true,
+					KOMPlayStatePairingIsEnabled: true,
 					KOMPlayStateQueue: [
 						StubSpacingObjectValid({}, KOMSpacing.KOMSpacingLabelBackward()),
 						StubSpacingObjectValid({}, KOMSpacing.KOMSpacingLabelForward()),
@@ -864,7 +864,7 @@ describe('KOMPlayStateDraw', function test_KOMPlayStateDraw() {
 
 			it('sets KOMSpacingDrawDate to KOMChronicleDrawDate', function () {
 				const item = mod.KOMPlayStateDraw(StubStateObjectValid({
-					KOMPlayStateIsMultiDraw: true,
+					KOMPlayStatePairingIsEnabled: true,
 					KOMPlayStateQueue: [StubSpacingObjectValid(), StubSpacingObjectValid()],
 				}));
 				deepEqual(item.KOMPlayStateCurrentPair.KOMSpacingDrawDate, item.KOMPlayStateChronicle.KOMChronicleDrawDate);
@@ -882,7 +882,7 @@ describe('KOMPlayStateDraw', function test_KOMPlayStateDraw() {
 					StubSpacingObjectValid({}, KOMSpacing.KOMSpacingLabelForward()),
 				];
 				deepEqual(mod.KOMPlayStateDraw(StubStateObjectValid({
-					KOMPlayStateIsMultiDraw: true,
+					KOMPlayStatePairingIsEnabled: true,
 					KOMPlayStateQueue,
 				})).KOMPlayStateQueue, [KOMPlayStateQueue[1], KOMPlayStateQueue[3]]);
 			});
@@ -996,7 +996,7 @@ describe('KOMPlayStateFlip', function test_KOMPlayStateFlip() {
 
 		it('sets KOMSpacingFlipDate to KOMChronicleFlipDate', function () {
 			const item = mod.KOMPlayStateFlip(StubStateObjectValid({
-				KOMPlayStateIsMultiDraw: true,
+				KOMPlayStatePairingIsEnabled: true,
 				KOMPlayStateCurrent: StubSpacingObjectValid(),
 				KOMPlayStateCurrentPair: StubSpacingObjectValid(),
 				KOMPlayStateChronicle: StubChronicleObjectValid(),

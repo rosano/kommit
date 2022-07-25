@@ -19,7 +19,7 @@ const mod = {
 	_ValueIsFlipped: false,
 
 	_ValueState: KOMPlayLogic.KOMPlayStateDraw({
-		KOMPlayStateIsMultiDraw: KOMPlayDeck.KOMDeckIsMultiDraw,
+		KOMPlayStatePairingIsEnabled: KOMPlayDeck.KOMDeckPairingIsEnabled,
 		KOMPlayStateQueue: KOMPlaySpacings,
 		KOMPlayStateWait: [],
 		KOMPlayStateHistory: [],
@@ -411,7 +411,7 @@ OLSK_SPEC_UI() ? mod.LifecycleModuleWillMount() : onMount(mod.LifecycleModuleWil
 </script>
 <svelte:window on:keydown={ mod.InterfaceWindowDidKeydown } />
 
-<div class="KOMPlay" class:KOMPlayMultiDraw={ KOMPlayDeck.KOMDeckIsMultiDraw }>
+<div class="KOMPlay" class:KOMPlayPairing={ KOMPlayDeck.KOMDeckPairingIsEnabled }>
 
 <header class="KOMPlayToolbar OLSKToolbar OLSKToolbarJustify OLSKCommonEdgeBottom">
 	<div class="OLSKToolbarElementGroup">

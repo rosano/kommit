@@ -186,13 +186,13 @@ describe('KOMDeckErrors', function test_KOMDeckErrors() {
 
 	});
 
-	context('KOMDeckIsMultiDraw', function () {
+	context('KOMDeckPairingIsEnabled', function () {
 
 		it('returns object if not boolean', function () {
 			deepEqual(mod.KOMDeckErrors(StubDeckObjectValid({
-				KOMDeckIsMultiDraw: null,
+				KOMDeckPairingIsEnabled: null,
 			})), {
-				KOMDeckIsMultiDraw: [
+				KOMDeckPairingIsEnabled: [
 					'KOMErrorNotBoolean',
 				],
 			});
@@ -200,7 +200,7 @@ describe('KOMDeckErrors', function test_KOMDeckErrors() {
 
 		it('returns null', function () {
 			deepEqual(mod.KOMDeckErrors(StubDeckObjectValid({
-				KOMDeckIsMultiDraw: true,
+				KOMDeckPairingIsEnabled: true,
 			})), null);
 		});
 

@@ -113,9 +113,9 @@ const mod = {
 			}
 		}
 
-		if (inputData.KOMDeckIsMultiDraw !== undefined) {
-			if (typeof inputData.KOMDeckIsMultiDraw !== 'boolean') {
-				errors.KOMDeckIsMultiDraw = [
+		if (inputData.KOMDeckPairingIsEnabled !== undefined) {
+			if (typeof inputData.KOMDeckPairingIsEnabled !== 'boolean') {
+				errors.KOMDeckPairingIsEnabled = [
 					'KOMErrorNotBoolean',
 				];
 			}

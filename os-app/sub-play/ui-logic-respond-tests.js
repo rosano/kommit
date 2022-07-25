@@ -52,7 +52,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		const KOMPlayStateCurrent = StubSpacingObjectValid({}, KOMSpacing.KOMSpacingLabelBackward());
 		const KOMPlayStateCurrentPair = StubSpacingObjectValid({}, KOMSpacing.KOMSpacingLabelBackward());
 		const state = StubStateObjectValid({
-			KOMPlayStateIsMultiDraw: true,
+			KOMPlayStatePairingIsEnabled: true,
 			KOMPlayStateCurrent,
 			KOMPlayStateCurrentPair,
 		});
@@ -71,7 +71,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 		it('updates state', function () {
 			deepEqual(state, StubStateObjectValid({
-				KOMPlayStateIsMultiDraw: true,
+				KOMPlayStatePairingIsEnabled: true,
 				KOMPlayStateCurrent: undefined,
 				KOMPlayStateCurrentPair: undefined,
 				KOMPlayStateQueue: [KOMPlayStateCurrent, KOMPlayStateCurrentPair],

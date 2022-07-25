@@ -24,8 +24,8 @@ Object.entries({
 	KOMReviewDetailFormRearLanguageCode: '.KOMReviewDetailFormRearLanguageCode .KOMReviewDetailLanguageCode',
 	KOMReviewDetailFormIsForwardOnlyField: '.KOMReviewDetailFormIsForwardOnlyField',
 	KOMReviewDetailFormIsForwardOnlyFieldLabel: '.KOMReviewDetailFormIsForwardOnlyFieldLabel',
-	KOMReviewDetailFormIsMultiDrawField: '.KOMReviewDetailFormIsMultiDrawField',
-	KOMReviewDetailFormIsMultiDrawFieldLabel: '.KOMReviewDetailFormIsMultiDrawFieldLabel',
+	KOMReviewDetailFormPairingIsEnabledField: '.KOMReviewDetailFormPairingIsEnabledField',
+	KOMReviewDetailFormPairingIsEnabledFieldLabel: '.KOMReviewDetailFormPairingIsEnabledFieldLabel',
 	KOMReviewDetailFormRetireCardsField: '.KOMReviewDetailFormRetireCardsField',
 	KOMReviewDetailFormRetireCardsFieldLabel: '.KOMReviewDetailFormRetireCardsFieldLabel',
 	KOMReviewDetailFormRetireCardsFieldOptionNever: '.KOMReviewDetailFormRetireCardsFieldOptionNever',
@@ -144,12 +144,12 @@ describe('KOMReviewDetail_Access', function () {
 		browser.assert.elements(KOMReviewDetailFormIsForwardOnlyFieldLabel, 1);
 	});
 
-	it('shows KOMReviewDetailFormIsMultiDrawField', function () {
-		browser.assert.elements(KOMReviewDetailFormIsMultiDrawField, 1);
+	it('shows KOMReviewDetailFormPairingIsEnabledField', function () {
+		browser.assert.elements(KOMReviewDetailFormPairingIsEnabledField, 1);
 	});
 
-	it('shows KOMReviewDetailFormIsMultiDrawFieldLabel', function () {
-		browser.assert.elements(KOMReviewDetailFormIsMultiDrawFieldLabel, 1);
+	it('shows KOMReviewDetailFormPairingIsEnabledFieldLabel', function () {
+		browser.assert.elements(KOMReviewDetailFormPairingIsEnabledFieldLabel, 1);
 	});
 
 	it('shows KOMReviewDetailFormRetireCardsField', function () {

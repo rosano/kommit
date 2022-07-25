@@ -268,8 +268,8 @@ import KOMReviewStats from '../KOMReviewStats/main.svelte';
 	</p>
 	<p>
 		<label>
-			<input class="KOMReviewDetailFormIsMultiDrawField" type="checkbox" bind:checked={ KOMReviewDetailDeck.KOMDeckIsMultiDraw } on:input={ mod.InterfaceFormDidUpdate } />
-			<span class="KOMReviewDetailFormIsMultiDrawFieldLabel">{ OLSKLocalized('KOMReviewDetailFormIsMultiDrawFieldLabelText') }</span>
+			<input class="KOMReviewDetailFormPairingIsEnabledField" type="checkbox" bind:checked={ KOMReviewDetailDeck.KOMDeckPairingIsEnabled } on:input={ mod.InterfaceFormDidUpdate } />
+			<span class="KOMReviewDetailFormPairingIsEnabledFieldLabel">{ OLSKLocalized('KOMReviewDetailFormPairingIsEnabledFieldLabelText') }</span>
 		</label>
 	</p>
 	<p>

@@ -402,13 +402,13 @@ describe('KOMPlay_Access', function () {
 	
 	});
 
-	context('KOMPlayStateIsMultiDraw', function test_KOMPlayStateIsMultiDraw () {
+	context('KOMPlayStatePairingIsEnabled', function test_KOMPlayStatePairingIsEnabled () {
 		
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMPlaySpacings: JSON.stringify(StubSpacingArray()),
 				KOMPlayDeck: JSON.stringify(StubDeckObjectValid({
-					KOMDeckIsMultiDraw: true,
+					KOMDeckPairingIsEnabled: true,
 				})),
 			});
 		});

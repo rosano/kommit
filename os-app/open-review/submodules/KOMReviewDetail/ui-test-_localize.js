@@ -74,8 +74,8 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 			browser.assert.text(KOMReviewDetailFormIsForwardOnlyFieldLabel, uLocalized('KOMReviewDetailFormIsForwardOnlyFieldLabelText'));
 		});
 
-		it('localizes KOMReviewDetailFormIsMultiDrawFieldLabel', function () {
-			browser.assert.text(KOMReviewDetailFormIsMultiDrawFieldLabel, uLocalized('KOMReviewDetailFormIsMultiDrawFieldLabelText'));
+		it('localizes KOMReviewDetailFormPairingIsEnabledFieldLabel', function () {
+			browser.assert.text(KOMReviewDetailFormPairingIsEnabledFieldLabel, uLocalized('KOMReviewDetailFormPairingIsEnabledFieldLabelText'));
 		});
 
 		it('localizes KOMReviewDetailFormRetireCardsFieldLabel', function () {

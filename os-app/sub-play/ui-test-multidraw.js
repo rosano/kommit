@@ -2,7 +2,7 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 const KOMPlayLogic = require('./ui-logic.js').default;
 
-describe('KOMPlay_Multidraw', function () {
+describe('KOMPlay_Pairing', function () {
 
 	context('text_only', function () {
 		
@@ -12,15 +12,15 @@ describe('KOMPlay_Multidraw', function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMPlaySpacings: JSON.stringify(items),
 				KOMPlayDeck: JSON.stringify(StubDeckObjectValid({
-					KOMDeckIsMultiDraw: true,
+					KOMDeckPairingIsEnabled: true,
 				})),
 			});
 		});
 
 		describe('KOMPlay', function test_KOMPlay() {
 
-			it('classes KOMPlayMultiDraw', function () {
-				browser.assert.hasClass(KOMPlay, 'KOMPlayMultiDraw');
+			it('classes KOMPlayPairing', function () {
+				browser.assert.hasClass(KOMPlay, 'KOMPlayPairing');
 			});
 
 		});
@@ -51,7 +51,7 @@ describe('KOMPlay_Multidraw', function () {
 
 		const items = StubSpacingArray();
 		const deck = StubDeckObjectValid({
-			KOMDeckIsMultiDraw: true,
+			KOMDeckPairingIsEnabled: true,
 			KOMDeckFrontSpeechIsEnabled: true,
 			KOMDeckFrontLanguageCode: 'en',
 			KOMDeckRearSpeechIsEnabled: true,
@@ -99,7 +99,7 @@ describe('KOMPlay_Multidraw', function () {
 			});
 		});
 		const deck = StubDeckObjectValid({
-			KOMDeckIsMultiDraw: true,
+			KOMDeckPairingIsEnabled: true,
 			KOMDeckAudioIsEnabled: true,
 			// KOMDeckFrontSpeechIsEnabled: true,
 			// KOMDeckFrontLanguageCode: 'en',
