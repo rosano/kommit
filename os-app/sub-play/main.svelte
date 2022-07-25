@@ -37,8 +37,16 @@ const mod = {
 		return mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard[KOMSpacing.KOMSpacingIsBackward(mod._ValueState.KOMPlayStateCurrent) ? 'KOMCardRearText' : 'KOMCardFrontText'];
 	},
 
+	DataPairQuestion () {
+		return mod._ValueState.KOMPlayStateCurrentPair.$KOMSpacingCard[KOMSpacing.KOMSpacingIsBackward(mod._ValueState.KOMPlayStateCurrentPair) ? 'KOMCardRearText' : 'KOMCardFrontText'];
+	},
+
 	DataAnswer () {
 		return mod._ValueState.KOMPlayStateCurrent.$KOMSpacingCard[!KOMSpacing.KOMSpacingIsBackward(mod._ValueState.KOMPlayStateCurrent) ? 'KOMCardRearText' : 'KOMCardFrontText'];
+	},
+
+	DataPairAnswer () {
+		return mod._ValueState.KOMPlayStateCurrentPair.$KOMSpacingCard[!KOMSpacing.KOMSpacingIsBackward(mod._ValueState.KOMPlayStateCurrentPair) ? 'KOMCardRearText' : 'KOMCardFrontText'];
 	},
 
 	DataQuestionShouldSound () {
@@ -422,9 +430,18 @@ OLSK_SPEC_UI() ? mod.LifecycleModuleWillMount() : onMount(mod.LifecycleModuleWil
 	<div class="KOMPlayCard OLSKDecorTappable" on:click={ mod.InterfaceCardDidClick }>
 
 		<div class="KOMPlayCardQuestion">{ mod.DataQuestion() }</div>
+		
+		{#if mod._ValueState.KOMPlayStateCurrentPair }
+			<div class="KOMPlayCardQuestionPair">{ mod.DataPairQuestion() }</div>
+		{/if}
 
 		{#if mod._ValueIsFlipped}
 			<div class="KOMPlayCardAnswer">{ mod.DataAnswer() }</div>
+
+			{#if mod._ValueState.KOMPlayStateCurrentPair }
+				<div class="KOMPlayCardAnswerPair">{ mod.DataPairAnswer() }</div>
+			{/if}
+			
 		{/if}
 
 		{#if mod._ValueIsFlipped}

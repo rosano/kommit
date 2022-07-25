@@ -17,7 +17,9 @@ Object.entries({
 
 	KOMPlayCard: '.KOMPlayCard',
 	KOMPlayCardQuestion: '.KOMPlayCardQuestion',
+	KOMPlayCardQuestionPair: '.KOMPlayCardQuestionPair',
 	KOMPlayCardAnswer: '.KOMPlayCardAnswer',
+	KOMPlayCardAnswerPair: '.KOMPlayCardAnswerPair',
 	KOMPlayCardNotes: '.KOMPlayCardNotes',
 
 	KOMPlayFlipButton: '.KOMPlayFlipButton',
@@ -74,8 +76,16 @@ describe('KOMPlay_Access', function () {
 		browser.assert.elements(KOMPlayCardQuestion, 1);
 	});
 
+	it('hides KOMPlayCardQuestionPair', function () {
+		browser.assert.elements(KOMPlayCardQuestionPair, 0);
+	});
+
 	it('hides KOMPlayCardAnswer', function () {
 		browser.assert.elements(KOMPlayCardAnswer, 0);
+	});
+
+	it('hides KOMPlayCardAnswerPair', function () {
+		browser.assert.elements(KOMPlayCardAnswerPair, 0);
 	});
 
 	it('hides KOMPlayCardNotes', function () {
@@ -388,6 +398,35 @@ describe('KOMPlay_Access', function () {
 
 		it('hides KOMPlayResponseButtonEasy', function () {
 			browser.assert.elements(KOMPlayResponseButtonEasy, 0);
+		});
+	
+	});
+
+	context('KOMPlayStateIsMultiDraw', function test_KOMPlayStateIsMultiDraw () {
+		
+		before(function () {
+			return browser.OLSKVisit(kDefaultRoute, {
+				KOMPlaySpacings: JSON.stringify(StubSpacingArray()),
+				KOMPlayDeck: JSON.stringify(StubDeckObjectValid({
+					KOMDeckIsMultiDraw: true,
+				})),
+			});
+		});
+
+		it('shows KOMPlayCardQuestionPair', function () {
+			browser.assert.elements(KOMPlayCardQuestionPair, 1);
+		});
+
+		context('flip', function () {
+			
+			before(function () {
+				return browser.pressButton(KOMPlayFlipButton);
+			});
+
+			it('shows KOMPlayCardAnswerPair', function () {
+				browser.assert.elements(KOMPlayCardAnswerPair, 1);
+			});
+
 		});
 	
 	});
