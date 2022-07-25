@@ -81,4 +81,53 @@ describe('KOMPlay_Multidraw', function () {
 
 	});
 
+	describe.skip('audio', function () {
+
+		const items = StubSpacingArray().map(function (e, i) {
+			return Object.assign(e, {
+				$KOMSpacingCard: Object.assign(e.$KOMSpacingCard, {
+					KOMCardFrontAudio: true,
+				}),
+			});
+		});
+		const deck = StubDeckObjectValid({
+			KOMDeckIsMultiDraw: true,
+			KOMDeckAudioIsEnabled: true,
+			// KOMDeckFrontSpeechIsEnabled: true,
+			// KOMDeckFrontLanguageCode: 'en',
+			// KOMDeckRearSpeechIsEnabled: true,
+			// KOMDeckRearLanguageCode: 'en',
+		});
+
+		const _log = [];
+		const uLog = function (inputData) {
+			_log.push(inputData);
+			return _log.join(',');
+		};
+
+		before(function () {
+			return browser.OLSKVisit(kDefaultRoute, {
+				KOMPlaySpacings: JSON.stringify(items),
+				KOMPlayDeck: JSON.stringify(deck),
+			});
+		});
+
+		it('starts audio', function () {
+			browser.assert.text('#TestKOMPlayAudioLog', uLog('fetch,play:KOMCardFrontAudio,play:KOMCardFrontAudio'));
+		});
+
+		context('flip', function () {
+
+			before(function () {
+				return browser.pressButton(KOMPlayFlipButton);
+			});
+
+			it('stops read', function () {
+				browser.assert.text('#TestKOMPlayAudioLog', uLog('stop,play:KOMCardRearAudio,play:KOMCardRearAudio'));
+			});
+
+		});
+
+	})
+
 });
