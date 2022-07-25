@@ -17,6 +17,14 @@ describe('KOMPlay_Multidraw', function () {
 			});
 		});
 
+		describe('KOMPlay', function test_KOMPlay() {
+
+			it('classes KOMPlayMultiDraw', function () {
+				browser.assert.hasClass(KOMPlay, 'KOMPlayMultiDraw');
+			});
+
+		});
+
 		describe('KOMPlayCardQuestionPair', function test_KOMPlayCardQuestionPair() {
 
 			it('sets text', function () {

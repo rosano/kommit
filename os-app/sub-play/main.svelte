@@ -411,7 +411,7 @@ OLSK_SPEC_UI() ? mod.LifecycleModuleWillMount() : onMount(mod.LifecycleModuleWil
 </script>
 <svelte:window on:keydown={ mod.InterfaceWindowDidKeydown } />
 
-<div class="KOMPlay">
+<div class="KOMPlay" class:KOMPlayMultiDraw={ KOMPlayDeck.KOMDeckIsMultiDraw }>
 
 <header class="KOMPlayToolbar OLSKToolbar OLSKToolbarJustify OLSKCommonEdgeBottom">
 	<div class="OLSKToolbarElementGroup">
