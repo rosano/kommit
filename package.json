@@ -12,13 +12,10 @@
     "watch": "olsk-rollup-watch"
   },
   "dependencies": {
-    "//": "open-vitrine",
     "OLSKPithVitrine": "olsk/OLSKPithVitrine",
 
-    "//": "open-guide",
     "OLSKPithGuide": "olsk/OLSKPithGuide",
 
-    "//": "open-play",
     "OLSKPithApp": "olsk/OLSKPithApp",
     "OLSKCatalog": "olsk/OLSKCatalog",
     "OLSKLocalStorage": "olsk/OLSKLocalStorage",
@@ -26,10 +23,8 @@
     "vmsg": "latest",
     "d3-scale": "3.x",
 
-    "//": "tech-robots",
     "OLSKRobots": "olsk/OLSKRobots",
 
-    "//": "tech-serviceworker",
     "OLSKServiceWorker": "olsk/OLSKServiceWorker"
   },
   "devDependencies": {
