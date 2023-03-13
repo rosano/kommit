@@ -167,6 +167,10 @@ describe('KOMBrowseCardsFromSSV', function test_KOMBrowseCardsFromSSV() {
 		deepEqual(mod.KOMBrowseCardsFromSSV(Math.random().toString() + ';' + Math.random().toString() + ';' + item + ';' + Math.random().toString())[0].KOMCardNotes, item);
 	});
 
+	it('ignores empty fields', function() {
+		deepEqual(mod.KOMBrowseCardsFromSSV(Math.random().toString() + ';' + Math.random().toString() + ';;')[0].KOMCardTags, null);
+	});
+
 	it('parses multiple', function() {
 		const item = uRandomElement('\n', '  ')
 		const KOMCardFrontText = Math.random().toString();

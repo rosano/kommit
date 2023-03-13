@@ -64,7 +64,7 @@ const mod = {
 				KOMCardRearText: item.shift(),
 			}, item.length ? {
 				KOMCardNotes: item.shift(),
-			} : {}, item.length ? {
+			} : {}, item.length && item[0].length ? {
 				KOMCardTags: item.shift().split(','),
 			} : {}); 
 		});
