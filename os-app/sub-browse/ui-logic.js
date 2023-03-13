@@ -63,9 +63,9 @@ const mod = {
 				KOMCardFrontText: item.shift(),
 				KOMCardRearText: item.shift(),
 			}, item.length ? {
-				KOMCardTags: item.pop().split(','),
+				KOMCardNotes: item.shift(),
 			} : {}, item.length ? {
-				KOMCardNotes: item.pop(),
+				KOMCardTags: item.shift().split(','),
 			} : {}); 
 		});
 	},

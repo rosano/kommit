@@ -151,7 +151,7 @@ describe('KOMBrowseCardsFromSSV', function test_KOMBrowseCardsFromSSV() {
 
 	it('maps KOMCardTags single', function() {
 		const item = Math.random().toString();
-		deepEqual(mod.KOMBrowseCardsFromSSV(Math.random().toString() + ';' + Math.random().toString() + ';' + item)[0].KOMCardTags, [item]);
+		deepEqual(mod.KOMBrowseCardsFromSSV(Math.random().toString() + ';' + Math.random().toString() + ';;' + item)[0].KOMCardTags, [item]);
 	});
 
 	it('maps KOMCardTags multiple', function() {
@@ -159,7 +159,7 @@ describe('KOMBrowseCardsFromSSV', function test_KOMBrowseCardsFromSSV() {
 			Math.random().toString(),
 			Math.random().toString(),
 		];
-		deepEqual(mod.KOMBrowseCardsFromSSV(Math.random().toString() + ';' + Math.random().toString() + ';' + item.join(','))[0].KOMCardTags, item);
+		deepEqual(mod.KOMBrowseCardsFromSSV(Math.random().toString() + ';' + Math.random().toString() + ';;' + item.join(','))[0].KOMCardTags, item);
 	});
 
 	it('maps KOMCardNotes', function() {
@@ -176,15 +176,17 @@ describe('KOMBrowseCardsFromSSV', function test_KOMBrowseCardsFromSSV() {
 			Math.random().toString(),
 		];
 		deepEqual(mod.KOMBrowseCardsFromSSV([
-			[KOMCardFrontText, KOMCardRearText, KOMCardTags.join(',')].join(';'),
-			[KOMCardFrontText, KOMCardRearText, KOMCardTags.join(',')].join(';'),
+			[KOMCardFrontText, KOMCardRearText, '', KOMCardTags.join(',')].join(';'),
+			[KOMCardFrontText, KOMCardRearText, '', KOMCardTags.join(',')].join(';'),
 			].join(item)), [{
 			KOMCardFrontText,
 			KOMCardRearText,
+			KOMCardNotes: '',
 			KOMCardTags,
 		}, {
 			KOMCardFrontText,
 			KOMCardRearText,
+			KOMCardNotes: '',
 			KOMCardTags,
 		}]);
 	});
