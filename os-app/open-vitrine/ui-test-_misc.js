@@ -78,6 +78,42 @@ describe('KOMVitrine_Misc', function () {
 	
 	});
 
+	describe('KOMVitrineVideo1', function test_KOMVitrineVideo () {
+
+		it('classes OLSKCommonVideoListItemMobile', function () {
+			browser.assert.hasClass('.KOMVitrineVideo1', 'OLSKCommonVideoListItemMobile');
+		});
+
+		it('sets src', function () {
+			browser.assert.attribute(KOMVitrineVideo1, 'src', process.env.KOM_VITRINE_VIDEOS_URL_1);
+		});
+
+		it('sets allow', function () {
+			browser.assert.attribute(KOMVitrineVideo1, 'allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+		});
+
+		it('sets allowfullscreen', function () {
+			browser.assert.attribute(KOMVitrineVideo1, 'allowfullscreen', '');
+		});
+
+	});
+
+	describe('KOMVitrineVideo2', function test_KOMVitrineVideo () {
+
+		it('sets src', function () {
+			browser.assert.attribute(KOMVitrineVideo2, 'src', process.env.KOM_VITRINE_VIDEOS_URL_2);
+		});
+
+		it('sets allow', function () {
+			browser.assert.attribute(KOMVitrineVideo2, 'allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+		});
+
+		it('sets allowfullscreen', function () {
+			browser.assert.attribute(KOMVitrineVideo2, 'allowfullscreen', '');
+		});
+
+	});
+
 	describe('KOMVitrineGlossary', function test_KOMVitrineGlossary () {
 
 		it('classes OLSKDecorGlossary', function () {

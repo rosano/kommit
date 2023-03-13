@@ -9,6 +9,12 @@ Object.entries({
 
 	KOMVitrineGuideButton: '.KOMVitrineGuideButton',
 
+	KOMVitrineVideoHeading: '.KOMVitrineVideoHeading',
+	KOMVitrineVideo1Heading: '.OLSKCommonVideoList .KOMVitrineVideo1Heading',
+	KOMVitrineVideo1: '.OLSKCommonVideoList .OLSKCommonVideoListItem.KOMVitrineVideo1 iframe',
+	KOMVitrineVideo2Heading: '.OLSKCommonVideoList .KOMVitrineVideo2Heading',
+	KOMVitrineVideo2: '.OLSKCommonVideoList .OLSKCommonVideoListItem.KOMVitrineVideo2 iframe',
+	
 	KOMVitrineDeeperHeading: '.KOMVitrineDeeperHeading',
 	KOMVitrineGlossary: '.KOMVitrineGlossary',
 	KOMVitrineGlossaryHeading: '.KOMVitrineGlossaryHeading',
@@ -65,6 +71,26 @@ describe('KOMVitrine_Access', function () {
 
 	it('shows KOMVitrineGuideButton', function () {
 		browser.assert.elements(KOMVitrineGuideButton, 1);
+	});
+
+	it('shows KOMVitrineVideoHeading', function () {
+		browser.assert.elements(KOMVitrineVideoHeading, 1);
+	});
+
+	it('shows KOMVitrineVideo1Heading', function () {
+		browser.assert.elements(KOMVitrineVideo1Heading, 1);
+	});
+
+	it('shows KOMVitrineVideo1', function () {
+		browser.assert.elements(KOMVitrineVideo1, 1);
+	});
+
+	it('shows KOMVitrineVideo2Heading', function () {
+		browser.assert.elements(KOMVitrineVideo2Heading, 1);
+	});
+
+	it('shows KOMVitrineVideo2', function () {
+		browser.assert.elements(KOMVitrineVideo2, 1);
 	});
 
 	it('shows KOMVitrineDeeperHeading', function () {

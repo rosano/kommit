@@ -43,6 +43,21 @@ locals.OLSKPagePublicConstants = {
 
 <a class="KOMVitrineGuideButton OLSKDecorPress OLSKDecorPressCall" href="<%= OLSKCanonical('KOMGuideRoute') %>"><%= OLSKLocalized('OLSKWordingOpenGuide') %></a>
 
+<h1 class="KOMVitrineVideoHeading"><%= OLSKLocalized('OLSKWordingVideo') %></h1>
+
+<div class="OLSKCommonVideoList">
+	
+	<h2 class="KOMVitrineVideo1Heading"><%= OLSKLocalized('KOMVitrineVideo1HeadingText') %></h2>
+	<p class="KOMVitrineVideo1 OLSKCommonVideoListItem">
+		<iframe src="<%= process.env.KOM_VITRINE_VIDEOS_URL_1 %>" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	</p>
+
+	<h2 class="KOMVitrineVideo2Heading"><%= OLSKLocalized('KOMVitrineVideo2HeadingText') %></h2>
+	<p class="KOMVitrineVideo2 OLSKCommonVideoListItem">
+		<iframe src="<%= process.env.KOM_VITRINE_VIDEOS_URL_2 %>" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	</p>
+</div>
+
 <h1 class="KOMVitrineDeeperHeading"><%= OLSKLocalized('OLSKWordingDeeperHeading') %></h1>
 
 <dl class="KOMVitrineGlossary OLSKDecorGlossary">
