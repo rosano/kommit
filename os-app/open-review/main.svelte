@@ -1277,38 +1277,38 @@ import OLSKApropos from 'OLSKApropos';
 {#if !mod._ValuePlayVisible }
 	<footer class="KOMReviewViewportFooter OLSKMobileViewFooter">
 
-		{#if !mod._ValueCloudToolbarHidden }
-			<div class="KOMReviewCloudToolbar OLSKToolbar OLSKToolbarJustify OLSKCommonEdgeTop">
-				<div class="OLSKToolbarElementGroup"></div>
+	{#if !mod._ValueCloudToolbarHidden }
+		<div class="KOMReviewCloudToolbar OLSKToolbar OLSKToolbarJustify OLSKCommonEdgeTop">
+			<div class="OLSKToolbarElementGroup"></div>
 
-				<div class="OLSKToolbarElementGroup">
-					<OLSKCloud
-						OLSKCloudErrorText={ mod._ValueCloudErrorText }
-						OLSKCloudDispatchRenew={ mod.OLSKCloudDispatchRenew }
-						OLSKCloudFormDispatchSubmit={ mod.OLSKCloudFormDispatchSubmit }
-						OLSKCloudStatusIdentityText={ mod._ValueCloudIdentity }
-						OLSKCloudStatusIsSyncing={ mod._ValueIsSyncing }
-						OLSKCloudStatusDispatchSyncStart={ mod.OLSKCloudStatusDispatchSyncStart }
-						OLSKCloudStatusDispatchSyncStop={ mod.OLSKCloudStatusDispatchSyncStop }
-						OLSKCloudStatusDispatchDisconnect={ mod.OLSKCloudStatusDispatchDisconnect }
-						/>
-				</div>
+			<div class="OLSKToolbarElementGroup">
+				<OLSKCloud
+					OLSKCloudErrorText={ mod._ValueCloudErrorText }
+					OLSKCloudDispatchRenew={ mod.OLSKCloudDispatchRenew }
+					OLSKCloudFormDispatchSubmit={ mod.OLSKCloudFormDispatchSubmit }
+					OLSKCloudStatusIdentityText={ mod._ValueCloudIdentity }
+					OLSKCloudStatusIsSyncing={ mod._ValueIsSyncing }
+					OLSKCloudStatusDispatchSyncStart={ mod.OLSKCloudStatusDispatchSyncStart }
+					OLSKCloudStatusDispatchSyncStop={ mod.OLSKCloudStatusDispatchSyncStop }
+					OLSKCloudStatusDispatchDisconnect={ mod.OLSKCloudStatusDispatchDisconnect }
+					/>
 			</div>
-		{/if}
+		</div>
+	{/if}
 
-		<OLSKAppToolbar
-			OLSKAppToolbarDispatchApropos={ mod.OLSKAppToolbarDispatchApropos }
-			OLSKAppToolbarDispatchTongue={ mod.OLSKAppToolbarDispatchTongue }
-			OLSKAppToolbarGuideURL={ window.OLSKCanonical('KOMGuideRoute') }
-			OLSKAppToolbarFundShowProgress={ mod._ValueOLSKFundProgress }
-			OLSKAppToolbarFundLimitText={ mod._ValueDocumentRemainder }
-			OLSKAppToolbarCloudConnected={ !!mod._ValueCloudIdentity }
-			OLSKAppToolbarCloudOffline={ mod._ValueCloudIsOffline }
-			OLSKAppToolbarCloudError={ !!mod._ValueCloudErrorText }
-			OLSKAppToolbarDispatchFund={ mod._ValueOLSKFundGrant || OLSKFund.OLSKFundResponseIsPresent() ? null : mod.OLSKAppToolbarDispatchFund }
-			OLSKAppToolbarDispatchCloud={ mod.OLSKAppToolbarDispatchCloud }
-			OLSKAppToolbarDispatchLauncher={ mod.OLSKAppToolbarDispatchLauncher }
-			/>
+	<OLSKAppToolbar
+		OLSKAppToolbarDispatchApropos={ mod.OLSKAppToolbarDispatchApropos }
+		OLSKAppToolbarDispatchTongue={ mod.OLSKAppToolbarDispatchTongue }
+		OLSKAppToolbarGuideURL={ window.OLSKCanonical('KOMGuideRoute') }
+		OLSKAppToolbarFundShowProgress={ mod._ValueOLSKFundProgress }
+		OLSKAppToolbarFundLimitText={ mod._ValueDocumentRemainder }
+		OLSKAppToolbarCloudConnected={ !!mod._ValueCloudIdentity }
+		OLSKAppToolbarCloudOffline={ mod._ValueCloudIsOffline }
+		OLSKAppToolbarCloudError={ !!mod._ValueCloudErrorText }
+		OLSKAppToolbarDispatchFund={ mod._ValueOLSKFundGrant || OLSKFund.OLSKFundResponseIsPresent() ? null : mod.OLSKAppToolbarDispatchFund }
+		OLSKAppToolbarDispatchCloud={ mod.OLSKAppToolbarDispatchCloud }
+		OLSKAppToolbarDispatchLauncher={ mod.OLSKAppToolbarDispatchLauncher }
+		/>
 
 	<OLSKInstall />
 
