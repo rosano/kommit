@@ -797,7 +797,39 @@ describe('KOMPlayStateDraw', function test_KOMPlayStateDraw() {
 				KOMPlayStateQueue: [StubSpacingObjectValid()],
 			}));
 			deepEqual(item.KOMPlayStateCurrent.KOMSpacingDrawDate, item.KOMPlayStateChronicle.KOMChronicleDrawDate);
-		});	
+		});
+
+		context('sibling history', function () {
+			
+			it('sets to second if same card', function () {
+				const $KOMSpacingCard = StubCardObjectValid();
+				const item = StubSpacingObjectValid({
+					$KOMSpacingCard,
+				});
+				deepEqual(mod.KOMPlayStateDraw(StubStateObjectValid({
+					KOMPlayStateQueue: [StubSpacingObjectValid({
+						$KOMSpacingCard,
+					}), item],
+						KOMPlayStateHistory: [StubSpacingObjectValid({
+						$KOMSpacingCard,
+					})],
+				})).KOMPlayStateCurrent, item);
+			});
+			
+			it('sets to first if only one', function () {
+				const $KOMSpacingCard = StubCardObjectValid();
+				const item = StubSpacingObjectValid({
+					$KOMSpacingCard,
+				});
+				deepEqual(mod.KOMPlayStateDraw(StubStateObjectValid({
+					KOMPlayStateQueue: [item],
+						KOMPlayStateHistory: [StubSpacingObjectValid({
+						$KOMSpacingCard,
+					})],
+				})).KOMPlayStateCurrent, item);
+			});
+		
+		});
 	
 	});
 

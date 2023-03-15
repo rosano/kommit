@@ -458,6 +458,11 @@ const mod = {
 
 		inputData.KOMPlayStateCurrent = inputData.KOMPlayStateQueue.shift();
 
+		// avoid showing a sibling if there are other options
+		if (inputData.KOMPlayStateHistory.length && inputData.KOMPlayStateQueue.length && (inputData.KOMPlayStateCurrent.$KOMSpacingCard === inputData.KOMPlayStateHistory.slice(-1).pop().$KOMSpacingCard)) {
+			inputData.KOMPlayStateCurrent = inputData.KOMPlayStateQueue.splice(0, 1, inputData.KOMPlayStateCurrent).pop();
+		}
+
 		if (inputData.KOMPlayStateCurrent) {
 			inputData.KOMPlayStateCurrent.KOMSpacingDrawDate = (inputData.KOMPlayStateChronicle = mod.KOMChronicleGenerateDraw(options.paramDate || new Date(), inputData.KOMPlayStateCurrent)).KOMChronicleDrawDate;
 		}
