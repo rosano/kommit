@@ -309,19 +309,20 @@ describe('KOMReviewFilter', function test_KOMReviewFilter() {
 			}), StubDeckObjectValid()), []);
 		});
 
-		it('includes learning if KOMReviewSchemeReviewing', function () {
+		it('excludes learning if KOMReviewSchemeReviewing', function () {
 			const items = uItems({
 				KOMSpacingDueDate: new Date(),
 				KOMSpacingIsLearning: true,
 			});
 			deepEqual(mod.KOMReviewFilter(items, StubReviewObjectValid({
 				KOMReviewScheme: mod.KOMReviewSchemeReviewing(),
-			}), StubDeckObjectValid()), items);
+			}), StubDeckObjectValid()), []);
 		});
 
 		it('includes reviewing if KOMReviewSchemeReviewing', function () {
 			const items = uItems({
 				KOMSpacingDueDate: new Date(),
+				KOMSpacingInterval: 1,
 			});
 			deepEqual(mod.KOMReviewFilter(items, StubReviewObjectValid({
 				KOMReviewScheme: mod.KOMReviewSchemeReviewing(),
@@ -331,13 +332,14 @@ describe('KOMReviewFilter', function test_KOMReviewFilter() {
 		it('excludes reviewing if KOMReviewSchemeUnseen', function () {
 			deepEqual(mod.KOMReviewFilter(uItems({
 				KOMSpacingDueDate: new Date(),
+				KOMSpacingInterval: 1,
 			}), StubReviewObjectValid({
 				KOMReviewScheme: mod.KOMReviewSchemeUnseen(),
 				KOMReviewMaxUnseenCards: Infinity,
 			}), StubDeckObjectValid()), []);
 		});
 
-		it('excludes learning if KOMReviewSchemeUnseen', function () {
+		it('includes learning if KOMReviewSchemeUnseen', function () {
 			const items = uItems({
 				KOMSpacingDueDate: new Date(),
 				KOMSpacingIsLearning: true,
@@ -345,7 +347,7 @@ describe('KOMReviewFilter', function test_KOMReviewFilter() {
 			deepEqual(mod.KOMReviewFilter(items, StubReviewObjectValid({
 				KOMReviewScheme: mod.KOMReviewSchemeUnseen(),
 				KOMReviewMaxUnseenCards: Infinity,
-			}), StubDeckObjectValid()), []);
+			}), StubDeckObjectValid()), items);
 		});
 
 		it('includes unseen if KOMReviewSchemeUnseen', function () {
@@ -370,6 +372,7 @@ describe('KOMReviewFilter', function test_KOMReviewFilter() {
 		it('includes reviewing if KOMReviewSchemeMixed', function () {
 			const items = uItems({
 				KOMSpacingDueDate: new Date(),
+				KOMSpacingInterval: 1,
 			});
 			deepEqual(mod.KOMReviewFilter(items, StubReviewObjectValid({
 				KOMReviewScheme: mod.KOMReviewSchemeMixed(),
@@ -397,10 +400,36 @@ describe('KOMReviewFilter', function test_KOMReviewFilter() {
 			}), StubDeckObjectValid()), items.slice(0, 10));
 		});
 
+		it('excludes learning beyond KOMReviewMaxUnseenCards if KOMReviewSchemeUnseen', function () {
+			const items = uItems({
+				KOMSpacingDueDate: new Date(),
+				KOMSpacingIsLearning: true,
+			});
+			deepEqual(mod.KOMReviewFilter(items, StubReviewObjectValid({
+				KOMReviewScheme: mod.KOMReviewSchemeUnseen(),
+				KOMReviewMaxUnseenCards: 5,
+			}), StubDeckObjectValid()), items.slice(0, 10));
+		});
+
 		it('excludes unseen beyond KOMReviewMaxUnseenCards if KOMReviewSchemeMixed', function () {
 			const items = uItems({
 				KOMSpacingDueDate: new Date(),
+				KOMSpacingInterval: 1,
 			}).concat(uItems());
+			deepEqual(mod.KOMReviewFilter(items, StubReviewObjectValid({
+				KOMReviewScheme: mod.KOMReviewSchemeMixed(),
+				KOMReviewMaxUnseenCards: 5,
+			}), StubDeckObjectValid()).length, items.slice(0, 30).length);
+		});
+
+		it('excludes learning beyond KOMReviewMaxUnseenCards if KOMReviewSchemeMixed', function () {
+			const items = uItems({
+				KOMSpacingDueDate: new Date(),
+				KOMSpacingInterval: 1,
+			}).concat(uItems({
+				KOMSpacingDueDate: new Date(),
+				KOMSpacingIsLearning: true,
+			}));
 			deepEqual(mod.KOMReviewFilter(items, StubReviewObjectValid({
 				KOMReviewScheme: mod.KOMReviewSchemeMixed(),
 				KOMReviewMaxUnseenCards: 5,
