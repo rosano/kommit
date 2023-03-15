@@ -80,6 +80,10 @@ describe('KOMReview_Access', function () {
 		return browser.assert.OLSKLauncherItems('KOMReviewLauncherItemExportSelectedJSON', 0);
 	});
 
+	it('hides KOMReviewLauncherItemExportSelectedTXT', function () {
+		return browser.assert.OLSKLauncherItems('KOMReviewLauncherItemExportSelectedTXT', 0);
+	});
+
 	it('shows ZDRLauncherFakeItemProxy', function () {
 		return browser.assert.OLSKLauncherItems('ZDRLauncherFakeItemProxy', 1);
 	});
@@ -242,6 +246,10 @@ describe('KOMReview_Access', function () {
 
 		it('shows KOMReviewLauncherItemExportSelectedJSON', function () {
 			return browser.assert.OLSKLauncherItems('KOMReviewLauncherItemExportSelectedJSON', 1);
+		});
+
+		it('shows KOMReviewLauncherItemExportSelectedTXT', function () {
+			return browser.assert.OLSKLauncherItems('KOMReviewLauncherItemExportSelectedTXT', 1);
 		});
 
 		it('shows KOMReviewDetailLauncherFakeItemProxy', function () {

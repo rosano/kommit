@@ -1,6 +1,7 @@
 KOMReviewTitle: Kommit
 KOMReviewCreatePromptText: Nombre
 KOMReviewLauncherItemExportSelectedJSONText: Exportar mazo seleccionado JSON (beta)
+KOMReviewLauncherItemExportSelectedTXTText: Exportar mazo seleccionado como texto
 KOMReviewLauncherItemSelectDeckTextFormat: Escoger mazo '%@'
 KOMReviewLauncherItemToggleSimplifiedResponseButtonsText: Alternar botones de respuesta simplificados
 KOMReviewLauncherItemDebugPlungeDataText: Plunge data

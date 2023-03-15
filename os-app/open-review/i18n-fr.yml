@@ -1,6 +1,7 @@
 KOMReviewTitle: Kommit
 KOMReviewCreatePromptText: Nom
 KOMReviewLauncherItemExportSelectedJSONText: Exporter le lot sélectionné JSON (béta)
+KOMReviewLauncherItemExportSelectedTXTText: Exporter le lot sélectionné comme texte
 KOMReviewLauncherItemSelectDeckTextFormat: Choisir lot de cartes '%@'
 KOMReviewLauncherItemToggleSimplifiedResponseButtonsText: Commuter les boutons de réponse simplifiés
 KOMReviewLauncherItemDebugPlungeDataText: Ventouser les données

@@ -1,6 +1,7 @@
 KOMReviewTitle: Kommit
 KOMReviewCreatePromptText: Nome
 KOMReviewLauncherItemExportSelectedJSONText: Exportar baralho selecionado JSON (beta)
+KOMReviewLauncherItemExportSelectedTXTText: Exportar baralho selecionado como texto
 KOMReviewLauncherItemSelectDeckTextFormat: Selecione o baralho '%@'.
 KOMReviewLauncherItemToggleSimplifiedResponseButtonsText: Botões de resposta simplificados
 KOMReviewLauncherItemDebugPlungeDataText: Jugar dados

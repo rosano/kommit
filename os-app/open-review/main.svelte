@@ -139,6 +139,14 @@ const mod = {
 					return this.api.OLSKTransportLauncherItemExportJSON(await mod._OLSKTransportDispatchExportInput([mod._ValueDeckSelected]));
 				}),
 			});
+
+			items.push({
+				LCHRecipeSignature: 'KOMReviewLauncherItemExportSelectedTXT',
+				LCHRecipeName: OLSKLocalized('KOMReviewLauncherItemExportSelectedTXTText'),
+				LCHRecipeCallback: (async function KOMReviewLauncherItemExportSelectedTXT () {
+					return this.api.LCHSaveFile(await mod._DeckExportTXT(mod._ValueDeckSelected), OLSKTransport.OLSKTransportExportBasename() + '.txt');
+				}),
+			});
 		}
 
 		if (!!mod._ValueCloudIdentity && mod._ValueZDRWrap.ZDRStorageProtocol === zerodatawrap.ZDRProtocolRemoteStorage()) {
@@ -314,6 +322,12 @@ const mod = {
 					LCHRecipeName: 'KOMReviewLauncherItemDebug_AlertFakeExportSelectedSerialized',
 					LCHRecipeCallback: async function KOMReviewLauncherItemDebug_AlertFakeExportSelectedSerialized () {
 						return this.api.OLSKTransportLauncherFakeItemExportSerialized(await mod._OLSKTransportDispatchExportInput([mod._ValueDeckSelected]));
+					},
+				},
+				{
+					LCHRecipeName: 'KOMReviewLauncherItemDebug_AlertFakeExportSelectedPlaintext',
+					LCHRecipeCallback: async function KOMReviewLauncherItemDebug_AlertFakeExportSelectedPlaintext () {
+						return OLSKTransport.OLSKTransportFakeExportPlaintext(await mod._DeckExportTXT(mod._ValueDeckSelected));
 					},
 				},
 				{
@@ -720,6 +734,12 @@ const mod = {
 			KOMDeck,
 			KOMSetting: await mod._ValueZDRWrap.App.KOMSetting.KOMSettingList(),
 		});
+	},
+
+	async _DeckExportTXT (inputData) {
+		return KOMReviewLogic.KOMReviewDeckTXT(Object.assign({
+			$KOMDeckCards: await mod._ValueZDRWrap.App.KOMCard.KOMCardList(inputData),
+		}, inputData));
 	},
 
 	OLSKTransportDispatchExportInput () {

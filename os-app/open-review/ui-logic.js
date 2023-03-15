@@ -347,6 +347,21 @@ const mod = {
 		}, 0);
 	},
 
+	KOMReviewDeckTXT (inputData) {
+		if (KOMDeck.KOMDeckErrors(inputData)) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		return (inputData.$KOMDeckCards || []).reduce(function (coll, item) {
+			return coll.concat([
+				item.KOMCardFrontText,
+				item.KOMCardRearText,
+				item.KOMCardNotes,
+				item.KOMCardTags,
+			].join(';') + '\n');
+		}, '');
+	},
+
 };
 
 export default mod;

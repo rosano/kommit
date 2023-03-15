@@ -159,4 +159,54 @@ describe('KOMReview_Transport', function () {
 
 	});
 
+	describe('KOMReviewLauncherItemExportSelectedTXT', function test_KOMReviewLauncherItemExportSelectedTXT() {
+
+		const KOMDeckName = Math.random().toString();
+
+		before(function() {
+			return browser.OLSKVisit(kDefaultRoute);
+		});
+
+		before(function () {
+			return browser.OLSKPrompt(function () {
+				return browser.pressButton('.KOMReviewMasterCreateButton');
+			}, function (dialog) {
+				dialog.response = KOMDeckName;
+
+				return dialog;
+			});
+		});
+
+		before(function () { // #hotfix-invisible-until-assert
+			return browser.wait({ element: '.KOMReviewMasterListItem' });
+		});
+
+		before(function () {
+			return browser.pressButton('.KOMReviewMasterListItem');
+		});
+
+		before(function () {
+			return browser.pressButton('.OLSKAppToolbarLauncherButton');
+		});
+
+		before(function () {
+			return browser.fill('.LCHLauncherFilterInput', 'KOMReviewLauncherItemDebug_AlertFakeExportSelectedPlaintext');
+		});
+
+		it('exports file', async function() {
+			const response = JSON.parse(await browser.OLSKAlertAsync(function () {
+    		return browser.click('.LCHLauncherPipeItem');
+    	}));
+
+    	const date = response.OLSKDownloadName.split('-').pop().split('.').shift();
+    	const item = response.OLSKDownloadData;
+
+    	browser.assert.deepEqual(response, {
+    		OLSKDownloadName: `${ browser.window.location.hostname }-${ date }.txt`,
+    		OLSKDownloadData: ``,
+    	});
+    });
+
+	});
+
 });

@@ -179,6 +179,7 @@ Counting the number of cards based on its state.
 | `KOMReviewDetailLauncherItemPlayReviewingText` | Launcher |
 | `KOMReviewDetailLauncherItemPlayUnseenText` | Launcher |
 | `KOMReviewLauncherItemExportSelectedJSONText` | Launcher |
+| `KOMReviewLauncherItemExportSelectedTXTText` | Launcher |
 
 | Memory game ||
 :--- | ---

@@ -92,6 +92,10 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 				return browser.assert.OLSKLauncherItemText('KOMReviewLauncherItemExportSelectedJSON', uLocalized('KOMReviewLauncherItemExportSelectedJSONText'));
 			});
 
+			it('localizes KOMReviewLauncherItemExportSelectedTXT', function () {
+				return browser.assert.OLSKLauncherItemText('KOMReviewLauncherItemExportSelectedTXT', uLocalized('KOMReviewLauncherItemExportSelectedTXTText'));
+			});
+
 		});
 
 		context('connected', function test_connected () {

@@ -1,6 +1,7 @@
 KOMReviewTitle: Kommit
 KOMReviewCreatePromptText: Name
 KOMReviewLauncherItemExportSelectedJSONText: Export selected deck JSON (beta)
+KOMReviewLauncherItemExportSelectedTXTText: Export deck as text
 KOMReviewLauncherItemSelectDeckTextFormat: Select deck '%@'
 KOMReviewLauncherItemToggleSimplifiedResponseButtonsText: Toggle simplified response buttons
 KOMReviewLauncherItemDebugPlungeDataText: Plunge data

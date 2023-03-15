@@ -957,3 +957,37 @@ describe('KOMReviewGeneralHistoricalTotalMilliseconds', function test_KOMReviewG
 	});
 
 });
+
+describe('KOMReviewDeckTXT', function test_KOMReviewDeckTXT() {
+
+	it('throws if not valid', function () {
+		throws(function () {
+			mod.KOMReviewDeckTXT(null);
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns string', function () {
+		deepEqual(mod.KOMReviewDeckTXT(StubDeckObjectValid()), '');
+	});
+
+	it('converts cards to text', function () {
+		const KOMCardFrontText = Math.random().toString();
+		const KOMCardRearText = Math.random().toString();
+		const KOMCardNotes = Math.random().toString();
+		const KOMCardTags = Math.random().toString();
+		deepEqual(mod.KOMReviewDeckTXT(StubDeckObjectValid({
+			$KOMDeckCards: [StubCardObjectValid({
+				KOMCardFrontText,
+				KOMCardRearText,
+				KOMCardNotes,
+				KOMCardTags,
+			})],
+		})), [
+			KOMCardFrontText,
+			KOMCardRearText,
+			KOMCardNotes,
+			KOMCardTags,
+		].join(';') + '\n');
+	});
+
+});
