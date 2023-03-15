@@ -141,10 +141,10 @@ global.FileReader = require('filereader');
 			}, inputData);
 		},
 
-		StubReviewObjectValid() {
-			return {
+		StubReviewObjectValid(inputData = {}) {
+			return Object.assign({
 				KOMReviewScheme: 'kKOMReviewSchemeReviewing',
-			};
+			}, inputData);
 		},
 
 		StubReviewChartElementDateBarTableRowDataObjectValid (inputData) {
