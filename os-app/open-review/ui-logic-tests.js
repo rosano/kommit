@@ -309,6 +309,16 @@ describe('KOMReviewFilter', function test_KOMReviewFilter() {
 			}), StubDeckObjectValid()), []);
 		});
 
+		it('includes learning if KOMReviewSchemeReviewing', function () {
+			const items = uItems({
+				KOMSpacingDueDate: new Date(),
+				KOMSpacingIsLearning: true,
+			});
+			deepEqual(mod.KOMReviewFilter(items, StubReviewObjectValid({
+				KOMReviewScheme: mod.KOMReviewSchemeReviewing(),
+			}), StubDeckObjectValid()), items);
+		});
+
 		it('includes reviewing if KOMReviewSchemeReviewing', function () {
 			const items = uItems({
 				KOMSpacingDueDate: new Date(),
@@ -327,10 +337,32 @@ describe('KOMReviewFilter', function test_KOMReviewFilter() {
 			}), StubDeckObjectValid()), []);
 		});
 
+		it('excludes learning if KOMReviewSchemeUnseen', function () {
+			const items = uItems({
+				KOMSpacingDueDate: new Date(),
+				KOMSpacingIsLearning: true,
+			});
+			deepEqual(mod.KOMReviewFilter(items, StubReviewObjectValid({
+				KOMReviewScheme: mod.KOMReviewSchemeUnseen(),
+				KOMReviewMaxUnseenCards: Infinity,
+			}), StubDeckObjectValid()), []);
+		});
+
 		it('includes unseen if KOMReviewSchemeUnseen', function () {
 			const items = uItems();
 			deepEqual(mod.KOMReviewFilter(items, StubReviewObjectValid({
 				KOMReviewScheme: mod.KOMReviewSchemeUnseen(),
+				KOMReviewMaxUnseenCards: Infinity,
+			}), StubDeckObjectValid()), items);
+		});
+
+		it('includes learning if KOMReviewSchemeMixed', function () {
+			const items = uItems({
+				KOMSpacingDueDate: new Date(),
+				KOMSpacingIsLearning: true,
+			});
+			deepEqual(mod.KOMReviewFilter(items, StubReviewObjectValid({
+				KOMReviewScheme: mod.KOMReviewSchemeMixed(),
 				KOMReviewMaxUnseenCards: Infinity,
 			}), StubDeckObjectValid()), items);
 		});
