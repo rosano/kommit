@@ -24,23 +24,16 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		let reviewAll = [];
-
-		const reviewForward = mod._KOMPlaySortShuffle(inputData.filter(function (e) {
+		let reviewAll = mod._KOMPlaySortShuffle(inputData.filter(function (e) {
 			return !KOMSpacing.KOMSpacingIsBackward(e) && e.KOMSpacingDueDate;
 		}));
-
-		reviewAll.push(...reviewForward);
 
 		let reviewBackward = mod._KOMPlaySortShuffle(inputData.filter(function (e) {
 			return KOMSpacing.KOMSpacingIsBackward(e) && e.KOMSpacingDueDate;
 		}));
 
-		let reviewTrialCount = 0;
-		while (reviewForward.length && reviewBackward.length && KOMSpacing.KOMSpacingIdentifier(reviewForward.slice(-1).pop().KOMSpacingID) === KOMSpacing.KOMSpacingIdentifier(reviewBackward[0].KOMSpacingID) && reviewTrialCount < inputData.length) {
-			reviewBackward = mod._KOMPlaySortShuffle(reviewBackward);
-
-			reviewTrialCount++;
+		if (reviewAll.length && reviewBackward.length && KOMSpacing.KOMSpacingIdentifier(reviewAll.slice(-1).pop().KOMSpacingID) === KOMSpacing.KOMSpacingIdentifier(reviewBackward[0].KOMSpacingID)) {
+			reviewBackward.reverse();
 		}
 
 		reviewAll.push(...reviewBackward);
