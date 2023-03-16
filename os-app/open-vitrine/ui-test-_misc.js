@@ -102,6 +102,14 @@ describe('KOMVitrine_Misc', function () {
 		
 	});
 
+	describe('KOMVitrineGlossaryThaiLink', function test_KOMVitrineGlossaryThaiLink () {
+
+		it('sets href', function () {
+			browser.assert.attribute(KOMVitrineGlossaryThaiLink, 'href', process.env.KOM_VITRINE_THAI_URL);
+		});
+
+	});
+
 	describe('KOMVitrineGlossaryFamilyLink', function test_KOMVitrineGlossaryFamilyLink () {
 
 		it('sets href', function () {

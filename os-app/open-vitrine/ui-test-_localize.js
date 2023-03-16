@@ -46,6 +46,14 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 			browser.assert.text(KOMVitrineGlossaryHeading, uLocalized('KOMVitrineGlossaryHeadingText'));
 		});
 
+		it('localizes KOMVitrineGlossaryThaiLink', function () {
+			browser.assert.text(KOMVitrineGlossaryThaiLink, uLocalized('KOMVitrineGlossaryThaiLinkText'));
+		});
+
+		it('localizes KOMVitrineGlossaryThaiBlurb', function() {
+			browser.assert.text(KOMVitrineGlossaryThaiBlurb, uLocalized('KOMVitrineGlossaryThaiBlurbText'));
+		});
+
 		it('localizes KOMVitrineGlossaryFamilyLink', function () {
 			browser.assert.text(KOMVitrineGlossaryFamilyLink, uLocalized('KOMVitrineGlossaryFamilyLinkText'));
 		});

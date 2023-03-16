@@ -16,6 +16,8 @@ Object.entries({
 	KOMVitrineDeeperHeading: '.KOMVitrineDeeperHeading',
 	KOMVitrineGlossary: '.KOMVitrineGlossary',
 	KOMVitrineGlossaryHeading: '.KOMVitrineGlossaryHeading',
+	KOMVitrineGlossaryThaiLink: '.KOMVitrineGlossaryThaiLink',
+	KOMVitrineGlossaryThaiBlurb: '.KOMVitrineGlossaryThaiBlurb',
 	KOMVitrineGlossaryFamilyLink: '.KOMVitrineGlossaryFamilyLink',
 	KOMVitrineGlossaryFamilyBlurb: '.KOMVitrineGlossaryFamilyBlurb',
 	KOMVitrineGlossaryFriendsLink: '.KOMVitrineGlossaryFriendsLink',
@@ -93,6 +95,14 @@ describe('KOMVitrine_Access', function () {
 
 	it('shows KOMVitrineGlossaryHeading', function () {
 		browser.assert.elements(KOMVitrineGlossaryHeading, 1);
+	});
+
+	it('shows KOMVitrineGlossaryThaiLink', function () {
+		browser.assert.elements(KOMVitrineGlossaryThaiLink, 1);
+	});
+
+	it('shows KOMVitrineGlossaryThaiBlurb', function () {
+		browser.assert.elements(KOMVitrineGlossaryThaiBlurb, 1);
 	});
 
 	it('shows KOMVitrineGlossaryFamilyLink', function () {
