@@ -425,15 +425,27 @@ describe('KOMReviewFilter', function test_KOMReviewFilter() {
 		it('excludes learning beyond KOMReviewMaxUnseenCards if KOMReviewSchemeMixed', function () {
 			const items = uItems({
 				KOMSpacingDueDate: new Date(),
-				KOMSpacingInterval: 1,
+				KOMSpacingIsLearning: true,
 			}).concat(uItems({
 				KOMSpacingDueDate: new Date(),
-				KOMSpacingIsLearning: true,
+				KOMSpacingInterval: 1,
 			}));
 			deepEqual(mod.KOMReviewFilter(items, StubReviewObjectValid({
 				KOMReviewScheme: mod.KOMReviewSchemeMixed(),
 				KOMReviewMaxUnseenCards: 5,
-			}), StubDeckObjectValid()), items.slice(0, 30));
+			}), StubDeckObjectValid()), items.slice(0, 10).concat(items.slice(20, 40)));
+		});
+
+		it('bumps learning', function () {
+			const items = uItems({
+				KOMSpacingDueDate: new Date(),
+				KOMSpacingIsLearning: true,
+			});
+
+			deepEqual(mod.KOMReviewFilter(uItems().concat(items), StubReviewObjectValid({
+				KOMReviewScheme: uRandomElement(mod.KOMReviewSchemeUnseen(), mod.KOMReviewSchemeMixed()),
+				KOMReviewMaxUnseenCards: 5,
+			}), StubDeckObjectValid()), items.slice(0, 10));
 		});
 
 	});

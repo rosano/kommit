@@ -4,6 +4,10 @@ import KOMPlayLogic from '../sub-play/ui-logic.js';
 import KOMReviewGeneral from './submodules/KOMReviewGeneral/ui-logic.js';
 import OLSKMoment from 'OLSKMoment';
 
+const uDescending = function (a, b) {
+  return (a > b) ? -1 : ((a < b) ? 1 : 0);
+};
+
 const mod = {
 
 	KOMReviewDocumentCount (inputData, param2) {
@@ -110,7 +114,9 @@ const mod = {
 		}
 
 		const cardsNew = [];
-		return param1.filter(function (e, i) {
+		return param1.slice().sort(function (a, b) {
+			return uDescending(KOMSpacing.KOMSpacingIsLearning(a), KOMSpacing.KOMSpacingIsLearning(b));
+		}).filter(function (e, i) {
 			if (e.$KOMSpacingCard.KOMCardIsRetired) {
 				return false;
 			}
