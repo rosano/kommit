@@ -36,7 +36,7 @@ By default, the cards will be presented both front-to-back and back-to-front, bu
 
 # Memory game
 
-During a review, the cards will be presented in a random order. Try to recall the opposite side without looking, then *KOMPlayFlipButtonText* the card to reveal the following response buttons to schedule the card's next appearance:
+During a review, the cards will be presented in a random order. Try to recall the opposite side without looking, then *KOMPlayFlipButtonText* the card to show the following buttons to schedule when the card appears next:
 
 - *KOMPlayResponseButtonAgainText*: Clear the schedule and start from scratch
 - *KOMPlayResponseButtonNextText*
