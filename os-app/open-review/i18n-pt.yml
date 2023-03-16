@@ -3,5 +3,5 @@ KOMReviewCreatePromptText: Nome
 KOMReviewLauncherItemExportSelectedJSONText: Exportar baralho selecionado JSON (beta)
 KOMReviewLauncherItemExportSelectedTXTText: Exportar baralho selecionado como texto
 KOMReviewLauncherItemSelectDeckTextFormat: Selecione o baralho '%@'.
-KOMReviewLauncherItemToggleSimplifiedResponseButtonsText: Botões de resposta simplificados
+KOMReviewLauncherItemToggleExtraResponseButtonsText: Botões de resposta extra
 KOMReviewLauncherItemDebugPlungeDataText: Jugar dados

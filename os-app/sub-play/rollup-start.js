@@ -15,7 +15,7 @@ const KOMPlay = new RollupStart({
 		}),
 		KOMPlayDispatchFetch: (function () {}),
 	}, Object.fromEntries(Array.from((new window.URLSearchParams(window.location.search)).entries()).map(function (e, index, coll) {
-		if (['KOMPlayDeck', 'KOMPlaySpacings', 'KOMPlaySimplifiedResponseButtons'].includes(e[0])) {
+		if (['KOMPlayDeck', 'KOMPlaySpacings', 'KOMPlayExtraResponseButtons'].includes(e[0])) {
 			e[1] = JSON.parse(e[1]);
 		}
 

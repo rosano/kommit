@@ -72,8 +72,8 @@ describe('KOMReview_Access', function () {
 		browser.assert.elements('.OLSKInstall', 1);
 	});
 
-	it('shows KOMReviewLauncherItemToggleSimplifiedResponseButtons', function () {
-		return browser.assert.OLSKLauncherItems('KOMReviewLauncherItemToggleSimplifiedResponseButtons', 1);
+	it('shows KOMReviewLauncherItemToggleExtraResponseButtons', function () {
+		return browser.assert.OLSKLauncherItems('KOMReviewLauncherItemToggleExtraResponseButtons', 1);
 	});
 
 	it('hides KOMReviewLauncherItemExportSelectedJSON', function () {

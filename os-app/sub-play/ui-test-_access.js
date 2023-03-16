@@ -362,13 +362,13 @@ describe('KOMPlay_Access', function () {
 
 	});
 
-	context('KOMPlaySimplifiedResponseButtons', function test_KOMPlaySimplifiedResponseButtons () {
+	context('KOMPlayExtraResponseButtons', function test_KOMPlayExtraResponseButtons () {
 		
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMPlaySpacings: JSON.stringify(StubSpacingArray()),
 				KOMPlayDeck: JSON.stringify(StubDeckObjectValid()),
-				KOMPlaySimplifiedResponseButtons: true,
+				KOMPlayExtraResponseButtons: false,
 			});
 		});
 

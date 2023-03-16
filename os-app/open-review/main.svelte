@@ -58,7 +58,7 @@ const mod = {
 
 	_ValuePlayVisible: false,
 	_ValuePlaySpacings: [],
-	_ValuePlaySimplifiedResponseButtons: !OLSK_SPEC_UI(),
+	_ValuePlayExtraResponseButtons: OLSK_SPEC_UI(),
 
 	_ValueHoldCards: [],
 	_ValueHoldSpacings: [],
@@ -124,10 +124,10 @@ const mod = {
 				},
 			}
 		}).concat([{
-			LCHRecipeSignature: 'KOMReviewLauncherItemToggleSimplifiedResponseButtons',
-			LCHRecipeName: OLSKLocalized('KOMReviewLauncherItemToggleSimplifiedResponseButtonsText'),
-			LCHRecipeCallback: function KOMReviewLauncherItemToggleSimplifiedResponseButtons () {
-				mod._ValuePlaySimplifiedResponseButtons = !mod._ValuePlaySimplifiedResponseButtons;
+			LCHRecipeSignature: 'KOMReviewLauncherItemToggleExtraResponseButtons',
+			LCHRecipeName: OLSKLocalized('KOMReviewLauncherItemToggleExtraResponseButtonsText'),
+			LCHRecipeCallback: function KOMReviewLauncherItemToggleExtraResponseButtons () {
+				mod._ValuePlayExtraResponseButtons = !mod._ValuePlayExtraResponseButtons;
 			},
 		}]);
 
@@ -1287,7 +1287,7 @@ import OLSKApropos from 'OLSKApropos';
 			KOMPlayDispatchDone={ mod.KOMPlayDispatchDone }
 			KOMPlayDispatchUpdate={ mod.KOMPlayDispatchUpdate }
 			KOMPlayDispatchFetch={ mod.KOMPlayDispatchFetch }
-			KOMPlaySimplifiedResponseButtons={ mod._ValuePlaySimplifiedResponseButtons }
+			KOMPlayExtraResponseButtons={ mod._ValuePlayExtraResponseButtons }
 			/>
 	{/if}
 </div>

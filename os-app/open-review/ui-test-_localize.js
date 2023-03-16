@@ -18,8 +18,8 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 			browser.assert.text('title', uLocalized('KOMReviewTitle'));
 		});
 
-		it('localizes KOMReviewLauncherItemToggleSimplifiedResponseButtons', function () {
-			return browser.assert.OLSKLauncherItemText('KOMReviewLauncherItemToggleSimplifiedResponseButtons', uLocalized('KOMReviewLauncherItemToggleSimplifiedResponseButtonsText'));
+		it('localizes KOMReviewLauncherItemToggleExtraResponseButtons', function () {
+			return browser.assert.OLSKLauncherItemText('KOMReviewLauncherItemToggleExtraResponseButtons', uLocalized('KOMReviewLauncherItemToggleExtraResponseButtonsText'));
 		});
 
 		describe('OLSKAppToolbarLauncherButton', function test_OLSKAppToolbarLauncherButton () {

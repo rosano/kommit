@@ -87,14 +87,14 @@
 }
 
 .KOMPlayFlipButton {
-	height: calc(var(--KOMPlayBodyButtonHeight) * 2) !important;
-
+	height: var(--KOMPlayBodyButtonHeight) !important;
+	
 	background: rgba(0, 0, 0, 0.02);
 	color: rgba(0, 0, 0, 0.8);
 }
 
-.KOMPlaySimplifiedResponseButtons .KOMPlayFlipButton {
-	height: var(--KOMPlayBodyButtonHeight) !important;
+.KOMPlayExtraResponseButtons .KOMPlayFlipButton {
+	height: calc(var(--KOMPlayBodyButtonHeight) * 2) !important;
 }
 
 .KOMPlayResponseCorrect, .KOMPlayResponseSimple {

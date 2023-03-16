@@ -48,7 +48,7 @@ A maximum of 10 unseen cards will be presented in one game.
 
 ## Additional buttons
 
-Optionally, it is possible to enable the following buttons by launching the *KOMReviewLauncherItemToggleSimplifiedResponseButtonsText* command:
+Optionally, it is possible to enable the following buttons by launching the *KOMReviewLauncherItemToggleExtraResponseButtonsText* command:
 
 - *KOMPlayResponseButtonHardText*
     - First time: within the next ten minutes
@@ -166,7 +166,7 @@ Counting the number of cards based on its state.
 :--- | ---
 | KOMReviewMasterCreateButtonText | `AccessKey+n` |
 | `KOMReviewLauncherItemSelectDeckText` | Launcher |
-| `KOMReviewLauncherItemToggleSimplifiedResponseButtonsText` | Launcher |
+| `KOMReviewLauncherItemToggleExtraResponseButtonsText` | Launcher |
 | `OLSKTransportLauncherItemImportJSONText` | Launcher |
 | `OLSKTransportLauncherItemExportJSONText` | Launcher |
 | `KOMReviewMasterLauncherItemToggleExcludeTripleQuestionMarkText` | Launcher |
