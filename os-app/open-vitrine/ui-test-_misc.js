@@ -36,10 +36,6 @@ describe('KOMVitrine_Misc', function () {
 
 	describe('KOMVitrineVideo', function test_KOMVitrineVideo () {
 
-		it('classes OLSKCommonVideoListItemMobile', function () {
-			browser.assert.hasClass('.KOMVitrineVideo', 'OLSKCommonVideoListItemMobile');
-		});
-
 		it('sets src', function () {
 			browser.assert.attribute(KOMVitrineVideo, 'src', process.env.KOM_VITRINE_VIDEO_URL);
 		});
@@ -94,22 +90,6 @@ describe('KOMVitrine_Misc', function () {
 
 		it('sets allowfullscreen', function () {
 			browser.assert.attribute(KOMVitrineVideo1, 'allowfullscreen', '');
-		});
-
-	});
-
-	describe('KOMVitrineVideo2', function test_KOMVitrineVideo () {
-
-		it('sets src', function () {
-			browser.assert.attribute(KOMVitrineVideo2, 'src', process.env.KOM_VITRINE_VIDEOS_URL_2);
-		});
-
-		it('sets allow', function () {
-			browser.assert.attribute(KOMVitrineVideo2, 'allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
-		});
-
-		it('sets allowfullscreen', function () {
-			browser.assert.attribute(KOMVitrineVideo2, 'allowfullscreen', '');
 		});
 
 	});

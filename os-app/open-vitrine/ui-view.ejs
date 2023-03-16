@@ -28,7 +28,7 @@ locals.OLSKPagePublicConstants = {
 }) %>
 
 <div class="OLSKCommonVideoList">
-	<p class="KOMVitrineVideo OLSKCommonVideoListItem OLSKCommonVideoListItemMobile">
+	<p class="KOMVitrineVideo OLSKCommonVideoListItem">
 		<iframe src="<%= process.env.KOM_VITRINE_VIDEO_URL %>" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 	</p>
 </div>
@@ -48,13 +48,8 @@ locals.OLSKPagePublicConstants = {
 <div class="OLSKCommonVideoList">
 	
 	<h2 class="KOMVitrineVideo1Heading"><%= OLSKLocalized('KOMVitrineVideo1HeadingText') %></h2>
-	<p class="KOMVitrineVideo1 OLSKCommonVideoListItem">
+	<p class="KOMVitrineVideo1 OLSKCommonVideoListItem OLSKCommonVideoListItemMobile">
 		<iframe src="<%= process.env.KOM_VITRINE_VIDEOS_URL_1 %>" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-	</p>
-
-	<h2 class="KOMVitrineVideo2Heading"><%= OLSKLocalized('KOMVitrineVideo2HeadingText') %></h2>
-	<p class="KOMVitrineVideo2 OLSKCommonVideoListItem">
-		<iframe src="<%= process.env.KOM_VITRINE_VIDEOS_URL_2 %>" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 	</p>
 </div>
 

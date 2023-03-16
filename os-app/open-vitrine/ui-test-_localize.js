@@ -38,10 +38,6 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 			browser.assert.text(KOMVitrineVideo1Heading, uLocalized('KOMVitrineVideo1HeadingText'));
 		});
 
-		it('localizes KOMVitrineVideo2Heading', function () {
-			browser.assert.text(KOMVitrineVideo2Heading, uLocalized('KOMVitrineVideo2HeadingText'));
-		});
-
 		it('localizes KOMVitrineDeeperHeading', function () {
 			browser.assert.text(KOMVitrineDeeperHeading, uLocalized('OLSKWordingDeeperHeading'));
 		});
