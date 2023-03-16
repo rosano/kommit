@@ -126,8 +126,15 @@ const mod = {
 		}).concat([{
 			LCHRecipeSignature: 'KOMReviewLauncherItemToggleExtraResponseButtons',
 			LCHRecipeName: OLSKLocalized('KOMReviewLauncherItemToggleExtraResponseButtonsText'),
-			LCHRecipeCallback: function KOMReviewLauncherItemToggleExtraResponseButtons () {
+			LCHRecipeCallback: async function KOMReviewLauncherItemToggleExtraResponseButtons () {
 				mod._ValuePlayExtraResponseButtons = !mod._ValuePlayExtraResponseButtons;
+
+				await mod.DataSettingValue('KOMSettingExtraResponseButtons') ? await mod._ValueZDRWrap.App.KOMSetting.ZDRModelDeleteObject({
+					KOMSettingKey: 'KOMSettingExtraResponseButtons',
+				}) : await mod._ValueZDRWrap.App.KOMSetting.ZDRModelWriteObject({
+					KOMSettingKey: 'KOMSettingExtraResponseButtons',
+					KOMSettingValue: 'true',
+				});
 			},
 		}]);
 
@@ -1129,6 +1136,12 @@ const mod = {
 		}));
 
 		mod._ValueDeckCachingEnabled = await mod.DataSettingValue('KOMSettingDeckCachingEnabled') === 'true';
+
+		if (OLSK_SPEC_UI()) {
+			return;
+		}
+
+		mod._ValuePlayExtraResponseButtons = await mod.DataSettingValue('KOMSettingExtraResponseButtons') === 'true';
 	},
 
 	SetupValueCacheDeckFiguresMap () {
