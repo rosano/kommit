@@ -46,7 +46,7 @@ During a review, the cards will be presented in a random order. Try to recall th
 
 A maximum of 10 unseen cards will be presented in one game.
 
-## Additional buttons
+## Extra buttons
 
 Optionally, it is possible to enable the following buttons by launching the *KOMReviewLauncherItemToggleExtraResponseButtonsText* command:
 
