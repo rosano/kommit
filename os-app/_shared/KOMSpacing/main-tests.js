@@ -374,6 +374,13 @@ describe('KOMSpacingIsUnseen', function test_KOMSpacingIsUnseen() {
 		deepEqual(mod.KOMSpacingIsUnseen(StubSpacingObjectValid()), true);
 	});
 
+	it('returns true if learning', function () {
+		deepEqual(mod.KOMSpacingIsUnseen(StubSpacingObjectValid({
+			KOMSpacingDueDate: new Date(),
+			KOMSpacingIsLearning: true,
+		})), true);
+	});
+
 });
 
 describe('KOMSpacingIsLearning', function test_KOMSpacingIsLearning() {

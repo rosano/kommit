@@ -158,6 +158,10 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
+		if (mod.KOMSpacingIsLearning(inputData)) {
+			return true;
+		}
+
 		return !inputData.KOMSpacingDueDate;
 	},
 

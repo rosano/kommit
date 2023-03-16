@@ -996,10 +996,10 @@ const mod = {
 		
 		return Object.assign(deck, mod.ValueCacheDeckFiguresMap(Object.assign(mod._ValueCacheDeckFiguresMap, {
 			[deck.KOMDeckID]: {
-				$KOMDeckTodayReviewCount: KOMSpacing.KOMSpacingFilterUnique(todaySpacingsNotStudied.filter(function (e) {
-					return !KOMSpacing.KOMSpacingIsUnseen(e);
+				$KOMDeckTodayReviewCount: KOMSpacing.KOMSpacingFilterUnique(todaySpacingsNotStudied.filter(KOMSpacing.KOMSpacingIsReviewing)).length,
+				$KOMDeckTodayUnseenCount: KOMSpacing.KOMSpacingFilterUnique(todaySpacingsNotStudied.filter(function (e) {
+					return !KOMSpacing.KOMSpacingIsReviewing(e);
 				})).length,
-				$KOMDeckTodayUnseenCount: KOMSpacing.KOMSpacingFilterUnique(todaySpacingsNotStudied.filter(KOMSpacing.KOMSpacingIsUnseen)).length,
 
 				$KOMDeckTodayStudiedCount: todaySpacingsStudied.length,
 				
