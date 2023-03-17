@@ -523,6 +523,16 @@ const mod = {
 		speechSynthesis.speak(item);
 	},
 
+	ControlReadStop () {
+		if (!mod._ValueSpeechAvailable) {
+			return;
+		}
+
+		if (speechSynthesis.speaking) {
+			speechSynthesis.cancel();
+		}
+	},
+
 	async ControlDemo () {
 		mod._IsRunningDemo = true;
 
@@ -707,6 +717,14 @@ const mod = {
 
 	KOMPlayDispatchUpdate (inputData) {
 		mod.ControlSpacingSave(inputData);
+	},
+
+	KOMPlayDispatchSpeechRead (inputData) {
+		mod.ControlReadStart(inputData.ParamText, inputData.paramLanguage);
+	},
+
+	KOMPlayDispatchSpeechStop () {
+		mod.ControlReadStop();
 	},
 
 	async KOMPlayDispatchFetch (param1, param2) {
@@ -1299,6 +1317,8 @@ import OLSKApropos from 'OLSKApropos';
 			KOMPlayDeck={ mod._ValueDeckSelected }
 			KOMPlayDispatchDone={ mod.KOMPlayDispatchDone }
 			KOMPlayDispatchUpdate={ mod.KOMPlayDispatchUpdate }
+			KOMPlayDispatchSpeechRead={ mod.KOMPlayDispatchSpeechRead }
+			KOMPlayDispatchSpeechStop={ mod.KOMPlayDispatchSpeechStop }
 			KOMPlayDispatchFetch={ mod.KOMPlayDispatchFetch }
 			KOMPlayExtraResponseButtons={ mod._ValuePlayExtraResponseButtons }
 			/>

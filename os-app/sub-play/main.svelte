@@ -3,6 +3,8 @@ export let KOMPlaySpacings;
 export let KOMPlayDeck;
 export let KOMPlayDispatchDone;
 export let KOMPlayDispatchUpdate;
+export let KOMPlayDispatchSpeechRead;
+export let KOMPlayDispatchSpeechStop;
 export let KOMPlayDispatchFetch;
 export let KOMPlayExtraResponseButtons = true;
 
@@ -238,26 +240,15 @@ const mod = {
 		mod.ControlReadStart(mod.DataAnswer() + (mod._ValueState.KOMPlayStateCurrentPair ? '\n' + mod.DataPairAnswer() : ''), KOMSpacing.KOMSpacingIsBackward(mod._ValueState.KOMPlayStateCurrent) ? KOMPlayDeck.KOMDeckFrontLanguageCode : KOMPlayDeck.KOMDeckRearLanguageCode);
 	},
 
-	ControlReadStart (param1, param2) {
+	ControlReadStart (ParamText, ParamLanguage) {
 		if (OLSK_SPEC_UI()) {
-			mod.DebugAudioLog(`read:${ param2 }:${ param1 }`);
+			mod.DebugAudioLog(`read:${ ParamLanguage }:${ ParamText }`);
 		}
 
-		if (!mod._ValueSpeechAvailable) {
-			return;
-		}
-
-		if (speechSynthesis.speaking) {
-			speechSynthesis.cancel();
-		}
-
-		const item = new SpeechSynthesisUtterance(param1);
-		item.lang = param2;
-		item.voice = speechSynthesis.getVoices().filter(function (e) {
-			return e.lang == item.lang;
-		}).pop();
-
-		speechSynthesis.speak(item);
+		KOMPlayDispatchSpeechRead({
+			ParamLanguage,
+			ParamText,
+		});
 	},
 
 	ControlReadStop () {
@@ -273,13 +264,7 @@ const mod = {
 			delete mod._ValueAudioPlaying;
 		};
 
-		if (!mod._ValueSpeechAvailable) {
-			return;
-		}
-
-		if (speechSynthesis.speaking) {
-			speechSynthesis.cancel();
-		}
+		KOMPlayDispatchSpeechStop();
 	},
 
 	async ControlAudioStart (inputData) {

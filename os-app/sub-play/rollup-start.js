@@ -13,6 +13,13 @@ const KOMPlay = new RollupStart({
 			window.TestKOMPlayDispatchUpdate.innerHTML = parseInt(window.TestKOMPlayDispatchUpdate.innerHTML) + 1;
 			window.TestKOMPlayDispatchUpdateData.innerHTML = JSON.stringify(Object.keys(inputData));
 		}),
+		KOMPlayDispatchSpeechRead: (function (inputData) {
+			window.TestKOMPlayDispatchSpeechRead.innerHTML = parseInt(window.TestKOMPlayDispatchSpeechRead.innerHTML) + 1;
+			window.TestKOMPlayDispatchSpeechReadData.innerHTML = JSON.stringify(inputData);
+		}),
+		KOMPlayDispatchSpeechStop: (function (inputData) {
+			window.TestKOMPlayDispatchSpeechStop.innerHTML = parseInt(window.TestKOMPlayDispatchSpeechStop.innerHTML) + 1;
+		}),
 		KOMPlayDispatchFetch: (function () {}),
 	}, Object.fromEntries(Array.from((new window.URLSearchParams(window.location.search)).entries()).map(function (e, index, coll) {
 		if (['KOMPlayDeck', 'KOMPlaySpacings', 'KOMPlayExtraResponseButtons'].includes(e[0])) {
