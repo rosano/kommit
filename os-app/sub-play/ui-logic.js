@@ -467,12 +467,13 @@ const mod = {
 			inputData.KOMPlayStateCurrent.KOMSpacingDrawDate = (inputData.KOMPlayStateChronicle = mod.KOMChronicleGenerateDraw(options.paramDate || new Date(), inputData.KOMPlayStateCurrent)).KOMChronicleDrawDate;
 		}
 
+		// select pair if pairing enabled
 		if (inputData.KOMPlayStateCurrent && inputData.KOMPlayStatePairingIsEnabled && (inputData.KOMPlayStateCurrentPair = inputData.KOMPlayStateQueue.filter(function (e) {
-			if (KOMSpacing.KOMSpacingLabel(e.KOMSpacingID) !== KOMSpacing.KOMSpacingLabel(inputData.KOMPlayStateCurrent.KOMSpacingID)) {
+			if (inputData.KOMPlayStateCurrent.$KOMSpacingCard && (inputData.KOMPlayStateCurrent.$KOMSpacingCard[KOMSpacing.KOMSpacingIsBackward(inputData.KOMPlayStateCurrent) ? 'KOMCardRearText' : 'KOMCardFrontText'].split(' ').length > 2)) {
 				return false;
 			}
 
-			if (inputData.KOMPlayStateCurrent.$KOMSpacingCard && inputData.KOMPlayStateCurrent.$KOMSpacingCard[KOMSpacing.KOMSpacingIsBackward(inputData.KOMPlayStateCurrent) ? 'KOMCardRearText' : 'KOMCardFrontText'].split(' ').length > 2) {
+			if (KOMSpacing.KOMSpacingLabel(e.KOMSpacingID) !== KOMSpacing.KOMSpacingLabel(inputData.KOMPlayStateCurrent.KOMSpacingID)) {
 				return false;
 			}
 
