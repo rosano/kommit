@@ -154,6 +154,17 @@ global.FileReader = require('filereader');
 			}, inputData);
 		},
 
+		uSpacings(inputData) {
+			return StubSpacingArray(inputData).map(function (e, i) {
+				return Object.assign(e, {
+					KOMSpacingID: (i + 1).toString() + '-forward',
+					$KOMSpacingCard: Object.assign(e.$KOMSpacingCard, {
+						KOMCardNotes: Math.random().toString(),
+					}),
+				})
+			});
+		},
+
 	}).map(function (e) {
 		return global[e.shift()] = e.pop();
 	});
