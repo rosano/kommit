@@ -516,11 +516,18 @@ const mod = {
 
 		const item = new SpeechSynthesisUtterance(param1);
 		item.lang = param2;
+
+		if (param1 === mod._ValueSpeechLastText) {
+			item.rate = 0.5;
+		}
+
 		item.voice = speechSynthesis.getVoices().filter(function (e) {
 			return e.lang == item.lang;
 		}).pop();
 
 		speechSynthesis.speak(item);
+
+		mod._ValueSpeechLastText = param1;
 	},
 
 	ControlReadStop () {
@@ -720,7 +727,7 @@ const mod = {
 	},
 
 	KOMPlayDispatchSpeechRead (inputData) {
-		mod.ControlReadStart(inputData.ParamText, inputData.paramLanguage);
+		mod.ControlReadStart(inputData.ParamText, inputData.ParamLanguage);
 	},
 
 	KOMPlayDispatchSpeechStop () {
