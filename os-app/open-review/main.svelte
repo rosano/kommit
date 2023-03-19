@@ -14,6 +14,7 @@ import KOMSetting from '../_shared/KOMSetting/main.js';
 import KOMTransport from '../_shared/KOMTransport/main.js';
 import KOMReviewLogic from './ui-logic.js';
 import KOMPlayLogic from '../sub-play/ui-logic.js';
+import KOMBrowseLogic from '../sub-browse/ui-logic.js';
 import OLSKThrottle from 'OLSKThrottle';
 import OLSKLocalStorage from 'OLSKLocalStorage';
 import OLSKCache from 'OLSKCache';
@@ -770,7 +771,7 @@ const mod = {
 
 	async _DeckExportTXT (inputData) {
 		return KOMReviewLogic.KOMReviewDeckTXT(Object.assign({
-			$KOMDeckCards: await mod._ValueZDRWrap.App.KOMCard.KOMCardList(inputData),
+			$KOMDeckCards: (await mod._ValueZDRWrap.App.KOMCard.KOMCardList(inputData)).sort(KOMBrowseLogic.KOMBrowseSortFunction),
 		}, inputData));
 	},
 
