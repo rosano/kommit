@@ -802,29 +802,27 @@ describe('KOMPlayStateDraw', function test_KOMPlayStateDraw() {
 		context('sibling history', function () {
 			
 			it('sets to second if same card', function () {
-				const $KOMSpacingCard = StubCardObjectValid();
-				const item = StubSpacingObjectValid({
-					$KOMSpacingCard,
-				});
+				const KOMSpacingID = Math.random().toString() + '-' + uRandomElement(KOMSpacing.KOMSpacingLabelForward(), KOMSpacing.KOMSpacingLabelBackward());
+				const item = StubSpacingObjectValid();
 				deepEqual(mod.KOMPlayStateDraw(StubStateObjectValid({
 					KOMPlayStateQueue: [StubSpacingObjectValid({
-						$KOMSpacingCard,
+						KOMSpacingID,
 					}), item],
 						KOMPlayStateHistory: [StubSpacingObjectValid({
-						$KOMSpacingCard,
+							KOMSpacingID,
 					})],
 				})).KOMPlayStateCurrent, item);
 			});
 			
 			it('sets to first if only one', function () {
-				const $KOMSpacingCard = StubCardObjectValid();
+				const KOMSpacingID = Math.random().toString() + '-' + uRandomElement(KOMSpacing.KOMSpacingLabelForward(), KOMSpacing.KOMSpacingLabelBackward());
 				const item = StubSpacingObjectValid({
-					$KOMSpacingCard,
+					KOMSpacingID,
 				});
 				deepEqual(mod.KOMPlayStateDraw(StubStateObjectValid({
 					KOMPlayStateQueue: [item],
 						KOMPlayStateHistory: [StubSpacingObjectValid({
-						$KOMSpacingCard,
+						KOMSpacingID,
 					})],
 				})).KOMPlayStateCurrent, item);
 			});
