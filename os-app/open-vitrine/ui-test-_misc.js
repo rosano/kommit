@@ -134,6 +134,22 @@ describe('KOMVitrine_Misc', function () {
 
 	});
 
+	describe('KOMVitrineInfiniteVideo', function test_KOMVitrineInfiniteVideo () {
+
+		it('sets src', function () {
+			browser.assert.attribute(KOMVitrineInfiniteVideo, 'src', process.env.KOM_VITRINE_INFINITE_URL);
+		});
+
+		it('sets allow', function () {
+			browser.assert.attribute(KOMVitrineInfiniteVideo, 'allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+		});
+
+		it('sets allowfullscreen', function () {
+			browser.assert.attribute(KOMVitrineInfiniteVideo, 'allowfullscreen', '');
+		});
+
+	});
+
 	describe('ROCOGazette', function test_ROCOGazette () {
 
 		it('sets ROCOBulletinProject', function () {

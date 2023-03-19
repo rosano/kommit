@@ -24,6 +24,9 @@ Object.entries({
 	KOMVitrineGlossaryFriendsBlurb: '.KOMVitrineGlossaryFriendsBlurb',
 	KOMVitrineGlossaryPortugueseLink: '.KOMVitrineGlossaryPortugueseLink',
 	KOMVitrineGlossaryPortugueseBlurb: '.KOMVitrineGlossaryPortugueseBlurb',
+	
+	KOMVitrineGlossaryInfiniteHeading: '.KOMVitrineGlossaryInfiniteHeading',
+	KOMVitrineInfiniteVideo: '.KOMVitrineInfiniteVideo',
 
 	KOMVitrineSupportHeading: '.KOMVitrineSupportHeading',
 	KOMVitrineSupportBlurb: '.KOMVitrineSupportBlurb',
@@ -127,6 +130,14 @@ describe('KOMVitrine_Access', function () {
 
 	it('shows KOMVitrineGlossaryPortugueseBlurb', function () {
 		browser.assert.elements(KOMVitrineGlossaryPortugueseBlurb, 1);
+	});
+
+	it('shows KOMVitrineGlossaryInfiniteHeading', function () {
+		browser.assert.elements(KOMVitrineGlossaryInfiniteHeading, 1);
+	});
+
+	it('shows KOMVitrineInfiniteVideo', function () {
+		browser.assert.elements(KOMVitrineInfiniteVideo, 1);
 	});
 
 	it('shows ROCOGlossary', function () {

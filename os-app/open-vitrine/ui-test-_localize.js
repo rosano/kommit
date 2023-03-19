@@ -78,6 +78,10 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 			browser.assert.text(KOMVitrineGlossaryPortugueseBlurb, uLocalized('KOMVitrineGlossaryPortugueseBlurbText'));
 		});
 
+		it('localizes KOMVitrineGlossaryInfiniteHeading', function () {
+			browser.assert.text(KOMVitrineGlossaryInfiniteHeading, uLocalized('KOMVitrineGlossaryInfiniteHeadingText'));
+		});
+
 		it('localizes KOMVitrineSupportHeading', function () {
 			browser.assert.text(KOMVitrineSupportHeading, uLocalized('OLSKWordingFeedbackHeading'));
 		});
