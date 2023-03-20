@@ -808,9 +808,9 @@ describe('KOMPlayStateDraw', function test_KOMPlayStateDraw() {
 					KOMPlayStateQueue: [StubSpacingObjectValid({
 						KOMSpacingID,
 					}), item],
-						KOMPlayStateHistory: [StubSpacingObjectValid({
+						KOMPlayStateHistory: [[StubSpacingObjectValid({
 							KOMSpacingID,
-					})],
+					})]],
 				})).KOMPlayStateCurrent, item);
 			});
 			
@@ -821,9 +821,9 @@ describe('KOMPlayStateDraw', function test_KOMPlayStateDraw() {
 				});
 				deepEqual(mod.KOMPlayStateDraw(StubStateObjectValid({
 					KOMPlayStateQueue: [item],
-						KOMPlayStateHistory: [StubSpacingObjectValid({
+						KOMPlayStateHistory: [[StubSpacingObjectValid({
 						KOMSpacingID,
-					})],
+					})]],
 				})).KOMPlayStateCurrent, item);
 			});
 		

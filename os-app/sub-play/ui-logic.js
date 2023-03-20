@@ -459,7 +459,7 @@ const mod = {
 		inputData.KOMPlayStateCurrent = inputData.KOMPlayStateQueue.shift();
 
 		// avoid showing a sibling if there are other options
-		if (inputData.KOMPlayStateHistory.length && inputData.KOMPlayStateQueue.length && (KOMSpacing.KOMSpacingIdentifier(inputData.KOMPlayStateCurrent.KOMSpacingID) === KOMSpacing.KOMSpacingIdentifier(inputData.KOMPlayStateHistory.slice(-1).pop().KOMSpacingID))) {
+		if (inputData.KOMPlayStateHistory.length && inputData.KOMPlayStateQueue.length && (KOMSpacing.KOMSpacingIdentifier(inputData.KOMPlayStateCurrent.KOMSpacingID) === KOMSpacing.KOMSpacingIdentifier(inputData.KOMPlayStateHistory.slice(-1).pop().slice().pop().KOMSpacingID))) {
 			inputData.KOMPlayStateCurrent = inputData.KOMPlayStateQueue.splice(0, 1, inputData.KOMPlayStateCurrent).pop();
 		}
 
