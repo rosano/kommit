@@ -118,6 +118,22 @@ const mod = {
 			}
 		}
 
+		if (inputData.KOMSpacingIsLapsing !== undefined || options.KOMOptionValidateIfNotPresent) {
+			if (typeof inputData.KOMSpacingIsLapsing !== 'boolean') {
+				errors.KOMSpacingIsLapsing = [
+					'KOMErrorNotBoolean',
+				];
+			}
+		}
+
+		if (inputData.KOMSpacingLapseCount !== undefined || options.KOMOptionValidateIfNotPresent) {
+			if (typeof inputData.KOMSpacingLapseCount !== 'number') {
+				errors.KOMSpacingLapseCount = [
+					'KOMErrorNotNumber',
+				];
+			}
+		}
+
 		if (inputData.$KOMSpacingCard !== undefined) {
 			if (KOMCard.KOMCardErrors(inputData.$KOMSpacingCard)) {
 				errors.$KOMSpacingCard = [

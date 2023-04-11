@@ -262,6 +262,46 @@ describe('KOMSpacingErrors', function test_KOMSpacingErrors() {
 
 	});
 
+	context('KOMSpacingIsLapsing', function () {
+
+		it('returns object if not boolean', function () {
+			deepEqual(mod.KOMSpacingErrors(StubSpacingObjectValid({
+				KOMSpacingIsLapsing: null,
+			})), {
+				KOMSpacingIsLapsing: [
+					'KOMErrorNotBoolean',
+				],
+			});
+		});
+
+		it('returns null', function () {
+			deepEqual(mod.KOMSpacingErrors(StubSpacingObjectValid({
+				KOMSpacingIsLapsing: true,
+			})), null);
+		});
+
+	});
+
+	context('KOMSpacingLapseCount', function () {
+
+		it('returns object if not number', function () {
+			deepEqual(mod.KOMSpacingErrors(StubSpacingObjectValid({
+				KOMSpacingLapseCount: '1',
+			})), {
+				KOMSpacingLapseCount: [
+					'KOMErrorNotNumber',
+				],
+			});
+		});
+
+		it('returns null', function () {
+			deepEqual(mod.KOMSpacingErrors(StubSpacingObjectValid({
+				KOMSpacingLapseCount: 1,
+			})), null);
+		});
+
+	});
+
 	context('$KOMSpacingCard', function () {
 
 		it('returns object if not valid', function () {
@@ -296,6 +336,8 @@ describe('KOMSpacingErrors', function test_KOMSpacingErrors() {
 				'KOMSpacingIsLearning',
 				'KOMSpacingInterval',
 				'KOMSpacingMultiplier',
+				'KOMSpacingIsLapsing',
+				'KOMSpacingLapseCount',
 			]);
 		});
 
