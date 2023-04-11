@@ -423,6 +423,14 @@ describe('KOMSpacingIsUnseen', function test_KOMSpacingIsUnseen() {
 		})), true);
 	});
 
+	it('returns false if lapsing', function () {
+		deepEqual(mod.KOMSpacingIsUnseen(StubSpacingObjectValid({
+			KOMSpacingDueDate: new Date(),
+			KOMSpacingIsLearning: true,
+			KOMSpacingIsLapsing: true,
+		})), false);
+	});
+
 });
 
 describe('KOMSpacingIsLearning', function test_KOMSpacingIsLearning() {
