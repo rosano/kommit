@@ -25,14 +25,14 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 	it('returns param1', function () {
 		const item = StubStateObjectValid({
-			KOMPlayStateCurrent: StubSpacingObjectValid2(),
+			KOMPlayStateCurrent: uSpacingUnseen(),
 		})
 		strictEqual(mod.KOMPlayRespond(item, StubChronicleObjectPrepared()), item);
 	});
 
 	context('param2', function () {
 
-		const KOMPlayStateCurrent = StubSpacingObjectValid2();
+		const KOMPlayStateCurrent = uSpacingUnseen();
 		const chronicle = StubChronicleObjectPrepared();
 
 		before(function () {
@@ -85,9 +85,9 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 		const uStateWait = function (inputData) {
 			return StubStateObjectValid({
-				KOMPlayStateCurrent: StubSpacingObjectValid2(),
-				KOMPlayStateQueue: [StubSpacingObjectValid2()],
-				KOMPlayStateWait: [StubSpacingObjectValid2({
+				KOMPlayStateCurrent: uSpacingUnseen(),
+				KOMPlayStateQueue: [uSpacingUnseen()],
+				KOMPlayStateWait: [uSpacingUnseen({
 					KOMSpacingDueDate: new Date(StubChronicleObjectValid2().KOMChronicleResponseDate.valueOf() + inputData),
 				})],
 			});
@@ -137,7 +137,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		const uIntervals = function (param1, param2 = 0) {
 			return uRepeat(10, function () {
 				const date = new Date();
-				const spacing = StubSpacingObjectValid2();
+				const spacing = uSpacingUnseen();
 				const state = StubStateObjectValid({
 					KOMPlayStateCurrent: spacing,
 					KOMPlayStateShouldRandomizeDueDates: true,
@@ -224,10 +224,10 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 	context('unseen_and_Again', function test_unseen_and_Again() {
 
-		const spacing = StubSpacingObjectValid2();
+		const spacing = uSpacingUnseen();
 		const state = StubStateObjectValid({
 			KOMPlayStateCurrent: spacing,
-			KOMPlayStateQueue: [StubSpacingObjectValid2()],
+			KOMPlayStateQueue: [uSpacingUnseen()],
 		});
 		const chronicle = StubChronicleObjectPrepared({
 			KOMChronicleResponseType: mod.KOMPlayResponseTypeAgain(),
@@ -238,7 +238,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		});
 
 		it('updates spacing', function () {
-			deepEqual(spacing, StubSpacingObjectValid2({
+			deepEqual(spacing, uSpacingUnseen({
 				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + mod.KOMPlayResponseIntervalAgain()),
 				KOMSpacingIsLearning: true,
 				KOMSpacingChronicles: [StubChronicleObjectPrepared({
@@ -262,10 +262,10 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 	context('unseen_and_Hard', function test_unseen_and_Hard() {
 
-		const spacing = StubSpacingObjectValid2();
+		const spacing = uSpacingUnseen();
 		const state = StubStateObjectValid({
 			KOMPlayStateCurrent: spacing,
-			KOMPlayStateQueue: [StubSpacingObjectValid2()],
+			KOMPlayStateQueue: [uSpacingUnseen()],
 		});
 		const chronicle = StubChronicleObjectPrepared({
 			KOMChronicleResponseType: mod.KOMPlayResponseTypeHard(),
@@ -276,7 +276,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		});
 
 		it('updates spacing', function () {
-			deepEqual(spacing, StubSpacingObjectValid2({
+			deepEqual(spacing, uSpacingUnseen({
 				KOMSpacingIsLearning: true,
 				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + mod.KOMPlayResponseIntervalLearn()),
 				KOMSpacingChronicles: [StubChronicleObjectPrepared({
@@ -300,10 +300,10 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 	context('unseen_and_Good', function test_unseen_and_Good() {
 
-		const spacing = StubSpacingObjectValid2();
+		const spacing = uSpacingUnseen();
 		const state = StubStateObjectValid({
 			KOMPlayStateCurrent: spacing,
-			KOMPlayStateQueue: [StubSpacingObjectValid2()],
+			KOMPlayStateQueue: [uSpacingUnseen()],
 		});
 		const chronicle = StubChronicleObjectPrepared({
 			KOMChronicleResponseType: mod.KOMPlayResponseTypeGood(),
@@ -314,7 +314,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		});
 
 		it('updates spacing', function () {
-			deepEqual(spacing, StubSpacingObjectValid2({
+			deepEqual(spacing, uSpacingUnseen({
 				KOMSpacingIsLearning: true,
 				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + mod.KOMPlayResponseIntervalLearn()),
 				KOMSpacingChronicles: [StubChronicleObjectPrepared({
@@ -338,7 +338,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 	context('unseen_and_Easy', function test_unseen_and_Easy() {
 
-		const spacing = StubSpacingObjectValid2();
+		const spacing = uSpacingUnseen();
 		const state = StubStateObjectValid({
 			KOMPlayStateCurrent: spacing,
 		});
@@ -351,7 +351,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		});
 
 		it('updates spacing', function () {
-			deepEqual(spacing, StubSpacingObjectValid2({
+			deepEqual(spacing, uSpacingUnseen({
 				KOMSpacingInterval: mod.KOMPlayResponseIntervalGraduateEasy(),
 				KOMSpacingMultiplier: mod.KOMPlayResponseMultiplierDefault(),
 				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + 1000 * 60 * 60 * 24 * mod.KOMPlayResponseIntervalGraduateEasy()),
@@ -376,10 +376,10 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 	context('learning_and_Again', function test_learning_and_Again() {
 
-		const spacing = StubSpacingObjectValid2();
+		const spacing = uSpacingUnseen();
 		const state = StubStateObjectValid({
 			KOMPlayStateCurrent: spacing,
-			KOMPlayStateQueue: [StubSpacingObjectValid2()],
+			KOMPlayStateQueue: [uSpacingUnseen()],
 		});
 		let chronicle = StubChronicleObjectPrepared({
 			KOMChronicleResponseType: mod.KOMPlayResponseTypeAgain(),
@@ -404,7 +404,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		});
 
 		it('updates spacing', function () {
-			deepEqual(spacing, StubSpacingObjectValid2({
+			deepEqual(spacing, uSpacingUnseen({
 				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + mod.KOMPlayResponseIntervalAgain()),
 				KOMSpacingIsLearning: true,
 				KOMSpacingChronicles: events.concat(StubChronicleObjectPrepared({
@@ -429,10 +429,10 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 	context('learning_after_Again', function test_learning_after_Again() {
 
-		const spacing = StubSpacingObjectValid2();
+		const spacing = uSpacingUnseen();
 		const state = StubStateObjectValid({
 			KOMPlayStateCurrent: spacing,
-			KOMPlayStateQueue: [StubSpacingObjectValid2()],
+			KOMPlayStateQueue: [uSpacingUnseen()],
 		});
 		let chronicle = StubChronicleObjectPrepared({
 			KOMChronicleResponseType: mod.KOMPlayResponseTypeAgain(),
@@ -456,7 +456,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		});
 
 		it('updates spacing', function () {
-			deepEqual(spacing, StubSpacingObjectValid2({
+			deepEqual(spacing, uSpacingUnseen({
 				KOMSpacingIsLearning: true,
 				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + mod.KOMPlayResponseIntervalLearn()),
 				KOMSpacingChronicles: events.concat(StubChronicleObjectPrepared({
@@ -481,10 +481,10 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 	context('graduate_Hard', function test_graduate_Hard() {
 
-		const spacing = StubSpacingObjectValid2();
+		const spacing = uSpacingUnseen();
 		const state = StubStateObjectValid({
 			KOMPlayStateCurrent: spacing,
-			KOMPlayStateQueue: [StubSpacingObjectValid2()],
+			KOMPlayStateQueue: [uSpacingUnseen()],
 		});
 		let chronicle = StubChronicleObjectPrepared({
 			KOMChronicleResponseType: mod.KOMPlayResponseTypeHard(),
@@ -508,7 +508,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		});
 
 		it('updates spacing', function () {
-			deepEqual(spacing, StubSpacingObjectValid2({
+			deepEqual(spacing, uSpacingUnseen({
 				KOMSpacingInterval: mod.KOMPlayResponseIntervalGraduateDefault(),
 				KOMSpacingMultiplier: mod.KOMPlayResponseMultiplierDefault(),
 				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + 1000 * 60 * 60 * 24 * mod.KOMPlayResponseIntervalGraduateDefault()),
@@ -534,10 +534,10 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 	context('graduate_Good', function test_graduate_Good() {
 
-		const spacing = StubSpacingObjectValid2();
+		const spacing = uSpacingUnseen();
 		const state = StubStateObjectValid({
 			KOMPlayStateCurrent: spacing,
-			KOMPlayStateQueue: [StubSpacingObjectValid2()],
+			KOMPlayStateQueue: [uSpacingUnseen()],
 		});
 		let chronicle = StubChronicleObjectPrepared({
 			KOMChronicleResponseType: mod.KOMPlayResponseTypeGood(),
@@ -561,7 +561,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		});
 
 		it('updates spacing', function () {
-			deepEqual(spacing, StubSpacingObjectValid2({
+			deepEqual(spacing, uSpacingUnseen({
 				KOMSpacingInterval: mod.KOMPlayResponseIntervalGraduateDefault(),
 				KOMSpacingMultiplier: mod.KOMPlayResponseMultiplierDefault(),
 				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + 1000 * 60 * 60 * 24 * mod.KOMPlayResponseIntervalGraduateDefault()),
@@ -587,10 +587,10 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 	context('graduate_Fail', function test_graduate_Fail() {
 
-		const spacing = StubSpacingObjectValid2();
+		const spacing = uSpacingUnseen();
 		const state = StubStateObjectValid({
 			KOMPlayStateCurrent: spacing,
-			KOMPlayStateQueue: [StubSpacingObjectValid2()],
+			KOMPlayStateQueue: [uSpacingUnseen()],
 		});
 		let chronicle = StubChronicleObjectPrepared({
 			KOMChronicleResponseType: mod.KOMPlayResponseTypeGood(),
@@ -614,7 +614,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		});
 
 		it('updates spacing', function () {
-			deepEqual(spacing, StubSpacingObjectValid2({
+			deepEqual(spacing, uSpacingUnseen({
 				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + mod.KOMPlayResponseIntervalAgain()),
 				KOMSpacingIsLearning: true,
 				KOMSpacingChronicles: events.concat(StubChronicleObjectPrepared({
@@ -639,10 +639,10 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 	context('reviewing_and_Again', function test_reviewing_and_Again() {
 
-		const spacing = StubSpacingObjectValid2();
+		const spacing = uSpacingUnseen();
 		const state = StubStateObjectValid({
 			KOMPlayStateCurrent: spacing,
-			KOMPlayStateQueue: [StubSpacingObjectValid2()],
+			KOMPlayStateQueue: [uSpacingUnseen()],
 		});
 		let chronicle = StubChronicleObjectPrepared({
 			KOMChronicleResponseType: mod.KOMPlayResponseTypeEasy(),
@@ -666,7 +666,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		});
 
 		it('updates spacing', function () {
-			deepEqual(spacing, StubSpacingObjectValid2({
+			deepEqual(spacing, uSpacingUnseen({
 				KOMSpacingMultiplier: mod.KOMPlayResponseMultiplierDefault() + mod.KOMPlayResponseMultiplierSummandFail(),
 				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + mod.KOMPlayResponseIntervalAgain()),
 				KOMSpacingIsLearning: true,
@@ -692,10 +692,10 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 	context('reviewing_and_Hard', function test_reviewing_and_Hard() {
 
-		const spacing = StubSpacingObjectValid2();
+		const spacing = uSpacingUnseen();
 		const state = StubStateObjectValid({
 			KOMPlayStateCurrent: spacing,
-			KOMPlayStateQueue: [StubSpacingObjectValid2()],
+			KOMPlayStateQueue: [uSpacingUnseen()],
 		});
 		let chronicle = StubChronicleObjectPrepared({
 			KOMChronicleResponseType: mod.KOMPlayResponseTypeEasy(),
@@ -720,7 +720,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 		it('updates spacing', function () {
 			const interval = mod.KOMPlayResponseIntervalGraduateEasy() * mod.KOMPlayResponseMultiplierHard();
-			deepEqual(spacing, StubSpacingObjectValid2({
+			deepEqual(spacing, uSpacingUnseen({
 				KOMSpacingMultiplier: mod.KOMPlayResponseMultiplierDefault() + mod.KOMPlayResponseMultiplierSummandHard(),
 				KOMSpacingInterval: interval,
 				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + 1000 * 60 * 60 * 24 * interval),
@@ -747,10 +747,10 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 	context('reviewing_and_Good', function test_reviewing_and_Good() {
 
-		const spacing = StubSpacingObjectValid2();
+		const spacing = uSpacingUnseen();
 		const state = StubStateObjectValid({
 			KOMPlayStateCurrent: spacing,
-			KOMPlayStateQueue: [StubSpacingObjectValid2()],
+			KOMPlayStateQueue: [uSpacingUnseen()],
 		});
 		let chronicle = StubChronicleObjectPrepared({
 			KOMChronicleResponseType: mod.KOMPlayResponseTypeEasy(),
@@ -775,7 +775,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 		it('updates spacing', function () {
 			const interval = mod.KOMPlayResponseIntervalGraduateEasy() * mod.KOMPlayResponseMultiplierDefault();
-			deepEqual(spacing, StubSpacingObjectValid2({
+			deepEqual(spacing, uSpacingUnseen({
 				KOMSpacingMultiplier: mod.KOMPlayResponseMultiplierDefault() + mod.KOMPlayResponseMultiplierSummandGood(),
 				KOMSpacingInterval: interval,
 				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + 1000 * 60 * 60 * 24 * interval),
@@ -802,10 +802,10 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 	context('reviewing_and_Easy', function test_reviewing_and_Easy() {
 
-		const spacing = StubSpacingObjectValid2();
+		const spacing = uSpacingUnseen();
 		const state = StubStateObjectValid({
 			KOMPlayStateCurrent: spacing,
-			KOMPlayStateQueue: [StubSpacingObjectValid2()],
+			KOMPlayStateQueue: [uSpacingUnseen()],
 		});
 		let chronicle = StubChronicleObjectPrepared({
 			KOMChronicleResponseType: mod.KOMPlayResponseTypeEasy(),
@@ -830,7 +830,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 		it('updates spacing', function () {
 			const interval = mod.KOMPlayResponseIntervalGraduateEasy() * mod.KOMPlayResponseMultiplierDefault() * mod.KOMPlayResponseMultiplierMultiplicandEasy();
-			deepEqual(spacing, StubSpacingObjectValid2({
+			deepEqual(spacing, uSpacingUnseen({
 				KOMSpacingMultiplier: mod.KOMPlayResponseMultiplierDefault() + mod.KOMPlayResponseMultiplierSummandEasy(),
 				KOMSpacingInterval: interval,
 				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + 1000 * 60 * 60 * 24 * interval),
@@ -858,7 +858,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 	context('overdue_and_Hard', function test_overdue_and_Hard() {
 
 		const date = new Date();
-		const spacing = StubSpacingObjectValid2({
+		const spacing = uSpacingUnseen({
 			KOMSpacingInterval: mod.KOMPlayResponseIntervalGraduateEasy(),
 			KOMSpacingMultiplier: mod.KOMPlayResponseMultiplierDefault(),
 			KOMSpacingDueDate: date,
@@ -876,7 +876,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 		it('updates spacing', function () {
 			const interval = (mod.KOMPlayResponseIntervalGraduateEasy() + 10 / mod.KOMPlayResponseIntervalOverdueDivisorHard()) * mod.KOMPlayResponseMultiplierHard();
-			deepEqual(spacing, StubSpacingObjectValid2({
+			deepEqual(spacing, uSpacingUnseen({
 				KOMSpacingMultiplier: mod.KOMPlayResponseMultiplierDefault() + mod.KOMPlayResponseMultiplierSummandHard(),
 				KOMSpacingInterval: interval,
 				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + 1000 * 60 * 60 * 24 * interval),
@@ -895,7 +895,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 	context('overdue_and_Good', function test_overdue_and_Good() {
 
 		const date = new Date();
-		const spacing = StubSpacingObjectValid2({
+		const spacing = uSpacingUnseen({
 			KOMSpacingInterval: mod.KOMPlayResponseIntervalGraduateEasy(),
 			KOMSpacingMultiplier: mod.KOMPlayResponseMultiplierDefault(),
 			KOMSpacingDueDate: date,
@@ -913,7 +913,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 		it('updates spacing', function () {
 			const interval = (mod.KOMPlayResponseIntervalGraduateEasy() + 10 / mod.KOMPlayResponseIntervalOverdueDivisorGood()) * mod.KOMPlayResponseMultiplierDefault();
-			deepEqual(spacing, StubSpacingObjectValid2({
+			deepEqual(spacing, uSpacingUnseen({
 				KOMSpacingMultiplier: mod.KOMPlayResponseMultiplierDefault() + mod.KOMPlayResponseMultiplierSummandGood(),
 				KOMSpacingInterval: interval,
 				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + 1000 * 60 * 60 * 24 * interval),
@@ -932,7 +932,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 	context('overdue_and_Easy', function test_overdue_and_Easy() {
 
 		const date = new Date();
-		const spacing = StubSpacingObjectValid2({
+		const spacing = uSpacingUnseen({
 			KOMSpacingInterval: mod.KOMPlayResponseIntervalGraduateEasy(),
 			KOMSpacingMultiplier: mod.KOMPlayResponseMultiplierDefault(),
 			KOMSpacingDueDate: date,
@@ -950,7 +950,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 		it('updates spacing', function () {
 			const interval = (mod.KOMPlayResponseIntervalGraduateEasy() + 10 / mod.KOMPlayResponseIntervalOverdueDivisorEasy()) * mod.KOMPlayResponseMultiplierDefault() * mod.KOMPlayResponseMultiplierMultiplicandEasy();
-			deepEqual(spacing, StubSpacingObjectValid2({
+			deepEqual(spacing, uSpacingUnseen({
 				KOMSpacingMultiplier: mod.KOMPlayResponseMultiplierDefault() + mod.KOMPlayResponseMultiplierSummandEasy(),
 				KOMSpacingInterval: interval,
 				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + 1000 * 60 * 60 * 24 * interval),
@@ -969,7 +969,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 	context('minimum_multiplier', function test_minimum_multiplier() {
 
 		const date = new Date();
-		const spacing = StubSpacingObjectValid2({
+		const spacing = uSpacingUnseen({
 			KOMSpacingInterval: mod.KOMPlayResponseIntervalGraduateEasy(),
 			KOMSpacingMultiplier: mod.KOMPlayResponseMultiplierMin(),
 			KOMSpacingDueDate: date,
@@ -987,7 +987,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 		it('updates spacing', function () {
 			const interval = (mod.KOMPlayResponseIntervalGraduateEasy() + 10 / mod.KOMPlayResponseIntervalOverdueDivisorHard()) * mod.KOMPlayResponseMultiplierHard();
-			deepEqual(spacing, StubSpacingObjectValid2({
+			deepEqual(spacing, uSpacingUnseen({
 				KOMSpacingMultiplier: mod.KOMPlayResponseMultiplierMin(),
 				KOMSpacingInterval: interval,
 				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + 1000 * 60 * 60 * 24 * interval),

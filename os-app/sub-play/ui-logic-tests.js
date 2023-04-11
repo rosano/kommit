@@ -12,13 +12,13 @@ describe('KOMPlaySort', function test_KOMPlaySort() {
 
 	const uItems = function (param1 = 4, param2 = Infinity, param3 = false) {
 		return uRepeat(param1, function (e, i) {
-			return StubSpacingObjectValid2({
+			return uSpacingUnseen({
 				KOMSpacingID: (i + 1).toString() + '-forward',
 				KOMSpacingDueDate: i >= param2 ? new Date() : undefined,
 				KOMSpacingChronicles: [],
 			});
 		}).concat(param3 ? uRepeat(param1, function (e, i) {
-			return StubSpacingObjectValid2({
+			return uSpacingUnseen({
 				KOMSpacingID: (i + 1).toString() + '-backward',
 				KOMSpacingDueDate: i >= param2 ? new Date() : undefined,
 				KOMSpacingChronicles: [],
@@ -392,18 +392,18 @@ describe('KOMPlayResponseIntervalOverdueDays', function test_KOMPlayResponseInte
 
 	it('throws if param2 not prepared', function () {
 		throws(function () {
-			mod.KOMPlayResponseIntervalOverdueDays(StubSpacingObjectValid2(), Object.assign(StubChronicleObjectValid2(), {
+			mod.KOMPlayResponseIntervalOverdueDays(uSpacingUnseen(), Object.assign(StubChronicleObjectValid2(), {
 				KOMChronicleDrawDate: null,
 			}));
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns 0 if no KOMSpacingInterval', function () {
-		deepEqual(mod.KOMPlayResponseIntervalOverdueDays(StubSpacingObjectValid2(), StubChronicleObjectValid2()), 0);
+		deepEqual(mod.KOMPlayResponseIntervalOverdueDays(uSpacingUnseen(), StubChronicleObjectValid2()), 0);
 	});
 
 	it('returns 0 if KOMSpacingDueDate same day', function () {
-		deepEqual(mod.KOMPlayResponseIntervalOverdueDays(StubSpacingObjectValid2({
+		deepEqual(mod.KOMPlayResponseIntervalOverdueDays(uSpacingUnseen({
 			KOMSpacingInterval: mod.KOMPlayResponseIntervalGraduateEasy(),
 			KOMSpacingDueDate: new Date(`2020-05-02T12:00:00${ OLSKMoment.OLSKMomentStringOffset() }:00`),
 		}), Object.assign(StubChronicleObjectValid2(), {
@@ -412,7 +412,7 @@ describe('KOMPlayResponseIntervalOverdueDays', function test_KOMPlayResponseInte
 	});
 
 	it('returns days if KOMSpacingDueDate past', function () {
-		deepEqual(mod.KOMPlayResponseIntervalOverdueDays(StubSpacingObjectValid2({
+		deepEqual(mod.KOMPlayResponseIntervalOverdueDays(uSpacingUnseen({
 			KOMSpacingInterval: mod.KOMPlayResponseIntervalGraduateEasy(),
 			KOMSpacingDueDate: new Date(`2020-05-02T12:00:00${ OLSKMoment.OLSKMomentStringOffset() }:00`),
 		}), Object.assign(StubChronicleObjectValid2(), {
@@ -432,14 +432,14 @@ describe('KOMPlayResponseIntervalOverdueBonus', function test_KOMPlayResponseInt
 
 	it('throws if param2 not prepared', function () {
 		throws(function () {
-			mod.KOMPlayResponseIntervalOverdueBonus(StubSpacingObjectValid2(), Object.assign(StubChronicleObjectValid2(), {
+			mod.KOMPlayResponseIntervalOverdueBonus(uSpacingUnseen(), Object.assign(StubChronicleObjectValid2(), {
 				KOMChronicleDrawDate: null,
 			}));
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns 0', function () {
-		deepEqual(mod.KOMPlayResponseIntervalOverdueBonus(StubSpacingObjectValid2({
+		deepEqual(mod.KOMPlayResponseIntervalOverdueBonus(uSpacingUnseen({
 			KOMSpacingInterval: mod.KOMPlayResponseIntervalGraduateEasy(),
 			KOMSpacingDueDate: new Date(`2020-05-02T12:00:00${ OLSKMoment.OLSKMomentStringOffset() }:00`),
 		}), Object.assign(StubChronicleObjectValid2(), {
@@ -449,7 +449,7 @@ describe('KOMPlayResponseIntervalOverdueBonus', function test_KOMPlayResponseInt
 	});
 
 	it('adjusts if Hard', function () {
-		deepEqual(mod.KOMPlayResponseIntervalOverdueBonus(StubSpacingObjectValid2({
+		deepEqual(mod.KOMPlayResponseIntervalOverdueBonus(uSpacingUnseen({
 			KOMSpacingInterval: mod.KOMPlayResponseIntervalGraduateEasy(),
 			KOMSpacingDueDate: new Date(`2020-05-02T12:00:00${ OLSKMoment.OLSKMomentStringOffset() }:00`),
 		}), Object.assign(StubChronicleObjectValid2(), {
@@ -459,7 +459,7 @@ describe('KOMPlayResponseIntervalOverdueBonus', function test_KOMPlayResponseInt
 	});
 
 	it('adjusts if Good', function () {
-		deepEqual(mod.KOMPlayResponseIntervalOverdueBonus(StubSpacingObjectValid2({
+		deepEqual(mod.KOMPlayResponseIntervalOverdueBonus(uSpacingUnseen({
 			KOMSpacingInterval: mod.KOMPlayResponseIntervalGraduateEasy(),
 			KOMSpacingDueDate: new Date(`2020-05-02T12:00:00${ OLSKMoment.OLSKMomentStringOffset() }:00`),
 		}), Object.assign(StubChronicleObjectValid2(), {
@@ -469,7 +469,7 @@ describe('KOMPlayResponseIntervalOverdueBonus', function test_KOMPlayResponseInt
 	});
 
 	it('adjusts if Easy', function () {
-		deepEqual(mod.KOMPlayResponseIntervalOverdueBonus(StubSpacingObjectValid2({
+		deepEqual(mod.KOMPlayResponseIntervalOverdueBonus(uSpacingUnseen({
 			KOMSpacingInterval: mod.KOMPlayResponseIntervalGraduateEasy(),
 			KOMSpacingDueDate: new Date(`2020-05-02T12:00:00${ OLSKMoment.OLSKMomentStringOffset() }:00`),
 		}), Object.assign(StubChronicleObjectValid2(), {
@@ -704,7 +704,7 @@ describe('KOMChronicleGenerateDraw', function test_KOMChronicleGenerateDraw() {
 
 	it('throws if param1 not date', function () {
 		throws(function () {
-			mod.KOMChronicleGenerateDraw(new Date('alfa'), StubSpacingObjectValid2());
+			mod.KOMChronicleGenerateDraw(new Date('alfa'), uSpacingUnseen());
 		}, /KOMErrorInputNotValid/);
 	});
 
@@ -716,7 +716,7 @@ describe('KOMChronicleGenerateDraw', function test_KOMChronicleGenerateDraw() {
 
 	it('returns object', function () {
 		const item = new Date();
-		deepEqual(mod.KOMChronicleGenerateDraw(item, StubSpacingObjectValid2()), {
+		deepEqual(mod.KOMChronicleGenerateDraw(item, uSpacingUnseen()), {
 			KOMChronicleDrawDate: item,
 		});
 	});
@@ -724,29 +724,29 @@ describe('KOMChronicleGenerateDraw', function test_KOMChronicleGenerateDraw() {
 	context('KOMChronicleDidDrawMultipleTimes', function () {
 
 		it('sets undefined if KOMSpacingDrawDate undefined', function () {
-			deepEqual(mod.KOMChronicleGenerateDraw(new Date(), StubSpacingObjectValid2()).KOMChronicleDidDrawMultipleTimes, undefined);
+			deepEqual(mod.KOMChronicleGenerateDraw(new Date(), uSpacingUnseen()).KOMChronicleDidDrawMultipleTimes, undefined);
 		});
 
 		it('sets undefined if KOMSpacingDrawDate past', function () {
-			deepEqual(mod.KOMChronicleGenerateDraw(new Date(), StubSpacingObjectValid2({
+			deepEqual(mod.KOMChronicleGenerateDraw(new Date(), uSpacingUnseen({
 				KOMSpacingDrawDate: new Date(Date.now() - 1000 * 60 * 60 * 24 * 3),
 			})).KOMChronicleDidDrawMultipleTimes, undefined);
 		});
 
 		it('sets undefined if KOMSpacingDrawDate today and unseen', function () {
-			deepEqual(mod.KOMChronicleGenerateDraw(new Date(), StubSpacingObjectValid2({
+			deepEqual(mod.KOMChronicleGenerateDraw(new Date(), uSpacingUnseen({
 				KOMSpacingDrawDate: new Date(),
 			})).KOMChronicleDidDrawMultipleTimes, undefined);
 		});
 
 		it('sets undefined if KOMSpacingDrawDate today and learning', function () {
-			deepEqual(mod.KOMChronicleGenerateDraw(new Date(), StubSpacingObjectValid2({
+			deepEqual(mod.KOMChronicleGenerateDraw(new Date(), uSpacingUnseen({
 				KOMSpacingDrawDate: new Date(),
 			})).KOMChronicleDidDrawMultipleTimes, undefined);
 		});
 
 		it('sets true if KOMSpacingDrawDate today and reviewing', function () {
-			deepEqual(mod.KOMChronicleGenerateDraw(new Date(), StubSpacingObjectValid2({
+			deepEqual(mod.KOMChronicleGenerateDraw(new Date(), uSpacingUnseen({
 				KOMSpacingDrawDate: new Date(),
 				KOMSpacingInterval: mod.KOMPlayResponseIntervalGraduateEasy(),
 			})).KOMChronicleDidDrawMultipleTimes, true);
@@ -974,7 +974,7 @@ describe('KOMChronicleFlip', function test_KOMChronicleFlip() {
 
 	it('throws if param1 not date', function () {
 		throws(function () {
-			mod.KOMChronicleFlip(new Date('alfa'), StubSpacingObjectValid2());
+			mod.KOMChronicleFlip(new Date('alfa'), uSpacingUnseen());
 		}, /KOMErrorInputNotValid/);
 	});
 
@@ -986,7 +986,7 @@ describe('KOMChronicleFlip', function test_KOMChronicleFlip() {
 
 	it('returns object', function () {
 		const item = new Date();
-		deepEqual(mod.KOMChronicleFlip(item, StubSpacingObjectValid2()), {
+		deepEqual(mod.KOMChronicleFlip(item, uSpacingUnseen()), {
 			KOMChronicleFlipDate: item,
 		});
 	});
@@ -994,29 +994,29 @@ describe('KOMChronicleFlip', function test_KOMChronicleFlip() {
 	context('KOMChronicleDidFlipMultipleTimes', function () {
 
 		it('sets undefined if KOMSpacingFlipDate undefined', function () {
-			deepEqual(mod.KOMChronicleFlip(new Date(), StubSpacingObjectValid2()).KOMChronicleDidFlipMultipleTimes, undefined);
+			deepEqual(mod.KOMChronicleFlip(new Date(), uSpacingUnseen()).KOMChronicleDidFlipMultipleTimes, undefined);
 		});
 
 		it('sets undefined if KOMSpacingFlipDate past', function () {
-			deepEqual(mod.KOMChronicleFlip(new Date(), StubSpacingObjectValid2({
+			deepEqual(mod.KOMChronicleFlip(new Date(), uSpacingUnseen({
 				KOMSpacingFlipDate: new Date(Date.now() - 1000 * 60 * 60 * 24 * 3),
 			})).KOMChronicleDidFlipMultipleTimes, undefined);
 		});
 
 		it('sets undefined if KOMSpacingFlipDate today and unseen', function () {
-			deepEqual(mod.KOMChronicleFlip(new Date(), StubSpacingObjectValid2({
+			deepEqual(mod.KOMChronicleFlip(new Date(), uSpacingUnseen({
 				KOMSpacingFlipDate: new Date(),
 			})).KOMChronicleDidFlipMultipleTimes, undefined);
 		});
 
 		it('sets undefined if KOMSpacingFlipDate today and learning', function () {
-			deepEqual(mod.KOMChronicleFlip(new Date(), StubSpacingObjectValid2({
+			deepEqual(mod.KOMChronicleFlip(new Date(), uSpacingUnseen({
 				KOMSpacingFlipDate: new Date(),
 			})).KOMChronicleDidFlipMultipleTimes, undefined);
 		});
 
 		it('sets true if KOMSpacingFlipDate today and reviewing', function () {
-			deepEqual(mod.KOMChronicleFlip(new Date(), StubSpacingObjectValid2({
+			deepEqual(mod.KOMChronicleFlip(new Date(), uSpacingUnseen({
 				KOMSpacingFlipDate: new Date(),
 				KOMSpacingInterval: mod.KOMPlayResponseIntervalGraduateEasy(),
 			})).KOMChronicleDidFlipMultipleTimes, true);
@@ -1095,12 +1095,12 @@ describe('KOMChronicleUndo', function test_KOMChronicleUndo() {
 
 	it('throws if no KOMSpacingChronicles', function () {
 		throws(function () {
-			mod.KOMChronicleUndo(StubSpacingObjectValid2());
+			mod.KOMChronicleUndo(uSpacingUnseen());
 		}, /KOMErrorInputNotValid/);
 	});
 
 	it('returns input', function () {
-		const item = StubSpacingObjectValid2({
+		const item = uSpacingUnseen({
 			KOMSpacingChronicles: [StubChronicleObjectValid2()],
 		});
 
@@ -1108,37 +1108,37 @@ describe('KOMChronicleUndo', function test_KOMChronicleUndo() {
 	});
 
 	it('removes last KOMSpacingChronicles item', function () {
-		deepEqual(mod.KOMChronicleUndo(StubSpacingObjectValid2({
+		deepEqual(mod.KOMChronicleUndo(uSpacingUnseen({
 			KOMSpacingChronicles: [StubChronicleObjectValid2(), StubChronicleObjectValid2()],
 		})).KOMSpacingChronicles, [StubChronicleObjectValid2()]);
 	});
 
 	it('keeps KOMSpacingDrawDate', function () {
-		deepEqual(mod.KOMChronicleUndo(StubSpacingObjectValid2({
+		deepEqual(mod.KOMChronicleUndo(uSpacingUnseen({
 			KOMSpacingDrawDate: new Date('2019-02-23T12:00:00Z'),
 			KOMSpacingIsLearning: true,
 			KOMSpacingChronicles: [StubChronicleObjectValid2()],
-		})), StubSpacingObjectValid2({
+		})), uSpacingUnseen({
 			KOMSpacingDrawDate: new Date('2019-02-23T12:00:00Z'),
 		}));
 	});
 
 	it('keeps KOMSpacingFlipDate', function () {
-		deepEqual(mod.KOMChronicleUndo(StubSpacingObjectValid2({
+		deepEqual(mod.KOMChronicleUndo(uSpacingUnseen({
 			KOMSpacingFlipDate: new Date('2019-02-23T12:00:00Z'),
 			KOMSpacingIsLearning: true,
 			KOMSpacingChronicles: [StubChronicleObjectValid2()],
-		})), StubSpacingObjectValid2({
+		})), uSpacingUnseen({
 			KOMSpacingFlipDate: new Date('2019-02-23T12:00:00Z'),
 		}));
 	});
 
 	it('keeps relations', function () {
-		deepEqual(mod.KOMChronicleUndo(StubSpacingObjectValid2({
+		deepEqual(mod.KOMChronicleUndo(uSpacingUnseen({
 			KOMSpacingIsLearning: true,
 			KOMSpacingChronicles: [StubChronicleObjectValid2()],
 			$alfa: 'bravo',
-		})), StubSpacingObjectValid2({
+		})), uSpacingUnseen({
 			$alfa: 'bravo',
 		}));
 	});
@@ -1146,10 +1146,10 @@ describe('KOMChronicleUndo', function test_KOMChronicleUndo() {
 	context('with no history', function () {
 
 		it('removes existing properties', function () {
-			deepEqual(mod.KOMChronicleUndo(StubSpacingObjectValid2({
+			deepEqual(mod.KOMChronicleUndo(uSpacingUnseen({
 				KOMSpacingIsLearning: true,
 				KOMSpacingChronicles: [StubChronicleObjectValid2()],
-			})), StubSpacingObjectValid2());
+			})), uSpacingUnseen());
 		});
 
 	});
@@ -1160,9 +1160,9 @@ describe('KOMChronicleUndo', function test_KOMChronicleUndo() {
 			const item = Object.assign(StubChronicleObjectValid2(), {
 				KOMChronicleIsLearning: true,
 			});
-			deepEqual(mod.KOMChronicleUndo(StubSpacingObjectValid2({
+			deepEqual(mod.KOMChronicleUndo(uSpacingUnseen({
 				KOMSpacingChronicles: [item, StubChronicleObjectValid2()],
-			})), StubSpacingObjectValid2({
+			})), uSpacingUnseen({
 				KOMSpacingChronicles: [item],
 				KOMSpacingIsLearning: true,
 				KOMSpacingDrawDate: new Date('2019-02-23T12:00:00Z'),
@@ -1175,10 +1175,10 @@ describe('KOMChronicleUndo', function test_KOMChronicleUndo() {
 			const item = Object.assign(StubChronicleObjectValid2(), {
 				KOMChronicleIsLearning: true,
 			});
-			deepEqual(mod.KOMChronicleUndo(StubSpacingObjectValid2({
+			deepEqual(mod.KOMChronicleUndo(uSpacingUnseen({
 				KOMSpacingIsLearning: true,
 				KOMSpacingChronicles: [item, StubChronicleObjectValid2()],
-			})), StubSpacingObjectValid2({
+			})), uSpacingUnseen({
 				KOMSpacingChronicles: [item],
 				KOMSpacingIsLearning: true,
 				KOMSpacingDrawDate: new Date('2019-02-23T12:00:00Z'),
