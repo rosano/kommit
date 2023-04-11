@@ -762,7 +762,7 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 
 	});
 
-	context('overdue_and_Hard', function test_overdue_and_Hard() {
+	context('overdue_and_x', function test_overdue_and_x() {
 
 		const date = new Date();
 		const spacing = uSpacingUnseen({
@@ -770,9 +770,14 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 			KOMSpacingMultiplier: mod.KOMPlayResponseMultiplierDefault(),
 			KOMSpacingDueDate: date,
 		});
+		const response = uRandomElement('Hard', 'Good', 'Easy');
 		const chronicle = StubChronicleObjectPrepared({
 			KOMChronicleResponseDate: new Date(date.valueOf() + 1000 * 60 * 60 * 24 * 10),
-			KOMChronicleResponseType: mod.KOMPlayResponseTypeHard(),
+			KOMChronicleResponseType: {
+				Hard: mod.KOMPlayResponseTypeHard(),
+				Good: mod.KOMPlayResponseTypeGood(),
+				Easy: mod.KOMPlayResponseTypeEasy(),
+			}[response],
 		});
 
 		before(function () {
@@ -782,83 +787,25 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		});
 
 		it('updates spacing', function () {
-			const interval = (mod.KOMPlayResponseIntervalGraduateEasy() + 10 / mod.KOMPlayResponseIntervalOverdueDivisorHard()) * mod.KOMPlayResponseMultiplierHard();
+			const interval = (mod.KOMPlayResponseIntervalGraduateEasy() + 10 / {
+				Hard: mod.KOMPlayResponseIntervalOverdueDivisorHard(),
+				Good: mod.KOMPlayResponseIntervalOverdueDivisorGood(),
+				Easy: mod.KOMPlayResponseIntervalOverdueDivisorEasy(),
+			}[response]) * {
+				Hard: mod.KOMPlayResponseMultiplierHard(),
+				Good: mod.KOMPlayResponseMultiplierDefault(),
+				Easy: mod.KOMPlayResponseMultiplierDefault(),
+			}[response] * {
+				Hard: 1,
+				Good: 1,
+				Easy: mod.KOMPlayResponseMultiplierMultiplicandEasy(),
+			}[response];
 			deepEqual(spacing, uSpacingUnseen({
-				KOMSpacingMultiplier: mod.KOMPlayResponseMultiplierDefault() + mod.KOMPlayResponseMultiplierSummandHard(),
-				KOMSpacingInterval: interval,
-				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + 1000 * 60 * 60 * 24 * interval),
-				KOMSpacingChronicles: [StubChronicleObjectPrepared({
-					KOMChronicleResponseDate: chronicle.KOMChronicleResponseDate,
-					KOMChronicleResponseType: chronicle.KOMChronicleResponseType,
-					KOMChronicleDueDate: spacing.KOMSpacingDueDate,
-					KOMChronicleInterval: spacing.KOMSpacingInterval,
-					KOMChronicleMultiplier: spacing.KOMSpacingMultiplier,
-				})],
-			}));
-		});
-
-	});
-
-	context('overdue_and_Good', function test_overdue_and_Good() {
-
-		const date = new Date();
-		const spacing = uSpacingUnseen({
-			KOMSpacingInterval: mod.KOMPlayResponseIntervalGraduateEasy(),
-			KOMSpacingMultiplier: mod.KOMPlayResponseMultiplierDefault(),
-			KOMSpacingDueDate: date,
-		});
-		const chronicle = StubChronicleObjectPrepared({
-			KOMChronicleResponseDate: new Date(date.valueOf() + 1000 * 60 * 60 * 24 * 10),
-			KOMChronicleResponseType: mod.KOMPlayResponseTypeGood(),
-		});
-
-		before(function () {
-			mod.KOMPlayRespond(StubStateObjectValid({
-				KOMPlayStateCurrent: spacing,
-			}), chronicle);
-		});
-
-		it('updates spacing', function () {
-			const interval = (mod.KOMPlayResponseIntervalGraduateEasy() + 10 / mod.KOMPlayResponseIntervalOverdueDivisorGood()) * mod.KOMPlayResponseMultiplierDefault();
-			deepEqual(spacing, uSpacingUnseen({
-				KOMSpacingMultiplier: mod.KOMPlayResponseMultiplierDefault() + mod.KOMPlayResponseMultiplierSummandGood(),
-				KOMSpacingInterval: interval,
-				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + 1000 * 60 * 60 * 24 * interval),
-				KOMSpacingChronicles: [StubChronicleObjectPrepared({
-					KOMChronicleResponseDate: chronicle.KOMChronicleResponseDate,
-					KOMChronicleResponseType: chronicle.KOMChronicleResponseType,
-					KOMChronicleDueDate: spacing.KOMSpacingDueDate,
-					KOMChronicleInterval: spacing.KOMSpacingInterval,
-					KOMChronicleMultiplier: spacing.KOMSpacingMultiplier,
-				})],
-			}));
-		});
-
-	});
-
-	context('overdue_and_Easy', function test_overdue_and_Easy() {
-
-		const date = new Date();
-		const spacing = uSpacingUnseen({
-			KOMSpacingInterval: mod.KOMPlayResponseIntervalGraduateEasy(),
-			KOMSpacingMultiplier: mod.KOMPlayResponseMultiplierDefault(),
-			KOMSpacingDueDate: date,
-		});
-		const chronicle = StubChronicleObjectPrepared({
-			KOMChronicleResponseDate: new Date(date.valueOf() + 1000 * 60 * 60 * 24 * 10),
-			KOMChronicleResponseType: mod.KOMPlayResponseTypeEasy(),
-		});
-
-		before(function () {
-			mod.KOMPlayRespond(StubStateObjectValid({
-				KOMPlayStateCurrent: spacing,
-			}), chronicle);
-		});
-
-		it('updates spacing', function () {
-			const interval = (mod.KOMPlayResponseIntervalGraduateEasy() + 10 / mod.KOMPlayResponseIntervalOverdueDivisorEasy()) * mod.KOMPlayResponseMultiplierDefault() * mod.KOMPlayResponseMultiplierMultiplicandEasy();
-			deepEqual(spacing, uSpacingUnseen({
-				KOMSpacingMultiplier: mod.KOMPlayResponseMultiplierDefault() + mod.KOMPlayResponseMultiplierSummandEasy(),
+				KOMSpacingMultiplier: mod.KOMPlayResponseMultiplierDefault() + {
+				Hard: mod.KOMPlayResponseMultiplierSummandHard(),
+				Good: mod.KOMPlayResponseMultiplierSummandGood(),
+				Easy: mod.KOMPlayResponseMultiplierSummandEasy(),
+			}[response],
 				KOMSpacingInterval: interval,
 				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + 1000 * 60 * 60 * 24 * interval),
 				KOMSpacingChronicles: [StubChronicleObjectPrepared({
