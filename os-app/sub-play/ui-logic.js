@@ -325,7 +325,7 @@ const mod = {
 				KOMChronicleDueDate: spacing.KOMSpacingDueDate,
 			}, spacing.KOMSpacingIsLearning ? {
 				KOMChronicleIsLearning: true,
-			} : {}, spacing.KOMSpacingIsLearning ? {} : {
+			} : {
 				KOMChronicleInterval: spacing.KOMSpacingInterval,
 				KOMChronicleMultiplier: spacing.KOMSpacingMultiplier,
 			}));
