@@ -269,6 +269,7 @@ const mod = {
 				// GRADUATE
 				if (!KOMSpacing.KOMSpacingIsReviewing(spacing) && (chronicle.KOMChronicleResponseType === mod.KOMPlayResponseTypeEasy() || (KOMSpacing.KOMSpacingIsLearning(spacing) && chronicle.KOMChronicleResponseType !== mod.KOMPlayResponseTypeAgain() && !lastResponseWasAgain))) {
 					delete spacing.KOMSpacingIsLearning;
+					delete spacing.KOMSpacingIsLapsing;
 
 					const interval = chronicle.KOMChronicleResponseType === mod.KOMPlayResponseTypeEasy() ? mod.KOMPlayResponseIntervalGraduateEasy() : mod.KOMPlayResponseIntervalGraduateDefault();
 					return {
@@ -310,6 +311,8 @@ const mod = {
 				// LAPSE
 				if (KOMSpacing.KOMSpacingIsReviewing(spacing) && chronicle.KOMChronicleResponseType === mod.KOMPlayResponseTypeAgain()) {
 					delete spacing.KOMSpacingInterval;
+					spacing.KOMSpacingIsLapsing = true;
+					spacing.KOMSpacingLapseCount = (spacing.KOMSpacingLapseCount || 0) + 1;
 
 					spacing.KOMSpacingMultiplier += mod.KOMPlayResponseMultiplierSummandFail();
 				}
@@ -321,14 +324,38 @@ const mod = {
 				};
 			})());
 
-			spacing.KOMSpacingChronicles.push(Object.assign(chronicle, {
-				KOMChronicleDueDate: spacing.KOMSpacingDueDate,
-			}, spacing.KOMSpacingIsLearning ? {
-				KOMChronicleIsLearning: true,
-			} : {
-				KOMChronicleInterval: spacing.KOMSpacingInterval,
-				KOMChronicleMultiplier: spacing.KOMSpacingMultiplier,
-			}));
+			spacing.KOMSpacingChronicles.push((function() {
+				const assigns = [{
+					KOMChronicleDueDate: spacing.KOMSpacingDueDate,
+				}];
+
+				if (spacing.KOMSpacingIsLearning) {
+					assigns.push({
+						KOMChronicleIsLearning: true,
+					});
+				}
+
+				if (!spacing.KOMSpacingIsLearning) {
+					assigns.push({
+						KOMChronicleInterval: spacing.KOMSpacingInterval,
+						KOMChronicleMultiplier: spacing.KOMSpacingMultiplier,
+					});
+				}
+
+				if (spacing.KOMSpacingIsLapsing) {
+					assigns.push({
+						KOMChronicleIsLapsing: true,
+					});
+				}
+
+				if (spacing.KOMSpacingLapseCount) {
+					assigns.push({
+						KOMChronicleLapseCount: spacing.KOMSpacingLapseCount,
+					});
+				}
+
+				return Object.assign(chronicle, ...assigns);
+			})());
 
 			if (KOMSpacing.KOMSpacingIsLearning(spacing)) {
 				state.KOMPlayStateWait.push(spacing);

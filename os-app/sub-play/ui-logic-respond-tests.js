@@ -562,16 +562,21 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 		});
 
 		it('updates spacing', function () {
+			events.push(StubChronicleObjectPrepared({
+				KOMChronicleResponseDate: chronicle.KOMChronicleResponseDate,
+				KOMChronicleResponseType: chronicle.KOMChronicleResponseType,
+				KOMChronicleDueDate: spacing.KOMSpacingDueDate,
+				KOMChronicleIsLearning: true,
+				KOMChronicleIsLapsing: true,
+				KOMChronicleLapseCount: 1,
+			}))
 			deepEqual(spacing, uSpacingUnseen({
 				KOMSpacingMultiplier: mod.KOMPlayResponseMultiplierDefault() + mod.KOMPlayResponseMultiplierSummandFail(),
 				KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + mod.KOMPlayResponseIntervalAgain()),
 				KOMSpacingIsLearning: true,
-				KOMSpacingChronicles: events.concat(StubChronicleObjectPrepared({
-					KOMChronicleResponseDate: chronicle.KOMChronicleResponseDate,
-					KOMChronicleResponseType: chronicle.KOMChronicleResponseType,
-					KOMChronicleDueDate: spacing.KOMSpacingDueDate,
-					KOMChronicleIsLearning: true,
-				})),
+				KOMSpacingIsLapsing: true,
+				KOMSpacingLapseCount: 1,
+				KOMSpacingChronicles: events,
 			}));
 		});
 
@@ -582,6 +587,98 @@ describe('KOMPlayRespond', function test_KOMPlayRespond() {
 				KOMPlayStateWait: [spacing],
 				KOMPlayStateHistory: [[spacing], [spacing]],
 			}));
+		});
+
+		context('lapse immediately', function () {
+			
+			before(function () {
+				state.KOMPlayStateQueue.unshift(state.KOMPlayStateCurrent);
+				state.KOMPlayStateCurrent = spacing;
+
+				mod.KOMPlayRespond(state, chronicle = StubChronicleObjectPrepared({
+					KOMChronicleResponseDate: state.KOMPlayStateCurrent.KOMSpacingDueDate,
+					KOMChronicleResponseType: mod.KOMPlayResponseTypeAgain(),
+				}));
+
+				events.push(chronicle);
+			});
+
+			it('updates spacing', function () {
+				deepEqual(spacing, uSpacingUnseen({
+					KOMSpacingMultiplier: mod.KOMPlayResponseMultiplierDefault() + mod.KOMPlayResponseMultiplierSummandFail(),
+					KOMSpacingDueDate: new Date(chronicle.KOMChronicleResponseDate.valueOf() + mod.KOMPlayResponseIntervalAgain()),
+					KOMSpacingIsLearning: true,
+					KOMSpacingIsLapsing: true,
+					KOMSpacingLapseCount: 1,
+					KOMSpacingChronicles: events,
+				}));
+			});
+
+			context('graduate after lapse', function () {
+				
+				before(function () {
+					state.KOMPlayStateQueue.unshift(state.KOMPlayStateCurrent);
+					state.KOMPlayStateCurrent = spacing;
+
+					mod.KOMPlayRespond(state, chronicle = StubChronicleObjectPrepared({
+						KOMChronicleResponseDate: state.KOMPlayStateCurrent.KOMSpacingDueDate,
+						KOMChronicleResponseType: mod.KOMPlayResponseTypeEasy(),
+					}));
+				});
+
+				it('updates spacing', function () {
+					deepEqual(spacing, uSpacingUnseen({
+						KOMSpacingMultiplier: spacing.KOMSpacingMultiplier,
+						KOMSpacingDueDate: chronicle.KOMChronicleDueDate,
+						KOMSpacingInterval: spacing.KOMSpacingInterval,
+						KOMSpacingLapseCount: 1,
+						KOMSpacingChronicles: events.concat(StubChronicleObjectPrepared({
+							KOMChronicleResponseDate: chronicle.KOMChronicleResponseDate,
+							KOMChronicleResponseType: chronicle.KOMChronicleResponseType,
+							KOMChronicleDueDate: spacing.KOMSpacingDueDate,
+							KOMChronicleInterval: spacing.KOMSpacingInterval,
+							KOMChronicleMultiplier: spacing.KOMSpacingMultiplier,
+							KOMChronicleLapseCount: 1,
+						})),
+					}));
+				});
+
+				context('graduate after lapse', function () {
+					
+					before(function () {
+						events.push(chronicle);
+
+						state.KOMPlayStateQueue.unshift(state.KOMPlayStateCurrent);
+						state.KOMPlayStateCurrent = spacing;
+
+						mod.KOMPlayRespond(state, chronicle = StubChronicleObjectPrepared({
+							KOMChronicleResponseDate: state.KOMPlayStateCurrent.KOMSpacingDueDate,
+							KOMChronicleResponseType: mod.KOMPlayResponseTypeAgain(),
+						}));
+					});
+
+					it('updates spacing', function () {
+						deepEqual(spacing, uSpacingUnseen({
+							KOMSpacingMultiplier: spacing.KOMSpacingMultiplier,
+							KOMSpacingDueDate: chronicle.KOMChronicleDueDate,
+							KOMSpacingIsLearning: true,
+							KOMSpacingIsLapsing: true,
+							KOMSpacingLapseCount: 2,
+							KOMSpacingChronicles: events.concat(StubChronicleObjectPrepared({
+								KOMChronicleResponseDate: chronicle.KOMChronicleResponseDate,
+								KOMChronicleResponseType: chronicle.KOMChronicleResponseType,
+								KOMChronicleDueDate: spacing.KOMSpacingDueDate,
+								KOMChronicleIsLearning: true,
+								KOMChronicleIsLapsing: true,
+								KOMChronicleLapseCount: 2,
+							})),
+						}));
+					});
+				
+				});
+			
+			});
+		
 		});
 
 	});
