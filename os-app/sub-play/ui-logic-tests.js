@@ -111,16 +111,6 @@ describe('KOMPlaySort', function test_KOMPlaySort() {
 			}), []);
 		});
 
-		it('spaces apart from sibling', function () {
-			deepEqual(uRepeat(10, function (e) {
-				return mod.KOMPlaySort(uItems(10, Infinity, true)).filter(function (e, i, coll) {
-					return i && KOMSpacing.KOMSpacingIsBackward(e) && KOMSpacing.KOMSpacingIdentifier(e.KOMSpacingID) === KOMSpacing.KOMSpacingIdentifier(coll[i - 1].KOMSpacingID);
-				});
-			}).filter(function (e) {
-				return e.length;
-			}), []);
-		});
-
 		it('randomizes', function () {
 			deepEqual(uRepeat(10, function (e) {
 				return uSlug(mod.KOMPlaySort(uItems(10, Infinity, true)).filter(KOMSpacing.KOMSpacingIsBackward));
@@ -138,47 +128,12 @@ describe('KOMPlaySort', function test_KOMPlaySort() {
 
 	context('siblings_review', function () {
 
-		it('spaces apart from sibling', function () {
-			deepEqual(uRepeat(10, function (e) {
-				return mod.KOMPlaySort(uItems(10, 0, true)).filter(function (e, i, coll) {
-					return i && KOMSpacing.KOMSpacingIsBackward(e) && KOMSpacing.KOMSpacingIdentifier(e.KOMSpacingID) === KOMSpacing.KOMSpacingIdentifier(coll[i - 1].KOMSpacingID);
-				});
-			}).filter(function (e) {
-				return e.length;
-			}), []);
-		});
-
 		it('randomizes', function () {
 			deepEqual(uRepeat(10, function (e) {
 				return uSlug(mod.KOMPlaySort(uItems(10, 0, true)).filter(KOMSpacing.KOMSpacingIsBackward));
 			}).filter(function (value, index, self) {
 				return self.indexOf(value) === index;
 			}).length > 1, true);
-		});
-
-		it('terminates if impossible to space apart from sibling', function () {
-			const items = uItems(1, 0, true);
-			deepEqual(mod.KOMPlaySort(items), items);
-		});
-
-	});
-
-	context('bug_mixed_forwards_not_first', function () {
-
-		it('sorts forward before backward', function () {
-			deepEqual(mod.KOMPlaySort(uItems(5, 2, true)).filter(function (e, i, coll) {
-				return coll.filter(function (item, index) {
-					if (KOMSpacing.KOMSpacingIdentifier(item.KOMSpacingID) !== KOMSpacing.KOMSpacingIdentifier(e.KOMSpacingID)) {
-						return false;
-					}
-
-					if (KOMSpacing.KOMSpacingLabel(item.KOMSpacingID) !== KOMSpacing.KOMSpacingLabelBackward()) {
-						return false;
-					}
-
-					return index < i;
-				}).length;
-			}), []);
 		});
 
 	});

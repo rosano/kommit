@@ -17,6 +17,16 @@ const kMultiplierSummandHard = -0.15;
 const kMultiplierSummandEasy = 0.15;
 const kMultiplierMultiplicandEasy = 1.3;
 
+const uAscending = function (a, b) {
+	return (a < b) ? -1 : ((a > b) ? 1 : 0);
+};
+
+const uNot = function (callback) {
+	return function (e) {
+		return !callback(e);
+	};
+};
+
 const mod = {
 
 	KOMPlaySort(inputData) {
@@ -24,49 +34,24 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		let reviewAll = mod._KOMPlaySortShuffle(inputData.filter(function (e) {
-			return !KOMSpacing.KOMSpacingIsBackward(e) && e.KOMSpacingDueDate;
-		}));
+		const seen = mod._KOMPlaySortShuffle(inputData.filter(uNot(KOMSpacing.KOMSpacingIsUnseen)));
 
-		let reviewBackward = mod._KOMPlaySortShuffle(inputData.filter(function (e) {
-			return KOMSpacing.KOMSpacingIsBackward(e) && e.KOMSpacingDueDate;
-		}));
+		const unseen = mod._KOMPlaySortShuffle(inputData.filter(KOMSpacing.KOMSpacingIsUnseen)).sort(function (a, b) {
+			return uAscending(KOMSpacing.KOMSpacingIsBackward(a), KOMSpacing.KOMSpacingIsBackward(b));
+		});
 
-		if (reviewAll.length && reviewBackward.length && KOMSpacing.KOMSpacingIdentifier(reviewAll.slice(-1).pop().KOMSpacingID) === KOMSpacing.KOMSpacingIdentifier(reviewBackward[0].KOMSpacingID)) {
-			reviewBackward.reverse();
+		if (!seen.length) {
+			return unseen;
 		}
 
-		reviewAll.push(...reviewBackward);
+		const lastIndex = seen.length - 1;
+		const width = Math.floor(seen.length / (unseen.length + 1));
 
-		const unseenAll = mod._KOMPlaySortShuffle(inputData.filter(function (e) {
-			return !KOMSpacing.KOMSpacingIsBackward(e) && !e.KOMSpacingDueDate;
-		}));
-
-		let unseenBackward = mod._KOMPlaySortShuffle(inputData.filter(function (e) {
-			return KOMSpacing.KOMSpacingIsBackward(e) && !e.KOMSpacingDueDate;
-		}));
-
-		let unseenTrialCount = 0;
-		while (unseenAll.length && unseenBackward.length && KOMSpacing.KOMSpacingIdentifier(unseenAll.slice(-1).pop().KOMSpacingID) === KOMSpacing.KOMSpacingIdentifier(unseenBackward[0].KOMSpacingID) && unseenTrialCount < inputData.length) {
-			unseenBackward = mod._KOMPlaySortShuffle(unseenBackward);
-
-			unseenTrialCount++;
-		}
-
-		unseenAll.push(...unseenBackward);
-
-		if (!reviewAll.length) {
-			return unseenAll;
-		}
-
-		const lastIndex = reviewAll.length - 1;
-		const width = Math.floor(reviewAll.length / (unseenAll.length + 1));
-
-		return unseenAll.reduce(function (coll, item, index) {
+		return unseen.reduce(function (coll, item, index) {
 			coll.splice(lastIndex - width * (index + 1), 0, item);
 
 			return coll;
-		}, reviewAll.reverse()).reverse();
+		}, seen.reverse()).reverse();
 	},
 
 	//How to randomize (shuffle) a JavaScript array? - Stack Overflow https://stackoverflow.com/a/12646864
