@@ -81,6 +81,13 @@ global.FileReader = require('filereader');
 			}, inputData);
 		},
 
+		uSpacingFresh (inputData = {}) {
+			return uSpacingUnseen(Object.assign({
+				KOMSpacingIsLearning: true,
+				KOMSpacingDueDate: new Date(),
+			}, inputData));
+		},
+
 		StubSpacingObjectHistorical(inputData) {
 			return StubSpacingObjectValid({
 				KOMSpacingChronicles: [StubChronicleObjectValid(inputData || new Date(Date.now() - 1000 * 60 * 60 * 24 * 3))],

@@ -1012,7 +1012,14 @@ const mod = {
 	async ReactDeckFigures (deck) {
 		const activeSpacings = (await mod.DataDeckSelectedObjects(deck)).$KOMDeckSpacings;
 
-		const todaySpacingsNotStudied = KOMReviewLogic.KOMReviewSpacingsToday(activeSpacings);
+		const todaySpacingsNotStudied = KOMReviewLogic.KOMReviewSpacingsToday(activeSpacings).reduce(function (coll, item) {
+			coll[(KOMSpacing.KOMSpacingIsUnseen(item) || KOMSpacing.KOMSpacingIsFresh(item)) ? '$KOMDeckTodayNewCount' : '$KOMDeckTodayReviewCount'].push(item);
+
+			return coll;
+		}, {
+			$KOMDeckTodayReviewCount: [],
+			$KOMDeckTodayNewCount: [],
+		});
 
 		const todaySpacingsStudied = activeSpacings.filter(function (e) {
 			if (!e.KOMSpacingChronicles.length) {
@@ -1027,10 +1034,8 @@ const mod = {
 		
 		return Object.assign(deck, mod.ValueCacheDeckFiguresMap(Object.assign(mod._ValueCacheDeckFiguresMap, {
 			[deck.KOMDeckID]: {
-				$KOMDeckTodayReviewCount: KOMSpacing.KOMSpacingFilterUnique(todaySpacingsNotStudied.filter(KOMSpacing.KOMSpacingIsReviewing)).length,
-				$KOMDeckTodayNewCount: KOMSpacing.KOMSpacingFilterUnique(todaySpacingsNotStudied.filter(function (e) {
-					return !KOMSpacing.KOMSpacingIsReviewing(e);
-				})).length,
+				$KOMDeckTodayReviewCount: KOMSpacing.KOMSpacingFilterUnique(todaySpacingsNotStudied.$KOMDeckTodayReviewCount).length,
+				$KOMDeckTodayNewCount: KOMSpacing.KOMSpacingFilterUnique(todaySpacingsNotStudied.$KOMDeckTodayNewCount).length,
 
 				$KOMDeckTodayStudiedCount: todaySpacingsStudied.length,
 				

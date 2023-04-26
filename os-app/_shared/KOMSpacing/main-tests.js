@@ -614,7 +614,15 @@ describe('KOMSpacingByStatus', function test_KOMSpacingByStatus() {
 	});
 
 	it('groups unseen', function () {
-		const item = StubSpacingObjectValid();
+		const item = uSpacingUnseen();
+		deepEqual(mod.KOMSpacingByStatus([item]), uGrouping({
+			KOMSpacingGroupingTotal: [item],
+			KOMSpacingGroupingUnseen: [item],
+		}));
+	});
+
+	it('groups fresh', function () {
+		const item = uSpacingFresh();
 		deepEqual(mod.KOMSpacingByStatus([item]), uGrouping({
 			KOMSpacingGroupingTotal: [item],
 			KOMSpacingGroupingUnseen: [item],

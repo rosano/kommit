@@ -278,15 +278,11 @@ const mod = {
 				return coll;
 			}
 
-			if (mod.KOMSpacingIsUnseen(item)) {
+			if (mod.KOMSpacingIsUnseen(item) || mod.KOMSpacingIsFresh(item)) {
 				coll.KOMSpacingGroupingUnseen.push(item);
-			}
-
-			if (mod.KOMSpacingIsDeveloping(item)) {
+			} else if (mod.KOMSpacingIsDeveloping(item)) {
 				coll.KOMSpacingGroupingDeveloping.push(item);
-			}
-
-			if (mod.KOMSpacingIsMature(item)) {
+			} else if (mod.KOMSpacingIsMature(item)) {
 				coll.KOMSpacingGroupingMature.push(item);
 			}
 			
