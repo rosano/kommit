@@ -156,7 +156,7 @@ import KOMReviewStats from '../KOMReviewStats/main.svelte';
 		<KOMReviewMasterListItem
 			KOMReviewMasterListItemName={ e.KOMDeckName }
 			KOMReviewMasterListItemReviewCount={ e.$KOMDeckTodayReviewCount }
-			KOMReviewMasterListItemUnseenCount={ e.$KOMDeckTodayUnseenCount }
+			KOMReviewMasterListItemUnseenCount={ e.$KOMDeckTodayNewCount }
 			KOMReviewMasterListItemDispatchClick={ () => KOMReviewMasterDispatchSelect(e) }
 			/>
 	{/each}

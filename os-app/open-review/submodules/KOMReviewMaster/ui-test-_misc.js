@@ -69,7 +69,7 @@ describe('KOMReviewMaster_Misc', function () {
 
 		const item = uDeck({
 			$KOMDeckTodayReviewCount: 1,
-			$KOMDeckTodayUnseenCount: 2,
+			$KOMDeckTodayNewCount: 2,
 		});
 
 		before(function () {

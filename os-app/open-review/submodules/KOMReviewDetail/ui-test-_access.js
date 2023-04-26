@@ -50,7 +50,7 @@ const uDeck = function (inputData) {
 	return Object.assign({
 		KOMDeckName: 'alfa',
 		$KOMDeckTodayReviewCount: 0,
-		$KOMDeckTodayUnseenCount: 0,
+		$KOMDeckTodayNewCount: 0,
 		$KOMDeckTodayStudiedCount: 0,
 		$KOMReviewGeneralUpcomingData: [],
 		$KOMReviewGeneralHistoricalData: [],
@@ -218,7 +218,7 @@ describe('KOMReviewDetail_Access', function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMReviewDetailDeck: JSON.stringify(uDeck({
 					$KOMDeckTodayReviewCount: 1,
-					$KOMDeckTodayUnseenCount: 0,
+					$KOMDeckTodayNewCount: 0,
 					$KOMDeckTodayStudiedCount: 0,
 					$KOMReviewChartCompositionCollectionData: {
 						KOMSpacingGroupingTotal: 1,
@@ -261,7 +261,7 @@ describe('KOMReviewDetail_Access', function () {
 				return browser.OLSKVisit(kDefaultRoute, {
 					KOMReviewDetailDeck: JSON.stringify(uDeck({
 						$KOMDeckTodayReviewCount: 0,
-						$KOMDeckTodayUnseenCount: 1,
+						$KOMDeckTodayNewCount: 1,
 						$KOMDeckTodayStudiedCount: 0,
 					})),
 				});
@@ -287,7 +287,7 @@ describe('KOMReviewDetail_Access', function () {
 				return browser.OLSKVisit(kDefaultRoute, {
 					KOMReviewDetailDeck: JSON.stringify(uDeck({
 						$KOMDeckTodayReviewCount: 1,
-						$KOMDeckTodayUnseenCount: 1,
+						$KOMDeckTodayNewCount: 1,
 						$KOMDeckTodayStudiedCount: 0,
 					})),
 				});
@@ -316,7 +316,7 @@ describe('KOMReviewDetail_Access', function () {
 				KOMReviewDetailDeck: JSON.stringify(uDeck({
 					KOMDeckIsForwardOnly: true,
 					$KOMDeckTodayReviewCount: 0,
-					$KOMDeckTodayUnseenCount: 0,
+					$KOMDeckTodayNewCount: 0,
 					$KOMDeckTodayStudiedCount: 1,
 					$KOMDeckGeneralNotUnseenCount: 1,
 					$KOMReviewChartCompositionCollectionData: {

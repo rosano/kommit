@@ -24,7 +24,7 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 				OLSKRoutingLanguage,
 				KOMReviewDetailDeck: JSON.stringify(uDeck({
 					$KOMDeckTodayReviewCount: 0,
-					$KOMDeckTodayUnseenCount: 0,
+					$KOMDeckTodayNewCount: 0,
 					$KOMDeckTodayStudiedCount: 0,
 				})),
 			});
@@ -129,7 +129,7 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 					OLSKRoutingLanguage,
 					KOMReviewDetailDeck: JSON.stringify(uDeck({
 						$KOMDeckTodayReviewCount: 1,
-						$KOMDeckTodayUnseenCount: 1,
+						$KOMDeckTodayNewCount: 1,
 						$KOMDeckTodayStudiedCount: 0,
 					})),
 				});
@@ -156,7 +156,7 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 					OLSKRoutingLanguage,
 					KOMReviewDetailDeck: JSON.stringify(uDeck({
 						$KOMDeckTodayReviewCount: 0,
-						$KOMDeckTodayUnseenCount: 0,
+						$KOMDeckTodayNewCount: 0,
 						$KOMDeckTodayStudiedCount: 1,
 						$KOMDeckGeneralNotUnseenCount: 1,
 						$KOMReviewChartCompositionCollectionData: {

@@ -190,7 +190,7 @@ describe('KOMReview_Misc', function () {
 			browser.assert.text('.KOMReviewMasterListItemReviewValue', '1');
 		});
 
-		it.skip('sets $KOMDeckTodayUnseenCount', function () {
+		it.skip('sets $KOMDeckTodayNewCount', function () {
 			browser.assert.text('.KOMReviewMasterListItemUnseenValue', '2');
 		});
 

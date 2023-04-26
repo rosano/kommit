@@ -77,7 +77,7 @@ describe('KOMReviewMaster_Access', function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMReviewMasterItems: JSON.stringify([uDeck({
 					$KOMDeckTodayReviewCount: 0,
-					$KOMDeckTodayUnseenCount: 0,
+					$KOMDeckTodayNewCount: 0,
 					$KOMDeckTodayStudiedCount: 1,
 					$KOMDeckGeneralNotUnseenCount: 1,
 					$KOMReviewChartCompositionCollectionData: {

@@ -6,7 +6,7 @@ const uDeck = function (inputData) {
 		KOMDeckName: 'alfa',
 		KOMDeckRetireCardsMonths: 0,
 		$KOMDeckTodayReviewCount: 0,
-		$KOMDeckTodayUnseenCount: 0,
+		$KOMDeckTodayNewCount: 0,
 		$KOMDeckTodayStudiedCount: 0,
 		$KOMReviewGeneralUpcomingData: [],
 		$KOMReviewGeneralHistoricalData: [],
@@ -576,7 +576,7 @@ describe('KOMReviewDetail_Misc', function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				KOMReviewDetailDeck: JSON.stringify(uDeck({
 					$KOMDeckTodayReviewCount: 1,
-					$KOMDeckTodayUnseenCount: 1,
+					$KOMDeckTodayNewCount: 1,
 				})),
 			});
 		});
