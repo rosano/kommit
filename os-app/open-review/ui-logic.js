@@ -38,7 +38,7 @@ const mod = {
 		}
 
 		return inputData.filter(function (e) {
-			if (e.$KOMSpacingCard?.KOMCardIsRetired) {
+			if (e.$KOMSpacingCard && e.$KOMSpacingCard.KOMCardIsRetired) {
 				return false;
 			}
 
