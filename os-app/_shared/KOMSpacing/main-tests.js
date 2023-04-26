@@ -416,21 +416,6 @@ describe('KOMSpacingIsUnseen', function test_KOMSpacingIsUnseen() {
 		deepEqual(mod.KOMSpacingIsUnseen(StubSpacingObjectValid()), true);
 	});
 
-	it('returns true if learning', function () {
-		deepEqual(mod.KOMSpacingIsUnseen(StubSpacingObjectValid({
-			KOMSpacingDueDate: new Date(),
-			KOMSpacingIsLearning: true,
-		})), true);
-	});
-
-	it('returns false if lapsing', function () {
-		deepEqual(mod.KOMSpacingIsUnseen(StubSpacingObjectValid({
-			KOMSpacingDueDate: new Date(),
-			KOMSpacingIsLearning: true,
-			KOMSpacingIsLapsing: true,
-		})), false);
-	});
-
 });
 
 describe('KOMSpacingIsFresh', function test_KOMSpacingIsFresh() {
