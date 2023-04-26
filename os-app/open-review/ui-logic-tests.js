@@ -125,6 +125,14 @@ describe('KOMReviewSpacingsToday', function test_KOMReviewSpacingsToday() {
 		})]), []);
 	});
 
+	it('excludes if retired', function () {
+		deepEqual(mod.KOMReviewSpacingsToday([Object.assign(kTesting.StubSpacingObjectValid(), {
+			$KOMSpacingCard: StubCardObjectValid({
+				KOMCardIsRetired: true,
+			}),
+		})]), []);
+	});
+
 });
 
 describe('KOMReviewSchemeReviewing', function test_KOMReviewSchemeReviewing() {

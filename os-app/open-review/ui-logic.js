@@ -38,6 +38,10 @@ const mod = {
 		}
 
 		return inputData.filter(function (e) {
+			if (e.$KOMSpacingCard?.KOMCardIsRetired) {
+				return false;
+			}
+
 			if (!e.KOMSpacingDueDate) {
 				return true;
 			}

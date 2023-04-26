@@ -1012,9 +1012,7 @@ const mod = {
 	async ReactDeckFigures (deck) {
 		const activeSpacings = (await mod.DataDeckSelectedObjects(deck)).$KOMDeckSpacings;
 
-		const todaySpacingsNotStudied = KOMReviewLogic.KOMReviewSpacingsToday(activeSpacings.filter(function (e) {
-			return !e.$KOMSpacingCard.KOMCardIsRetired;
-		}));
+		const todaySpacingsNotStudied = KOMReviewLogic.KOMReviewSpacingsToday(activeSpacings);
 
 		const todaySpacingsStudied = activeSpacings.filter(function (e) {
 			if (!e.KOMSpacingChronicles.length) {
