@@ -433,6 +433,40 @@ describe('KOMSpacingIsUnseen', function test_KOMSpacingIsUnseen() {
 
 });
 
+describe('KOMSpacingIsFresh', function test_KOMSpacingIsFresh() {
+
+	it('throws if not valid', function () {
+		throws(function () {
+			mod.KOMSpacingIsFresh({});
+		}, /KOMErrorInputNotValid/);
+	});
+
+	it('returns false if KOMSpacingInterval', function () {
+		deepEqual(mod.KOMSpacingIsFresh(StubSpacingObjectValid({
+			KOMSpacingInterval: 1,
+		})), false);
+	});
+
+	it('returns false if lapsing', function () {
+		deepEqual(mod.KOMSpacingIsFresh(StubSpacingObjectValid({
+			KOMSpacingIsLearning: true,
+			KOMSpacingIsLapsing: true,
+		})), false);
+	});
+
+	it('returns false if unseen', function () {
+		deepEqual(mod.KOMSpacingIsFresh(StubSpacingObjectValid()), false);
+	});
+
+	it('returns true', function () {
+		deepEqual(mod.KOMSpacingIsFresh(StubSpacingObjectValid({
+			KOMSpacingDueDate: new Date(),
+			KOMSpacingIsLearning: true,
+		})), true);
+	});
+
+});
+
 describe('KOMSpacingIsLearning', function test_KOMSpacingIsLearning() {
 
 	it('throws if not valid', function () {

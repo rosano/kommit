@@ -185,6 +185,22 @@ const mod = {
 		return !inputData.KOMSpacingDueDate;
 	},
 
+	KOMSpacingIsFresh (inputData) {
+		if (mod.KOMSpacingErrors(inputData)) {
+			throw new Error('KOMErrorInputNotValid');
+		}
+
+		if (inputData.KOMSpacingInterval) {
+			return false;
+		}
+
+		if (inputData.KOMSpacingIsLapsing) {
+			return false;
+		}
+
+		return !!inputData.KOMSpacingDueDate;
+	},
+
 	KOMSpacingIsLearning(inputData) {
 		if (mod.KOMSpacingErrors(inputData)) {
 			throw new Error('KOMErrorInputNotValid');
