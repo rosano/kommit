@@ -514,19 +514,27 @@ describe('KOMSpacingIsDeveloping', function test_KOMSpacingIsDeveloping() {
 		}, /KOMErrorInputNotValid/);
 	});
 
-	it('returns false if no KOMSpacingInterval', function () {
-		deepEqual(mod.KOMSpacingIsDeveloping(StubSpacingObjectValid()), false);
+	it('returns false if unseen', function () {
+		deepEqual(mod.KOMSpacingIsDeveloping(uSpacingUnseen()), false);
 	});
 
 	it('returns false if KOMSpacingInterval above KOMSpacingMatureThreshold', function () {
 		deepEqual(mod.KOMSpacingIsDeveloping(StubSpacingObjectValid({
+			KOMSpacingDueDate: new Date(),
 			KOMSpacingInterval: mod.KOMSpacingMatureThreshold(),
 		})), false);
 	});
 
 	it('returns true', function () {
 		deepEqual(mod.KOMSpacingIsDeveloping(StubSpacingObjectValid({
+			KOMSpacingDueDate: new Date(),
 			KOMSpacingInterval: 1,
+		})), true);
+	});
+
+	it('returns true if fresh', function () {
+		deepEqual(mod.KOMSpacingIsDeveloping(StubSpacingObjectValid({
+			KOMSpacingDueDate: new Date(),
 		})), true);
 	});
 

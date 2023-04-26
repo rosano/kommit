@@ -222,8 +222,12 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		if (!inputData.KOMSpacingInterval) {
+		if (mod.KOMSpacingIsUnseen(inputData)) {
 			return false;
+		}
+
+		if (!inputData.KOMSpacingInterval) {
+			return true;
 		}
 
 		return inputData.KOMSpacingInterval < mod.KOMSpacingMatureThreshold();
