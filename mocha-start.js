@@ -75,10 +75,9 @@ global.FileReader = require('filereader');
 		},
 
 		uSpacingUnseen (inputData = {}) {
-			return Object.assign({
+			return StubSpacingObjectValid(Object.assign({
 				KOMSpacingID: 'bravo-forward',
-				KOMSpacingChronicles: [],
-			}, inputData);
+			}, inputData));
 		},
 
 		uSpacingFresh (inputData = {}) {
