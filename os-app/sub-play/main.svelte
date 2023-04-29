@@ -380,7 +380,7 @@ const mod = {
 	// SETUP
 
 	SetupEverything () {
-		mod.ReactCardChange();
+		setTimeout(mod.ReactCardChange, 200);
 	},
 
 	// LIFECYCLE
