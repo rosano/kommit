@@ -117,7 +117,7 @@ const mod = {
 			throw new Error('KOMErrorInputNotValid');
 		}
 
-		const cardsNew = [];
+		const cardIDs = [];
 		return param1.slice().sort(function (a, b) {
 			return uDescending(KOMSpacing.KOMSpacingIsLearning(a), KOMSpacing.KOMSpacingIsLearning(b));
 		}).filter(function (e, i) {
@@ -137,12 +137,12 @@ const mod = {
 				return false;
 			}
 
-			if (param2.KOMReviewScheme !== mod.KOMReviewSchemeReviewing() && !KOMSpacing.KOMSpacingIsReviewing(e) && !cardsNew.includes(e.$KOMSpacingCard)) {
-				cardsNew.push(e.$KOMSpacingCard);
+			if (param2.KOMReviewScheme !== mod.KOMReviewSchemeReviewing() && !KOMSpacing.KOMSpacingIsReviewing(e) && !cardIDs.includes(e.$KOMSpacingCard.KOMCardID) && (cardIDs.length < param2.KOMReviewMaxUnseenCards)) {
+				cardIDs.push(e.$KOMSpacingCard.KOMCardID);
 			}
 
-			if (param2.KOMReviewScheme !== mod.KOMReviewSchemeReviewing() && !KOMSpacing.KOMSpacingIsReviewing(e) && cardsNew.length > param2.KOMReviewMaxUnseenCards) {
-				return false;
+			if (param2.KOMReviewScheme !== mod.KOMReviewSchemeReviewing() && !KOMSpacing.KOMSpacingIsReviewing(e) && (cardIDs.length >= param2.KOMReviewMaxUnseenCards)) {
+				return cardIDs.includes(e.$KOMSpacingCard.KOMCardID);
 			}
 
 			return true;

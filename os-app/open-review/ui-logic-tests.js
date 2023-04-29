@@ -457,6 +457,28 @@ describe('KOMReviewFilter', function test_KOMReviewFilter() {
 			}), StubDeckObjectValid()), items.slice(0, 10));
 		});
 
+		it('includes if matching card', function () {
+			const shuffled = Object.entries(uItems().reduce(function (coll, item, index) {
+				coll[index % 2 ? 'odd' : 'even'].push(item);
+				return coll;
+			}, {
+				even: [],
+				odd: [],
+			})).reduce(function (coll, item) {
+				return coll.concat(item.pop());
+			}, []);
+
+			deepEqual(mod.KOMReviewFilter(shuffled, StubReviewObjectValid({
+				KOMReviewScheme: uRandomElement(mod.KOMReviewSchemeUnseen(), mod.KOMReviewSchemeMixed()),
+				KOMReviewMaxUnseenCards: 5,
+			}), StubDeckObjectValid()), shuffled.reduce(function (coll, item) {
+				if (shuffled.map(e => e.$KOMSpacingCard.KOMCardID).slice(0, 5).includes(item.$KOMSpacingCard.KOMCardID)) {
+					coll.push(item)
+				};
+				return coll;
+			}, []));
+		});
+
 	});
 
 	context('KOMDeckIsForwardOnly', function () {
