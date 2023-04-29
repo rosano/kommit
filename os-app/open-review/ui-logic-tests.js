@@ -263,8 +263,9 @@ describe('KOMReviewFilter', function test_KOMReviewFilter() {
 
 	const uItems = function (inputData = {}) {
 		return uFlatten(Array.from(new Array(10)).map(function (e, i) {
+
 			const card = Object.assign(StubCardObjectValid(), {
-				KOMCardID: (i + 1).toString(),
+				KOMCardID: Math.random().toString(),
 			});
 
 			return [true, false].map(function (forward) {
