@@ -1015,6 +1015,8 @@ const mod = {
 
 		await mod.SetupValueDecksAll();
 
+		await mod.SetupCleanup();
+
 		mod._ValueIsLoading = false;
 
 		// mod.ControlDemo();
