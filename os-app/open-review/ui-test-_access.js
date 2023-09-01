@@ -100,10 +100,6 @@ describe('KOMReview_Access', function () {
 		return browser.assert.OLSKLauncherItems('OLSKServiceWorkerLauncherFakeItemProxy', 1);
 	});
 
-	it('shows OLSKFundLauncherFakeItemProxy', function () {
-		return browser.assert.OLSKLauncherItems('OLSKFundLauncherFakeItemProxy', 1);
-	});
-
 	it('hides KOMReviewLauncherItemSelectDeck', function () {
 		return browser.assert.OLSKLauncherItems('KOMReviewLauncherItemSelectDeck', 0);
 	});

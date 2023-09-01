@@ -213,8 +213,6 @@ Counting the number of cards based on its state.
 | Global (when cloud is connected) ||
 :--- | ---
 | `OLSKRemoteStorageLauncherItemCopyLoginLinkText` | Launcher |
-| `OLSKFundLauncherItemEnterClueText` | Launcher |
-| `OLSKFundLauncherItemClearClueText` | Launcher |
 | `OLSKRemoteStorageLauncherItemDebugFlushDataText` | Launcher |
 
 # Add to Home screen on mobile and tablet devices

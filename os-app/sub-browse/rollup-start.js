@@ -19,9 +19,6 @@ import zerodatawrap from 'zerodatawrap';
 						],
 				}],
 			}),
-			KOMBrowseDispatchEligible: (function () {
-				return true;
-			}),
 			KOMBrowseDispatchCreate: (function (inputData) {
 				window.TestKOMBrowseDispatchCreate.innerHTML = parseInt(window.TestKOMBrowseDispatchCreate.innerHTML) + 1;
 				window.TestKOMBrowseDispatchCreateData.innerHTML = JSON.stringify(Object.keys(inputData));

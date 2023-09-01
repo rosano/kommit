@@ -3,7 +3,6 @@ export let KOMBrowseStorageClient;
 
 export let KOMBrowseDeckSelected;
 export let KOMBrowseDeckCards;
-export let KOMBrowseDispatchEligible;
 export let KOMBrowseDispatchCreate;
 export let KOMBrowseDispatchDiscard;
 export let KOMBrowseDispatchClose;
@@ -142,10 +141,6 @@ const mod = {
 	// CONTROL
 
 	async ControlCardCreate(param1, param2 = {}) {
-		if (!KOMBrowseDispatchEligible()) {
-			return;
-		}
-
 		const item = await KOMBrowseStorageClient.App.KOMCard.KOMCardCreate(Object.assign(mod.DataCardObjectTemplate(), param2), param1);
 
 		mod.ControlCardActivate(mod._OLSKCatalog.modPublic.OLSKCatalogInsert(item));

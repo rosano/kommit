@@ -18,7 +18,6 @@ import KOMBrowseLogic from '../sub-browse/ui-logic.js';
 import OLSKThrottle from 'OLSKThrottle';
 import OLSKLocalStorage from 'OLSKLocalStorage';
 import OLSKCache from 'OLSKCache';
-import OLSKFund from 'OLSKFund';
 import OLSKPact from 'OLSKPact';
 import OLSKChain from 'OLSKChain';
 import OLSKBeacon from 'OLSKBeacon';
@@ -36,8 +35,6 @@ const mod = {
 	_ValueDecksAll: [],
 	ValueDecksAll (inputData) {
 		mod._ValueDecksAll = KOMReviewLogic.KOMReviewDeckSort(inputData);
-
-		mod.ReactDocumentRemainder();
 	},
 	
 	_ValueDeckSelected: undefined,
@@ -95,16 +92,6 @@ const mod = {
 		return OLSKCache.OLSKCacheResultFetchOnceSync(mod._ValueDeckSelectedObjectsMap, inputData.KOMDeckID, async function () {
 			return mod._ValueZDRWrap.App.KOMDeck.KOMDeckObjectsMap(inputData, await mod.DataSettingValue('KOMSettingExcludeTripleQuestionMark') === 'true');
 		});
-	},
-
-	DataIsEligible (inputData = {}) {
-		return OLSKFund.OLSKFundIsEligible(Object.assign({
-			ParamMinimumTier: 1,
-			ParamCurrentProject: 'ROCO_SHARED_PROJECT_ID_SWAP_TOKEN',
-			ParamBundleProjects: ['FakeBundleProject'],
-			ParamGrantTier: OLSKFund.OLSKFundTier('OLSK_FUND_PRICING_STRING_SWAP_TOKEN', mod._ValueOLSKFundGrant),
-			ParamGrantProject: mod._ValueOLSKFundGrant ? mod._ValueOLSKFundGrant.OLSKPactGrantProject : '',
-		}, inputData));
 	},
 
 	DataNavigator () {
@@ -183,16 +170,6 @@ const mod = {
 				},
 				]);
 		}
-
-		items.push(...OLSKFund.OLSKFundRecipes({
-			OLSKLocalized,
-			ParamConnected: !!mod._ValueCloudIdentity,
-			ParamAuthorized: !!mod._ValueFundClue,
-			OLSKFundDispatchGrant: mod.OLSKFundDispatchGrant,
-			OLSKFundDispatchPersist: mod.OLSKFundDispatchPersist,
-			ParamMod: mod,
-			ParamSpecUI: OLSK_SPEC_UI(),
-		}));
 
 		items.push(...zerodatawrap.ZDRRecipes({
 			ParamMod: mod,
@@ -386,23 +363,6 @@ const mod = {
 								KOMSpacingDueDate: new Date(),
 							})
 						});
-					},
-				},
-				{
-					LCHRecipeName: 'FakeFundDocumentLimit',
-					LCHRecipeCallback: async function FakeFundDocumentLimit () {
-						const deck = await mod._ValueZDRWrap.App.KOMDeck.KOMDeckCreate({
-							KOMDeckName: Math.random().toString(),
-						});
-
-						await Promise.all(Array.from(Array(mod._ValueDocumentRemainder)).map(function (e) {
-							return mod._ValueZDRWrap.App.KOMCard.KOMCardCreate(Object.assign(mod.FakeCardObjectValid(), {
-								KOMCardID: Math.random().toString(),
-								KOMCardDeckID: deck.KOMDeckID,
-							}), deck);
-						}));
-
-						return mod.SetupValueDecksAll();
 					},
 				},
 			]);
@@ -681,14 +641,6 @@ const mod = {
 		mod._ValuePlayVisible = true;
 	},
 
-	KOMBrowseDispatchEligible () {
-		if (mod._ValueDocumentRemainder < 1 && !mod.DataIsEligible()) {
-			return mod.OLSKFundDocumentGate();
-		}
-
-		return true;
-	},
-
 	async KOMBrowseDispatchCreate (inputData) {
 		(await mod.DataDeckSelectedObjects(mod._ValueDeckSelected)).$KOMDeckCards.push(inputData);
 		(await mod.DataDeckSelectedObjects(mod._ValueDeckSelected)).$KOMDeckSpacings.push(...Object.values(await mod._ValueZDRWrap.App.KOMSpacing.KOMSpacingList(inputData)).map(function (e) {
@@ -696,8 +648,6 @@ const mod = {
 				$KOMSpacingCard: inputData,
 			});
 		}));
-
-		mod.ReactDocumentRemainder();
 	},
 
 	async KOMBrowseDispatchDiscard (inputData) {
@@ -707,8 +657,6 @@ const mod = {
 		(await mod.DataDeckSelectedObjects(mod._ValueDeckSelected)).$KOMDeckSpacings = (await mod.DataDeckSelectedObjects(mod._ValueDeckSelected)).$KOMDeckSpacings.filter(function (e) {
 			return e.$KOMSpacingCard !== inputData;
 		});
-
-		mod.ReactDocumentRemainder();
 	},
 
 	async KOMBrowseDispatchClose () {
@@ -958,44 +906,7 @@ const mod = {
 
 	ZDRSchemaDispatchSyncDeleteSpacing (inputData) {},
 
-	OLSKFundSetupDispatchClue () {
-		return mod.DataSetting('KOMSettingFundClue') || null;
-	},
-	
-	_OLSKFundSetupDispatchUpdate (inputData) {
-		mod[inputData] = mod[inputData]; // #purge-svelte-force-update
-	},
-
-	OLSKFundDispatchPersist (inputData) {
-		mod._ValueFundClue = inputData; // #hotfix-missing-persist
-
-		if (!inputData) {
-			return mod._ValueZDRWrap.App.KOMSetting.ZDRModelDeleteObject({
-				KOMSettingKey: 'KOMSettingFundClue',
-			});
-		}
-
-		return mod._ValueZDRWrap.App.KOMSetting.ZDRModelWriteObject({
-			KOMSettingKey: 'KOMSettingFundClue',
-			KOMSettingValue: inputData,
-		}).then(function () {
-			if (OLSK_SPEC_UI()) {
-				return;
-			}
-
-			setTimeout(function () {
-				window.location.reload();
-			}, mod._ValueZDRWrap.ZDRStorageProtocol === zerodatawrap.ZDRProtocolFission() ? 1000 : 0); // #hotfix-fission-delay
-		});
-	},
-
 	// REACT
-
-	async ReactDocumentRemainder () {
-		mod.OLSKFundDocumentRemainder && mod.OLSKFundDocumentRemainder(KOMReviewLogic.KOMReviewDocumentCount(mod._ValueDecksAll, Object.fromEntries(await Promise.all(Object.entries(mod._ValueDeckSelectedObjectsMap).map(async function (e) {
-			return [e[0], await e[1]];
-		})))));
-	},
 
 	ReactDeckIfSelected (inputData) {
 		if (!mod._ValueDeckSelected) {
@@ -1104,8 +1015,6 @@ const mod = {
 
 		await mod.SetupValueDecksAll();
 
-		mod.SetupFund();
-
 		mod._ValueIsLoading = false;
 
 		// mod.ControlDemo();
@@ -1205,50 +1114,12 @@ const mod = {
 		})));
 	},
 
-	async SetupFund () {
-		OLSKFund.OLSKFundSetup({
-			ParamMod: mod,
-			OLSKLocalized,
-			ParamFormURL: 'OLSK_FUND_FORM_URL_SWAP_TOKEN',
-			ParamProject: 'ROCO_SHARED_PROJECT_ID_SWAP_TOKEN',
-			ParamSpecUI: OLSK_SPEC_UI(),
-			ParamDocumentLimit: parseInt('OLSK_FUND_DOCUMENT_LIMIT_SWAP_TOKEN'),
+	SetupCleanup() {
+		window.localStorage.removeItem('OLSK_FUND_GRANT_DATA');
+
+		return mod._ValueSettingsAll.KOMSettingFundClue && mod._ValueZDRWrap.App.KOMSetting.ZDRModelDeleteObject({
+			KOMSettingKey: 'KOMSettingFundClue',
 		});
-
-		mod.ReactDocumentRemainder();
-
-		await OLSKFund.OLSKFundSetupPostPay(mod);
-
-		if (!mod._ValueCloudIdentity) {
-			return;
-		}
-
-		if (!mod._ValueFundClue) {
-			return;
-		}
-
-		const item = {
-			OLSK_CRYPTO_PAIR_RECEIVER_PRIVATE: `OLSK_CRYPTO_PAIR_RECEIVER_PRIVATE_SWAP_TOKEN${ '' }`, // #purge
-			OLSK_CRYPTO_PAIR_SENDER_PUBLIC: 'OLSK_CRYPTO_PAIR_SENDER_PUBLIC_SWAP_TOKEN',
-			OLSK_FUND_API_URL: 'OLSK_FUND_API_URL_SWAP_TOKEN',
-			ParamBody: {
-				OLSKPactAuthType: mod._ValueZDRWrap.ZDRStorageProtocol === zerodatawrap.ZDRProtocolRemoteStorage() ? OLSKPact.OLSKPactAuthTypeRemoteStorage() : OLSKPact.OLSKPactAuthTypeFission(),
-				OLSKPactAuthIdentity: mod._ValueCloudIdentity,
-				OLSKPactAuthProof: mod._ValueCloudToken,
-				OLSKPactAuthMetadata: {
-					OLSKPactAuthMetadataModuleName: 'kommit',
-					OLSKPactAuthMetadataFolderPath: KOMDeck.KOMDeckDirectory() + '/',
-				},
-				OLSKPactPayIdentity: mod._ValueCloudIdentity,
-				OLSKPactPayClue: mod._ValueFundClue,
-			},
-			OLSKLocalized,
-			OLSKFundDispatchProgress: mod.OLSKFundDispatchProgress,
-			OLSKFundDispatchFail: mod.OLSKFundDispatchFail,
-			OLSKFundDispatchGrant: mod.OLSKFundDispatchGrant,
-		};
-
-		return OLSKFund.OLSKFundSetupGrant(item);
 	},
 
 	// LIFECYCLE
@@ -1312,7 +1183,6 @@ import OLSKApropos from 'OLSKApropos';
 			KOMBrowseStorageClient={ mod._ValueZDRWrap }
 			KOMBrowseDeckSelected={ mod._ValueDeckSelected }
 			KOMBrowseDeckCards={ mod._ValueBrowseCards }
-			KOMBrowseDispatchEligible={ mod.KOMBrowseDispatchEligible }
 			KOMBrowseDispatchCreate={ mod.KOMBrowseDispatchCreate }
 			KOMBrowseDispatchDiscard={ mod.KOMBrowseDispatchDiscard }
 			KOMBrowseDispatchClose={ mod.KOMBrowseDispatchClose }
@@ -1362,13 +1232,10 @@ import OLSKApropos from 'OLSKApropos';
 		OLSKAppToolbarDispatchApropos={ mod.OLSKAppToolbarDispatchApropos }
 		OLSKAppToolbarDispatchTongue={ mod.OLSKAppToolbarDispatchTongue }
 		OLSKAppToolbarGuideURL={ window.OLSKCanonical('KOMGuideRoute') }
-		OLSKAppToolbarFundShowProgress={ mod._ValueOLSKFundProgress }
-		OLSKAppToolbarFundLimitText={ mod._ValueDocumentRemainder }
 		OLSKAppToolbarErrorText={ mod._OLSKAppToolbarErrorText }
 		OLSKAppToolbarCloudConnected={ !!mod._ValueCloudIdentity }
 		OLSKAppToolbarCloudOffline={ mod._ValueCloudIsOffline }
 		OLSKAppToolbarCloudError={ !!mod._ValueCloudErrorText }
-		OLSKAppToolbarDispatchFund={ mod._ValueOLSKFundGrant || OLSKFund.OLSKFundResponseIsPresent() ? null : mod.OLSKAppToolbarDispatchFund }
 		OLSKAppToolbarDispatchCloud={ mod.OLSKAppToolbarDispatchCloud }
 		OLSKAppToolbarDispatchLauncher={ mod.OLSKAppToolbarDispatchLauncher }
 		/>
@@ -1381,13 +1248,9 @@ import OLSKApropos from 'OLSKApropos';
 	</footer>
 {/if}
 
-{#if !!mod._ValueCloudIdentity }
-	<OLSKWebView OLSKModalViewTitleText={ OLSKLocalized('OLSKFundWebViewTitleText') } OLSKWebViewURL={ mod._ValueFundURL } bind:this={ mod._OLSKWebView } DEBUG_OLSKWebViewDataSource={ OLSK_SPEC_UI() } />
-{/if}
-
 <OLSKModalView OLSKModalViewTitleText={ OLSKLocalized('OLSKAproposHeadingText') } bind:this={ mod._OLSKModalView } OLSKModalViewIsCapped={ true }>
 	<OLSKApropos
-		OLSKAproposFeedbackValue={ `javascript:window.location.href = window.atob('${ window.btoa(OLSKFormatted(window.atob('OLSK_APROPOS_FEEDBACK_EMAIL_SWAP_TOKEN'), 'ROCO_SHARED_PROJECT_ID_SWAP_TOKEN' + (mod._ValueFundClue ? '+' + mod._ValueFundClue : ''))) }')` }
+		OLSKAproposFeedbackValue={ `javascript:window.location.href = window.atob('${ window.btoa(OLSKFormatted(window.atob('OLSK_APROPOS_FEEDBACK_EMAIL_SWAP_TOKEN'), 'ROCO_SHARED_PROJECT_ID_SWAP_TOKEN')) }')` }
 		/>
 </OLSKModalView>
 
