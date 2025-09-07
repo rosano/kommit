@@ -18,7 +18,7 @@ import KOMBrowseLogic from '../sub-browse/ui-logic.js';
 import OLSKThrottle from 'OLSKThrottle';
 import OLSKLocalStorage from 'OLSKLocalStorage';
 import OLSKCache from 'OLSKCache';
-import OLSKPact from 'OLSKPact';
+
 import OLSKChain from 'OLSKChain';
 import OLSKBeacon from 'OLSKBeacon';
 import OLSKLanguageSwitcher from 'OLSKLanguageSwitcher';
